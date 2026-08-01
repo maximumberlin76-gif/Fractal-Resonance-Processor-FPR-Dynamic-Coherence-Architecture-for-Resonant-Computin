@@ -1,7 +1,5 @@
 # CI — Fractal Resonance Processor (FRP)
 
-# CI — Fractal Resonance Processor (FRP)
-
 [![FRP M17 Published Artifact Integration](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m17-published-artifact-integration.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m17-published-artifact-integration.yml)
 [![FRP M16 RTL Artifact Boundary](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m16-rtl-artifact-boundary.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m16-rtl-artifact-boundary.yml)
 [![FRP M16 FPGA Preparation](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m16-fpga-preparation.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m16-fpga-preparation.yml)
@@ -426,60 +424,55 @@ The qualified FRP semantic-to-M17 artifact-integration chain is:
 
 `M17 qualification-boundary closure`
 
-### 2.2 Balanced Ternary State and Retained-Result Domain
+## 2. Qualified Processor Execution Domains
 
-The balanced ternary domain contains:
+### 2.1 Resonant Dynamic Domain
 
-- canonical states `-1/0/1`;
-- active neutral state `0`;
-- phase-derived ternary targets;
-- transition requests;
-- accepted and rejected request lanes;
-- distributed commit;
-- transition-fraction limits;
-- transition-capacity telemetry;
-- request lanes;
-- pending neutral routes;
-- mandatory tick separation;
-- scheduler-controlled execution;
-- retained ternary state;
-- retained pending polarity;
-- pending-route completion;
-- retained-state writeback;
-- switching-load telemetry;
-- thermal-state telemetry;
-- coherence and pressure quantities;
-- invariant vectors.
-
-Canonical opposite-polarity routes are:
-
-- `-1 → 0 → 1`;
-- `1 → 0 → -1`.
-
-The first leg neutralizes the retained state to active neutral state `0`.
-
-The second leg completes the retained pending route on a later eligible tick.
-
-Qualified scheduler modes remain separate:
-
-| Scheduler mode | Exact sequence |
-|---|---|
-| `free` | unrestricted scheduler progression |
-| `7/1` | seven `balance` ticks followed by one `commit` tick |
-| `1/7` | one `excite` tick followed by seven `neutralize` ticks |
-
-The resonant dynamic domain drives the evolving computation.
-
-The balanced ternary domain provides the state, target, transition, routing, and retained-result layer.
-
-The M16 RTL core realizes the scheduler, request-lane, active-neutral, pending-route, transition-capacity, retained-state writeback, telemetry, and invariant semantics of the balanced ternary execution domain.
-
-The M17 published-artifact inventory records the published boundaries associated with these semantics without redefining processor behavior or changing published values.
-
-The Python executable semantic reference remains:
+The qualified resonant dynamic domain is executed by:
 
 `frp_prototype_v1_7_0.py`
 
+Its machine-readable execution boundary uses:
+
+- structured-output schema `frp.structured_output.v1.7.0`;
+- benchmark-matrix schema `frp.m3.benchmark_matrix.v1.7.0`.
+
+The resonant dynamic domain contains:
+
+- cell phase and frequency state;
+- Kuramoto–Sakaguchi resonant phase coupling;
+- asymmetric local phase lag gamma;
+- hierarchical fractal phase interaction;
+- stateful delay dynamics;
+- distributed local thermal fields;
+- thermal coupling-factor evolution;
+- local correlated gamma drift;
+- phase velocity;
+- phase evolution;
+- resonance selection;
+- Kuramoto order parameter `R`;
+- multiscale phase coherence;
+- nonlinear coherence compression;
+- coherence quantity `C(t)`;
+- pressure quantity `P(t)`;
+- dynamic stability quantity `C(t) - P(t)`;
+- phase-derived ternary targets;
+- structured telemetry and trace values.
+
+The Kuramoto order parameter `R(t)` and processor coherence quantity `C(t)`
+remain distinct recorded quantities.
+
+The resonant dynamic domain produces the evolving phase-derived target
+interface used by the balanced ternary execution domain.
+
+The M16 RTL layer receives the phase-derived target interface and realizes the
+qualified scheduler, request-lane, transition-routing, transition-capacity,
+pending-route, and retained-state semantics.
+
+The M17 published-artifact integration boundary identifies the published
+surfaces associated with these quantities without recalculating or replacing
+their FRP-published values.
+
 ### 2.2 Balanced Ternary State and Retained-Result Domain
 
 The balanced ternary domain contains:
@@ -524,11 +517,16 @@ Qualified scheduler modes remain separate:
 
 The resonant dynamic domain drives the evolving computation.
 
-The balanced ternary domain provides the state, target, transition, routing, and retained-result layer.
+The balanced ternary domain provides the state, target, transition, routing,
+and retained-result layer.
 
-The M16 RTL core realizes the scheduler, request-lane, active-neutral, pending-route, transition-capacity, retained-state writeback, telemetry, and invariant semantics of the balanced ternary execution domain.
+The M16 RTL core realizes the scheduler, request-lane, active-neutral,
+pending-route, transition-capacity, retained-state writeback, telemetry, and
+invariant semantics of the balanced ternary execution domain.
 
-The M17 published-artifact inventory records the published boundaries associated with these semantics without redefining processor behavior or changing published values.
+The M17 published-artifact inventory records the published boundaries
+associated with these semantics without redefining processor behavior or
+changing published values.
 
 The Python executable semantic reference remains:
 
