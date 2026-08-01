@@ -868,3 +868,542 @@ Current repository role:
 
 `preserve the complete published Fractal Resonance Processor architecture from the balanced ternary computational kernel through structured validation, hardware-facing implementation mapping, deterministic quantized execution, RTL correlation, M15 qualification closure, M16 SystemVerilog RTL execution, and target-independent FPGA preparation`
 
+## 13. Planned Architecture Progression from M17 through M30
+
+The current qualified repository boundary remains:
+
+`FRP v1.8.0 / M16`
+
+The milestones below are planned architecture targets. They are not implementation claims, qualification results, release records, or evidence that the corresponding artifacts already exist.
+
+The planned version assignments remain provisional until each milestone has:
+
+- implemented repository artifacts;
+- deterministic producer commands;
+- canonical machine-readable outputs;
+- declared digests;
+- validation logic;
+- automated tests;
+- qualification workflows;
+- successful workflow evidence;
+- release-specific documentation;
+- validation-index alignment.
+
+FRP remains the only source of truth for processor semantics.
+
+Downstream tools may read, validate, correlate, and visualize published FRP artifacts. Upstream FRP qualification must not import, execute, or depend on downstream implementation code.
+
+Published measurement contours must remain separate. Operation count, thermal proxy, transition pressure, `heat_peak`, scheduler timing, latency, throughput, RTL execution, implementation-tool results, and physical measurements must not be represented as interchangeable quantities.
+
+Target-independent FPGA preparation evidence must not be represented as physical-chip evidence.
+
+### M17 — Published Artifact Integration Contract
+
+Provisional release target:
+
+`v1.9.0`
+
+Primary objective:
+
+`define the normative one-way publication boundary between FRP and downstream artifact consumers`
+
+Required scope:
+
+- define published artifact classes;
+- define canonical source paths;
+- identify existing producer commands;
+- identify exact existing schema identifiers;
+- distinguish required and optional fields;
+- define immutable source-byte handling;
+- define digest declaration and verification rules;
+- define artifact provenance requirements;
+- define deterministic artifact-set ordering;
+- define compatibility-registry requirements;
+- define unsupported and incomplete artifact behavior;
+- define upstream and downstream responsibility boundaries;
+- preserve existing processor semantics without reinterpretation.
+
+Closure requires:
+
+- an approved integration contract;
+- a machine-readable publication inventory;
+- deterministic inventory generation;
+- tests for inventory completeness and ordering;
+- workflow evidence for contract validation;
+- explicit confirmation that no downstream code is required by FRP qualification.
+
+### M18 — Formal Schema and Canonical Artifact Publication
+
+Provisional release target:
+
+`v2.0.0`
+
+Primary objective:
+
+`publish formally validated canonical machine-readable artifacts for the existing structured-output and M15 layers`
+
+Required scope:
+
+- formal schemas for supported structured JSON outputs;
+- formal schemas for supported benchmark matrices;
+- canonical structured-output artifacts;
+- canonical benchmark-matrix artifacts;
+- committed M15 implementation-mapping JSON artifacts;
+- committed M15 deterministic vector fixtures;
+- committed M15 trace fixtures;
+- committed M15 preload and lookup-table fixtures;
+- committed digest manifests;
+- canonical CSV exports where a stable tabular representation is defined;
+- producer-command recording;
+- deterministic byte-for-byte regeneration checks;
+- canonical fixture provenance.
+
+The canonical ternary processor domain remains:
+
+`-1, 0, 1`
+
+Closure requires:
+
+- formal validation of every published canonical artifact;
+- complete committed M15 artifact and vector sets;
+- exact digest verification;
+- deterministic regeneration evidence;
+- negative tests for missing fields, invalid types, invalid values, and non-canonical ternary states;
+- qualification workflow success.
+
+### M19 — Machine-Readable M16 Execution and Qualification Evidence
+
+Provisional release target:
+
+`v2.1.0`
+
+Primary objective:
+
+`publish machine-readable M16 RTL and FPGA-preparation execution evidence`
+
+Required scope:
+
+- tick-ordered RTL execution records;
+- scheduler mode and scheduler-state records;
+- request-lane acceptance and rejection records;
+- retained ternary state;
+- phase-derived targets;
+- pending-route state and completion records;
+- transition-capacity telemetry;
+- switching-load telemetry;
+- thermal-state proxy telemetry;
+- coherence and pressure quantities;
+- `actual_direct_events`;
+- `reserved_state_events`;
+- `queue_overflow_events`;
+- invariant vectors;
+- zero-event qualification records;
+- RTL qualification manifests;
+- FPGA-preparation qualification manifests;
+- producer version and source commit records;
+- declared artifact digests.
+
+Closure requires:
+
+- exact machine-readable schema identifiers;
+- trace-order and tick-order validation;
+- scheduler-counter relation checks;
+- transition-capacity relation checks;
+- pending-route relation checks;
+- invariant-vector validation;
+- digest verification;
+- deterministic artifact-set validation;
+- successful RTL and FPGA-preparation qualification workflows.
+
+### M20 — Cross-Layer Deterministic Correlation
+
+Provisional release target:
+
+`v2.2.0`
+
+Primary objective:
+
+`correlate the M15 semantic and implementation-mapping layers with M16 RTL and FPGA-preparation execution`
+
+Required scope:
+
+- deterministic semantic-reference inputs;
+- quantized-shadow expected values;
+- M15 vector identities;
+- M16 RTL observed values;
+- FPGA-preparation observed values;
+- tick and lane correlation;
+- retained-state correlation;
+- pending-route correlation;
+- scheduler-state correlation;
+- transition-capacity correlation;
+- invariant correlation;
+- explicit mismatch records;
+- exact source and result digests.
+
+Closure requires:
+
+- byte-stable correlation packages;
+- zero unexplained comparison mismatches;
+- machine-readable PASS or failure records;
+- tests for deliberately altered vectors and digests;
+- independent rerun evidence;
+- successful correlation workflow execution.
+
+### M21 — Parameterized Qualification Matrix
+
+Provisional release target:
+
+`v2.3.0`
+
+Primary objective:
+
+`qualify declared parameter combinations without mixing measurement contours`
+
+Required scope:
+
+- cell-count configurations;
+- request-lane configurations;
+- scheduler modes;
+- scheduler parameters;
+- transition-capacity configurations;
+- retained-route configurations;
+- deterministic workload identities;
+- explicit matrix dimensions;
+- explicit unsupported combinations;
+- per-case provenance;
+- per-case digests;
+- per-case qualification status.
+
+Closure requires:
+
+- deterministic matrix generation;
+- complete declared-case coverage;
+- explicit skipped-case reasons;
+- no silent parameter substitution;
+- no cross-contour metric substitution;
+- successful matrix qualification workflows.
+
+### M22 — Control, Status, and Register Interface Realization
+
+Provisional release target:
+
+`v2.4.0`
+
+Primary objective:
+
+`realize a deterministic integration-facing control and status boundary around the qualified execution core`
+
+Required scope:
+
+- control-field definitions;
+- status-field definitions;
+- register-address mapping;
+- reset values;
+- access permissions;
+- scheduler configuration exposure;
+- request submission exposure;
+- retained-state observation;
+- pending-route observation;
+- transition-capacity observation;
+- invariant-status observation;
+- deterministic read and write behavior;
+- invalid-access behavior;
+- machine-readable interface description.
+
+Closure requires:
+
+- executable interface tests;
+- reset-value verification;
+- access-policy verification;
+- deterministic transaction traces;
+- invalid-access qualification;
+- schema and digest coverage for published interface artifacts;
+- successful interface qualification workflow.
+
+### M23 — Clock, Reset, CDC, and Interface Hardening
+
+Provisional release target:
+
+`v2.5.0`
+
+Primary objective:
+
+`qualify declared clock, reset, and interface behavior at the integration boundary`
+
+Required scope:
+
+- asynchronous reset assertion behavior;
+- synchronous reset release behavior;
+- `core_ready` sequencing;
+- input gating before readiness;
+- declared clock-domain boundaries;
+- declared synchronization boundaries;
+- stable interface handshakes;
+- reset interruption behavior;
+- deterministic restart behavior;
+- interface protocol assertions;
+- machine-readable qualification records.
+
+Closure requires:
+
+- reset-sequence coverage;
+- restart determinism;
+- interface assertion success;
+- declared CDC checks;
+- negative tests for invalid sequencing;
+- workflow-retained logs and reports;
+- successful hardening qualification workflows.
+
+### M24 — Formal and Bounded Verification Closure
+
+Provisional release target:
+
+`v2.6.0`
+
+Primary objective:
+
+`close declared formal and bounded properties for the qualified RTL boundary`
+
+Required scope:
+
+- canonical ternary-state properties;
+- active-neutral transition properties;
+- pending-route preservation properties;
+- scheduler-counter properties;
+- request-lane arbitration properties;
+- transition-capacity properties;
+- retained-state update properties;
+- invariant-flag properties;
+- reset and readiness properties;
+- bounded liveness properties where explicitly declared;
+- proof assumptions;
+- proof bounds;
+- tool and version provenance;
+- machine-readable proof summaries.
+
+Closure requires:
+
+- explicit property inventory;
+- no unrecorded assumptions;
+- reproducible proof commands;
+- PASS records for every required property;
+- retained counterexamples for expected negative tests;
+- digest-bound proof reports;
+- successful formal qualification workflows.
+
+### M25 — Fault, Negative-Path, and Recovery Qualification
+
+Provisional release target:
+
+`v2.7.0`
+
+Primary objective:
+
+`qualify declared invalid, constrained, deferred, and recovery paths`
+
+Required scope:
+
+- invalid ternary inputs;
+- rejected request lanes;
+- scheduler deferral;
+- transition-capacity deferral;
+- retained pending polarity;
+- pending-route completion;
+- queue-overflow behavior;
+- invalid configuration behavior;
+- reset during pending execution;
+- digest mismatch detection;
+- malformed artifact rejection;
+- incomplete qualification-package handling;
+- deterministic recovery behavior.
+
+Closure requires:
+
+- explicit expected outcomes;
+- no arbitrary code execution by artifact validators;
+- deterministic negative fixtures;
+- machine-readable failure classification;
+- recovery-state verification;
+- complete negative-path test evidence;
+- successful fault and recovery qualification workflows.
+
+### M26 — Declared-Target Implementation Evidence
+
+Provisional release target:
+
+`v2.8.0`
+
+Primary objective:
+
+`produce reproducible implementation-tool evidence bound to explicitly named targets and constraints`
+
+Required scope:
+
+- declared implementation target;
+- declared tool and version;
+- declared constraints;
+- synthesis command provenance;
+- timing command provenance;
+- resource-report provenance;
+- implementation warnings;
+- result digests;
+- reproducibility records;
+- separation from target-independent FPGA preparation;
+- separation from physical measurements.
+
+Closure requires:
+
+- reproducible tool execution;
+- retained machine-readable reports;
+- explicit target and constraint binding;
+- no universal physical-chip claim;
+- no conversion of proxy values into physical measurements;
+- successful declared-target qualification workflows.
+
+### M27 — Long-Run Stability and Telemetry Qualification
+
+Provisional release target:
+
+`v2.9.0`
+
+Primary objective:
+
+`qualify deterministic long-run execution and published telemetry relations`
+
+Required scope:
+
+- long-run scheduler execution;
+- long-run pending-route behavior;
+- long-run transition-capacity behavior;
+- switching-load telemetry;
+- thermal-state proxy telemetry;
+- transition-pressure telemetry;
+- coherence telemetry;
+- stability-boundary records;
+- zero-event intervals;
+- deterministic checkpoint digests;
+- bounded artifact size and retention policy;
+- exact workload identity.
+
+Closure requires:
+
+- deterministic reruns;
+- ordered checkpoint records;
+- validated counter relations;
+- validated telemetry types and domains;
+- explicit proxy labeling;
+- no unsupported physical interpretation;
+- successful long-run qualification workflows.
+
+### M28 — Hierarchical Scaling and Hotspot-Containment Realization
+
+Provisional release target:
+
+`v3.0.0`
+
+Primary objective:
+
+`realize and qualify declared hierarchical execution and containment boundaries`
+
+Required scope:
+
+- declared hierarchy topology;
+- cluster identities;
+- cell-to-cluster mapping;
+- cluster-local scheduler observation;
+- cluster-local transition-capacity observation;
+- cluster-local telemetry;
+- hotspot-containment indicators;
+- hierarchy-level provenance;
+- deterministic scaling matrices;
+- explicit aggregation equations;
+- preserved measurement-contour separation.
+
+Closure requires:
+
+- deterministic hierarchy construction;
+- validated aggregation relations;
+- no undeclared metric aggregation;
+- canonical scaling fixtures;
+- machine-readable qualification manifests;
+- reproducible workflow evidence;
+- no unsupported physical-hardware claim.
+
+### M29 — System Integration and Downstream Compatibility Closure
+
+Provisional release target:
+
+`v3.1.0`
+
+Primary objective:
+
+`close the published integration boundary without coupling FRP qualification to downstream implementation code`
+
+Required scope:
+
+- supported schema registry;
+- supported artifact registry;
+- compatibility-version declarations;
+- canonical demo artifact package;
+- deterministic package manifest;
+- producer-command registry;
+- immutable source-artifact policy;
+- provenance completeness;
+- unsupported-version behavior;
+- downstream-consumption test vectors;
+- release-independent compatibility records.
+
+Closure requires:
+
+- complete upstream publication inventory;
+- exact schema and artifact identifiers;
+- deterministic canonical package generation;
+- digest verification;
+- compatibility tests using published bytes;
+- no downstream semantic reimplementation;
+- no upstream dependency on downstream code;
+- successful integration-boundary workflows.
+
+### M30 — Reproducibility, Qualification, and Archival Release Closure
+
+Provisional release target:
+
+`v3.2.0`
+
+Primary objective:
+
+`close the planned M17 through M30 architecture progression with reproducible qualification and archival evidence`
+
+Required scope:
+
+- complete milestone evidence index;
+- complete schema index;
+- complete canonical artifact index;
+- complete producer-command index;
+- complete workflow index;
+- complete qualification-manifest index;
+- complete digest inventory;
+- deterministic clean-environment reproduction;
+- release-package construction;
+- release-package verification;
+- archival metadata;
+- release-specific test report;
+- release-specific validation index;
+- release-specific release notes;
+- repository-wide version and terminology alignment.
+
+Closure requires:
+
+- all required M17 through M29 gates closed;
+- all required workflows recorded as successful;
+- all canonical artifacts reproduced and digest-verified;
+- all supported schemas validated;
+- all qualification manifests internally consistent;
+- all measurement contours preserved;
+- all current-state documents aligned;
+- all historical records preserved unchanged;
+- no unqualified release claim;
+- no unsupported physical-chip claim.
+
+Until these closure conditions are met, M30 remains a planned milestone and FRP v1.8.0 / M16 remains the current qualified repository boundary.
