@@ -1,5 +1,8 @@
 # CI — Fractal Resonance Processor (FRP)
 
+# CI — Fractal Resonance Processor (FRP)
+
+[![FRP M17 Published Artifact Integration](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m17-published-artifact-integration.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m17-published-artifact-integration.yml)
 [![FRP M16 RTL Artifact Boundary](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m16-rtl-artifact-boundary.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m16-rtl-artifact-boundary.yml)
 [![FRP M16 FPGA Preparation](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m16-fpga-preparation.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m16-fpga-preparation.yml)
 [![FRP M16 Canonical Core Domain](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m16-canonical-core-domain.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m16-canonical-core-domain.yml)
@@ -28,13 +31,25 @@
 
 This document defines the Continuous Integration validation structure of the Fractal Resonance Processor (FRP) repository.
 
-Current version:
+Current published release:
 
 `FRP v1.8.0`
 
-Current milestone:
+Current released milestone:
 
 `M16 — RTL Core Realization and Execution Semantics Package`
+
+Completed post-release qualification boundary:
+
+`M17 — Published Artifact Integration Contract`
+
+Provisional M17 release target:
+
+`FRP v1.9.0`
+
+M17 inventory milestone state:
+
+`planned`
 
 Python executable semantic reference:
 
@@ -48,16 +63,30 @@ Benchmark-matrix schema:
 
 `frp.m3.benchmark_matrix.v1.7.0`
 
+M17 published-artifact inventory schemas:
+
+- `frp.m17.published_artifact_inventory.v1.9.0`;
+- `frp.m17.published_artifact_inventory.self_test.v1.9.0`.
+
 Current qualification workflow layers:
 
 - `.github/workflows/frp-m15-implementation-mapping-qualification.yml`;
 - `.github/workflows/frp-m16-rtl-artifact-boundary.yml`;
-- `.github/workflows/frp-m16-fpga-preparation.yml`.
+- `.github/workflows/frp-m16-fpga-preparation.yml`;
+- `.github/workflows/frp-m17-published-artifact-integration.yml`.
 
 Current M16 canonical-domain and repository-maintenance workflows:
 
 - `.github/workflows/frp-m16-canonical-core-domain.yml`;
 - `.github/workflows/frp-m16-reserved-cell-cleanup.yml`.
+
+Qualified scheduler identities:
+
+| Scheduler mode | Exact sequence |
+|---|---|
+| `free` | unrestricted scheduler progression |
+| `7/1` | seven `balance` ticks followed by one `commit` tick |
+| `1/7` | one `excite` tick followed by seven `neutralize` ticks |
 
 Qualified M15 semantic and implementation-mapping result:
 
@@ -68,8 +97,8 @@ Current M16 RTL qualification record:
 | Field | Value |
 |---|---|
 | Workflow | `FRP M16 RTL Artifact Boundary` |
-| Workflow run | `#84` |
-| Qualified source commit | `ede53cf` |
+| Workflow run | `#88` |
+| Qualified source commit | `975222b` |
 | Branch | `main` |
 | Result | `SUCCESS` |
 | Status | `M16 RTL EXECUTION LAYER CLOSED` |
@@ -79,12 +108,36 @@ Current M16 FPGA preparation qualification record:
 | Field | Value |
 |---|---|
 | Workflow | `FRP M16 FPGA Preparation` |
-| Workflow run | `#2` |
-| Qualified repository commit | `ede53cf` |
+| Workflow run | `#6` |
+| Qualified repository commit | `975222b` |
 | Branch | `main` |
 | Result | `SUCCESS` |
-| Workflow duration | `36s` |
+| Workflow duration | `38s` |
 | Status | `M16 FPGA PREPARATION LAYER CLOSED` |
+
+Current M17 published-artifact integration qualification record:
+
+| Field | Value |
+|---|---|
+| Workflow | `FRP M17 Published Artifact Integration` |
+| Workflow run | `#1` |
+| Qualified commit | `08e5714` |
+| Branch | `main` |
+| Result | `SUCCESS` |
+| Workflow duration | `16s` |
+| Status | `M17 QUALIFICATION BOUNDARY CLOSED` |
+
+M17 qualification results:
+
+| Qualification record | Result |
+|---|---:|
+| published-artifact records | `63 / 63 PASS` |
+| exact schema identifiers | `17 / 17 PASS` |
+| built-in inventory self-test | `25 / 25 PASS` |
+| dependency-free unit-test suite | `30 / 30 PASS` |
+| deterministic inventory renderings | `2 / 2 byte-identical` |
+| canonical ternary domain | `-1/0/1 PASS` |
+| qualification workflow | `SUCCESS` |
 
 Foundation documents:
 
@@ -97,14 +150,22 @@ M15 release-validation records retained by the repository:
 - `FRP_VALIDATION_INDEX_v1_7_0.md`;
 - `RELEASE_NOTES_v1_7_0.md`.
 
+M17 published-artifact integration records:
+
+- `docs/m17_published_artifact_integration_contract.md`;
+- `docs/m17_published_artifact_integration_qualification.md`;
+- `docs/m17_published_artifact_integration_closure.md`.
+  
 ## 1. Purpose
 
-The FRP Continuous Integration layer preserves validation traceability across the complete published processor architecture progression.
+The FRP Continuous Integration layer preserves validation traceability across the published processor architecture, implementation, qualification, and artifact-integration progression.
 
 The CI structure validates:
 
 - the resonant phase-coherence computational core;
-- the balanced ternary state and retained-result domain;
+- the canonical balanced ternary domain `-1/0/1`;
+- the active neutral state `0`;
+- the retained-result domain;
 - structured machine-readable execution;
 - release-specific architecture milestones;
 - deterministic M15 implementation mapping;
@@ -125,6 +186,9 @@ The CI structure validates:
 - latch-diagnostic rejection;
 - multidriven-diagnostic rejection;
 - scheduler validation;
+- the `free` scheduler mode;
+- the `7/1` scheduler sequence of seven `balance` ticks followed by one `commit` tick;
+- the `1/7` scheduler sequence of one `excite` tick followed by seven `neutralize` ticks;
 - request-lane arbitration;
 - active-neutral routing;
 - pending-route completion;
@@ -145,11 +209,26 @@ The CI structure validates:
 - M16 FPGA qualification artifact generation;
 - comparative architecture benchmark integrity;
 - hardware-sensitivity profile qualification;
-- hardware-sensitivity comparison qualification.
+- hardware-sensitivity comparison qualification;
+- M17 published-artifact inventory generation;
+- exact published-artifact record ordering and uniqueness;
+- exact schema-identifier ordering and uniqueness;
+- upstream producer and producer-version bindings;
+- measurement-contour separation;
+- Observatory-mode assignments;
+- canonical opposite-polarity routes through active neutral state `0`;
+- repository-committed raw artifact SHA-256 records;
+- deterministic inventory content-digest generation;
+- byte-identical inventory regeneration;
+- M17 built-in inventory self-test execution;
+- M17 dependency-free unit-test execution;
+- read-only downstream artifact-integration boundaries;
+- M17 qualification evidence generation;
+- M17 qualification-boundary closure.
 
-The qualified FRP semantic-to-M16 implementation chain is:
+The qualified FRP semantic-to-M17 artifact-integration chain is:
 
-`balanced ternary state and retained-result domain {-1, 0, 1}`
+`canonical balanced ternary state and retained-result domain -1/0/1`
 
 ↓
 
@@ -269,6 +348,10 @@ The qualified FRP semantic-to-M16 implementation chain is:
 
 ↓
 
+`scheduler identities free, 7/1, and 1/7`
+
+↓
+
 `scheduler, request-lane, active-neutral, pending-route, capacity, and retained-state execution`
 
 ↓
@@ -303,64 +386,167 @@ The qualified FRP semantic-to-M16 implementation chain is:
 
 `M16 FPGA preparation-layer closure`
 
-## 2. Processor Computational Subject Under CI
+↓
 
-The FRP architecture subject under CI contains two connected computational domains and two qualified M16 implementation boundaries.
+`M17 published-artifact integration contract`
 
-### 2.1 Resonant dynamic domain
+↓
 
-The qualified M15 Python semantic reference tracks:
+`63 ordered and unique published-artifact records`
 
-- cell phase;
-- base frequency;
-- target frequency;
-- current frequency;
-- Kuramoto-Sakaguchi phase interaction;
-- asymmetric phase lag gamma;
-- hierarchical fractal coupling;
-- scheduler-dependent phase contribution;
-- delayed frequency response;
-- distributed thermal state;
-- thermal coupling-factor evolution;
-- local correlated gamma drift;
-- phase evolution;
-- global Kuramoto order parameter `R`;
-- pair-domain phase coherence;
-- cluster phase coherence;
-- supercluster phase coherence;
-- global phase coherence;
-- nonlinear coherence compression;
-- dynamic stability evaluation.
+↓
 
-### 2.2 Balanced ternary state and retained-result domain
+`17 ordered and unique exact schema identifiers`
+
+↓
+
+`producer, schema, measurement-contour, and Observatory-mode bindings`
+
+↓
+
+`repository-committed raw artifact SHA-256 records`
+
+↓
+
+`deterministic published-artifact inventory generation`
+
+↓
+
+`25 / 25 built-in inventory self-test checks`
+
+↓
+
+`30 / 30 dependency-free unit tests`
+
+↓
+
+`2 / 2 byte-identical inventory renderings`
+
+↓
+
+`M17 qualification-boundary closure`
+
+### 2.2 Balanced Ternary State and Retained-Result Domain
 
 The balanced ternary domain contains:
 
-- states `{-1, 0, 1}`;
+- canonical states `-1/0/1`;
 - active neutral state `0`;
 - phase-derived ternary targets;
 - transition requests;
+- accepted and rejected request lanes;
 - distributed commit;
 - transition-fraction limits;
+- transition-capacity telemetry;
 - request lanes;
 - pending neutral routes;
 - mandatory tick separation;
 - scheduler-controlled execution;
-- retained ternary state.
+- retained ternary state;
+- retained pending polarity;
+- pending-route completion;
+- retained-state writeback;
+- switching-load telemetry;
+- thermal-state telemetry;
+- coherence and pressure quantities;
+- invariant vectors.
+
+Canonical opposite-polarity routes are:
+
+- `-1 → 0 → 1`;
+- `1 → 0 → -1`.
+
+The first leg neutralizes the retained state to active neutral state `0`.
+
+The second leg completes the retained pending route on a later eligible tick.
+
+Qualified scheduler modes remain separate:
+
+| Scheduler mode | Exact sequence |
+|---|---|
+| `free` | unrestricted scheduler progression |
+| `7/1` | seven `balance` ticks followed by one `commit` tick |
+| `1/7` | one `excite` tick followed by seven `neutralize` ticks |
 
 The resonant dynamic domain drives the evolving computation.
 
-The balanced ternary domain provides the state, target, transition, and retained-result layer.
+The balanced ternary domain provides the state, target, transition, routing, and retained-result layer.
 
 The M16 RTL core realizes the scheduler, request-lane, active-neutral, pending-route, transition-capacity, retained-state writeback, telemetry, and invariant semantics of the balanced ternary execution domain.
+
+The M17 published-artifact inventory records the published boundaries associated with these semantics without redefining processor behavior or changing published values.
 
 The Python executable semantic reference remains:
 
 `frp_prototype_v1_7_0.py`
 
-### 2.3 M15 semantic-reference tick execution chain
+### 2.2 Balanced Ternary State and Retained-Result Domain
 
-The qualified M15 executable semantic reference preserves the following operational sequence:
+The balanced ternary domain contains:
+
+- canonical states `-1/0/1`;
+- active neutral state `0`;
+- phase-derived ternary targets;
+- transition requests;
+- accepted and rejected request lanes;
+- distributed commit;
+- transition-fraction limits;
+- transition-capacity telemetry;
+- request lanes;
+- pending neutral routes;
+- mandatory tick separation;
+- scheduler-controlled execution;
+- retained ternary state;
+- retained pending polarity;
+- pending-route completion;
+- retained-state writeback;
+- switching-load telemetry;
+- thermal-state telemetry;
+- coherence and pressure quantities;
+- invariant vectors.
+
+Canonical opposite-polarity routes are:
+
+- `-1 → 0 → 1`;
+- `1 → 0 → -1`.
+
+The first leg neutralizes the retained state to active neutral state `0`.
+
+The second leg completes the retained pending route on a later eligible tick.
+
+Qualified scheduler modes remain separate:
+
+| Scheduler mode | Exact sequence |
+|---|---|
+| `free` | unrestricted scheduler progression |
+| `7/1` | seven `balance` ticks followed by one `commit` tick |
+| `1/7` | one `excite` tick followed by seven `neutralize` ticks |
+
+The resonant dynamic domain drives the evolving computation.
+
+The balanced ternary domain provides the state, target, transition, routing, and retained-result layer.
+
+The M16 RTL core realizes the scheduler, request-lane, active-neutral, pending-route, transition-capacity, retained-state writeback, telemetry, and invariant semantics of the balanced ternary execution domain.
+
+The M17 published-artifact inventory records the published boundaries associated with these semantics without redefining processor behavior or changing published values.
+
+The Python executable semantic reference remains:
+
+`frp_prototype_v1_7_0.py`
+
+### 2.3 M15 Semantic-Reference Tick Execution Chain
+
+The qualified M15 executable semantic reference preserves three distinct scheduler modes:
+
+| Scheduler mode | Exact sequence |
+|---|---|
+| `free` | unrestricted scheduler progression |
+| `7/1` | seven `balance` ticks followed by one `commit` tick |
+| `1/7` | one `excite` tick followed by seven `neutralize` ticks |
+
+The scheduler modes are not merged or reinterpreted by the CI layer.
+
+The qualified operational sequence is:
 
 `scheduler-state selection`
 
@@ -374,11 +560,19 @@ The qualified M15 executable semantic reference preserves the following operatio
 
 ↓
 
+`accepted and rejected request-lane resolution`
+
+↓
+
 `phase-derived ternary target processing`
 
 ↓
 
 `distributed transition-limit enforcement`
+
+↓
+
+`transition-capacity telemetry`
 
 ↓
 
@@ -442,6 +636,10 @@ The qualified M15 executable semantic reference preserves the following operatio
 
 ↓
 
+`switching-load and thermal-state telemetry`
+
+↓
+
 `structured telemetry and trace capture`
 
 Across successive ticks:
@@ -454,25 +652,37 @@ Across successive ticks:
 
 ↓
 
-`distributed transition`
+`distributed transition request`
 
 ↓
 
-`active neutral routing`
+`accepted or rejected request-lane result`
 
 ↓
 
-`retained coherent ternary state`
+`active neutral first-leg routing`
 
-### 2.4 M16 RTL retained-state execution chain
+↓
+
+`retained pending polarity`
+
+↓
+
+`pending-route completion on a later eligible tick`
+
+↓
+
+`retained coherent ternary state in -1/0/1`
+
+### 2.4 M16 RTL Retained-State Execution Chain
 
 The qualified M16 RTL execution chain is:
 
-`phase-derived balanced ternary target`
+`phase-derived balanced ternary target in -1/0/1`
 
 ↓
 
-`temporal scheduler state`
+`temporal scheduler mode and scheduler state`
 
 ↓
 
@@ -480,7 +690,15 @@ The qualified M16 RTL execution chain is:
 
 ↓
 
+`scheduler admission or deferral`
+
+↓
+
 `deterministic request-lane arbitration`
+
+↓
+
+`accepted and rejected request-lane resolution`
 
 ↓
 
@@ -488,15 +706,23 @@ The qualified M16 RTL execution chain is:
 
 ↓
 
-`active-neutral transition generation`
+`active-neutral first-leg transition generation`
 
 ↓
 
-`distributed transition-capacity admission`
+`distributed transition-capacity admission or deferral`
+
+↓
+
+`retained pending-polarity update`
 
 ↓
 
 `pending-route register update`
+
+↓
+
+`pending-route completion on a later eligible tick`
 
 ↓
 
@@ -508,7 +734,19 @@ The qualified M16 RTL execution chain is:
 
 ↓
 
-`integrated invariant evaluation`
+`actual_direct_events, reserved_state_events, and queue_overflow_events`
+
+↓
+
+`integrated invariant-vector evaluation`
+
+The RTL layer preserves the distinct qualified scheduler identities:
+
+| Scheduler mode | Exact sequence |
+|---|---|
+| `free` | unrestricted scheduler progression |
+| `7/1` | seven `balance` ticks followed by one `commit` tick |
+| `1/7` | one `excite` tick followed by seven `neutralize` ticks |
 
 Qualified RTL source boundary:
 
@@ -522,7 +760,7 @@ Executable RTL testbench:
 
 `rtl/m16/frp_m16_tb.sv`
 
-### 2.5 M16 FPGA preparation integration boundary
+### 2.5 M16 FPGA Preparation Integration Boundary
 
 The target-independent FPGA integration boundary is:
 
@@ -540,15 +778,120 @@ The FPGA integration boundary preserves:
 - tick gating before readiness;
 - counter-clear gating before readiness;
 - request-valid gating before readiness;
-- scheduler-mode propagation;
+- propagation of the distinct `free`, `7/1`, and `1/7` scheduler modes;
+- scheduler-state propagation;
 - request-interface propagation;
+- accepted and rejected request-lane behavior;
 - active-neutral first-leg execution;
+- retained pending polarity;
 - retained pending-route completion;
+- scheduler deferral;
+- transition-capacity deferral;
 - transition-capacity telemetry;
+- retained-state writeback;
+- `actual_direct_events`;
+- `reserved_state_events`;
+- `queue_overflow_events`;
 - all ten integrated invariant flags.
+
+Canonical ternary state notation remains:
+
+`-1/0/1`
+
+Canonical opposite-polarity routes remain:
+
+- `-1 → 0 → 1`;
+- `1 → 0 → -1`.
 
 The FPGA preparation boundary contains no vendor-specific primitive.
 
+Its qualification record belongs to the target-independent FPGA preparation contour and remains separate from physical measurement contours.
+
+### 2.6 M17 Published-Artifact Integration Boundary
+
+The qualified M17 integration direction is strictly one-way:
+
+`FRP → published artifacts → downstream consumers`
+
+FRP remains the source authority for:
+
+- processor semantics;
+- executable semantic references;
+- schema identifiers;
+- producer commands;
+- published metric values;
+- traces;
+- vectors;
+- manifests;
+- declared digests;
+- qualification records.
+
+The qualified M17 source boundary contains:
+
+| Path | Role |
+|---|---|
+| `docs/m17_published_artifact_integration_contract.md` | one-way integration and publication contract |
+| `frp_m17_publication_inventory.py` | deterministic machine-readable inventory generator |
+| `tests/test_frp_m17_publication_inventory.py` | dependency-free qualification tests |
+| `.github/workflows/frp-m17-published-artifact-integration.yml` | executable qualification workflow |
+| `docs/m17_published_artifact_integration_qualification.md` | post-execution qualification record |
+| `docs/m17_published_artifact_integration_closure.md` | qualification-boundary closure record |
+
+Machine-readable inventory identity:
+
+| Field | Exact value |
+|---|---|
+| Schema | `frp.m17.published_artifact_inventory.v1.9.0` |
+| Kind | `published_artifact_inventory` |
+| Version | `1.9.0` |
+| Milestone state | `planned` |
+| Baseline release | `FRP v1.8.0` |
+| Baseline milestone | `M16 — RTL Core Realization and Execution Semantics Package` |
+| Semantic reference | `frp_prototype_v1_7_0.py` |
+| Source authority | `frp` |
+| Record order | `record_id_lexicographic` |
+| Raw digest algorithm | `sha256` |
+
+Machine-readable self-test identity:
+
+| Field | Exact value |
+|---|---|
+| Schema | `frp.m17.published_artifact_inventory.self_test.v1.9.0` |
+| Kind | `published_artifact_inventory_self_test` |
+| Version | `1.9.0` |
+| Status | `PASS` |
+| Check count | `25` |
+
+Qualified inventory summary:
+
+| Record | Value |
+|---|---:|
+| total inventory records | `63` |
+| exact schema identifiers | `17` |
+| repository-committed canonical JSON artifacts | `6` |
+| M15 export schemas | `10` |
+| M15 deterministic vector package members | `10` |
+| M16 workflow-retained evidence members | `11` |
+| documentation-only records | `13` |
+| planned-unavailable records | `4` |
+
+Qualified workflow record:
+
+| Field | Recorded value |
+|---|---|
+| Workflow | `FRP M17 Published Artifact Integration` |
+| Workflow run | `#1` |
+| Qualified commit | `08e5714` |
+| Branch | `main` |
+| Result | `SUCCESS` |
+| Duration | `16s` |
+| Status | `M17 QUALIFICATION BOUNDARY CLOSED` |
+
+The M17 inventory reads, identifies, orders, hashes, and classifies published artifact surfaces.
+
+It does not redefine processor semantics, alter source artifacts, execute recorded producer commands, change published metric values, or merge measurement contours.
+
+Normalized downstream representations and derived views remain separate from the original published source bytes.
 
 ## 3. Core Dynamic Relations Preserved by the CI Chain
 
@@ -556,7 +899,9 @@ The core dynamic relations are executed by the qualified M15 Python semantic ref
 
 The M16 RTL layer retains the phase-derived target interface and realizes the qualified balanced ternary retained-state execution semantics.
 
-### 3.1 Kuramoto-Sakaguchi phase interaction
+The M17 inventory identifies the published artifacts associated with these relations without recalculating, replacing, or redefining them.
+
+### 3.1 Kuramoto-Sakaguchi Phase Interaction
 
 The qualified Python semantic-reference phase interaction uses:
 
@@ -581,7 +926,7 @@ Qualified default fractal coupling exponent:
 
 `fractal_alpha = 0.70`
 
-### 3.2 Phase evolution
+### 3.2 Phase Evolution
 
 The qualified floating semantic-reference phase velocity combines:
 
@@ -599,7 +944,7 @@ The phase update is:
 
 `phase_i = (phase_i + phase_velocity_i) mod 2π`
 
-### 3.3 Kuramoto order parameter R
+### 3.3 Kuramoto Order Parameter R
 
 The qualified global phase order is:
 
@@ -607,7 +952,7 @@ The qualified global phase order is:
 
 The same phase-order relation supports hierarchical coherence evaluation.
 
-### 3.4 Multiscale phase coherence
+### 3.4 Multiscale Phase Coherence
 
 Qualified coherence domains include:
 
@@ -616,7 +961,7 @@ Qualified coherence domains include:
 - supercluster domain;
 - global domain.
 
-### 3.5 Stateful delay dynamics
+### 3.5 Stateful Delay Dynamics
 
 Qualified default delay coefficient:
 
@@ -633,7 +978,7 @@ Frequency lag contributes to:
 - operational coherence;
 - dynamic stability.
 
-### 3.6 Local thermal-phase interaction
+### 3.6 Local Thermal-Phase Interaction
 
 Each cell tracks:
 
@@ -651,7 +996,7 @@ The thermal field feeds into:
 
 Thermal state participates as an endogenous processor feedback variable.
 
-### 3.7 Local correlated gamma drift
+### 3.7 Local Correlated Gamma Drift
 
 The qualified Python semantic reference tracks:
 
@@ -670,7 +1015,7 @@ The M15 verification path maps this domain through:
 - deterministic cycle-exact gamma stimulus;
 - floating-to-quantized gamma correlation.
 
-### 3.8 Nonlinear coherence compression and dynamic stability
+### 3.8 Nonlinear Coherence Compression and Dynamic Stability
 
 The qualified Python semantic reference applies:
 
@@ -694,17 +1039,21 @@ Required validated condition:
 
 ## 4. Balanced Ternary State and Retained-Result Validation
 
-Balanced ternary state domain in the M15 Python semantic reference:
+Canonical balanced ternary state domain:
 
-`{-1, 0, 1}`
+`-1/0/1`
 
 Active neutral state:
 
 `0`
 
-Canonical M16 RTL retained-state notation:
+The canonical domain is preserved by:
 
-`{-1, 0, 1}`
+- the M15 Python semantic reference;
+- the M15 implementation-mapping package;
+- the M16 RTL execution layer;
+- the M16 FPGA preparation layer;
+- the M17 published-artifact inventory.
 
 Canonical M16 hardware encoding:
 
@@ -734,13 +1083,7 @@ M15 phase-derived ternary target mapping:
 
 `otherwise → 0`
 
-M15 Python opposite-polarity routes:
-
-`-1 → 0 → 1`
-
-`1 → 0 → -1`
-
-M16 RTL opposite-polarity routes:
+Canonical M15 and M16 opposite-polarity routes:
 
 `-1 → 0 → 1`
 
@@ -752,11 +1095,15 @@ Execution relation:
 
 ↓
 
-`pending neutral route retained`
+`pending neutral route and pending polarity retained`
 
 ↓
 
 `tick N+1 or later: 0 → target polarity`
+
+The first leg is active-neutral neutralization.
+
+The second leg is retained pending-route completion on a later eligible tick.
 
 Qualified M15 semantic and implementation-mapping invariants:
 
@@ -768,11 +1115,13 @@ Qualified M15 semantic and implementation-mapping invariants:
 
 `queue_overflow_events = 0`
 
-Qualified scheduler modes preserved by M15 and M16:
+Qualified scheduler modes preserved independently by M15 and M16:
 
-- `free`;
-- `7/1`;
-- `1/7`.
+| Scheduler mode | Exact sequence |
+|---|---|
+| `free` | unrestricted scheduler progression |
+| `7/1` | seven `balance` ticks followed by one `commit` tick |
+| `1/7` | one `excite` tick followed by seven `neutralize` ticks |
 
 M15 default transition fraction:
 
@@ -793,10 +1142,10 @@ Qualified M16 RTL testbench profile:
 | `CELLS` | `8` |
 | `REQUEST_LANES` | `2` |
 | free scheduler ticks | `16` |
-| 7/1 balance ticks | `56` |
-| 7/1 commit ticks | `8` |
-| 1/7 excite ticks | `2` |
-| 1/7 neutralize ticks | `14` |
+| `7/1` balance ticks | `56` |
+| `7/1` commit ticks | `8` |
+| `1/7` excite ticks | `2` |
+| `1/7` neutralize ticks | `14` |
 | `actual_direct_events` | `0` |
 | `reserved_state_events` | `0` |
 | `queue_overflow_events` | `0` |
@@ -831,13 +1180,25 @@ Qualified FPGA preparation terminal record:
 | `reserved_state_events` | `0` |
 | `queue_overflow_events` | `0` |
 
+Qualified M17 canonical-domain record:
+
+| Validation item | Result |
+|---|---|
+| canonical domain `-1/0/1` | `PASS` |
+| active neutral state `0` | `PASS` |
+| route `-1 → 0 → 1` | `PASS` |
+| route `1 → 0 → -1` | `PASS` |
+| canonical positive-state notation | `PASS` |
+
+The M17 inventory records these identities without changing processor semantics, transition values, scheduler behavior, or retained-state behavior.
 
 ## 5. CI Workflow Badge Chain
 
-This `CI.md` file exposes 23 GitHub Actions workflow status badges.
+This `CI.md` file exposes 24 GitHub Actions workflow status badges.
 
 | Badge | Workflow file |
 |---|---|
+| `FRP M17 Published Artifact Integration` | `.github/workflows/frp-m17-published-artifact-integration.yml` |
 | `FRP M16 RTL Artifact Boundary` | `.github/workflows/frp-m16-rtl-artifact-boundary.yml` |
 | `FRP M16 FPGA Preparation` | `.github/workflows/frp-m16-fpga-preparation.yml` |
 | `FRP M16 Canonical Core Domain` | `.github/workflows/frp-m16-canonical-core-domain.yml` |
@@ -866,9 +1227,9 @@ The badges link directly to their workflow pages and obtain their displayed stat
 
 ## 6. CI Validation Roles
 
-The repository CI structure contains five workflow roles.
+The repository CI structure contains six workflow roles.
 
-### 6.1 Foundational validation
+### 6.1 Foundational Validation
 
 These workflows preserve the foundational executable, resonant benchmark, and structured-output layers:
 
@@ -878,15 +1239,15 @@ These workflows preserve the foundational executable, resonant benchmark, and st
 
 Each workflow retains its release-specific executable binding.
 
-### 6.2 Architecture milestone validation
+### 6.2 Architecture Milestone Validation
 
 The M3-M15 workflow chain preserves its release-specific executable references and architecture packages.
 
-M15 remains the qualified semantic and implementation-mapping foundation for M16.
+M15 remains the qualified semantic and implementation-mapping foundation inherited by M16.
 
-### 6.3 Current M16 qualification
+### 6.3 M16 Implementation Qualification
 
-The current M16 qualification role contains:
+The current released M16 qualification role contains:
 
 - `FRP M16 RTL Artifact Boundary`;
 - `FRP M16 FPGA Preparation`.
@@ -895,7 +1256,40 @@ The RTL workflow qualifies the executable SystemVerilog retained-state execution
 
 The FPGA workflow qualifies the target-independent FPGA integration and preparation boundary.
 
-### 6.4 Supporting comparative validation
+These qualification contours remain separate from physical measurement contours.
+
+### 6.4 M17 Published-Artifact Integration Qualification
+
+The completed M17 post-release qualification role contains:
+
+- `FRP M17 Published Artifact Integration`.
+
+The workflow validates:
+
+- M17 Python source syntax;
+- the built-in 25-check inventory self-test;
+- the dependency-free 30-test suite;
+- two byte-identical inventory renderings;
+- exact inventory identity;
+- 63 ordered and unique artifact records;
+- 17 ordered and unique schema identifiers;
+- publication-state counts;
+- measurement-contour separation;
+- canonical ternary domain `-1/0/1`;
+- both canonical opposite-polarity routes;
+- raw artifact SHA-256 records;
+- inventory content-digest recomputation;
+- source and inventory digest correlation;
+- unchanged repository state;
+- qualification evidence generation.
+
+The workflow has `contents: read` permission.
+
+The M17 inventory identifies published artifacts without modifying source bytes, executing recorded producer commands, replacing published values, or redefining processor semantics.
+
+The M17 inventory milestone state remains `planned`, and the current published release remains `FRP v1.8.0 / M16`.
+
+### 6.5 Supporting Comparative Validation
 
 The supporting comparative role contains:
 
@@ -903,7 +1297,9 @@ The supporting comparative role contains:
 - hardware-sensitivity profile qualification;
 - hardware-sensitivity comparison qualification.
 
-### 6.5 Repository maintenance
+The comparative architecture and hardware-sensitivity contours remain distinct from structured-output, implementation-mapping, RTL, FPGA preparation, and physical measurement contours.
+
+### 6.6 Repository Maintenance
 
 The repository-maintenance role contains:
 
@@ -919,11 +1315,12 @@ The canonical core-domain workflow has `contents: write` permission and responds
 Its defined sequence:
 
 - scans M16 RTL, FPGA, documentation, and workflow text files;
-- replaces the noncanonical M16 core-domain record with `{-1, 0, 1}`;
+- replaces standalone noncanonical signed positive-state tokens with canonical state `1`;
 - verifies the exact M16 modification boundary;
 - verifies `FRP_TERN_NEG = 2'b11`;
 - verifies `FRP_TERN_ZERO = 2'b00`;
 - verifies `FRP_TERN_POS = 2'b01`;
+- records the canonical domain as `-1/0/1`;
 - commits and pushes only when a canonicalization change exists.
 
 Reserved-cell cleanup workflow name:
@@ -941,9 +1338,9 @@ Its defined sequence:
 
 ## 7. Workflow Inventory
 
-The repository contains 23 GitHub Actions workflow files.
+The repository contains 24 GitHub Actions workflow files.
 
-### 7.1 Foundational workflows
+### 7.1 Foundational Workflows
 
 | Workflow file | Workflow name | Validation role |
 |---|---|---|
@@ -951,7 +1348,7 @@ The repository contains 23 GitHub Actions workflow files.
 | `.github/workflows/frp-benchmark-smoke.yml` | `FRP Benchmark Smoke Test` | foundational resonant benchmark smoke validation |
 | `.github/workflows/frp-structured-output.yml` | `FRP Structured Output` | M2 structured-output validation |
 
-### 7.2 M3-M15 architecture milestone workflows
+### 7.2 M3-M15 Architecture Milestone Workflows
 
 | Workflow file | Workflow name |
 |---|---|
@@ -969,14 +1366,20 @@ The repository contains 23 GitHub Actions workflow files.
 | `.github/workflows/frp-m14-physical-implementation-qualification.yml` | `FRP M14 Physical Implementation Correlation and Production Qualification` |
 | `.github/workflows/frp-m15-implementation-mapping-qualification.yml` | `FRP M15 Implementation Mapping and Qualification Closure` |
 
-### 7.3 Current M16 qualification workflows
+### 7.3 M16 Implementation Qualification Workflows
 
 | Workflow file | Workflow name | Qualification role |
 |---|---|---|
 | `.github/workflows/frp-m16-rtl-artifact-boundary.yml` | `FRP M16 RTL Artifact Boundary` | RTL execution-layer qualification |
 | `.github/workflows/frp-m16-fpga-preparation.yml` | `FRP M16 FPGA Preparation` | target-independent FPGA preparation qualification |
 
-### 7.4 Supporting comparative workflows
+### 7.4 M17 Published-Artifact Integration Workflow
+
+| Workflow file | Workflow name | Qualification role |
+|---|---|---|
+| `.github/workflows/frp-m17-published-artifact-integration.yml` | `FRP M17 Published Artifact Integration` | deterministic published-artifact inventory and one-way downstream integration qualification |
+
+### 7.5 Supporting Comparative Workflows
 
 | Workflow file | Workflow name |
 |---|---|
@@ -984,7 +1387,7 @@ The repository contains 23 GitHub Actions workflow files.
 | `.github/workflows/frp-hardware-sensitivity-comparison.yml` | `FRP Hardware Sensitivity Comparison` |
 | `.github/workflows/frp-hardware-sensitivity-profile.yml` | `FRP Hardware Sensitivity Profile Qualification` |
 
-### 7.5 Repository-maintenance workflows
+### 7.6 Repository-Maintenance Workflows
 
 | Workflow file | Workflow name | Role |
 |---|---|---|
@@ -993,14 +1396,18 @@ The repository contains 23 GitHub Actions workflow files.
 
 ## 8. Current M16 Qualification Workflows
 
-The current M16 qualification layer contains:
+The current released M16 qualification layer contains:
 
 - `FRP M16 RTL Artifact Boundary`;
 - `FRP M16 FPGA Preparation`.
 
-M15 remains the qualified semantic and implementation-mapping foundation for both M16 qualification workflows.
+M15 remains the qualified semantic and implementation-mapping foundation inherited by both M16 qualification workflows.
 
-### 8.1 M16 RTL qualification workflow
+The M16 workflows preserve the distinct scheduler modes `free`, `7/1`, and `1/7`, the canonical ternary domain `-1/0/1`, active-neutral routing, retained pending-route completion, transition-capacity enforcement, retained-state writeback, telemetry, and invariant evaluation.
+
+The completed M17 published-artifact integration qualification records these M16 publication surfaces through a separate read-only inventory boundary and does not alter their execution semantics or qualification results.
+
+### 8.1 M16 RTL Qualification Workflow
 
 Workflow file:
 
@@ -1038,7 +1445,18 @@ Concurrency cancellation policy:
 
 `cancel-in-progress: false`
 
-### 8.2 M16 RTL artifact boundary
+Current qualification record:
+
+| Field | Recorded value |
+|---|---|
+| Workflow run | `#88` |
+| Qualified source commit | `975222b` |
+| Branch | `main` |
+| Result | `SUCCESS` |
+| Qualification result | `PASS` |
+| Status | `M16 RTL EXECUTION LAYER CLOSED` |
+
+### 8.2 M16 RTL Artifact Boundary
 
 The workflow validates exactly ten SystemVerilog files:
 
@@ -1080,7 +1498,9 @@ The workflow also requires the absence of:
 - `.github/workflows/frp-m16-verilator-smoke.yml`;
 - `.github/workflows/frp-m16-verilator-clean-smoke.yml`.
 
-### 8.3 M16 RTL workflow step sequence
+The M17 inventory records the published M16 RTL qualification surfaces without extending or modifying this exact artifact boundary.
+
+### 8.3 M16 RTL Workflow Step Sequence
 
 The M16 RTL qualification workflow executes these named stages:
 
@@ -1118,7 +1538,7 @@ The workflow records SHA-256 hashes for:
 
 `rtl/m16/*.sv`
 
-### 8.4 M16 RTL validation surface
+### 8.4 M16 RTL Validation Surface
 
 The M16 RTL qualification records:
 
@@ -1129,16 +1549,28 @@ The M16 RTL qualification records:
 - assertion execution;
 - latch-diagnostic rejection;
 - multidriven-diagnostic rejection;
-- scheduler validation;
+- canonical ternary-domain validation;
+- scheduler-mode and scheduler-state validation;
 - deterministic request-lane arbitration;
-- active-neutral route execution;
+- accepted and rejected request-lane behavior;
+- scheduler admission and deferral;
+- active-neutral first-leg execution;
+- retained pending polarity;
 - retained pending-route completion;
-- transition-capacity enforcement;
+- transition-capacity admission and deferral;
+- transition-capacity telemetry;
 - retained-state writeback;
+- switching-load telemetry;
+- thermal-state telemetry;
+- coherence and pressure quantities;
 - ten integrated invariant flags;
 - terminal marker validation;
 - repository-integrity validation;
 - qualification evidence generation.
+
+Canonical ternary domain:
+
+`-1/0/1`
 
 Qualified combinational source conditions:
 
@@ -1149,11 +1581,11 @@ Qualified combinational source conditions:
 
 Qualified scheduler profiles:
 
-| Mode | Recorded scheduler counts |
-|---|---|
-| `free` | `free = 16` |
-| `7/1` | `balance = 56`, `commit = 8` |
-| `1/7` | `excite = 2`, `neutralize = 14` |
+| Mode | Exact sequence | Recorded scheduler counts |
+|---|---|---|
+| `free` | unrestricted scheduler progression | `free = 16` |
+| `7/1` | seven `balance` ticks followed by one `commit` tick | `balance = 56`, `commit = 8` |
+| `1/7` | one `excite` tick followed by seven `neutralize` ticks | `excite = 2`, `neutralize = 14` |
 
 Qualified active-neutral routes:
 
@@ -1174,7 +1606,7 @@ Integrated invariant result:
 
 `invariant_flags = 1111111111`
 
-### 8.5 M16 RTL repository-integrity and evidence record
+### 8.5 M16 RTL Repository-Integrity and Evidence Record
 
 The repository-integrity stage executes:
 
@@ -1201,18 +1633,20 @@ Artifact retention:
 
 `30 days`
 
-Final RTL qualification record:
+Current RTL qualification record:
 
 | Field | Value |
 |---|---|
-| Workflow run | `#84` |
-| Qualified source commit | `ede53cf` |
+| Workflow run | `#88` |
+| Qualified source commit | `975222b` |
 | Branch | `main` |
 | Workflow result | `SUCCESS` |
 | Final qualification result | `PASS` |
 | Closure status | `M16 RTL EXECUTION LAYER CLOSED` |
 
-### 8.6 M16 FPGA preparation workflow
+The M17 inventory classifies the five workflow-retained M16 RTL qualification evidence members without modifying their source identity, digest scope, or retention record.
+
+### 8.6 M16 FPGA Preparation Workflow
 
 Workflow file:
 
@@ -1250,7 +1684,19 @@ Concurrency cancellation policy:
 
 `cancel-in-progress: false`
 
-### 8.7 M16 FPGA preparation artifact boundary
+Current qualification record:
+
+| Field | Recorded value |
+|---|---|
+| Workflow run | `#6` |
+| Qualified repository commit | `975222b` |
+| Branch | `main` |
+| Result | `SUCCESS` |
+| Duration | `38s` |
+| Qualification result | `PASS` |
+| Status | `M16 FPGA PREPARATION LAYER CLOSED` |
+
+### 8.7 M16 FPGA Preparation Artifact Boundary
 
 The workflow validates exactly two FPGA SystemVerilog files:
 
@@ -1281,7 +1727,9 @@ Required source counts:
 | FPGA SystemVerilog artifacts | `2` |
 | qualified RTL dependencies | `9` |
 
-### 8.8 M16 FPGA workflow step sequence
+The M17 inventory records the published M16 FPGA preparation surfaces without extending or modifying this exact artifact boundary.
+
+### 8.8 M16 FPGA Workflow Step Sequence
 
 The M16 FPGA preparation workflow executes these named stages:
 
@@ -1332,7 +1780,7 @@ The diagnostic stage rejects:
 - `%Warning-LATCH`;
 - `%Warning-MULTIDRIVEN`.
 
-### 8.9 M16 FPGA reset and execution-input gating
+### 8.9 M16 FPGA Reset and Execution-Input Gating
 
 External reset input:
 
@@ -1371,7 +1819,7 @@ Before `core_ready = 1`:
 - no pending route is created;
 - no request is accepted.
 
-### 8.10 M16 FPGA propagation and terminal record
+### 8.10 M16 FPGA Propagation and Terminal Record
 
 The executable FPGA integration testbench validates:
 
@@ -1379,12 +1827,22 @@ The executable FPGA integration testbench validates:
 - two-stage synchronous reset release;
 - `core_ready`;
 - execution-input gating;
-- scheduler propagation;
+- propagation of scheduler mode and scheduler state;
 - request-interface propagation;
+- accepted and rejected request-lane propagation;
 - active-neutral first-leg execution;
+- retained pending polarity;
 - retained pending-route completion;
 - transition-capacity correlation;
+- retained-state writeback;
+- canonical ternary-domain preservation;
 - all ten invariant flags.
+
+The propagated scheduler interface retains the distinct `free`, `7/1`, and `1/7` mode identities.
+
+Canonical ternary state notation remains:
+
+`-1/0/1`
 
 Required terminal markers:
 
@@ -1397,7 +1855,7 @@ Required terminal markers:
 - `queue_overflow_events=0`;
 - `invariant_flags=1111111111`.
 
-### 8.11 M16 FPGA repository-integrity and evidence record
+### 8.11 M16 FPGA Repository-Integrity and Evidence Record
 
 The repository-integrity stage requires:
 
@@ -1424,19 +1882,21 @@ Artifact retention:
 
 `30 days`
 
-Final FPGA preparation qualification record:
+Current FPGA preparation qualification record:
 
 | Field | Value |
 |---|---|
-| Workflow run | `#2` |
-| Qualified repository commit | `ede53cf` |
+| Workflow run | `#6` |
+| Qualified repository commit | `975222b` |
 | Branch | `main` |
 | Workflow result | `SUCCESS` |
-| Workflow duration | `36s` |
+| Workflow duration | `38s` |
 | Final qualification result | `PASS` |
 | Closure status | `M16 FPGA PREPARATION LAYER CLOSED` |
 
-### 8.12 Foundation-document binding
+The M17 inventory classifies the six workflow-retained M16 FPGA preparation evidence members without modifying their source identity, digest scope, or retention record.
+
+### 8.12 Foundation-Document Binding
 
 The CI release-facing foundation references are:
 
@@ -1444,6 +1904,8 @@ The CI release-facing foundation references are:
 - [`docs/physical_foundation.md`](docs/physical_foundation.md).
 
 The M16 qualification layers retain the qualified M15 semantic and implementation-mapping foundation.
+
+The M17 published-artifact integration boundary preserves FRP as the source authority for these foundation records and does not replace their content with downstream interpretations.
 
 ## 9. Inherited M15 Qualification Workflow
 
@@ -1487,6 +1949,10 @@ Path-scoped source inputs:
 - `docs/m15_implementation_mapping_domain_interface_qualification_closure.md`;
 - `rtl/m15/**`;
 - `.github/workflows/frp-m15-implementation-mapping-qualification.yml`.
+
+The closed M15 workflow remains the qualified semantic and implementation-mapping foundation inherited by M16.
+
+The M17 inventory records the M15 workflow, producer associations, schemas, vectors, manifests, and qualification surfaces without executing the recorded producer commands or altering their results.
 
 ## 10. M15 Workflow Step Sequence
 
@@ -1588,9 +2054,11 @@ The workflow validates:
 - `hierarchy_depth = 4`;
 - `request_lanes = 4`;
 - `ticks_recorded = 64`;
-- scheduler `7/1`;
+- scheduler mode `7/1`;
+- seven `balance` ticks followed by one `commit` tick;
 - scheduler counts `balance = 56` and `commit = 8`;
 - `scheduler_counts_valid = True`;
+- canonical ternary domain `-1/0/1`;
 - `balanced_ternary_state_domain = True`;
 - `reserved_state_events = 0`;
 - `actual_direct_events = 0`;
@@ -1599,6 +2067,8 @@ The workflow validates:
 - `C_minus_P_min > 0.0`;
 - `fixed_point_topology_sum_exact = True`;
 - `fixed_point_thermal_sum_exact = True`.
+
+The M17 inventory records the structured-output schema and producer association without changing the generated values or treating this contour as an M16 RTL, FPGA preparation, or physical measurement contour.
 
 ## 13. M15 Self-Test Matrix
 
@@ -1612,13 +2082,19 @@ Free scheduler:
 
     python frp_prototype_v1_7_0.py --mode self-test --scheduler free --output json
 
-7/1 scheduler:
+`7/1` scheduler:
 
     python frp_prototype_v1_7_0.py --mode self-test --scheduler 7/1 --output json
 
-1/7 scheduler:
+The `7/1` mode executes seven `balance` ticks followed by one `commit` tick.
+
+`1/7` scheduler:
 
     python frp_prototype_v1_7_0.py --mode self-test --scheduler 1/7 --output json
+
+The `1/7` mode executes one `excite` tick followed by seven `neutralize` ticks.
+
+The `free`, `7/1`, and `1/7` modes remain distinct qualification variants.
 
 Required result for every self-test:
 
@@ -1626,7 +2102,8 @@ Required result for every self-test:
 - version `1.7.0`;
 - status `PASS`;
 - check count `41`;
-- all 41 checks `True`.
+- all 41 checks `True`;
+- canonical ternary domain `-1/0/1`.
 
 Qualified M15 result:
 
@@ -1678,11 +2155,21 @@ The qualified M15 self-test package contains exactly these 41 checks:
 40. `trig_lut_pass`;
 41. `vector_determinism_pass`.
 
+Scheduler-check identities:
+
+| Check | Qualified scheduler identity |
+|---|---|
+| `free_scheduler_pass` | unrestricted `free` scheduler progression |
+| `7_1_scheduler_pass` | seven `balance` ticks followed by one `commit` tick |
+| `1_7_scheduler_pass` | one `excite` tick followed by seven `neutralize` ticks |
+
 The check set covers:
 
-- scheduler behavior;
+- distinct `free`, `7/1`, and `1/7` scheduler behavior;
+- canonical ternary domain `-1/0/1`;
 - both opposite-polarity active-neutral routes;
 - pending-route behavior;
+- retained pending polarity;
 - request-lane ordering;
 - balanced ternary encoding;
 - fixed-point boundaries;
@@ -1700,7 +2187,9 @@ The check set covers:
 
 The workflow generates ten primary M15 artifact layers.
 
-### 15.1 Fixed-point interface profile
+The M17 inventory records each exact schema identifier, producer command, producer version, artifact kind, publication state, measurement contour, and downstream mode assignment without changing the generated artifact.
+
+### 15.1 Fixed-Point Interface Profile
 
 Command:
 
@@ -1714,7 +2203,7 @@ Output:
 
 `artifacts/m15/fixed-point-interface-profile.json`
 
-### 15.2 Balanced ternary hardware encoding map
+### 15.2 Balanced Ternary Hardware Encoding Map
 
 Command:
 
@@ -1728,7 +2217,11 @@ Output:
 
 `artifacts/m15/balanced-ternary-hardware-encoding-map.json`
 
-### 15.3 Quantized reference shadow model
+Canonical processor domain:
+
+`-1/0/1`
+
+### 15.3 Quantized Reference Shadow Model
 
 Command:
 
@@ -1742,7 +2235,7 @@ Output:
 
 `artifacts/m15/quantized-reference-shadow-model.json`
 
-### 15.4 Cycle-exact reference trace
+### 15.4 Cycle-Exact Reference Trace
 
 Command:
 
@@ -1756,7 +2249,7 @@ Output:
 
 `artifacts/m15/cycle-exact-reference-trace.json`
 
-### 15.5 RTL comparison vector package
+### 15.5 RTL Comparison Vector Package
 
 Command:
 
@@ -1770,7 +2263,7 @@ Output:
 
 `artifacts/m15/rtl-comparison-vector-package.json`
 
-### 15.6 SystemVerilog testbench interface map
+### 15.6 SystemVerilog Testbench Interface Map
 
 Command:
 
@@ -1784,7 +2277,7 @@ Output:
 
 `artifacts/m15/systemverilog-testbench-interface-map.json`
 
-### 15.7 Synthesizable RTL reference core
+### 15.7 Synthesizable RTL Reference Core
 
 Command:
 
@@ -1798,7 +2291,7 @@ Output:
 
 `artifacts/m15/synthesizable-rtl-reference-core.json`
 
-### 15.8 RTL assertion correlation harness
+### 15.8 RTL Assertion Correlation Harness
 
 Command:
 
@@ -1812,7 +2305,7 @@ Output:
 
 `artifacts/m15/rtl-assertion-correlation-harness.json`
 
-### 15.9 Reference RTL equivalence report
+### 15.9 Reference RTL Equivalence Report
 
 Command:
 
@@ -1826,7 +2319,7 @@ Output:
 
 `artifacts/m15/reference-rtl-equivalence-report.json`
 
-### 15.10 Qualification closure manifest
+### 15.10 Qualification Closure Manifest
 
 Command:
 
@@ -1860,6 +2353,15 @@ Every artifact carries:
 - version `1.7.0`;
 - milestone `M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package`.
 
+The M17 inventory registers these ten exact schema identifiers as M15 schema versions.
+
+The identifiers are not renamed, migrated, or represented as M17 schemas.
+
+M17 inventory schemas remain separate:
+
+- `frp.m17.published_artifact_inventory.v1.9.0`;
+- `frp.m17.published_artifact_inventory.self_test.v1.9.0`.
+
 ## 17. Additional M15 Qualification Outputs
 
 The workflow also generates:
@@ -1885,6 +2387,12 @@ Vector directories:
 
 - `artifacts/m15/vectors_a`;
 - `artifacts/m15/vectors_b`.
+
+Each deterministic vector directory contains ten package members.
+
+The M17 inventory records ten M15 deterministic vector-package member identities and their producer associations.
+
+Benchmark values, scaling values, vector values, digests, and measurement-contour assignments remain upstream FRP records and are not replaced by downstream normalized or derived views.
 
 ## 18. M15 Fixed-Point Contract
 
@@ -1925,9 +2433,15 @@ The fixed-point mapping covers:
 - hierarchy weights;
 - thermal weights;
 - dynamic stability values;
-- ternary transition execution.
+- canonical ternary transition execution in `-1/0/1`.
+
+The M17 inventory records the fixed-point interface profile as an M15 producer-defined artifact and preserves its exact schema and measurement-contour assignment.
 
 ## 19. M15 Balanced Ternary Hardware Encoding
+
+Canonical processor domain:
+
+`-1/0/1`
 
 Canonical two-bit encoding:
 
@@ -1953,6 +2467,10 @@ Reserved integer code:
 
 `2`
 
+Active neutral state:
+
+`0`
+
 Validated request interface:
 
 `request_lanes = 4`
@@ -1963,20 +2481,41 @@ Validated reserved-state condition:
 
 `reserved_state_events = 0`
 
+The reserved encoding is not a canonical processor state.
+
+The M17 inventory validates canonical state notation and preserves the M15 encoding-map schema without redefining the hardware encoding.
+
 ## 20. Quantized Shadow Validation
 
 The quantized reference shadow model preserves stateful processor domains including:
 
-- ternary state;
+- canonical ternary state `-1/0/1`;
+- active neutral state `0`;
+- scheduler mode;
 - scheduler state;
 - pending neutral routes;
+- retained pending polarity;
+- accepted and rejected request lanes;
+- scheduler deferral;
+- transition-capacity deferral;
+- retained-state writeback;
 - phase;
 - frequency;
 - gamma;
 - local thermal state;
 - coherence;
 - dynamic stability;
-- event counters.
+- switching-load telemetry;
+- event counters;
+- invariant values.
+
+The quantized shadow preserves three distinct scheduler identities:
+
+| Scheduler mode | Exact sequence |
+|---|---|
+| `free` | unrestricted scheduler progression |
+| `7/1` | seven `balance` ticks followed by one `commit` tick |
+| `1/7` | one `excite` tick followed by seven `neutralize` ticks |
 
 The workflow validates:
 
@@ -1996,6 +2535,7 @@ The workflow validates:
 The workflow validates:
 
 - exactly `64` trace rows;
+- canonical ternary states restricted to `-1/0/1`;
 - `actual_direct_events = 0` in the trace summary;
 - `16` gamma-noise target values in every trace row;
 - `reserved_state_events = 0` in every trace row;
@@ -2003,9 +2543,13 @@ The workflow validates:
 
 The cycle-exact trace carries fields including:
 
-- scheduler mode and scheduler state;
+- tick;
+- scheduler mode;
+- scheduler state;
 - request-lane input vectors;
+- accepted and rejected request-lane results;
 - packed ternary states;
+- phase-derived targets;
 - gamma-noise update validity;
 - gamma-noise target vectors;
 - switch load;
@@ -2016,9 +2560,19 @@ The cycle-exact trace carries fields including:
 - `C_minus_P_q16`;
 - active-neutral route counters;
 - pending-route count;
+- transition-capacity telemetry;
 - direct-event counters;
 - reserved-state counters;
-- queue-overflow counters.
+- queue-overflow counters;
+- invariant values.
+
+Scheduler identities remain distinct:
+
+- `free`;
+- `7/1` — seven `balance` ticks followed by one `commit` tick;
+- `1/7` — one `excite` tick followed by seven `neutralize` ticks.
+
+The M17 inventory records the exact cycle-trace schema and producer association without changing trace ordering, tick ordering, field values, or source bytes.
 
 ## 22. Deterministic RTL Vector Qualification
 
@@ -2052,7 +2606,17 @@ The vector package contains exactly ten files:
 - `frp_m15_trig_lut_q30.vec`;
 - `frp_m15_sha256_manifest.json`.
 
+Scheduler-vector identities:
+
+| Vector file | Scheduler identity |
+|---|---|
+| `frp_m15_scheduler_free_vectors.vec` | unrestricted `free` scheduler progression |
+| `frp_m15_scheduler_7_1_vectors.vec` | seven `balance` ticks followed by one `commit` tick |
+| `frp_m15_scheduler_1_7_vectors.vec` | one `excite` tick followed by seven `neutralize` ticks |
+
 The exported package also provides a 64-character deterministic package digest.
+
+The M17 inventory records the ten deterministic vector-package member identities, producer command, schema association, publication state, and measurement contour without representing generated workflow outputs as repository-committed fixtures.
 
 ## 23. Deterministic Vector Integrity
 
@@ -2066,6 +2630,17 @@ Required package conditions:
 - byte-identical equality between corresponding files in package A and package B.
 
 The SHA-256 manifest binds the generated vector package to exact content.
+
+The M17 inventory preserves the distinction between:
+
+- a recorded vector-member identity;
+- a producer-defined generated path;
+- a repository-committed artifact;
+- a workflow-retained artifact;
+- a declared digest;
+- a calculated source-byte digest.
+
+A downstream digest or derived view does not replace the upstream SHA-256 manifest value.
 
 ## 24. SystemVerilog Interface Contract
 
@@ -2081,11 +2656,17 @@ The workflow validates these M15 interface parameters:
 | `SCALAR_WIDTH` | `32` |
 | `PHASE_WIDTH` | `32` |
 
+The state-vector interface preserves the canonical ternary domain:
+
+`-1/0/1`
+
 The verification stimulus interface includes:
 
 `gamma_noise_target_q`
 
 This input carries deterministic gamma-noise targets into the RTL-facing verification path.
+
+The M17 inventory records the exact M15 SystemVerilog interface-map schema and producer association without changing interface widths, encodings, or signal meanings.
 
 ## 25. Synthesizable RTL Reference-Core Contract
 
@@ -2120,13 +2701,16 @@ The qualified M15 export defines exactly 26 tick-execution stages:
 
 Validated kernel requirements:
 
-- balanced ternary states `{-1, 0, 1}`;
+- canonical balanced ternary states `-1/0/1`;
+- active neutral state `0`;
 - reserved state code `2'b10`;
 - `actual_direct_events = 0`;
 - tick-separated neutral routing `True`;
-- scheduler modes `free`, `7/1`, and `1/7`.
+- scheduler mode `free`;
+- scheduler mode `7/1`: seven `balance` ticks followed by one `commit` tick;
+- scheduler mode `1/7`: one `excite` tick followed by seven `neutralize` ticks.
 
-The planned RTL file map contains:
+The planned M15 RTL file map contains:
 
 - `rtl/m15/frp_m15_types_pkg.sv`;
 - `rtl/m15/frp_m15_fixed_point_pkg.sv`;
@@ -2141,6 +2725,10 @@ The planned RTL file map contains:
 - `rtl/m15/frp_m15_multiscale_coherence.sv`;
 - `rtl/m15/frp_m15_stability_telemetry.sv`;
 - `rtl/m15/frp_m15_top.sv`.
+
+The planned M15 file map remains distinct from the qualified M16 SystemVerilog source boundary in `rtl/m16/`.
+
+The M17 inventory records the M15 export identity and publication state without representing the planned M15 file map as committed M16 RTL.
 
 ## 26. RTL Assertion Correlation Contract
 
@@ -2160,21 +2748,34 @@ The qualified M15 assertion harness contains exactly 13 assertions:
 12. `deterministic trace tick count`;
 13. `exact cycle-output match`.
 
+Canonical processor domain:
+
+`-1/0/1`
+
+Canonical opposite-polarity routes:
+
+- `-1 → 0 → 1`;
+- `1 → 0 → -1`.
+
 Exact comparison rule:
 
 `actual integer field == expected integer field`
 
 Scheduler modes:
 
-- `free`;
-- `7/1`;
-- `1/7`.
+| Mode | Exact sequence |
+|---|---|
+| `free` | unrestricted scheduler progression |
+| `7/1` | seven `balance` ticks followed by one `commit` tick |
+| `1/7` | one `excite` tick followed by seven `neutralize` ticks |
+
+The assertion contract preserves scheduler-sequence and scheduler-count validation as separate checks.
 
 ## 27. Reference RTL Equivalence Validation
 
 The qualified M15 workflow validates two correlation levels.
 
-### 27.1 Floating semantic reference to quantized shadow
+### 27.1 Floating Semantic Reference to Quantized Shadow
 
 Required exact sequence matches:
 
@@ -2209,11 +2810,12 @@ These bounds preserve correlation across:
 - gamma;
 - coherence;
 - dynamic stability;
-- scheduler sequence;
-- ternary state sequence;
-- active-neutral route sequence.
+- distinct `free`, `7/1`, and `1/7` scheduler sequences;
+- canonical ternary state sequence `-1/0/1`;
+- active-neutral route sequence;
+- retained pending-route sequence.
 
-### 27.2 Exact quantized shadow deterministic replay
+### 27.2 Exact Quantized Shadow Deterministic Replay
 
 Required exact replay matches:
 
@@ -2228,13 +2830,17 @@ Qualified deterministic replay result:
 
 `6/6 deterministic replay matches = 1.0`
 
-## 28. Qualification Closure
+The M17 inventory records the equivalence-report schema, producer association, qualification state, and measurement contour without recalculating or replacing the recorded correlation and replay values.
+
+## 28. M15 Qualification Closure
 
 The qualification closure manifest requires:
 
 - status `PASS`;
 - all closure checks `True`;
-- exactly ten M15 artifact layers.
+- exactly ten M15 artifact layers;
+- canonical ternary domain `-1/0/1`;
+- distinct `free`, `7/1`, and `1/7` scheduler identities.
 
 Qualified M15 closure record:
 
@@ -2284,7 +2890,9 @@ The closure chain is:
 
 ↓
 
-`qualification closure PASS`
+`M15 qualification closure PASS`
+
+The M17 inventory records the exact M15 qualification-closure manifest schema and producer association without changing the closed M15 result.
 
 ## 29. M15 Scaling Checks
 
@@ -2304,6 +2912,8 @@ Expected scaling structure:
 
 Every scaling output preserves:
 
+- canonical ternary domain `-1/0/1`;
+- active neutral state `0`;
 - `actual_direct_events = 0`;
 - `reserved_state_events = 0`;
 - `queue_overflow_events = 0`;
@@ -2311,6 +2921,8 @@ Every scaling output preserves:
 - `scheduler_counts_valid = True`;
 - `fixed_point_topology_sum_exact = True`;
 - `fixed_point_thermal_sum_exact = True`.
+
+The qualified scaling checks retain the distinct `free`, `7/1`, and `1/7` scheduler identities.
 
 Scaling also extends:
 
@@ -2321,6 +2933,8 @@ Scaling also extends:
 - multiscale coherence domains;
 - request-lane count;
 - packed ternary state width.
+
+The M17 inventory records scaling-output identities and producer associations without combining their values with other benchmark, RTL, FPGA preparation, or physical measurement contours.
 
 ## 30. M15 Benchmark Matrix Validation
 
@@ -2346,6 +2960,10 @@ Expected architecture order:
 
 The benchmark matrix records the qualified M15 implementation-mapping and qualification progression.
 
+The M17 inventory retains the exact schema identifier `frp.m3.benchmark_matrix.v1.7.0` and does not rename it as an M17 schema.
+
+Benchmark-matrix values remain separate from structured-output, comparative-architecture, hardware-sensitivity, RTL execution, FPGA preparation, and physical measurement contours.
+
 ## 31. M15 Architecture Document Contract
 
 The qualified M15 workflow validates:
@@ -2359,9 +2977,12 @@ Required architecture markers include:
 - `cycle-exact integer golden trace`;
 - `synthesizable RTL reference core`;
 - `exact quantized shadow ↔ RTL equivalence`;
+- canonical ternary domain `-1/0/1`;
 - `actual_direct_events = 0`;
 - both active-neutral routes;
-- scheduler modes `free`, `7/1`, and `1/7`;
+- scheduler mode `free`;
+- scheduler mode `7/1`: seven `balance` ticks followed by one `commit` tick;
+- scheduler mode `1/7`: one `excite` tick followed by seven `neutralize` ticks;
 - `S32Q16`;
 - `S32Q30`;
 - `PHASE_U32`;
@@ -2371,7 +2992,9 @@ Required architecture markers include:
 - `rtl_comparison_vector_package`;
 - `reference_rtl_equivalence_report`;
 - `qualification_closure_manifest`;
-- planned M16 architecture boundary.
+- the historical M15 planned-M16 architecture-boundary marker.
+
+The M15 document and workflow retain their release-specific historical marker even though M16 is now the current qualified released layer.
 
 The workflow also validates primary vector-row field ordering:
 
@@ -2384,6 +3007,8 @@ before
 before
 
 `STATES_PACKED`
+
+The M17 inventory records this document as upstream qualification evidence without rewriting its release-specific history.
 
 ## 32. M15 Artifact Upload
 
@@ -2402,6 +3027,12 @@ Upload action:
 Artifact-directory requirement:
 
 `if-no-files-found: error`
+
+The uploaded package is a workflow-generated qualification artifact.
+
+Its workflow-retained state remains distinct from repository-committed artifacts, release-archived artifacts, producer-defined outputs, documentation-only records, and planned-unavailable records.
+
+The M17 inventory preserves these publication-state distinctions and does not represent a workflow upload as a repository-committed fixture.
 
 ## 33. Foundational FRP Self-Test Workflow
 
@@ -2437,7 +3068,11 @@ Required output marker:
 
 `result=PASS`
 
-This workflow preserves the foundational v0.9.3 executable self-test layer.
+This workflow preserves the foundational v0.9.3 executable self-test layer as a release-specific historical validation contour.
+
+It does not replace the current executable semantic reference:
+
+`frp_prototype_v1_7_0.py`
 
 ## 34. Foundational Resonant Benchmark Smoke Workflow
 
@@ -2476,13 +3111,15 @@ Required architecture markers:
 - `direct_ternary_commit`;
 - `binary_style_forced_switch`.
 
-The workflow preserves the foundational resonant benchmark comparison layer.
+The workflow preserves the foundational historical resonant benchmark comparison layer.
 
 The architecture marker:
 
 `frp_distributed_resonant`
 
 preserves the connection between resonant phase computation and distributed active-neutral ternary routing.
+
+This historical benchmark contour remains separate from structured-output, M3 matrix, M15 implementation-mapping, comparative-architecture, hardware-sensitivity, M16 RTL, M16 FPGA preparation, and physical measurement contours.
 
 ## 35. Structured Output Workflow
 
@@ -2545,9 +3182,13 @@ Historical telemetry fields include:
 
 This workflow preserves the M2 structured-output and phase-coherence telemetry layer.
 
+The historical schema identifier remains `frp.structured_output.v0.9.4` and is not renamed as a current M15, M16, or M17 schema.
+
+This structured-output contour remains separate from historical transition benchmarks, M3 matrices, M15 implementation mapping, comparative architecture, hardware sensitivity, M16 RTL execution, M16 FPGA preparation, and physical measurement contours.
+
 ## 36. Architecture Milestone Workflow Chain
 
-The release-specific architecture and implementation workflow chain is:
+The release-specific architecture, implementation, and published-artifact integration workflow chain is:
 
 | Milestone or layer | Executable reference or implementation boundary | Workflow |
 |---|---|---|
@@ -2566,8 +3207,9 @@ The release-specific architecture and implementation workflow chain is:
 | M15 | `frp_prototype_v1_7_0.py` | `frp-m15-implementation-mapping-qualification.yml` |
 | M16 RTL execution | `rtl/m16/` with semantic reference `frp_prototype_v1_7_0.py` | `frp-m16-rtl-artifact-boundary.yml` |
 | M16 FPGA preparation | `fpga/m16/` with qualified dependencies from `rtl/m16/` | `frp-m16-fpga-preparation.yml` |
+| M17 published-artifact integration | `frp_m17_publication_inventory.py` with baseline `FRP v1.8.0 / M16` | `frp-m17-published-artifact-integration.yml` |
 
-Each workflow preserves its release-specific validation boundary.
+Each workflow preserves its release-specific or qualification-specific validation boundary.
 
 M16 retains:
 
@@ -2575,14 +3217,27 @@ M16 retains:
 
 as its Python executable semantic reference.
 
-Current architecture endpoint:
+Current published architecture endpoint:
 
 `M16 / FRP v1.8.0`
 
-Current implementation-layer statuses:
+Current completed post-release qualification boundary:
+
+`M17 — Published Artifact Integration Contract`
+
+M17 provisional release target:
+
+`FRP v1.9.0`
+
+M17 inventory milestone state:
+
+`planned`
+
+Current qualification statuses:
 
 - `M16 RTL EXECUTION LAYER CLOSED`;
-- `M16 FPGA PREPARATION LAYER CLOSED`.
+- `M16 FPGA PREPARATION LAYER CLOSED`;
+- `M17 QUALIFICATION BOUNDARY CLOSED`.
 
 ## 37. Complete Architecture Progression Preserved by CI
 
@@ -2680,6 +3335,14 @@ The milestone workflow chain preserves:
 
 ↓
 
+`canonical ternary execution in -1/0/1`
+
+↓
+
+`distinct free, 7/1, and 1/7 scheduler identities`
+
+↓
+
 `scheduler and request-lane execution`
 
 ↓
@@ -2722,7 +3385,53 @@ The milestone workflow chain preserves:
 
 `M16 FPGA preparation-layer closure`
 
+↓
+
+`one-way M17 published-artifact integration contract`
+
+↓
+
+`deterministic machine-readable inventory generation`
+
+↓
+
+`63 ordered and unique published-artifact records`
+
+↓
+
+`17 ordered and unique exact schema identifiers`
+
+↓
+
+`publication-state and measurement-contour separation`
+
+↓
+
+`repository-committed raw artifact SHA-256 records`
+
+↓
+
+`inventory content-digest recomputation`
+
+↓
+
+`25 / 25 built-in inventory self-test checks`
+
+↓
+
+`30 / 30 dependency-free unit tests`
+
+↓
+
+`2 / 2 byte-identical inventory renderings`
+
+↓
+
+`M17 qualification-boundary closure`
+
 The resonant phase-coherence computational core remains continuous through this architecture progression.
+
+The M17 boundary identifies published FRP artifacts without changing processor semantics, source bytes, metric values, scheduler behavior, transition behavior, M16 qualification results, or the current `FRP v1.8.0 / M16` release.
 
 ## 38. Comparative Architecture Benchmark Workflow
 
@@ -2780,6 +3489,14 @@ Current winner assertions:
 
 The Comparative Architecture Benchmark workflow provides the architecture-level comparison validation contour.
 
+The M17 inventory assigns four records to:
+
+`comparative_architecture_benchmark_suite`
+
+This contour remains separate from historical transition benchmarks, structured output, M3 matrices, M15 implementation mapping, hardware-sensitivity qualification, M16 RTL execution, M16 FPGA preparation, and physical measurements.
+
+The M17 inventory preserves published architecture order, recorded values, schemas, producer associations, and digests without introducing a downstream ranking.
+
 ## 39. Hardware-Sensitivity Profile Workflow
 
 Workflow:
@@ -2817,7 +3534,15 @@ The workflow validates:
 - validator self-tests;
 - deterministic byte-identical repeat validation.
 
-The profile workflow provides hardware-informed coefficient and scenario qualification.
+The profile workflow provides the hardware-informed coefficient and scenario qualification contour.
+
+The profile and comparison records are assigned by the M17 inventory to:
+
+`hardware_informed_sensitivity_qualification`
+
+The combined M17 inventory assignment contains two records.
+
+This hardware-informed sensitivity contour remains separate from physical measurements, M16 RTL execution, M16 FPGA preparation, structured output, comparative architecture, and historical transition benchmarks.
 
 ## 40. Hardware-Sensitivity Comparison Workflow
 
@@ -2857,6 +3582,18 @@ Its validation surface includes:
 
 The hardware-sensitivity comparison workflow extends the supporting comparative validation surface.
 
+The M17 inventory preserves:
+
+- the exact upstream producer;
+- the exact schema identity;
+- the bound cost profile;
+- raw trace identity;
+- declared and calculated digests;
+- deterministic result identity;
+- the `hardware_informed_sensitivity_qualification` measurement contour.
+
+Hardware-informed coefficients, scenarios, and comparison outputs remain distinct from physical measurements and target-independent M16 FPGA preparation evidence.
+
 ## 41. Dependency Handling
 
 The foundational workflows:
@@ -2870,13 +3607,26 @@ install dependencies with:
     python -m pip install --upgrade pip
     pip install -r requirements.txt
 
-Repository external dependency:
+Repository external Python dependency:
 
 `numpy>=1.26.0`
 
-NumPy is used by the historical FRP v0.9.3 and v0.9.4 executable layers. The FRP v1.7.0 Python semantic reference and Comparative Architecture Benchmark Suite use the Python standard library and repository-local modules.
+NumPy is used by the historical FRP v0.9.3 and v0.9.4 executable layers.
+
+The FRP v1.7.0 Python semantic reference, M15 qualification path, Comparative Architecture Benchmark Suite, and M17 published-artifact inventory use the Python standard library and repository-local modules.
 
 The qualified M15 workflow uses Python `3.12` and executes the Python semantic reference and M15 artifact-generation path directly.
+
+The qualified M17 workflow uses Python `3.12` and executes:
+
+- `frp_m17_publication_inventory.py`;
+- `tests/test_frp_m17_publication_inventory.py`.
+
+The M17 unit-test suite is dependency-free.
+
+The M16 RTL and FPGA preparation workflows install and use Verilator inside their isolated GitHub Actions execution environments.
+
+Downstream parser, visualization, user-interface, and release dependencies remain outside the qualified FRP repository boundary.
 
 ## 42. Minimal Inherited M15 Validation Commands
 
@@ -2892,13 +3642,21 @@ Free scheduler:
 
     python frp_prototype_v1_7_0.py --mode self-test --scheduler free --output json
 
-7/1 scheduler:
+`7/1` scheduler:
 
     python frp_prototype_v1_7_0.py --mode self-test --scheduler 7/1 --output json
 
-1/7 scheduler:
+Exact `7/1` sequence:
+
+`seven balance ticks → one commit tick`
+
+`1/7` scheduler:
 
     python frp_prototype_v1_7_0.py --mode self-test --scheduler 1/7 --output json
+
+Exact `1/7` sequence:
+
+`one excite tick → seven neutralize ticks`
 
 Qualification closure:
 
@@ -2911,6 +3669,10 @@ Required qualified results:
 `all self-test profiles 41/41 PASS`
 
 `qualification closure PASS`
+
+Canonical processor domain:
+
+`-1/0/1`
 
 Qualified M15 milestone workflow:
 
@@ -2935,6 +3697,12 @@ Generate the four self-test outputs:
     python frp_prototype_v1_7_0.py --mode self-test --scheduler 7/1 --output json > artifacts/m15/self-test-7-1.json
 
     python frp_prototype_v1_7_0.py --mode self-test --scheduler 1/7 --output json > artifacts/m15/self-test-1-7.json
+
+The scheduler outputs preserve:
+
+- `free` as unrestricted scheduler progression;
+- `7/1` as seven `balance` ticks followed by one `commit` tick;
+- `1/7` as one `excite` tick followed by seven `neutralize` ticks.
 
 Generate the ten M15 exports:
 
@@ -2984,6 +3752,8 @@ Required qualification result:
 
 `byte-identical equality`
 
+Local reproduction outputs are generated artifacts and do not become repository-committed publication records unless they are separately committed and registered as such.
+
 ## 44. Release Validation Evidence
 
 ### 44.1 Current M16 qualification evidence
@@ -2994,10 +3764,10 @@ Current release layer:
 
 Current qualification records:
 
-| Layer | Workflow file | Run | Commit | Branch | Result | Status |
-|---|---|---:|---|---|---|---|
-| RTL execution | `.github/workflows/frp-m16-rtl-artifact-boundary.yml` | `#84` | `ede53cf` | `main` | `SUCCESS` | `M16 RTL EXECUTION LAYER CLOSED` |
-| FPGA preparation | `.github/workflows/frp-m16-fpga-preparation.yml` | `#2` | `ede53cf` | `main` | `SUCCESS` | `M16 FPGA PREPARATION LAYER CLOSED` |
+| Layer | Workflow file | Run | Commit | Branch | Workflow result | Qualification result | Status |
+|---|---|---:|---|---|---|---|---|
+| RTL execution | `.github/workflows/frp-m16-rtl-artifact-boundary.yml` | `#88` | `975222b` | `main` | `SUCCESS` | `PASS` | `M16 RTL EXECUTION LAYER CLOSED` |
+| FPGA preparation | `.github/workflows/frp-m16-fpga-preparation.yml` | `#6` | `975222b` | `main` | `SUCCESS` | `PASS` | `M16 FPGA PREPARATION LAYER CLOSED` |
 
 M16 RTL evidence records:
 
@@ -3018,6 +3788,10 @@ Current M16 event and invariant record:
 | `queue_overflow_events` | `0` |
 | RTL invariant flags | `1111111111` |
 | FPGA invariant flags | `1111111111` |
+
+The FPGA qualification record covers target-independent preparation and
+executable integration evidence. It does not constitute evidence of a
+fabricated physical chip or physical-chip measurement.
 
 ### 44.2 Retained M15 release-validation evidence
 
@@ -3044,23 +3818,139 @@ Recorded M15 self-test result:
 
 `41/41 PASS`
 
+Validated M15 package digest:
+
+`703dd4b56f4b34289a2c5bc5521ad4ddc3113bdec8c38238c3244c69cb4d58df`
+
 Retained M15 release-validation records:
 
 - `TEST_REPORT_v1_7_0.md`;
 - `FRP_VALIDATION_INDEX_v1_7_0.md`;
 - `RELEASE_NOTES_v1_7_0.md`.
 
-The M15 release-record commit and workflow-run identifiers preserve the published v1.7.0 validation evidence.
+The M15 release-record commit and workflow-run identifiers preserve the
+published v1.7.0 validation evidence.
+
+### 44.3 M17 post-release qualification evidence
+
+M17 does not replace the current `FRP v1.8.0` release and does not publish an
+M17 release.
+
+Recorded M17 milestone state:
+
+`planned`
+
+Qualified M17 boundary:
+
+`M17 PUBLISHED ARTIFACT INTEGRATION QUALIFICATION`
+
+Qualification result:
+
+`PASS`
+
+Closure status:
+
+`M17 QUALIFICATION BOUNDARY CLOSED`
+
+Qualified integration direction:
+
+`FRP → published artifacts → downstream consumers`
+
+FRP remains the source authority for processor semantics, schemas, producer
+commands, published values, traces, manifests, and qualification records.
+
+Qualified workflow record:
+
+| Field | Recorded value |
+|---|---|
+| Workflow | `FRP M17 Published Artifact Integration` |
+| Workflow file | `.github/workflows/frp-m17-published-artifact-integration.yml` |
+| Job | `M17 Published Artifact Integration Qualification` |
+| Workflow run | `#1` |
+| Qualified commit | `08e5714` |
+| Branch | `main` |
+| Event | `push` |
+| Result | `SUCCESS` |
+| Duration | `16s` |
+| Python | `3.12` |
+| Repository permission | `contents: read` |
+| Evidence retention | `30 days` |
+
+Recorded M17 qualification results:
+
+| Qualification item | Result |
+|---|---|
+| built-in inventory self-test | `25 / 25 PASS` |
+| dependency-free unit-test suite | `30 / 30 PASS` |
+| deterministic inventory generation | `2 / 2 byte-identical` |
+| inventory identity and summary validation | `PASS` |
+| publication-state count validation | `PASS` |
+| record ordering and identifier uniqueness | `PASS` |
+| canonical ternary domain validation | `PASS` |
+| opposite-polarity route validation | `PASS` |
+| inventory content-digest recomputation | `PASS` |
+| self-test and inventory digest correlation | `PASS` |
+| repository unchanged validation | `PASS` |
+
+Qualified machine-readable identities:
+
+| Artifact | Schema identifier |
+|---|---|
+| published-artifact inventory | `frp.m17.published_artifact_inventory.v1.9.0` |
+| inventory self-test | `frp.m17.published_artifact_inventory.self_test.v1.9.0` |
+
+Qualified inventory summary:
+
+| Record | Value |
+|---|---:|
+| total inventory records | `63` |
+| exact schema identifiers | `17` |
+| repository-committed canonical JSON artifacts | `6` |
+| M15 export schemas | `10` |
+| M15 deterministic vector package members | `10` |
+| M16 workflow-retained evidence members | `11` |
+| documentation-only records | `13` |
+| planned-unavailable records | `4` |
+
+The M17 inventory preserves the canonical processor domain `-1/0/1`, active
+neutral state `0`, and the opposite-polarity routes `-1 → 0 → 1` and
+`1 → 0 → -1`.
+
+It records measurement contours independently and does not combine operation
+count, thermal proxy, transition pressure, scheduler timing, latency,
+throughput, RTL execution, FPGA preparation, or physical measurement fields.
+
+The qualified inventory retains explicit absence records for:
+
+- committed formal JSON Schema files;
+- committed M15 canonical JSON exports or vector fixtures;
+- committed canonical CSV or TSV artifact sets;
+- M16 machine-readable schemas and committed trace packages.
+
+M17 qualification records:
+
+- `docs/m17_published_artifact_integration_contract.md`;
+- `docs/m17_published_artifact_integration_qualification.md`;
+- `docs/m17_published_artifact_integration_closure.md`.
+
+Retained workflow artifact:
+
+`frp-m17-published-artifact-integration-1`
+
+The M17 qualification boundary reads and identifies publication surfaces
+without changing source artifacts, executing recorded producer commands,
+redefining processor semantics, or changing published metric values.
 
 ## 45. CI Traceability Rule
 
-The retained M3-M15 release-specific architecture layers preserve traceability between:
+The retained M3–M15 release-specific architecture layers preserve traceability
+through the following chain:
 
 `processor computational mechanism`
 
 ↓
 
-`executable reference`
+`executable semantic reference`
 
 ↓
 
@@ -3076,7 +3966,7 @@ The retained M3-M15 release-specific architecture layers preserve traceability b
 
 ↓
 
-`schema validation`
+`schema and invariant validation`
 
 ↓
 
@@ -3094,75 +3984,76 @@ The retained M3-M15 release-specific architecture layers preserve traceability b
 
 `release notes`
 
+The M16 qualification layers preserve traceability through:
+
+`M15-qualified semantic and implementation-mapping foundation`
+
+↓
+
+`M16 RTL and target-independent FPGA preparation sources`
+
+↓
+
+`executable testbenches and assertions`
+
+↓
+
+`GitHub Actions qualification workflows`
+
+↓
+
+`simulation transcripts`
+
+↓
+
+`closure records`
+
+The M17 published-artifact integration boundary preserves traceability through:
+
+`FRP source authority`
+
+↓
+
+`one-way integration contract`
+
+↓
+
+`deterministic machine-readable inventory generator`
+
+↓
+
+`dependency-free qualification tests`
+
+↓
+
+`FRP M17 Published Artifact Integration workflow`
+
+↓
+
+`workflow-retained deterministic evidence`
+
+↓
+
+`post-execution qualification record`
+
+↓
+
+`qualification closure record`
+
+M17 inventory records bind supported publication surfaces to exact repository
+paths, schema identifiers, producers, versions, publication states,
+measurement contours, byte lengths, and raw SHA-256 digests where those values
+are available from the qualified source boundary.
+
 Historical workflows retain their release-specific executable bindings.
-
-The qualified M15 workflow retains the Python semantic reference, architecture document, implementation-mapping path, and qualification-package bindings.
-
-The M16 RTL workflow retains bindings between:
-
-`qualified M15 execution semantics`
-
-↓
-
-`rtl/m16 SystemVerilog sources`
-
-↓
-
-`Verilator build and executable architectural simulation`
-
-↓
-
-`assertion and invariant execution`
-
-↓
-
-`qualification evidence artifacts`
-
-↓
-
-`rtl/m16/SIMULATION_TRANSCRIPT.md`
-
-↓
-
-`rtl/m16/CLOSURE.md`
-
-The M16 FPGA preparation workflow retains bindings between:
-
-`qualified rtl/m16 execution boundary`
-
-↓
-
-`fpga/m16 integration sources`
-
-↓
-
-`integration-top elaboration`
-
-↓
-
-`executable FPGA integration simulation`
-
-↓
-
-`reset, core_ready, propagation, route, counter, and invariant validation`
-
-↓
-
-`FPGA qualification evidence artifacts`
-
-↓
-
-`fpga/m16/SIMULATION_TRANSCRIPT.md`
-
-↓
-
-`fpga/m16/CLOSURE.md`
-
-Supporting comparative workflows retain their benchmark and hardware-sensitivity package bindings.
+M16 and M17 qualification records retain their qualified commit, workflow-run,
+branch, result, evidence, and closure identities without renaming historical
+release layers.
 
 ## 46. Repository Alignment Rule
 
-When the current architecture layer changes, review:
+When the current release, architecture layer, qualification boundary, or
+published-artifact boundary changes, review:
 
 - `README.md`;
 - `ROADMAP.md`;
@@ -3180,6 +4071,9 @@ When the current architecture layer changes, review:
 - `.github/workflows/frp-m16-fpga-preparation.yml`;
 - `.github/workflows/frp-m16-canonical-core-domain.yml`;
 - `.github/workflows/frp-m16-reserved-cell-cleanup.yml`;
+- `.github/workflows/frp-m17-published-artifact-integration.yml`;
+- `frp_m17_publication_inventory.py`;
+- `tests/test_frp_m17_publication_inventory.py`;
 - `rtl/m16/README.md`;
 - `rtl/m16/ARTIFACTS.md`;
 - `rtl/m16/SIMULATION.md`;
@@ -3187,6 +4081,12 @@ When the current architecture layer changes, review:
 - `rtl/m16/CLOSURE.md`;
 - `fpga/m16/SIMULATION_TRANSCRIPT.md`;
 - `fpga/m16/CLOSURE.md`;
+- `docs/m16_qualification_manifest.md`;
+- `docs/m16_qualification_index.md`;
+- `docs/m16_public_status_snapshot.md`;
+- `docs/m17_published_artifact_integration_contract.md`;
+- `docs/m17_published_artifact_integration_qualification.md`;
+- `docs/m17_published_artifact_integration_closure.md`;
 - `docs/mathematical_foundation.md`;
 - `docs/physical_foundation.md`;
 - retained M15 test report, validation index, and release notes;
@@ -3194,32 +4094,56 @@ When the current architecture layer changes, review:
 
 The alignment review checks:
 
-- current version;
-- current milestone;
+- current release version and milestone;
+- separation between the current `FRP v1.8.0` release and the planned M17
+  inventory state;
 - Python executable semantic-reference filename;
 - M15 foundation workflow path;
 - M16 RTL workflow path;
 - M16 FPGA preparation workflow path;
 - M16 canonical core-domain workflow path;
 - M16 reserved-cell cleanup workflow path;
-- CI workflow badges and repository workflow-file count;
-- structured-output and benchmark-matrix schemas;
+- M17 published-artifact integration workflow path;
+- CI workflow badges and the repository workflow-file count of `24`;
+- structured-output, benchmark-matrix, and published-artifact inventory schema
+  identities;
+- M17 inventory and self-test schema identifiers;
 - complete resonant computational core;
-- balanced ternary state and retained-result domain;
+- canonical balanced ternary domain `-1/0/1`;
+- active neutral state `0`;
+- scheduler identities `free`, `7/1`, and `1/7`;
+- retained-result and pending-route semantics;
 - M15 qualification closure;
 - M16 RTL workflow run, commit, result, and closure status;
 - M16 FPGA workflow run, commit, result, and closure status;
 - M16 RTL and FPGA event counters;
 - all ten M16 invariant flags;
+- M17 workflow run, commit, result, and qualification closure status;
+- M17 inventory record count and exact schema-identifier count;
+- M17 publication-state counts and planned-unavailable records;
+- one-way integration direction from FRP to published artifacts and downstream
+  consumers;
+- FRP source authority;
+- measurement-contour separation;
+- repository-committed and workflow-retained evidence separation;
+- raw-artifact digest and inventory-content digest rules;
 - mathematical and physical foundation links;
 - retained M15 test report, validation index, and release notes;
-- release-specific architecture traceability.
+- release-specific and qualification-specific architecture traceability.
+
+Historical release identifiers must remain attached to their original release
+records. Qualification-layer updates must not rename historical schemas,
+workflows, artifacts, versions, or milestones.
 
 ## 47. Current CI Technical Chain
 
 The complete current CI chain is:
 
-`balanced ternary state and retained-result domain {-1, 0, 1}`
+`canonical balanced ternary domain -1/0/1`
+
+↓
+
+`active neutral state 0`
 
 ↓
 
@@ -3227,7 +4151,7 @@ The complete current CI chain is:
 
 ↓
 
-`Kuramoto-Sakaguchi resonant phase coupling`
+`Kuramoto–Sakaguchi resonant phase coupling`
 
 ↓
 
@@ -3367,7 +4291,11 @@ The complete current CI chain is:
 
 ↓
 
-`scheduler and deterministic request-lane execution`
+`scheduler execution with distinct free, 7/1, and 1/7 modes`
+
+↓
+
+`deterministic request-lane execution`
 
 ↓
 
@@ -3419,6 +4347,58 @@ The complete current CI chain is:
 
 ↓
 
+`FRP source authority`
+
+↓
+
+`one-way M17 published-artifact integration contract`
+
+↓
+
+`deterministic machine-readable publication inventory`
+
+↓
+
+`63 ordered and uniquely identified inventory records`
+
+↓
+
+`17 exact schema identifiers`
+
+↓
+
+`publication-state and measurement-contour separation`
+
+↓
+
+`repository-committed raw-byte SHA-256 bindings`
+
+↓
+
+`canonical inventory-content SHA-256 validation`
+
+↓
+
+`25-check inventory self-test`
+
+↓
+
+`30-test dependency-free qualification suite`
+
+↓
+
+`two byte-identical inventory renderings`
+
+↓
+
+`repository immutability validation`
+
+↓
+
+`M17 published-artifact integration qualification closure`
+
+↓
+
 `GitHub Actions qualification evidence preservation`
 
 ## 48. Current Status
@@ -3433,17 +4413,30 @@ Processor class:
 
 Computational mechanism:
 
-`Kuramoto-Sakaguchi resonant phase dynamics with asymmetric phase lag, hierarchical fractal coupling, phase evolution, resonance selection, Kuramoto order parameter R, multiscale phase coherence, stateful delay dynamics, local thermal-phase interaction, local correlated gamma drift, nonlinear coherence compression, dynamic stability evaluation, phase-derived ternary targets, distributed commit, mandatory active-neutral routing, and retained coherent ternary state`
+`Kuramoto–Sakaguchi resonant phase dynamics with asymmetric phase lag, hierarchical fractal coupling, phase evolution, resonance selection, Kuramoto order parameter R, multiscale phase coherence, stateful delay dynamics, local thermal-phase interaction, local correlated gamma drift, nonlinear coherence compression, dynamic stability evaluation, phase-derived ternary targets, distributed commit, mandatory active-neutral routing, and retained coherent ternary state`
 
-State and retained-result domain:
+Canonical state and retained-result domain:
 
-`{-1, 0, 1}`
+`-1/0/1`
 
 Active neutral state:
 
 `0`
 
-Current architecture form:
+Canonical opposite-polarity routes:
+
+- `-1 → 0 → 1`;
+- `1 → 0 → -1`.
+
+Scheduler identities:
+
+| Scheduler mode | Exact execution identity |
+|---|---|
+| `free` | unrestricted execution |
+| `7/1` | seven `balance` ticks followed by one `commit` tick |
+| `1/7` | one `excite` tick followed by seven `neutralize` ticks |
+
+Current qualified processor architecture form:
 
 `qualified Python semantic reference + executable M16 SystemVerilog RTL core + target-independent FPGA preparation boundary`
 
@@ -3487,15 +4480,19 @@ Current M16 reserved-cell cleanup workflow:
 
 `.github/workflows/frp-m16-reserved-cell-cleanup.yml`
 
+Qualified M17 published-artifact integration workflow:
+
+`.github/workflows/frp-m17-published-artifact-integration.yml`
+
 Current CI workflow status badges:
 
-`23`
+`24`
 
 Current repository workflow files:
 
-`23`
+`24`
 
-Current validation result:
+Current release validation result:
 
 `PASS`
 
@@ -3507,18 +4504,22 @@ Current M16 RTL qualification:
 
 | Field | Value |
 |---|---|
-| Workflow run | `#84` |
-| Qualified source commit | `ede53cf` |
-| Result | `SUCCESS` |
+| Workflow run | `#88` |
+| Qualified source commit | `975222b` |
+| Branch | `main` |
+| Workflow result | `SUCCESS` |
+| Qualification result | `PASS` |
 | Status | `M16 RTL EXECUTION LAYER CLOSED` |
 
 Current M16 FPGA preparation qualification:
 
 | Field | Value |
 |---|---|
-| Workflow run | `#2` |
-| Qualified repository commit | `ede53cf` |
-| Result | `SUCCESS` |
+| Workflow run | `#6` |
+| Qualified repository commit | `975222b` |
+| Branch | `main` |
+| Workflow result | `SUCCESS` |
+| Qualification result | `PASS` |
 | Status | `M16 FPGA PREPARATION LAYER CLOSED` |
 
 Current zero-event record:
@@ -3533,6 +4534,47 @@ Current integrated invariant record:
 
 `invariant_flags = 1111111111`
 
+Qualified M17 published-artifact integration record:
+
+| Field | Value |
+|---|---|
+| Baseline release | `FRP v1.8.0` |
+| M17 inventory version | `1.9.0` |
+| Inventory milestone state | `planned` |
+| Workflow run | `#1` |
+| Qualified commit | `08e5714` |
+| Branch | `main` |
+| Workflow result | `SUCCESS` |
+| Qualification result | `PASS` |
+| Duration | `16s` |
+| Status | `M17 QUALIFICATION BOUNDARY CLOSED` |
+
+Qualified M17 machine-readable schemas:
+
+| Artifact | Schema identifier |
+|---|---|
+| published-artifact inventory | `frp.m17.published_artifact_inventory.v1.9.0` |
+| inventory self-test | `frp.m17.published_artifact_inventory.self_test.v1.9.0` |
+
+Qualified M17 inventory result:
+
+| Field | Value |
+|---|---:|
+| inventory records | `63` |
+| exact schema identifiers | `17` |
+| built-in self-test | `25 / 25 PASS` |
+| dependency-free tests | `30 / 30 PASS` |
+| deterministic renderings | `2 / 2 byte-identical` |
+| repository unchanged | `PASS` |
+
+Qualified M17 integration direction:
+
+`FRP → published artifacts → downstream consumers`
+
+Source authority:
+
+`FRP`
+
 Current foundation documents:
 
 - [`docs/mathematical_foundation.md`](docs/mathematical_foundation.md);
@@ -3540,12 +4582,18 @@ Current foundation documents:
 
 Current CI role:
 
-`preserve the FRP validation chain from Kuramoto-Sakaguchi resonant phase computation, hierarchical fractal phase interaction, multiscale phase coherence, delay and thermal-phase dynamics, nonlinear coherence compression, phase-derived balanced ternary state formation, distributed active-neutral routing, and retained coherent state through qualified M15 fixed-point implementation mapping, cycle-exact execution, RTL correlation, reference equivalence, M15 qualification closure, executable M16 RTL realization, assertion-qualified retained-state execution, target-independent FPGA integration, and M16 FPGA preparation qualification`
+`preserve the FRP validation chain from Kuramoto–Sakaguchi resonant phase computation, hierarchical fractal phase interaction, multiscale phase coherence, delay and thermal-phase dynamics, nonlinear coherence compression, phase-derived balanced ternary state formation, distributed active-neutral routing, and retained coherent state through qualified M15 fixed-point implementation mapping, cycle-exact execution, RTL correlation, reference equivalence, M15 qualification closure, executable M16 RTL realization, assertion-qualified retained-state execution, target-independent FPGA integration, M16 FPGA preparation qualification, and the qualified one-way M17 published-artifact integration boundary`
 
 Current release qualification state:
 
 `FRP v1.8.0 / M16 — PASS`
 
+M17 published-artifact integration qualification state:
+
+`PASS — M17 QUALIFICATION BOUNDARY CLOSED`
+
+M17 remains a planned publication milestone and does not replace the current
+`FRP v1.8.0 / M16` release.
 
 
 
