@@ -4183,13 +4183,26 @@ M16 FPGA preparation documentation:
 - `fpga/m16/SIMULATION_TRANSCRIPT.md`;
 - `fpga/m16/CLOSURE.md`.
 
-### Current Implementation Boundary
+M17 published-artifact integration documentation:
+
+- `docs/m17_published_artifact_integration_contract.md`;
+- `docs/m17_published_artifact_integration_qualification.md`;
+- `docs/m17_published_artifact_integration_closure.md`.
+
+M17 executable qualification surface:
+
+- `frp_m17_publication_inventory.py`;
+- `tests/test_frp_m17_publication_inventory.py`;
+- `.github/workflows/frp-m17-published-artifact-integration.yml`.
+
+### Current Qualified Repository Boundary
 
 | Layer | Recorded state |
 |---|---|
 | M15 semantic and implementation-mapping foundation | `41 / 41 PASS` |
 | M16 RTL execution layer | `M16 RTL EXECUTION LAYER CLOSED` |
 | M16 FPGA preparation layer | `M16 FPGA PREPARATION LAYER CLOSED` |
+| M17 published-artifact integration qualification boundary | `M17 QUALIFICATION BOUNDARY CLOSED` |
 
 M16 RTL qualification record:
 
@@ -4209,15 +4222,43 @@ M16 FPGA preparation qualification record:
 | Qualified repository commit | `975222b` |
 | Result | `SUCCESS` |
 
+M17 published-artifact integration qualification record:
+
+| Field | Recorded value |
+|---|---|
+| Workflow | `FRP M17 Published Artifact Integration` |
+| Workflow run | `#1` |
+| Qualified commit | `08e5714` |
+| Result | `SUCCESS` |
+| Built-in inventory self-test | `25 / 25 PASS` |
+| Unit-test suite | `30 / 30 PASS` |
+| Deterministic inventory renderings | `2 / 2 byte-identical` |
+| Inventory records | `63` |
+| Exact schema identifiers | `17` |
+| Inventory milestone state | `planned` |
+| Status | `M17 QUALIFICATION BOUNDARY CLOSED` |
+
+Preserved scheduler-mode identities:
+
+- `free`;
+- `7/1`: seven `balance` ticks followed by one `commit` tick;
+- `1/7`: one `excite` tick followed by seven `neutralize` ticks.
+
 Current hardware-facing release state:
 
 `FRP v1.8.0 / M16 — PASS`
 
+Current published-artifact integration qualification state:
+
+`M17 QUALIFICATION BOUNDARY CLOSED — PASS`
+
 ## Project Milestones
 
-FRP v1.8.0 / M16 remains the current qualified repository boundary.
+FRP v1.8.0 / M16 remains the current published release boundary.
 
-Versions assigned to M17 through M30 are provisional until their implementation, tests, workflows, qualification evidence, and release records are complete.
+The M17 published-artifact integration qualification boundary is closed with `PASS`. Its machine-readable inventory milestone state remains `planned`, and `v1.9.0` remains a provisional release target.
+
+M18 through M30 remain planned architecture targets. Version assignments from M17 through M30 remain provisional until the applicable release records are complete.
 
 | Milestone | Version | Architecture layer | Status |
 |---|---|---|---|
@@ -4238,7 +4279,7 @@ Versions assigned to M17 through M30 are provisional until their implementation,
 | M14 | v1.6.0 | Physical Implementation Correlation and Production Qualification Package | Completed |
 | M15 | v1.7.0 | Implementation Mapping, Domain Interface, and Qualification Closure Package | Qualified semantic and implementation-mapping foundation |
 | M16 | v1.8.0 | RTL Core Realization and Execution Semantics Package | Current qualified layer |
-| M17 | v1.9.0 | Published Artifact Integration Contract | Planned |
+| M17 | v1.9.0 | Published Artifact Integration Contract | Qualification boundary closed; release target remains provisional |
 | M18 | v2.0.0 | Formal Schema and Canonical Artifact Publication | Planned |
 | M19 | v2.1.0 | Machine-Readable M16 Execution and Qualification Evidence | Planned |
 | M20 | v2.2.0 | Cross-Layer Deterministic Correlation | Planned |
@@ -4277,7 +4318,35 @@ M16 FPGA preparation qualification record:
 | Result | `SUCCESS` |
 | Status | `M16 FPGA PREPARATION LAYER CLOSED` |
 
-The planned M17 through M30 progression does not alter the current M16 qualification records or the existing processor semantics.
+M17 published-artifact integration qualification record:
+
+| Field | Recorded value |
+|---|---|
+| Workflow | `FRP M17 Published Artifact Integration` |
+| Workflow file | `.github/workflows/frp-m17-published-artifact-integration.yml` |
+| Workflow run | `#1` |
+| Qualified commit | `08e5714` |
+| Branch | `main` |
+| Result | `SUCCESS` |
+| Built-in inventory self-test | `25 / 25 PASS` |
+| Unit-test suite | `30 / 30 PASS` |
+| Deterministic inventory renderings | `2 / 2 byte-identical` |
+| Inventory records | `63` |
+| Exact schema identifiers | `17` |
+| Inventory milestone state | `planned` |
+| Scheduler-mode identities | `free`, `7/1`, `1/7` |
+| Repository immutability | `PASS` |
+| Status | `M17 QUALIFICATION BOUNDARY CLOSED` |
+
+M17 qualification records:
+
+- `docs/m17_published_artifact_integration_contract.md`;
+- `docs/m17_published_artifact_integration_qualification.md`;
+- `docs/m17_published_artifact_integration_closure.md`.
+
+The qualified M17 contract, inventory, provenance, publication-state records, and scheduler-mode identities form the integration baseline for M18.
+
+The current M16 release identity, M15 semantic foundation, processor semantics, canonical `-1/0/1` domain, active neutral state `0`, and distinct `free`, `7/1`, and `1/7` scheduler modes remain unchanged.
 
 Complete milestone definitions and evidence requirements are maintained in:
 
