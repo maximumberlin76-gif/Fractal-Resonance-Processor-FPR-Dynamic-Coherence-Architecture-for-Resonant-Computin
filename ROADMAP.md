@@ -903,34 +903,68 @@ Provisional release target:
 
 `v1.9.0`
 
+Qualification boundary status:
+
+`M17 QUALIFICATION BOUNDARY CLOSED`
+
+Qualification result:
+
+`PASS`
+
+Machine-readable inventory milestone state:
+
+`planned`
+
 Primary objective:
 
 `define the normative one-way publication boundary between FRP and downstream artifact consumers`
 
-Required scope:
+Qualified scope:
 
-- define published artifact classes;
-- define canonical source paths;
-- identify existing producer commands;
-- identify exact existing schema identifiers;
-- distinguish required and optional fields;
-- define immutable source-byte handling;
-- define digest declaration and verification rules;
-- define artifact provenance requirements;
-- define deterministic artifact-set ordering;
-- define compatibility-registry requirements;
-- define unsupported and incomplete artifact behavior;
-- define upstream and downstream responsibility boundaries;
-- preserve existing processor semantics without reinterpretation.
+- published artifact classes are defined;
+- canonical source paths are recorded;
+- existing producer commands are identified;
+- exact existing schema identifiers are recorded;
+- required and optional fields are distinguished where the upstream source defines them;
+- immutable source-byte handling is defined;
+- digest declaration and verification rules are defined;
+- artifact provenance requirements are defined;
+- deterministic artifact-set ordering is defined;
+- compatibility-registry requirements are defined;
+- unsupported and incomplete artifact behavior is defined;
+- upstream and downstream responsibility boundaries are defined;
+- existing processor semantics remain unchanged;
+- `free`, `7/1`, and `1/7` remain distinct scheduler-mode identities;
+- the `7/1` sequence remains seven `balance` ticks followed by one `commit` tick;
+- the `1/7` sequence remains one `excite` tick followed by seven `neutralize` ticks.
 
-Closure requires:
+Qualified evidence:
 
-- an approved integration contract;
-- a machine-readable publication inventory;
-- deterministic inventory generation;
-- tests for inventory completeness and ordering;
-- workflow evidence for contract validation;
-- explicit confirmation that no downstream code is required by FRP qualification.
+- integration contract: `docs/m17_published_artifact_integration_contract.md`;
+- deterministic inventory generator: `frp_m17_publication_inventory.py`;
+- inventory schema: `frp.m17.published_artifact_inventory.v1.9.0`;
+- self-test schema: `frp.m17.published_artifact_inventory.self_test.v1.9.0`;
+- inventory records: `63`;
+- exact schema identifiers: `17`;
+- built-in inventory self-test: `25 / 25 PASS`;
+- dependency-free unit-test suite: `30 / 30 PASS`;
+- deterministic inventory renderings: `2 / 2 byte-identical`;
+- qualification workflow: `.github/workflows/frp-m17-published-artifact-integration.yml`;
+- workflow run: `#1`;
+- qualified commit: `08e5714`;
+- workflow result: `SUCCESS`;
+- repository immutability result: `PASS`;
+- qualification record: `docs/m17_published_artifact_integration_qualification.md`;
+- closure record: `docs/m17_published_artifact_integration_closure.md`;
+- downstream-code independence: `PASS`.
+
+Release boundary:
+
+- the current published release remains `FRP v1.8.0 / M16`;
+- `v1.9.0` remains a provisional release target;
+- the qualified inventory continues to record `milestone_state` as `planned`;
+- M17 qualification closure does not publish an M17 release;
+- M18 receives the qualified M17 contract, inventory, provenance, and publication-state records as its baseline.
 
 ### M18 — Formal Schema and Canonical Artifact Publication
 
