@@ -4215,6 +4215,10 @@ Current hardware-facing release state:
 
 ## Project Milestones
 
+FRP v1.8.0 / M16 remains the current qualified repository boundary.
+
+Versions assigned to M17 through M30 are provisional until their implementation, tests, workflows, qualification evidence, and release records are complete.
+
 | Milestone | Version | Architecture layer | Status |
 |---|---|---|---|
 | M0 | v0.9.3-mobile | Repository Stabilization | Completed |
@@ -4234,6 +4238,20 @@ Current hardware-facing release state:
 | M14 | v1.6.0 | Physical Implementation Correlation and Production Qualification Package | Completed |
 | M15 | v1.7.0 | Implementation Mapping, Domain Interface, and Qualification Closure Package | Qualified semantic and implementation-mapping foundation |
 | M16 | v1.8.0 | RTL Core Realization and Execution Semantics Package | Current qualified layer |
+| M17 | v1.9.0 | Published Artifact Integration Contract | Planned |
+| M18 | v2.0.0 | Formal Schema and Canonical Artifact Publication | Planned |
+| M19 | v2.1.0 | Machine-Readable M16 Execution and Qualification Evidence | Planned |
+| M20 | v2.2.0 | Cross-Layer Deterministic Correlation | Planned |
+| M21 | v2.3.0 | Parameterized Qualification Matrix | Planned |
+| M22 | v2.4.0 | Control, Status, and Register Interface Realization | Planned |
+| M23 | v2.5.0 | Clock, Reset, CDC, and Interface Hardening | Planned |
+| M24 | v2.6.0 | Formal and Bounded Verification Closure | Planned |
+| M25 | v2.7.0 | Fault, Negative-Path, and Recovery Qualification | Planned |
+| M26 | v2.8.0 | Declared-Target Implementation Evidence | Planned |
+| M27 | v2.9.0 | Long-Run Stability and Telemetry Qualification | Planned |
+| M28 | v3.0.0 | Hierarchical Scaling and Hotspot-Containment Realization | Planned |
+| M29 | v3.1.0 | System Integration and Downstream Compatibility Closure | Planned |
+| M30 | v3.2.0 | Reproducibility, Qualification, and Archival Release Closure | Planned |
 
 M15 qualification record:
 
@@ -4259,9 +4277,15 @@ M16 FPGA preparation qualification record:
 | Result | `SUCCESS` |
 | Status | `M16 FPGA PREPARATION LAYER CLOSED` |
 
-Complete milestone definitions and evidence references are maintained in:
+The planned M17 through M30 progression does not alter the current M16 qualification records or the existing processor semantics.
+
+Complete milestone definitions and evidence requirements are maintained in:
 
 `MILESTONES.md`
+
+The complete architecture progression and closure sequence are maintained in:
+
+`ROADMAP.md`
 
 ## Historical Technical Archive
 
