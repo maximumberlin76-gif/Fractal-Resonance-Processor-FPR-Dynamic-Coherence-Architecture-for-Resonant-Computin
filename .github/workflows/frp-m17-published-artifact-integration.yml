@@ -1,0 +1,374 @@
+name: FRP M17 Published Artifact Integration
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "frp_m17_publication_inventory.py"
+      - "tests/test_frp_m17_publication_inventory.py"
+      - "docs/m17_published_artifact_integration_contract.md"
+      - "frp_prototype_v1_7_0.py"
+      - "benchmarks/architecture_comparison/profiles/*.json"
+      - "benchmarks/architecture_comparison/results/*.json"
+      - "docs/output_schema.md"
+      - "docs/benchmark_matrix.md"
+      - "docs/m15_implementation_mapping_domain_interface_qualification_closure.md"
+      - "docs/m16_qualification_manifest.md"
+      - "docs/m16_qualification_index.md"
+      - "docs/m16_public_status_snapshot.md"
+      - "FRP_VALIDATION_INDEX_v1_8_0.md"
+      - "rtl/m16/ARTIFACTS.md"
+      - "rtl/m16/SIMULATION_TRANSCRIPT.md"
+      - "rtl/m16/CLOSURE.md"
+      - "fpga/m16/SIMULATION_TRANSCRIPT.md"
+      - "fpga/m16/CLOSURE.md"
+      - ".github/workflows/frp-m15-implementation-mapping-qualification.yml"
+      - ".github/workflows/frp-m16-rtl-artifact-boundary.yml"
+      - ".github/workflows/frp-m16-fpga-preparation.yml"
+      - ".github/workflows/frp-m17-published-artifact-integration.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "frp_m17_publication_inventory.py"
+      - "tests/test_frp_m17_publication_inventory.py"
+      - "docs/m17_published_artifact_integration_contract.md"
+      - "frp_prototype_v1_7_0.py"
+      - "benchmarks/architecture_comparison/profiles/*.json"
+      - "benchmarks/architecture_comparison/results/*.json"
+      - "docs/output_schema.md"
+      - "docs/benchmark_matrix.md"
+      - "docs/m15_implementation_mapping_domain_interface_qualification_closure.md"
+      - "docs/m16_qualification_manifest.md"
+      - "docs/m16_qualification_index.md"
+      - "docs/m16_public_status_snapshot.md"
+      - "FRP_VALIDATION_INDEX_v1_8_0.md"
+      - "rtl/m16/ARTIFACTS.md"
+      - "rtl/m16/SIMULATION_TRANSCRIPT.md"
+      - "rtl/m16/CLOSURE.md"
+      - "fpga/m16/SIMULATION_TRANSCRIPT.md"
+      - "fpga/m16/CLOSURE.md"
+      - ".github/workflows/frp-m15-implementation-mapping-qualification.yml"
+      - ".github/workflows/frp-m16-rtl-artifact-boundary.yml"
+      - ".github/workflows/frp-m16-fpga-preparation.yml"
+      - ".github/workflows/frp-m17-published-artifact-integration.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frp-m17-published-artifact-integration-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  m17-published-artifact-integration:
+    name: M17 Published Artifact Integration Qualification
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    env:
+      M17_EVIDENCE_DIR: /tmp/frp_m17_publication_evidence
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUTF8: "1"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Prepare isolated evidence directory
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          rm -rf "${M17_EVIDENCE_DIR}"
+          mkdir -p "${M17_EVIDENCE_DIR}"
+
+      - name: Verify M17 Python source syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python - <<'PY'
+          from pathlib import Path
+
+          source_paths = (
+              Path("frp_m17_publication_inventory.py"),
+              Path("tests/test_frp_m17_publication_inventory.py"),
+          )
+
+          for source_path in source_paths:
+              source_bytes = source_path.read_bytes()
+              compile(source_bytes, str(source_path), "exec")
+              print(
+                  f"compiled={source_path} bytes={len(source_bytes)}"
+              )
+          PY
+
+      - name: Run built-in M17 inventory self-test
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python frp_m17_publication_inventory.py \
+            --self-test \
+            --output json \
+            | tee "${M17_EVIDENCE_DIR}/frp_m17_self_test.json"
+
+      - name: Generate deterministic inventory pair
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python frp_m17_publication_inventory.py \
+            --output json \
+            > "${M17_EVIDENCE_DIR}/frp_m17_inventory_a.json"
+
+          python frp_m17_publication_inventory.py \
+            --output json \
+            > "${M17_EVIDENCE_DIR}/frp_m17_inventory_b.json"
+
+          cmp --silent \
+            "${M17_EVIDENCE_DIR}/frp_m17_inventory_a.json" \
+            "${M17_EVIDENCE_DIR}/frp_m17_inventory_b.json"
+
+      - name: Validate M17 inventory qualification values
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python - <<'PY'
+          from __future__ import annotations
+
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+
+          evidence_dir = Path(os.environ["M17_EVIDENCE_DIR"])
+          inventory_a_path = evidence_dir / "frp_m17_inventory_a.json"
+          inventory_b_path = evidence_dir / "frp_m17_inventory_b.json"
+          self_test_path = evidence_dir / "frp_m17_self_test.json"
+
+          inventory_a_bytes = inventory_a_path.read_bytes()
+          inventory_b_bytes = inventory_b_path.read_bytes()
+          if inventory_a_bytes != inventory_b_bytes:
+              raise SystemExit("M17 inventory outputs are not byte-identical")
+
+          payload = json.loads(inventory_a_bytes)
+          self_test = json.loads(self_test_path.read_bytes())
+
+          expected_identity = {
+              "schema": "frp.m17.published_artifact_inventory.v1.9.0",
+              "kind": "published_artifact_inventory",
+              "version": "1.9.0",
+              "milestone": "M17 — Published Artifact Integration Contract",
+              "milestone_state": "planned",
+              "baseline_release": "FRP v1.8.0",
+              "semantic_reference": "frp_prototype_v1_7_0.py",
+              "source_authority": "frp",
+              "integration_direction": (
+                  "frp_to_published_artifacts_to_downstream_consumers"
+              ),
+          }
+          for field_name, expected_value in expected_identity.items():
+              if payload.get(field_name) != expected_value:
+                  raise SystemExit(
+                      f"Unexpected {field_name}: {payload.get(field_name)!r}"
+                  )
+
+          if payload["canonical_ternary_domain"] != [-1, 0, 1]:
+              raise SystemExit("Canonical ternary domain mismatch")
+          if payload["canonical_opposite_polarity_routes"] != [
+              [-1, 0, 1],
+              [1, 0, -1],
+          ]:
+              raise SystemExit("Canonical opposite-polarity routes mismatch")
+          if b'"+1"' in inventory_a_bytes:
+              raise SystemExit("Noncanonical +1 notation detected")
+
+          summary = payload["summary"]
+          expected_summary = {
+              "total_records": 63,
+              "schema_identifier_count": 17,
+              "repository_committed_json_count": 6,
+              "m15_export_schema_count": 10,
+              "m15_vector_package_member_count": 10,
+              "m16_workflow_member_count": 11,
+              "documentation_only_count": 13,
+              "planned_unavailable_count": 4,
+              "formal_json_schema_files_committed": 0,
+              "committed_m15_canonical_vector_members": 0,
+              "canonical_csv_tsv_artifacts_committed": 0,
+              "machine_readable_frp_m16_schema_count": 0,
+          }
+          for field_name, expected_value in expected_summary.items():
+              if summary.get(field_name) != expected_value:
+                  raise SystemExit(
+                      f"Unexpected summary.{field_name}: "
+                      f"{summary.get(field_name)!r}"
+                  )
+
+          expected_state_counts = {
+              "documentation_only": 13,
+              "planned_unavailable": 4,
+              "producer_defined": 29,
+              "release_archived": 0,
+              "repository_committed": 6,
+              "workflow_retained": 11,
+          }
+          if summary["publication_state_counts"] != expected_state_counts:
+              raise SystemExit("Publication-state counts mismatch")
+
+          record_ids = [record["record_id"] for record in payload["records"]]
+          if record_ids != sorted(record_ids):
+              raise SystemExit("Record order is not lexicographic")
+          if len(record_ids) != len(set(record_ids)):
+              raise SystemExit("Duplicate record identifiers detected")
+
+          digest = payload.pop("inventory_content_sha256")
+          canonical_bytes = json.dumps(
+              payload,
+              ensure_ascii=False,
+              sort_keys=True,
+              separators=(",", ":"),
+          ).encode("utf-8")
+          calculated_digest = hashlib.sha256(canonical_bytes).hexdigest()
+          if digest != calculated_digest:
+              raise SystemExit("Inventory content digest mismatch")
+
+          if self_test.get("schema") != (
+              "frp.m17.published_artifact_inventory.self_test.v1.9.0"
+          ):
+              raise SystemExit("Self-test schema mismatch")
+          if self_test.get("status") != "PASS":
+              raise SystemExit("Built-in self-test did not report PASS")
+          if self_test.get("check_count") != 25:
+              raise SystemExit("Built-in self-test count mismatch")
+          if self_test.get("inventory_content_sha256") != digest:
+              raise SystemExit("Self-test inventory digest mismatch")
+
+          print(f"inventory_content_sha256={digest}")
+          print("inventory_records=63")
+          print("schema_identifiers=17")
+          print("built_in_checks=25")
+          PY
+
+      - name: Run M17 inventory unit tests
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python -m unittest discover \
+            -s tests \
+            -p "test_frp_m17_publication_inventory.py" \
+            -v \
+            2>&1 | tee "${M17_EVIDENCE_DIR}/frp_m17_unittest.log"
+
+          grep -Eq \
+            '^Ran 30 tests in [0-9.]+s$' \
+            "${M17_EVIDENCE_DIR}/frp_m17_unittest.log"
+
+          grep -Fqx \
+            "OK" \
+            "${M17_EVIDENCE_DIR}/frp_m17_unittest.log"
+
+      - name: Record M17 source hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          sha256sum \
+            frp_m17_publication_inventory.py \
+            tests/test_frp_m17_publication_inventory.py \
+            docs/m17_published_artifact_integration_contract.md \
+            .github/workflows/frp-m17-published-artifact-integration.yml \
+            | sort \
+            | tee "${M17_EVIDENCE_DIR}/frp_m17_sources.sha256"
+
+      - name: Record M17 qualification result
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          inventory_digest="$(
+            python -c \
+              'import json,sys; print(json.load(sys.stdin)["inventory_content_sha256"])' \
+              < "${M17_EVIDENCE_DIR}/frp_m17_inventory_a.json"
+          )"
+
+          {
+            echo "FRP M17 Published Artifact Integration"
+            echo "repository=${GITHUB_REPOSITORY}"
+            echo "commit=${GITHUB_SHA}"
+            echo "ref=${GITHUB_REF}"
+            echo "run_id=${GITHUB_RUN_ID}"
+            echo "run_number=${GITHUB_RUN_NUMBER}"
+            echo "execution_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "result=PASS"
+            echo "inventory_schema=frp.m17.published_artifact_inventory.v1.9.0"
+            echo "self_test_schema=frp.m17.published_artifact_inventory.self_test.v1.9.0"
+            echo "inventory_content_sha256=${inventory_digest}"
+            echo "source_authority=frp"
+            echo "integration_direction=frp_to_published_artifacts_to_downstream_consumers"
+            echo "canonical_ternary_domain=-1/0/1"
+            echo "inventory_records=63"
+            echo "schema_identifiers=17"
+            echo "built_in_checks=25"
+            echo "unit_tests=30"
+            echo "repository_committed_json=6"
+            echo "m15_export_schemas=10"
+            echo "m15_vector_package_members=10"
+            echo "m16_workflow_members=11"
+            echo "formal_json_schema_files_committed=0"
+            echo "committed_m15_canonical_vector_members=0"
+            echo "canonical_csv_tsv_artifacts_committed=0"
+            echo "machine_readable_frp_m16_schema_count=0"
+          } | tee "${M17_EVIDENCE_DIR}/frp_m17_qualification.txt"
+
+      - name: Verify repository remains unchanged
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git diff --exit-code
+
+          if [[ -n "$(git status --porcelain --untracked-files=all)" ]]; then
+            git status --short --untracked-files=all
+            exit 1
+          fi
+
+      - name: Upload M17 qualification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frp-m17-published-artifact-integration-${{ github.run_number }}
+          path: /tmp/frp_m17_publication_evidence
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Publish M17 qualification summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## FRP M17 Published Artifact Integration"
+            echo
+            echo "- Job result: ${{ job.status }}"
+            echo "- Inventory schema: frp.m17.published_artifact_inventory.v1.9.0"
+            echo "- Source authority: FRP"
+            echo "- Canonical ternary domain: -1/0/1"
+            echo "- Inventory records: 63"
+            echo "- Schema identifiers: 17"
+            echo "- Built-in checks: 25"
+            echo "- Unit tests: 30"
+            echo "- Deterministic inventory copies: 2"
+            echo "- Evidence retention: 30 days"
+          } >> "${GITHUB_STEP_SUMMARY}"
