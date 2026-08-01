@@ -301,7 +301,7 @@ Versions assigned to M17 through M30 are provisional until the corresponding imp
 | M14 | v1.6.0 | Physical Implementation Correlation and Production Qualification Package | Completed |
 | M15 | v1.7.0 | Implementation Mapping, Domain Interface, and Qualification Closure Package | Qualified semantic and implementation-mapping foundation |
 | M16 | v1.8.0 | RTL Core Realization and Execution Semantics Package | Current RTL execution and FPGA preparation layer |
-| M17 | v1.9.0 | Published Artifact Integration Contract | Planned |
+| M17 | v1.9.0 | Published Artifact Integration Contract | Qualification boundary closed; release target remains provisional |
 | M18 | v2.0.0 | Formal Schema and Canonical Artifact Publication | Planned |
 | M19 | v2.1.0 | Machine-Readable M16 Execution and Qualification Evidence | Planned |
 | M20 | v2.2.0 | Cross-Layer Deterministic Correlation | Planned |
@@ -1506,13 +1506,15 @@ Current physical foundation:
 
 `docs/physical_foundation.md`
 
-## 27. Planned M17 through M30 Closure Register
+## 27. M17 through M30 Closure Register
 
-The milestones in this register are planned targets.
+The M17 published-artifact integration qualification boundary is closed.
 
-Exact file paths, schema identifiers, producer commands, workflow runs, qualified commits, and artifact digests must be recorded only after the corresponding repository artifacts exist.
+M18 through M30 remain planned targets.
 
-FRP v1.8.0 / M16 remains the current qualified repository boundary until the applicable milestone gates are closed.
+Exact file paths, schema identifiers, producer commands, workflow runs, qualified commits, and artifact digests are recorded only after the corresponding repository artifacts exist.
+
+FRP v1.8.0 / M16 remains the current published release boundary. The M17 qualification closure establishes the qualified integration baseline for M18 without changing the current release identity.
 
 ### 27.1 M17 — Published Artifact Integration Contract
 
@@ -1520,34 +1522,64 @@ Provisional version:
 
 `v1.9.0`
 
+Qualification boundary status:
+
+`M17 QUALIFICATION BOUNDARY CLOSED`
+
+Qualification result:
+
+`PASS`
+
+Machine-readable inventory milestone state:
+
+`planned`
+
 Objective:
 
 Define the normative one-way publication boundary from FRP to downstream artifact consumers.
 
-Required deliverables:
+Qualified deliverables:
 
-- published artifact classification;
-- machine-readable publication inventory;
+- one-way integration contract: `docs/m17_published_artifact_integration_contract.md`;
+- deterministic publication inventory generator: `frp_m17_publication_inventory.py`;
+- publication inventory schema: `frp.m17.published_artifact_inventory.v1.9.0`;
+- inventory self-test schema: `frp.m17.published_artifact_inventory.self_test.v1.9.0`;
 - provenance requirements;
 - immutable source-byte requirements;
 - digest declaration and verification rules;
-- producer-command records;
+- exact producer-command records;
+- deterministic artifact-set ordering;
 - compatibility-registry requirements;
-- unsupported-artifact behavior;
-- upstream and downstream responsibility boundaries.
+- unsupported and incomplete artifact behavior;
+- upstream and downstream responsibility boundaries;
+- independent measurement-contour assignments;
+- distinct `free`, `7/1`, and `1/7` scheduler-mode identities;
+- `7/1` sequence: seven `balance` ticks followed by one `commit` tick;
+- `1/7` sequence: one `excite` tick followed by seven `neutralize` ticks.
 
-Validation criteria:
+Qualified validation evidence:
 
-- deterministic inventory generation;
-- complete inventory ordering;
-- exact identifier preservation;
-- no downstream semantic reimplementation;
-- no upstream execution dependency on downstream code;
-- successful contract-validation workflow.
+- inventory records: `63`;
+- exact schema identifiers: `17`;
+- built-in inventory self-test: `25 / 25 PASS`;
+- dependency-free unit-test suite: `30 / 30 PASS`;
+- deterministic inventory renderings: `2 / 2 byte-identical`;
+- deterministic record ordering: `PASS`;
+- exact identifier preservation: `PASS`;
+- provenance and raw SHA-256 validation: `PASS`;
+- repository immutability: `PASS`;
+- downstream semantic authority remains with FRP: `PASS`;
+- upstream execution dependency on downstream code: `none`;
+- qualification workflow: `.github/workflows/frp-m17-published-artifact-integration.yml`;
+- workflow run: `#1`;
+- qualified commit: `08e5714`;
+- workflow result: `SUCCESS`;
+- qualification record: `docs/m17_published_artifact_integration_qualification.md`;
+- closure record: `docs/m17_published_artifact_integration_closure.md`.
 
 Status:
 
-`Planned`
+`Qualification boundary closed; release target remains provisional`
 
 ### 27.2 M18 — Formal Schema and Canonical Artifact Publication
 
