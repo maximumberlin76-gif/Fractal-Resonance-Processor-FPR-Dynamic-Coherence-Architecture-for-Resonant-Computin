@@ -1,0 +1,465 @@
+name: M18 One-Time FRP Source Digest Rebinding
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: write
+
+concurrency:
+  group: m18-one-time-frp-source-digest-rebinding
+  cancel-in-progress: false
+
+jobs:
+  rebind:
+    name: Validate and Rebind Canonical Source Digest
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    env:
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Checkout complete repository history
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Validate notation-only source change and rebind adapter
+        id: rebind
+        run: |
+          python - <<'PY'
+          from __future__ import annotations
+
+          import ast
+          import hashlib
+          import os
+          import re
+          import subprocess
+          from pathlib import Path
+
+
+          source_path = Path("frp_prototype_v1_7_0.py")
+          adapter_path = Path(
+              "benchmarks/architecture_comparison/"
+              "frp_v1_7_0_adapter.py"
+          )
+
+          baseline_source_sha256 = (
+              "a65e2c352157ac5b0fc34b3a09605bad"
+              "53cd62a1ae0d39855ed35f979b507f85"
+          )
+
+          old_rules = (
+              "previous_state = -1 and current_state = +1 is a failure",
+              "previous_state = +1 and current_state = -1 is a failure",
+          )
+
+          new_rules = (
+              "previous_state = -1 and current_state = 1 is a failure",
+              "previous_state = 1 and current_state = -1 is a failure",
+          )
+
+          current_bytes = source_path.read_bytes()
+          current_text = current_bytes.decode("utf-8")
+          current_sha256 = hashlib.sha256(current_bytes).hexdigest()
+
+          for old_rule in old_rules:
+              if old_rule in current_text:
+                  raise SystemExit(
+                      "non-canonical assertion text remains in FRP source"
+                  )
+
+          for new_rule in new_rules:
+              if current_text.count(new_rule) != 1:
+                  raise SystemExit(
+                      "canonical assertion text must occur exactly once"
+                  )
+
+          history = subprocess.check_output(
+              [
+                  "git",
+                  "rev-list",
+                  "HEAD",
+                  "--",
+                  source_path.as_posix(),
+              ],
+              text=True,
+          ).splitlines()
+
+          baseline_bytes = None
+
+          for commit in history:
+              candidate = subprocess.run(
+                  [
+                      "git",
+                      "show",
+                      f"{commit}:{source_path.as_posix()}",
+                  ],
+                  check=False,
+                  stdout=subprocess.PIPE,
+                  stderr=subprocess.DEVNULL,
+              ).stdout
+
+              if hashlib.sha256(candidate).hexdigest() == baseline_source_sha256:
+                  baseline_bytes = candidate
+                  break
+
+          if baseline_bytes is None:
+              raise SystemExit(
+                  "unable to locate the qualified baseline FRP source in history"
+              )
+
+          baseline_text = baseline_bytes.decode("utf-8")
+
+          for old_rule in old_rules:
+              if baseline_text.count(old_rule) != 1:
+                  raise SystemExit(
+                      "qualified baseline assertion text is not unique"
+                  )
+
+          expected_text = baseline_text
+
+          for old_rule, new_rule in zip(old_rules, new_rules, strict=True):
+              expected_text = expected_text.replace(old_rule, new_rule)
+
+          expected_tree = ast.dump(
+              ast.parse(
+                  expected_text,
+                  filename=source_path.as_posix(),
+                  type_comments=True,
+              ),
+              include_attributes=False,
+          )
+
+          current_tree = ast.dump(
+              ast.parse(
+                  current_text,
+                  filename=source_path.as_posix(),
+                  type_comments=True,
+              ),
+              include_attributes=False,
+          )
+
+          if current_tree != expected_tree:
+              raise SystemExit(
+                  "FRP source contains changes beyond the two canonical "
+                  "assertion-message replacements"
+              )
+
+          adapter_text = adapter_path.read_text(encoding="utf-8")
+
+          binding_pattern = re.compile(
+              r'EXPECTED_FRP_SOURCE_SHA256 = \(\n'
+              r'    "([0-9a-f]{64})"\n'
+              r'\)'
+          )
+
+          binding_matches = list(binding_pattern.finditer(adapter_text))
+
+          if len(binding_matches) != 1:
+              raise SystemExit(
+                  "adapter source digest binding must occur exactly once"
+              )
+
+          bound_sha256 = binding_matches[0].group(1)
+
+          if bound_sha256 not in {
+              baseline_source_sha256,
+              current_sha256,
+          }:
+              raise SystemExit(
+                  "adapter contains an unexpected FRP source digest binding"
+              )
+
+          rebound_text = (
+              adapter_text[: binding_matches[0].start(1)]
+              + current_sha256
+              + adapter_text[binding_matches[0].end(1) :]
+          )
+
+          adapter_path.write_text(rebound_text, encoding="utf-8")
+
+          with Path(os.environ["GITHUB_OUTPUT"]).open(
+              "a",
+              encoding="utf-8",
+          ) as output:
+              output.write(f"source_sha256={current_sha256}\n")
+
+          print(f"qualified_baseline_sha256={baseline_source_sha256}")
+          print(f"canonical_source_sha256={current_sha256}")
+          print("notation_only_ast_validation=PASS")
+          print("adapter_digest_rebinding=PASS")
+          PY
+
+      - name: Run all M15 self-test scheduler modes
+        run: |
+          output_root="$RUNNER_TEMP/m18-source-rebinding"
+          mkdir -p "$output_root"
+
+          python frp_prototype_v1_7_0.py \
+            --mode self-test \
+            --output json \
+            > "$output_root/self-test-default.json"
+
+          python frp_prototype_v1_7_0.py \
+            --mode self-test \
+            --scheduler free \
+            --output json \
+            > "$output_root/self-test-free.json"
+
+          python frp_prototype_v1_7_0.py \
+            --mode self-test \
+            --scheduler "7/1" \
+            --output json \
+            > "$output_root/self-test-7-1.json"
+
+          python frp_prototype_v1_7_0.py \
+            --mode self-test \
+            --scheduler "1/7" \
+            --output json \
+            > "$output_root/self-test-1-7.json"
+
+          python - \
+            "$output_root/self-test-default.json" \
+            "$output_root/self-test-free.json" \
+            "$output_root/self-test-7-1.json" \
+            "$output_root/self-test-1-7.json" \
+            <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+
+          for argument in sys.argv[1:]:
+              path = Path(argument)
+              result = json.loads(path.read_text(encoding="utf-8"))
+
+              assert result["status"] == "PASS"
+              assert result["check_count"] == 41
+              assert len(result["checks"]) == 41
+              assert all(result["checks"].values())
+
+              print(f"{path.name}: 41/41 PASS")
+          PY
+
+      - name: Regenerate and verify canonical comparison artifacts
+        working-directory: benchmarks/architecture_comparison
+        run: |
+          output_root="$RUNNER_TEMP/m18-source-rebinding"
+          mkdir -p "$output_root"
+
+          python -m py_compile \
+            ../../frp_prototype_v1_7_0.py \
+            frp_v1_7_0_adapter.py \
+            run_architecture_comparison.py \
+            run_hardware_sensitivity_comparison.py
+
+          python frp_v1_7_0_adapter.py \
+            --self-test \
+            --output text
+
+          python run_architecture_comparison.py \
+            --self-test \
+            --output text
+
+          python run_architecture_comparison.py \
+            --workload-profile profiles/workload_profile_v1.json \
+            --cost-profile profiles/normalized_cost_profile_v1.json \
+            --thermal-profile profiles/thermal_proxy_profile_v1.json \
+            --frp-scheduler "7/1" \
+            --write results/reference_comparison_seed_76.json \
+            --output text
+
+          python run_architecture_comparison.py \
+            --workload-profile profiles/workload_profile_v1.json \
+            --cost-profile profiles/normalized_cost_profile_v1.json \
+            --thermal-profile profiles/thermal_proxy_profile_v1.json \
+            --frp-scheduler "7/1" \
+            --write "$output_root/reference_comparison_seed_76_repeat.json" \
+            --output text
+
+          cmp \
+            results/reference_comparison_seed_76.json \
+            "$output_root/reference_comparison_seed_76_repeat.json"
+
+          python validate_hardware_sensitivity_profile.py \
+            --profile profiles/hardware_sensitivity_cost_profile_v1.json \
+            --output text
+
+          python run_hardware_sensitivity_comparison.py \
+            --hardware-sensitivity-profile \
+              profiles/hardware_sensitivity_cost_profile_v1.json \
+            --self-test \
+            --output text
+
+          python run_hardware_sensitivity_comparison.py \
+            --workload-profile profiles/workload_profile_v1.json \
+            --hardware-sensitivity-profile \
+              profiles/hardware_sensitivity_cost_profile_v1.json \
+            --thermal-profile profiles/thermal_proxy_profile_v1.json \
+            --frp-scheduler "7/1" \
+            --write \
+              results/reference_comparison_seed_76_hardware_sensitivity_v1.json \
+            --output text
+
+          python run_hardware_sensitivity_comparison.py \
+            --workload-profile profiles/workload_profile_v1.json \
+            --hardware-sensitivity-profile \
+              profiles/hardware_sensitivity_cost_profile_v1.json \
+            --thermal-profile profiles/thermal_proxy_profile_v1.json \
+            --frp-scheduler "7/1" \
+            --write \
+              "$output_root/reference_comparison_seed_76_hardware_sensitivity_v1_repeat.json" \
+            --output text
+
+          cmp \
+            results/reference_comparison_seed_76_hardware_sensitivity_v1.json \
+            "$output_root/reference_comparison_seed_76_hardware_sensitivity_v1_repeat.json"
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+
+          baseline = json.loads(
+              Path(
+                  "results/reference_comparison_seed_76.json"
+              ).read_text(encoding="utf-8")
+          )
+
+          sensitivity = json.loads(
+              Path(
+                  "results/"
+                  "reference_comparison_seed_76_hardware_sensitivity_v1.json"
+              ).read_text(encoding="utf-8")
+          )
+
+          assert baseline["schema"] == (
+              "frp.benchmark.architecture_comparison.v1"
+          )
+          assert baseline["integrity"]["status"] == "PASS"
+          assert baseline["qualification"]["status"] == "PASS"
+          assert len(baseline["comparison_package_sha256"]) == 64
+
+          assert sensitivity["schema"] == (
+              "frp.benchmark.hardware_sensitivity_comparison.v1"
+          )
+          assert sensitivity["integrity"]["status"] == "PASS"
+          assert sensitivity["qualification"]["status"] == "PASS"
+          assert len(sensitivity["hardware_sensitivity_package_sha256"]) == 64
+
+          assert (
+              sensitivity["baseline_binding"]
+              ["baseline_comparison_package_sha256"]
+              == baseline["comparison_package_sha256"]
+          )
+
+          baseline_architecture_digests = {
+              record["architecture_id"]: record["architecture_result_sha256"]
+              for record in baseline["architectures"]
+          }
+
+          assert (
+              sensitivity["baseline_binding"]["architecture_result_sha256"]
+              == baseline_architecture_digests
+          )
+
+          print("canonical_comparison_binding=PASS")
+          print("hardware_sensitivity_binding=PASS")
+          PY
+
+      - name: Run complete Python test suite
+        run: |
+          python -m unittest discover \
+            -s tests \
+            -p "test_*.py"
+
+      - name: Commit rebinding and remove one-time workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -- \
+            benchmarks/architecture_comparison/frp_v1_7_0_adapter.py \
+            benchmarks/architecture_comparison/results/reference_comparison_seed_76.json \
+            benchmarks/architecture_comparison/results/reference_comparison_seed_76_hardware_sensitivity_v1.json
+
+          git rm -- \
+            .github/workflows/m18-rebind-frp-source-once.yml
+
+          python - <<'PY'
+          import subprocess
+
+
+          expected_paths = {
+              ".github/workflows/m18-rebind-frp-source-once.yml",
+              "benchmarks/architecture_comparison/frp_v1_7_0_adapter.py",
+              "benchmarks/architecture_comparison/results/"
+              "reference_comparison_seed_76.json",
+              "benchmarks/architecture_comparison/results/"
+              "reference_comparison_seed_76_hardware_sensitivity_v1.json",
+          }
+
+          staged_paths = set(
+              subprocess.check_output(
+                  ["git", "diff", "--cached", "--name-only"],
+                  text=True,
+              ).splitlines()
+          )
+
+          if staged_paths != expected_paths:
+              raise SystemExit(
+                  "unexpected staged paths: "
+                  f"{sorted(staged_paths)}"
+              )
+
+          unstaged_paths = subprocess.check_output(
+              ["git", "diff", "--name-only"],
+              text=True,
+          ).splitlines()
+
+          if unstaged_paths:
+              raise SystemExit(
+                  "unexpected unstaged paths: "
+                  f"{unstaged_paths}"
+              )
+
+          print("staged_path_boundary=PASS")
+          PY
+
+          git diff --cached --check
+
+          git commit \
+            -m "Rebind FRP source digest and canonical benchmark artifacts" \
+            -m "Validate the notation-only source change, update the comparative adapter binding, and regenerate both canonical comparison packages deterministically."
+
+          git push origin HEAD:main
+
+      - name: Dispatch refreshed qualification workflows
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run \
+            frp-architecture-comparison.yml \
+            --ref main
+
+          gh workflow run \
+            frp-hardware-sensitivity-comparison.yml \
+            --ref main
+
+          gh workflow run \
+            frp-m17-published-artifact-integration.yml \
+            --ref main
