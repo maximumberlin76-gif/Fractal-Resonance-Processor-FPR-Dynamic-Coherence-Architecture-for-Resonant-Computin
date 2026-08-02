@@ -1,0 +1,1081 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.benchmark.architecture_comparison.v1",
+  "title": "FRP Comparative Architecture Result v1",
+  "description": "Formal schema for canonical FRP Comparative Architecture Benchmark Suite result packages.",
+  "type": "object",
+  "x-frp-schema-identifier": "frp.benchmark.architecture_comparison.v1",
+  "x-frp-artifact-role": "canonical_comparative_architecture_result",
+  "x-frp-schema-version": "1",
+  "x-frp-producer-path": "benchmarks/architecture_comparison/run_architecture_comparison.py",
+  "x-frp-producer-version": null,
+  "required": [
+    "schema",
+    "suite_name",
+    "benchmark_kind",
+    "frp_reference_version",
+    "frp_scheduler",
+    "architecture_order",
+    "workload_profile",
+    "workload_sha256",
+    "cost_profile",
+    "cost_profile_sha256",
+    "thermal_profile",
+    "thermal_profile_sha256",
+    "architectures",
+    "comparison_matrix",
+    "integrity",
+    "qualification",
+    "comparison_package_sha256"
+  ],
+  "properties": {
+    "schema": {
+      "const": "frp.benchmark.architecture_comparison.v1"
+    },
+    "suite_name": {
+      "const": "FRP Comparative Architecture Benchmark Suite"
+    },
+    "benchmark_kind": {
+      "const": "comparative_architecture_matrix"
+    },
+    "frp_reference_version": {
+      "const": "1.7.0"
+    },
+    "frp_scheduler": {
+      "enum": [
+        "free",
+        "7/1",
+        "1/7"
+      ]
+    },
+    "architecture_order": {
+      "const": [
+        "binary_synchronous_reference",
+        "binary_clock_gated_reference",
+        "direct_ternary_reference",
+        "frp_v1_7_0_quantized_shadow"
+      ]
+    },
+    "workload_profile": {
+      "$ref": "#/$defs/workloadProfile"
+    },
+    "workload_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "cost_profile": {
+      "$ref": "#/$defs/costProfile"
+    },
+    "cost_profile_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "thermal_profile": {
+      "$ref": "#/$defs/thermalProfile"
+    },
+    "thermal_profile_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "architectures": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/architectureRecord",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "binary_synchronous_reference"
+            },
+            "architecture_name": {
+              "const": "Binary Synchronous Reference"
+            },
+            "architecture_specific_metrics": {
+              "$ref": "#/$defs/binarySynchronousMetrics"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/architectureRecord",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "binary_clock_gated_reference"
+            },
+            "architecture_name": {
+              "const": "Binary Clock-Gated Reference"
+            },
+            "architecture_specific_metrics": {
+              "$ref": "#/$defs/binaryClockGatedMetrics"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/architectureRecord",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "direct_ternary_reference"
+            },
+            "architecture_name": {
+              "const": "Direct Ternary Reference"
+            },
+            "architecture_specific_metrics": {
+              "$ref": "#/$defs/directTernaryMetrics"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/architectureRecord",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "frp_v1_7_0_quantized_shadow"
+            },
+            "architecture_name": {
+              "const": "FRP v1.7.0 Quantized Hardware Shadow Reference"
+            },
+            "architecture_specific_metrics": {
+              "$ref": "#/$defs/frpMetrics"
+            }
+          }
+        }
+      ],
+      "minItems": 4,
+      "maxItems": 4,
+      "items": false
+    },
+    "comparison_matrix": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/comparisonRow",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "binary_synchronous_reference"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/comparisonRow",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "binary_clock_gated_reference"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/comparisonRow",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "direct_ternary_reference"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/comparisonRow",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "frp_v1_7_0_quantized_shadow"
+            }
+          }
+        }
+      ],
+      "minItems": 4,
+      "maxItems": 4,
+      "items": false
+    },
+    "integrity": {
+      "$ref": "#/$defs/packageIntegrity"
+    },
+    "qualification": {
+      "$ref": "#/$defs/qualification"
+    },
+    "comparison_package_sha256": {
+      "$ref": "#/$defs/sha256"
+    }
+  },
+  "$defs": {
+    "nonemptyString": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "nonnegativeInteger": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "positiveInteger": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "nonnegativeNumber": {
+      "type": "number",
+      "minimum": 0
+    },
+    "unitInterval": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "workloadProfile": {
+      "type": "object",
+      "required": [
+        "num_cells",
+        "command_count",
+        "seed",
+        "issue_policy",
+        "max_completion_cycles_per_command",
+        "final_cooldown_cycles"
+      ],
+      "properties": {
+        "num_cells": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "command_count": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "issue_policy": {
+          "const": "transaction_serial"
+        },
+        "max_completion_cycles_per_command": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "final_cooldown_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        }
+      },
+      "additionalProperties": false
+    },
+    "costProfile": {
+      "type": "object",
+      "required": [
+        "profile_name",
+        "cost_unit",
+        "costs"
+      ],
+      "properties": {
+        "profile_name": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "cost_unit": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "costs": {
+          "$ref": "#/$defs/costClassValues"
+        }
+      },
+      "additionalProperties": false
+    },
+    "thermalProfile": {
+      "type": "object",
+      "required": [
+        "profile_name",
+        "temperature_unit",
+        "ambient_temperature_proxy",
+        "thermal_decay",
+        "thermal_gain"
+      ],
+      "properties": {
+        "profile_name": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "temperature_unit": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "ambient_temperature_proxy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "thermal_decay": {
+          "type": "number",
+          "minimum": 0,
+          "exclusiveMaximum": 1
+        },
+        "thermal_gain": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        }
+      },
+      "additionalProperties": false
+    },
+    "architectureRecord": {
+      "type": "object",
+      "required": [
+        "architecture_id",
+        "architecture_name",
+        "architecture_result_sha256",
+        "architecture_specific_metrics",
+        "comparison_metrics",
+        "integrity",
+        "normalized_cost",
+        "raw_event_totals",
+        "thermal_proxy",
+        "workload_sha256"
+      ],
+      "properties": {
+        "architecture_id": {
+          "enum": [
+            "binary_synchronous_reference",
+            "binary_clock_gated_reference",
+            "direct_ternary_reference",
+            "frp_v1_7_0_quantized_shadow"
+          ]
+        },
+        "architecture_name": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "architecture_result_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "architecture_specific_metrics": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "comparison_metrics": {
+          "$ref": "#/$defs/comparisonMetrics"
+        },
+        "integrity": {
+          "$ref": "#/$defs/architectureIntegrity"
+        },
+        "normalized_cost": {
+          "$ref": "#/$defs/normalizedCost"
+        },
+        "raw_event_totals": {
+          "$ref": "#/$defs/rawEventTotals"
+        },
+        "thermal_proxy": {
+          "$ref": "#/$defs/thermalProxy"
+        },
+        "workload_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "additionalProperties": false
+    },
+    "binarySynchronousMetrics": {
+      "type": "object",
+      "required": [
+        "direct_binary_switches"
+      ],
+      "properties": {
+        "direct_binary_switches": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        }
+      },
+      "additionalProperties": false
+    },
+    "binaryClockGatedMetrics": {
+      "type": "object",
+      "required": [
+        "clock_gate_active_fraction",
+        "direct_binary_switches",
+        "gated_cycles"
+      ],
+      "properties": {
+        "clock_gate_active_fraction": {
+          "$ref": "#/$defs/unitInterval"
+        },
+        "direct_binary_switches": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "gated_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        }
+      },
+      "additionalProperties": false
+    },
+    "directTernaryMetrics": {
+      "type": "object",
+      "required": [
+        "direct_opposite_polarity_changes",
+        "gated_cycles",
+        "neutral_state_exits"
+      ],
+      "properties": {
+        "direct_opposite_polarity_changes": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "gated_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "neutral_state_exits": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        }
+      },
+      "additionalProperties": false
+    },
+    "frpMetrics": {
+      "type": "object",
+      "required": [
+        "C_minus_P_final",
+        "C_minus_P_final_q16",
+        "C_minus_P_min",
+        "C_minus_P_min_q16",
+        "actual_direct_events",
+        "fixed_point_thermal_sum_exact",
+        "fixed_point_topology_sum_exact",
+        "global_phase_coherence_final",
+        "global_phase_coherence_final_q30",
+        "neutral_insertions",
+        "neutral_routed_events",
+        "neutralized_conflicts",
+        "pending_route_count_final",
+        "pending_route_peak",
+        "prevented_direct_events",
+        "queue_overflow_events",
+        "requested_direct_events",
+        "reserved_state_events"
+      ],
+      "properties": {
+        "C_minus_P_final": {
+          "type": "number"
+        },
+        "C_minus_P_final_q16": {
+          "type": "integer"
+        },
+        "C_minus_P_min": {
+          "type": "number"
+        },
+        "C_minus_P_min_q16": {
+          "type": "integer"
+        },
+        "actual_direct_events": {
+          "const": 0
+        },
+        "fixed_point_thermal_sum_exact": {
+          "const": true
+        },
+        "fixed_point_topology_sum_exact": {
+          "const": true
+        },
+        "global_phase_coherence_final": {
+          "$ref": "#/$defs/unitInterval"
+        },
+        "global_phase_coherence_final_q30": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1073741824
+        },
+        "neutral_insertions": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "neutral_routed_events": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "neutralized_conflicts": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "pending_route_count_final": {
+          "const": 0
+        },
+        "pending_route_peak": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "prevented_direct_events": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "queue_overflow_events": {
+          "const": 0
+        },
+        "requested_direct_events": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "reserved_state_events": {
+          "const": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "comparisonMetrics": {
+      "type": "object",
+      "required": [
+        "semantic_completion_ratio",
+        "semantic_output_match",
+        "completion_ticks",
+        "mean_latency_ticks",
+        "p95_latency_ticks",
+        "maximum_latency_ticks",
+        "throughput_commands_per_tick",
+        "logical_state_changes",
+        "encoded_bit_toggles",
+        "processor_cycles",
+        "active_clocked_cycles",
+        "active_clock_fraction"
+      ],
+      "properties": {
+        "semantic_completion_ratio": {
+          "const": 1.0
+        },
+        "semantic_output_match": {
+          "const": 1.0
+        },
+        "completion_ticks": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "mean_latency_ticks": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "p95_latency_ticks": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "maximum_latency_ticks": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "throughput_commands_per_tick": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "logical_state_changes": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "encoded_bit_toggles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "processor_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "active_clocked_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "active_clock_fraction": {
+          "$ref": "#/$defs/unitInterval"
+        }
+      },
+      "additionalProperties": false
+    },
+    "architectureIntegrity": {
+      "type": "object",
+      "required": [
+        "event_trace_closure",
+        "cost_cycle_count_closure",
+        "thermal_cycle_count_closure",
+        "finite_numeric_values"
+      ],
+      "properties": {
+        "event_trace_closure": {
+          "const": true
+        },
+        "cost_cycle_count_closure": {
+          "const": true
+        },
+        "thermal_cycle_count_closure": {
+          "const": true
+        },
+        "finite_numeric_values": {
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "normalizedCost": {
+      "type": "object",
+      "required": [
+        "profile_name",
+        "cost_unit",
+        "cost_profile_sha256",
+        "event_totals",
+        "cost_contribution_totals",
+        "peak_cycle_normalized_energy",
+        "total_normalized_energy",
+        "normalized_energy_per_completed_command",
+        "cycle_normalized_energy_sha256"
+      ],
+      "properties": {
+        "profile_name": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "cost_unit": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "cost_profile_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "event_totals": {
+          "$ref": "#/$defs/eventClassTotals"
+        },
+        "cost_contribution_totals": {
+          "$ref": "#/$defs/costClassValues"
+        },
+        "peak_cycle_normalized_energy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "total_normalized_energy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "normalized_energy_per_completed_command": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "cycle_normalized_energy_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "additionalProperties": false
+    },
+    "thermalProxy": {
+      "type": "object",
+      "required": [
+        "profile_name",
+        "temperature_unit",
+        "thermal_profile_sha256",
+        "peak_temperature_proxy",
+        "final_temperature_proxy",
+        "temperature_proxy_trace_sha256"
+      ],
+      "properties": {
+        "profile_name": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "temperature_unit": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "thermal_profile_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "peak_temperature_proxy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "final_temperature_proxy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "temperature_proxy_trace_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "additionalProperties": false
+    },
+    "rawEventTotals": {
+      "type": "object",
+      "required": [
+        "semantic_commands_issued",
+        "semantic_commands_completed",
+        "logical_state_changes",
+        "processor_cycles",
+        "active_clocked_cycles",
+        "encoded_bit_toggles",
+        "clocked_state_bits",
+        "register_write_bits",
+        "comparison_events",
+        "control_events",
+        "queue_reads",
+        "queue_writes",
+        "lut_reads_32",
+        "fixed_point_multiplies_32x32",
+        "fixed_point_accumulates_64",
+        "fixed_point_adds_32",
+        "fixed_point_compares_32"
+      ],
+      "properties": {
+        "semantic_commands_issued": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "semantic_commands_completed": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "logical_state_changes": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "processor_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "active_clocked_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "encoded_bit_toggles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "clocked_state_bits": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "register_write_bits": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "comparison_events": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "control_events": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "queue_reads": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "queue_writes": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "lut_reads_32": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "fixed_point_multiplies_32x32": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "fixed_point_accumulates_64": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "fixed_point_adds_32": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "fixed_point_compares_32": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        }
+      },
+      "additionalProperties": false
+    },
+    "eventClassTotals": {
+      "type": "object",
+      "required": [
+        "encoded_bit_toggles",
+        "clocked_state_bits",
+        "register_write_bits",
+        "comparison_events",
+        "control_events",
+        "queue_reads",
+        "queue_writes",
+        "lut_reads_32",
+        "fixed_point_multiplies_32x32",
+        "fixed_point_accumulates_64",
+        "fixed_point_adds_32",
+        "fixed_point_compares_32"
+      ],
+      "properties": {
+        "encoded_bit_toggles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "clocked_state_bits": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "register_write_bits": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "comparison_events": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "control_events": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "queue_reads": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "queue_writes": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "lut_reads_32": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "fixed_point_multiplies_32x32": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "fixed_point_accumulates_64": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "fixed_point_adds_32": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "fixed_point_compares_32": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        }
+      },
+      "additionalProperties": false
+    },
+    "costClassValues": {
+      "type": "object",
+      "required": [
+        "encoded_bit_toggle",
+        "clocked_state_bit",
+        "register_write_bit",
+        "comparison_event",
+        "control_event",
+        "queue_read",
+        "queue_write",
+        "lut_read_32",
+        "fixed_point_multiply_32x32",
+        "fixed_point_accumulate_64",
+        "fixed_point_add_32",
+        "fixed_point_compare_32"
+      ],
+      "properties": {
+        "encoded_bit_toggle": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "clocked_state_bit": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "register_write_bit": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "comparison_event": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "control_event": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "queue_read": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "queue_write": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "lut_read_32": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "fixed_point_multiply_32x32": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "fixed_point_accumulate_64": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "fixed_point_add_32": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "fixed_point_compare_32": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        }
+      },
+      "additionalProperties": false
+    },
+    "comparisonRow": {
+      "type": "object",
+      "required": [
+        "architecture_id",
+        "semantic_commands_issued",
+        "semantic_commands_completed",
+        "semantic_completion_ratio",
+        "semantic_output_match",
+        "completion_ticks",
+        "mean_latency_ticks",
+        "p95_latency_ticks",
+        "maximum_latency_ticks",
+        "throughput_commands_per_tick",
+        "logical_state_changes",
+        "encoded_bit_toggles",
+        "processor_cycles",
+        "active_clocked_cycles",
+        "active_clock_fraction",
+        "peak_cycle_normalized_energy",
+        "total_normalized_energy",
+        "normalized_energy_per_completed_command",
+        "peak_temperature_proxy",
+        "final_temperature_proxy"
+      ],
+      "properties": {
+        "architecture_id": {
+          "enum": [
+            "binary_synchronous_reference",
+            "binary_clock_gated_reference",
+            "direct_ternary_reference",
+            "frp_v1_7_0_quantized_shadow"
+          ]
+        },
+        "semantic_commands_issued": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "semantic_commands_completed": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "semantic_completion_ratio": {
+          "const": 1.0
+        },
+        "semantic_output_match": {
+          "const": 1.0
+        },
+        "completion_ticks": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "mean_latency_ticks": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "p95_latency_ticks": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "maximum_latency_ticks": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "throughput_commands_per_tick": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "logical_state_changes": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "encoded_bit_toggles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "processor_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "active_clocked_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "active_clock_fraction": {
+          "$ref": "#/$defs/unitInterval"
+        },
+        "peak_cycle_normalized_energy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "total_normalized_energy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "normalized_energy_per_completed_command": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "peak_temperature_proxy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "final_temperature_proxy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        }
+      },
+      "additionalProperties": false
+    },
+    "packageIntegrity": {
+      "type": "object",
+      "required": [
+        "status",
+        "checks"
+      ],
+      "properties": {
+        "status": {
+          "const": "PASS"
+        },
+        "checks": {
+          "type": "object",
+          "required": [
+            "architecture_order_match",
+            "architecture_ids_unique",
+            "same_workload_digest",
+            "same_cost_profile_digest",
+            "same_thermal_profile_digest",
+            "architecture_result_digests_valid",
+            "event_trace_closure",
+            "cost_cycle_count_closure",
+            "thermal_cycle_count_closure",
+            "finite_numeric_values"
+          ],
+          "properties": {
+            "architecture_order_match": {
+              "const": true
+            },
+            "architecture_ids_unique": {
+              "const": true
+            },
+            "same_workload_digest": {
+              "const": true
+            },
+            "same_cost_profile_digest": {
+              "const": true
+            },
+            "same_thermal_profile_digest": {
+              "const": true
+            },
+            "architecture_result_digests_valid": {
+              "const": true
+            },
+            "event_trace_closure": {
+              "const": true
+            },
+            "cost_cycle_count_closure": {
+              "const": true
+            },
+            "thermal_cycle_count_closure": {
+              "const": true
+            },
+            "finite_numeric_values": {
+              "const": true
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "qualification": {
+      "type": "object",
+      "required": [
+        "policy",
+        "status",
+        "checks",
+        "winner_assertions"
+      ],
+      "properties": {
+        "policy": {
+          "const": "integrity_only_no_winner_assertions"
+        },
+        "status": {
+          "const": "PASS"
+        },
+        "checks": {
+          "type": "object",
+          "required": [
+            "same_workload_digest",
+            "same_cost_profile_digest",
+            "same_thermal_profile_digest",
+            "architecture_order_match",
+            "all_architectures_completed_workload",
+            "semantic_output_match_one",
+            "finite_metric_values",
+            "cost_trace_closure",
+            "thermal_trace_cycle_closure",
+            "frp_actual_direct_events_zero",
+            "frp_reserved_state_events_zero",
+            "frp_queue_overflow_events_zero",
+            "frp_pending_route_count_final_zero"
+          ],
+          "properties": {
+            "same_workload_digest": {
+              "const": true
+            },
+            "same_cost_profile_digest": {
+              "const": true
+            },
+            "same_thermal_profile_digest": {
+              "const": true
+            },
+            "architecture_order_match": {
+              "const": true
+            },
+            "all_architectures_completed_workload": {
+              "const": true
+            },
+            "semantic_output_match_one": {
+              "const": true
+            },
+            "finite_metric_values": {
+              "const": true
+            },
+            "cost_trace_closure": {
+              "const": true
+            },
+            "thermal_trace_cycle_closure": {
+              "const": true
+            },
+            "frp_actual_direct_events_zero": {
+              "const": true
+            },
+            "frp_reserved_state_events_zero": {
+              "const": true
+            },
+            "frp_queue_overflow_events_zero": {
+              "const": true
+            },
+            "frp_pending_route_count_final_zero": {
+              "const": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "winner_assertions": {
+          "type": "array",
+          "maxItems": 0,
+          "items": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
