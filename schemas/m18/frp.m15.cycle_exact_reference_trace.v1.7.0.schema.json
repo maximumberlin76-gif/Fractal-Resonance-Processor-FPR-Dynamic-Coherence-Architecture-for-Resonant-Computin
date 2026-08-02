@@ -1,0 +1,896 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.m15.cycle_exact_reference_trace.v1.7.0",
+  "title": "FRP M15 Cycle-Exact Reference Trace v1.7.0",
+  "description": "Formal schema for the canonical FRP v1.7.0 M15 cycle-exact reference trace.",
+  "x-frp-schema-identifier": "frp.m15.cycle_exact_reference_trace.v1.7.0",
+  "x-frp-artifact-role": "cycle_exact_reference_trace",
+  "x-frp-schema-version": "1.7.0",
+  "x-frp-producer-path": "frp_prototype_v1_7_0.py",
+  "x-frp-producer-version": "1.7.0",
+  "type": "object",
+  "required": [
+    "configuration",
+    "kind",
+    "milestone",
+    "preload",
+    "route_events",
+    "schema",
+    "summary",
+    "trace",
+    "version"
+  ],
+  "properties": {
+    "configuration": {
+      "$ref": "#/$defs/configuration"
+    },
+    "kind": {
+      "type": "string",
+      "const": "cycle_exact_reference_trace"
+    },
+    "milestone": {
+      "type": "string",
+      "const": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package"
+    },
+    "preload": {
+      "$ref": "#/$defs/preload"
+    },
+    "route_events": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/routeEventArray"
+        },
+        {
+          "$ref": "#/$defs/orderedRouteEvents"
+        }
+      ]
+    },
+    "schema": {
+      "type": "string",
+      "const": "frp.m15.cycle_exact_reference_trace.v1.7.0"
+    },
+    "summary": {
+      "$ref": "#/$defs/summary"
+    },
+    "trace": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/traceArray"
+        },
+        {
+          "$ref": "#/$defs/orderedTicks"
+        }
+      ]
+    },
+    "version": {
+      "type": "string",
+      "const": "1.7.0"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "configuration": {
+      "type": "object",
+      "required": [
+        "cells",
+        "request_lanes",
+        "scheduler",
+        "steps"
+      ],
+      "properties": {
+        "cells": {
+          "type": "integer",
+          "const": 16
+        },
+        "request_lanes": {
+          "type": "integer",
+          "const": 4
+        },
+        "scheduler": {
+          "type": "string",
+          "const": "7/1"
+        },
+        "steps": {
+          "type": "integer",
+          "const": 64
+        }
+      },
+      "additionalProperties": false
+    },
+    "encodedRequestTargetVector4": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "integer",
+        "enum": [
+          0,
+          1,
+          3
+        ],
+        "description": "Balanced ternary hardware code: 3 maps to -1, 0 maps to 0, and 1 maps to 1."
+      }
+    },
+    "orderedRouteEvents": {
+      "type": "array",
+      "minItems": 27,
+      "maxItems": 27,
+      "prefixItems": [
+        {"const":{"cell_id":12,"ready_tick":2,"route_status":"pending","target_state":1,"tick":1}},
+        {"const":{"cell_id":12,"ready_tick":2,"route_status":"applied","target_state":1,"tick":2}},
+        {"const":{"cell_id":13,"ready_tick":3,"route_status":"pending","target_state":1,"tick":2}},
+        {"const":{"cell_id":13,"ready_tick":3,"route_status":"applied","target_state":1,"tick":3}},
+        {"const":{"cell_id":13,"ready_tick":11,"route_status":"pending","target_state":-1,"tick":10}},
+        {"const":{"cell_id":10,"ready_tick":11,"route_status":"pending","target_state":-1,"tick":10}},
+        {"const":{"cell_id":10,"ready_tick":11,"route_status":"applied","target_state":-1,"tick":17}},
+        {"const":{"cell_id":1,"ready_tick":26,"route_status":"pending","target_state":-1,"tick":25}},
+        {"const":{"cell_id":1,"ready_tick":31,"route_status":"pending","target_state":-1,"tick":30}},
+        {"const":{"cell_id":12,"ready_tick":36,"route_status":"pending","target_state":-1,"tick":35}},
+        {"const":{"cell_id":10,"ready_tick":36,"route_status":"pending","target_state":-1,"tick":35}},
+        {"const":{"cell_id":12,"ready_tick":36,"route_status":"applied","target_state":-1,"tick":36}},
+        {"const":{"cell_id":10,"ready_tick":36,"route_status":"applied","target_state":-1,"tick":36}},
+        {"const":{"cell_id":10,"ready_tick":37,"route_status":"pending","target_state":1,"tick":36}},
+        {"const":{"cell_id":10,"ready_tick":37,"route_status":"applied","target_state":1,"tick":37}},
+        {"const":{"cell_id":12,"ready_tick":38,"route_status":"pending","target_state":1,"tick":37}},
+        {"const":{"cell_id":12,"ready_tick":38,"route_status":"applied","target_state":1,"tick":38}},
+        {"const":{"cell_id":1,"ready_tick":26,"route_status":"applied","target_state":-1,"tick":39}},
+        {"const":{"cell_id":6,"ready_tick":41,"route_status":"pending","target_state":1,"tick":40}},
+        {"const":{"cell_id":13,"ready_tick":11,"route_status":"applied","target_state":-1,"tick":41}},
+        {"const":{"cell_id":7,"ready_tick":46,"route_status":"pending","target_state":1,"tick":45}},
+        {"const":{"cell_id":15,"ready_tick":51,"route_status":"pending","target_state":1,"tick":50}},
+        {"const":{"cell_id":15,"ready_tick":51,"route_status":"applied","target_state":1,"tick":51}},
+        {"const":{"cell_id":15,"ready_tick":52,"route_status":"pending","target_state":-1,"tick":51}},
+        {"const":{"cell_id":15,"ready_tick":52,"route_status":"applied","target_state":-1,"tick":52}},
+        {"const":{"cell_id":6,"ready_tick":41,"route_status":"applied","target_state":1,"tick":57}},
+        {"const":{"cell_id":7,"ready_tick":46,"route_status":"applied","target_state":1,"tick":57}}
+      ],
+      "items": false
+    },
+    "orderedTicks": {
+      "type": "array",
+      "minItems": 64,
+      "maxItems": 64,
+      "prefixItems": [
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":0}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":1}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":2}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":3}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":4}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":5}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":6}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":7}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":8}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":9}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":10}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":11}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":12}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":13}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":14}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":15}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":16}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":17}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":18}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":19}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":20}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":21}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":22}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":23}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":24}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":25}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":26}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":27}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":28}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":29}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":30}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":31}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":32}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":33}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":34}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":35}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":36}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":37}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":38}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":39}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":40}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":41}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":42}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":43}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":44}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":45}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":46}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":47}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":48}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":49}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":50}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":51}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":52}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":53}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":54}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":55}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":56}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":57}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":58}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":59}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":60}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":61}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":62}},"additionalProperties":true},
+        {"type":"object","required":["tick"],"properties":{"tick":{"type":"integer","const":63}},"additionalProperties":true}
+      ],
+      "items": false
+    },
+    "preload": {
+      "type": "object",
+      "required": [
+        "cells",
+        "frequency_current_q16",
+        "frequency_target_q16",
+        "gamma_noise_state_q16",
+        "gamma_noise_target_q16",
+        "heat_q16",
+        "phase_words",
+        "scheduler",
+        "seed",
+        "states",
+        "states_packed_hex"
+      ],
+      "properties": {
+        "cells": {
+          "type": "integer",
+          "const": 16
+        },
+        "frequency_current_q16": {
+          "$ref": "#/$defs/s32Vector16",
+          "const": [
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536
+          ]
+        },
+        "frequency_target_q16": {
+          "$ref": "#/$defs/s32Vector16",
+          "const": [
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536,
+            65536
+          ]
+        },
+        "gamma_noise_state_q16": {
+          "$ref": "#/$defs/s32Vector16",
+          "const": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "gamma_noise_target_q16": {
+          "$ref": "#/$defs/s32Vector16",
+          "const": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "heat_q16": {
+          "$ref": "#/$defs/s32Vector16",
+          "const": [
+            3277,
+            3277,
+            3277,
+            3277,
+            3277,
+            3277,
+            3277,
+            3277,
+            3277,
+            3277,
+            3277,
+            3277,
+            3277,
+            3277,
+            3277,
+            3277
+          ]
+        },
+        "phase_words": {
+          "$ref": "#/$defs/u32Vector16",
+          "const": [
+            976776619,
+            3389672785,
+            259450368,
+            2830792365,
+            2534686781,
+            2606511353,
+            4214089132,
+            3190348520,
+            1425845233,
+            1961664705,
+            273794485,
+            2701698333,
+            1729021509,
+            428646568,
+            2725990942,
+            3282581237
+          ]
+        },
+        "scheduler": {
+          "type": "string",
+          "const": "7/1"
+        },
+        "seed": {
+          "type": "integer",
+          "const": 76
+        },
+        "states": {
+          "$ref": "#/$defs/ternaryVector16",
+          "const": [
+            0,
+            0,
+            0,
+            -1,
+            0,
+            -1,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            0,
+            0
+          ]
+        },
+        "states_packed_hex": {
+          "type": "string",
+          "pattern": "^[0-9A-F]{8}$",
+          "const": "0F00CCC0"
+        }
+      },
+      "additionalProperties": false
+    },
+    "routeEvent": {
+      "type": "object",
+      "required": [
+        "cell_id",
+        "ready_tick",
+        "route_status",
+        "target_state",
+        "tick"
+      ],
+      "properties": {
+        "cell_id": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 15
+        },
+        "ready_tick": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 63
+        },
+        "route_status": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "applied"
+          ]
+        },
+        "target_state": {
+          "type": "integer",
+          "enum": [
+            -1,
+            1
+          ]
+        },
+        "tick": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 63
+        }
+      },
+      "additionalProperties": false
+    },
+    "routeEventArray": {
+      "type": "array",
+      "minItems": 27,
+      "maxItems": 27,
+      "items": {
+        "$ref": "#/$defs/routeEvent"
+      }
+    },
+    "s32": {
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    },
+    "s32Vector16": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "items": {
+        "$ref": "#/$defs/s32"
+      }
+    },
+    "schedulerCounts": {
+      "type": "object",
+      "required": [
+        "balance",
+        "commit"
+      ],
+      "properties": {
+        "balance": {
+          "type": "integer",
+          "const": 56
+        },
+        "commit": {
+          "type": "integer",
+          "const": 8
+        }
+      },
+      "additionalProperties": false
+    },
+    "schedulerStateRelation": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "scheduler_state",
+            "scheduler_state_name"
+          ],
+          "properties": {
+            "scheduler_state": {
+              "type": "integer",
+              "const": 1
+            },
+            "scheduler_state_name": {
+              "type": "string",
+              "const": "balance"
+            }
+          },
+          "additionalProperties": true
+        },
+        {
+          "type": "object",
+          "required": [
+            "scheduler_state",
+            "scheduler_state_name"
+          ],
+          "properties": {
+            "scheduler_state": {
+              "type": "integer",
+              "const": 2
+            },
+            "scheduler_state_name": {
+              "type": "string",
+              "const": "commit"
+            }
+          },
+          "additionalProperties": true
+        }
+      ]
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "C_minus_P_final",
+        "C_minus_P_final_q16",
+        "C_minus_P_min",
+        "C_minus_P_min_q16",
+        "actual_direct_events",
+        "balanced_ternary_state_domain",
+        "boundary_detected",
+        "cells",
+        "fixed_point_thermal_sum_exact",
+        "fixed_point_topology_sum_exact",
+        "hierarchy_depth",
+        "milestone",
+        "neutral_route_queue_capacity",
+        "neutral_routed_events",
+        "neutralized_conflicts",
+        "pending_route_count_final",
+        "prevented_direct_events",
+        "queue_overflow_events",
+        "request_lanes",
+        "requested_direct_events",
+        "reserved_state_events",
+        "scheduler",
+        "scheduler_counts",
+        "scheduler_counts_valid",
+        "steps",
+        "switch_load_peak",
+        "switch_load_peak_q16",
+        "ticks_recorded",
+        "transition_fraction",
+        "version"
+      ],
+      "properties": {
+        "C_minus_P_final": {
+          "type": "number",
+          "const": 0.88287353515625
+        },
+        "C_minus_P_final_q16": {
+          "type": "integer",
+          "const": 57860
+        },
+        "C_minus_P_min": {
+          "type": "number",
+          "const": 0.6142730712890625
+        },
+        "C_minus_P_min_q16": {
+          "type": "integer",
+          "const": 40257
+        },
+        "actual_direct_events": {
+          "type": "integer",
+          "const": 0
+        },
+        "balanced_ternary_state_domain": {
+          "type": "boolean",
+          "const": true
+        },
+        "boundary_detected": {
+          "type": "boolean",
+          "const": false
+        },
+        "cells": {
+          "type": "integer",
+          "const": 16
+        },
+        "fixed_point_thermal_sum_exact": {
+          "type": "boolean",
+          "const": true
+        },
+        "fixed_point_topology_sum_exact": {
+          "type": "boolean",
+          "const": true
+        },
+        "hierarchy_depth": {
+          "type": "integer",
+          "const": 4
+        },
+        "milestone": {
+          "type": "string",
+          "const": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package"
+        },
+        "neutral_route_queue_capacity": {
+          "type": "integer",
+          "const": 16
+        },
+        "neutral_routed_events": {
+          "type": "integer",
+          "const": 14
+        },
+        "neutralized_conflicts": {
+          "type": "integer",
+          "const": 14
+        },
+        "pending_route_count_final": {
+          "type": "integer",
+          "const": 0
+        },
+        "prevented_direct_events": {
+          "type": "integer",
+          "const": 14
+        },
+        "queue_overflow_events": {
+          "type": "integer",
+          "const": 0
+        },
+        "request_lanes": {
+          "type": "integer",
+          "const": 4
+        },
+        "requested_direct_events": {
+          "type": "integer",
+          "const": 9
+        },
+        "reserved_state_events": {
+          "type": "integer",
+          "const": 0
+        },
+        "scheduler": {
+          "type": "string",
+          "const": "7/1"
+        },
+        "scheduler_counts": {
+          "$ref": "#/$defs/schedulerCounts"
+        },
+        "scheduler_counts_valid": {
+          "type": "boolean",
+          "const": true
+        },
+        "steps": {
+          "type": "integer",
+          "const": 64
+        },
+        "switch_load_peak": {
+          "type": "number",
+          "const": 0.25
+        },
+        "switch_load_peak_q16": {
+          "type": "integer",
+          "const": 16384
+        },
+        "ticks_recorded": {
+          "type": "integer",
+          "const": 64
+        },
+        "transition_fraction": {
+          "type": "number",
+          "const": 0.25
+        },
+        "version": {
+          "type": "string",
+          "const": "1.7.0"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ternaryVector16": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "items": {
+        "type": "integer",
+        "enum": [
+          -1,
+          0,
+          1
+        ]
+      }
+    },
+    "tickRecord": {
+      "type": "object",
+      "required": [
+        "C_minus_P_q16",
+        "C_q16",
+        "P_q16",
+        "actual_direct_events",
+        "auto_targets_enable",
+        "changes",
+        "gamma_noise_target_q16",
+        "gamma_noise_update_valid",
+        "global_phase_coherence_q30",
+        "heat_global_q16",
+        "neutral_routed_events",
+        "neutralized_conflicts",
+        "pending_route_count",
+        "prevented_direct_events",
+        "queue_overflow_events",
+        "request_cell_ids",
+        "request_target_states",
+        "request_valid_mask",
+        "requested_direct_events",
+        "reserved_state_events",
+        "reset_n",
+        "scheduler_mode",
+        "scheduler_state",
+        "scheduler_state_name",
+        "states_human",
+        "states_packed",
+        "states_packed_hex",
+        "switch_load_q16",
+        "tick"
+      ],
+      "properties": {
+        "C_minus_P_q16": {
+          "$ref": "#/$defs/s32"
+        },
+        "C_q16": {
+          "$ref": "#/$defs/s32"
+        },
+        "P_q16": {
+          "$ref": "#/$defs/s32"
+        },
+        "actual_direct_events": {
+          "type": "integer",
+          "const": 0
+        },
+        "auto_targets_enable": {
+          "type": "integer",
+          "const": 1
+        },
+        "changes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "gamma_noise_target_q16": {
+          "$ref": "#/$defs/s32Vector16"
+        },
+        "gamma_noise_update_valid": {
+          "type": "integer",
+          "enum": [
+            0,
+            1
+          ]
+        },
+        "global_phase_coherence_q30": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1073741824
+        },
+        "heat_global_q16": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2147483647
+        },
+        "neutral_routed_events": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 14
+        },
+        "neutralized_conflicts": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 14
+        },
+        "pending_route_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16
+        },
+        "prevented_direct_events": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 14
+        },
+        "queue_overflow_events": {
+          "type": "integer",
+          "const": 0
+        },
+        "request_cell_ids": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 15
+          }
+        },
+        "request_target_states": {
+          "$ref": "#/$defs/encodedRequestTargetVector4"
+        },
+        "request_valid_mask": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 15
+        },
+        "requested_direct_events": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9
+        },
+        "reserved_state_events": {
+          "type": "integer",
+          "const": 0
+        },
+        "reset_n": {
+          "type": "integer",
+          "const": 1
+        },
+        "scheduler_mode": {
+          "type": "integer",
+          "const": 1
+        },
+        "scheduler_state": {
+          "type": "integer",
+          "enum": [
+            1,
+            2
+          ]
+        },
+        "scheduler_state_name": {
+          "type": "string",
+          "enum": [
+            "balance",
+            "commit"
+          ]
+        },
+        "states_human": {
+          "type": "string",
+          "pattern": "^[MNP]{16}$"
+        },
+        "states_packed": {
+          "$ref": "#/$defs/u32"
+        },
+        "states_packed_hex": {
+          "type": "string",
+          "pattern": "^[0-9A-F]{8}$"
+        },
+        "switch_load_q16": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16384,
+          "multipleOf": 4096
+        },
+        "tick": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 63
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/schedulerStateRelation"
+        }
+      ]
+    },
+    "traceArray": {
+      "type": "array",
+      "minItems": 64,
+      "maxItems": 64,
+      "items": {
+        "$ref": "#/$defs/tickRecord"
+      }
+    },
+    "u32": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "u32Vector16": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "items": {
+        "$ref": "#/$defs/u32"
+      }
+    }
+  }
+}
