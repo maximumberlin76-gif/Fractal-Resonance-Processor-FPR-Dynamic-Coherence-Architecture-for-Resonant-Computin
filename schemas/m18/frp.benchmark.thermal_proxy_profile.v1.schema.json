@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.benchmark.thermal_proxy_profile.v1",
+  "title": "FRP Thermal Proxy Profile v1",
+  "description": "Formal schema for the common thermal-proxy profile used by the FRP Comparative Architecture Benchmark Suite.",
+  "type": "object",
+  "x-frp-schema-identifier": "frp.benchmark.thermal_proxy_profile.v1",
+  "x-frp-artifact-role": "common_thermal_proxy_profile",
+  "x-frp-schema-version": "1",
+  "x-frp-producer-path": null,
+  "x-frp-producer-version": null,
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "suite_name",
+    "profile_name",
+    "temperature_unit",
+    "ambient_temperature_proxy",
+    "thermal_decay",
+    "thermal_gain",
+    "update_equation",
+    "thermal_profile_sha256"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "frp.benchmark.thermal_proxy_profile.v1"
+    },
+    "suite_name": {
+      "type": "string",
+      "const": "FRP Comparative Architecture Benchmark Suite"
+    },
+    "profile_name": {
+      "type": "string",
+      "const": "common_rc_thermal_proxy_v1"
+    },
+    "temperature_unit": {
+      "type": "string",
+      "const": "normalized_temperature_proxy"
+    },
+    "ambient_temperature_proxy": {
+      "type": "number",
+      "minimum": 0
+    },
+    "thermal_decay": {
+      "type": "number",
+      "minimum": 0,
+      "exclusiveMaximum": 1
+    },
+    "thermal_gain": {
+      "type": "number",
+      "minimum": 0
+    },
+    "update_equation": {
+      "type": "string",
+      "const": "ambient + (temperature - ambient) * thermal_decay + normalized_cycle_cost * thermal_gain"
+    },
+    "thermal_profile_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}
