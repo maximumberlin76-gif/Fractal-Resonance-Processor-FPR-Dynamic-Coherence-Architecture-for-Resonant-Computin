@@ -1,0 +1,360 @@
+name: M18 One-Time Contract Deduplication
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: m18-contract-deduplicate-once
+  cancel-in-progress: false
+
+jobs:
+  deduplicate:
+    name: Deduplicate M18 publication contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify and deduplicate contract
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python - <<'PY'
+          from hashlib import sha256
+          from pathlib import Path
+
+
+          CONTRACT_PATH = Path(
+              "docs/"
+              "m18_formal_schema_canonical_artifact_"
+              "publication_contract.md"
+          )
+          EXPECTED_SOURCE_SHA256 = (
+              "80360ee055d35093967447264c57c43b0"
+              "5ef0d04f511370366affcd2bbba9a90"
+          )
+          EXPECTED_RESULT_SHA256 = (
+              "d52dac835b891aa38491f88d360009b5"
+              "2cefc309583f7b9f5aec93ecf75e928f"
+          )
+          EXPECTED_RESULT_BYTE_LENGTH = 183886
+          EXPECTED_RESULT_LINE_COUNT = 5998
+
+          MANIFEST_HEADING = "## Canonical Artifact Manifest\n"
+          QUALIFICATION_HEADING = (
+              "## Canonical Artifact Qualification Record\n"
+          )
+          CLOSURE_HEADING = "## M18 Closure Gates\n"
+
+          PROFILE_FILENAMES = (
+              "workload_profile_v1.json",
+              "normalized_cost_profile_v1.json",
+              "thermal_proxy_profile_v1.json",
+              "hardware_sensitivity_cost_profile_v1.json",
+          )
+
+
+          def digest(data: bytes) -> str:
+              return sha256(data).hexdigest()
+
+
+          def positions(text: str, marker: str) -> list[int]:
+              found: list[int] = []
+              offset = 0
+
+              while True:
+                  index = text.find(marker, offset)
+                  if index < 0:
+                      return found
+                  found.append(index)
+                  offset = index + len(marker)
+
+
+          source_bytes = CONTRACT_PATH.read_bytes()
+          source_digest = digest(source_bytes)
+
+          if source_digest != EXPECTED_SOURCE_SHA256:
+              raise SystemExit(
+                  "unexpected source contract SHA-256: "
+                  f"expected {EXPECTED_SOURCE_SHA256}, "
+                  f"got {source_digest}"
+              )
+
+          if source_bytes.startswith(b"\xef\xbb\xbf"):
+              raise SystemExit("source contract must not contain a BOM")
+
+          text = source_bytes.decode("utf-8")
+
+          if "\r" in text:
+              raise SystemExit("source contract must use LF line endings")
+
+          manifest_positions = positions(text, MANIFEST_HEADING)
+          if len(manifest_positions) != 2:
+              raise SystemExit(
+                  "expected exactly two Canonical Artifact Manifest "
+                  f"sections, found {len(manifest_positions)}"
+              )
+
+          qualification_positions = positions(
+              text,
+              QUALIFICATION_HEADING,
+          )
+          if len(qualification_positions) != 1:
+              raise SystemExit(
+                  "expected exactly one Canonical Artifact "
+                  "Qualification Record section"
+              )
+
+          first_manifest, second_manifest = manifest_positions
+          qualification_start = qualification_positions[0]
+
+          if not (
+              first_manifest
+              < second_manifest
+              < qualification_start
+          ):
+              raise SystemExit("manifest section ordering is invalid")
+
+          stale_manifest = text[first_manifest:second_manifest]
+          corrected_manifest = text[
+              second_manifest:qualification_start
+          ]
+          normalized_stale_manifest = stale_manifest
+
+          for filename in PROFILE_FILENAMES:
+              stale_path = (
+                  "benchmarks/architecture_comparison/"
+                  f"{filename}"
+              )
+              corrected_path = (
+                  "benchmarks/architecture_comparison/profiles/"
+                  f"{filename}"
+              )
+
+              if stale_path not in stale_manifest:
+                  raise SystemExit(
+                      f"missing expected stale path: {stale_path}"
+                  )
+              if corrected_path not in corrected_manifest:
+                  raise SystemExit(
+                      "missing expected corrected path: "
+                      f"{corrected_path}"
+                  )
+
+              normalized_stale_manifest = (
+                  normalized_stale_manifest.replace(
+                      stale_path,
+                      corrected_path,
+                  )
+              )
+
+          if normalized_stale_manifest != corrected_manifest:
+              raise SystemExit(
+                  "manifest copies differ beyond the four corrected "
+                  "profile paths"
+              )
+
+          text = text[:first_manifest] + text[second_manifest:]
+
+          closure_positions = positions(text, CLOSURE_HEADING)
+          if len(closure_positions) != 2:
+              raise SystemExit(
+                  "expected exactly two M18 Closure Gates sections, "
+                  f"found {len(closure_positions)}"
+              )
+
+          first_closure, second_closure = closure_positions
+          first_closure_block = text[first_closure:second_closure]
+          second_closure_block = text[second_closure:]
+
+          if (
+              first_closure_block.rstrip("\n")
+              != second_closure_block.rstrip("\n")
+          ):
+              raise SystemExit(
+                  "M18 Closure Gates copies are not byte-equivalent"
+              )
+
+          corrected_text = text[:second_closure].rstrip("\n") + "\n"
+
+          if corrected_text.count(MANIFEST_HEADING) != 1:
+              raise SystemExit(
+                  "corrected contract must contain exactly one "
+                  "Canonical Artifact Manifest section"
+              )
+          if corrected_text.count(CLOSURE_HEADING) != 1:
+              raise SystemExit(
+                  "corrected contract must contain exactly one "
+                  "M18 Closure Gates section"
+              )
+
+          for filename in PROFILE_FILENAMES:
+              stale_path = (
+                  "benchmarks/architecture_comparison/"
+                  f"{filename}"
+              )
+              corrected_path = (
+                  "benchmarks/architecture_comparison/profiles/"
+                  f"{filename}"
+              )
+
+              if stale_path in corrected_text:
+                  raise SystemExit(
+                      f"stale profile path remains: {stale_path}"
+                  )
+              if corrected_path not in corrected_text:
+                  raise SystemExit(
+                      f"corrected profile path missing: {corrected_path}"
+                  )
+
+          corrected_bytes = corrected_text.encode("utf-8")
+          corrected_digest = digest(corrected_bytes)
+
+          if corrected_digest != EXPECTED_RESULT_SHA256:
+              raise SystemExit(
+                  "unexpected corrected contract SHA-256: "
+                  f"expected {EXPECTED_RESULT_SHA256}, "
+                  f"got {corrected_digest}"
+              )
+          if len(corrected_bytes) != EXPECTED_RESULT_BYTE_LENGTH:
+              raise SystemExit(
+                  "unexpected corrected contract byte length: "
+                  f"{len(corrected_bytes)}"
+              )
+          if len(corrected_text.splitlines()) != EXPECTED_RESULT_LINE_COUNT:
+              raise SystemExit(
+                  "unexpected corrected contract line count: "
+                  f"{len(corrected_text.splitlines())}"
+              )
+
+          CONTRACT_PATH.write_bytes(corrected_bytes)
+
+          print(f"source_sha256={source_digest}")
+          print(f"result_sha256={corrected_digest}")
+          print(f"result_bytes={len(corrected_bytes)}")
+          print(
+              "result_lines="
+              f"{len(corrected_text.splitlines())}"
+          )
+          print("manifest_sections=1")
+          print("closure_gate_sections=1")
+          print("contract_deduplication=PASS")
+          PY
+
+      - name: Verify exact corrected contract
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python - <<'PY'
+          from hashlib import sha256
+          from pathlib import Path
+
+
+          contract_path = Path(
+              "docs/"
+              "m18_formal_schema_canonical_artifact_"
+              "publication_contract.md"
+          )
+          expected_sha256 = (
+              "d52dac835b891aa38491f88d360009b5"
+              "2cefc309583f7b9f5aec93ecf75e928f"
+          )
+
+          data = contract_path.read_bytes()
+          actual_sha256 = sha256(data).hexdigest()
+
+          if actual_sha256 != expected_sha256:
+              raise SystemExit(
+                  "corrected contract verification failed: "
+                  f"expected {expected_sha256}, got {actual_sha256}"
+              )
+
+          text = data.decode("utf-8")
+          required_counts = {
+              "## Canonical Artifact Manifest\n": 1,
+              "## Canonical Artifact Qualification Record\n": 1,
+              "## M18 Closure Gates\n": 1,
+          }
+
+          for marker, expected_count in required_counts.items():
+              actual_count = text.count(marker)
+              if actual_count != expected_count:
+                  raise SystemExit(
+                      f"unexpected section count for {marker.strip()}: "
+                      f"{actual_count}"
+                  )
+
+          print(f"verified_sha256={actual_sha256}")
+          print("corrected_contract_verification=PASS")
+          PY
+
+          git diff --check
+
+      - name: Commit correction and remove one-time workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          contract_path="docs/m18_formal_schema_canonical_artifact_publication_contract.md"
+          workflow_path=".github/workflows/m18-contract-deduplicate-once.yml"
+
+          if ! git diff --cached --quiet; then
+            echo "Unexpected staged changes exist before commit" >&2
+            exit 1
+          fi
+
+          mapfile -t changed_paths < <(git diff --name-only)
+          if [[ "${#changed_paths[@]}" -ne 1 ]] || \
+             [[ "${changed_paths[0]}" != "${contract_path}" ]]; then
+            echo "Unexpected unstaged change set" >&2
+            printf '%s\n' "${changed_paths[@]}" >&2
+            exit 1
+          fi
+
+          mapfile -t untracked_paths < <(
+            git ls-files --others --exclude-standard
+          )
+          if [[ "${#untracked_paths[@]}" -ne 0 ]]; then
+            echo "Unexpected untracked files exist" >&2
+            printf '%s\n' "${untracked_paths[@]}" >&2
+            exit 1
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add "${contract_path}"
+          git rm "${workflow_path}"
+
+          actual_staged="$({
+            git diff --cached --name-only
+          } | LC_ALL=C sort)"
+          expected_staged="$({
+            printf '%s\n' "${contract_path}" "${workflow_path}"
+          } | LC_ALL=C sort)"
+
+          if [[ "${actual_staged}" != "${expected_staged}" ]]; then
+            echo "Unexpected staged path set" >&2
+            printf 'Expected:\n%s\n' "${expected_staged}" >&2
+            printf 'Actual:\n%s\n' "${actual_staged}" >&2
+            exit 1
+          fi
+
+          git diff --cached --check
+          git commit -m "Deduplicate M18 publication contract"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
