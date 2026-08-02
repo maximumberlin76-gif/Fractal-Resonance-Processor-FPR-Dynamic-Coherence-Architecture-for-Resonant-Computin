@@ -1,0 +1,434 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.m15.balanced_ternary_hardware_encoding_map.v1.7.0",
+  "title": "FRP M15 Balanced Ternary Hardware Encoding Map v1.7.0",
+  "description": "Formal schema for the canonical FRP v1.7.0 M15 balanced ternary hardware encoding map.",
+  "x-frp-schema-identifier": "frp.m15.balanced_ternary_hardware_encoding_map.v1.7.0",
+  "x-frp-artifact-role": "balanced_ternary_hardware_encoding_map",
+  "x-frp-schema-version": "1.7.0",
+  "x-frp-producer-path": "frp_prototype_v1_7_0.py",
+  "x-frp-producer-version": "1.7.0",
+  "type": "object",
+  "required": [
+    "inherited_boundary",
+    "kind",
+    "milestone",
+    "packed_state_vector",
+    "request_interface",
+    "reserved_state_code",
+    "scheduler_mode_encoding",
+    "scheduler_state_encoding",
+    "schema",
+    "state_encoding",
+    "version"
+  ],
+  "properties": {
+    "inherited_boundary": {
+      "$ref": "#/$defs/inheritedBoundary"
+    },
+    "kind": {
+      "type": "string",
+      "const": "balanced_ternary_hardware_encoding_map"
+    },
+    "milestone": {
+      "type": "string",
+      "const": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package"
+    },
+    "packed_state_vector": {
+      "$ref": "#/$defs/packedStateVector"
+    },
+    "request_interface": {
+      "$ref": "#/$defs/requestInterface"
+    },
+    "reserved_state_code": {
+      "$ref": "#/$defs/reservedStateCode"
+    },
+    "scheduler_mode_encoding": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/schedulerEncodingEntry"
+      },
+      "const": [
+        {
+          "code": 0,
+          "name": "free"
+        },
+        {
+          "code": 1,
+          "name": "7/1"
+        },
+        {
+          "code": 2,
+          "name": "1/7"
+        }
+      ]
+    },
+    "scheduler_state_encoding": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/schedulerEncodingEntry"
+      },
+      "const": [
+        {
+          "code": 0,
+          "name": "free"
+        },
+        {
+          "code": 1,
+          "name": "balance"
+        },
+        {
+          "code": 2,
+          "name": "commit"
+        },
+        {
+          "code": 3,
+          "name": "excite"
+        },
+        {
+          "code": 4,
+          "name": "neutralize"
+        }
+      ]
+    },
+    "schema": {
+      "type": "string",
+      "const": "frp.m15.balanced_ternary_hardware_encoding_map.v1.7.0"
+    },
+    "state_encoding": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/stateEncodingEntry"
+      },
+      "const": [
+        {
+          "code": "11",
+          "integer_code": 3,
+          "state": -1
+        },
+        {
+          "code": "00",
+          "integer_code": 0,
+          "state": 0
+        },
+        {
+          "code": "01",
+          "integer_code": 1,
+          "state": 1
+        }
+      ]
+    },
+    "version": {
+      "type": "string",
+      "const": "1.7.0"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "inheritedBoundary": {
+      "type": "object",
+      "required": [
+        "layer",
+        "m14_artifact_layers",
+        "main_executable_reference_file",
+        "preserved_kernel",
+        "release",
+        "release_notes",
+        "release_status",
+        "test_report",
+        "validated_commit",
+        "validation_index"
+      ],
+      "properties": {
+        "layer": {
+          "type": "string",
+          "const": "M14 — Physical Implementation Correlation and Production Qualification Package"
+        },
+        "m14_artifact_layers": {
+          "type": "array",
+          "minItems": 8,
+          "maxItems": 8,
+          "prefixItems": [
+            {
+              "type": "string",
+              "const": "hierarchical_ultrametric_topology_model"
+            },
+            {
+              "type": "string",
+              "const": "fractal_coupling_weight_map"
+            },
+            {
+              "type": "string",
+              "const": "multiscale_phase_coherence_map"
+            },
+            {
+              "type": "string",
+              "const": "cluster_local_thermal_field"
+            },
+            {
+              "type": "string",
+              "const": "cross_cluster_propagation_map"
+            },
+            {
+              "type": "string",
+              "const": "localized_hotspot_containment_harness"
+            },
+            {
+              "type": "string",
+              "const": "dense_hierarchical_equivalence_map"
+            },
+            {
+              "type": "string",
+              "const": "physical_domain_correlation_package"
+            }
+          ],
+          "items": false
+        },
+        "main_executable_reference_file": {
+          "type": "string",
+          "const": "frp_prototype_v1_6_0.py"
+        },
+        "preserved_kernel": {
+          "$ref": "#/$defs/preservedKernel"
+        },
+        "release": {
+          "type": "string",
+          "const": "FRP v1.6.0"
+        },
+        "release_notes": {
+          "type": "string",
+          "const": "RELEASE_NOTES_v1_6_0.md"
+        },
+        "release_status": {
+          "type": "string",
+          "const": "PUBLISHED"
+        },
+        "test_report": {
+          "type": "string",
+          "const": "TEST_REPORT_v1_6_0.md"
+        },
+        "validated_commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{7}$",
+          "const": "09141fc"
+        },
+        "validation_index": {
+          "type": "string",
+          "const": "FRP_VALIDATION_INDEX_v1_6_0.md"
+        }
+      },
+      "additionalProperties": false
+    },
+    "packedStateVector": {
+      "type": "object",
+      "required": [
+        "bits_per_cell",
+        "cell_i_bits",
+        "cell_zero_bits",
+        "configured_cells",
+        "configured_width_bits"
+      ],
+      "properties": {
+        "bits_per_cell": {
+          "type": "integer",
+          "const": 2
+        },
+        "cell_i_bits": {
+          "type": "string",
+          "const": "[2i\u002b1:2i]"
+        },
+        "cell_zero_bits": {
+          "type": "string",
+          "const": "[1:0]"
+        },
+        "configured_cells": {
+          "type": "integer",
+          "const": 16
+        },
+        "configured_width_bits": {
+          "type": "integer",
+          "const": 32
+        }
+      },
+      "additionalProperties": false
+    },
+    "preservedKernel": {
+      "type": "object",
+      "required": [
+        "active_neutral_state",
+        "balanced_ternary_states",
+        "pressure_relation",
+        "scheduler_modes",
+        "stability_relation",
+        "tick_separated_neutral_routing"
+      ],
+      "properties": {
+        "active_neutral_state": {
+          "type": "integer",
+          "const": 0
+        },
+        "balanced_ternary_states": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "integer",
+              "const": -1
+            },
+            {
+              "type": "integer",
+              "const": 0
+            },
+            {
+              "type": "integer",
+              "const": 1
+            }
+          ],
+          "items": false
+        },
+        "pressure_relation": {
+          "type": "string",
+          "const": "P(t) = heat + switch_load"
+        },
+        "scheduler_modes": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "string",
+              "const": "free"
+            },
+            {
+              "type": "string",
+              "const": "7/1"
+            },
+            {
+              "type": "string",
+              "const": "1/7"
+            }
+          ],
+          "items": false
+        },
+        "stability_relation": {
+          "type": "string",
+          "const": "C(t) > P(t)"
+        },
+        "tick_separated_neutral_routing": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "requestInterface": {
+      "type": "object",
+      "required": [
+        "cell_id_width",
+        "lane_order",
+        "request_lanes",
+        "request_target_state_bits_per_lane",
+        "request_valid_bits_per_lane"
+      ],
+      "properties": {
+        "cell_id_width": {
+          "type": "integer",
+          "const": 4
+        },
+        "lane_order": {
+          "type": "string",
+          "const": "ascending lane index"
+        },
+        "request_lanes": {
+          "type": "integer",
+          "const": 4
+        },
+        "request_target_state_bits_per_lane": {
+          "type": "integer",
+          "const": 2
+        },
+        "request_valid_bits_per_lane": {
+          "type": "integer",
+          "const": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "reservedStateCode": {
+      "type": "object",
+      "required": [
+        "code",
+        "integer_code"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "pattern": "^[01]{2}$",
+          "const": "10"
+        },
+        "integer_code": {
+          "type": "integer",
+          "const": 2
+        }
+      },
+      "additionalProperties": false
+    },
+    "schedulerEncodingEntry": {
+      "type": "object",
+      "required": [
+        "code",
+        "name"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "stateEncodingEntry": {
+      "type": "object",
+      "required": [
+        "code",
+        "integer_code",
+        "state"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "pattern": "^[01]{2}$"
+        },
+        "integer_code": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "state": {
+          "type": "integer",
+          "enum": [
+            -1,
+            0,
+            1
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
