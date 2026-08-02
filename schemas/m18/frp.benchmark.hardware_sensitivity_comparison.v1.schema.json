@@ -1,0 +1,2156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.benchmark.hardware_sensitivity_comparison.v1",
+  "title": "FRP Hardware-Sensitivity Comparison Result v1",
+  "description": "Formal schema for canonical FRP hardware-informed sensitivity comparison result packages.",
+  "type": "object",
+  "x-frp-schema-identifier": "frp.benchmark.hardware_sensitivity_comparison.v1",
+  "x-frp-artifact-role": "canonical_hardware_sensitivity_result",
+  "x-frp-schema-version": "1",
+  "x-frp-producer-path": "benchmarks/architecture_comparison/run_hardware_sensitivity_comparison.py",
+  "x-frp-producer-version": null,
+  "required": [
+    "architecture_order",
+    "baseline_binding",
+    "benchmark_kind",
+    "frp_reference_version",
+    "frp_scheduler",
+    "hardware_sensitivity_package_sha256",
+    "hardware_sensitivity_profile",
+    "hardware_sensitivity_profile_sha256",
+    "integrity",
+    "profile_validation",
+    "qualification",
+    "ranking_stability",
+    "raw_trace_ledger",
+    "raw_trace_set_sha256",
+    "scenarios",
+    "schema",
+    "suite_name",
+    "thermal_profile",
+    "thermal_profile_sha256",
+    "workload_profile",
+    "workload_sha256"
+  ],
+  "properties": {
+    "architecture_order": {
+      "$ref": "#/$defs/executionArchitectureOrder"
+    },
+    "baseline_binding": {
+      "$ref": "#/$defs/baselineBinding"
+    },
+    "benchmark_kind": {
+      "const": "hardware_informed_sensitivity_matrix"
+    },
+    "frp_reference_version": {
+      "const": "1.7.0"
+    },
+    "frp_scheduler": {
+      "enum": [
+        "free",
+        "7/1",
+        "1/7"
+      ]
+    },
+    "hardware_sensitivity_package_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "hardware_sensitivity_profile": {
+      "$ref": "#/$defs/hardwareSensitivityProfile"
+    },
+    "hardware_sensitivity_profile_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "integrity": {
+      "$ref": "#/$defs/packageIntegrity"
+    },
+    "profile_validation": {
+      "$ref": "#/$defs/profileValidation"
+    },
+    "qualification": {
+      "$ref": "#/$defs/qualification"
+    },
+    "ranking_stability": {
+      "$ref": "#/$defs/rankingStability"
+    },
+    "raw_trace_ledger": {
+      "$ref": "#/$defs/rawTraceLedger"
+    },
+    "raw_trace_set_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "scenarios": {
+      "$ref": "#/$defs/scenarios"
+    },
+    "schema": {
+      "const": "frp.benchmark.hardware_sensitivity_comparison.v1"
+    },
+    "suite_name": {
+      "const": "FRP Comparative Architecture Benchmark Suite"
+    },
+    "thermal_profile": {
+      "$ref": "#/$defs/thermalProfile"
+    },
+    "thermal_profile_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "workload_profile": {
+      "$ref": "#/$defs/workloadProfile"
+    },
+    "workload_sha256": {
+      "$ref": "#/$defs/sha256"
+    }
+  },
+  "$defs": {
+    "nonemptyString": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "nonnegativeInteger": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "positiveInteger": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "nonnegativeNumber": {
+      "type": "number",
+      "minimum": 0
+    },
+    "unitInterval": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "executionArchitectureOrder": {
+      "const": [
+        "binary_synchronous_reference",
+        "binary_clock_gated_reference",
+        "direct_ternary_reference",
+        "frp_v1_7_0_quantized_shadow"
+      ]
+    },
+    "rankingArchitectureOrder": {
+      "const": [
+        "binary_clock_gated_reference",
+        "direct_ternary_reference",
+        "binary_synchronous_reference",
+        "frp_v1_7_0_quantized_shadow"
+      ]
+    },
+    "scenarioOrder": {
+      "const": [
+        "lower_bound",
+        "nominal",
+        "upper_bound"
+      ]
+    },
+    "coefficientOrder": {
+      "const": [
+        "encoded_bit_toggle",
+        "clocked_state_bit",
+        "register_write_bit",
+        "comparison_event",
+        "control_event",
+        "queue_read",
+        "queue_write",
+        "lut_read_32",
+        "fixed_point_multiply_32x32",
+        "fixed_point_accumulate_64",
+        "fixed_point_add_32",
+        "fixed_point_compare_32"
+      ]
+    },
+    "workloadProfile": {
+      "type": "object",
+      "required": [
+        "num_cells",
+        "command_count",
+        "seed",
+        "issue_policy",
+        "max_completion_cycles_per_command",
+        "final_cooldown_cycles"
+      ],
+      "properties": {
+        "num_cells": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "command_count": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "issue_policy": {
+          "const": "transaction_serial"
+        },
+        "max_completion_cycles_per_command": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "final_cooldown_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        }
+      },
+      "additionalProperties": false
+    },
+    "thermalProfile": {
+      "type": "object",
+      "required": [
+        "profile_name",
+        "temperature_unit",
+        "ambient_temperature_proxy",
+        "thermal_decay",
+        "thermal_gain"
+      ],
+      "properties": {
+        "profile_name": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "temperature_unit": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "ambient_temperature_proxy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "thermal_decay": {
+          "type": "number",
+          "minimum": 0,
+          "exclusiveMaximum": 1
+        },
+        "thermal_gain": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        }
+      },
+      "additionalProperties": false
+    },
+    "normalizationReference": {
+      "type": "object",
+      "required": [
+        "normalized_weight",
+        "primitive",
+        "reference_energy_unit",
+        "reference_energy_value",
+        "reference_key",
+        "reference_technology_node_nm",
+        "reference_voltage_v"
+      ],
+      "properties": {
+        "normalized_weight": {
+          "const": 1.0
+        },
+        "primitive": {
+          "const": "32-bit integer addition"
+        },
+        "reference_energy_unit": {
+          "const": "pJ"
+        },
+        "reference_energy_value": {
+          "const": 0.1
+        },
+        "reference_key": {
+          "const": "HOROWITZ_ISSCC_2014_32BIT_INT_ADD"
+        },
+        "reference_technology_node_nm": {
+          "const": 45
+        },
+        "reference_voltage_v": {
+          "const": null
+        }
+      },
+      "additionalProperties": false
+    },
+    "hardwareSensitivityProfile": {
+      "type": "object",
+      "required": [
+        "baseline_profile",
+        "baseline_result",
+        "coefficient_order",
+        "cost_profile_sha256",
+        "normalization_reference",
+        "profile_name",
+        "profile_role",
+        "profile_status",
+        "provenance_map",
+        "scenario_order",
+        "schema"
+      ],
+      "properties": {
+        "baseline_profile": {
+          "const": "unit_event_cost_v1"
+        },
+        "baseline_result": {
+          "const": "benchmarks/architecture_comparison/results/reference_comparison_seed_76.json"
+        },
+        "coefficient_order": {
+          "$ref": "#/$defs/coefficientOrder"
+        },
+        "cost_profile_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "normalization_reference": {
+          "$ref": "#/$defs/normalizationReference"
+        },
+        "profile_name": {
+          "const": "literature_anchored_cmos45_sensitivity_v1"
+        },
+        "profile_role": {
+          "const": "hardware_informed_sensitivity"
+        },
+        "profile_status": {
+          "const": "reference_sensitivity_profile"
+        },
+        "provenance_map": {
+          "const": "benchmarks/architecture_comparison/calibration/coefficient_provenance_map_v1.md"
+        },
+        "scenario_order": {
+          "$ref": "#/$defs/scenarioOrder"
+        },
+        "schema": {
+          "const": "frp.benchmark.hardware_sensitivity_cost_profile.v1"
+        }
+      },
+      "additionalProperties": false
+    },
+    "profileValidation": {
+      "type": "object",
+      "required": [
+        "baseline_result",
+        "coefficient_count",
+        "cost_profile_sha256",
+        "profile_name",
+        "provenance_map",
+        "reference_count",
+        "scenario_order",
+        "schema",
+        "status"
+      ],
+      "properties": {
+        "baseline_result": {
+          "const": "benchmarks/architecture_comparison/results/reference_comparison_seed_76.json"
+        },
+        "coefficient_count": {
+          "const": 12
+        },
+        "cost_profile_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "profile_name": {
+          "const": "literature_anchored_cmos45_sensitivity_v1"
+        },
+        "provenance_map": {
+          "const": "benchmarks/architecture_comparison/calibration/coefficient_provenance_map_v1.md"
+        },
+        "reference_count": {
+          "const": 4
+        },
+        "scenario_order": {
+          "$ref": "#/$defs/scenarioOrder"
+        },
+        "schema": {
+          "const": "frp.benchmark.hardware_sensitivity_cost_profile.v1"
+        },
+        "status": {
+          "const": "PASS"
+        }
+      },
+      "additionalProperties": false
+    },
+    "architectureDigestMap": {
+      "type": "object",
+      "required": [
+        "binary_synchronous_reference",
+        "binary_clock_gated_reference",
+        "direct_ternary_reference",
+        "frp_v1_7_0_quantized_shadow"
+      ],
+      "properties": {
+        "binary_synchronous_reference": {
+          "$ref": "#/$defs/sha256"
+        },
+        "binary_clock_gated_reference": {
+          "$ref": "#/$defs/sha256"
+        },
+        "direct_ternary_reference": {
+          "$ref": "#/$defs/sha256"
+        },
+        "frp_v1_7_0_quantized_shadow": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "additionalProperties": false
+    },
+    "baselineBinding": {
+      "type": "object",
+      "required": [
+        "architecture_result_sha256",
+        "baseline_comparison_package_sha256",
+        "baseline_cost_profile",
+        "baseline_result",
+        "baseline_schema",
+        "baseline_workload_sha256",
+        "checks",
+        "current_execution",
+        "status"
+      ],
+      "properties": {
+        "architecture_result_sha256": {
+          "$ref": "#/$defs/architectureDigestMap"
+        },
+        "baseline_comparison_package_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "baseline_cost_profile": {
+          "const": "unit_event_cost_v1"
+        },
+        "baseline_result": {
+          "const": "benchmarks/architecture_comparison/results/reference_comparison_seed_76.json"
+        },
+        "baseline_schema": {
+          "const": "frp.benchmark.architecture_comparison.v1"
+        },
+        "baseline_workload_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "checks": {
+          "$ref": "#/$defs/baselineBindingChecks"
+        },
+        "current_execution": {
+          "$ref": "#/$defs/currentExecutionBinding"
+        },
+        "status": {
+          "const": "PASS"
+        }
+      },
+      "additionalProperties": false
+    },
+    "baselineBindingChecks": {
+      "type": "object",
+      "required": [
+        "architecture_order_match",
+        "baseline_profile_match",
+        "comparison_package_digest_valid",
+        "integrity_status_pass",
+        "qualification_status_pass",
+        "schema_match",
+        "winner_assertions_empty"
+      ],
+      "properties": {
+        "architecture_order_match": {
+          "const": true
+        },
+        "baseline_profile_match": {
+          "const": true
+        },
+        "comparison_package_digest_valid": {
+          "const": true
+        },
+        "integrity_status_pass": {
+          "const": true
+        },
+        "qualification_status_pass": {
+          "const": true
+        },
+        "schema_match": {
+          "const": true
+        },
+        "winner_assertions_empty": {
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "currentExecutionBinding": {
+      "type": "object",
+      "required": [
+        "checks",
+        "status"
+      ],
+      "properties": {
+        "checks": {
+          "type": "object",
+          "required": [
+            "architecture_order_match",
+            "architecture_result_digests_match",
+            "same_workload_digest"
+          ],
+          "properties": {
+            "architecture_order_match": {
+              "const": true
+            },
+            "architecture_result_digests_match": {
+              "const": true
+            },
+            "same_workload_digest": {
+              "const": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "status": {
+          "const": "PASS"
+        }
+      },
+      "additionalProperties": false
+    },
+    "comparisonMetrics": {
+      "type": "object",
+      "required": [
+        "active_clock_fraction",
+        "active_clocked_cycles",
+        "completion_ticks",
+        "encoded_bit_toggles",
+        "logical_state_changes",
+        "maximum_latency_ticks",
+        "mean_latency_ticks",
+        "p95_latency_ticks",
+        "processor_cycles",
+        "semantic_completion_ratio",
+        "semantic_output_match",
+        "throughput_commands_per_tick"
+      ],
+      "properties": {
+        "active_clock_fraction": {
+          "$ref": "#/$defs/unitInterval"
+        },
+        "active_clocked_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "completion_ticks": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "encoded_bit_toggles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "logical_state_changes": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "maximum_latency_ticks": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "mean_latency_ticks": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "p95_latency_ticks": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "processor_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "semantic_completion_ratio": {
+          "const": 1.0
+        },
+        "semantic_output_match": {
+          "const": 1.0
+        },
+        "throughput_commands_per_tick": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        }
+      },
+      "additionalProperties": false
+    },
+    "architectureIntegrity": {
+      "required": [
+        "cost_cycle_count_closure",
+        "event_trace_closure",
+        "finite_numeric_values",
+        "thermal_cycle_count_closure"
+      ],
+      "properties": {
+        "cost_cycle_count_closure": {
+          "const": true
+        },
+        "event_trace_closure": {
+          "const": true
+        },
+        "finite_numeric_values": {
+          "const": true
+        },
+        "thermal_cycle_count_closure": {
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "rawEventTotals": {
+      "type": "object",
+      "required": [
+        "active_clocked_cycles",
+        "clocked_state_bits",
+        "comparison_events",
+        "control_events",
+        "encoded_bit_toggles",
+        "fixed_point_accumulates_64",
+        "fixed_point_adds_32",
+        "fixed_point_compares_32",
+        "fixed_point_multiplies_32x32",
+        "logical_state_changes",
+        "lut_reads_32",
+        "processor_cycles",
+        "queue_reads",
+        "queue_writes",
+        "register_write_bits",
+        "semantic_commands_completed",
+        "semantic_commands_issued"
+      ],
+      "properties": {
+        "active_clocked_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "clocked_state_bits": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "comparison_events": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "control_events": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "encoded_bit_toggles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "fixed_point_accumulates_64": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "fixed_point_adds_32": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "fixed_point_compares_32": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "fixed_point_multiplies_32x32": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "logical_state_changes": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "lut_reads_32": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "processor_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "queue_reads": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "queue_writes": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "register_write_bits": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "semantic_commands_completed": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "semantic_commands_issued": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        }
+      },
+      "additionalProperties": false
+    },
+    "binarySynchronousMetrics": {
+      "type": "object",
+      "required": [
+        "direct_binary_switches"
+      ],
+      "properties": {
+        "direct_binary_switches": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        }
+      },
+      "additionalProperties": false
+    },
+    "binaryClockGatedMetrics": {
+      "type": "object",
+      "required": [
+        "clock_gate_active_fraction",
+        "direct_binary_switches",
+        "gated_cycles"
+      ],
+      "properties": {
+        "clock_gate_active_fraction": {
+          "$ref": "#/$defs/unitInterval"
+        },
+        "direct_binary_switches": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "gated_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        }
+      },
+      "additionalProperties": false
+    },
+    "directTernaryMetrics": {
+      "type": "object",
+      "required": [
+        "direct_opposite_polarity_changes",
+        "gated_cycles",
+        "neutral_state_exits"
+      ],
+      "properties": {
+        "direct_opposite_polarity_changes": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "gated_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "neutral_state_exits": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        }
+      },
+      "additionalProperties": false
+    },
+    "frpMetrics": {
+      "type": "object",
+      "required": [
+        "C_minus_P_final",
+        "C_minus_P_final_q16",
+        "C_minus_P_min",
+        "C_minus_P_min_q16",
+        "actual_direct_events",
+        "fixed_point_thermal_sum_exact",
+        "fixed_point_topology_sum_exact",
+        "global_phase_coherence_final",
+        "global_phase_coherence_final_q30",
+        "neutral_insertions",
+        "neutral_routed_events",
+        "neutralized_conflicts",
+        "pending_route_count_final",
+        "pending_route_peak",
+        "prevented_direct_events",
+        "queue_overflow_events",
+        "requested_direct_events",
+        "reserved_state_events"
+      ],
+      "properties": {
+        "C_minus_P_final": {
+          "type": "number"
+        },
+        "C_minus_P_final_q16": {
+          "type": "integer"
+        },
+        "C_minus_P_min": {
+          "type": "number"
+        },
+        "C_minus_P_min_q16": {
+          "type": "integer"
+        },
+        "actual_direct_events": {
+          "const": 0
+        },
+        "fixed_point_thermal_sum_exact": {
+          "const": true
+        },
+        "fixed_point_topology_sum_exact": {
+          "const": true
+        },
+        "global_phase_coherence_final": {
+          "$ref": "#/$defs/unitInterval"
+        },
+        "global_phase_coherence_final_q30": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1073741824
+        },
+        "neutral_insertions": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "neutral_routed_events": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "neutralized_conflicts": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "pending_route_count_final": {
+          "const": 0
+        },
+        "pending_route_peak": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "prevented_direct_events": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "queue_overflow_events": {
+          "const": 0
+        },
+        "requested_direct_events": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "reserved_state_events": {
+          "const": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "rawTraceRecord": {
+      "type": "object",
+      "required": [
+        "architecture_id",
+        "architecture_name",
+        "architecture_result_sha256",
+        "architecture_specific_metrics",
+        "comparison_metrics",
+        "processor_cycles",
+        "raw_event_totals",
+        "raw_event_totals_sha256",
+        "raw_event_trace_sha256",
+        "workload_sha256"
+      ],
+      "properties": {
+        "architecture_id": {
+          "enum": [
+            "binary_synchronous_reference",
+            "binary_clock_gated_reference",
+            "direct_ternary_reference",
+            "frp_v1_7_0_quantized_shadow"
+          ]
+        },
+        "architecture_name": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "architecture_result_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "architecture_specific_metrics": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "comparison_metrics": {
+          "$ref": "#/$defs/comparisonMetrics"
+        },
+        "processor_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "raw_event_totals": {
+          "$ref": "#/$defs/rawEventTotals"
+        },
+        "raw_event_totals_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "raw_event_trace_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "workload_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "additionalProperties": false
+    },
+    "rawTraceLedger": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/rawTraceRecord",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "binary_synchronous_reference"
+            },
+            "architecture_name": {
+              "const": "Binary Synchronous Reference"
+            },
+            "architecture_specific_metrics": {
+              "$ref": "#/$defs/binarySynchronousMetrics"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/rawTraceRecord",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "binary_clock_gated_reference"
+            },
+            "architecture_name": {
+              "const": "Binary Clock-Gated Reference"
+            },
+            "architecture_specific_metrics": {
+              "$ref": "#/$defs/binaryClockGatedMetrics"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/rawTraceRecord",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "direct_ternary_reference"
+            },
+            "architecture_name": {
+              "const": "Direct Ternary Reference"
+            },
+            "architecture_specific_metrics": {
+              "$ref": "#/$defs/directTernaryMetrics"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/rawTraceRecord",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "frp_v1_7_0_quantized_shadow"
+            },
+            "architecture_name": {
+              "const": "FRP v1.7.0 Quantized Hardware Shadow Reference"
+            },
+            "architecture_specific_metrics": {
+              "$ref": "#/$defs/frpMetrics"
+            }
+          }
+        }
+      ],
+      "minItems": 4,
+      "maxItems": 4,
+      "items": false
+    },
+    "eventClassTotals": {
+      "type": "object",
+      "required": [
+        "encoded_bit_toggles",
+        "clocked_state_bits",
+        "register_write_bits",
+        "comparison_events",
+        "control_events",
+        "queue_reads",
+        "queue_writes",
+        "lut_reads_32",
+        "fixed_point_multiplies_32x32",
+        "fixed_point_accumulates_64",
+        "fixed_point_adds_32",
+        "fixed_point_compares_32"
+      ],
+      "properties": {
+        "encoded_bit_toggles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "clocked_state_bits": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "register_write_bits": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "comparison_events": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "control_events": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "queue_reads": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "queue_writes": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "lut_reads_32": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "fixed_point_multiplies_32x32": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "fixed_point_accumulates_64": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "fixed_point_adds_32": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "fixed_point_compares_32": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        }
+      },
+      "additionalProperties": false
+    },
+    "costClassValues": {
+      "type": "object",
+      "required": [
+        "encoded_bit_toggle",
+        "clocked_state_bit",
+        "register_write_bit",
+        "comparison_event",
+        "control_event",
+        "queue_read",
+        "queue_write",
+        "lut_read_32",
+        "fixed_point_multiply_32x32",
+        "fixed_point_accumulate_64",
+        "fixed_point_add_32",
+        "fixed_point_compare_32"
+      ],
+      "properties": {
+        "encoded_bit_toggle": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "clocked_state_bit": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "register_write_bit": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "comparison_event": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "control_event": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "queue_read": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "queue_write": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "lut_read_32": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "fixed_point_multiply_32x32": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "fixed_point_accumulate_64": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "fixed_point_add_32": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "fixed_point_compare_32": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        }
+      },
+      "additionalProperties": false
+    },
+    "lowerBoundVector": {
+      "const": {
+        "encoded_bit_toggle": 0.0078125,
+        "clocked_state_bit": 0.015625,
+        "register_write_bit": 0.03125,
+        "comparison_event": 0.125,
+        "control_event": 0.25,
+        "queue_read": 1.0,
+        "queue_write": 1.5,
+        "lut_read_32": 20.0,
+        "fixed_point_multiply_32x32": 20.0,
+        "fixed_point_accumulate_64": 1.5,
+        "fixed_point_add_32": 0.5,
+        "fixed_point_compare_32": 0.5
+      }
+    },
+    "nominalVector": {
+      "const": {
+        "encoded_bit_toggle": 0.03125,
+        "clocked_state_bit": 0.0625,
+        "register_write_bit": 0.125,
+        "comparison_event": 0.5,
+        "control_event": 1.0,
+        "queue_read": 5.0,
+        "queue_write": 7.5,
+        "lut_read_32": 50.0,
+        "fixed_point_multiply_32x32": 30.0,
+        "fixed_point_accumulate_64": 2.0,
+        "fixed_point_add_32": 1.0,
+        "fixed_point_compare_32": 1.0
+      }
+    },
+    "upperBoundVector": {
+      "const": {
+        "encoded_bit_toggle": 0.125,
+        "clocked_state_bit": 0.25,
+        "register_write_bit": 0.5,
+        "comparison_event": 2.0,
+        "control_event": 8.0,
+        "queue_read": 30.0,
+        "queue_write": 40.0,
+        "lut_read_32": 100.0,
+        "fixed_point_multiply_32x32": 40.0,
+        "fixed_point_accumulate_64": 4.0,
+        "fixed_point_add_32": 2.0,
+        "fixed_point_compare_32": 2.0
+      }
+    },
+    "scenarioCostProfile": {
+      "type": "object",
+      "required": [
+        "cost_unit",
+        "costs",
+        "profile_name"
+      ],
+      "properties": {
+        "cost_unit": {
+          "const": "normalized_32bit_add_equivalent"
+        },
+        "costs": {
+          "$ref": "#/$defs/costClassValues"
+        },
+        "profile_name": {
+          "$ref": "#/$defs/nonemptyString"
+        }
+      },
+      "additionalProperties": false
+    },
+    "normalizedCost": {
+      "type": "object",
+      "required": [
+        "cost_contribution_totals",
+        "cost_profile_sha256",
+        "cost_unit",
+        "cycle_normalized_energy_sha256",
+        "event_totals",
+        "normalized_energy_per_completed_command",
+        "peak_cycle_normalized_energy",
+        "profile_name",
+        "total_normalized_energy"
+      ],
+      "properties": {
+        "cost_contribution_totals": {
+          "$ref": "#/$defs/costClassValues"
+        },
+        "cost_profile_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "cost_unit": {
+          "const": "normalized_32bit_add_equivalent"
+        },
+        "cycle_normalized_energy_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "event_totals": {
+          "$ref": "#/$defs/eventClassTotals"
+        },
+        "normalized_energy_per_completed_command": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "peak_cycle_normalized_energy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "profile_name": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "total_normalized_energy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        }
+      },
+      "additionalProperties": false
+    },
+    "thermalProxy": {
+      "type": "object",
+      "required": [
+        "final_temperature_proxy",
+        "peak_temperature_proxy",
+        "profile_name",
+        "temperature_proxy_trace_sha256",
+        "temperature_unit",
+        "thermal_profile_sha256"
+      ],
+      "properties": {
+        "final_temperature_proxy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "peak_temperature_proxy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "profile_name": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "temperature_proxy_trace_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "temperature_unit": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "thermal_profile_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "additionalProperties": false
+    },
+    "scenarioArchitectureRecord": {
+      "type": "object",
+      "required": [
+        "architecture_id",
+        "architecture_name",
+        "architecture_result_sha256",
+        "comparison_metrics",
+        "integrity",
+        "normalized_cost",
+        "raw_event_trace_sha256",
+        "thermal_proxy",
+        "workload_sha256"
+      ],
+      "properties": {
+        "architecture_id": {
+          "enum": [
+            "binary_synchronous_reference",
+            "binary_clock_gated_reference",
+            "direct_ternary_reference",
+            "frp_v1_7_0_quantized_shadow"
+          ]
+        },
+        "architecture_name": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "architecture_result_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "comparison_metrics": {
+          "$ref": "#/$defs/comparisonMetrics"
+        },
+        "integrity": {
+          "$ref": "#/$defs/architectureIntegrity"
+        },
+        "normalized_cost": {
+          "$ref": "#/$defs/normalizedCost"
+        },
+        "raw_event_trace_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "thermal_proxy": {
+          "$ref": "#/$defs/thermalProxy"
+        },
+        "workload_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "additionalProperties": false
+    },
+    "scenarioArchitectureArray": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/scenarioArchitectureRecord",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "binary_synchronous_reference"
+            },
+            "architecture_name": {
+              "const": "Binary Synchronous Reference"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/scenarioArchitectureRecord",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "binary_clock_gated_reference"
+            },
+            "architecture_name": {
+              "const": "Binary Clock-Gated Reference"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/scenarioArchitectureRecord",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "direct_ternary_reference"
+            },
+            "architecture_name": {
+              "const": "Direct Ternary Reference"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/scenarioArchitectureRecord",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "frp_v1_7_0_quantized_shadow"
+            },
+            "architecture_name": {
+              "const": "FRP v1.7.0 Quantized Hardware Shadow Reference"
+            }
+          }
+        }
+      ],
+      "minItems": 4,
+      "maxItems": 4,
+      "items": false
+    },
+    "comparisonRow": {
+      "type": "object",
+      "required": [
+        "active_clock_fraction",
+        "active_clocked_cycles",
+        "architecture_id",
+        "completion_ticks",
+        "encoded_bit_toggles",
+        "final_temperature_proxy",
+        "logical_state_changes",
+        "maximum_latency_ticks",
+        "mean_latency_ticks",
+        "normalized_energy_per_completed_command",
+        "p95_latency_ticks",
+        "peak_cycle_normalized_energy",
+        "peak_temperature_proxy",
+        "processor_cycles",
+        "semantic_commands_completed",
+        "semantic_commands_issued",
+        "semantic_completion_ratio",
+        "semantic_output_match",
+        "throughput_commands_per_tick",
+        "total_normalized_energy"
+      ],
+      "properties": {
+        "active_clock_fraction": {
+          "$ref": "#/$defs/unitInterval"
+        },
+        "active_clocked_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "architecture_id": {
+          "enum": [
+            "binary_synchronous_reference",
+            "binary_clock_gated_reference",
+            "direct_ternary_reference",
+            "frp_v1_7_0_quantized_shadow"
+          ]
+        },
+        "completion_ticks": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "encoded_bit_toggles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "final_temperature_proxy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "logical_state_changes": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "maximum_latency_ticks": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "mean_latency_ticks": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "normalized_energy_per_completed_command": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "p95_latency_ticks": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "peak_cycle_normalized_energy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "peak_temperature_proxy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "processor_cycles": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "semantic_commands_completed": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "semantic_commands_issued": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "semantic_completion_ratio": {
+          "const": 1.0
+        },
+        "semantic_output_match": {
+          "const": 1.0
+        },
+        "throughput_commands_per_tick": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "total_normalized_energy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        }
+      },
+      "additionalProperties": false
+    },
+    "comparisonMatrix": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/comparisonRow",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "binary_synchronous_reference"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/comparisonRow",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "binary_clock_gated_reference"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/comparisonRow",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "direct_ternary_reference"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/comparisonRow",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "frp_v1_7_0_quantized_shadow"
+            }
+          }
+        }
+      ],
+      "minItems": 4,
+      "maxItems": 4,
+      "items": false
+    },
+    "rankingRow": {
+      "type": "object",
+      "required": [
+        "architecture_id",
+        "final_temperature_proxy",
+        "normalized_energy_per_completed_command",
+        "peak_temperature_proxy",
+        "rank",
+        "total_normalized_energy"
+      ],
+      "properties": {
+        "architecture_id": {
+          "enum": [
+            "binary_synchronous_reference",
+            "binary_clock_gated_reference",
+            "direct_ternary_reference",
+            "frp_v1_7_0_quantized_shadow"
+          ]
+        },
+        "final_temperature_proxy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "normalized_energy_per_completed_command": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "peak_temperature_proxy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        },
+        "rank": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4
+        },
+        "total_normalized_energy": {
+          "$ref": "#/$defs/nonnegativeNumber"
+        }
+      },
+      "additionalProperties": false
+    },
+    "rankingRows": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/rankingRow",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "binary_clock_gated_reference"
+            },
+            "rank": {
+              "const": 1
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/rankingRow",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "direct_ternary_reference"
+            },
+            "rank": {
+              "const": 2
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/rankingRow",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "binary_synchronous_reference"
+            },
+            "rank": {
+              "const": 3
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/rankingRow",
+          "type": "object",
+          "properties": {
+            "architecture_id": {
+              "const": "frp_v1_7_0_quantized_shadow"
+            },
+            "rank": {
+              "const": 4
+            }
+          }
+        }
+      ],
+      "minItems": 4,
+      "maxItems": 4,
+      "items": false
+    },
+    "scenarioRanking": {
+      "type": "object",
+      "required": [
+        "architecture_order",
+        "basis",
+        "rows",
+        "ties_present"
+      ],
+      "properties": {
+        "architecture_order": {
+          "$ref": "#/$defs/rankingArchitectureOrder"
+        },
+        "basis": {
+          "const": "ascending_total_normalized_energy"
+        },
+        "rows": {
+          "$ref": "#/$defs/rankingRows"
+        },
+        "ties_present": {
+          "const": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "scenarioIntegrity": {
+      "type": "object",
+      "required": [
+        "checks",
+        "status"
+      ],
+      "properties": {
+        "checks": {
+          "type": "object",
+          "required": [
+            "architecture_order_match",
+            "cost_cycle_count_closure",
+            "event_trace_closure",
+            "finite_numeric_values",
+            "same_architecture_result_digests",
+            "same_cost_profile_digest",
+            "same_raw_event_trace_digests",
+            "same_thermal_profile_digest",
+            "same_workload_digest",
+            "semantic_completion_ratio_one",
+            "semantic_output_match_one",
+            "thermal_cycle_count_closure"
+          ],
+          "properties": {
+            "architecture_order_match": {
+              "const": true
+            },
+            "cost_cycle_count_closure": {
+              "const": true
+            },
+            "event_trace_closure": {
+              "const": true
+            },
+            "finite_numeric_values": {
+              "const": true
+            },
+            "same_architecture_result_digests": {
+              "const": true
+            },
+            "same_cost_profile_digest": {
+              "const": true
+            },
+            "same_raw_event_trace_digests": {
+              "const": true
+            },
+            "same_thermal_profile_digest": {
+              "const": true
+            },
+            "same_workload_digest": {
+              "const": true
+            },
+            "semantic_completion_ratio_one": {
+              "const": true
+            },
+            "semantic_output_match_one": {
+              "const": true
+            },
+            "thermal_cycle_count_closure": {
+              "const": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "status": {
+          "const": "PASS"
+        }
+      },
+      "additionalProperties": false
+    },
+    "scenario": {
+      "type": "object",
+      "required": [
+        "architectures",
+        "comparison_matrix",
+        "cost_profile",
+        "integrity",
+        "ranking",
+        "scenario_cost_profile_sha256",
+        "scenario_id",
+        "scenario_vector",
+        "scenario_vector_sha256"
+      ],
+      "properties": {
+        "architectures": {
+          "$ref": "#/$defs/scenarioArchitectureArray"
+        },
+        "comparison_matrix": {
+          "$ref": "#/$defs/comparisonMatrix"
+        },
+        "cost_profile": {
+          "$ref": "#/$defs/scenarioCostProfile"
+        },
+        "integrity": {
+          "$ref": "#/$defs/scenarioIntegrity"
+        },
+        "ranking": {
+          "$ref": "#/$defs/scenarioRanking"
+        },
+        "scenario_cost_profile_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "scenario_id": {
+          "enum": [
+            "lower_bound",
+            "nominal",
+            "upper_bound"
+          ]
+        },
+        "scenario_vector": {
+          "$ref": "#/$defs/costClassValues"
+        },
+        "scenario_vector_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "additionalProperties": false
+    },
+    "scenarios": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/scenario",
+          "type": "object",
+          "properties": {
+            "scenario_id": {
+              "const": "lower_bound"
+            },
+            "scenario_vector": {
+              "$ref": "#/$defs/lowerBoundVector"
+            },
+            "cost_profile": {
+              "$ref": "#/$defs/scenarioCostProfile",
+              "type": "object",
+              "properties": {
+                "profile_name": {
+                  "const": "literature_anchored_cmos45_sensitivity_v1::lower_bound"
+                },
+                "costs": {
+                  "$ref": "#/$defs/lowerBoundVector"
+                }
+              }
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/scenario",
+          "type": "object",
+          "properties": {
+            "scenario_id": {
+              "const": "nominal"
+            },
+            "scenario_vector": {
+              "$ref": "#/$defs/nominalVector"
+            },
+            "cost_profile": {
+              "$ref": "#/$defs/scenarioCostProfile",
+              "type": "object",
+              "properties": {
+                "profile_name": {
+                  "const": "literature_anchored_cmos45_sensitivity_v1::nominal"
+                },
+                "costs": {
+                  "$ref": "#/$defs/nominalVector"
+                }
+              }
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/scenario",
+          "type": "object",
+          "properties": {
+            "scenario_id": {
+              "const": "upper_bound"
+            },
+            "scenario_vector": {
+              "$ref": "#/$defs/upperBoundVector"
+            },
+            "cost_profile": {
+              "$ref": "#/$defs/scenarioCostProfile",
+              "type": "object",
+              "properties": {
+                "profile_name": {
+                  "const": "literature_anchored_cmos45_sensitivity_v1::upper_bound"
+                },
+                "costs": {
+                  "$ref": "#/$defs/upperBoundVector"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "minItems": 3,
+      "maxItems": 3,
+      "items": false
+    },
+    "pairwiseRecord": {
+      "type": "object",
+      "required": [
+        "classification",
+        "interpretation_basis",
+        "left_architecture_id",
+        "right_architecture_id",
+        "scenario_relations"
+      ],
+      "properties": {
+        "classification": {
+          "enum": [
+            "stable_lower_cost",
+            "stable_higher_cost",
+            "crosses_within_sensitivity_range"
+          ]
+        },
+        "interpretation_basis": {
+          "const": "left_architecture_total_normalized_energy_relative_to_right"
+        },
+        "left_architecture_id": {
+          "enum": [
+            "binary_synchronous_reference",
+            "binary_clock_gated_reference",
+            "direct_ternary_reference",
+            "frp_v1_7_0_quantized_shadow"
+          ]
+        },
+        "right_architecture_id": {
+          "enum": [
+            "binary_synchronous_reference",
+            "binary_clock_gated_reference",
+            "direct_ternary_reference",
+            "frp_v1_7_0_quantized_shadow"
+          ]
+        },
+        "scenario_relations": {
+          "type": "object",
+          "required": [
+            "lower_bound",
+            "nominal",
+            "upper_bound"
+          ],
+          "properties": {
+            "lower_bound": {
+              "enum": [
+                "lower_cost",
+                "higher_cost",
+                "equal_cost"
+              ]
+            },
+            "nominal": {
+              "enum": [
+                "lower_cost",
+                "higher_cost",
+                "equal_cost"
+              ]
+            },
+            "upper_bound": {
+              "enum": [
+                "lower_cost",
+                "higher_cost",
+                "equal_cost"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "allHigherRelations": {
+      "const": {
+        "lower_bound": "higher_cost",
+        "nominal": "higher_cost",
+        "upper_bound": "higher_cost"
+      }
+    },
+    "allLowerRelations": {
+      "const": {
+        "lower_bound": "lower_cost",
+        "nominal": "lower_cost",
+        "upper_bound": "lower_cost"
+      }
+    },
+    "pairwiseStability": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/pairwiseRecord",
+          "type": "object",
+          "properties": {
+            "classification": {
+              "const": "stable_higher_cost"
+            },
+            "left_architecture_id": {
+              "const": "binary_synchronous_reference"
+            },
+            "right_architecture_id": {
+              "const": "binary_clock_gated_reference"
+            },
+            "scenario_relations": {
+              "$ref": "#/$defs/allHigherRelations"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/pairwiseRecord",
+          "type": "object",
+          "properties": {
+            "classification": {
+              "const": "stable_higher_cost"
+            },
+            "left_architecture_id": {
+              "const": "binary_synchronous_reference"
+            },
+            "right_architecture_id": {
+              "const": "direct_ternary_reference"
+            },
+            "scenario_relations": {
+              "$ref": "#/$defs/allHigherRelations"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/pairwiseRecord",
+          "type": "object",
+          "properties": {
+            "classification": {
+              "const": "stable_lower_cost"
+            },
+            "left_architecture_id": {
+              "const": "binary_synchronous_reference"
+            },
+            "right_architecture_id": {
+              "const": "frp_v1_7_0_quantized_shadow"
+            },
+            "scenario_relations": {
+              "$ref": "#/$defs/allLowerRelations"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/pairwiseRecord",
+          "type": "object",
+          "properties": {
+            "classification": {
+              "const": "stable_lower_cost"
+            },
+            "left_architecture_id": {
+              "const": "binary_clock_gated_reference"
+            },
+            "right_architecture_id": {
+              "const": "direct_ternary_reference"
+            },
+            "scenario_relations": {
+              "$ref": "#/$defs/allLowerRelations"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/pairwiseRecord",
+          "type": "object",
+          "properties": {
+            "classification": {
+              "const": "stable_lower_cost"
+            },
+            "left_architecture_id": {
+              "const": "binary_clock_gated_reference"
+            },
+            "right_architecture_id": {
+              "const": "frp_v1_7_0_quantized_shadow"
+            },
+            "scenario_relations": {
+              "$ref": "#/$defs/allLowerRelations"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/pairwiseRecord",
+          "type": "object",
+          "properties": {
+            "classification": {
+              "const": "stable_lower_cost"
+            },
+            "left_architecture_id": {
+              "const": "direct_ternary_reference"
+            },
+            "right_architecture_id": {
+              "const": "frp_v1_7_0_quantized_shadow"
+            },
+            "scenario_relations": {
+              "$ref": "#/$defs/allLowerRelations"
+            }
+          }
+        }
+      ],
+      "minItems": 6,
+      "maxItems": 6,
+      "items": false
+    },
+    "rankingStability": {
+      "type": "object",
+      "required": [
+        "pairwise_stability",
+        "ranking_basis",
+        "ranking_sensitive",
+        "ranking_stable",
+        "scenario_rankings"
+      ],
+      "properties": {
+        "pairwise_stability": {
+          "$ref": "#/$defs/pairwiseStability"
+        },
+        "ranking_basis": {
+          "const": "ascending_total_normalized_energy"
+        },
+        "ranking_sensitive": {
+          "const": false
+        },
+        "ranking_stable": {
+          "const": true
+        },
+        "scenario_rankings": {
+          "type": "object",
+          "required": [
+            "lower_bound",
+            "nominal",
+            "upper_bound"
+          ],
+          "properties": {
+            "lower_bound": {
+              "$ref": "#/$defs/rankingArchitectureOrder"
+            },
+            "nominal": {
+              "$ref": "#/$defs/rankingArchitectureOrder"
+            },
+            "upper_bound": {
+              "$ref": "#/$defs/rankingArchitectureOrder"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "packageIntegrity": {
+      "type": "object",
+      "required": [
+        "checks",
+        "status"
+      ],
+      "properties": {
+        "checks": {
+          "type": "object",
+          "required": [
+            "all_scenario_integrity_pass",
+            "architecture_order_match",
+            "architecture_result_digests_match_baseline",
+            "baseline_package_contract_pass",
+            "current_execution_baseline_binding_pass",
+            "finite_numeric_values",
+            "pairwise_analysis_complete",
+            "profile_validation_pass",
+            "ranking_analysis_complete",
+            "same_architecture_result_digests_all_scenarios",
+            "same_raw_event_trace_digests_all_scenarios",
+            "same_thermal_profile_digest_all_scenarios",
+            "same_workload_digest",
+            "scenario_cost_profiles_unique",
+            "scenario_count_three",
+            "scenario_order_match",
+            "scenario_vectors_exact",
+            "winner_assertions_absent"
+          ],
+          "properties": {
+            "all_scenario_integrity_pass": {
+              "const": true
+            },
+            "architecture_order_match": {
+              "const": true
+            },
+            "architecture_result_digests_match_baseline": {
+              "const": true
+            },
+            "baseline_package_contract_pass": {
+              "const": true
+            },
+            "current_execution_baseline_binding_pass": {
+              "const": true
+            },
+            "finite_numeric_values": {
+              "const": true
+            },
+            "pairwise_analysis_complete": {
+              "const": true
+            },
+            "profile_validation_pass": {
+              "const": true
+            },
+            "ranking_analysis_complete": {
+              "const": true
+            },
+            "same_architecture_result_digests_all_scenarios": {
+              "const": true
+            },
+            "same_raw_event_trace_digests_all_scenarios": {
+              "const": true
+            },
+            "same_thermal_profile_digest_all_scenarios": {
+              "const": true
+            },
+            "same_workload_digest": {
+              "const": true
+            },
+            "scenario_cost_profiles_unique": {
+              "const": true
+            },
+            "scenario_count_three": {
+              "const": true
+            },
+            "scenario_order_match": {
+              "const": true
+            },
+            "scenario_vectors_exact": {
+              "const": true
+            },
+            "winner_assertions_absent": {
+              "const": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "status": {
+          "const": "PASS"
+        }
+      },
+      "additionalProperties": false
+    },
+    "qualification": {
+      "type": "object",
+      "required": [
+        "checks",
+        "policy",
+        "status",
+        "winner_assertions"
+      ],
+      "properties": {
+        "checks": {
+          "type": "object",
+          "required": [
+            "all_architectures_completed_workload",
+            "frp_actual_direct_events_zero",
+            "frp_neutral_insertions_equal_neutral_routed",
+            "frp_pending_route_count_final_zero",
+            "frp_queue_overflow_events_zero",
+            "frp_requested_direct_events_equal_prevented",
+            "frp_reserved_state_events_zero",
+            "integrity_status_pass",
+            "no_winner_assertions",
+            "same_architecture_results_used_for_all_scenarios",
+            "same_raw_traces_used_for_all_scenarios",
+            "scenario_vectors_global_and_exact",
+            "semantic_completion_ratio_one_all",
+            "semantic_output_match_one_all"
+          ],
+          "properties": {
+            "all_architectures_completed_workload": {
+              "const": true
+            },
+            "frp_actual_direct_events_zero": {
+              "const": true
+            },
+            "frp_neutral_insertions_equal_neutral_routed": {
+              "const": true
+            },
+            "frp_pending_route_count_final_zero": {
+              "const": true
+            },
+            "frp_queue_overflow_events_zero": {
+              "const": true
+            },
+            "frp_requested_direct_events_equal_prevented": {
+              "const": true
+            },
+            "frp_reserved_state_events_zero": {
+              "const": true
+            },
+            "integrity_status_pass": {
+              "const": true
+            },
+            "no_winner_assertions": {
+              "const": true
+            },
+            "same_architecture_results_used_for_all_scenarios": {
+              "const": true
+            },
+            "same_raw_traces_used_for_all_scenarios": {
+              "const": true
+            },
+            "scenario_vectors_global_and_exact": {
+              "const": true
+            },
+            "semantic_completion_ratio_one_all": {
+              "const": true
+            },
+            "semantic_output_match_one_all": {
+              "const": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "policy": {
+          "const": "integrity_only_no_winner_assertions"
+        },
+        "status": {
+          "const": "PASS"
+        },
+        "winner_assertions": {
+          "type": "array",
+          "maxItems": 0,
+          "items": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
