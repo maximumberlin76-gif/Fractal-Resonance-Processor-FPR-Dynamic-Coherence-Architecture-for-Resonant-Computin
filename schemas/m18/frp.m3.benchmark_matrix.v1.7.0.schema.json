@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.m3.benchmark_matrix.v1.7.0",
+  "title": "FRP M3 Benchmark Matrix v1.7.0",
+  "description": "Formal schema for the ordered FRP v1.7.0 M15 implementation-mapping benchmark matrix.",
+  "x-frp-schema-identifier": "frp.m3.benchmark_matrix.v1.7.0",
+  "x-frp-artifact-role": "benchmark_matrix",
+  "x-frp-schema-version": "1.7.0",
+  "x-frp-producer-path": "frp_prototype_v1_7_0.py",
+  "x-frp-producer-version": "1.7.0",
+  "type": "object",
+  "required": [
+    "kind",
+    "milestone",
+    "rows",
+    "schema",
+    "version"
+  ],
+  "properties": {
+    "kind": {
+      "const": "benchmark_matrix"
+    },
+    "milestone": {
+      "const": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package"
+    },
+    "rows": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/floatingSemanticReferenceRow"
+        },
+        {
+          "$ref": "#/$defs/quantizedHardwareShadowRow"
+        },
+        {
+          "$ref": "#/$defs/cycleExactVectorPackageRow"
+        },
+        {
+          "$ref": "#/$defs/systemVerilogCorrelationContractRow"
+        },
+        {
+          "$ref": "#/$defs/qualificationClosureRow"
+        }
+      ],
+      "items": false
+    },
+    "schema": {
+      "const": "frp.m3.benchmark_matrix.v1.7.0"
+    },
+    "version": {
+      "const": "1.7.0"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "floatingSemanticReferenceRow": {
+      "type": "object",
+      "required": [
+        "architecture",
+        "cycle_exact_integer_trace",
+        "hardware_facing_encoding",
+        "interaction_scaling",
+        "numeric_domain"
+      ],
+      "properties": {
+        "architecture": {
+          "const": "frp_v1_6_0_m14_floating_semantic_reference"
+        },
+        "cycle_exact_integer_trace": {
+          "const": false
+        },
+        "hardware_facing_encoding": {
+          "const": false
+        },
+        "interaction_scaling": {
+          "const": "O(N log N) hierarchical reference path"
+        },
+        "numeric_domain": {
+          "const": "floating semantic reference"
+        }
+      },
+      "additionalProperties": false
+    },
+    "quantizedHardwareShadowRow": {
+      "type": "object",
+      "required": [
+        "C_minus_P_sign_match",
+        "architecture",
+        "cycle_exact_integer_trace",
+        "hardware_facing_encoding",
+        "interaction_scaling",
+        "numeric_domain",
+        "scheduler_sequence_match",
+        "state_sequence_match"
+      ],
+      "properties": {
+        "C_minus_P_sign_match": {
+          "const": 1.0
+        },
+        "architecture": {
+          "const": "frp_v1_7_0_quantized_hardware_shadow"
+        },
+        "cycle_exact_integer_trace": {
+          "const": true
+        },
+        "hardware_facing_encoding": {
+          "const": true
+        },
+        "interaction_scaling": {
+          "const": "O(N^2) shadow evaluation with exact dyadic weights"
+        },
+        "numeric_domain": {
+          "const": "S32Q16 / S32Q30 / PHASE_U32 / GAMMA_S32"
+        },
+        "scheduler_sequence_match": {
+          "const": 1.0
+        },
+        "state_sequence_match": {
+          "const": 1.0
+        }
+      },
+      "additionalProperties": false
+    },
+    "cycleExactVectorPackageRow": {
+      "type": "object",
+      "required": [
+        "architecture",
+        "cycle_exact_integer_trace",
+        "hardware_facing_encoding",
+        "numeric_domain",
+        "vector_repeat_match"
+      ],
+      "properties": {
+        "architecture": {
+          "const": "frp_v1_7_0_cycle_exact_vector_package"
+        },
+        "cycle_exact_integer_trace": {
+          "const": true
+        },
+        "hardware_facing_encoding": {
+          "const": true
+        },
+        "numeric_domain": {
+          "const": "integer and hexadecimal vectors"
+        },
+        "vector_repeat_match": {
+          "const": 1.0
+        }
+      },
+      "additionalProperties": false
+    },
+    "systemVerilogCorrelationContractRow": {
+      "type": "object",
+      "required": [
+        "architecture",
+        "comparison_rule",
+        "cycle_exact_integer_trace",
+        "hardware_facing_encoding",
+        "numeric_domain"
+      ],
+      "properties": {
+        "architecture": {
+          "const": "frp_v1_7_0_systemverilog_correlation_contract"
+        },
+        "comparison_rule": {
+          "const": "actual == expected"
+        },
+        "cycle_exact_integer_trace": {
+          "const": true
+        },
+        "hardware_facing_encoding": {
+          "const": true
+        },
+        "numeric_domain": {
+          "const": "exact integer comparison"
+        }
+      },
+      "additionalProperties": false
+    },
+    "qualificationClosureRow": {
+      "type": "object",
+      "required": [
+        "architecture",
+        "artifact_layers",
+        "cycle_exact_integer_trace",
+        "hardware_facing_encoding",
+        "numeric_domain"
+      ],
+      "properties": {
+        "architecture": {
+          "const": "frp_v1_7_0_qualification_closure"
+        },
+        "artifact_layers": {
+          "const": 10
+        },
+        "cycle_exact_integer_trace": {
+          "const": true
+        },
+        "hardware_facing_encoding": {
+          "const": true
+        },
+        "numeric_domain": {
+          "const": "semantic correlation plus exact integer replay"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
