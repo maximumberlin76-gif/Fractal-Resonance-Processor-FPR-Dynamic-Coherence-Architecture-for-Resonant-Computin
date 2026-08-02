@@ -10,9 +10,9 @@
       "binary_clock_gated_reference": "6ce1f829f80f0b4538b22e8097be48a449fc02edf12fb7bf4ff56b8f43d3b8a7",
       "binary_synchronous_reference": "3ff77a2d09e48ea4811be4e605c83cd5cc064f955699cf33b8393832ca3a219b",
       "direct_ternary_reference": "ecb11a545f397db89af820090ea1b471bdb22ed331260fce4ed029171a77189f",
-      "frp_v1_7_0_quantized_shadow": "9a057944f9cfabdecbbd490bed62fa6e8facd4238a24491edf61db6b03e4378d"
+      "frp_v1_7_0_quantized_shadow": "a3184e33515b752ee6f566a06a6d5640d53bfa35205dfc81b981f2c4bbad26f7"
     },
-    "baseline_comparison_package_sha256": "5a4be61ce7fd6bc680bbd8bc28bfe7cc9d2ad35adddf642cecff111fbd503d6a",
+    "baseline_comparison_package_sha256": "e6dd8d28c5606f7008146aca09c35efd8d6b6cf35758631be40d61597458dab2",
     "baseline_cost_profile": "unit_event_cost_v1",
     "baseline_result": "benchmarks/architecture_comparison/results/reference_comparison_seed_76.json",
     "baseline_schema": "frp.benchmark.architecture_comparison.v1",
@@ -39,7 +39,7 @@
   "benchmark_kind": "hardware_informed_sensitivity_matrix",
   "frp_reference_version": "1.7.0",
   "frp_scheduler": "7/1",
-  "hardware_sensitivity_package_sha256": "a44cf392d946e3b5c21dffbaa1d726d31da326a007e2908914f6477215261ea0",
+  "hardware_sensitivity_package_sha256": "8c731035d0caaac5c08c45c268f3dba5f17d02ad54f035ef7b5fafa5fb8868ef",
   "hardware_sensitivity_profile": {
     "baseline_profile": "unit_event_cost_v1",
     "baseline_result": "benchmarks/architecture_comparison/results/reference_comparison_seed_76.json",
@@ -374,7 +374,7 @@
     {
       "architecture_id": "frp_v1_7_0_quantized_shadow",
       "architecture_name": "FRP v1.7.0 Quantized Hardware Shadow Reference",
-      "architecture_result_sha256": "9a057944f9cfabdecbbd490bed62fa6e8facd4238a24491edf61db6b03e4378d",
+      "architecture_result_sha256": "a3184e33515b752ee6f566a06a6d5640d53bfa35205dfc81b981f2c4bbad26f7",
       "architecture_specific_metrics": {
         "C_minus_P_final": 1.2415313720703125,
         "C_minus_P_final_q16": 81365,
@@ -434,7 +434,7 @@
       "workload_sha256": "8386174d0a4751af26cc68bf46a5494cf0e58a3c14fc59ff46830a21645f0562"
     }
   ],
-  "raw_trace_set_sha256": "42444ea48fc4a00fbc747e0392d218f624896c9e934b1031d38a8acf1a030952",
+  "raw_trace_set_sha256": "dd16f2fc681a45da6ba478005deab26da194296c2b5503b17baea18788dbbe19",
   "scenarios": [
     {
       "architectures": [
@@ -657,7 +657,7 @@
         {
           "architecture_id": "frp_v1_7_0_quantized_shadow",
           "architecture_name": "FRP v1.7.0 Quantized Hardware Shadow Reference",
-          "architecture_result_sha256": "9a057944f9cfabdecbbd490bed62fa6e8facd4238a24491edf61db6b03e4378d",
+          "architecture_result_sha256": "a3184e33515b752ee6f566a06a6d5640d53bfa35205dfc81b981f2c4bbad26f7",
           "comparison_metrics": {
             "active_clock_fraction": 1.0,
             "active_clocked_cycles": 413,
@@ -1135,7 +1135,7 @@
         {
           "architecture_id": "frp_v1_7_0_quantized_shadow",
           "architecture_name": "FRP v1.7.0 Quantized Hardware Shadow Reference",
-          "architecture_result_sha256": "9a057944f9cfabdecbbd490bed62fa6e8facd4238a24491edf61db6b03e4378d",
+          "architecture_result_sha256": "a3184e33515b752ee6f566a06a6d5640d53bfa35205dfc81b981f2c4bbad26f7",
           "comparison_metrics": {
             "active_clock_fraction": 1.0,
             "active_clocked_cycles": 413,
@@ -1613,7 +1613,7 @@
         {
           "architecture_id": "frp_v1_7_0_quantized_shadow",
           "architecture_name": "FRP v1.7.0 Quantized Hardware Shadow Reference",
-          "architecture_result_sha256": "9a057944f9cfabdecbbd490bed62fa6e8facd4238a24491edf61db6b03e4378d",
+          "architecture_result_sha256": "a3184e33515b752ee6f566a06a6d5640d53bfa35205dfc81b981f2c4bbad26f7",
           "comparison_metrics": {
             "active_clock_fraction": 1.0,
             "active_clocked_cycles": 413,
