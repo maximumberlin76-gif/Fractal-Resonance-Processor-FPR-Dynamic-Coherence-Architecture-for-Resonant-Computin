@@ -1,0 +1,775 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.benchmark.hardware_sensitivity_cost_profile.v1",
+  "title": "FRP Hardware-Informed Sensitivity Cost Profile v1",
+  "description": "Formal schema for the canonical literature-anchored CMOS 45 nm hardware-informed sensitivity cost profile used by the FRP Comparative Architecture Benchmark Suite.",
+  "type": "object",
+  "x-frp-schema-identifier": "frp.benchmark.hardware_sensitivity_cost_profile.v1",
+  "x-frp-artifact-role": "hardware_informed_sensitivity_profile",
+  "x-frp-schema-version": "1",
+  "x-frp-producer-path": null,
+  "x-frp-producer-version": null,
+  "required": [
+    "schema",
+    "suite_name",
+    "profile_name",
+    "profile_role",
+    "profile_status",
+    "baseline_profile",
+    "baseline_result",
+    "provenance_map",
+    "normalization_reference",
+    "reference_basis",
+    "scenario_order",
+    "coefficient_order",
+    "coefficients",
+    "scenario_vectors",
+    "evaluation_contract",
+    "validation_contract",
+    "digest_contract",
+    "cost_profile_sha256"
+  ],
+  "properties": {
+    "schema": {
+      "const": "frp.benchmark.hardware_sensitivity_cost_profile.v1"
+    },
+    "suite_name": {
+      "const": "FRP Comparative Architecture Benchmark Suite"
+    },
+    "profile_name": {
+      "const": "literature_anchored_cmos45_sensitivity_v1"
+    },
+    "profile_role": {
+      "const": "hardware_informed_sensitivity"
+    },
+    "profile_status": {
+      "const": "reference_sensitivity_profile"
+    },
+    "baseline_profile": {
+      "const": "unit_event_cost_v1"
+    },
+    "baseline_result": {
+      "const": "benchmarks/architecture_comparison/results/reference_comparison_seed_76.json"
+    },
+    "provenance_map": {
+      "const": "benchmarks/architecture_comparison/calibration/coefficient_provenance_map_v1.md"
+    },
+    "normalization_reference": {
+      "type": "object",
+      "required": [
+        "primitive",
+        "normalized_weight",
+        "reference_energy_value",
+        "reference_energy_unit",
+        "reference_technology_node_nm",
+        "reference_voltage_v",
+        "reference_key"
+      ],
+      "properties": {
+        "primitive": {
+          "const": "32-bit integer addition"
+        },
+        "normalized_weight": {
+          "const": 1.0
+        },
+        "reference_energy_value": {
+          "const": 0.1
+        },
+        "reference_energy_unit": {
+          "const": "pJ"
+        },
+        "reference_technology_node_nm": {
+          "const": 45
+        },
+        "reference_voltage_v": {
+          "type": "null"
+        },
+        "reference_key": {
+          "const": "HOROWITZ_ISSCC_2014_32BIT_INT_ADD"
+        }
+      },
+      "additionalProperties": false
+    },
+    "reference_basis": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/referenceRecord",
+          "type": "object",
+          "properties": {
+            "reference_key": {
+              "const": "HOROWITZ_ISSCC_2014_32BIT_INT_ADD"
+            },
+            "primitive": {
+              "const": "32-bit integer addition"
+            },
+            "reference_energy_value": {
+              "const": 0.1
+            },
+            "reference_energy_unit": {
+              "const": "pJ"
+            },
+            "role": {
+              "const": "normalization_anchor"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/referenceRecord",
+          "type": "object",
+          "properties": {
+            "reference_key": {
+              "const": "HOROWITZ_ISSCC_2014_32BIT_INT_MULT"
+            },
+            "primitive": {
+              "const": "32-bit integer multiplication"
+            },
+            "reference_energy_value": {
+              "const": 3.0
+            },
+            "reference_energy_unit": {
+              "const": "pJ"
+            },
+            "role": {
+              "const": "direct_arithmetic_anchor"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/referenceRecord",
+          "type": "object",
+          "properties": {
+            "reference_key": {
+              "const": "HOROWITZ_ISSCC_2014_8KB_CACHE_64BIT_ACCESS"
+            },
+            "primitive": {
+              "const": "64-bit access to 8 KB local cache"
+            },
+            "reference_energy_value": {
+              "const": 10.0
+            },
+            "reference_energy_unit": {
+              "const": "pJ"
+            },
+            "role": {
+              "const": "local_memory_hierarchy_anchor"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/referenceRecord",
+          "type": "object",
+          "properties": {
+            "reference_key": {
+              "const": "HOROWITZ_ISSCC_2014_LOCAL_MEMORY_HIERARCHY"
+            },
+            "primitive": {
+              "const": "local memory hierarchy energy context"
+            },
+            "reference_energy_value": {
+              "type": "null"
+            },
+            "reference_energy_unit": {
+              "type": "null"
+            },
+            "role": {
+              "const": "qualitative_local_storage_cost_hierarchy_reference"
+            }
+          }
+        }
+      ],
+      "minItems": 4,
+      "maxItems": 4,
+      "items": false
+    },
+    "scenario_order": {
+      "const": [
+        "lower_bound",
+        "nominal",
+        "upper_bound"
+      ]
+    },
+    "coefficient_order": {
+      "const": [
+        "encoded_bit_toggle",
+        "clocked_state_bit",
+        "register_write_bit",
+        "comparison_event",
+        "control_event",
+        "queue_read",
+        "queue_write",
+        "lut_read_32",
+        "fixed_point_multiply_32x32",
+        "fixed_point_accumulate_64",
+        "fixed_point_add_32",
+        "fixed_point_compare_32"
+      ]
+    },
+    "coefficients": {
+      "type": "object",
+      "required": [
+        "encoded_bit_toggle",
+        "clocked_state_bit",
+        "register_write_bit",
+        "comparison_event",
+        "control_event",
+        "queue_read",
+        "queue_write",
+        "lut_read_32",
+        "fixed_point_multiply_32x32",
+        "fixed_point_accumulate_64",
+        "fixed_point_add_32",
+        "fixed_point_compare_32"
+      ],
+      "properties": {
+        "encoded_bit_toggle": {
+          "$ref": "#/$defs/coefficientRecord",
+          "type": "object",
+          "properties": {
+            "event_field": { "const": "encoded_bit_toggles" },
+            "cost_class": { "const": "encoded_bit_toggle" },
+            "lower_bound": { "const": 0.0078125 },
+            "nominal_weight": { "const": 0.03125 },
+            "upper_bound": { "const": 0.125 },
+            "basis_type": { "const": "implementation_assumption" },
+            "reference_key": { "const": "HOROWITZ_ISSCC_2014_32BIT_INT_ADD" },
+            "uncertainty_class": { "const": "high" }
+          }
+        },
+        "clocked_state_bit": {
+          "$ref": "#/$defs/coefficientRecord",
+          "type": "object",
+          "properties": {
+            "event_field": { "const": "clocked_state_bits" },
+            "cost_class": { "const": "clocked_state_bit" },
+            "lower_bound": { "const": 0.015625 },
+            "nominal_weight": { "const": 0.0625 },
+            "upper_bound": { "const": 0.25 },
+            "basis_type": { "const": "implementation_assumption" },
+            "reference_key": { "const": "HOROWITZ_ISSCC_2014_32BIT_INT_ADD" },
+            "uncertainty_class": { "const": "high" }
+          }
+        },
+        "register_write_bit": {
+          "$ref": "#/$defs/coefficientRecord",
+          "type": "object",
+          "properties": {
+            "event_field": { "const": "register_write_bits" },
+            "cost_class": { "const": "register_write_bit" },
+            "lower_bound": { "const": 0.03125 },
+            "nominal_weight": { "const": 0.125 },
+            "upper_bound": { "const": 0.5 },
+            "basis_type": { "const": "implementation_assumption" },
+            "reference_key": { "const": "HOROWITZ_ISSCC_2014_32BIT_INT_ADD" },
+            "uncertainty_class": { "const": "high" }
+          }
+        },
+        "comparison_event": {
+          "$ref": "#/$defs/coefficientRecord",
+          "type": "object",
+          "properties": {
+            "event_field": { "const": "comparison_events" },
+            "cost_class": { "const": "comparison_event" },
+            "lower_bound": { "const": 0.125 },
+            "nominal_weight": { "const": 0.5 },
+            "upper_bound": { "const": 2.0 },
+            "basis_type": { "const": "implementation_assumption" },
+            "reference_key": { "const": "HOROWITZ_ISSCC_2014_32BIT_INT_ADD" },
+            "uncertainty_class": { "const": "high" }
+          }
+        },
+        "control_event": {
+          "$ref": "#/$defs/coefficientRecord",
+          "type": "object",
+          "properties": {
+            "event_field": { "const": "control_events" },
+            "cost_class": { "const": "control_event" },
+            "lower_bound": { "const": 0.25 },
+            "nominal_weight": { "const": 1.0 },
+            "upper_bound": { "const": 8.0 },
+            "basis_type": { "const": "implementation_assumption" },
+            "reference_key": { "const": "HOROWITZ_ISSCC_2014_32BIT_INT_ADD" },
+            "uncertainty_class": { "const": "high" }
+          }
+        },
+        "queue_read": {
+          "$ref": "#/$defs/coefficientRecord",
+          "type": "object",
+          "properties": {
+            "event_field": { "const": "queue_reads" },
+            "cost_class": { "const": "queue_read" },
+            "lower_bound": { "const": 1.0 },
+            "nominal_weight": { "const": 5.0 },
+            "upper_bound": { "const": 30.0 },
+            "basis_type": { "const": "implementation_assumption" },
+            "reference_key": { "const": "HOROWITZ_ISSCC_2014_LOCAL_MEMORY_HIERARCHY" },
+            "uncertainty_class": { "const": "high" }
+          }
+        },
+        "queue_write": {
+          "$ref": "#/$defs/coefficientRecord",
+          "type": "object",
+          "properties": {
+            "event_field": { "const": "queue_writes" },
+            "cost_class": { "const": "queue_write" },
+            "lower_bound": { "const": 1.5 },
+            "nominal_weight": { "const": 7.5 },
+            "upper_bound": { "const": 40.0 },
+            "basis_type": { "const": "implementation_assumption" },
+            "reference_key": { "const": "HOROWITZ_ISSCC_2014_LOCAL_MEMORY_HIERARCHY" },
+            "uncertainty_class": { "const": "high" }
+          }
+        },
+        "lut_read_32": {
+          "$ref": "#/$defs/coefficientRecord",
+          "type": "object",
+          "properties": {
+            "event_field": { "const": "lut_reads_32" },
+            "cost_class": { "const": "lut_read_32" },
+            "lower_bound": { "const": 20.0 },
+            "nominal_weight": { "const": 50.0 },
+            "upper_bound": { "const": 100.0 },
+            "basis_type": { "const": "derived_from_literature_anchor" },
+            "reference_key": { "const": "HOROWITZ_ISSCC_2014_8KB_CACHE_64BIT_ACCESS" },
+            "uncertainty_class": { "const": "high" }
+          }
+        },
+        "fixed_point_multiply_32x32": {
+          "$ref": "#/$defs/coefficientRecord",
+          "type": "object",
+          "properties": {
+            "event_field": { "const": "fixed_point_multiplies_32x32" },
+            "cost_class": { "const": "fixed_point_multiply_32x32" },
+            "lower_bound": { "const": 20.0 },
+            "nominal_weight": { "const": 30.0 },
+            "upper_bound": { "const": 40.0 },
+            "basis_type": { "const": "literature_anchor" },
+            "reference_key": { "const": "HOROWITZ_ISSCC_2014_32BIT_INT_MULT" },
+            "uncertainty_class": { "const": "medium" }
+          }
+        },
+        "fixed_point_accumulate_64": {
+          "$ref": "#/$defs/coefficientRecord",
+          "type": "object",
+          "properties": {
+            "event_field": { "const": "fixed_point_accumulates_64" },
+            "cost_class": { "const": "fixed_point_accumulate_64" },
+            "lower_bound": { "const": 1.5 },
+            "nominal_weight": { "const": 2.0 },
+            "upper_bound": { "const": 4.0 },
+            "basis_type": { "const": "derived_from_literature_anchor" },
+            "reference_key": { "const": "HOROWITZ_ISSCC_2014_32BIT_INT_ADD" },
+            "uncertainty_class": { "const": "medium" }
+          }
+        },
+        "fixed_point_add_32": {
+          "$ref": "#/$defs/coefficientRecord",
+          "type": "object",
+          "properties": {
+            "event_field": { "const": "fixed_point_adds_32" },
+            "cost_class": { "const": "fixed_point_add_32" },
+            "lower_bound": { "const": 0.5 },
+            "nominal_weight": { "const": 1.0 },
+            "upper_bound": { "const": 2.0 },
+            "basis_type": { "const": "literature_anchor" },
+            "reference_key": { "const": "HOROWITZ_ISSCC_2014_32BIT_INT_ADD" },
+            "uncertainty_class": { "const": "low" }
+          }
+        },
+        "fixed_point_compare_32": {
+          "$ref": "#/$defs/coefficientRecord",
+          "type": "object",
+          "properties": {
+            "event_field": { "const": "fixed_point_compares_32" },
+            "cost_class": { "const": "fixed_point_compare_32" },
+            "lower_bound": { "const": 0.5 },
+            "nominal_weight": { "const": 1.0 },
+            "upper_bound": { "const": 2.0 },
+            "basis_type": { "const": "implementation_assumption" },
+            "reference_key": { "const": "HOROWITZ_ISSCC_2014_32BIT_INT_ADD" },
+            "uncertainty_class": { "const": "high" }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "scenario_vectors": {
+      "type": "object",
+      "required": [
+        "lower_bound",
+        "nominal",
+        "upper_bound"
+      ],
+      "properties": {
+        "lower_bound": {
+          "$ref": "#/$defs/scenarioVector",
+          "type": "object",
+          "properties": {
+            "encoded_bit_toggle": { "const": 0.0078125 },
+            "clocked_state_bit": { "const": 0.015625 },
+            "register_write_bit": { "const": 0.03125 },
+            "comparison_event": { "const": 0.125 },
+            "control_event": { "const": 0.25 },
+            "queue_read": { "const": 1.0 },
+            "queue_write": { "const": 1.5 },
+            "lut_read_32": { "const": 20.0 },
+            "fixed_point_multiply_32x32": { "const": 20.0 },
+            "fixed_point_accumulate_64": { "const": 1.5 },
+            "fixed_point_add_32": { "const": 0.5 },
+            "fixed_point_compare_32": { "const": 0.5 }
+          }
+        },
+        "nominal": {
+          "$ref": "#/$defs/scenarioVector",
+          "type": "object",
+          "properties": {
+            "encoded_bit_toggle": { "const": 0.03125 },
+            "clocked_state_bit": { "const": 0.0625 },
+            "register_write_bit": { "const": 0.125 },
+            "comparison_event": { "const": 0.5 },
+            "control_event": { "const": 1.0 },
+            "queue_read": { "const": 5.0 },
+            "queue_write": { "const": 7.5 },
+            "lut_read_32": { "const": 50.0 },
+            "fixed_point_multiply_32x32": { "const": 30.0 },
+            "fixed_point_accumulate_64": { "const": 2.0 },
+            "fixed_point_add_32": { "const": 1.0 },
+            "fixed_point_compare_32": { "const": 1.0 }
+          }
+        },
+        "upper_bound": {
+          "$ref": "#/$defs/scenarioVector",
+          "type": "object",
+          "properties": {
+            "encoded_bit_toggle": { "const": 0.125 },
+            "clocked_state_bit": { "const": 0.25 },
+            "register_write_bit": { "const": 0.5 },
+            "comparison_event": { "const": 2.0 },
+            "control_event": { "const": 8.0 },
+            "queue_read": { "const": 30.0 },
+            "queue_write": { "const": 40.0 },
+            "lut_read_32": { "const": 100.0 },
+            "fixed_point_multiply_32x32": { "const": 40.0 },
+            "fixed_point_accumulate_64": { "const": 4.0 },
+            "fixed_point_add_32": { "const": 2.0 },
+            "fixed_point_compare_32": { "const": 2.0 }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "evaluation_contract": {
+      "type": "object",
+      "required": [
+        "execute_architectures_once",
+        "preserve_raw_event_traces",
+        "apply_same_scenario_vector_to_all_architectures",
+        "scenario_result_order",
+        "thermal_profile",
+        "winner_assertions"
+      ],
+      "properties": {
+        "execute_architectures_once": { "const": true },
+        "preserve_raw_event_traces": { "const": true },
+        "apply_same_scenario_vector_to_all_architectures": { "const": true },
+        "scenario_result_order": {
+          "const": [
+            "lower_bound",
+            "nominal",
+            "upper_bound"
+          ]
+        },
+        "thermal_profile": {
+          "const": "common_rc_thermal_proxy_v1"
+        },
+        "winner_assertions": {
+          "type": "array",
+          "maxItems": 0,
+          "items": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "validation_contract": {
+      "type": "object",
+      "required": [
+        "required_cost_class_count",
+        "require_exact_coefficient_order",
+        "require_exact_scenario_order",
+        "require_nonnegative_weights",
+        "require_lower_le_nominal_le_upper",
+        "require_provenance_for_every_coefficient",
+        "require_same_workload_digest",
+        "require_same_architecture_result_digests",
+        "require_same_raw_event_traces",
+        "require_semantic_completion_ratio",
+        "require_semantic_output_match",
+        "require_frp_actual_direct_events",
+        "require_frp_reserved_state_events",
+        "require_frp_queue_overflow_events",
+        "require_frp_pending_route_count_final",
+        "require_deterministic_profile_digest",
+        "require_deterministic_package_digest",
+        "require_byte_identical_repeated_generation",
+        "winner_assertions"
+      ],
+      "properties": {
+        "required_cost_class_count": { "const": 12 },
+        "require_exact_coefficient_order": { "const": true },
+        "require_exact_scenario_order": { "const": true },
+        "require_nonnegative_weights": { "const": true },
+        "require_lower_le_nominal_le_upper": { "const": true },
+        "require_provenance_for_every_coefficient": { "const": true },
+        "require_same_workload_digest": { "const": true },
+        "require_same_architecture_result_digests": { "const": true },
+        "require_same_raw_event_traces": { "const": true },
+        "require_semantic_completion_ratio": { "const": 1.0 },
+        "require_semantic_output_match": { "const": 1.0 },
+        "require_frp_actual_direct_events": { "const": 0 },
+        "require_frp_reserved_state_events": { "const": 0 },
+        "require_frp_queue_overflow_events": { "const": 0 },
+        "require_frp_pending_route_count_final": { "const": 0 },
+        "require_deterministic_profile_digest": { "const": true },
+        "require_deterministic_package_digest": { "const": true },
+        "require_byte_identical_repeated_generation": { "const": true },
+        "winner_assertions": {
+          "type": "array",
+          "maxItems": 0,
+          "items": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "digest_contract": {
+      "type": "object",
+      "required": [
+        "algorithm",
+        "canonicalization",
+        "excluded_field"
+      ],
+      "properties": {
+        "algorithm": {
+          "const": "sha256"
+        },
+        "canonicalization": {
+          "const": "json.dumps(sort_keys=True,separators=(',',':'),ensure_ascii=False,allow_nan=False)"
+        },
+        "excluded_field": {
+          "const": "cost_profile_sha256"
+        }
+      },
+      "additionalProperties": false
+    },
+    "cost_profile_sha256": {
+      "$ref": "#/$defs/sha256"
+    }
+  },
+  "$defs": {
+    "nonemptyString": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "referenceRecord": {
+      "type": "object",
+      "required": [
+        "reference_key",
+        "author",
+        "title",
+        "venue",
+        "year",
+        "pages",
+        "doi",
+        "primitive",
+        "reference_energy_value",
+        "reference_energy_unit",
+        "technology_node_nm",
+        "approximate",
+        "role"
+      ],
+      "properties": {
+        "reference_key": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "author": {
+          "const": "Mark Horowitz"
+        },
+        "title": {
+          "const": "1.1 Computing's Energy Problem (and What We Can Do About It)"
+        },
+        "venue": {
+          "const": "2014 IEEE International Solid-State Circuits Conference Digest of Technical Papers"
+        },
+        "year": {
+          "const": 2014
+        },
+        "pages": {
+          "const": "10-14"
+        },
+        "doi": {
+          "const": "10.1109/ISSCC.2014.6757323"
+        },
+        "primitive": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "reference_energy_value": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "reference_energy_unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "technology_node_nm": {
+          "const": 45
+        },
+        "approximate": {
+          "const": true
+        },
+        "role": {
+          "$ref": "#/$defs/nonemptyString"
+        }
+      },
+      "additionalProperties": false
+    },
+    "coefficientRecord": {
+      "type": "object",
+      "required": [
+        "event_field",
+        "cost_class",
+        "lower_bound",
+        "nominal_weight",
+        "upper_bound",
+        "basis_type",
+        "reference_key",
+        "reference",
+        "source_value",
+        "source_unit",
+        "technology_node_nm",
+        "voltage_v",
+        "implementation_assumption",
+        "derivation_rule",
+        "uncertainty_class"
+      ],
+      "properties": {
+        "event_field": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "cost_class": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "lower_bound": {
+          "type": "number",
+          "minimum": 0
+        },
+        "nominal_weight": {
+          "type": "number",
+          "minimum": 0
+        },
+        "upper_bound": {
+          "type": "number",
+          "minimum": 0
+        },
+        "basis_type": {
+          "enum": [
+            "literature_anchor",
+            "derived_from_literature_anchor",
+            "implementation_assumption",
+            "eda_measurement",
+            "silicon_measurement"
+          ]
+        },
+        "reference_key": {
+          "enum": [
+            "HOROWITZ_ISSCC_2014_32BIT_INT_ADD",
+            "HOROWITZ_ISSCC_2014_32BIT_INT_MULT",
+            "HOROWITZ_ISSCC_2014_8KB_CACHE_64BIT_ACCESS",
+            "HOROWITZ_ISSCC_2014_LOCAL_MEMORY_HIERARCHY"
+          ]
+        },
+        "reference": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "source_value": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "source_unit": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "technology_node_nm": {
+          "const": 45
+        },
+        "voltage_v": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          ]
+        },
+        "implementation_assumption": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "derivation_rule": {
+          "$ref": "#/$defs/nonemptyString"
+        },
+        "uncertainty_class": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "scenarioVector": {
+      "type": "object",
+      "required": [
+        "encoded_bit_toggle",
+        "clocked_state_bit",
+        "register_write_bit",
+        "comparison_event",
+        "control_event",
+        "queue_read",
+        "queue_write",
+        "lut_read_32",
+        "fixed_point_multiply_32x32",
+        "fixed_point_accumulate_64",
+        "fixed_point_add_32",
+        "fixed_point_compare_32"
+      ],
+      "properties": {
+        "encoded_bit_toggle": { "type": "number", "minimum": 0 },
+        "clocked_state_bit": { "type": "number", "minimum": 0 },
+        "register_write_bit": { "type": "number", "minimum": 0 },
+        "comparison_event": { "type": "number", "minimum": 0 },
+        "control_event": { "type": "number", "minimum": 0 },
+        "queue_read": { "type": "number", "minimum": 0 },
+        "queue_write": { "type": "number", "minimum": 0 },
+        "lut_read_32": { "type": "number", "minimum": 0 },
+        "fixed_point_multiply_32x32": { "type": "number", "minimum": 0 },
+        "fixed_point_accumulate_64": { "type": "number", "minimum": 0 },
+        "fixed_point_add_32": { "type": "number", "minimum": 0 },
+        "fixed_point_compare_32": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
