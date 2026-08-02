@@ -2779,9 +2779,9 @@ def rtl_assertion_correlation_harness(args: argparse.Namespace) -> Dict[str, Any
         "milestone": MILESTONE,
         "assertion_count": len(assertions),
         "assertions": assertions,
-        "direct_transition_rules": [
-            "previous_state = -1 and current_state = +1 is a failure",
-            "previous_state = +1 and current_state = -1 is a failure",
+               "direct_transition_rules": [
+            "previous_state = -1 and current_state = 1 is a failure",
+            "previous_state = 1 and current_state = -1 is a failure",
             "valid opposite-polarity migration requires intermediate state 0",
         ],
         "exact_comparison_rule": "actual integer field == expected integer field",
