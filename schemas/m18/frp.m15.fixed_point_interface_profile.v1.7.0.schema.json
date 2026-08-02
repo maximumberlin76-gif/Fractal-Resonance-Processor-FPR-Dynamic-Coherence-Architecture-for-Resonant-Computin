@@ -1,0 +1,616 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.m15.fixed_point_interface_profile.v1.7.0",
+  "title": "FRP M15 Fixed-Point Interface Profile v1.7.0",
+  "description": "Formal schema for the canonical FRP v1.7.0 M15 fixed-point interface profile.",
+  "x-frp-schema-identifier": "frp.m15.fixed_point_interface_profile.v1.7.0",
+  "x-frp-artifact-role": "fixed_point_interface_profile",
+  "x-frp-schema-version": "1.7.0",
+  "x-frp-producer-path": "frp_prototype_v1_7_0.py",
+  "x-frp-producer-version": "1.7.0",
+  "type": "object",
+  "required": [
+    "fixed_point_thermal_sum_exact",
+    "fixed_point_topology_sum_exact",
+    "inherited_boundary",
+    "kind",
+    "milestone",
+    "profile",
+    "schema",
+    "thermal_fixed_point_profile",
+    "topology_fixed_point_profile",
+    "version"
+  ],
+  "properties": {
+    "fixed_point_thermal_sum_exact": {
+      "type": "boolean",
+      "const": true
+    },
+    "fixed_point_topology_sum_exact": {
+      "type": "boolean",
+      "const": true
+    },
+    "inherited_boundary": {
+      "$ref": "#/$defs/inheritedBoundary"
+    },
+    "kind": {
+      "type": "string",
+      "const": "fixed_point_interface_profile"
+    },
+    "milestone": {
+      "type": "string",
+      "const": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package"
+    },
+    "profile": {
+      "$ref": "#/$defs/interfaceProfile"
+    },
+    "schema": {
+      "type": "string",
+      "const": "frp.m15.fixed_point_interface_profile.v1.7.0"
+    },
+    "thermal_fixed_point_profile": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "$ref": "#/$defs/fixedPointWeightRow"
+      },
+      "const": [
+        {
+          "aggregate_weight_q30": 567420738,
+          "distance": 1,
+          "pair_weight_q30": 567420738,
+          "pair_weight_real": 0.5284517426043749,
+          "shell_population": 1
+        },
+        {
+          "aggregate_weight_q30": 246984222,
+          "distance": 2,
+          "pair_weight_q30": 123492111,
+          "pair_weight_real": 0.11501099076122046,
+          "shell_population": 2
+        },
+        {
+          "aggregate_weight_q30": 151830736,
+          "distance": 3,
+          "pair_weight_q30": 37957684,
+          "pair_weight_real": 0.035350847989320755,
+          "shell_population": 4
+        },
+        {
+          "aggregate_weight_q30": 107506128,
+          "distance": 4,
+          "pair_weight_q30": 13438266,
+          "pair_weight_real": 0.012515360489487648,
+          "shell_population": 8
+        }
+      ]
+    },
+    "topology_fixed_point_profile": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "$ref": "#/$defs/fixedPointWeightRow"
+      },
+      "const": [
+        {
+          "aggregate_weight_q30": 436841896,
+          "distance": 1,
+          "pair_weight_q30": 436841896,
+          "pair_weight_real": 0.4068407192826271,
+          "shell_population": 1
+        },
+        {
+          "aggregate_weight_q30": 268907728,
+          "distance": 2,
+          "pair_weight_q30": 134453864,
+          "pair_weight_real": 0.1252199187874794,
+          "shell_population": 2
+        },
+        {
+          "aggregate_weight_q30": 202460080,
+          "distance": 3,
+          "pair_weight_q30": 50615020,
+          "pair_weight_real": 0.04713891074061394,
+          "shell_population": 4
+        },
+        {
+          "aggregate_weight_q30": 165532120,
+          "distance": 4,
+          "pair_weight_q30": 20691515,
+          "pair_weight_real": 0.019270475022494793,
+          "shell_population": 8
+        }
+      ]
+    },
+    "version": {
+      "type": "string",
+      "const": "1.7.0"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "exponentialProfile": {
+      "type": "object",
+      "required": [
+        "exp_lut_sha256",
+        "input_domain_q16",
+        "output_type",
+        "table_entries"
+      ],
+      "properties": {
+        "exp_lut_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "const": "350499727643d6eb7e123a0c2256ed05a7d76f316e4181acce170101ae78bf0a"
+        },
+        "input_domain_q16": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "type": "integer",
+              "const": 0
+            },
+            {
+              "type": "integer",
+              "const": 524288
+            }
+          ],
+          "items": false
+        },
+        "output_type": {
+          "type": "string",
+          "const": "S32Q30"
+        },
+        "table_entries": {
+          "type": "integer",
+          "const": 4096
+        }
+      },
+      "additionalProperties": false
+    },
+    "fixedPointWeightRow": {
+      "type": "object",
+      "required": [
+        "aggregate_weight_q30",
+        "distance",
+        "pair_weight_q30",
+        "pair_weight_real",
+        "shell_population"
+      ],
+      "properties": {
+        "aggregate_weight_q30": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1073741824
+        },
+        "distance": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "pair_weight_q30": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1073741824
+        },
+        "pair_weight_real": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "shell_population": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "gammaFormat": {
+      "type": "object",
+      "required": [
+        "name",
+        "nominal_gamma_word",
+        "phase_scale",
+        "signed",
+        "width"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "const": "GAMMA_S32"
+        },
+        "nominal_gamma_word": {
+          "type": "integer",
+          "const": 644245094
+        },
+        "phase_scale": {
+          "type": "string",
+          "const": "PHASE_U32 scale"
+        },
+        "signed": {
+          "type": "boolean",
+          "const": true
+        },
+        "width": {
+          "type": "integer",
+          "const": 32
+        }
+      },
+      "additionalProperties": false
+    },
+    "generalScalarFormat": {
+      "type": "object",
+      "required": [
+        "fraction_bits",
+        "name",
+        "scale",
+        "signed",
+        "width"
+      ],
+      "properties": {
+        "fraction_bits": {
+          "type": "integer",
+          "const": 16
+        },
+        "name": {
+          "type": "string",
+          "const": "S32Q16"
+        },
+        "scale": {
+          "type": "integer",
+          "const": 65536
+        },
+        "signed": {
+          "type": "boolean",
+          "const": true
+        },
+        "width": {
+          "type": "integer",
+          "const": 32
+        }
+      },
+      "additionalProperties": false
+    },
+    "inheritedBoundary": {
+      "type": "object",
+      "required": [
+        "layer",
+        "m14_artifact_layers",
+        "main_executable_reference_file",
+        "preserved_kernel",
+        "release",
+        "release_notes",
+        "release_status",
+        "test_report",
+        "validated_commit",
+        "validation_index"
+      ],
+      "properties": {
+        "layer": {
+          "type": "string",
+          "const": "M14 — Physical Implementation Correlation and Production Qualification Package"
+        },
+        "m14_artifact_layers": {
+          "type": "array",
+          "minItems": 8,
+          "maxItems": 8,
+          "prefixItems": [
+            {
+              "type": "string",
+              "const": "hierarchical_ultrametric_topology_model"
+            },
+            {
+              "type": "string",
+              "const": "fractal_coupling_weight_map"
+            },
+            {
+              "type": "string",
+              "const": "multiscale_phase_coherence_map"
+            },
+            {
+              "type": "string",
+              "const": "cluster_local_thermal_field"
+            },
+            {
+              "type": "string",
+              "const": "cross_cluster_propagation_map"
+            },
+            {
+              "type": "string",
+              "const": "localized_hotspot_containment_harness"
+            },
+            {
+              "type": "string",
+              "const": "dense_hierarchical_equivalence_map"
+            },
+            {
+              "type": "string",
+              "const": "physical_domain_correlation_package"
+            }
+          ],
+          "items": false
+        },
+        "main_executable_reference_file": {
+          "type": "string",
+          "const": "frp_prototype_v1_6_0.py"
+        },
+        "preserved_kernel": {
+          "$ref": "#/$defs/preservedKernel"
+        },
+        "release": {
+          "type": "string",
+          "const": "FRP v1.6.0"
+        },
+        "release_notes": {
+          "type": "string",
+          "const": "RELEASE_NOTES_v1_6_0.md"
+        },
+        "release_status": {
+          "type": "string",
+          "const": "PUBLISHED"
+        },
+        "test_report": {
+          "type": "string",
+          "const": "TEST_REPORT_v1_6_0.md"
+        },
+        "validated_commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{7}$",
+          "const": "09141fc"
+        },
+        "validation_index": {
+          "type": "string",
+          "const": "FRP_VALIDATION_INDEX_v1_6_0.md"
+        }
+      },
+      "additionalProperties": false
+    },
+    "interfaceProfile": {
+      "type": "object",
+      "required": [
+        "exponential_profile",
+        "gamma",
+        "general_scalar",
+        "multiply_rules",
+        "normalized_coefficient",
+        "phase",
+        "phase_overflow",
+        "rounding",
+        "saturation",
+        "trigonometric_profile"
+      ],
+      "properties": {
+        "exponential_profile": {
+          "$ref": "#/$defs/exponentialProfile"
+        },
+        "gamma": {
+          "$ref": "#/$defs/gammaFormat"
+        },
+        "general_scalar": {
+          "$ref": "#/$defs/generalScalarFormat"
+        },
+        "multiply_rules": {
+          "$ref": "#/$defs/multiplyRules"
+        },
+        "normalized_coefficient": {
+          "$ref": "#/$defs/normalizedCoefficientFormat"
+        },
+        "phase": {
+          "$ref": "#/$defs/phaseFormat"
+        },
+        "phase_overflow": {
+          "type": "string",
+          "const": "modulo 2^32 wrap"
+        },
+        "rounding": {
+          "type": "string",
+          "const": "round-to-nearest, half cases away from zero"
+        },
+        "saturation": {
+          "type": "string",
+          "const": "signed destination saturation"
+        },
+        "trigonometric_profile": {
+          "$ref": "#/$defs/trigonometricProfile"
+        }
+      },
+      "additionalProperties": false
+    },
+    "multiplyRules": {
+      "type": "object",
+      "required": [
+        "mul_q16",
+        "mul_q16_q30",
+        "mul_q30"
+      ],
+      "properties": {
+        "mul_q16": {
+          "type": "string",
+          "const": "round_shift(a * b, 16)"
+        },
+        "mul_q16_q30": {
+          "type": "string",
+          "const": "round_shift(a * b, 30)"
+        },
+        "mul_q30": {
+          "type": "string",
+          "const": "round_shift(a * b, 30)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "normalizedCoefficientFormat": {
+      "type": "object",
+      "required": [
+        "fraction_bits",
+        "name",
+        "scale",
+        "signed",
+        "width"
+      ],
+      "properties": {
+        "fraction_bits": {
+          "type": "integer",
+          "const": 30
+        },
+        "name": {
+          "type": "string",
+          "const": "S32Q30"
+        },
+        "scale": {
+          "type": "integer",
+          "const": 1073741824
+        },
+        "signed": {
+          "type": "boolean",
+          "const": true
+        },
+        "width": {
+          "type": "integer",
+          "const": 32
+        }
+      },
+      "additionalProperties": false
+    },
+    "phaseFormat": {
+      "type": "object",
+      "required": [
+        "full_cycle_relation",
+        "modulus",
+        "name",
+        "signed",
+        "width"
+      ],
+      "properties": {
+        "full_cycle_relation": {
+          "type": "string",
+          "const": "2^32 phase units = 2 pi"
+        },
+        "modulus": {
+          "type": "integer",
+          "const": 4294967296
+        },
+        "name": {
+          "type": "string",
+          "const": "PHASE_U32"
+        },
+        "signed": {
+          "type": "boolean",
+          "const": false
+        },
+        "width": {
+          "type": "integer",
+          "const": 32
+        }
+      },
+      "additionalProperties": false
+    },
+    "preservedKernel": {
+      "type": "object",
+      "required": [
+        "active_neutral_state",
+        "balanced_ternary_states",
+        "pressure_relation",
+        "scheduler_modes",
+        "stability_relation",
+        "tick_separated_neutral_routing"
+      ],
+      "properties": {
+        "active_neutral_state": {
+          "type": "integer",
+          "const": 0
+        },
+        "balanced_ternary_states": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "integer",
+              "const": -1
+            },
+            {
+              "type": "integer",
+              "const": 0
+            },
+            {
+              "type": "integer",
+              "const": 1
+            }
+          ],
+          "items": false
+        },
+        "pressure_relation": {
+          "type": "string",
+          "const": "P(t) = heat + switch_load"
+        },
+        "scheduler_modes": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "string",
+              "const": "free"
+            },
+            {
+              "type": "string",
+              "const": "7/1"
+            },
+            {
+              "type": "string",
+              "const": "1/7"
+            }
+          ],
+          "items": false
+        },
+        "stability_relation": {
+          "type": "string",
+          "const": "C(t) > P(t)"
+        },
+        "tick_separated_neutral_routing": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "trigonometricProfile": {
+      "type": "object",
+      "required": [
+        "address_bits",
+        "index_relation",
+        "output_type",
+        "sin_lut_sha256",
+        "table_entries"
+      ],
+      "properties": {
+        "address_bits": {
+          "type": "integer",
+          "const": 12
+        },
+        "index_relation": {
+          "type": "string",
+          "const": "phase_word >> 20"
+        },
+        "output_type": {
+          "type": "string",
+          "const": "S32Q30"
+        },
+        "sin_lut_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "const": "acb0dfe2c00998840f9ca00f9ef9e3b46011db6c745faa59a9db13c4121cc57b"
+        },
+        "table_entries": {
+          "type": "integer",
+          "const": 4096
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
