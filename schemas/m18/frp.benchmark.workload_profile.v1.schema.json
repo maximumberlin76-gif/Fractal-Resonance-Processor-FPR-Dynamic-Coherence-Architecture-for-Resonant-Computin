@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.benchmark.workload_profile.v1",
+  "title": "FRP Comparative Architecture Workload Profile v1",
+  "description": "Formal schema for the registry-bound deterministic comparative architecture workload profile.",
+  "type": "object",
+  "x-frp-schema-identifier": "frp.benchmark.workload_profile.v1",
+  "x-frp-artifact-role": "deterministic_workload_profile",
+  "x-frp-schema-version": "1",
+  "x-frp-producer-path": null,
+  "x-frp-producer-version": null,
+  "additionalProperties": false,
+  "required": [
+    "num_cells",
+    "command_count",
+    "seed",
+    "issue_policy",
+    "max_completion_cycles_per_command",
+    "final_cooldown_cycles"
+  ],
+  "properties": {
+    "num_cells": {
+      "type": "integer",
+      "const": 16,
+      "minimum": 1
+    },
+    "command_count": {
+      "type": "integer",
+      "const": 256,
+      "minimum": 1
+    },
+    "seed": {
+      "type": "integer",
+      "const": 76,
+      "minimum": 0,
+      "maximum": 18446744073709551615
+    },
+    "issue_policy": {
+      "type": "string",
+      "enum": [
+        "transaction_serial"
+      ]
+    },
+    "max_completion_cycles_per_command": {
+      "type": "integer",
+      "const": 64,
+      "minimum": 1
+    },
+    "final_cooldown_cycles": {
+      "type": "integer",
+      "const": 32,
+      "minimum": 0
+    }
+  }
+}
