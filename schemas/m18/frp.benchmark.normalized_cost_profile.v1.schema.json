@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.benchmark.normalized_cost_profile.v1",
+  "title": "FRP Normalized Cost Profile v1",
+  "description": "Formal schema for the normalized activity-cost profile used by the FRP Comparative Architecture Benchmark Suite.",
+  "type": "object",
+  "x-frp-schema-identifier": "frp.benchmark.normalized_cost_profile.v1",
+  "x-frp-artifact-role": "normalized_activity_cost_profile",
+  "x-frp-schema-version": "1",
+  "x-frp-producer-path": null,
+  "x-frp-producer-version": null,
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "suite_name",
+    "profile_name",
+    "cost_unit",
+    "costs",
+    "cost_profile_sha256"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "frp.benchmark.normalized_cost_profile.v1"
+    },
+    "suite_name": {
+      "type": "string",
+      "const": "FRP Comparative Architecture Benchmark Suite"
+    },
+    "profile_name": {
+      "type": "string",
+      "const": "unit_event_cost_v1"
+    },
+    "cost_unit": {
+      "type": "string",
+      "const": "normalized_activity_unit"
+    },
+    "costs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "encoded_bit_toggle",
+        "clocked_state_bit",
+        "register_write_bit",
+        "comparison_event",
+        "control_event",
+        "queue_read",
+        "queue_write",
+        "lut_read_32",
+        "fixed_point_multiply_32x32",
+        "fixed_point_accumulate_64",
+        "fixed_point_add_32",
+        "fixed_point_compare_32"
+      ],
+      "properties": {
+        "encoded_bit_toggle": {
+          "type": "number",
+          "minimum": 0
+        },
+        "clocked_state_bit": {
+          "type": "number",
+          "minimum": 0
+        },
+        "register_write_bit": {
+          "type": "number",
+          "minimum": 0
+        },
+        "comparison_event": {
+          "type": "number",
+          "minimum": 0
+        },
+        "control_event": {
+          "type": "number",
+          "minimum": 0
+        },
+        "queue_read": {
+          "type": "number",
+          "minimum": 0
+        },
+        "queue_write": {
+          "type": "number",
+          "minimum": 0
+        },
+        "lut_read_32": {
+          "type": "number",
+          "minimum": 0
+        },
+        "fixed_point_multiply_32x32": {
+          "type": "number",
+          "minimum": 0
+        },
+        "fixed_point_accumulate_64": {
+          "type": "number",
+          "minimum": 0
+        },
+        "fixed_point_add_32": {
+          "type": "number",
+          "minimum": 0
+        },
+        "fixed_point_compare_32": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "not": {
+        "properties": {
+          "encoded_bit_toggle": {
+            "const": 0
+          },
+          "clocked_state_bit": {
+            "const": 0
+          },
+          "register_write_bit": {
+            "const": 0
+          },
+          "comparison_event": {
+            "const": 0
+          },
+          "control_event": {
+            "const": 0
+          },
+          "queue_read": {
+            "const": 0
+          },
+          "queue_write": {
+            "const": 0
+          },
+          "lut_read_32": {
+            "const": 0
+          },
+          "fixed_point_multiply_32x32": {
+            "const": 0
+          },
+          "fixed_point_accumulate_64": {
+            "const": 0
+          },
+          "fixed_point_add_32": {
+            "const": 0
+          },
+          "fixed_point_compare_32": {
+            "const": 0
+          }
+        }
+      }
+    },
+    "cost_profile_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}
