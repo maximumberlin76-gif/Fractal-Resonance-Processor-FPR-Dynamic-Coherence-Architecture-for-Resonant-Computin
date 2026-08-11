@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.m15.reference_preload.v1.7.0",
+  "title": "FRP M15 Reference Preload v1.7.0",
+  "description": "Formal registry-bound schema for the canonical FRP v1.7.0 M15 deterministic reference preload.",
+  "x-frp-schema-identifier": "frp.m15.reference_preload.v1.7.0",
+  "x-frp-artifact-role": "reference_preload",
+  "x-frp-schema-version": "1.7.0",
+  "x-frp-producer-path": "frp_prototype_v1_7_0.py",
+  "x-frp-producer-version": "1.7.0",
+  "type": "object",
+  "required": [
+    "cells",
+    "frequency_current_q16",
+    "frequency_target_q16",
+    "gamma_noise_state_q16",
+    "gamma_noise_target_q16",
+    "heat_q16",
+    "phase_words",
+    "scheduler",
+    "seed",
+    "states",
+    "states_packed_hex"
+  ],
+  "properties": {
+    "cells": {
+      "type": "integer",
+      "const": 16
+    },
+    "frequency_current_q16": {
+      "$ref": "#/$defs/frequencyCurrentQ16"
+    },
+    "frequency_target_q16": {
+      "$ref": "#/$defs/frequencyTargetQ16"
+    },
+    "gamma_noise_state_q16": {
+      "$ref": "#/$defs/gammaNoiseStateQ16"
+    },
+    "gamma_noise_target_q16": {
+      "$ref": "#/$defs/gammaNoiseTargetQ16"
+    },
+    "heat_q16": {
+      "$ref": "#/$defs/heatQ16"
+    },
+    "phase_words": {
+      "$ref": "#/$defs/phaseWords"
+    },
+    "scheduler": {
+      "type": "string",
+      "const": "7/1"
+    },
+    "seed": {
+      "type": "integer",
+      "const": 76
+    },
+    "states": {
+      "$ref": "#/$defs/states"
+    },
+    "states_packed_hex": {
+      "type": "string",
+      "pattern": "^[0-9A-F]{8}$",
+      "const": "0F00CCC0"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "frequencyCurrentQ16": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "items": {
+        "type": "integer"
+      },
+      "const": [
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536
+      ]
+    },
+    "frequencyTargetQ16": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "items": {
+        "type": "integer"
+      },
+      "const": [
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536,
+        65536
+      ]
+    },
+    "gammaNoiseStateQ16": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "items": {
+        "type": "integer"
+      },
+      "const": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "gammaNoiseTargetQ16": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "items": {
+        "type": "integer"
+      },
+      "const": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "heatQ16": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "items": {
+        "type": "integer"
+      },
+      "const": [
+        3277,
+        3277,
+        3277,
+        3277,
+        3277,
+        3277,
+        3277,
+        3277,
+        3277,
+        3277,
+        3277,
+        3277,
+        3277,
+        3277,
+        3277,
+        3277
+      ]
+    },
+    "phaseWords": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "items": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 4294967295
+      },
+      "const": [
+        976776619,
+        3389672785,
+        259450368,
+        2830792365,
+        2534686781,
+        2606511353,
+        4214089132,
+        3190348520,
+        1425845233,
+        1961664705,
+        273794485,
+        2701698333,
+        1729021509,
+        428646568,
+        2725990942,
+        3282581237
+      ]
+    },
+    "states": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "items": {
+        "type": "integer",
+        "enum": [
+          -1,
+          0,
+          1
+        ]
+      },
+      "const": [
+        0,
+        0,
+        0,
+        -1,
+        0,
+        -1,
+        0,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        -1,
+        -1,
+        0,
+        0
+      ]
+    }
+  }
+}
