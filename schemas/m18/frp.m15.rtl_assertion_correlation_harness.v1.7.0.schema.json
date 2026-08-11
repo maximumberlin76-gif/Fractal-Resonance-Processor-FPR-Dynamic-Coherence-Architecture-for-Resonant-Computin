@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.m15.rtl_assertion_correlation_harness.v1.7.0",
+  "title": "FRP M15 RTL Assertion Correlation Harness v1.7.0",
+  "description": "Formal schema for the canonical FRP v1.7.0 M15 RTL assertion-correlation harness.",
+  "x-frp-schema-identifier": "frp.m15.rtl_assertion_correlation_harness.v1.7.0",
+  "x-frp-artifact-role": "rtl_assertion_correlation_harness",
+  "x-frp-schema-version": "1.7.0",
+  "x-frp-producer-path": "frp_prototype_v1_7_0.py",
+  "x-frp-producer-version": "1.7.0",
+  "type": "object",
+  "required": [
+    "assertion_count",
+    "assertions",
+    "direct_transition_rules",
+    "exact_comparison_rule",
+    "kind",
+    "milestone",
+    "scheduler_modes",
+    "schema",
+    "version"
+  ],
+  "properties": {
+    "assertion_count": {
+      "type": "integer",
+      "const": 13
+    },
+    "assertions": {
+      "$ref": "#/$defs/assertions"
+    },
+    "direct_transition_rules": {
+      "$ref": "#/$defs/directTransitionRules"
+    },
+    "exact_comparison_rule": {
+      "type": "string",
+      "const": "actual integer field == expected integer field"
+    },
+    "kind": {
+      "type": "string",
+      "const": "rtl_assertion_correlation_harness"
+    },
+    "milestone": {
+      "type": "string",
+      "const": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package"
+    },
+    "scheduler_modes": {
+      "$ref": "#/$defs/schedulerModes"
+    },
+    "schema": {
+      "type": "string",
+      "const": "frp.m15.rtl_assertion_correlation_harness.v1.7.0"
+    },
+    "version": {
+      "type": "string",
+      "const": "1.7.0"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "assertions": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "uniqueItems": true,
+      "const": [
+        "valid balanced ternary encoding",
+        "reserved-state exclusion",
+        "direct polarity transition exclusion",
+        "active neutral route insertion",
+        "target application after ready tick",
+        "actual_direct_events = 0",
+        "transition-limit enforcement",
+        "scheduler sequence",
+        "scheduler count consistency",
+        "phase topology fixed-point normalization",
+        "thermal topology fixed-point normalization",
+        "deterministic trace tick count",
+        "exact cycle-output match"
+      ]
+    },
+    "directTransitionRules": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "const": [
+        "previous_state = -1 and current_state = 1 is a failure",
+        "previous_state = 1 and current_state = -1 is a failure",
+        "valid opposite-polarity migration requires intermediate state 0"
+      ]
+    },
+    "schedulerModes": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "const": [
+        "free",
+        "7/1",
+        "1/7"
+      ]
+    }
+  }
+}
