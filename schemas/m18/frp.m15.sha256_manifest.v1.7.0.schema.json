@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.m15.sha256_manifest.v1.7.0",
+  "title": "FRP M15 SHA-256 Manifest v1.7.0",
+  "description": "Formal registry-bound schema for the canonical FRP v1.7.0 M15 vector-package SHA-256 manifest.",
+  "x-frp-schema-identifier": "frp.m15.sha256_manifest.v1.7.0",
+  "x-frp-artifact-role": "sha256_manifest",
+  "x-frp-schema-version": "1.7.0",
+  "x-frp-producer-path": "frp_prototype_v1_7_0.py",
+  "x-frp-producer-version": "1.7.0",
+  "type": "object",
+  "minProperties": 9,
+  "maxProperties": 9,
+  "required": [
+    "frp_m15_cell_trace.vec",
+    "frp_m15_full_correlation_vectors.vec",
+    "frp_m15_kernel_vectors.vec",
+    "frp_m15_pending_routes.trace",
+    "frp_m15_reference_preload.json",
+    "frp_m15_scheduler_1_7_vectors.vec",
+    "frp_m15_scheduler_7_1_vectors.vec",
+    "frp_m15_scheduler_free_vectors.vec",
+    "frp_m15_trig_lut_q30.vec"
+  ],
+  "properties": {
+    "frp_m15_cell_trace.vec": {
+      "$ref": "#/$defs/cellTraceDigest"
+    },
+    "frp_m15_full_correlation_vectors.vec": {
+      "$ref": "#/$defs/fullCorrelationVectorsDigest"
+    },
+    "frp_m15_kernel_vectors.vec": {
+      "$ref": "#/$defs/kernelVectorsDigest"
+    },
+    "frp_m15_pending_routes.trace": {
+      "$ref": "#/$defs/pendingRoutesDigest"
+    },
+    "frp_m15_reference_preload.json": {
+      "$ref": "#/$defs/referencePreloadDigest"
+    },
+    "frp_m15_scheduler_1_7_vectors.vec": {
+      "$ref": "#/$defs/schedulerOneSevenDigest"
+    },
+    "frp_m15_scheduler_7_1_vectors.vec": {
+      "$ref": "#/$defs/schedulerSevenOneDigest"
+    },
+    "frp_m15_scheduler_free_vectors.vec": {
+      "$ref": "#/$defs/schedulerFreeDigest"
+    },
+    "frp_m15_trig_lut_q30.vec": {
+      "$ref": "#/$defs/trigLutDigest"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "cellTraceDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "const": "b3192cbfbe89b31517212a09fd4d14f58180e2d1594a45412856399c4be5781d"
+    },
+    "fullCorrelationVectorsDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "const": "c2e2a92d7031b85d2681fdaba839bbc4a0d833be14c8516d15dcaed347940d73"
+    },
+    "kernelVectorsDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "const": "87e063cdbe49d32ecfda129e0a5c6a8c77d022fdfa07eeed891a1b4f271d29bf"
+    },
+    "pendingRoutesDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "const": "600125de9484bb3b2275a98a64eba06d751a8ce129e29c3eb49b14142e01afc5"
+    },
+    "referencePreloadDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "const": "88cf005a76a659c0f51a16a1499b6fa6251b09eb26434538eb27ca5718b1a4a0"
+    },
+    "schedulerOneSevenDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "const": "5cf1912cbc492004656f41fff4ff36e5146e281b4f79a0e90606747b7c0bc649"
+    },
+    "schedulerSevenOneDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "const": "9e777e7eb9fa4adeca52bc83ebedd5275aad2ebbc32f34140102131cd4aa4c7e"
+    },
+    "schedulerFreeDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "const": "836b9e2fb5079f93f9666e534823735c6f22f48c8def4b6301ec3119ac52a518"
+    },
+    "trigLutDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "const": "caadbbf97fe0bacf2d82eaa5da4cd1fb6cf1e1514809d3e743311e19893d11bb"
+    }
+  }
+}
