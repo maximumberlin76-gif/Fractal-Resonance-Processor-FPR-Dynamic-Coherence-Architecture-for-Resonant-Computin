@@ -1,0 +1,385 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.m18.canonical_artifact_qualification.v2.0.0",
+  "title": "FRP M18 Canonical Artifact Qualification v2.0.0",
+  "description": "Formal schema for the deterministic FRP M18 canonical artifact qualification record.",
+  "x-frp-schema-identifier": "frp.m18.canonical_artifact_qualification.v2.0.0",
+  "x-frp-artifact-role": "canonical_artifact_qualification",
+  "x-frp-schema-version": "2.0.0",
+  "x-frp-producer-path": "frp_m18_canonical_artifacts.py",
+  "x-frp-producer-version": "2.0.0",
+  "type": "object",
+  "required": [
+    "artifact_set_sha256",
+    "check_count",
+    "check_order",
+    "checks",
+    "failed_count",
+    "kind",
+    "manifest_path",
+    "manifest_sha256",
+    "milestone",
+    "not_evaluated_count",
+    "overall_status",
+    "passed_count",
+    "producer",
+    "producer_version",
+    "registry_path",
+    "registry_sha256",
+    "schema",
+    "upstream_release",
+    "version",
+    "warning_count"
+  ],
+  "properties": {
+    "artifact_set_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "check_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "check_order": {
+      "type": "string",
+      "const": "category_check_id_subject_path"
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/checkRecord"
+      }
+    },
+    "failed_count": {
+      "$ref": "#/$defs/nonnegativeInteger"
+    },
+    "kind": {
+      "type": "string",
+      "const": "canonical_artifact_qualification"
+    },
+    "manifest_path": {
+      "type": "string",
+      "const": "artifacts/m18/manifests/canonical-artifact-manifest.json"
+    },
+    "manifest_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "milestone": {
+      "type": "string",
+      "const": "M18 — Formal Schema and Canonical Artifact Publication"
+    },
+    "not_evaluated_count": {
+      "$ref": "#/$defs/nonnegativeInteger"
+    },
+    "overall_status": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "passed_count": {
+      "$ref": "#/$defs/nonnegativeInteger"
+    },
+    "producer": {
+      "type": "string",
+      "const": "frp_m18_canonical_artifacts.py"
+    },
+    "producer_version": {
+      "type": "string",
+      "const": "2.0.0"
+    },
+    "registry_path": {
+      "type": "string",
+      "const": "schemas/m18/frp_m18_schema_registry.json"
+    },
+    "registry_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "schema": {
+      "type": "string",
+      "const": "frp.m18.canonical_artifact_qualification.v2.0.0"
+    },
+    "upstream_release": {
+      "type": "string",
+      "const": "FRP v1.8.0 / M16"
+    },
+    "version": {
+      "type": "string",
+      "const": "2.0.0"
+    },
+    "warning_count": {
+      "$ref": "#/$defs/nonnegativeInteger"
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "overall_status": {
+            "const": "PASS"
+          }
+        },
+        "required": [
+          "overall_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "failed_count": {
+            "const": 0
+          },
+          "not_evaluated_count": {
+            "const": 0
+          },
+          "passed_count": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "warning_count": {
+            "const": 0
+          }
+        }
+      },
+      "else": {
+        "anyOf": [
+          {
+            "properties": {
+              "failed_count": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "failed_count"
+            ]
+          },
+          {
+            "properties": {
+              "warning_count": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "warning_count"
+            ]
+          },
+          {
+            "properties": {
+              "not_evaluated_count": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "not_evaluated_count"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "$defs": {
+    "checkRecord": {
+      "type": "object",
+      "required": [
+        "category",
+        "check_id",
+        "expected",
+        "message",
+        "observed",
+        "outcome",
+        "severity",
+        "subject_path"
+      ],
+      "properties": {
+        "category": {
+          "type": "string",
+          "enum": [
+            "registry",
+            "formal_schema",
+            "manifest",
+            "path",
+            "format",
+            "identity",
+            "structure",
+            "ternary_domain",
+            "scheduler",
+            "benchmark_relation",
+            "measurement_contour",
+            "vector_package",
+            "digest",
+            "determinism",
+            "immutability",
+            "publication_boundary"
+          ]
+        },
+        "check_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "expected": {
+          "$ref": "#/$defs/jsonValue"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": ".*\\S.*"
+        },
+        "observed": {
+          "$ref": "#/$defs/jsonValue"
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "FAIL",
+            "WARNING",
+            "NOT_EVALUATED"
+          ]
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "INFO",
+            "WARNING",
+            "ERROR"
+          ]
+        },
+        "subject_path": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/repositoryPath"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "outcome": {
+                "const": "PASS"
+              }
+            },
+            "required": [
+              "outcome"
+            ]
+          },
+          "then": {
+            "properties": {
+              "severity": {
+                "const": "INFO"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "outcome": {
+                "const": "FAIL"
+              }
+            },
+            "required": [
+              "outcome"
+            ]
+          },
+          "then": {
+            "properties": {
+              "severity": {
+                "const": "ERROR"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "outcome": {
+                "const": "WARNING"
+              }
+            },
+            "required": [
+              "outcome"
+            ]
+          },
+          "then": {
+            "properties": {
+              "severity": {
+                "const": "WARNING"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "outcome": {
+                "const": "NOT_EVALUATED"
+              }
+            },
+            "required": [
+              "outcome"
+            ]
+          },
+          "then": {
+            "properties": {
+              "severity": {
+                "const": "ERROR"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "jsonValue": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        }
+      ]
+    },
+    "nonnegativeInteger": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "repositoryPath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*//)(?!.*\\\\)(?!.*(?:^|/)\\.\\.?(?:/|$))[^/]+(?:/[^/]+)*$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}
