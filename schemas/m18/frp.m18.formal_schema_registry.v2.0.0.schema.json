@@ -1,0 +1,748 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.m18.formal_schema_registry.v2.0.0",
+  "title": "FRP M18 Formal Schema Registry v2.0.0",
+  "description": "Formal schema for the deterministic FRP M18 supported-schema registry.",
+  "x-frp-schema-identifier": "frp.m18.formal_schema_registry.v2.0.0",
+  "x-frp-artifact-role": "formal_schema_registry",
+  "x-frp-schema-version": "2.0.0",
+  "x-frp-producer-path": "frp_m18_canonical_artifacts.py",
+  "x-frp-producer-version": "2.0.0",
+  "type": "object",
+  "required": [
+    "json_schema_dialect",
+    "kind",
+    "milestone",
+    "record_order",
+    "records",
+    "registry_content_sha256",
+    "registry_digest_scope",
+    "schema",
+    "schema_count",
+    "version"
+  ],
+  "properties": {
+    "json_schema_dialect": {
+      "type": "string",
+      "const": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "kind": {
+      "type": "string",
+      "const": "formal_schema_registry"
+    },
+    "milestone": {
+      "type": "string",
+      "const": "M18 — Formal Schema and Canonical Artifact Publication"
+    },
+    "record_order": {
+      "type": "string",
+      "const": "schema_identifier_lexicographic"
+    },
+    "records": {
+      "$ref": "#/$defs/registryRecords"
+    },
+    "registry_content_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "registry_digest_scope": {
+      "type": "string",
+      "const": "canonical_compact_json_without_registry_content_sha256"
+    },
+    "schema": {
+      "type": "string",
+      "const": "frp.m18.formal_schema_registry.v2.0.0"
+    },
+    "schema_count": {
+      "type": "integer",
+      "const": 24
+    },
+    "version": {
+      "type": "string",
+      "const": "2.0.0"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "registryRecords": {
+      "type": "array",
+      "minItems": 24,
+      "maxItems": 24,
+      "uniqueItems": true,
+      "prefixItems": [
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.benchmark.architecture_comparison.v1"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.benchmark.architecture_comparison.v1"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.benchmark.architecture_comparison.v1.schema.json"
+                },
+                "schema_version": {
+                  "const": "1"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.benchmark.hardware_sensitivity_comparison.v1"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.benchmark.hardware_sensitivity_comparison.v1"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.benchmark.hardware_sensitivity_comparison.v1.schema.json"
+                },
+                "schema_version": {
+                  "const": "1"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.benchmark.hardware_sensitivity_cost_profile.v1"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.benchmark.hardware_sensitivity_cost_profile.v1"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.benchmark.hardware_sensitivity_cost_profile.v1.schema.json"
+                },
+                "schema_version": {
+                  "const": "1"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.benchmark.normalized_cost_profile.v1"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.benchmark.normalized_cost_profile.v1"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.benchmark.normalized_cost_profile.v1.schema.json"
+                },
+                "schema_version": {
+                  "const": "1"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.benchmark.thermal_proxy_profile.v1"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.benchmark.thermal_proxy_profile.v1"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.benchmark.thermal_proxy_profile.v1.schema.json"
+                },
+                "schema_version": {
+                  "const": "1"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.benchmark.workload_profile.v1"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.benchmark.workload_profile.v1"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.benchmark.workload_profile.v1.schema.json"
+                },
+                "schema_version": {
+                  "const": "1"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.m15.balanced_ternary_hardware_encoding_map.v1.7.0"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.m15.balanced_ternary_hardware_encoding_map.v1.7.0"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.m15.balanced_ternary_hardware_encoding_map.v1.7.0.schema.json"
+                },
+                "schema_version": {
+                  "const": "1.7.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.m15.cycle_exact_reference_trace.v1.7.0"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.m15.cycle_exact_reference_trace.v1.7.0"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.m15.cycle_exact_reference_trace.v1.7.0.schema.json"
+                },
+                "schema_version": {
+                  "const": "1.7.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.m15.fixed_point_interface_profile.v1.7.0"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.m15.fixed_point_interface_profile.v1.7.0"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.m15.fixed_point_interface_profile.v1.7.0.schema.json"
+                },
+                "schema_version": {
+                  "const": "1.7.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.m15.qualification_closure_manifest.v1.7.0"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.m15.qualification_closure_manifest.v1.7.0"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.m15.qualification_closure_manifest.v1.7.0.schema.json"
+                },
+                "schema_version": {
+                  "const": "1.7.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.m15.quantized_reference_shadow_model.v1.7.0"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.m15.quantized_reference_shadow_model.v1.7.0"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.m15.quantized_reference_shadow_model.v1.7.0.schema.json"
+                },
+                "schema_version": {
+                  "const": "1.7.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.m15.reference_preload.v1.7.0"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.m15.reference_preload.v1.7.0"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.m15.reference_preload.v1.7.0.schema.json"
+                },
+                "schema_version": {
+                  "const": "1.7.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.m15.reference_rtl_equivalence_report.v1.7.0"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.m15.reference_rtl_equivalence_report.v1.7.0"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.m15.reference_rtl_equivalence_report.v1.7.0.schema.json"
+                },
+                "schema_version": {
+                  "const": "1.7.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.m15.rtl_assertion_correlation_harness.v1.7.0"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.m15.rtl_assertion_correlation_harness.v1.7.0"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.m15.rtl_assertion_correlation_harness.v1.7.0.schema.json"
+                },
+                "schema_version": {
+                  "const": "1.7.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.m15.rtl_comparison_vector_package.v1.7.0"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.m15.rtl_comparison_vector_package.v1.7.0"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.m15.rtl_comparison_vector_package.v1.7.0.schema.json"
+                },
+                "schema_version": {
+                  "const": "1.7.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.m15.sha256_manifest.v1.7.0"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.m15.sha256_manifest.v1.7.0"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.m15.sha256_manifest.v1.7.0.schema.json"
+                },
+                "schema_version": {
+                  "const": "1.7.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.m15.synthesizable_rtl_reference_core.v1.7.0"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.m15.synthesizable_rtl_reference_core.v1.7.0"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.m15.synthesizable_rtl_reference_core.v1.7.0.schema.json"
+                },
+                "schema_version": {
+                  "const": "1.7.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.m15.systemverilog_testbench_interface_map.v1.7.0"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.m15.systemverilog_testbench_interface_map.v1.7.0"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.m15.systemverilog_testbench_interface_map.v1.7.0.schema.json"
+                },
+                "schema_version": {
+                  "const": "1.7.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.m18.canonical_artifact_manifest.v2.0.0"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.m18.canonical_artifact_manifest.v2.0.0"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.m18.canonical_artifact_manifest.v2.0.0.schema.json"
+                },
+                "schema_version": {
+                  "const": "2.0.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.m18.canonical_artifact_qualification.v2.0.0"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.m18.canonical_artifact_qualification.v2.0.0"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.m18.canonical_artifact_qualification.v2.0.0.schema.json"
+                },
+                "schema_version": {
+                  "const": "2.0.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.m18.canonical_artifact_self_test.v2.0.0"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.m18.canonical_artifact_self_test.v2.0.0"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.m18.canonical_artifact_self_test.v2.0.0.schema.json"
+                },
+                "schema_version": {
+                  "const": "2.0.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.m18.formal_schema_registry.v2.0.0"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.m18.formal_schema_registry.v2.0.0"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.m18.formal_schema_registry.v2.0.0.schema.json"
+                },
+                "schema_version": {
+                  "const": "2.0.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.m3.benchmark_matrix.v1.7.0"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.m3.benchmark_matrix.v1.7.0"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.m3.benchmark_matrix.v1.7.0.schema.json"
+                },
+                "schema_version": {
+                  "const": "1.7.0"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/registryRecord"
+            },
+            {
+              "properties": {
+                "schema_identifier": {
+                  "const": "frp.structured_output.v1.7.0"
+                },
+                "schema_urn": {
+                  "const": "urn:frp:schema:frp.structured_output.v1.7.0"
+                },
+                "schema_path": {
+                  "const": "schemas/m18/frp.structured_output.v1.7.0.schema.json"
+                },
+                "schema_version": {
+                  "const": "1.7.0"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "items": false
+    },
+    "registryRecord": {
+      "type": "object",
+      "required": [
+        "artifact_format",
+        "artifact_role",
+        "canonical_artifact_paths",
+        "identity_basis",
+        "identity_class",
+        "measurement_contour",
+        "producer_path",
+        "producer_version",
+        "required",
+        "schema_identifier",
+        "schema_path",
+        "schema_urn",
+        "schema_version",
+        "supported",
+        "upstream_milestone",
+        "upstream_release",
+        "validation_mode"
+      ],
+      "properties": {
+        "artifact_format": {
+          "type": "string",
+          "const": "json"
+        },
+        "artifact_role": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "canonical_artifact_paths": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/repositoryPath"
+          }
+        },
+        "identity_basis": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "identity_class": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "measurement_contour": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "producer_path": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/repositoryPath"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "producer_version": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "schema_identifier": {
+          "type": "string",
+          "pattern": "^frp(?:\\.[a-z0-9_]+)+\\.v[0-9]+(?:\\.[0-9]+){0,2}$"
+        },
+        "schema_path": {
+          "type": "string",
+          "pattern": "^schemas/m18/frp(?:\\.[a-z0-9_]+)+\\.v[0-9]+(?:\\.[0-9]+){0,2}\\.schema\\.json$"
+        },
+        "schema_urn": {
+          "type": "string",
+          "pattern": "^urn:frp:schema:frp(?:\\.[a-z0-9_]+)+\\.v[0-9]+(?:\\.[0-9]+){0,2}$"
+        },
+        "schema_version": {
+          "type": "string",
+          "enum": [
+            "1",
+            "1.7.0",
+            "2.0.0"
+          ]
+        },
+        "supported": {
+          "type": "boolean"
+        },
+        "upstream_milestone": {
+          "type": "string",
+          "minLength": 1
+        },
+        "upstream_release": {
+          "type": "string",
+          "minLength": 1
+        },
+        "validation_mode": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "repositoryPath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*//)(?!.*\\\\)(?!.*(?:^|/)\\.\\.?(?:/|$))[^/]+(?:/[^/]+)*$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}
