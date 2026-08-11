@@ -1,0 +1,808 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.m18.canonical_artifact_manifest.v2.0.0",
+  "title": "FRP M18 Canonical Artifact Manifest v2.0.0",
+  "description": "Formal schema for the deterministic FRP M18 canonical artifact manifest.",
+  "x-frp-schema-identifier": "frp.m18.canonical_artifact_manifest.v2.0.0",
+  "x-frp-artifact-role": "canonical_artifact_manifest",
+  "x-frp-schema-version": "2.0.0",
+  "x-frp-producer-path": "frp_m18_canonical_artifacts.py",
+  "x-frp-producer-version": "2.0.0",
+  "type": "object",
+  "required": [
+    "artifact_count",
+    "artifact_order",
+    "artifact_set_sha256",
+    "artifacts",
+    "digest_algorithm",
+    "digest_scope",
+    "kind",
+    "milestone",
+    "producer",
+    "producer_version",
+    "schema",
+    "upstream_release",
+    "version"
+  ],
+  "properties": {
+    "artifact_count": {
+      "type": "integer",
+      "const": 64
+    },
+    "artifact_order": {
+      "type": "string",
+      "const": "repository_path_lexicographic"
+    },
+    "artifact_set_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "artifacts": {
+      "$ref": "#/$defs/artifactRecords"
+    },
+    "digest_algorithm": {
+      "type": "string",
+      "const": "sha256"
+    },
+    "digest_scope": {
+      "type": "string",
+      "const": "raw_bytes"
+    },
+    "kind": {
+      "type": "string",
+      "const": "canonical_artifact_manifest"
+    },
+    "milestone": {
+      "type": "string",
+      "const": "M18 — Formal Schema and Canonical Artifact Publication"
+    },
+    "producer": {
+      "type": "string",
+      "const": "frp_m18_canonical_artifacts.py"
+    },
+    "producer_version": {
+      "type": "string",
+      "const": "2.0.0"
+    },
+    "schema": {
+      "type": "string",
+      "const": "frp.m18.canonical_artifact_manifest.v2.0.0"
+    },
+    "upstream_release": {
+      "type": "string",
+      "const": "FRP v1.8.0 / M16"
+    },
+    "version": {
+      "type": "string",
+      "const": "2.0.0"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "artifactRecords": {
+      "type": "array",
+      "minItems": 64,
+      "maxItems": 64,
+      "uniqueItems": true,
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/benchmark_matrix/benchmark-matrix.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_exports/balanced-ternary-hardware-encoding-map.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_exports/cycle-exact-reference-trace.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_exports/fixed-point-interface-profile.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_exports/qualification-closure-manifest.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_exports/quantized-reference-shadow-model.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_exports/reference-rtl-equivalence-report.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_exports/rtl-assertion-correlation-harness.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_exports/rtl-comparison-vector-package.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_exports/synthesizable-rtl-reference-core.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_exports/systemverilog-testbench-interface-map.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_vectors/frp_m15_cell_trace.vec"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_vectors/frp_m15_full_correlation_vectors.vec"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_vectors/frp_m15_kernel_vectors.vec"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_vectors/frp_m15_pending_routes.trace"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_vectors/frp_m15_reference_preload.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_vectors/frp_m15_scheduler_1_7_vectors.vec"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_vectors/frp_m15_scheduler_7_1_vectors.vec"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_vectors/frp_m15_scheduler_free_vectors.vec"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_vectors/frp_m15_sha256_manifest.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/m15_vectors/frp_m15_trig_lut_q30.vec"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/structured_output/scaling-16.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/structured_output/scaling-32.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/structured_output/scaling-8.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/structured_output/self-test-1-7.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/structured_output/self-test-7-1.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/structured_output/self-test-default.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/structured_output/self-test-free.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/structured_output/structured-output.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/structured_output/trace-1-7.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/structured_output/trace-7-1.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/structured_output/trace-free.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "artifacts/m18/tabular/benchmark-matrix.csv"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "benchmarks/architecture_comparison/profiles/hardware_sensitivity_cost_profile_v1.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "benchmarks/architecture_comparison/profiles/normalized_cost_profile_v1.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "benchmarks/architecture_comparison/profiles/thermal_proxy_profile_v1.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "benchmarks/architecture_comparison/profiles/workload_profile_v1.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "benchmarks/architecture_comparison/results/reference_comparison_seed_76.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "benchmarks/architecture_comparison/results/reference_comparison_seed_76_hardware_sensitivity_v1.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.benchmark.architecture_comparison.v1.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.benchmark.hardware_sensitivity_comparison.v1.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.benchmark.hardware_sensitivity_cost_profile.v1.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.benchmark.normalized_cost_profile.v1.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.benchmark.thermal_proxy_profile.v1.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.benchmark.workload_profile.v1.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.m15.balanced_ternary_hardware_encoding_map.v1.7.0.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.m15.cycle_exact_reference_trace.v1.7.0.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.m15.fixed_point_interface_profile.v1.7.0.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.m15.qualification_closure_manifest.v1.7.0.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.m15.quantized_reference_shadow_model.v1.7.0.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.m15.reference_preload.v1.7.0.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.m15.reference_rtl_equivalence_report.v1.7.0.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.m15.rtl_assertion_correlation_harness.v1.7.0.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.m15.rtl_comparison_vector_package.v1.7.0.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.m15.sha256_manifest.v1.7.0.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.m15.synthesizable_rtl_reference_core.v1.7.0.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.m15.systemverilog_testbench_interface_map.v1.7.0.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.m18.canonical_artifact_manifest.v2.0.0.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.m18.canonical_artifact_qualification.v2.0.0.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.m18.canonical_artifact_self_test.v2.0.0.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.m18.formal_schema_registry.v2.0.0.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.m3.benchmark_matrix.v1.7.0.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp.structured_output.v1.7.0.schema.json"
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/artifactRecord",
+          "properties": {
+            "repository_path": {
+              "const": "schemas/m18/frp_m18_schema_registry.json"
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "artifactRecord": {
+      "type": "object",
+      "required": [
+        "artifact_class",
+        "byte_length",
+        "canonical",
+        "filename",
+        "format",
+        "identification_basis",
+        "measurement_contour",
+        "mutable",
+        "producer",
+        "producer_version",
+        "repository_path",
+        "schema_identifier",
+        "sha256"
+      ],
+      "properties": {
+        "artifact_class": {
+          "type": "string",
+          "enum": [
+            "formal_schema",
+            "schema_registry",
+            "structured_output",
+            "benchmark_matrix_json",
+            "benchmark_matrix_csv",
+            "comparative_benchmark",
+            "m15_export",
+            "m15_vector_member"
+          ]
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "canonical": {
+          "type": "boolean",
+          "const": true
+        },
+        "filename": {
+          "$ref": "#/$defs/filename"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "csv",
+            "headered_vector",
+            "headered_trace",
+            "vector_text"
+          ]
+        },
+        "identification_basis": {
+          "type": "string",
+          "enum": [
+            "embedded_schema",
+            "registry_binding",
+            "format_header",
+            "package_role"
+          ]
+        },
+        "measurement_contour": {
+          "type": "string",
+          "enum": [
+            "comparative_architecture_benchmark_suite",
+            "hardware_informed_sensitivity_qualification",
+            "m15_implementation_mapping_matrix",
+            "m18_canonical_artifact_publication"
+          ]
+        },
+        "mutable": {
+          "type": "boolean",
+          "const": false
+        },
+        "producer": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/repositoryPath"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "producer_command": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": ".*\\S.*"
+        },
+        "producer_version": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]+(?:\\.[0-9]+){0,2}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "repository_path": {
+          "$ref": "#/$defs/repositoryPath"
+        },
+        "schema_identifier": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^frp(?:\\.[a-z0-9_]+)+\\.v[0-9]+(?:\\.[0-9]+){0,2}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "identification_basis": {
+                "enum": [
+                  "embedded_schema",
+                  "registry_binding"
+                ]
+              }
+            },
+            "required": [
+              "identification_basis"
+            ]
+          },
+          "then": {
+            "properties": {
+              "schema_identifier": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "identification_basis": {
+                "const": "format_header"
+              }
+            },
+            "required": [
+              "identification_basis"
+            ]
+          },
+          "then": {
+            "properties": {
+              "format": {
+                "enum": [
+                  "headered_vector",
+                  "headered_trace"
+                ]
+              },
+              "schema_identifier": {
+                "const": "frp.m15.vector.v1"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "identification_basis": {
+                "const": "package_role"
+              }
+            },
+            "required": [
+              "identification_basis"
+            ]
+          },
+          "then": {
+            "properties": {
+              "format": {
+                "const": "vector_text"
+              },
+              "schema_identifier": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "filename": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!\\.\\.?$)(?!.*[/\\\\]).+$"
+    },
+    "repositoryPath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*//)(?!.*\\\\)(?!.*(?:^|/)\\.\\.?(?:/|$))[^/]+(?:/[^/]+)*$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}
