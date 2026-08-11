@@ -1,0 +1,346 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.m15.reference_rtl_equivalence_report.v1.7.0",
+  "title": "FRP M15 Reference RTL Equivalence Report v1.7.0",
+  "description": "Formal schema for the canonical FRP v1.7.0 M15 reference-to-RTL equivalence report.",
+  "x-frp-schema-identifier": "frp.m15.reference_rtl_equivalence_report.v1.7.0",
+  "x-frp-artifact-role": "reference_rtl_equivalence_report",
+  "x-frp-schema-version": "1.7.0",
+  "x-frp-producer-path": "frp_prototype_v1_7_0.py",
+  "x-frp-producer-version": "1.7.0",
+  "type": "object",
+  "required": [
+    "floating_reference_to_quantized_shadow",
+    "kind",
+    "milestone",
+    "quantized_shadow_deterministic_replay",
+    "rtl_exact_integer_comparison_contract",
+    "schema",
+    "version"
+  ],
+  "properties": {
+    "floating_reference_to_quantized_shadow": {
+      "$ref": "#/$defs/floatingReferenceToQuantizedShadow"
+    },
+    "kind": {
+      "type": "string",
+      "const": "reference_rtl_equivalence_report"
+    },
+    "milestone": {
+      "type": "string",
+      "const": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package"
+    },
+    "quantized_shadow_deterministic_replay": {
+      "$ref": "#/$defs/quantizedShadowDeterministicReplay"
+    },
+    "rtl_exact_integer_comparison_contract": {
+      "$ref": "#/$defs/rtlExactIntegerComparisonContract"
+    },
+    "schema": {
+      "type": "string",
+      "const": "frp.m15.reference_rtl_equivalence_report.v1.7.0"
+    },
+    "version": {
+      "type": "string",
+      "const": "1.7.0"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "floatSummary": {
+      "type": "object",
+      "const": {
+        "C_minus_P_final": 1.255549,
+        "C_minus_P_min": 0.776998,
+        "actual_direct_events": 0,
+        "balanced_ternary_state_domain": true,
+        "boundary_detected": false,
+        "cells": 16,
+        "cluster_coherence_mean_final": 0.999973,
+        "cluster_coherence_min": 0.229896,
+        "coherence_compression_final": 1.0,
+        "coherence_compression_min": 1.0,
+        "coherence_dispersion_across_clusters_peak": 0.162956,
+        "coupling_path": "hierarchical",
+        "effective_coherence_final": 0.989218,
+        "effective_coherence_min": 0.182354,
+        "effective_coupling_min": 0.28,
+        "first_C_minus_P_crossing": null,
+        "fractal_alpha": 0.7,
+        "frequency_lag_peak": 0.126,
+        "gamma_drift_peak": 0.0,
+        "gamma_nominal": 0.9424777960769379,
+        "gamma_nominal_q16": 61766,
+        "generated_power_peak": 0.056068,
+        "global_phase_coherence_final": 0.989218,
+        "heat_final": 0.090585,
+        "heat_peak": 0.096271,
+        "hierarchy_depth": 4,
+        "local_heat_peak": 0.197523,
+        "match": 1.0,
+        "match_q16": 65536,
+        "mean_frequency_lag_final": 0.001963,
+        "mean_frequency_lag_peak": 0.016005,
+        "milestone": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package",
+        "neutral_routed_events": 5,
+        "neutralized_conflicts": 5,
+        "pair_domain_coherence_mean_final": 0.999981,
+        "pair_domain_coherence_min": 0.007127,
+        "pending_neutral_routes_final": 0,
+        "prevented_direct_events": 5,
+        "raw_phase_coherence_final": 0.989218,
+        "raw_phase_coherence_min": 0.182354,
+        "requested_direct_events": 5,
+        "scheduler": "7/1",
+        "scheduler_counts": {
+          "balance": 56,
+          "commit": 8
+        },
+        "scheduler_counts_valid": true,
+        "steps": 64,
+        "supercluster_coherence_mean_final": 0.999248,
+        "supercluster_coherence_min": 0.21869,
+        "switch_load_peak": 0.1875,
+        "thermal_beta": 1.2,
+        "thermal_overload_peak": 0.0,
+        "ticks_recorded": 64,
+        "transition_fraction": 0.25,
+        "transition_fraction_q16": 16384,
+        "version": "1.7.0"
+      }
+    },
+    "floatingReferenceToQuantizedShadow": {
+      "type": "object",
+      "required": [
+        "C_minus_P_sign_match",
+        "boundary_order_match",
+        "float_boundary_tick",
+        "float_summary",
+        "max_C_error",
+        "max_C_minus_P_error",
+        "max_P_error",
+        "max_coherence_error",
+        "max_frequency_error",
+        "max_gamma_error",
+        "max_heat_error",
+        "max_phase_error",
+        "neutral_route_sequence_match",
+        "scheduler_sequence_match",
+        "shadow_boundary_tick",
+        "shadow_summary",
+        "state_sequence_match"
+      ],
+      "properties": {
+        "C_minus_P_sign_match": {
+          "type": "number",
+          "const": 1.0
+        },
+        "boundary_order_match": {
+          "type": "number",
+          "const": 1.0
+        },
+        "float_boundary_tick": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "const": null
+        },
+        "float_summary": {
+          "$ref": "#/$defs/floatSummary"
+        },
+        "max_C_error": {
+          "type": "number",
+          "const": 0.0007545911459079235
+        },
+        "max_C_minus_P_error": {
+          "type": "number",
+          "const": 0.0007535557740776522
+        },
+        "max_P_error": {
+          "type": "number",
+          "const": 0.000014974864477032557
+        },
+        "max_coherence_error": {
+          "type": "number",
+          "const": 0.002228678310501553
+        },
+        "max_frequency_error": {
+          "type": "number",
+          "const": 0.000022803546471550362
+        },
+        "max_gamma_error": {
+          "type": "number",
+          "const": 0.0
+        },
+        "max_heat_error": {
+          "type": "number",
+          "const": 0.00004701887369061575
+        },
+        "max_phase_error": {
+          "type": "number",
+          "const": 0.010957534368146086
+        },
+        "neutral_route_sequence_match": {
+          "type": "number",
+          "const": 1.0
+        },
+        "scheduler_sequence_match": {
+          "type": "number",
+          "const": 1.0
+        },
+        "shadow_boundary_tick": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "const": null
+        },
+        "shadow_summary": {
+          "$ref": "#/$defs/shadowSummary"
+        },
+        "state_sequence_match": {
+          "type": "number",
+          "const": 1.0
+        }
+      },
+      "additionalProperties": false
+    },
+    "quantizedShadowDeterministicReplay": {
+      "type": "object",
+      "required": [
+        "cell_trace_digest",
+        "shadow_replay_cell_trace_match",
+        "shadow_replay_counter_match",
+        "shadow_replay_pending_route_match",
+        "shadow_replay_scheduler_match",
+        "shadow_replay_state_match",
+        "shadow_replay_trace_match",
+        "trace_digest"
+      ],
+      "properties": {
+        "cell_trace_digest": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/sha256Digest"
+            },
+            {
+              "const": "ba7d5f5a5f45d1c6808a0d4c7d7f612916bb2e2c4d33faf5e182810d704ad544"
+            }
+          ]
+        },
+        "shadow_replay_cell_trace_match": {
+          "type": "number",
+          "const": 1.0
+        },
+        "shadow_replay_counter_match": {
+          "type": "number",
+          "const": 1.0
+        },
+        "shadow_replay_pending_route_match": {
+          "type": "number",
+          "const": 1.0
+        },
+        "shadow_replay_scheduler_match": {
+          "type": "number",
+          "const": 1.0
+        },
+        "shadow_replay_state_match": {
+          "type": "number",
+          "const": 1.0
+        },
+        "shadow_replay_trace_match": {
+          "type": "number",
+          "const": 1.0
+        },
+        "trace_digest": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/sha256Digest"
+            },
+            {
+              "const": "06be197a6f7620796daad6420091e21392295cb0e182b394da2d9990324415be"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "requiredDomains": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "uniqueItems": true,
+      "const": [
+        "packed ternary states",
+        "scheduler state",
+        "pending route count",
+        "fixed-point scalar outputs",
+        "phase words",
+        "transition counters",
+        "per-cell thermal values",
+        "per-cell gamma values",
+        "coupling-field values"
+      ]
+    },
+    "rtlExactIntegerComparisonContract": {
+      "type": "object",
+      "required": [
+        "comparison_rule",
+        "required_domains"
+      ],
+      "properties": {
+        "comparison_rule": {
+          "type": "string",
+          "const": "actual == expected"
+        },
+        "required_domains": {
+          "$ref": "#/$defs/requiredDomains"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sha256Digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "shadowSummary": {
+      "type": "object",
+      "const": {
+        "C_minus_P_final": 1.2555694580078125,
+        "C_minus_P_final_q16": 82285,
+        "C_minus_P_min": 0.7768707275390625,
+        "C_minus_P_min_q16": 50913,
+        "actual_direct_events": 0,
+        "balanced_ternary_state_domain": true,
+        "boundary_detected": false,
+        "cells": 16,
+        "fixed_point_thermal_sum_exact": true,
+        "fixed_point_topology_sum_exact": true,
+        "hierarchy_depth": 4,
+        "milestone": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package",
+        "neutral_route_queue_capacity": 16,
+        "neutral_routed_events": 5,
+        "neutralized_conflicts": 5,
+        "pending_route_count_final": 0,
+        "prevented_direct_events": 5,
+        "queue_overflow_events": 0,
+        "request_lanes": 4,
+        "requested_direct_events": 5,
+        "reserved_state_events": 0,
+        "scheduler": "7/1",
+        "scheduler_counts": {
+          "balance": 56,
+          "commit": 8
+        },
+        "scheduler_counts_valid": true,
+        "steps": 64,
+        "switch_load_peak": 0.1875,
+        "switch_load_peak_q16": 12288,
+        "ticks_recorded": 64,
+        "transition_fraction": 0.25,
+        "version": "1.7.0"
+      }
+    }
+  }
+}
