@@ -1,0 +1,270 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.m15.systemverilog_testbench_interface_map.v1.7.0",
+  "title": "FRP M15 SystemVerilog Testbench Interface Map v1.7.0",
+  "description": "Formal schema for the canonical FRP v1.7.0 M15 SystemVerilog testbench-interface map.",
+  "x-frp-schema-identifier": "frp.m15.systemverilog_testbench_interface_map.v1.7.0",
+  "x-frp-artifact-role": "systemverilog_testbench_interface_map",
+  "x-frp-schema-version": "1.7.0",
+  "x-frp-producer-path": "frp_prototype_v1_7_0.py",
+  "x-frp-producer-version": "1.7.0",
+  "type": "object",
+  "required": [
+    "comparison_outputs",
+    "execution_inputs",
+    "kind",
+    "milestone",
+    "parameters",
+    "schema",
+    "vector_replay_order",
+    "verification_stimulus_inputs",
+    "version"
+  ],
+  "properties": {
+    "comparison_outputs": {
+      "$ref": "#/$defs/comparisonOutputs"
+    },
+    "execution_inputs": {
+      "$ref": "#/$defs/executionInputs"
+    },
+    "kind": {
+      "type": "string",
+      "const": "systemverilog_testbench_interface_map"
+    },
+    "milestone": {
+      "type": "string",
+      "const": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package"
+    },
+    "parameters": {
+      "$ref": "#/$defs/parameters"
+    },
+    "schema": {
+      "type": "string",
+      "const": "frp.m15.systemverilog_testbench_interface_map.v1.7.0"
+    },
+    "vector_replay_order": {
+      "$ref": "#/$defs/vectorReplayOrder"
+    },
+    "verification_stimulus_inputs": {
+      "$ref": "#/$defs/verificationStimulusInputs"
+    },
+    "version": {
+      "type": "string",
+      "const": "1.7.0"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "comparisonOutputs": {
+      "type": "array",
+      "minItems": 14,
+      "maxItems": 14,
+      "uniqueItems": true,
+      "prefixItems": [
+        {
+          "type": "string",
+          "const": "states_packed"
+        },
+        {
+          "type": "string",
+          "const": "scheduler_state"
+        },
+        {
+          "type": "string",
+          "const": "pending_route_count"
+        },
+        {
+          "type": "string",
+          "const": "switch_load_q"
+        },
+        {
+          "type": "string",
+          "const": "heat_global_q"
+        },
+        {
+          "type": "string",
+          "const": "global_phase_coherence_q"
+        },
+        {
+          "type": "string",
+          "const": "C_q"
+        },
+        {
+          "type": "string",
+          "const": "P_q"
+        },
+        {
+          "type": "string",
+          "const": "C_minus_P_q"
+        },
+        {
+          "type": "string",
+          "const": "requested_direct_events"
+        },
+        {
+          "type": "string",
+          "const": "prevented_direct_events"
+        },
+        {
+          "type": "string",
+          "const": "neutral_routed_events"
+        },
+        {
+          "type": "string",
+          "const": "neutralized_conflicts"
+        },
+        {
+          "type": "string",
+          "const": "actual_direct_events"
+        }
+      ],
+      "items": false
+    },
+    "executionInputs": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "uniqueItems": true,
+      "prefixItems": [
+        {
+          "type": "string",
+          "const": "clk"
+        },
+        {
+          "type": "string",
+          "const": "reset_n"
+        },
+        {
+          "type": "string",
+          "const": "scheduler_mode"
+        },
+        {
+          "type": "string",
+          "const": "auto_targets_enable"
+        },
+        {
+          "type": "string",
+          "const": "request_valid"
+        },
+        {
+          "type": "string",
+          "const": "request_cell_id"
+        },
+        {
+          "type": "string",
+          "const": "request_target_state"
+        }
+      ],
+      "items": false
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "CELL_ID_WIDTH",
+        "HIERARCHY_DEPTH",
+        "NUM_CELLS",
+        "PHASE_WIDTH",
+        "REQUEST_LANES",
+        "SCALAR_WIDTH",
+        "STATE_VECTOR_WIDTH"
+      ],
+      "properties": {
+        "CELL_ID_WIDTH": {
+          "type": "integer",
+          "const": 4
+        },
+        "HIERARCHY_DEPTH": {
+          "type": "integer",
+          "const": 4
+        },
+        "NUM_CELLS": {
+          "type": "integer",
+          "const": 16
+        },
+        "PHASE_WIDTH": {
+          "type": "integer",
+          "const": 32
+        },
+        "REQUEST_LANES": {
+          "type": "integer",
+          "const": 4
+        },
+        "SCALAR_WIDTH": {
+          "type": "integer",
+          "const": 32
+        },
+        "STATE_VECTOR_WIDTH": {
+          "type": "integer",
+          "const": 32
+        }
+      },
+      "additionalProperties": false
+    },
+    "vectorReplayOrder": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "uniqueItems": true,
+      "prefixItems": [
+        {
+          "type": "string",
+          "const": "parse vector row"
+        },
+        {
+          "type": "string",
+          "const": "drive input signals before active clock edge"
+        },
+        {
+          "type": "string",
+          "const": "apply verification sideband stimulus"
+        },
+        {
+          "type": "string",
+          "const": "execute one processor clock edge"
+        },
+        {
+          "type": "string",
+          "const": "allow registered outputs to settle"
+        },
+        {
+          "type": "string",
+          "const": "sample post-tick outputs"
+        },
+        {
+          "type": "string",
+          "const": "compare sampled outputs against expected integer values"
+        },
+        {
+          "type": "string",
+          "const": "execute invariant assertions"
+        },
+        {
+          "type": "string",
+          "const": "stop immediately on mismatch"
+        }
+      ],
+      "items": false
+    },
+    "verificationStimulusInputs": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "prefixItems": [
+        {
+          "type": "string",
+          "const": "preload_valid"
+        },
+        {
+          "type": "string",
+          "const": "gamma_noise_update_valid"
+        },
+        {
+          "type": "string",
+          "const": "gamma_noise_target_q"
+        }
+      ],
+      "items": false
+    }
+  }
+}
