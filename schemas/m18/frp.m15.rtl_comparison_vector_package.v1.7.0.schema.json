@@ -1,0 +1,328 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.m15.rtl_comparison_vector_package.v1.7.0",
+  "title": "FRP M15 RTL Comparison Vector Package v1.7.0",
+  "description": "Formal schema for the canonical FRP v1.7.0 M15 RTL comparison vector-package descriptor.",
+  "x-frp-schema-identifier": "frp.m15.rtl_comparison_vector_package.v1.7.0",
+  "x-frp-artifact-role": "rtl_comparison_vector_package",
+  "x-frp-schema-version": "1.7.0",
+  "x-frp-producer-path": "frp_prototype_v1_7_0.py",
+  "x-frp-producer-version": "1.7.0",
+  "type": "object",
+  "required": [
+    "deterministic_package_digest",
+    "kind",
+    "manifest",
+    "milestone",
+    "schema",
+    "vector_classes",
+    "version"
+  ],
+  "properties": {
+    "deterministic_package_digest": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/sha256Digest"
+        },
+        {
+          "const": "703dd4b56f4b34289a2c5bc5521ad4ddc3113bdec8c38238c3244c69cb4d58df"
+        }
+      ]
+    },
+    "kind": {
+      "type": "string",
+      "const": "rtl_comparison_vector_package"
+    },
+    "manifest": {
+      "$ref": "#/$defs/manifest"
+    },
+    "milestone": {
+      "type": "string",
+      "const": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package"
+    },
+    "schema": {
+      "type": "string",
+      "const": "frp.m15.rtl_comparison_vector_package.v1.7.0"
+    },
+    "vector_classes": {
+      "$ref": "#/$defs/vectorClasses"
+    },
+    "version": {
+      "type": "string",
+      "const": "1.7.0"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "manifest": {
+      "type": "object",
+      "required": [
+        "file_count",
+        "files"
+      ],
+      "properties": {
+        "file_count": {
+          "type": "integer",
+          "const": 10
+        },
+        "files": {
+          "type": "array",
+          "minItems": 10,
+          "maxItems": 10,
+          "uniqueItems": true,
+          "prefixItems": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/packageMember"
+                },
+                {
+                  "properties": {
+                    "name": {
+                      "const": "frp_m15_cell_trace.vec"
+                    },
+                    "sha256": {
+                      "const": "b3192cbfbe89b31517212a09fd4d14f58180e2d1594a45412856399c4be5781d"
+                    },
+                    "size_bytes": {
+                      "const": 112549
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/packageMember"
+                },
+                {
+                  "properties": {
+                    "name": {
+                      "const": "frp_m15_full_correlation_vectors.vec"
+                    },
+                    "sha256": {
+                      "const": "c2e2a92d7031b85d2681fdaba839bbc4a0d833be14c8516d15dcaed347940d73"
+                    },
+                    "size_bytes": {
+                      "const": 16689
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/packageMember"
+                },
+                {
+                  "properties": {
+                    "name": {
+                      "const": "frp_m15_kernel_vectors.vec"
+                    },
+                    "sha256": {
+                      "const": "87e063cdbe49d32ecfda129e0a5c6a8c77d022fdfa07eeed891a1b4f271d29bf"
+                    },
+                    "size_bytes": {
+                      "const": 8815
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/packageMember"
+                },
+                {
+                  "properties": {
+                    "name": {
+                      "const": "frp_m15_pending_routes.trace"
+                    },
+                    "sha256": {
+                      "const": "600125de9484bb3b2275a98a64eba06d751a8ce129e29c3eb49b14142e01afc5"
+                    },
+                    "size_bytes": {
+                      "const": 818
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/packageMember"
+                },
+                {
+                  "properties": {
+                    "name": {
+                      "const": "frp_m15_reference_preload.json"
+                    },
+                    "sha256": {
+                      "const": "88cf005a76a659c0f51a16a1499b6fa6251b09eb26434538eb27ca5718b1a4a0"
+                    },
+                    "size_bytes": {
+                      "const": 1387
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/packageMember"
+                },
+                {
+                  "properties": {
+                    "name": {
+                      "const": "frp_m15_scheduler_1_7_vectors.vec"
+                    },
+                    "sha256": {
+                      "const": "5cf1912cbc492004656f41fff4ff36e5146e281b4f79a0e90606747b7c0bc649"
+                    },
+                    "size_bytes": {
+                      "const": 5028
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/packageMember"
+                },
+                {
+                  "properties": {
+                    "name": {
+                      "const": "frp_m15_scheduler_7_1_vectors.vec"
+                    },
+                    "sha256": {
+                      "const": "9e777e7eb9fa4adeca52bc83ebedd5275aad2ebbc32f34140102131cd4aa4c7e"
+                    },
+                    "size_bytes": {
+                      "const": 5017
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/packageMember"
+                },
+                {
+                  "properties": {
+                    "name": {
+                      "const": "frp_m15_scheduler_free_vectors.vec"
+                    },
+                    "sha256": {
+                      "const": "836b9e2fb5079f93f9666e534823735c6f22f48c8def4b6301ec3119ac52a518"
+                    },
+                    "size_bytes": {
+                      "const": 5023
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/packageMember"
+                },
+                {
+                  "properties": {
+                    "name": {
+                      "const": "frp_m15_sha256_manifest.json"
+                    },
+                    "sha256": {
+                      "const": "8dafbe3dea995d94c84a8ea02b9393bd53b9b986b8cc852af55f2ea67dc1d839"
+                    },
+                    "size_bytes": {
+                      "const": 935
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/packageMember"
+                },
+                {
+                  "properties": {
+                    "name": {
+                      "const": "frp_m15_trig_lut_q30.vec"
+                    },
+                    "sha256": {
+                      "const": "caadbbf97fe0bacf2d82eaa5da4cd1fb6cf1e1514809d3e743311e19893d11bb"
+                    },
+                    "size_bytes": {
+                      "const": 72471
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "items": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "packageMember": {
+      "type": "object",
+      "required": [
+        "name",
+        "sha256",
+        "size_bytes"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256Digest"
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "sha256Digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "vectorClasses": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "prefixItems": [
+        {
+          "type": "string",
+          "const": "kernel_transition_vectors"
+        },
+        {
+          "type": "string",
+          "const": "scheduler_vectors"
+        },
+        {
+          "type": "string",
+          "const": "full_correlation_vectors"
+        }
+      ],
+      "items": false
+    }
+  }
+}
