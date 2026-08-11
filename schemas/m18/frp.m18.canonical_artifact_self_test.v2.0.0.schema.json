@@ -1,0 +1,629 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:frp.m18.canonical_artifact_self_test.v2.0.0",
+  "title": "FRP M18 Canonical Artifact Self-Test v2.0.0",
+  "description": "Formal schema for the deterministic FRP M18 canonical artifact producer and validator self-test record.",
+  "x-frp-schema-identifier": "frp.m18.canonical_artifact_self_test.v2.0.0",
+  "x-frp-artifact-role": "canonical_artifact_self_test",
+  "x-frp-schema-version": "2.0.0",
+  "x-frp-producer-path": "frp_m18_canonical_artifacts.py",
+  "x-frp-producer-version": "2.0.0",
+  "type": "object",
+  "required": [
+    "case_count",
+    "case_order",
+    "cases",
+    "failed_count",
+    "kind",
+    "milestone",
+    "overall_status",
+    "passed_count",
+    "producer",
+    "producer_version",
+    "profile",
+    "schema",
+    "upstream_release",
+    "version"
+  ],
+  "properties": {
+    "case_count": {
+      "type": "integer",
+      "const": 34
+    },
+    "case_order": {
+      "type": "string",
+      "const": "case_id_lexicographic"
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 34,
+      "maxItems": 34,
+      "uniqueItems": true,
+      "prefixItems": [
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "artifact_set_digest_known_vector"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "canonical_json_serialization_stable"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "canonical_ternary_domain_accept"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "canonical_ternary_domain_reject"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "deterministic_regeneration_byte_identical"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "embedded_schema_identity_accept"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "environment_dependent_field_reject"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "formal_schema_id_match_accept"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "formal_schema_id_mismatch_reject"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "internal_manifest_digest_mismatch_reject"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "manifest_aggregate_status_accept"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "manifest_aggregate_status_reject"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "manifest_order_accept"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "manifest_order_reject"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "manifest_self_binding_reject"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "opposite_transition_direct_reject"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "opposite_transition_via_zero_accept"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "path_absolute_reject"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "path_duplicate_reject"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "path_parent_component_reject"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "path_relative_accept"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "path_symlink_reject"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "preload_packed_state_mapping_accept"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "raw_byte_sha256_known_vector"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "registry_bound_identity_accept"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "registry_duplicate_identifier_reject"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "registry_exact_identifier_set_accept"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "registry_unknown_identifier_reject"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "scheduler_1_7_sequence_accept"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "scheduler_7_1_sequence_accept"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "scheduler_free_sequence_accept"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "source_mutation_detected"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "state_notation_plus_prefix_reject"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "const": "vector_package_member_set_accept"
+            }
+          },
+          "required": [
+            "case_id"
+          ]
+        }
+      ],
+      "items": false,
+      "allOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/caseRecord"
+          }
+        }
+      ]
+    },
+    "failed_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 34
+    },
+    "kind": {
+      "type": "string",
+      "const": "canonical_artifact_self_test"
+    },
+    "milestone": {
+      "type": "string",
+      "const": "M18 — Formal Schema and Canonical Artifact Publication"
+    },
+    "overall_status": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "passed_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 34
+    },
+    "producer": {
+      "type": "string",
+      "const": "frp_m18_canonical_artifacts.py"
+    },
+    "producer_version": {
+      "type": "string",
+      "const": "2.0.0"
+    },
+    "profile": {
+      "type": "string",
+      "const": "m18_canonical_artifact_publication"
+    },
+    "schema": {
+      "type": "string",
+      "const": "frp.m18.canonical_artifact_self_test.v2.0.0"
+    },
+    "upstream_release": {
+      "type": "string",
+      "const": "FRP v1.8.0 / M16"
+    },
+    "version": {
+      "type": "string",
+      "const": "2.0.0"
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "overall_status": {
+            "const": "PASS"
+          }
+        },
+        "required": [
+          "overall_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "failed_count": {
+            "const": 0
+          },
+          "passed_count": {
+            "const": 34
+          },
+          "cases": {
+            "not": {
+              "type": "array",
+              "contains": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "const": "FAIL"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "failed_count": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "passed_count": {
+            "type": "integer",
+            "maximum": 33
+          },
+          "cases": {
+            "type": "array",
+            "contains": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "const": "FAIL"
+                }
+              },
+              "required": [
+                "status"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "caseRecord": {
+      "type": "object",
+      "required": [
+        "case_id",
+        "category",
+        "expected",
+        "observed",
+        "purpose",
+        "status"
+      ],
+      "properties": {
+        "case_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "serialization",
+            "digest",
+            "path",
+            "registry",
+            "formal_schema",
+            "identity",
+            "ternary_domain",
+            "scheduler",
+            "ordering",
+            "manifest",
+            "vector_package",
+            "immutability",
+            "determinism",
+            "publication_boundary"
+          ]
+        },
+        "expected": {
+          "$ref": "#/$defs/jsonValue"
+        },
+        "observed": {
+          "$ref": "#/$defs/jsonValue"
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": ".*\\S.*"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "FAIL"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "jsonValue": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        }
+      ]
+    }
+  }
+}
