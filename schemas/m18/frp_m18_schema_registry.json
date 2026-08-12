@@ -492,10 +492,10 @@
       "artifact_role": "structured_processor_output",
       "canonical_artifact_paths": [
         "artifacts/m18/structured_output/structured-output.json",
-        "artifacts/m18/structured_output/structured-output-trace-free.json",
-        "artifacts/m18/structured_output/structured-output-trace-7-1.json",
-        "artifacts/m18/structured_output/structured-output-trace-1-7.json",
-        "artifacts/m18/structured_output/self-test.json",
+        "artifacts/m18/structured_output/trace-free.json",
+        "artifacts/m18/structured_output/trace-7-1.json",
+        "artifacts/m18/structured_output/trace-1-7.json",
+        "artifacts/m18/structured_output/self-test-default.json",
         "artifacts/m18/structured_output/self-test-free.json",
         "artifacts/m18/structured_output/self-test-7-1.json",
         "artifacts/m18/structured_output/self-test-1-7.json",
@@ -519,7 +519,7 @@
       "validation_mode": "json_schema_draft_2020_12"
     }
   ],
-  "registry_content_sha256": "3dcc740bfe264190f00375de65f8d5aeb917e94d2b91012faff9fb7dff441d18",
+  "registry_content_sha256": "6d2d0077b00c9f3da04429a8a690256fe7b4de585c7257804471a3d3d4992c0c",
   "registry_digest_scope": "canonical_compact_json_without_registry_content_sha256",
   "schema": "frp.m18.formal_schema_registry.v2.0.0",
   "schema_count": 24,
