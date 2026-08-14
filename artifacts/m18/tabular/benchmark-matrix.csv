@@ -1,0 +1,6 @@
+architecture,numeric_domain,interaction_scaling,cycle_exact_integer_trace,hardware_facing_encoding,C_minus_P_sign_match,scheduler_sequence_match,state_sequence_match,vector_repeat_match,comparison_rule,artifact_layers
+frp_v1_6_0_m14_floating_semantic_reference,floating semantic reference,O(N log N) hierarchical reference path,false,false,,,,,,
+frp_v1_7_0_quantized_hardware_shadow,S32Q16 / S32Q30 / PHASE_U32 / GAMMA_S32,O(N^2) shadow evaluation with exact dyadic weights,true,true,1.0,1.0,1.0,,,
+frp_v1_7_0_cycle_exact_vector_package,integer and hexadecimal vectors,,true,true,,,,1.0,,
+frp_v1_7_0_systemverilog_correlation_contract,exact integer comparison,,true,true,,,,,actual == expected,
+frp_v1_7_0_qualification_closure,semantic correlation plus exact integer replay,,true,true,,,,,,10

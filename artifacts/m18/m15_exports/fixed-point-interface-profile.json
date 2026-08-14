@@ -1,0 +1,158 @@
+{
+  "fixed_point_thermal_sum_exact": true,
+  "fixed_point_topology_sum_exact": true,
+  "inherited_boundary": {
+    "layer": "M14 — Physical Implementation Correlation and Production Qualification Package",
+    "m14_artifact_layers": [
+      "hierarchical_ultrametric_topology_model",
+      "fractal_coupling_weight_map",
+      "multiscale_phase_coherence_map",
+      "cluster_local_thermal_field",
+      "cross_cluster_propagation_map",
+      "localized_hotspot_containment_harness",
+      "dense_hierarchical_equivalence_map",
+      "physical_domain_correlation_package"
+    ],
+    "main_executable_reference_file": "frp_prototype_v1_6_0.py",
+    "preserved_kernel": {
+      "active_neutral_state": 0,
+      "balanced_ternary_states": [
+        -1,
+        0,
+        1
+      ],
+      "pressure_relation": "P(t) = heat + switch_load",
+      "scheduler_modes": [
+        "free",
+        "7/1",
+        "1/7"
+      ],
+      "stability_relation": "C(t) > P(t)",
+      "tick_separated_neutral_routing": true
+    },
+    "release": "FRP v1.6.0",
+    "release_notes": "RELEASE_NOTES_v1_6_0.md",
+    "release_status": "PUBLISHED",
+    "test_report": "TEST_REPORT_v1_6_0.md",
+    "validated_commit": "09141fc",
+    "validation_index": "FRP_VALIDATION_INDEX_v1_6_0.md"
+  },
+  "kind": "fixed_point_interface_profile",
+  "milestone": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package",
+  "profile": {
+    "exponential_profile": {
+      "exp_lut_sha256": "350499727643d6eb7e123a0c2256ed05a7d76f316e4181acce170101ae78bf0a",
+      "input_domain_q16": [
+        0,
+        524288
+      ],
+      "output_type": "S32Q30",
+      "table_entries": 4096
+    },
+    "gamma": {
+      "name": "GAMMA_S32",
+      "nominal_gamma_word": 644245094,
+      "phase_scale": "PHASE_U32 scale",
+      "signed": true,
+      "width": 32
+    },
+    "general_scalar": {
+      "fraction_bits": 16,
+      "name": "S32Q16",
+      "scale": 65536,
+      "signed": true,
+      "width": 32
+    },
+    "multiply_rules": {
+      "mul_q16": "round_shift(a * b, 16)",
+      "mul_q16_q30": "round_shift(a * b, 30)",
+      "mul_q30": "round_shift(a * b, 30)"
+    },
+    "normalized_coefficient": {
+      "fraction_bits": 30,
+      "name": "S32Q30",
+      "scale": 1073741824,
+      "signed": true,
+      "width": 32
+    },
+    "phase": {
+      "full_cycle_relation": "2^32 phase units = 2 pi",
+      "modulus": 4294967296,
+      "name": "PHASE_U32",
+      "signed": false,
+      "width": 32
+    },
+    "phase_overflow": "modulo 2^32 wrap",
+    "rounding": "round-to-nearest, half cases away from zero",
+    "saturation": "signed destination saturation",
+    "trigonometric_profile": {
+      "address_bits": 12,
+      "index_relation": "phase_word >> 20",
+      "output_type": "S32Q30",
+      "sin_lut_sha256": "acb0dfe2c00998840f9ca00f9ef9e3b46011db6c745faa59a9db13c4121cc57b",
+      "table_entries": 4096
+    }
+  },
+  "schema": "frp.m15.fixed_point_interface_profile.v1.7.0",
+  "thermal_fixed_point_profile": [
+    {
+      "aggregate_weight_q30": 567420738,
+      "distance": 1,
+      "pair_weight_q30": 567420738,
+      "pair_weight_real": 0.5284517426043749,
+      "shell_population": 1
+    },
+    {
+      "aggregate_weight_q30": 246984222,
+      "distance": 2,
+      "pair_weight_q30": 123492111,
+      "pair_weight_real": 0.11501099076122046,
+      "shell_population": 2
+    },
+    {
+      "aggregate_weight_q30": 151830736,
+      "distance": 3,
+      "pair_weight_q30": 37957684,
+      "pair_weight_real": 0.035350847989320755,
+      "shell_population": 4
+    },
+    {
+      "aggregate_weight_q30": 107506128,
+      "distance": 4,
+      "pair_weight_q30": 13438266,
+      "pair_weight_real": 0.012515360489487648,
+      "shell_population": 8
+    }
+  ],
+  "topology_fixed_point_profile": [
+    {
+      "aggregate_weight_q30": 436841896,
+      "distance": 1,
+      "pair_weight_q30": 436841896,
+      "pair_weight_real": 0.4068407192826271,
+      "shell_population": 1
+    },
+    {
+      "aggregate_weight_q30": 268907728,
+      "distance": 2,
+      "pair_weight_q30": 134453864,
+      "pair_weight_real": 0.1252199187874794,
+      "shell_population": 2
+    },
+    {
+      "aggregate_weight_q30": 202460080,
+      "distance": 3,
+      "pair_weight_q30": 50615020,
+      "pair_weight_real": 0.04713891074061394,
+      "shell_population": 4
+    },
+    {
+      "aggregate_weight_q30": 165532120,
+      "distance": 4,
+      "pair_weight_q30": 20691515,
+      "pair_weight_real": 0.019270475022494793,
+      "shell_population": 8
+    }
+  ],
+  "version": "1.7.0"
+}

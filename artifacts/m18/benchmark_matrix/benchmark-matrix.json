@@ -1,0 +1,46 @@
+{
+  "kind": "benchmark_matrix",
+  "milestone": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package",
+  "rows": [
+    {
+      "architecture": "frp_v1_6_0_m14_floating_semantic_reference",
+      "cycle_exact_integer_trace": false,
+      "hardware_facing_encoding": false,
+      "interaction_scaling": "O(N log N) hierarchical reference path",
+      "numeric_domain": "floating semantic reference"
+    },
+    {
+      "C_minus_P_sign_match": 1.0,
+      "architecture": "frp_v1_7_0_quantized_hardware_shadow",
+      "cycle_exact_integer_trace": true,
+      "hardware_facing_encoding": true,
+      "interaction_scaling": "O(N^2) shadow evaluation with exact dyadic weights",
+      "numeric_domain": "S32Q16 / S32Q30 / PHASE_U32 / GAMMA_S32",
+      "scheduler_sequence_match": 1.0,
+      "state_sequence_match": 1.0
+    },
+    {
+      "architecture": "frp_v1_7_0_cycle_exact_vector_package",
+      "cycle_exact_integer_trace": true,
+      "hardware_facing_encoding": true,
+      "numeric_domain": "integer and hexadecimal vectors",
+      "vector_repeat_match": 1.0
+    },
+    {
+      "architecture": "frp_v1_7_0_systemverilog_correlation_contract",
+      "comparison_rule": "actual == expected",
+      "cycle_exact_integer_trace": true,
+      "hardware_facing_encoding": true,
+      "numeric_domain": "exact integer comparison"
+    },
+    {
+      "architecture": "frp_v1_7_0_qualification_closure",
+      "artifact_layers": 10,
+      "cycle_exact_integer_trace": true,
+      "hardware_facing_encoding": true,
+      "numeric_domain": "semantic correlation plus exact integer replay"
+    }
+  ],
+  "schema": "frp.m3.benchmark_matrix.v1.7.0",
+  "version": "1.7.0"
+}

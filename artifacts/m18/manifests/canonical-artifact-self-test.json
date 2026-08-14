@@ -1,0 +1,289 @@
+{
+  "case_count": 34,
+  "case_order": "case_id_lexicographic",
+  "cases": [
+    {
+      "case_id": "artifact_set_digest_known_vector",
+      "category": "digest",
+      "expected": "f0f02e164f568d5e8da5b1d1b7f0b3b2b152e12d5aef42687e48fc2287db778e",
+      "observed": "f0f02e164f568d5e8da5b1d1b7f0b3b2b152e12d5aef42687e48fc2287db778e",
+      "purpose": "Verify ordered NUL-delimited artifact-set digest construction.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "canonical_json_serialization_stable",
+      "category": "serialization",
+      "expected": true,
+      "observed": true,
+      "purpose": "Verify stable sorted UTF-8 JSON and non-finite rejection.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "canonical_ternary_domain_accept",
+      "category": "ternary_domain",
+      "expected": true,
+      "observed": true,
+      "purpose": "Accept exactly the canonical processor states -1, 0, and 1.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "canonical_ternary_domain_reject",
+      "category": "ternary_domain",
+      "expected": true,
+      "observed": true,
+      "purpose": "Reject noncanonical values, strings, booleans, null, and fractions.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "deterministic_regeneration_byte_identical",
+      "category": "determinism",
+      "expected": true,
+      "observed": true,
+      "purpose": "Verify byte-identical deterministic fixture regeneration.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "embedded_schema_identity_accept",
+      "category": "identity",
+      "expected": true,
+      "observed": true,
+      "purpose": "Accept an exact embedded schema identity.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "environment_dependent_field_reject",
+      "category": "publication_boundary",
+      "expected": true,
+      "observed": true,
+      "purpose": "Reject environment-dependent fields from deterministic records.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "formal_schema_id_match_accept",
+      "category": "formal_schema",
+      "expected": true,
+      "observed": true,
+      "purpose": "Accept an exact registry-derived FRP formal schema URN.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "formal_schema_id_mismatch_reject",
+      "category": "formal_schema",
+      "expected": true,
+      "observed": true,
+      "purpose": "Reject missing or non-exact formal schema identities.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "internal_manifest_digest_mismatch_reject",
+      "category": "vector_package",
+      "expected": true,
+      "observed": true,
+      "purpose": "Reject an internal package digest that differs from raw member bytes.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "manifest_aggregate_status_accept",
+      "category": "manifest",
+      "expected": true,
+      "observed": true,
+      "purpose": "Accept counters and PASS status derived from an all-PASS vector.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "manifest_aggregate_status_reject",
+      "category": "manifest",
+      "expected": true,
+      "observed": true,
+      "purpose": "Reject aggregate counters that are not derived from checks.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "manifest_order_accept",
+      "category": "ordering",
+      "expected": true,
+      "observed": true,
+      "purpose": "Accept Unicode code-point repository-path order.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "manifest_order_reject",
+      "category": "ordering",
+      "expected": true,
+      "observed": true,
+      "purpose": "Reject reversed or case-folded manifest ordering.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "manifest_self_binding_reject",
+      "category": "manifest",
+      "expected": true,
+      "observed": true,
+      "purpose": "Reject a manifest path inside its own bound artifact set.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "opposite_transition_direct_reject",
+      "category": "ternary_domain",
+      "expected": true,
+      "observed": true,
+      "purpose": "Reject direct opposite-polarity transitions.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "opposite_transition_via_zero_accept",
+      "category": "ternary_domain",
+      "expected": true,
+      "observed": true,
+      "purpose": "Accept both canonical two-leg opposite-polarity routes through zero.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "path_absolute_reject",
+      "category": "path",
+      "expected": true,
+      "observed": true,
+      "purpose": "Reject absolute canonical artifact paths.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "path_duplicate_reject",
+      "category": "path",
+      "expected": true,
+      "observed": true,
+      "purpose": "Reject duplicate canonical artifact paths.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "path_parent_component_reject",
+      "category": "path",
+      "expected": true,
+      "observed": true,
+      "purpose": "Reject parent components in canonical artifact paths.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "path_relative_accept",
+      "category": "path",
+      "expected": true,
+      "observed": true,
+      "purpose": "Accept a safe repository-relative POSIX path.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "path_symlink_reject",
+      "category": "path",
+      "expected": true,
+      "observed": true,
+      "purpose": "Reject symbolic links as canonical artifact sources.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "preload_packed_state_mapping_accept",
+      "category": "vector_package",
+      "expected": true,
+      "observed": true,
+      "purpose": "Verify exact -1/0/1 to 11/00/01 packed-state mapping.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "raw_byte_sha256_known_vector",
+      "category": "digest",
+      "expected": "ec75f629cb37c604195eb70d49cb2f80e675976800bbf292be28b81e1d9d6d99",
+      "observed": "ec75f629cb37c604195eb70d49cb2f80e675976800bbf292be28b81e1d9d6d99",
+      "purpose": "Verify SHA-256 over exact raw bytes.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "registry_bound_identity_accept",
+      "category": "identity",
+      "expected": true,
+      "observed": true,
+      "purpose": "Accept exact external identity binding without source-byte mutation.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "registry_duplicate_identifier_reject",
+      "category": "registry",
+      "expected": true,
+      "observed": true,
+      "purpose": "Reject duplicate supported schema identifiers.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "registry_exact_identifier_set_accept",
+      "category": "registry",
+      "expected": true,
+      "observed": true,
+      "purpose": "Accept the exact ordered twenty-four-identifier registry set.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "registry_unknown_identifier_reject",
+      "category": "registry",
+      "expected": true,
+      "observed": true,
+      "purpose": "Reject an identifier absent from the supported registry.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "scheduler_1_7_sequence_accept",
+      "category": "scheduler",
+      "expected": true,
+      "observed": true,
+      "purpose": "Accept one excite tick followed by seven neutralize ticks.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "scheduler_7_1_sequence_accept",
+      "category": "scheduler",
+      "expected": true,
+      "observed": true,
+      "purpose": "Accept seven balance ticks followed by one commit tick.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "scheduler_free_sequence_accept",
+      "category": "scheduler",
+      "expected": true,
+      "observed": true,
+      "purpose": "Accept an independent free-scheduler state sequence.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "source_mutation_detected",
+      "category": "immutability",
+      "expected": true,
+      "observed": true,
+      "purpose": "Detect a raw-byte source mutation inside the temporary boundary.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "state_notation_plus_prefix_reject",
+      "category": "ternary_domain",
+      "expected": true,
+      "observed": true,
+      "purpose": "Reject standalone prefixed positive-state labels without rejecting arithmetic.",
+      "status": "PASS"
+    },
+    {
+      "case_id": "vector_package_member_set_accept",
+      "category": "vector_package",
+      "expected": true,
+      "observed": true,
+      "purpose": "Accept only the exact ten-member M15 deterministic vector package.",
+      "status": "PASS"
+    }
+  ],
+  "failed_count": 0,
+  "kind": "canonical_artifact_self_test",
+  "milestone": "M18 — Formal Schema and Canonical Artifact Publication",
+  "overall_status": "PASS",
+  "passed_count": 34,
+  "producer": "frp_m18_canonical_artifacts.py",
+  "producer_version": "2.0.0",
+  "profile": "m18_canonical_artifact_publication",
+  "schema": "frp.m18.canonical_artifact_self_test.v2.0.0",
+  "upstream_release": "FRP v1.8.0 / M16",
+  "version": "2.0.0"
+}

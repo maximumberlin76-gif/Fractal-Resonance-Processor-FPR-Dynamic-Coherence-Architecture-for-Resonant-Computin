@@ -1,0 +1,56 @@
+{
+  "comparison_outputs": [
+    "states_packed",
+    "scheduler_state",
+    "pending_route_count",
+    "switch_load_q",
+    "heat_global_q",
+    "global_phase_coherence_q",
+    "C_q",
+    "P_q",
+    "C_minus_P_q",
+    "requested_direct_events",
+    "prevented_direct_events",
+    "neutral_routed_events",
+    "neutralized_conflicts",
+    "actual_direct_events"
+  ],
+  "execution_inputs": [
+    "clk",
+    "reset_n",
+    "scheduler_mode",
+    "auto_targets_enable",
+    "request_valid",
+    "request_cell_id",
+    "request_target_state"
+  ],
+  "kind": "systemverilog_testbench_interface_map",
+  "milestone": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package",
+  "parameters": {
+    "CELL_ID_WIDTH": 4,
+    "HIERARCHY_DEPTH": 4,
+    "NUM_CELLS": 16,
+    "PHASE_WIDTH": 32,
+    "REQUEST_LANES": 4,
+    "SCALAR_WIDTH": 32,
+    "STATE_VECTOR_WIDTH": 32
+  },
+  "schema": "frp.m15.systemverilog_testbench_interface_map.v1.7.0",
+  "vector_replay_order": [
+    "parse vector row",
+    "drive input signals before active clock edge",
+    "apply verification sideband stimulus",
+    "execute one processor clock edge",
+    "allow registered outputs to settle",
+    "sample post-tick outputs",
+    "compare sampled outputs against expected integer values",
+    "execute invariant assertions",
+    "stop immediately on mismatch"
+  ],
+  "verification_stimulus_inputs": [
+    "preload_valid",
+    "gamma_noise_update_valid",
+    "gamma_noise_target_q"
+  ],
+  "version": "1.7.0"
+}

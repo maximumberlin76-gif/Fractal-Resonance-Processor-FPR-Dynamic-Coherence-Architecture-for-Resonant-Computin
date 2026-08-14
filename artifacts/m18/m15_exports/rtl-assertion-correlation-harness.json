@@ -1,0 +1,33 @@
+{
+  "assertion_count": 13,
+  "assertions": [
+    "valid balanced ternary encoding",
+    "reserved-state exclusion",
+    "direct polarity transition exclusion",
+    "active neutral route insertion",
+    "target application after ready tick",
+    "actual_direct_events = 0",
+    "transition-limit enforcement",
+    "scheduler sequence",
+    "scheduler count consistency",
+    "phase topology fixed-point normalization",
+    "thermal topology fixed-point normalization",
+    "deterministic trace tick count",
+    "exact cycle-output match"
+  ],
+  "direct_transition_rules": [
+    "previous_state = -1 and current_state = 1 is a failure",
+    "previous_state = 1 and current_state = -1 is a failure",
+    "valid opposite-polarity migration requires intermediate state 0"
+  ],
+  "exact_comparison_rule": "actual integer field == expected integer field",
+  "kind": "rtl_assertion_correlation_harness",
+  "milestone": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package",
+  "scheduler_modes": [
+    "free",
+    "7/1",
+    "1/7"
+  ],
+  "schema": "frp.m15.rtl_assertion_correlation_harness.v1.7.0",
+  "version": "1.7.0"
+}

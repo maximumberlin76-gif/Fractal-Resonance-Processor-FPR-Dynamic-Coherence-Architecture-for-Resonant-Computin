@@ -1,0 +1,24 @@
+# format_version="frp.m15.vector.v1"
+# frp_version="1.7.0"
+# milestone="M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package"
+# trace_kind="pending_routes"
+# cells=16
+# hierarchy_depth=4
+# request_lanes=4
+# transition_fraction=0.25
+# scheduler_mode="free"
+# fractal_alpha=0.7
+# thermal_beta=1.2
+# scalar_format="S32Q16"
+# unit_format="S32Q30"
+# phase_format="PHASE_U32"
+# seed=76
+# trace_steps=32
+# column_definition=["TICK","ROUTE_INDEX","CELL_ID","TARGET_STATE_CODE","READY_TICK","ROUTE_STATUS"]
+# TICK | ROUTE_INDEX | CELL_ID | TARGET_STATE_CODE | READY_TICK | ROUTE_STATUS
+00000000 | 0 | 3 | 1 | 1 | pending
+00000001 | 1 | 3 | 1 | 1 | applied
+00000003 | 2 | 5 | 1 | 4 | pending
+00000004 | 3 | 5 | 1 | 4 | applied
+00000008 | 4 | 3 | 3 | 9 | pending
+00000009 | 5 | 3 | 3 | 9 | applied

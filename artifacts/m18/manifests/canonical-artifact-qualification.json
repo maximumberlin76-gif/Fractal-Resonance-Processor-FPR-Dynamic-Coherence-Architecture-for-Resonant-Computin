@@ -1,0 +1,2413 @@
+{
+  "artifact_set_sha256": "c190ffeee11ac44a5f89efa85e54fc656cac23f0f66f625cf303419b967a9f83",
+  "check_count": 187,
+  "check_order": "category_check_id_subject_path",
+  "checks": [
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "055b765a8a6e03c8c98fb817bc737e27d80338cf26025114696cbf0378bf2902",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "055b765a8a6e03c8c98fb817bc737e27d80338cf26025114696cbf0378bf2902",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/benchmark_matrix/benchmark-matrix.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "92e108ac5551800658e3b4f81221fc145aa899b0914542a91bdfa78d30af0543",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "92e108ac5551800658e3b4f81221fc145aa899b0914542a91bdfa78d30af0543",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/balanced-ternary-hardware-encoding-map.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "7aa0bf41f88ce4bbb53fcc3e52dc596fb0fc9b37899237cd9cd6119c3485f0af",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "7aa0bf41f88ce4bbb53fcc3e52dc596fb0fc9b37899237cd9cd6119c3485f0af",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/cycle-exact-reference-trace.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "840adfcf86b2d7dcac5c4153dd7ee63f9e21fe8b7842c68288a5faf596ff6e0a",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "840adfcf86b2d7dcac5c4153dd7ee63f9e21fe8b7842c68288a5faf596ff6e0a",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/fixed-point-interface-profile.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "bc3d77208b005fba050511dffbaebc21a37cbd7f4327de43405fe38529dec5ac",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "bc3d77208b005fba050511dffbaebc21a37cbd7f4327de43405fe38529dec5ac",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/qualification-closure-manifest.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "8c61304182952673b0a0195b181bf1e4e8f8de0ecf79dc4b3fa320d74bb356ae",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "8c61304182952673b0a0195b181bf1e4e8f8de0ecf79dc4b3fa320d74bb356ae",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/quantized-reference-shadow-model.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "662b0df1795ac3b31d9e1d95e00fda78408b7cbdf6024b5298eabec1f695d63d",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "662b0df1795ac3b31d9e1d95e00fda78408b7cbdf6024b5298eabec1f695d63d",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/reference-rtl-equivalence-report.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "40117f4f89eb6b2e062c3f8a9a894f5115ab2f710fd2275cbc6f775a440ef477",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "40117f4f89eb6b2e062c3f8a9a894f5115ab2f710fd2275cbc6f775a440ef477",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/rtl-assertion-correlation-harness.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "75ec68fed692ff9cfddd918dcf6289326b9b9130798d31c9c681c13a5189dbf4",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "75ec68fed692ff9cfddd918dcf6289326b9b9130798d31c9c681c13a5189dbf4",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/rtl-comparison-vector-package.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "d90623311383e897b8490c753ac418b759e763f3f77dde65c4bedd3a8f773b87",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "d90623311383e897b8490c753ac418b759e763f3f77dde65c4bedd3a8f773b87",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/synthesizable-rtl-reference-core.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "c58f552fdf42c2b8be4349d95d5aa6de5db6d145e8586850cf53ad957d9186da",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "c58f552fdf42c2b8be4349d95d5aa6de5db6d145e8586850cf53ad957d9186da",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/systemverilog-testbench-interface-map.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "b3192cbfbe89b31517212a09fd4d14f58180e2d1594a45412856399c4be5781d",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "b3192cbfbe89b31517212a09fd4d14f58180e2d1594a45412856399c4be5781d",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_cell_trace.vec"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "c2e2a92d7031b85d2681fdaba839bbc4a0d833be14c8516d15dcaed347940d73",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "c2e2a92d7031b85d2681fdaba839bbc4a0d833be14c8516d15dcaed347940d73",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_full_correlation_vectors.vec"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "87e063cdbe49d32ecfda129e0a5c6a8c77d022fdfa07eeed891a1b4f271d29bf",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "87e063cdbe49d32ecfda129e0a5c6a8c77d022fdfa07eeed891a1b4f271d29bf",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_kernel_vectors.vec"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "600125de9484bb3b2275a98a64eba06d751a8ce129e29c3eb49b14142e01afc5",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "600125de9484bb3b2275a98a64eba06d751a8ce129e29c3eb49b14142e01afc5",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_pending_routes.trace"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "88cf005a76a659c0f51a16a1499b6fa6251b09eb26434538eb27ca5718b1a4a0",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "88cf005a76a659c0f51a16a1499b6fa6251b09eb26434538eb27ca5718b1a4a0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_reference_preload.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "5cf1912cbc492004656f41fff4ff36e5146e281b4f79a0e90606747b7c0bc649",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "5cf1912cbc492004656f41fff4ff36e5146e281b4f79a0e90606747b7c0bc649",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_scheduler_1_7_vectors.vec"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "9e777e7eb9fa4adeca52bc83ebedd5275aad2ebbc32f34140102131cd4aa4c7e",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "9e777e7eb9fa4adeca52bc83ebedd5275aad2ebbc32f34140102131cd4aa4c7e",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_scheduler_7_1_vectors.vec"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "836b9e2fb5079f93f9666e534823735c6f22f48c8def4b6301ec3119ac52a518",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "836b9e2fb5079f93f9666e534823735c6f22f48c8def4b6301ec3119ac52a518",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_scheduler_free_vectors.vec"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "8dafbe3dea995d94c84a8ea02b9393bd53b9b986b8cc852af55f2ea67dc1d839",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "8dafbe3dea995d94c84a8ea02b9393bd53b9b986b8cc852af55f2ea67dc1d839",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_sha256_manifest.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "caadbbf97fe0bacf2d82eaa5da4cd1fb6cf1e1514809d3e743311e19893d11bb",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "caadbbf97fe0bacf2d82eaa5da4cd1fb6cf1e1514809d3e743311e19893d11bb",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_trig_lut_q30.vec"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "dafc9a1771aa2c66c23e1595f85869fd9ccbc4155bbcef7cd907b6dbe4e27423",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "dafc9a1771aa2c66c23e1595f85869fd9ccbc4155bbcef7cd907b6dbe4e27423",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/scaling-16.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "aca86e4c5e8bbe9570609816bc6a254657a6935427334337866c5b7ccc76bbcf",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "aca86e4c5e8bbe9570609816bc6a254657a6935427334337866c5b7ccc76bbcf",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/scaling-32.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "065d9a6b3ac435945fc672d6bff6636845f449595243e5fc1a8af81d7b21d986",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "065d9a6b3ac435945fc672d6bff6636845f449595243e5fc1a8af81d7b21d986",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/scaling-8.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "9940930b2a4404147ca4f3b4240b5e98e387002bd6a1f3fb7ffa6f9b7c1aa64c",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "9940930b2a4404147ca4f3b4240b5e98e387002bd6a1f3fb7ffa6f9b7c1aa64c",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/self-test-1-7.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "c2f1b9e57857247a212d0f81073d0a71b6f1e0e7f5e3b32556b439cc2c97e660",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "c2f1b9e57857247a212d0f81073d0a71b6f1e0e7f5e3b32556b439cc2c97e660",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/self-test-7-1.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "c2f1b9e57857247a212d0f81073d0a71b6f1e0e7f5e3b32556b439cc2c97e660",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "c2f1b9e57857247a212d0f81073d0a71b6f1e0e7f5e3b32556b439cc2c97e660",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/self-test-default.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "44dbf8e3a8fb803aa61533542b1349398026bc83e42a274daa23cefef3417197",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "44dbf8e3a8fb803aa61533542b1349398026bc83e42a274daa23cefef3417197",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/self-test-free.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "cf5ed113afc7ed9127be66ee48e1593b52af477c94753d0ac9904f865ee3ce55",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "cf5ed113afc7ed9127be66ee48e1593b52af477c94753d0ac9904f865ee3ce55",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/structured-output.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "7a4cd4388df4e59afee01f18598304dd41bdf963e5186683b4fa47ff8732c4c6",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "7a4cd4388df4e59afee01f18598304dd41bdf963e5186683b4fa47ff8732c4c6",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/trace-1-7.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "55b2f3e71494b6afe737fa3c82c301011fb560a952b1d356740f79c03f4ed5a9",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "55b2f3e71494b6afe737fa3c82c301011fb560a952b1d356740f79c03f4ed5a9",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/trace-7-1.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "2c5f087361a1d28ecf6478289071be6b4dce79c05cc8992010185a2f584ad686",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "2c5f087361a1d28ecf6478289071be6b4dce79c05cc8992010185a2f584ad686",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/trace-free.json"
+    },
+    {
+      "category": "determinism",
+      "check_id": "independent_regeneration_byte_identical",
+      "expected": "045f9235e6dd441d09b80336e26b9b3e169ebc9910734eddcf52bc0917cd5021",
+      "message": "Two independent generations are byte-identical.",
+      "observed": "045f9235e6dd441d09b80336e26b9b3e169ebc9910734eddcf52bc0917cd5021",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/tabular/benchmark-matrix.csv"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "055b765a8a6e03c8c98fb817bc737e27d80338cf26025114696cbf0378bf2902",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "055b765a8a6e03c8c98fb817bc737e27d80338cf26025114696cbf0378bf2902",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/benchmark_matrix/benchmark-matrix.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "92e108ac5551800658e3b4f81221fc145aa899b0914542a91bdfa78d30af0543",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "92e108ac5551800658e3b4f81221fc145aa899b0914542a91bdfa78d30af0543",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/balanced-ternary-hardware-encoding-map.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "7aa0bf41f88ce4bbb53fcc3e52dc596fb0fc9b37899237cd9cd6119c3485f0af",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "7aa0bf41f88ce4bbb53fcc3e52dc596fb0fc9b37899237cd9cd6119c3485f0af",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/cycle-exact-reference-trace.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "840adfcf86b2d7dcac5c4153dd7ee63f9e21fe8b7842c68288a5faf596ff6e0a",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "840adfcf86b2d7dcac5c4153dd7ee63f9e21fe8b7842c68288a5faf596ff6e0a",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/fixed-point-interface-profile.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "bc3d77208b005fba050511dffbaebc21a37cbd7f4327de43405fe38529dec5ac",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "bc3d77208b005fba050511dffbaebc21a37cbd7f4327de43405fe38529dec5ac",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/qualification-closure-manifest.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "8c61304182952673b0a0195b181bf1e4e8f8de0ecf79dc4b3fa320d74bb356ae",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "8c61304182952673b0a0195b181bf1e4e8f8de0ecf79dc4b3fa320d74bb356ae",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/quantized-reference-shadow-model.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "662b0df1795ac3b31d9e1d95e00fda78408b7cbdf6024b5298eabec1f695d63d",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "662b0df1795ac3b31d9e1d95e00fda78408b7cbdf6024b5298eabec1f695d63d",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/reference-rtl-equivalence-report.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "40117f4f89eb6b2e062c3f8a9a894f5115ab2f710fd2275cbc6f775a440ef477",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "40117f4f89eb6b2e062c3f8a9a894f5115ab2f710fd2275cbc6f775a440ef477",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/rtl-assertion-correlation-harness.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "75ec68fed692ff9cfddd918dcf6289326b9b9130798d31c9c681c13a5189dbf4",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "75ec68fed692ff9cfddd918dcf6289326b9b9130798d31c9c681c13a5189dbf4",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/rtl-comparison-vector-package.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "d90623311383e897b8490c753ac418b759e763f3f77dde65c4bedd3a8f773b87",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "d90623311383e897b8490c753ac418b759e763f3f77dde65c4bedd3a8f773b87",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/synthesizable-rtl-reference-core.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "c58f552fdf42c2b8be4349d95d5aa6de5db6d145e8586850cf53ad957d9186da",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "c58f552fdf42c2b8be4349d95d5aa6de5db6d145e8586850cf53ad957d9186da",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/systemverilog-testbench-interface-map.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "b3192cbfbe89b31517212a09fd4d14f58180e2d1594a45412856399c4be5781d",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "b3192cbfbe89b31517212a09fd4d14f58180e2d1594a45412856399c4be5781d",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_cell_trace.vec"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "c2e2a92d7031b85d2681fdaba839bbc4a0d833be14c8516d15dcaed347940d73",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "c2e2a92d7031b85d2681fdaba839bbc4a0d833be14c8516d15dcaed347940d73",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_full_correlation_vectors.vec"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "87e063cdbe49d32ecfda129e0a5c6a8c77d022fdfa07eeed891a1b4f271d29bf",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "87e063cdbe49d32ecfda129e0a5c6a8c77d022fdfa07eeed891a1b4f271d29bf",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_kernel_vectors.vec"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "600125de9484bb3b2275a98a64eba06d751a8ce129e29c3eb49b14142e01afc5",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "600125de9484bb3b2275a98a64eba06d751a8ce129e29c3eb49b14142e01afc5",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_pending_routes.trace"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "88cf005a76a659c0f51a16a1499b6fa6251b09eb26434538eb27ca5718b1a4a0",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "88cf005a76a659c0f51a16a1499b6fa6251b09eb26434538eb27ca5718b1a4a0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_reference_preload.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "5cf1912cbc492004656f41fff4ff36e5146e281b4f79a0e90606747b7c0bc649",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "5cf1912cbc492004656f41fff4ff36e5146e281b4f79a0e90606747b7c0bc649",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_scheduler_1_7_vectors.vec"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "9e777e7eb9fa4adeca52bc83ebedd5275aad2ebbc32f34140102131cd4aa4c7e",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "9e777e7eb9fa4adeca52bc83ebedd5275aad2ebbc32f34140102131cd4aa4c7e",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_scheduler_7_1_vectors.vec"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "836b9e2fb5079f93f9666e534823735c6f22f48c8def4b6301ec3119ac52a518",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "836b9e2fb5079f93f9666e534823735c6f22f48c8def4b6301ec3119ac52a518",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_scheduler_free_vectors.vec"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "8dafbe3dea995d94c84a8ea02b9393bd53b9b986b8cc852af55f2ea67dc1d839",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "8dafbe3dea995d94c84a8ea02b9393bd53b9b986b8cc852af55f2ea67dc1d839",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_sha256_manifest.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "caadbbf97fe0bacf2d82eaa5da4cd1fb6cf1e1514809d3e743311e19893d11bb",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "caadbbf97fe0bacf2d82eaa5da4cd1fb6cf1e1514809d3e743311e19893d11bb",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_trig_lut_q30.vec"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "dafc9a1771aa2c66c23e1595f85869fd9ccbc4155bbcef7cd907b6dbe4e27423",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "dafc9a1771aa2c66c23e1595f85869fd9ccbc4155bbcef7cd907b6dbe4e27423",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/scaling-16.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "aca86e4c5e8bbe9570609816bc6a254657a6935427334337866c5b7ccc76bbcf",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "aca86e4c5e8bbe9570609816bc6a254657a6935427334337866c5b7ccc76bbcf",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/scaling-32.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "065d9a6b3ac435945fc672d6bff6636845f449595243e5fc1a8af81d7b21d986",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "065d9a6b3ac435945fc672d6bff6636845f449595243e5fc1a8af81d7b21d986",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/scaling-8.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "9940930b2a4404147ca4f3b4240b5e98e387002bd6a1f3fb7ffa6f9b7c1aa64c",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "9940930b2a4404147ca4f3b4240b5e98e387002bd6a1f3fb7ffa6f9b7c1aa64c",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/self-test-1-7.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "c2f1b9e57857247a212d0f81073d0a71b6f1e0e7f5e3b32556b439cc2c97e660",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "c2f1b9e57857247a212d0f81073d0a71b6f1e0e7f5e3b32556b439cc2c97e660",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/self-test-7-1.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "c2f1b9e57857247a212d0f81073d0a71b6f1e0e7f5e3b32556b439cc2c97e660",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "c2f1b9e57857247a212d0f81073d0a71b6f1e0e7f5e3b32556b439cc2c97e660",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/self-test-default.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "44dbf8e3a8fb803aa61533542b1349398026bc83e42a274daa23cefef3417197",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "44dbf8e3a8fb803aa61533542b1349398026bc83e42a274daa23cefef3417197",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/self-test-free.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "cf5ed113afc7ed9127be66ee48e1593b52af477c94753d0ac9904f865ee3ce55",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "cf5ed113afc7ed9127be66ee48e1593b52af477c94753d0ac9904f865ee3ce55",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/structured-output.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "7a4cd4388df4e59afee01f18598304dd41bdf963e5186683b4fa47ff8732c4c6",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "7a4cd4388df4e59afee01f18598304dd41bdf963e5186683b4fa47ff8732c4c6",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/trace-1-7.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "55b2f3e71494b6afe737fa3c82c301011fb560a952b1d356740f79c03f4ed5a9",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "55b2f3e71494b6afe737fa3c82c301011fb560a952b1d356740f79c03f4ed5a9",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/trace-7-1.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "2c5f087361a1d28ecf6478289071be6b4dce79c05cc8992010185a2f584ad686",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "2c5f087361a1d28ecf6478289071be6b4dce79c05cc8992010185a2f584ad686",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/trace-free.json"
+    },
+    {
+      "category": "digest",
+      "check_id": "publication_matches_regeneration",
+      "expected": "045f9235e6dd441d09b80336e26b9b3e169ebc9910734eddcf52bc0917cd5021",
+      "message": "The publication bytes match independent regeneration.",
+      "observed": "045f9235e6dd441d09b80336e26b9b3e169ebc9910734eddcf52bc0917cd5021",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/tabular/benchmark-matrix.csv"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.benchmark.architecture_comparison.v1.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.benchmark.hardware_sensitivity_comparison.v1.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.benchmark.hardware_sensitivity_cost_profile.v1.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.benchmark.normalized_cost_profile.v1.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.benchmark.thermal_proxy_profile.v1.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.benchmark.workload_profile.v1.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.balanced_ternary_hardware_encoding_map.v1.7.0.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.cycle_exact_reference_trace.v1.7.0.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.fixed_point_interface_profile.v1.7.0.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.qualification_closure_manifest.v1.7.0.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.quantized_reference_shadow_model.v1.7.0.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.reference_preload.v1.7.0.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.reference_rtl_equivalence_report.v1.7.0.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.rtl_assertion_correlation_harness.v1.7.0.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.rtl_comparison_vector_package.v1.7.0.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.sha256_manifest.v1.7.0.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.synthesizable_rtl_reference_core.v1.7.0.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.systemverilog_testbench_interface_map.v1.7.0.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m18.canonical_artifact_manifest.v2.0.0.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m18.canonical_artifact_qualification.v2.0.0.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m18.canonical_artifact_self_test.v2.0.0.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m18.formal_schema_registry.v2.0.0.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m3.benchmark_matrix.v1.7.0.schema.json"
+    },
+    {
+      "category": "formal_schema",
+      "check_id": "draft_2020_12_schema_valid",
+      "expected": "https://json-schema.org/draft/2020-12/schema",
+      "message": "The registered formal schema is valid Draft 2020-12 JSON Schema.",
+      "observed": "https://json-schema.org/draft/2020-12/schema",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.structured_output.v1.7.0.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.benchmark.architecture_comparison.v1",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.benchmark.architecture_comparison.v1",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.benchmark.architecture_comparison.v1.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.benchmark.hardware_sensitivity_comparison.v1",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.benchmark.hardware_sensitivity_comparison.v1",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.benchmark.hardware_sensitivity_comparison.v1.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.benchmark.hardware_sensitivity_cost_profile.v1",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.benchmark.hardware_sensitivity_cost_profile.v1",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.benchmark.hardware_sensitivity_cost_profile.v1.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.benchmark.normalized_cost_profile.v1",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.benchmark.normalized_cost_profile.v1",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.benchmark.normalized_cost_profile.v1.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.benchmark.thermal_proxy_profile.v1",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.benchmark.thermal_proxy_profile.v1",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.benchmark.thermal_proxy_profile.v1.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.benchmark.workload_profile.v1",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.benchmark.workload_profile.v1",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.benchmark.workload_profile.v1.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.m15.balanced_ternary_hardware_encoding_map.v1.7.0",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.m15.balanced_ternary_hardware_encoding_map.v1.7.0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.balanced_ternary_hardware_encoding_map.v1.7.0.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.m15.cycle_exact_reference_trace.v1.7.0",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.m15.cycle_exact_reference_trace.v1.7.0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.cycle_exact_reference_trace.v1.7.0.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.m15.fixed_point_interface_profile.v1.7.0",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.m15.fixed_point_interface_profile.v1.7.0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.fixed_point_interface_profile.v1.7.0.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.m15.qualification_closure_manifest.v1.7.0",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.m15.qualification_closure_manifest.v1.7.0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.qualification_closure_manifest.v1.7.0.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.m15.quantized_reference_shadow_model.v1.7.0",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.m15.quantized_reference_shadow_model.v1.7.0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.quantized_reference_shadow_model.v1.7.0.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.m15.reference_preload.v1.7.0",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.m15.reference_preload.v1.7.0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.reference_preload.v1.7.0.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.m15.reference_rtl_equivalence_report.v1.7.0",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.m15.reference_rtl_equivalence_report.v1.7.0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.reference_rtl_equivalence_report.v1.7.0.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.m15.rtl_assertion_correlation_harness.v1.7.0",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.m15.rtl_assertion_correlation_harness.v1.7.0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.rtl_assertion_correlation_harness.v1.7.0.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.m15.rtl_comparison_vector_package.v1.7.0",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.m15.rtl_comparison_vector_package.v1.7.0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.rtl_comparison_vector_package.v1.7.0.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.m15.sha256_manifest.v1.7.0",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.m15.sha256_manifest.v1.7.0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.sha256_manifest.v1.7.0.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.m15.synthesizable_rtl_reference_core.v1.7.0",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.m15.synthesizable_rtl_reference_core.v1.7.0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.synthesizable_rtl_reference_core.v1.7.0.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.m15.systemverilog_testbench_interface_map.v1.7.0",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.m15.systemverilog_testbench_interface_map.v1.7.0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.systemverilog_testbench_interface_map.v1.7.0.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.m18.canonical_artifact_manifest.v2.0.0",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.m18.canonical_artifact_manifest.v2.0.0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m18.canonical_artifact_manifest.v2.0.0.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.m18.canonical_artifact_qualification.v2.0.0",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.m18.canonical_artifact_qualification.v2.0.0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m18.canonical_artifact_qualification.v2.0.0.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.m18.canonical_artifact_self_test.v2.0.0",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.m18.canonical_artifact_self_test.v2.0.0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m18.canonical_artifact_self_test.v2.0.0.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.m18.formal_schema_registry.v2.0.0",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.m18.formal_schema_registry.v2.0.0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m18.formal_schema_registry.v2.0.0.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.m3.benchmark_matrix.v1.7.0",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.m3.benchmark_matrix.v1.7.0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m3.benchmark_matrix.v1.7.0.schema.json"
+    },
+    {
+      "category": "identity",
+      "check_id": "formal_schema_identity_exact",
+      "expected": "urn:frp:schema:frp.structured_output.v1.7.0",
+      "message": "The formal schema identity matches its registry identifier.",
+      "observed": "urn:frp:schema:frp.structured_output.v1.7.0",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.structured_output.v1.7.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        1688,
+        "055b765a8a6e03c8c98fb817bc737e27d80338cf26025114696cbf0378bf2902"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        1688,
+        "055b765a8a6e03c8c98fb817bc737e27d80338cf26025114696cbf0378bf2902"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/benchmark_matrix/benchmark-matrix.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        2625,
+        "92e108ac5551800658e3b4f81221fc145aa899b0914542a91bdfa78d30af0543"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        2625,
+        "92e108ac5551800658e3b4f81221fc145aa899b0914542a91bdfa78d30af0543"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/balanced-ternary-hardware-encoding-map.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        89243,
+        "7aa0bf41f88ce4bbb53fcc3e52dc596fb0fc9b37899237cd9cd6119c3485f0af"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        89243,
+        "7aa0bf41f88ce4bbb53fcc3e52dc596fb0fc9b37899237cd9cd6119c3485f0af"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/cycle-exact-reference-trace.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        4549,
+        "840adfcf86b2d7dcac5c4153dd7ee63f9e21fe8b7842c68288a5faf596ff6e0a"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        4549,
+        "840adfcf86b2d7dcac5c4153dd7ee63f9e21fe8b7842c68288a5faf596ff6e0a"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/fixed-point-interface-profile.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        7374,
+        "bc3d77208b005fba050511dffbaebc21a37cbd7f4327de43405fe38529dec5ac"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        7374,
+        "bc3d77208b005fba050511dffbaebc21a37cbd7f4327de43405fe38529dec5ac"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/qualification-closure-manifest.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        4687,
+        "8c61304182952673b0a0195b181bf1e4e8f8de0ecf79dc4b3fa320d74bb356ae"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        4687,
+        "8c61304182952673b0a0195b181bf1e4e8f8de0ecf79dc4b3fa320d74bb356ae"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/quantized-reference-shadow-model.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        5071,
+        "662b0df1795ac3b31d9e1d95e00fda78408b7cbdf6024b5298eabec1f695d63d"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        5071,
+        "662b0df1795ac3b31d9e1d95e00fda78408b7cbdf6024b5298eabec1f695d63d"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/reference-rtl-equivalence-report.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        1146,
+        "40117f4f89eb6b2e062c3f8a9a894f5115ab2f710fd2275cbc6f775a440ef477"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        1146,
+        "40117f4f89eb6b2e062c3f8a9a894f5115ab2f710fd2275cbc6f775a440ef477"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/rtl-assertion-correlation-harness.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        2307,
+        "75ec68fed692ff9cfddd918dcf6289326b9b9130798d31c9c681c13a5189dbf4"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        2307,
+        "75ec68fed692ff9cfddd918dcf6289326b9b9130798d31c9c681c13a5189dbf4"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/rtl-comparison-vector-package.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        2111,
+        "d90623311383e897b8490c753ac418b759e763f3f77dde65c4bedd3a8f773b87"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        2111,
+        "d90623311383e897b8490c753ac418b759e763f3f77dde65c4bedd3a8f773b87"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/synthesizable-rtl-reference-core.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        1500,
+        "c58f552fdf42c2b8be4349d95d5aa6de5db6d145e8586850cf53ad957d9186da"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        1500,
+        "c58f552fdf42c2b8be4349d95d5aa6de5db6d145e8586850cf53ad957d9186da"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_exports/systemverilog-testbench-interface-map.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        112549,
+        "b3192cbfbe89b31517212a09fd4d14f58180e2d1594a45412856399c4be5781d"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        112549,
+        "b3192cbfbe89b31517212a09fd4d14f58180e2d1594a45412856399c4be5781d"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_cell_trace.vec"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        16689,
+        "c2e2a92d7031b85d2681fdaba839bbc4a0d833be14c8516d15dcaed347940d73"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        16689,
+        "c2e2a92d7031b85d2681fdaba839bbc4a0d833be14c8516d15dcaed347940d73"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_full_correlation_vectors.vec"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        8815,
+        "87e063cdbe49d32ecfda129e0a5c6a8c77d022fdfa07eeed891a1b4f271d29bf"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        8815,
+        "87e063cdbe49d32ecfda129e0a5c6a8c77d022fdfa07eeed891a1b4f271d29bf"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_kernel_vectors.vec"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        818,
+        "600125de9484bb3b2275a98a64eba06d751a8ce129e29c3eb49b14142e01afc5"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        818,
+        "600125de9484bb3b2275a98a64eba06d751a8ce129e29c3eb49b14142e01afc5"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_pending_routes.trace"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        1387,
+        "88cf005a76a659c0f51a16a1499b6fa6251b09eb26434538eb27ca5718b1a4a0"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        1387,
+        "88cf005a76a659c0f51a16a1499b6fa6251b09eb26434538eb27ca5718b1a4a0"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_reference_preload.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        5028,
+        "5cf1912cbc492004656f41fff4ff36e5146e281b4f79a0e90606747b7c0bc649"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        5028,
+        "5cf1912cbc492004656f41fff4ff36e5146e281b4f79a0e90606747b7c0bc649"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_scheduler_1_7_vectors.vec"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        5017,
+        "9e777e7eb9fa4adeca52bc83ebedd5275aad2ebbc32f34140102131cd4aa4c7e"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        5017,
+        "9e777e7eb9fa4adeca52bc83ebedd5275aad2ebbc32f34140102131cd4aa4c7e"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_scheduler_7_1_vectors.vec"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        5023,
+        "836b9e2fb5079f93f9666e534823735c6f22f48c8def4b6301ec3119ac52a518"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        5023,
+        "836b9e2fb5079f93f9666e534823735c6f22f48c8def4b6301ec3119ac52a518"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_scheduler_free_vectors.vec"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        935,
+        "8dafbe3dea995d94c84a8ea02b9393bd53b9b986b8cc852af55f2ea67dc1d839"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        935,
+        "8dafbe3dea995d94c84a8ea02b9393bd53b9b986b8cc852af55f2ea67dc1d839"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_sha256_manifest.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        72471,
+        "caadbbf97fe0bacf2d82eaa5da4cd1fb6cf1e1514809d3e743311e19893d11bb"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        72471,
+        "caadbbf97fe0bacf2d82eaa5da4cd1fb6cf1e1514809d3e743311e19893d11bb"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/m15_vectors/frp_m15_trig_lut_q30.vec"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        2549,
+        "dafc9a1771aa2c66c23e1595f85869fd9ccbc4155bbcef7cd907b6dbe4e27423"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        2549,
+        "dafc9a1771aa2c66c23e1595f85869fd9ccbc4155bbcef7cd907b6dbe4e27423"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/scaling-16.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        2550,
+        "aca86e4c5e8bbe9570609816bc6a254657a6935427334337866c5b7ccc76bbcf"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        2550,
+        "aca86e4c5e8bbe9570609816bc6a254657a6935427334337866c5b7ccc76bbcf"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/scaling-32.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        2544,
+        "065d9a6b3ac435945fc672d6bff6636845f449595243e5fc1a8af81d7b21d986"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        2544,
+        "065d9a6b3ac435945fc672d6bff6636845f449595243e5fc1a8af81d7b21d986"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/scaling-8.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        30785,
+        "9940930b2a4404147ca4f3b4240b5e98e387002bd6a1f3fb7ffa6f9b7c1aa64c"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        30785,
+        "9940930b2a4404147ca4f3b4240b5e98e387002bd6a1f3fb7ffa6f9b7c1aa64c"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/self-test-1-7.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        30781,
+        "c2f1b9e57857247a212d0f81073d0a71b6f1e0e7f5e3b32556b439cc2c97e660"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        30781,
+        "c2f1b9e57857247a212d0f81073d0a71b6f1e0e7f5e3b32556b439cc2c97e660"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/self-test-7-1.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        30781,
+        "c2f1b9e57857247a212d0f81073d0a71b6f1e0e7f5e3b32556b439cc2c97e660"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        30781,
+        "c2f1b9e57857247a212d0f81073d0a71b6f1e0e7f5e3b32556b439cc2c97e660"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/self-test-default.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        30733,
+        "44dbf8e3a8fb803aa61533542b1349398026bc83e42a274daa23cefef3417197"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        30733,
+        "44dbf8e3a8fb803aa61533542b1349398026bc83e42a274daa23cefef3417197"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/self-test-free.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        2551,
+        "cf5ed113afc7ed9127be66ee48e1593b52af477c94753d0ac9904f865ee3ce55"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        2551,
+        "cf5ed113afc7ed9127be66ee48e1593b52af477c94753d0ac9904f865ee3ce55"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/structured-output.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        562665,
+        "7a4cd4388df4e59afee01f18598304dd41bdf963e5186683b4fa47ff8732c4c6"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        562665,
+        "7a4cd4388df4e59afee01f18598304dd41bdf963e5186683b4fa47ff8732c4c6"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/trace-1-7.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        562468,
+        "55b2f3e71494b6afe737fa3c82c301011fb560a952b1d356740f79c03f4ed5a9"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        562468,
+        "55b2f3e71494b6afe737fa3c82c301011fb560a952b1d356740f79c03f4ed5a9"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/trace-7-1.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        562309,
+        "2c5f087361a1d28ecf6478289071be6b4dce79c05cc8992010185a2f584ad686"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        562309,
+        "2c5f087361a1d28ecf6478289071be6b4dce79c05cc8992010185a2f584ad686"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/structured_output/trace-free.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        794,
+        "045f9235e6dd441d09b80336e26b9b3e169ebc9910734eddcf52bc0917cd5021"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        794,
+        "045f9235e6dd441d09b80336e26b9b3e169ebc9910734eddcf52bc0917cd5021"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/tabular/benchmark-matrix.csv"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        15360,
+        "79c1c17c924bde6947dce477c2b8b64600684c993e7f42c1f00f6ffca0228a1c"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        15360,
+        "79c1c17c924bde6947dce477c2b8b64600684c993e7f42c1f00f6ffca0228a1c"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "benchmarks/architecture_comparison/profiles/hardware_sensitivity_cost_profile_v1.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        677,
+        "bd2f5bfc4f0430c2764c5f1ddb1258d176b42f1667d1f0f691e40730ddc4c979"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        677,
+        "bd2f5bfc4f0430c2764c5f1ddb1258d176b42f1667d1f0f691e40730ddc4c979"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "benchmarks/architecture_comparison/profiles/normalized_cost_profile_v1.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        517,
+        "aeafebc3e71d1311a3445bd1528cbe7322546f79d6a5099dfed3a9590fc4a25b"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        517,
+        "aeafebc3e71d1311a3445bd1528cbe7322546f79d6a5099dfed3a9590fc4a25b"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "benchmarks/architecture_comparison/profiles/thermal_proxy_profile_v1.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        174,
+        "5680c50220a751ea748e55644dd3a189321ca8e89398bb3751a471556dce94b9"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        174,
+        "5680c50220a751ea748e55644dd3a189321ca8e89398bb3751a471556dce94b9"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "benchmarks/architecture_comparison/profiles/workload_profile_v1.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        21988,
+        "5ba86d26dc62db36ae14ac2c1167e71dd5c06c00bbd5aa3dc21c6d11b38db064"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        21988,
+        "5ba86d26dc62db36ae14ac2c1167e71dd5c06c00bbd5aa3dc21c6d11b38db064"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "benchmarks/architecture_comparison/results/reference_comparison_seed_76.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        81632,
+        "e4785aa4c234cc7dd8e5377e5e0b41a8ec401f962400975e0cef7a88cc494680"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        81632,
+        "e4785aa4c234cc7dd8e5377e5e0b41a8ec401f962400975e0cef7a88cc494680"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "benchmarks/architecture_comparison/results/reference_comparison_seed_76_hardware_sensitivity_v1.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        29538,
+        "ef1ad271831820a09d019093a1ffd4d315fd70dca75cc34b68a78b1c8379154a"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        29538,
+        "ef1ad271831820a09d019093a1ffd4d315fd70dca75cc34b68a78b1c8379154a"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.benchmark.architecture_comparison.v1.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        59209,
+        "ec85391bd720008bfc3b0b0f4fb9d56ae00d49fea4396b56a37cefcfee87a0f1"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        59209,
+        "ec85391bd720008bfc3b0b0f4fb9d56ae00d49fea4396b56a37cefcfee87a0f1"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.benchmark.hardware_sensitivity_comparison.v1.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        25441,
+        "c3159f412aba93b76e71f68684015dbdfab6888952e8402750a26b393f10e908"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        25441,
+        "c3159f412aba93b76e71f68684015dbdfab6888952e8402750a26b393f10e908"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.benchmark.hardware_sensitivity_cost_profile.v1.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        3729,
+        "022d6af9e0f76002049284cc48c6bfe326b4b9e7520dca4dfe13ae1528fc0ba5"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        3729,
+        "022d6af9e0f76002049284cc48c6bfe326b4b9e7520dca4dfe13ae1528fc0ba5"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.benchmark.normalized_cost_profile.v1.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        1758,
+        "c206f0f7f55d4c5614e6a1c2495c2e865ef0bb232222668afc74f1a4919a3586"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        1758,
+        "c206f0f7f55d4c5614e6a1c2495c2e865ef0bb232222668afc74f1a4919a3586"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.benchmark.thermal_proxy_profile.v1.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        1384,
+        "20e005a29d8bb7751b89b025a6d2ffa0e0f61ac19bb5f1b2a61755f89b78abbf"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        1384,
+        "20e005a29d8bb7751b89b025a6d2ffa0e0f61ac19bb5f1b2a61755f89b78abbf"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.benchmark.workload_profile.v1.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        10365,
+        "a9694571f93249b762921cfc0bd4bb07eab0034e3839b1df246cc86c1e3b8781"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        10365,
+        "a9694571f93249b762921cfc0bd4bb07eab0034e3839b1df246cc86c1e3b8781"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.balanced_ternary_hardware_encoding_map.v1.7.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        28898,
+        "45295d3210ba5900fb751f51b46f85b8cef086a375b5a6f19264dc73a080c779"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        28898,
+        "45295d3210ba5900fb751f51b46f85b8cef086a375b5a6f19264dc73a080c779"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.cycle_exact_reference_trace.v1.7.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        15357,
+        "7224a301711d6a6af3d265170526f871ac2447c3e6e46aeccefa51871e74dbcf"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        15357,
+        "7224a301711d6a6af3d265170526f871ac2447c3e6e46aeccefa51871e74dbcf"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.fixed_point_interface_profile.v1.7.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        11889,
+        "89cf00afea179744950d178726d09eb4062f3f5c60fcb1411907cba2fe308598"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        11889,
+        "89cf00afea179744950d178726d09eb4062f3f5c60fcb1411907cba2fe308598"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.qualification_closure_manifest.v1.7.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        16337,
+        "e449fc7db9938064efb125a9a9dd842a9480b775bfcfd8de31fe32a77e173fa3"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        16337,
+        "e449fc7db9938064efb125a9a9dd842a9480b775bfcfd8de31fe32a77e173fa3"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.quantized_reference_shadow_model.v1.7.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        4574,
+        "4b30b971ac9f123e897be1f87ad6cc7a1d00760fc0f23ef64a39eee4bd9d4826"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        4574,
+        "4b30b971ac9f123e897be1f87ad6cc7a1d00760fc0f23ef64a39eee4bd9d4826"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.reference_preload.v1.7.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        10264,
+        "ebdc326037717385f13caf0c967ef56f0fa268da899aed7a68abb6e125d758cb"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        10264,
+        "ebdc326037717385f13caf0c967ef56f0fa268da899aed7a68abb6e125d758cb"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.reference_rtl_equivalence_report.v1.7.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        2961,
+        "1b20b1e77301699ab88c9694fa1889c78aa8c7253f1ad0afe9dc8a5ce53c3093"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        2961,
+        "1b20b1e77301699ab88c9694fa1889c78aa8c7253f1ad0afe9dc8a5ce53c3093"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.rtl_assertion_correlation_harness.v1.7.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        9158,
+        "e252a8ae5cbdb4349de5becb8f734c51b0e515b68131a0a16ced6207ef63f957"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        9158,
+        "e252a8ae5cbdb4349de5becb8f734c51b0e515b68131a0a16ced6207ef63f957"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.rtl_comparison_vector_package.v1.7.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        3436,
+        "a8cac26c0f36256e709a95a7b5988ee0905c3792e7cd06cc08e0d39e0790712d"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        3436,
+        "a8cac26c0f36256e709a95a7b5988ee0905c3792e7cd06cc08e0d39e0790712d"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.sha256_manifest.v1.7.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        4689,
+        "448941f4c9538f7dd0004035d9a250462440a7b4bbc546b82e7e925f8810c267"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        4689,
+        "448941f4c9538f7dd0004035d9a250462440a7b4bbc546b82e7e925f8810c267"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.synthesizable_rtl_reference_core.v1.7.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        6389,
+        "a4a82d4bab468b22087f9262a7653b5c677eb619724d1bd87208e44f9a3e07f5"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        6389,
+        "a4a82d4bab468b22087f9262a7653b5c677eb619724d1bd87208e44f9a3e07f5"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m15.systemverilog_testbench_interface_map.v1.7.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        22306,
+        "23d9f7b9a736b8d44bd73c99771f04daf342952433170dfb4b50b9d3064ff54e"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        22306,
+        "23d9f7b9a736b8d44bd73c99771f04daf342952433170dfb4b50b9d3064ff54e"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m18.canonical_artifact_manifest.v2.0.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        8454,
+        "93721155fb581d42454b2dff1684f06715d42d2603640645b146d2a6a7ea0c6e"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        8454,
+        "93721155fb581d42454b2dff1684f06715d42d2603640645b146d2a6a7ea0c6e"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m18.canonical_artifact_qualification.v2.0.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        13736,
+        "2ec611003e635504d7c4b7af0f774db5253cad6da50ba9c505668ab8916f646a"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        13736,
+        "2ec611003e635504d7c4b7af0f774db5253cad6da50ba9c505668ab8916f646a"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m18.canonical_artifact_self_test.v2.0.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        22004,
+        "db47fa73a82f1414cd6b98a9855d8a5f26ccdf495e0cd74f41a11e07e836d9fc"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        22004,
+        "db47fa73a82f1414cd6b98a9855d8a5f26ccdf495e0cd74f41a11e07e836d9fc"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m18.formal_schema_registry.v2.0.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        5521,
+        "8b39d5f8982f2b0683a1102f8083d9e41da04709f46fa49c5a1a36a6a208e33d"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        5521,
+        "8b39d5f8982f2b0683a1102f8083d9e41da04709f46fa49c5a1a36a6a208e33d"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.m3.benchmark_matrix.v1.7.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        52761,
+        "e5511e0d9358ee628efb2ad02b28d719003b71deb1725a3e703e053b71a2e084"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        52761,
+        "e5511e0d9358ee628efb2ad02b28d719003b71deb1725a3e703e053b71a2e084"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp.structured_output.v1.7.0.schema.json"
+    },
+    {
+      "category": "immutability",
+      "check_id": "source_bytes_unchanged",
+      "expected": [
+        24843,
+        "35dbce174597da749d95cc8cdbc41f1b67a3d042296ae84e61915ee09c5fdea6"
+      ],
+      "message": "Source byte length and SHA-256 remain unchanged after validation.",
+      "observed": [
+        24843,
+        "35dbce174597da749d95cc8cdbc41f1b67a3d042296ae84e61915ee09c5fdea6"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp_m18_schema_registry.json"
+    },
+    {
+      "category": "manifest",
+      "check_id": "manifest_artifact_set_digest_valid",
+      "expected": "c190ffeee11ac44a5f89efa85e54fc656cac23f0f66f625cf303419b967a9f83",
+      "message": "The manifest artifact-set digest matches exact source bytes.",
+      "observed": "c190ffeee11ac44a5f89efa85e54fc656cac23f0f66f625cf303419b967a9f83",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/manifests/canonical-artifact-manifest.json"
+    },
+    {
+      "category": "manifest",
+      "check_id": "manifest_regeneration_byte_identical",
+      "expected": "bdf034303e9557a87ff53fce9193b9480360202e5ece8247d35f44678a871710",
+      "message": "The canonical manifest matches independent reconstruction.",
+      "observed": "bdf034303e9557a87ff53fce9193b9480360202e5ece8247d35f44678a871710",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/manifests/canonical-artifact-manifest.json"
+    },
+    {
+      "category": "measurement_contour",
+      "check_id": "measurement_contours_remain_separate",
+      "expected": [
+        "comparative_architecture_benchmark_suite",
+        "hardware_informed_sensitivity_qualification",
+        "m15_implementation_mapping_matrix",
+        "m18_canonical_artifact_publication"
+      ],
+      "message": "Registered measurement contours remain explicitly separate.",
+      "observed": [
+        "comparative_architecture_benchmark_suite",
+        "hardware_informed_sensitivity_qualification",
+        "m15_implementation_mapping_matrix",
+        "m18_canonical_artifact_publication"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "artifacts/m18/manifests/canonical-artifact-manifest.json"
+    },
+    {
+      "category": "publication_boundary",
+      "check_id": "generated_path_set_exact",
+      "expected": [
+        "artifacts/m18/benchmark_matrix/benchmark-matrix.json",
+        "artifacts/m18/m15_exports/balanced-ternary-hardware-encoding-map.json",
+        "artifacts/m18/m15_exports/cycle-exact-reference-trace.json",
+        "artifacts/m18/m15_exports/fixed-point-interface-profile.json",
+        "artifacts/m18/m15_exports/qualification-closure-manifest.json",
+        "artifacts/m18/m15_exports/quantized-reference-shadow-model.json",
+        "artifacts/m18/m15_exports/reference-rtl-equivalence-report.json",
+        "artifacts/m18/m15_exports/rtl-assertion-correlation-harness.json",
+        "artifacts/m18/m15_exports/rtl-comparison-vector-package.json",
+        "artifacts/m18/m15_exports/synthesizable-rtl-reference-core.json",
+        "artifacts/m18/m15_exports/systemverilog-testbench-interface-map.json",
+        "artifacts/m18/m15_vectors/frp_m15_cell_trace.vec",
+        "artifacts/m18/m15_vectors/frp_m15_full_correlation_vectors.vec",
+        "artifacts/m18/m15_vectors/frp_m15_kernel_vectors.vec",
+        "artifacts/m18/m15_vectors/frp_m15_pending_routes.trace",
+        "artifacts/m18/m15_vectors/frp_m15_reference_preload.json",
+        "artifacts/m18/m15_vectors/frp_m15_scheduler_1_7_vectors.vec",
+        "artifacts/m18/m15_vectors/frp_m15_scheduler_7_1_vectors.vec",
+        "artifacts/m18/m15_vectors/frp_m15_scheduler_free_vectors.vec",
+        "artifacts/m18/m15_vectors/frp_m15_sha256_manifest.json",
+        "artifacts/m18/m15_vectors/frp_m15_trig_lut_q30.vec",
+        "artifacts/m18/structured_output/scaling-16.json",
+        "artifacts/m18/structured_output/scaling-32.json",
+        "artifacts/m18/structured_output/scaling-8.json",
+        "artifacts/m18/structured_output/self-test-1-7.json",
+        "artifacts/m18/structured_output/self-test-7-1.json",
+        "artifacts/m18/structured_output/self-test-default.json",
+        "artifacts/m18/structured_output/self-test-free.json",
+        "artifacts/m18/structured_output/structured-output.json",
+        "artifacts/m18/structured_output/trace-1-7.json",
+        "artifacts/m18/structured_output/trace-7-1.json",
+        "artifacts/m18/structured_output/trace-free.json",
+        "artifacts/m18/tabular/benchmark-matrix.csv"
+      ],
+      "message": "The generated publication path set is closed and exact.",
+      "observed": [
+        "artifacts/m18/benchmark_matrix/benchmark-matrix.json",
+        "artifacts/m18/m15_exports/balanced-ternary-hardware-encoding-map.json",
+        "artifacts/m18/m15_exports/cycle-exact-reference-trace.json",
+        "artifacts/m18/m15_exports/fixed-point-interface-profile.json",
+        "artifacts/m18/m15_exports/qualification-closure-manifest.json",
+        "artifacts/m18/m15_exports/quantized-reference-shadow-model.json",
+        "artifacts/m18/m15_exports/reference-rtl-equivalence-report.json",
+        "artifacts/m18/m15_exports/rtl-assertion-correlation-harness.json",
+        "artifacts/m18/m15_exports/rtl-comparison-vector-package.json",
+        "artifacts/m18/m15_exports/synthesizable-rtl-reference-core.json",
+        "artifacts/m18/m15_exports/systemverilog-testbench-interface-map.json",
+        "artifacts/m18/m15_vectors/frp_m15_cell_trace.vec",
+        "artifacts/m18/m15_vectors/frp_m15_full_correlation_vectors.vec",
+        "artifacts/m18/m15_vectors/frp_m15_kernel_vectors.vec",
+        "artifacts/m18/m15_vectors/frp_m15_pending_routes.trace",
+        "artifacts/m18/m15_vectors/frp_m15_reference_preload.json",
+        "artifacts/m18/m15_vectors/frp_m15_scheduler_1_7_vectors.vec",
+        "artifacts/m18/m15_vectors/frp_m15_scheduler_7_1_vectors.vec",
+        "artifacts/m18/m15_vectors/frp_m15_scheduler_free_vectors.vec",
+        "artifacts/m18/m15_vectors/frp_m15_sha256_manifest.json",
+        "artifacts/m18/m15_vectors/frp_m15_trig_lut_q30.vec",
+        "artifacts/m18/structured_output/scaling-16.json",
+        "artifacts/m18/structured_output/scaling-32.json",
+        "artifacts/m18/structured_output/scaling-8.json",
+        "artifacts/m18/structured_output/self-test-1-7.json",
+        "artifacts/m18/structured_output/self-test-7-1.json",
+        "artifacts/m18/structured_output/self-test-default.json",
+        "artifacts/m18/structured_output/self-test-free.json",
+        "artifacts/m18/structured_output/structured-output.json",
+        "artifacts/m18/structured_output/trace-1-7.json",
+        "artifacts/m18/structured_output/trace-7-1.json",
+        "artifacts/m18/structured_output/trace-free.json",
+        "artifacts/m18/tabular/benchmark-matrix.csv"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": null
+    },
+    {
+      "category": "publication_boundary",
+      "check_id": "m16_and_physical_claim_boundary_preserved",
+      "expected": true,
+      "message": "M18 introduces no M16 execution or physical-chip claim.",
+      "observed": true,
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": null
+    },
+    {
+      "category": "registry",
+      "check_id": "exact_supported_schema_set",
+      "expected": [
+        "frp.benchmark.architecture_comparison.v1",
+        "frp.benchmark.hardware_sensitivity_comparison.v1",
+        "frp.benchmark.hardware_sensitivity_cost_profile.v1",
+        "frp.benchmark.normalized_cost_profile.v1",
+        "frp.benchmark.thermal_proxy_profile.v1",
+        "frp.benchmark.workload_profile.v1",
+        "frp.m15.balanced_ternary_hardware_encoding_map.v1.7.0",
+        "frp.m15.cycle_exact_reference_trace.v1.7.0",
+        "frp.m15.fixed_point_interface_profile.v1.7.0",
+        "frp.m15.qualification_closure_manifest.v1.7.0",
+        "frp.m15.quantized_reference_shadow_model.v1.7.0",
+        "frp.m15.reference_preload.v1.7.0",
+        "frp.m15.reference_rtl_equivalence_report.v1.7.0",
+        "frp.m15.rtl_assertion_correlation_harness.v1.7.0",
+        "frp.m15.rtl_comparison_vector_package.v1.7.0",
+        "frp.m15.sha256_manifest.v1.7.0",
+        "frp.m15.synthesizable_rtl_reference_core.v1.7.0",
+        "frp.m15.systemverilog_testbench_interface_map.v1.7.0",
+        "frp.m18.canonical_artifact_manifest.v2.0.0",
+        "frp.m18.canonical_artifact_qualification.v2.0.0",
+        "frp.m18.canonical_artifact_self_test.v2.0.0",
+        "frp.m18.formal_schema_registry.v2.0.0",
+        "frp.m3.benchmark_matrix.v1.7.0",
+        "frp.structured_output.v1.7.0"
+      ],
+      "message": "The registry contains the exact ordered M18 supported-schema set.",
+      "observed": [
+        "frp.benchmark.architecture_comparison.v1",
+        "frp.benchmark.hardware_sensitivity_comparison.v1",
+        "frp.benchmark.hardware_sensitivity_cost_profile.v1",
+        "frp.benchmark.normalized_cost_profile.v1",
+        "frp.benchmark.thermal_proxy_profile.v1",
+        "frp.benchmark.workload_profile.v1",
+        "frp.m15.balanced_ternary_hardware_encoding_map.v1.7.0",
+        "frp.m15.cycle_exact_reference_trace.v1.7.0",
+        "frp.m15.fixed_point_interface_profile.v1.7.0",
+        "frp.m15.qualification_closure_manifest.v1.7.0",
+        "frp.m15.quantized_reference_shadow_model.v1.7.0",
+        "frp.m15.reference_preload.v1.7.0",
+        "frp.m15.reference_rtl_equivalence_report.v1.7.0",
+        "frp.m15.rtl_assertion_correlation_harness.v1.7.0",
+        "frp.m15.rtl_comparison_vector_package.v1.7.0",
+        "frp.m15.sha256_manifest.v1.7.0",
+        "frp.m15.synthesizable_rtl_reference_core.v1.7.0",
+        "frp.m15.systemverilog_testbench_interface_map.v1.7.0",
+        "frp.m18.canonical_artifact_manifest.v2.0.0",
+        "frp.m18.canonical_artifact_qualification.v2.0.0",
+        "frp.m18.canonical_artifact_self_test.v2.0.0",
+        "frp.m18.formal_schema_registry.v2.0.0",
+        "frp.m3.benchmark_matrix.v1.7.0",
+        "frp.structured_output.v1.7.0"
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp_m18_schema_registry.json"
+    },
+    {
+      "category": "registry",
+      "check_id": "registry_content_digest_valid",
+      "expected": true,
+      "message": "The registry compact-content digest is valid.",
+      "observed": true,
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": "schemas/m18/frp_m18_schema_registry.json"
+    },
+    {
+      "category": "structure",
+      "check_id": "canonical_artifact_relations_valid",
+      "expected": "valid",
+      "message": "Canonical artifacts satisfy formal schemas and registered relations.",
+      "observed": "valid",
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": null
+    },
+    {
+      "category": "ternary_domain",
+      "check_id": "canonical_processor_domain_preserved",
+      "expected": [
+        -1,
+        0,
+        1
+      ],
+      "message": "Canonical processor states remain -1, 0, 1 with active neutral state 0.",
+      "observed": [
+        -1,
+        0,
+        1
+      ],
+      "outcome": "PASS",
+      "severity": "INFO",
+      "subject_path": null
+    }
+  ],
+  "failed_count": 0,
+  "kind": "canonical_artifact_qualification",
+  "manifest_path": "artifacts/m18/manifests/canonical-artifact-manifest.json",
+  "manifest_sha256": "bdf034303e9557a87ff53fce9193b9480360202e5ece8247d35f44678a871710",
+  "milestone": "M18 — Formal Schema and Canonical Artifact Publication",
+  "not_evaluated_count": 0,
+  "overall_status": "PASS",
+  "passed_count": 187,
+  "producer": "frp_m18_canonical_artifacts.py",
+  "producer_version": "2.0.0",
+  "registry_path": "schemas/m18/frp_m18_schema_registry.json",
+  "registry_sha256": "35dbce174597da749d95cc8cdbc41f1b67a3d042296ae84e61915ee09c5fdea6",
+  "schema": "frp.m18.canonical_artifact_qualification.v2.0.0",
+  "upstream_release": "FRP v1.8.0 / M16",
+  "version": "2.0.0",
+  "warning_count": 0
+}

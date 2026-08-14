@@ -1,0 +1,113 @@
+{
+  "inherited_boundary": {
+    "layer": "M14 — Physical Implementation Correlation and Production Qualification Package",
+    "m14_artifact_layers": [
+      "hierarchical_ultrametric_topology_model",
+      "fractal_coupling_weight_map",
+      "multiscale_phase_coherence_map",
+      "cluster_local_thermal_field",
+      "cross_cluster_propagation_map",
+      "localized_hotspot_containment_harness",
+      "dense_hierarchical_equivalence_map",
+      "physical_domain_correlation_package"
+    ],
+    "main_executable_reference_file": "frp_prototype_v1_6_0.py",
+    "preserved_kernel": {
+      "active_neutral_state": 0,
+      "balanced_ternary_states": [
+        -1,
+        0,
+        1
+      ],
+      "pressure_relation": "P(t) = heat + switch_load",
+      "scheduler_modes": [
+        "free",
+        "7/1",
+        "1/7"
+      ],
+      "stability_relation": "C(t) > P(t)",
+      "tick_separated_neutral_routing": true
+    },
+    "release": "FRP v1.6.0",
+    "release_notes": "RELEASE_NOTES_v1_6_0.md",
+    "release_status": "PUBLISHED",
+    "test_report": "TEST_REPORT_v1_6_0.md",
+    "validated_commit": "09141fc",
+    "validation_index": "FRP_VALIDATION_INDEX_v1_6_0.md"
+  },
+  "kind": "balanced_ternary_hardware_encoding_map",
+  "milestone": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package",
+  "packed_state_vector": {
+    "bits_per_cell": 2,
+    "cell_i_bits": "[2i+1:2i]",
+    "cell_zero_bits": "[1:0]",
+    "configured_cells": 16,
+    "configured_width_bits": 32
+  },
+  "request_interface": {
+    "cell_id_width": 4,
+    "lane_order": "ascending lane index",
+    "request_lanes": 4,
+    "request_target_state_bits_per_lane": 2,
+    "request_valid_bits_per_lane": 1
+  },
+  "reserved_state_code": {
+    "code": "10",
+    "integer_code": 2
+  },
+  "scheduler_mode_encoding": [
+    {
+      "code": 0,
+      "name": "free"
+    },
+    {
+      "code": 1,
+      "name": "7/1"
+    },
+    {
+      "code": 2,
+      "name": "1/7"
+    }
+  ],
+  "scheduler_state_encoding": [
+    {
+      "code": 0,
+      "name": "free"
+    },
+    {
+      "code": 1,
+      "name": "balance"
+    },
+    {
+      "code": 2,
+      "name": "commit"
+    },
+    {
+      "code": 3,
+      "name": "excite"
+    },
+    {
+      "code": 4,
+      "name": "neutralize"
+    }
+  ],
+  "schema": "frp.m15.balanced_ternary_hardware_encoding_map.v1.7.0",
+  "state_encoding": [
+    {
+      "code": "11",
+      "integer_code": 3,
+      "state": -1
+    },
+    {
+      "code": "00",
+      "integer_code": 0,
+      "state": 0
+    },
+    {
+      "code": "01",
+      "integer_code": 1,
+      "state": 1
+    }
+  ],
+  "version": "1.7.0"
+}

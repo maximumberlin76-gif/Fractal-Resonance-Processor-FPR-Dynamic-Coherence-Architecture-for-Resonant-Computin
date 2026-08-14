@@ -1,0 +1,64 @@
+{
+  "exact_tick_execution_order": [
+    "resolve scheduler state",
+    "clear current-tick switch-change counters",
+    "clear current-tick per-cell switch activity",
+    "process ready pending neutral routes",
+    "process external request lanes in ascending order",
+    "process phase-derived targets when enabled",
+    "calculate switch load",
+    "update frequency targets",
+    "update lagged frequencies",
+    "calculate local generated power",
+    "calculate local thermal dissipation",
+    "calculate hierarchical thermal diffusion",
+    "update local heat",
+    "calculate local thermal overload",
+    "update gamma-noise correlation states",
+    "update local gamma-effective values",
+    "update thermal node factors",
+    "calculate hierarchical phase-coupling field",
+    "update phase velocities",
+    "update wrapped phase words",
+    "calculate multiscale phase coherence",
+    "calculate C(t)",
+    "calculate P(t)",
+    "calculate C_minus_P",
+    "detect first stability crossing",
+    "capture post-tick outputs"
+  ],
+  "kernel_requirements": {
+    "actual_direct_events": 0,
+    "balanced_ternary_states": [
+      -1,
+      0,
+      1
+    ],
+    "reserved_state_code": "2'b10",
+    "scheduler_modes": [
+      "free",
+      "7/1",
+      "1/7"
+    ],
+    "tick_separated_neutral_routing": true
+  },
+  "kind": "synthesizable_rtl_reference_core",
+  "milestone": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package",
+  "planned_rtl_files": [
+    "rtl/m15/frp_m15_types_pkg.sv",
+    "rtl/m15/frp_m15_fixed_point_pkg.sv",
+    "rtl/m15/frp_m15_trig_lut_pkg.sv",
+    "rtl/m15/frp_m15_scheduler.sv",
+    "rtl/m15/frp_m15_transition_core.sv",
+    "rtl/m15/frp_m15_neutral_route_queue.sv",
+    "rtl/m15/frp_m15_delay_dynamics.sv",
+    "rtl/m15/frp_m15_thermal_field.sv",
+    "rtl/m15/frp_m15_gamma_drift.sv",
+    "rtl/m15/frp_m15_hierarchical_coupling.sv",
+    "rtl/m15/frp_m15_multiscale_coherence.sv",
+    "rtl/m15/frp_m15_stability_telemetry.sv",
+    "rtl/m15/frp_m15_top.sv"
+  ],
+  "schema": "frp.m15.synthesizable_rtl_reference_core.v1.7.0",
+  "version": "1.7.0"
+}

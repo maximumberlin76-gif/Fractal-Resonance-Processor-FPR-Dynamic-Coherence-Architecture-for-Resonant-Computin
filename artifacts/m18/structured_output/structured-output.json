@@ -1,0 +1,92 @@
+{
+  "cell_trace_digest": "ba7d5f5a5f45d1c6808a0d4c7d7f612916bb2e2c4d33faf5e182810d704ad544",
+  "configuration": {
+    "ambient_heat": 0.05,
+    "cells": 16,
+    "coupling_nominal": 0.28,
+    "delay_alpha": 0.3,
+    "fractal_alpha": 0.7,
+    "gamma_nominal": 0.9424777960769379,
+    "request_lanes": 4,
+    "scheduler": "7/1",
+    "seed": 76,
+    "steps": 64,
+    "thermal_beta": 1.2,
+    "thermal_diffusion_gain": 0.035,
+    "thermal_hard_limit": 0.9,
+    "thermal_soft_limit": 0.22,
+    "thermal_time_constant": 14.0,
+    "transition_fraction": 0.25
+  },
+  "hardware_profile": {
+    "gamma": "GAMMA_S32",
+    "phase": "PHASE_U32",
+    "scalar": "S32Q16",
+    "state_encoding": {
+      "-1": "11",
+      "0": "00",
+      "1": "01",
+      "reserved": "10"
+    },
+    "unit": "S32Q30"
+  },
+  "kernel": {
+    "active_neutral_state": 0,
+    "actual_direct_events_target": 0,
+    "balanced_ternary_states": [
+      -1,
+      0,
+      1
+    ],
+    "neutral_routes": [
+      "-1 -> 0 -> 1",
+      "1 -> 0 -> -1"
+    ],
+    "scheduler_modes": [
+      "free",
+      "7/1",
+      "1/7"
+    ]
+  },
+  "kind": "demo",
+  "milestone": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package",
+  "preload_digest": "fbd4ce8153133a30bacb4004ef6b126858e64da1f464b763439d29fd8c98b5af",
+  "schema": "frp.structured_output.v1.7.0",
+  "summary": {
+    "C_minus_P_final": 0.88287353515625,
+    "C_minus_P_final_q16": 57860,
+    "C_minus_P_min": 0.6142730712890625,
+    "C_minus_P_min_q16": 40257,
+    "actual_direct_events": 0,
+    "balanced_ternary_state_domain": true,
+    "boundary_detected": false,
+    "cells": 16,
+    "fixed_point_thermal_sum_exact": true,
+    "fixed_point_topology_sum_exact": true,
+    "hierarchy_depth": 4,
+    "milestone": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package",
+    "neutral_route_queue_capacity": 16,
+    "neutral_routed_events": 14,
+    "neutralized_conflicts": 14,
+    "pending_route_count_final": 0,
+    "prevented_direct_events": 14,
+    "queue_overflow_events": 0,
+    "request_lanes": 4,
+    "requested_direct_events": 9,
+    "reserved_state_events": 0,
+    "scheduler": "7/1",
+    "scheduler_counts": {
+      "balance": 56,
+      "commit": 8
+    },
+    "scheduler_counts_valid": true,
+    "steps": 64,
+    "switch_load_peak": 0.25,
+    "switch_load_peak_q16": 16384,
+    "ticks_recorded": 64,
+    "transition_fraction": 0.25,
+    "version": "1.7.0"
+  },
+  "trace_digest": "06be197a6f7620796daad6420091e21392295cb0e182b394da2d9990324415be",
+  "version": "1.7.0"
+}
