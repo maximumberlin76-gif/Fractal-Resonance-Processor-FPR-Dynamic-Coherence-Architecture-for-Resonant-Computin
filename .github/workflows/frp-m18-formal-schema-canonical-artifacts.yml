@@ -1,0 +1,537 @@
+name: FRP M18 Formal Schema and Canonical Artifacts
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "frp_prototype_v1_7_0.py"
+      - "frp_m18_canonical_artifacts.py"
+      - "requirements.txt"
+      - "schemas/m18/**"
+      - "artifacts/m18/**"
+      - "benchmarks/architecture_comparison/**"
+      - "tests/test_frp_m18_canonical_artifacts.py"
+      - "docs/m18_formal_schema_canonical_artifact_publication_contract.md"
+      - "docs/m18_formal_schema_canonical_artifact_publication_qualification.md"
+      - "docs/m18_formal_schema_canonical_artifact_publication_closure.md"
+      - ".github/workflows/frp-m18-formal-schema-canonical-artifacts.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "frp_prototype_v1_7_0.py"
+      - "frp_m18_canonical_artifacts.py"
+      - "requirements.txt"
+      - "schemas/m18/**"
+      - "artifacts/m18/**"
+      - "benchmarks/architecture_comparison/**"
+      - "tests/test_frp_m18_canonical_artifacts.py"
+      - "docs/m18_formal_schema_canonical_artifact_publication_contract.md"
+      - "docs/m18_formal_schema_canonical_artifact_publication_qualification.md"
+      - "docs/m18_formal_schema_canonical_artifact_publication_closure.md"
+      - ".github/workflows/frp-m18-formal-schema-canonical-artifacts.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frp-m18-formal-schema-canonical-artifacts-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  m18-formal-schema-canonical-artifacts:
+    name: M18 Formal Schema and Canonical Artifact Qualification
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    env:
+      M18_EVIDENCE_DIR: /tmp/frp_m18_qualification_evidence
+      M18_GENERATION_A: /tmp/frp_m18_generation_a
+      M18_GENERATION_B: /tmp/frp_m18_generation_b
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install exact M18 dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python --version
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+          python - <<'PY'
+          import importlib.metadata
+
+          from jsonschema import Draft202012Validator
+
+
+          version = importlib.metadata.version("jsonschema")
+          if version != "4.25.1":
+              raise SystemExit(f"jsonschema version mismatch: {version}")
+          if Draft202012Validator.META_SCHEMA.get("$schema") != (
+              "https://json-schema.org/draft/2020-12/schema"
+          ):
+              raise SystemExit("Draft202012Validator is unavailable")
+          print("jsonschema=4.25.1")
+          print("Draft202012Validator=available")
+          PY
+
+      - name: Prepare isolated M18 directories
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python - <<'PY'
+          from __future__ import annotations
+
+          import os
+          import shutil
+          from pathlib import Path
+
+
+          repository_root = Path.cwd().resolve()
+          names = (
+              "M18_EVIDENCE_DIR",
+              "M18_GENERATION_A",
+              "M18_GENERATION_B",
+          )
+          expected = {
+              "M18_EVIDENCE_DIR": "/tmp/frp_m18_qualification_evidence",
+              "M18_GENERATION_A": "/tmp/frp_m18_generation_a",
+              "M18_GENERATION_B": "/tmp/frp_m18_generation_b",
+          }
+
+          for name in names:
+              raw_value = os.environ[name]
+              if raw_value != expected[name]:
+                  raise SystemExit(f"unexpected {name} value")
+              path = Path(raw_value)
+              if not path.is_absolute():
+                  raise SystemExit(f"{name} is not absolute")
+              if raw_value in ("/", "/tmp"):
+                  raise SystemExit(f"unsafe {name} root")
+              if not raw_value.startswith("/tmp/frp_m18_"):
+                  raise SystemExit(f"unsafe {name} prefix")
+
+              current = Path(path.anchor)
+              for component in path.parts[1:]:
+                  current /= component
+                  if current.is_symlink():
+                      raise SystemExit(
+                          f"symbolic-link component in {name}: {current}"
+                      )
+
+              resolved = path.resolve(strict=False)
+              if resolved != path:
+                  raise SystemExit(f"noncanonical {name} path")
+              if (
+                  resolved == repository_root
+                  or repository_root in resolved.parents
+                  or resolved in repository_root.parents
+              ):
+                  raise SystemExit(f"{name} overlaps repository")
+              if resolved in (Path("/"), Path("/tmp")):
+                  raise SystemExit(f"unsafe resolved {name} root")
+              if not resolved.as_posix().startswith("/tmp/frp_m18_"):
+                  raise SystemExit(f"unsafe resolved {name} prefix")
+
+              if path.exists():
+                  if not path.is_dir():
+                      raise SystemExit(f"{name} exists and is not a directory")
+                  shutil.rmtree(path)
+              path.mkdir(mode=0o700)
+              if path.is_symlink() or not path.is_dir():
+                  raise SystemExit(f"failed to create safe {name}")
+              print(f"prepared={path}")
+          PY
+
+      - name: Compile M18 Python sources
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          PYTHONPYCACHEPREFIX="${M18_EVIDENCE_DIR}/pycache" \
+            python -m compileall -q \
+              frp_prototype_v1_7_0.py \
+              frp_m18_canonical_artifacts.py \
+              tests/test_frp_m18_canonical_artifacts.py
+
+      - name: Generate independent self-test pair
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python frp_m18_canonical_artifacts.py \
+            --self-test \
+            --output json \
+            > "${M18_EVIDENCE_DIR}/self-test-a.json"
+
+          python frp_m18_canonical_artifacts.py \
+            --self-test \
+            --output json \
+            > "${M18_EVIDENCE_DIR}/self-test-b.json"
+
+      - name: Validate self-test pair
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          cmp --silent \
+            "${M18_EVIDENCE_DIR}/self-test-a.json" \
+            "${M18_EVIDENCE_DIR}/self-test-b.json"
+          cmp --silent \
+            "${M18_EVIDENCE_DIR}/self-test-a.json" \
+            artifacts/m18/manifests/canonical-artifact-self-test.json
+
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+
+          evidence = Path(os.environ["M18_EVIDENCE_DIR"])
+          payload = json.loads(
+              (evidence / "self-test-a.json").read_text(encoding="utf-8")
+          )
+          expected = {
+              "case_count": 34,
+              "passed_count": 34,
+              "failed_count": 0,
+              "overall_status": "PASS",
+          }
+          for field, value in expected.items():
+              if payload.get(field) != value:
+                  raise SystemExit(f"self-test {field} mismatch")
+          if len(payload.get("cases", [])) != 34:
+              raise SystemExit("self-test case vector mismatch")
+          print("self_test=34/34 PASS")
+          PY
+
+      - name: Generate independent canonical artifact pair
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python frp_m18_canonical_artifacts.py \
+            --generate \
+            --repository-root . \
+            --output-root "${M18_GENERATION_A}"
+
+          python frp_m18_canonical_artifacts.py \
+            --generate \
+            --repository-root . \
+            --output-root "${M18_GENERATION_B}"
+
+      - name: Compare generated and committed artifact trees
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python - <<'PY'
+          from __future__ import annotations
+
+          import os
+          import stat
+          from pathlib import Path
+
+          import frp_m18_canonical_artifacts as producer
+
+
+          generated_a = (
+              Path(os.environ["M18_GENERATION_A"]) / "artifacts/m18"
+          )
+          generated_b = (
+              Path(os.environ["M18_GENERATION_B"]) / "artifacts/m18"
+          )
+          committed = Path("artifacts/m18")
+          roots = (generated_a, generated_b, committed)
+          prefix = "artifacts/m18/"
+          expected_files = tuple(
+              path.removeprefix(prefix) for path in producer.GENERATED_PATHS
+          )
+          if len(expected_files) != 36 or len(set(expected_files)) != 36:
+              raise SystemExit("generated path contract mismatch")
+
+          expected_directories: set[str] = set()
+          for relative in expected_files:
+              parent = Path(relative).parent
+              while parent != Path("."):
+                  expected_directories.add(parent.as_posix())
+                  parent = parent.parent
+
+          def inventory(root: Path) -> dict[str, tuple[int, bytes]]:
+              if root.is_symlink() or not root.is_dir():
+                  raise SystemExit(f"unsafe or missing artifact root: {root}")
+              files: dict[str, tuple[int, bytes]] = {}
+              directories: set[str] = set()
+              for current, directory_names, file_names in os.walk(
+                  root,
+                  topdown=True,
+                  followlinks=False,
+              ):
+                  current_path = Path(current)
+                  for name in directory_names:
+                      candidate = current_path / name
+                      if candidate.is_symlink() or not candidate.is_dir():
+                          raise SystemExit(
+                              f"unsafe artifact directory: {candidate}"
+                          )
+                      directories.add(
+                          candidate.relative_to(root).as_posix()
+                      )
+                  for name in file_names:
+                      candidate = current_path / name
+                      mode = candidate.lstat().st_mode
+                      if candidate.is_symlink() or not stat.S_ISREG(mode):
+                          raise SystemExit(
+                              f"non-regular artifact file: {candidate}"
+                          )
+                      relative = candidate.relative_to(root).as_posix()
+                      data = candidate.read_bytes()
+                      files[relative] = (len(data), data)
+              if directories != expected_directories:
+                  raise SystemExit(f"artifact directory set mismatch: {root}")
+              if tuple(sorted(files)) != tuple(sorted(expected_files)):
+                  raise SystemExit(f"artifact file set mismatch: {root}")
+              return files
+
+          inventories = [inventory(root) for root in roots]
+          for relative in expected_files:
+              length_a, bytes_a = inventories[0][relative]
+              length_b, bytes_b = inventories[1][relative]
+              length_committed, bytes_committed = inventories[2][relative]
+              if not (length_a == length_b == length_committed):
+                  raise SystemExit(f"artifact length mismatch: {relative}")
+              if not (bytes_a == bytes_b == bytes_committed):
+                  raise SystemExit(f"artifact byte mismatch: {relative}")
+          print("artifact_files=36")
+          print("generation_a_vs_b=byte-identical")
+          print("generated_vs_committed=byte-identical")
+          PY
+
+      - name: Validate formal schema registry offline
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python - <<'PY'
+          from __future__ import annotations
+
+          from pathlib import Path
+          from typing import Any
+
+          from jsonschema import Draft202012Validator
+
+          import frp_m18_canonical_artifacts as producer
+
+
+          root = Path.cwd().resolve()
+          context = producer.RepositoryContext(root)
+          records = context.records
+          if len(records) != 24:
+              raise SystemExit("registry record count mismatch")
+          identifiers = tuple(
+              record["schema_identifier"] for record in records
+          )
+          schema_paths = tuple(record["schema_path"] for record in records)
+          urns = tuple(record["schema_urn"] for record in records)
+          if identifiers != tuple(sorted(identifiers)):
+              raise SystemExit("registry identifier ordering mismatch")
+          if len(set(identifiers)) != 24:
+              raise SystemExit("duplicate registry identifier")
+          if len(set(schema_paths)) != 24:
+              raise SystemExit("duplicate formal schema path")
+          if len(set(urns)) != 24:
+              raise SystemExit("duplicate formal schema URN")
+
+          observed_paths = {
+              path.relative_to(root).as_posix()
+              for path in (root / "schemas/m18").glob("*.schema.json")
+          }
+          if observed_paths != set(schema_paths):
+              raise SystemExit("unregistered formal schema detected")
+
+          def references(node: Any) -> list[str]:
+              found: list[str] = []
+              stack = [node]
+              while stack:
+                  value = stack.pop()
+                  if isinstance(value, dict):
+                      reference = value.get("$ref")
+                      if isinstance(reference, str):
+                          found.append(reference)
+                      stack.extend(value.values())
+                  elif isinstance(value, list):
+                      stack.extend(value)
+              return found
+
+          for record in records:
+              identifier = record["schema_identifier"]
+              schema = context.schemas[identifier]
+              expected_urn = "urn:frp:schema:" + identifier
+              if record["schema_urn"] != expected_urn:
+                  raise SystemExit(f"registry URN mismatch: {identifier}")
+              if schema.get("$id") != expected_urn:
+                  raise SystemExit(f"schema $id mismatch: {identifier}")
+              if schema.get("x-frp-schema-identifier") != identifier:
+                  raise SystemExit(f"schema identity mismatch: {identifier}")
+              Draft202012Validator.check_schema(schema)
+              if any(not reference.startswith("#") for reference in references(schema)):
+                  raise SystemExit(f"external schema reference: {identifier}")
+          print("formal_schemas=24/24 PASS")
+          print("schema_resolution=offline")
+          PY
+
+      - name: Verify committed M18 publication
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python frp_m18_canonical_artifacts.py \
+            --verify \
+            --repository-root . \
+            --output text \
+            | tee "${M18_EVIDENCE_DIR}/verify.txt"
+
+          grep -Fx "overall_status: PASS" \
+            "${M18_EVIDENCE_DIR}/verify.txt"
+          grep -Fx "check_count: 187" \
+            "${M18_EVIDENCE_DIR}/verify.txt"
+          grep -Fx "passed_count: 187" \
+            "${M18_EVIDENCE_DIR}/verify.txt"
+          grep -Fx "failed_count: 0" \
+            "${M18_EVIDENCE_DIR}/verify.txt"
+          grep -Fx "warning_count: 0" \
+            "${M18_EVIDENCE_DIR}/verify.txt"
+          grep -Fx "not_evaluated_count: 0" \
+            "${M18_EVIDENCE_DIR}/verify.txt"
+          grep -Fx "qualification_record_match: true" \
+            "${M18_EVIDENCE_DIR}/verify.txt"
+          grep -Fx "self_test_record_match: true" \
+            "${M18_EVIDENCE_DIR}/verify.txt"
+
+      - name: Generate independent qualification pair
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python frp_m18_canonical_artifacts.py \
+            --qualify \
+            --repository-root . \
+            --output json \
+            > "${M18_EVIDENCE_DIR}/qualification-a.json"
+
+          python frp_m18_canonical_artifacts.py \
+            --qualify \
+            --repository-root . \
+            --output json \
+            > "${M18_EVIDENCE_DIR}/qualification-b.json"
+
+      - name: Validate qualification pair
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          cmp --silent \
+            "${M18_EVIDENCE_DIR}/qualification-a.json" \
+            "${M18_EVIDENCE_DIR}/qualification-b.json"
+          cmp --silent \
+            "${M18_EVIDENCE_DIR}/qualification-a.json" \
+            artifacts/m18/manifests/canonical-artifact-qualification.json
+
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+
+          evidence = Path(os.environ["M18_EVIDENCE_DIR"])
+          payload = json.loads(
+              (evidence / "qualification-a.json").read_text(
+                  encoding="utf-8"
+              )
+          )
+          check_count = payload.get("check_count")
+          if not isinstance(check_count, int) or isinstance(check_count, bool):
+              raise SystemExit("qualification check_count type mismatch")
+          if check_count <= 0:
+              raise SystemExit("qualification check_count is not positive")
+          expected = {
+              "passed_count": check_count,
+              "failed_count": 0,
+              "warning_count": 0,
+              "not_evaluated_count": 0,
+              "overall_status": "PASS",
+          }
+          for field, value in expected.items():
+              if payload.get(field) != value:
+                  raise SystemExit(f"qualification {field} mismatch")
+          checks = payload.get("checks")
+          if not isinstance(checks, list) or len(checks) != check_count:
+              raise SystemExit("qualification check vector mismatch")
+          print(f"qualification={check_count}/{check_count} PASS")
+          PY
+
+      - name: Run isolated M18 test suite
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python -m unittest discover \
+            -s tests \
+            -p 'test_frp_m18_canonical_artifacts.py' \
+            -v
+
+      - name: Run complete repository test suite
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python -m unittest discover \
+            -s tests \
+            -p 'test_*.py' \
+            -v
+
+      - name: Verify repository immutability
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git diff --exit-code
+          status="$(git status --porcelain --untracked-files=all)"
+          if [[ -n "${status}" ]]; then
+            printf 'repository is not immutable:\n%s\n' "${status}" >&2
+            exit 1
+          fi
+          echo "repository_immutability=PASS"
+
+      - name: Upload M18 qualification evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: frp-m18-formal-schema-canonical-artifacts
+          path: |
+            ${{ env.M18_EVIDENCE_DIR }}/self-test-a.json
+            ${{ env.M18_EVIDENCE_DIR }}/self-test-b.json
+            ${{ env.M18_EVIDENCE_DIR }}/qualification-a.json
+            ${{ env.M18_EVIDENCE_DIR }}/qualification-b.json
+            ${{ env.M18_GENERATION_A }}/artifacts/m18/
+          if-no-files-found: error
+          retention-days: 30
