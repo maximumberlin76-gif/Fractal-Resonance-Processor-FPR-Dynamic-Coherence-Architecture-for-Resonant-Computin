@@ -1,0 +1,87 @@
+{
+  "$id": "urn:frp:schema:frp.m16.rtl_execution_trace.v2.1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "urn:frp:schema:frp.m16.execution_trace_base.v2.1.0"
+    },
+    {
+      "properties": {
+        "execution_epochs": {
+          "const": [
+            {
+              "epoch": 0,
+              "mode": "free",
+              "record_count": 16
+            },
+            {
+              "epoch": 1,
+              "mode": "7/1",
+              "record_count": 64
+            },
+            {
+              "epoch": 2,
+              "mode": "1/7",
+              "record_count": 16
+            }
+          ]
+        },
+        "kind": {
+          "const": "m16_rtl_execution_trace"
+        },
+        "layer": {
+          "const": "rtl"
+        },
+        "raw_trace": {
+          "properties": {
+            "path": {
+              "const": "artifacts/m19/raw/m16-rtl-execution.trace"
+            },
+            "record_count": {
+              "const": 96
+            }
+          },
+          "required": [
+            "path",
+            "record_count"
+          ]
+        },
+        "schema": {
+          "const": "frp.m16.rtl_execution_trace.v2.1.0"
+        },
+        "source_testbench": {
+          "const": "rtl/m16/frp_m16_tb.sv"
+        },
+        "summary": {
+          "properties": {
+            "execution_epoch_count": {
+              "const": 3
+            },
+            "invariant_pass_records": {
+              "const": 96
+            },
+            "record_count": {
+              "const": 96
+            }
+          },
+          "required": [
+            "execution_epoch_count",
+            "invariant_pass_records",
+            "record_count"
+          ]
+        }
+      },
+      "required": [
+        "execution_epochs",
+        "kind",
+        "layer",
+        "raw_trace",
+        "schema",
+        "source_testbench",
+        "summary"
+      ]
+    }
+  ],
+  "title": "FRP M16 RTL execution trace",
+  "x-frp-schema-identifier": "frp.m16.rtl_execution_trace.v2.1.0"
+}

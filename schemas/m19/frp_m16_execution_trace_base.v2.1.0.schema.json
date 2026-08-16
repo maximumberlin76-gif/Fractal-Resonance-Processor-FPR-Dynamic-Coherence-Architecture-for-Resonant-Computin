@@ -1,0 +1,375 @@
+{
+  "$id": "urn:frp:schema:frp.m16.execution_trace_base.v2.1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "configuration": {
+      "additionalProperties": false,
+      "properties": {
+        "cells": {
+          "const": 8
+        },
+        "counter_bits": {
+          "const": 32
+        },
+        "request_lanes": {
+          "const": 2
+        },
+        "state_bits": {
+          "const": 2
+        },
+        "transition_fraction_denominator": {
+          "const": 4
+        },
+        "transition_fraction_numerator": {
+          "const": 1
+        }
+      },
+      "required": [
+        "cells",
+        "counter_bits",
+        "request_lanes",
+        "state_bits",
+        "transition_fraction_denominator",
+        "transition_fraction_numerator"
+      ],
+      "type": "object"
+    },
+    "execution_epochs": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "epoch": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "mode": {
+            "enum": [
+              "free",
+              "7/1",
+              "1/7"
+            ]
+          },
+          "record_count": {
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "epoch",
+          "mode",
+          "record_count"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "kind": {
+      "enum": [
+        "m16_rtl_execution_trace",
+        "m16_fpga_preparation_execution_trace"
+      ]
+    },
+    "layer": {
+      "enum": [
+        "rtl",
+        "fpga_preparation"
+      ]
+    },
+    "measurement_contours": {
+      "additionalProperties": false,
+      "properties": {
+        "m15_semantic_reference": {
+          "additionalProperties": false,
+          "properties": {
+            "artifacts": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "path": {
+                    "enum": [
+                      "artifacts/m18/structured_output/trace-free.json",
+                      "artifacts/m18/structured_output/trace-7-1.json",
+                      "artifacts/m18/structured_output/trace-1-7.json"
+                    ]
+                  },
+                  "raw_sha256": {
+                    "$ref": "#/$defs/sha256"
+                  },
+                  "record_count": {
+                    "const": 64
+                  },
+                  "schema": {
+                    "const": "frp.structured_output.v1.7.0"
+                  }
+                },
+                "required": [
+                  "path",
+                  "raw_sha256",
+                  "record_count",
+                  "schema"
+                ],
+                "type": "object"
+              },
+              "maxItems": 3,
+              "minItems": 3,
+              "type": "array"
+            },
+            "availability": {
+              "const": "external_upstream_canonical_artifacts"
+            },
+            "correlation_status": {
+              "const": "not_evaluated_in_m19"
+            },
+            "quantities": {
+              "const": [
+                "C_q16",
+                "P_q16",
+                "C_minus_P_q16",
+                "global_phase_coherence_q30",
+                "heat_global_q16"
+              ]
+            }
+          },
+          "required": [
+            "artifacts",
+            "availability",
+            "correlation_status",
+            "quantities"
+          ],
+          "type": "object"
+        },
+        "m16_execution": {
+          "additionalProperties": false,
+          "properties": {
+            "availability": {
+              "const": "emitted_by_m16_execution_boundary"
+            },
+            "quantities": {
+              "const": [
+                "accepted_changes",
+                "capacity_remaining",
+                "switch_load_numerator",
+                "switch_load_q16",
+                "requested_direct_events",
+                "prevented_direct_events",
+                "neutral_routed_events",
+                "actual_direct_events",
+                "reserved_state_events",
+                "queue_overflow_events"
+              ]
+            }
+          },
+          "required": [
+            "availability",
+            "quantities"
+          ],
+          "type": "object"
+        },
+        "physical_measurement": {
+          "additionalProperties": false,
+          "properties": {
+            "availability": {
+              "const": "not_in_scope"
+            },
+            "correlation_status": {
+              "const": "not_evaluated"
+            }
+          },
+          "required": [
+            "availability",
+            "correlation_status"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "m15_semantic_reference",
+        "m16_execution",
+        "physical_measurement"
+      ],
+      "type": "object"
+    },
+    "milestone": {
+      "const": "M19 — Machine-Readable M16 Execution and Qualification Evidence"
+    },
+    "monitor": {
+      "const": "verification/m19/frp_m19_m16_evidence_monitors.sv"
+    },
+    "qualified_source": {
+      "additionalProperties": false,
+      "properties": {
+        "branch": {
+          "const": "main"
+        },
+        "commit": {
+          "pattern": "^[0-9a-f]{7,40}$",
+          "type": "string"
+        },
+        "commit_identity_format": {
+          "enum": [
+            "short_git_sha",
+            "full_git_sha"
+          ]
+        },
+        "result": {
+          "const": "SUCCESS"
+        },
+        "workflow": {
+          "type": "string",
+          "pattern": "^\\.github/workflows/[a-z0-9-]+\\.yml$"
+        },
+        "workflow_run": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "branch",
+        "commit",
+        "commit_identity_format",
+        "result",
+        "workflow",
+        "workflow_run"
+      ],
+      "type": "object"
+    },
+    "raw_trace": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_length": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "format": {
+          "const": "frp.m19.m16_execution_raw.v1"
+        },
+        "path": {
+          "type": "string"
+        },
+        "raw_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "record_count": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "byte_length",
+        "format",
+        "path",
+        "raw_sha256",
+        "record_count"
+      ],
+      "type": "object"
+    },
+    "records": {
+      "items": {
+        "$ref": "urn:frp:schema:frp.m16.execution_record.v2.1.0"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "schema": {
+      "enum": [
+        "frp.m16.rtl_execution_trace.v2.1.0",
+        "frp.m16.fpga_preparation_execution_trace.v2.1.0"
+      ]
+    },
+    "source_release": {
+      "const": "FRP v1.8.0 / M16"
+    },
+    "source_testbench": {
+      "type": "string"
+    },
+    "summary": {
+      "additionalProperties": false,
+      "properties": {
+        "event_totals": {
+          "additionalProperties": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "execution_epoch_count": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "invariant_pass_records": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "maximum_switch_load_numerator": {
+          "maximum": 2,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "record_count": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "record_digest": {
+          "$ref": "#/$defs/sha256"
+        },
+        "scheduler_state_counts": {
+          "additionalProperties": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "total_accepted_changes": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "zero_event_status": {
+          "const": "PASS"
+        }
+      },
+      "required": [
+        "event_totals",
+        "execution_epoch_count",
+        "invariant_pass_records",
+        "maximum_switch_load_numerator",
+        "record_count",
+        "record_digest",
+        "scheduler_state_counts",
+        "total_accepted_changes",
+        "zero_event_status"
+      ],
+      "type": "object"
+    },
+    "version": {
+      "const": "2.1.0"
+    }
+  },
+  "required": [
+    "configuration",
+    "execution_epochs",
+    "kind",
+    "layer",
+    "measurement_contours",
+    "milestone",
+    "monitor",
+    "qualified_source",
+    "raw_trace",
+    "records",
+    "schema",
+    "source_release",
+    "source_testbench",
+    "summary",
+    "version"
+  ],
+  "title": "FRP M16 execution trace base",
+  "type": "object",
+  "x-frp-schema-identifier": "frp.m16.execution_trace_base.v2.1.0",
+  "$defs": {
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  }
+}

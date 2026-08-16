@@ -1,0 +1,92 @@
+{
+  "$id": "urn:frp:schema:frp.m19.machine_readable_evidence_qualification.v2.1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "check_count": {
+      "const": 37
+    },
+    "checks": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "category": {
+            "enum": [
+              "contour",
+              "deterministic_regeneration",
+              "digest",
+              "execution",
+              "formal_schema",
+              "invariant",
+              "manifest",
+              "provenance",
+              "qualification",
+              "semantic",
+              "serialization"
+            ]
+          },
+          "check_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "status": {
+            "const": "PASS"
+          }
+        },
+        "required": [
+          "category",
+          "check_id",
+          "status"
+        ],
+        "type": "object"
+      },
+      "maxItems": 37,
+      "minItems": 37,
+      "type": "array"
+    },
+    "failed_count": {
+      "const": 0
+    },
+    "kind": {
+      "const": "m19_machine_readable_evidence_qualification"
+    },
+    "manifest_path": {
+      "const": "artifacts/m19/manifests/m19-machine-readable-evidence-manifest.json"
+    },
+    "manifest_raw_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "milestone": {
+      "const": "M19 — Machine-Readable M16 Execution and Qualification Evidence"
+    },
+    "overall_status": {
+      "const": "PASS"
+    },
+    "passed_count": {
+      "const": 37
+    },
+    "schema": {
+      "const": "frp.m19.machine_readable_evidence_qualification.v2.1.0"
+    },
+    "version": {
+      "const": "2.1.0"
+    }
+  },
+  "required": [
+    "check_count",
+    "checks",
+    "failed_count",
+    "kind",
+    "manifest_path",
+    "manifest_raw_sha256",
+    "milestone",
+    "overall_status",
+    "passed_count",
+    "schema",
+    "version"
+  ],
+  "title": "FRP M19 machine-readable evidence qualification",
+  "type": "object",
+  "x-frp-schema-identifier": "frp.m19.machine_readable_evidence_qualification.v2.1.0"
+}

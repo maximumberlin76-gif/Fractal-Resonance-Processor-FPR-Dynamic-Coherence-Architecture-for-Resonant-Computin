@@ -1,0 +1,70 @@
+{
+  "kind": "m19_schema_registry",
+  "milestone": "M19 — Machine-Readable M16 Execution and Qualification Evidence",
+  "records": [
+    {
+      "artifact_paths": [],
+      "schema_identifier": "frp.m16.execution_record.v2.1.0",
+      "schema_path": "schemas/m19/frp_m16_execution_record.v2.1.0.schema.json",
+      "schema_urn": "urn:frp:schema:frp.m16.execution_record.v2.1.0"
+    },
+    {
+      "artifact_paths": [],
+      "schema_identifier": "frp.m16.execution_trace_base.v2.1.0",
+      "schema_path": "schemas/m19/frp_m16_execution_trace_base.v2.1.0.schema.json",
+      "schema_urn": "urn:frp:schema:frp.m16.execution_trace_base.v2.1.0"
+    },
+    {
+      "artifact_paths": [
+        "artifacts/m19/execution/m16-fpga-preparation-execution-trace.json"
+      ],
+      "schema_identifier": "frp.m16.fpga_preparation_execution_trace.v2.1.0",
+      "schema_path": "schemas/m19/frp_m16_fpga_preparation_execution_trace.v2.1.0.schema.json",
+      "schema_urn": "urn:frp:schema:frp.m16.fpga_preparation_execution_trace.v2.1.0"
+    },
+    {
+      "artifact_paths": [
+        "artifacts/m19/qualification/m16-fpga-preparation-qualification-manifest.json",
+        "artifacts/m19/qualification/m16-rtl-qualification-manifest.json"
+      ],
+      "schema_identifier": "frp.m16.qualification_manifest.v2.1.0",
+      "schema_path": "schemas/m19/frp_m16_qualification_manifest.v2.1.0.schema.json",
+      "schema_urn": "urn:frp:schema:frp.m16.qualification_manifest.v2.1.0"
+    },
+    {
+      "artifact_paths": [
+        "artifacts/m19/execution/m16-rtl-execution-trace.json"
+      ],
+      "schema_identifier": "frp.m16.rtl_execution_trace.v2.1.0",
+      "schema_path": "schemas/m19/frp_m16_rtl_execution_trace.v2.1.0.schema.json",
+      "schema_urn": "urn:frp:schema:frp.m16.rtl_execution_trace.v2.1.0"
+    },
+    {
+      "artifact_paths": [
+        "artifacts/m19/qualification/m16-fpga-preparation-zero-event-qualification.json",
+        "artifacts/m19/qualification/m16-rtl-zero-event-qualification.json"
+      ],
+      "schema_identifier": "frp.m16.zero_event_qualification.v2.1.0",
+      "schema_path": "schemas/m19/frp_m16_zero_event_qualification.v2.1.0.schema.json",
+      "schema_urn": "urn:frp:schema:frp.m16.zero_event_qualification.v2.1.0"
+    },
+    {
+      "artifact_paths": [
+        "artifacts/m19/manifests/m19-machine-readable-evidence-manifest.json"
+      ],
+      "schema_identifier": "frp.m19.machine_readable_evidence_manifest.v2.1.0",
+      "schema_path": "schemas/m19/frp_m19_machine_readable_evidence_manifest.v2.1.0.schema.json",
+      "schema_urn": "urn:frp:schema:frp.m19.machine_readable_evidence_manifest.v2.1.0"
+    },
+    {
+      "artifact_paths": [
+        "artifacts/m19/manifests/m19-machine-readable-evidence-qualification.json"
+      ],
+      "schema_identifier": "frp.m19.machine_readable_evidence_qualification.v2.1.0",
+      "schema_path": "schemas/m19/frp_m19_machine_readable_evidence_qualification.v2.1.0.schema.json",
+      "schema_urn": "urn:frp:schema:frp.m19.machine_readable_evidence_qualification.v2.1.0"
+    }
+  ],
+  "schema": "frp.m19.schema_registry.v2.1.0",
+  "version": "2.1.0"
+}

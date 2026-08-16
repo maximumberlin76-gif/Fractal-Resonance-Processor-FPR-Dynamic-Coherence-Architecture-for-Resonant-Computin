@@ -1,0 +1,338 @@
+{
+  "$id": "urn:frp:schema:frp.m16.execution_record.v2.1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "accepted_cell_ids": {
+      "$ref": "#/$defs/cell_ids"
+    },
+    "accepted_change_cell_ids": {
+      "$ref": "#/$defs/cell_ids"
+    },
+    "core_ready": {
+      "const": true
+    },
+    "events": {
+      "additionalProperties": false,
+      "properties": {
+        "actual_direct_events": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "neutral_routed_events": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "prevented_direct_events": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "queue_overflow_events": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "requested_direct_events": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reserved_state_events": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "actual_direct_events",
+        "neutral_routed_events",
+        "prevented_direct_events",
+        "queue_overflow_events",
+        "requested_direct_events",
+        "reserved_state_events"
+      ],
+      "type": "object"
+    },
+    "execution_epoch": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "invariants": {
+      "additionalProperties": false,
+      "properties": {
+        "all_pass": {
+          "const": true
+        },
+        "flags": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "enum": [
+                  "state_domain_valid",
+                  "scheduler_counts_valid",
+                  "request_lane_order_valid",
+                  "pending_polarity_valid",
+                  "active_neutral_valid",
+                  "transition_capacity_valid",
+                  "state_update_valid",
+                  "no_actual_direct_events",
+                  "no_reserved_state",
+                  "no_queue_overflow"
+                ]
+              },
+              "pass": {
+                "const": true
+              }
+            },
+            "required": [
+              "name",
+              "pass"
+            ],
+            "type": "object"
+          },
+          "maxItems": 10,
+          "minItems": 10,
+          "type": "array"
+        }
+      },
+      "required": [
+        "all_pass",
+        "flags"
+      ],
+      "type": "object"
+    },
+    "neutral_routed_cell_ids": {
+      "$ref": "#/$defs/cell_ids"
+    },
+    "pending_route_after": {
+      "$ref": "#/$defs/ternary_vector"
+    },
+    "pending_route_before": {
+      "$ref": "#/$defs/ternary_vector"
+    },
+    "phase_derived_targets": {
+      "$ref": "#/$defs/ternary_vector"
+    },
+    "requests": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "accepted": {
+            "type": "boolean"
+          },
+          "cell_index": {
+            "maximum": 7,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "lane": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "rejected": {
+            "type": "boolean"
+          },
+          "target_state": {
+            "enum": [
+              -1,
+              0,
+              1
+            ]
+          },
+          "valid": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "accepted",
+          "cell_index",
+          "lane",
+          "rejected",
+          "target_state",
+          "valid"
+        ],
+        "type": "object"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array"
+    },
+    "retained_state_after": {
+      "$ref": "#/$defs/ternary_vector"
+    },
+    "retained_state_before": {
+      "$ref": "#/$defs/ternary_vector"
+    },
+    "scheduler": {
+      "additionalProperties": false,
+      "properties": {
+        "counters_after": {
+          "additionalProperties": false,
+          "properties": {
+            "balance": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "commit": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "excite": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "free": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "neutralize": {
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "balance",
+            "commit",
+            "excite",
+            "free",
+            "neutralize"
+          ],
+          "type": "object"
+        },
+        "mode": {
+          "enum": [
+            "free",
+            "7/1",
+            "1/7"
+          ]
+        },
+        "state": {
+          "enum": [
+            "free",
+            "balance",
+            "commit",
+            "excite",
+            "neutralize"
+          ]
+        },
+        "ticks_after": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "ticks_before": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "counters_after",
+        "mode",
+        "state",
+        "ticks_after",
+        "ticks_before"
+      ],
+      "type": "object"
+    },
+    "sequence": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "telemetry": {
+      "additionalProperties": false,
+      "properties": {
+        "switch_load_denominator": {
+          "const": 8
+        },
+        "switch_load_numerator": {
+          "maximum": 2,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "switch_load_q16": {
+          "maximum": 16384,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "switch_load_denominator",
+        "switch_load_numerator",
+        "switch_load_q16"
+      ],
+      "type": "object"
+    },
+    "transition_capacity": {
+      "additionalProperties": false,
+      "properties": {
+        "accepted_changes": {
+          "maximum": 2,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "capacity_exhausted": {
+          "type": "boolean"
+        },
+        "capacity_limit": {
+          "const": 2
+        },
+        "capacity_remaining": {
+          "maximum": 2,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "accepted_changes",
+        "capacity_exhausted",
+        "capacity_limit",
+        "capacity_remaining"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "accepted_cell_ids",
+    "accepted_change_cell_ids",
+    "core_ready",
+    "events",
+    "execution_epoch",
+    "invariants",
+    "neutral_routed_cell_ids",
+    "pending_route_after",
+    "pending_route_before",
+    "phase_derived_targets",
+    "requests",
+    "retained_state_after",
+    "retained_state_before",
+    "scheduler",
+    "sequence",
+    "telemetry",
+    "transition_capacity"
+  ],
+  "title": "FRP M16 execution record",
+  "type": "object",
+  "x-frp-schema-identifier": "frp.m16.execution_record.v2.1.0",
+  "$defs": {
+    "cell_ids": {
+      "items": {
+        "maximum": 7,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "maxItems": 8,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "ternary_vector": {
+      "items": {
+        "enum": [
+          -1,
+          0,
+          1
+        ]
+      },
+      "maxItems": 8,
+      "minItems": 8,
+      "type": "array"
+    }
+  }
+}

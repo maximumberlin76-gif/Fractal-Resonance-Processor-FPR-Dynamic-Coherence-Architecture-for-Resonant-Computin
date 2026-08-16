@@ -1,0 +1,99 @@
+{
+  "$id": "urn:frp:schema:frp.m19.machine_readable_evidence_manifest.v2.1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_count": {
+      "const": 8
+    },
+    "artifact_set_digest": {
+      "$ref": "#/$defs/sha256"
+    },
+    "artifacts": {
+      "items": {
+        "$ref": "#/$defs/file_record"
+      },
+      "maxItems": 8,
+      "minItems": 8,
+      "type": "array"
+    },
+    "kind": {
+      "const": "m19_machine_readable_evidence_manifest"
+    },
+    "milestone": {
+      "const": "M19 — Machine-Readable M16 Execution and Qualification Evidence"
+    },
+    "schema": {
+      "const": "frp.m19.machine_readable_evidence_manifest.v2.1.0"
+    },
+    "source_count": {
+      "const": 28
+    },
+    "source_set_digest": {
+      "$ref": "#/$defs/sha256"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/file_record"
+      },
+      "maxItems": 28,
+      "minItems": 28,
+      "type": "array"
+    },
+    "version": {
+      "const": "2.1.0"
+    }
+  },
+  "required": [
+    "artifact_count",
+    "artifact_set_digest",
+    "artifacts",
+    "kind",
+    "milestone",
+    "schema",
+    "source_count",
+    "source_set_digest",
+    "sources",
+    "version"
+  ],
+  "title": "FRP M19 machine-readable evidence manifest",
+  "type": "object",
+  "x-frp-schema-identifier": "frp.m19.machine_readable_evidence_manifest.v2.1.0",
+  "$defs": {
+    "file_record": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_length": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "raw_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "role": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "byte_length",
+        "path",
+        "raw_sha256",
+        "role"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  }
+}

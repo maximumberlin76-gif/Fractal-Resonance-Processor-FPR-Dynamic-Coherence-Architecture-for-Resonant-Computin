@@ -1,0 +1,98 @@
+{
+  "$id": "urn:frp:schema:frp.m16.zero_event_qualification.v2.1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "event_maxima": {
+      "$ref": "#/$defs/zero_events"
+    },
+    "event_totals": {
+      "$ref": "#/$defs/zero_events"
+    },
+    "invariant_pass_records": {
+      "enum": [
+        4,
+        96
+      ]
+    },
+    "kind": {
+      "const": "m16_zero_event_qualification"
+    },
+    "layer": {
+      "enum": [
+        "rtl",
+        "fpga_preparation"
+      ]
+    },
+    "milestone": {
+      "const": "M19 — Machine-Readable M16 Execution and Qualification Evidence"
+    },
+    "record_count": {
+      "enum": [
+        4,
+        96
+      ]
+    },
+    "record_digest": {
+      "$ref": "#/$defs/sha256"
+    },
+    "schema": {
+      "const": "frp.m16.zero_event_qualification.v2.1.0"
+    },
+    "status": {
+      "const": "PASS"
+    },
+    "trace_path": {
+      "enum": [
+        "artifacts/m19/execution/m16-rtl-execution-trace.json",
+        "artifacts/m19/execution/m16-fpga-preparation-execution-trace.json"
+      ]
+    },
+    "version": {
+      "const": "2.1.0"
+    }
+  },
+  "required": [
+    "event_maxima",
+    "event_totals",
+    "invariant_pass_records",
+    "kind",
+    "layer",
+    "milestone",
+    "record_count",
+    "record_digest",
+    "schema",
+    "status",
+    "trace_path",
+    "version"
+  ],
+  "title": "FRP M16 zero-event qualification",
+  "type": "object",
+  "x-frp-schema-identifier": "frp.m16.zero_event_qualification.v2.1.0",
+  "$defs": {
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "zero_events": {
+      "additionalProperties": false,
+      "properties": {
+        "actual_direct_events": {
+          "const": 0
+        },
+        "queue_overflow_events": {
+          "const": 0
+        },
+        "reserved_state_events": {
+          "const": 0
+        }
+      },
+      "required": [
+        "actual_direct_events",
+        "queue_overflow_events",
+        "reserved_state_events"
+      ],
+      "type": "object"
+    }
+  }
+}

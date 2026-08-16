@@ -1,0 +1,136 @@
+{
+  "$id": "urn:frp:schema:frp.m16.qualification_manifest.v2.1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_set_digest": {
+      "$ref": "#/$defs/sha256"
+    },
+    "artifacts": {
+      "items": {
+        "$ref": "#/$defs/file_record"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "type": "array"
+    },
+    "kind": {
+      "const": "m16_qualification_manifest"
+    },
+    "layer": {
+      "enum": [
+        "rtl",
+        "fpga_preparation"
+      ]
+    },
+    "milestone": {
+      "const": "M19 — Machine-Readable M16 Execution and Qualification Evidence"
+    },
+    "qualified_source": {
+      "additionalProperties": false,
+      "properties": {
+        "branch": {
+          "const": "main"
+        },
+        "commit": {
+          "pattern": "^[0-9a-f]{7,40}$",
+          "type": "string"
+        },
+        "commit_identity_format": {
+          "enum": [
+            "short_git_sha",
+            "full_git_sha"
+          ]
+        },
+        "result": {
+          "const": "SUCCESS"
+        },
+        "workflow": {
+          "pattern": "^\\.github/workflows/[a-z0-9-]+\\.yml$",
+          "type": "string"
+        },
+        "workflow_run": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "branch",
+        "commit",
+        "commit_identity_format",
+        "result",
+        "workflow",
+        "workflow_run"
+      ],
+      "type": "object"
+    },
+    "schema": {
+      "const": "frp.m16.qualification_manifest.v2.1.0"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/file_record"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "status": {
+      "const": "PASS"
+    },
+    "version": {
+      "const": "2.1.0"
+    }
+  },
+  "required": [
+    "artifact_set_digest",
+    "artifacts",
+    "kind",
+    "layer",
+    "milestone",
+    "qualified_source",
+    "schema",
+    "sources",
+    "status",
+    "version"
+  ],
+  "title": "FRP M16 machine-readable qualification manifest",
+  "type": "object",
+  "x-frp-schema-identifier": "frp.m16.qualification_manifest.v2.1.0",
+  "$defs": {
+    "file_record": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_length": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "raw_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "role": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "byte_length",
+        "path",
+        "raw_sha256",
+        "role"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  }
+}
