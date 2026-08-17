@@ -1,0 +1,122 @@
+{
+  "$id": "urn:frp:schema:frp.m21.parameterized_qualification_matrix.v2.3.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "case_count": {
+      "const": 486,
+      "type": "integer"
+    },
+    "cases": {
+      "items": {
+        "$ref": "urn:frp:schema:frp.m21.parameterized_qualification_case.v2.3.0"
+      },
+      "maxItems": 486,
+      "minItems": 486,
+      "type": "array"
+    },
+    "dimensions_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "kind": {
+      "const": "m21_parameterized_qualification_matrix"
+    },
+    "matrix_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "milestone": {
+      "const": "M21 — Parameterized Qualification Matrix"
+    },
+    "schema": {
+      "const": "frp.m21.parameterized_qualification_matrix.v2.3.0"
+    },
+    "source_commit": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "source_release": {
+      "const": "FRP v2.2.0 / M20 correlation boundary"
+    },
+    "summary": {
+      "additionalProperties": false,
+      "properties": {
+        "failed_case_count": {
+          "const": 0,
+          "type": "integer"
+        },
+        "overall_status": {
+          "const": "PASS"
+        },
+        "skip_reason_counts": {
+          "additionalProperties": false,
+          "properties": {
+            "deterministic_workload_unavailable": {
+              "const": 4
+            },
+            "forbidden_retained_route": {
+              "const": 243
+            },
+            "request_lane_capacity_mismatch": {
+              "const": 18
+            },
+            "scheduler_parameter_mismatch": {
+              "const": 162
+            },
+            "transition_capacity_profile_mismatch": {
+              "const": 54
+            }
+          },
+          "required": [
+            "forbidden_retained_route",
+            "scheduler_parameter_mismatch",
+            "transition_capacity_profile_mismatch",
+            "request_lane_capacity_mismatch",
+            "deterministic_workload_unavailable"
+          ],
+          "type": "object"
+        },
+        "skipped_case_count": {
+          "const": 481,
+          "type": "integer"
+        },
+        "supported_case_count": {
+          "const": 5,
+          "type": "integer"
+        },
+        "unsupported_case_count": {
+          "const": 481,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "failed_case_count",
+        "overall_status",
+        "skip_reason_counts",
+        "skipped_case_count",
+        "supported_case_count",
+        "unsupported_case_count"
+      ],
+      "type": "object"
+    },
+    "version": {
+      "const": "2.3.0"
+    }
+  },
+  "required": [
+    "case_count",
+    "cases",
+    "dimensions_digest",
+    "kind",
+    "matrix_digest",
+    "milestone",
+    "schema",
+    "source_commit",
+    "source_release",
+    "summary",
+    "version"
+  ],
+  "title": "FRP M21 Parameterized Qualification Matrix",
+  "type": "object"
+}

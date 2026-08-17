@@ -1,0 +1,300 @@
+{
+  "$id": "urn:frp:schema:frp.m21.parameter_dimensions.v2.3.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "declared_cartesian_case_count": {
+      "const": 486,
+      "type": "integer"
+    },
+    "dimension_cardinalities": {
+      "additionalProperties": false,
+      "properties": {
+        "cell_count": {
+          "const": 3
+        },
+        "request_lanes": {
+          "const": 3
+        },
+        "retained_route_profile": {
+          "const": 2
+        },
+        "scheduler_mode": {
+          "const": 3
+        },
+        "scheduler_parameter_profile": {
+          "const": 3
+        },
+        "transition_capacity_profile": {
+          "const": 3
+        }
+      },
+      "required": [
+        "cell_count",
+        "request_lanes",
+        "scheduler_mode",
+        "scheduler_parameter_profile",
+        "transition_capacity_profile",
+        "retained_route_profile"
+      ],
+      "type": "object"
+    },
+    "dimension_order": {
+      "items": false,
+      "maxItems": 6,
+      "minItems": 6,
+      "prefixItems": [
+        {
+          "const": "cell_count"
+        },
+        {
+          "const": "request_lanes"
+        },
+        {
+          "const": "scheduler_mode"
+        },
+        {
+          "const": "scheduler_parameter_profile"
+        },
+        {
+          "const": "transition_capacity_profile"
+        },
+        {
+          "const": "retained_route_profile"
+        }
+      ],
+      "type": "array"
+    },
+    "dimensions": {
+      "additionalProperties": false,
+      "properties": {
+        "cell_count": {
+          "const": [
+            8,
+            16,
+            32
+          ],
+          "type": "array"
+        },
+        "request_lanes": {
+          "const": [
+            2,
+            4,
+            8
+          ],
+          "type": "array"
+        },
+        "retained_route_profile": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "active_neutral_state": {
+                "const": 0
+              },
+              "canonical_ternary_states": {
+                "const": [
+                  -1,
+                  0,
+                  1
+                ]
+              },
+              "neutral_routes": {
+                "items": {
+                  "type": "string"
+                },
+                "maxItems": 2,
+                "minItems": 2,
+                "type": "array"
+              },
+              "pending_route_retention": {
+                "type": "boolean"
+              },
+              "profile_id": {
+                "enum": [
+                  "active-neutral-retained",
+                  "direct-opposite-single-tick"
+                ]
+              },
+              "supported": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "profile_id",
+              "active_neutral_state",
+              "canonical_ternary_states",
+              "neutral_routes",
+              "pending_route_retention",
+              "supported"
+            ],
+            "type": "object"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "scheduler_mode": {
+          "const": [
+            "free",
+            "7/1",
+            "1/7"
+          ],
+          "type": "array"
+        },
+        "scheduler_parameter_profile": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "period_ticks": {
+                "const": 8
+              },
+              "profile_id": {
+                "enum": [
+                  "free-8",
+                  "balance-7-commit-1",
+                  "excite-1-neutralize-7"
+                ]
+              },
+              "scheduler_mode": {
+                "enum": [
+                  "free",
+                  "7/1",
+                  "1/7"
+                ]
+              },
+              "state_pattern": {
+                "items": {
+                  "enum": [
+                    "free",
+                    "balance",
+                    "commit",
+                    "excite",
+                    "neutralize"
+                  ]
+                },
+                "maxItems": 8,
+                "minItems": 8,
+                "type": "array"
+              }
+            },
+            "required": [
+              "profile_id",
+              "scheduler_mode",
+              "period_ticks",
+              "state_pattern"
+            ],
+            "type": "object"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "transition_capacity_profile": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "capacity_limit": {
+                "enum": [
+                  2,
+                  4,
+                  8
+                ]
+              },
+              "cell_count": {
+                "enum": [
+                  8,
+                  16,
+                  32
+                ]
+              },
+              "fraction_denominator": {
+                "const": 4
+              },
+              "fraction_numerator": {
+                "const": 1
+              },
+              "profile_id": {
+                "enum": [
+                  "cells-8-lanes-2",
+                  "cells-16-lanes-4",
+                  "cells-32-lanes-8"
+                ]
+              }
+            },
+            "required": [
+              "profile_id",
+              "cell_count",
+              "capacity_limit",
+              "fraction_numerator",
+              "fraction_denominator"
+            ],
+            "type": "object"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "cell_count",
+        "request_lanes",
+        "scheduler_mode",
+        "scheduler_parameter_profile",
+        "transition_capacity_profile",
+        "retained_route_profile"
+      ],
+      "type": "object"
+    },
+    "dimensions_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "kind": {
+      "const": "m21_parameter_dimensions"
+    },
+    "milestone": {
+      "const": "M21 — Parameterized Qualification Matrix"
+    },
+    "schema": {
+      "const": "frp.m21.parameter_dimensions.v2.3.0"
+    },
+    "source_commit": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "source_release": {
+      "const": "FRP v2.2.0 / M20 correlation boundary"
+    },
+    "version": {
+      "const": "2.3.0"
+    },
+    "workload_catalog": {
+      "items": {
+        "$ref": "urn:frp:schema:frp.m21.parameterized_qualification_case.v2.3.0#/$defs/workload"
+      },
+      "maxItems": 6,
+      "minItems": 6,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "declared_cartesian_case_count",
+    "dimension_cardinalities",
+    "dimension_order",
+    "dimensions",
+    "dimensions_digest",
+    "kind",
+    "milestone",
+    "schema",
+    "source_commit",
+    "source_release",
+    "version",
+    "workload_catalog"
+  ],
+  "title": "FRP M21 Parameter Dimensions",
+  "type": "object"
+}

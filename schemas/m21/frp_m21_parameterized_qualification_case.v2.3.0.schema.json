@@ -1,0 +1,555 @@
+{
+  "$defs": {
+    "check": {
+      "additionalProperties": false,
+      "properties": {
+        "check_id": {
+          "enum": [
+            "cell_count_declared",
+            "request_lanes_declared",
+            "scheduler_mode_declared",
+            "scheduler_parameter_profile_declared",
+            "scheduler_mode_profile_match",
+            "transition_capacity_profile_declared",
+            "transition_capacity_profile_match",
+            "request_lane_capacity_match",
+            "retained_route_profile_declared",
+            "retained_route_supported",
+            "deterministic_workload_available",
+            "semantic_invariants",
+            "cross_layer_correlation",
+            "measurement_contours_separate",
+            "no_silent_parameter_substitution"
+          ]
+        },
+        "detail": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "PASS",
+            "SKIPPED",
+            "NOT_APPLICABLE"
+          ]
+        }
+      },
+      "required": [
+        "check_id",
+        "detail",
+        "status"
+      ],
+      "type": "object"
+    },
+    "contour_evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "assertions": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "contour": {
+          "enum": [
+            "rtl_static_parameter_contract",
+            "m15_quantized_semantic_reference",
+            "m20_cross_layer_correlation"
+          ]
+        },
+        "evidence_digest": {
+          "$ref": "#/$defs/digest"
+        },
+        "reason": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_paths": {
+          "items": {
+            "$ref": "#/$defs/relative_path"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "status": {
+          "enum": [
+            "PASS",
+            "NOT_APPLICABLE"
+          ]
+        }
+      },
+      "required": [
+        "assertions",
+        "contour",
+        "evidence_digest",
+        "reason",
+        "source_paths",
+        "status"
+      ],
+      "type": "object"
+    },
+    "digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "relative_path": {
+      "minLength": 1,
+      "not": {
+        "pattern": "(^/)|(^|/)\\.\\.?(/|$)|\\\\"
+      },
+      "type": "string"
+    },
+    "source_record": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_length": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "path": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "raw_sha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "role": {
+          "enum": [
+            "m16_static_parameter_contract",
+            "deterministic_workload",
+            "m20_rtl_correlation",
+            "m20_fpga_preparation_correlation"
+          ]
+        },
+        "source_contour": {
+          "enum": [
+            "rtl_static_parameter_contract",
+            "m15_quantized_semantic_reference",
+            "m20_cross_layer_correlation"
+          ]
+        }
+      },
+      "required": [
+        "byte_length",
+        "path",
+        "raw_sha256",
+        "role",
+        "source_contour"
+      ],
+      "type": "object"
+    },
+    "workload": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_length": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "cell_count": {
+          "enum": [
+            8,
+            16,
+            32
+          ]
+        },
+        "cell_trace_digest": {
+          "$ref": "#/$defs/digest"
+        },
+        "path": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "preload_digest": {
+          "$ref": "#/$defs/digest"
+        },
+        "qualification_status": {
+          "const": "PASS"
+        },
+        "raw_sha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "request_lanes": {
+          "enum": [
+            2,
+            4,
+            8
+          ]
+        },
+        "scheduler_mode": {
+          "enum": [
+            "free",
+            "7/1",
+            "1/7"
+          ]
+        },
+        "steps": {
+          "enum": [
+            16,
+            64
+          ]
+        },
+        "trace_digest": {
+          "$ref": "#/$defs/digest"
+        },
+        "workload_id": {
+          "enum": [
+            "scaling-8",
+            "scaling-16",
+            "scaling-32",
+            "trace-1-7",
+            "trace-7-1",
+            "trace-free"
+          ]
+        }
+      },
+      "required": [
+        "byte_length",
+        "cell_count",
+        "cell_trace_digest",
+        "path",
+        "preload_digest",
+        "qualification_status",
+        "raw_sha256",
+        "request_lanes",
+        "scheduler_mode",
+        "steps",
+        "trace_digest",
+        "workload_id"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:frp:schema:frp.m21.parameterized_qualification_case.v2.3.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "qualification_status": {
+            "const": "PASS"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "support": {
+            "properties": {
+              "classification": {
+                "const": "SUPPORTED"
+              },
+              "reason_code": {
+                "const": "qualified_combination"
+              }
+            }
+          },
+          "workloads": {
+            "minItems": 1
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "support": {
+            "properties": {
+              "classification": {
+                "const": "UNSUPPORTED"
+              },
+              "reason_code": {
+                "enum": [
+                  "forbidden_retained_route",
+                  "scheduler_parameter_mismatch",
+                  "transition_capacity_profile_mismatch",
+                  "request_lane_capacity_mismatch",
+                  "deterministic_workload_unavailable"
+                ]
+              }
+            }
+          },
+          "workloads": {
+            "maxItems": 0
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "case_digest": {
+      "$ref": "#/$defs/digest"
+    },
+    "case_id": {
+      "pattern": "^m21-case-[0-9]{6}$",
+      "type": "string"
+    },
+    "checks": {
+      "items": {
+        "$ref": "#/$defs/check"
+      },
+      "maxItems": 15,
+      "minItems": 15,
+      "type": "array"
+    },
+    "contour_evidence": {
+      "items": {
+        "$ref": "#/$defs/contour_evidence"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "type": "array"
+    },
+    "coordinates": {
+      "additionalProperties": false,
+      "properties": {
+        "cell_count": {
+          "enum": [
+            8,
+            16,
+            32
+          ]
+        },
+        "request_lanes": {
+          "enum": [
+            2,
+            4,
+            8
+          ]
+        },
+        "retained_route_profile": {
+          "enum": [
+            "active-neutral-retained",
+            "direct-opposite-single-tick"
+          ]
+        },
+        "scheduler_mode": {
+          "enum": [
+            "free",
+            "7/1",
+            "1/7"
+          ]
+        },
+        "scheduler_parameter_profile": {
+          "enum": [
+            "free-8",
+            "balance-7-commit-1",
+            "excite-1-neutralize-7"
+          ]
+        },
+        "transition_capacity_profile": {
+          "enum": [
+            "cells-8-lanes-2",
+            "cells-16-lanes-4",
+            "cells-32-lanes-8"
+          ]
+        }
+      },
+      "required": [
+        "cell_count",
+        "request_lanes",
+        "scheduler_mode",
+        "scheduler_parameter_profile",
+        "transition_capacity_profile",
+        "retained_route_profile"
+      ],
+      "type": "object"
+    },
+    "dimensions_digest": {
+      "$ref": "#/$defs/digest"
+    },
+    "kind": {
+      "const": "m21_parameterized_qualification_case"
+    },
+    "provenance": {
+      "items": {
+        "$ref": "#/$defs/source_record"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "qualification_status": {
+      "enum": [
+        "PASS",
+        "SKIPPED"
+      ]
+    },
+    "resolved_parameters": {
+      "additionalProperties": false,
+      "properties": {
+        "active_neutral_state": {
+          "const": 0,
+          "type": "integer"
+        },
+        "canonical_ternary_states": {
+          "const": [
+            -1,
+            0,
+            1
+          ],
+          "type": "array"
+        },
+        "neutral_routes": {
+          "oneOf": [
+            {
+              "const": [
+                "-1 -> 0 -> 1",
+                "1 -> 0 -> -1"
+              ]
+            },
+            {
+              "const": [
+                "-1 -> 1",
+                "1 -> -1"
+              ]
+            }
+          ],
+          "type": "array"
+        },
+        "pending_route_queue_capacity": {
+          "oneOf": [
+            {
+              "enum": [
+                8,
+                16,
+                32
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "pending_route_retention": {
+          "type": "boolean"
+        },
+        "scheduler_period_ticks": {
+          "const": 8,
+          "type": "integer"
+        },
+        "scheduler_state_pattern": {
+          "items": {
+            "enum": [
+              "free",
+              "balance",
+              "commit",
+              "excite",
+              "neutralize"
+            ]
+          },
+          "maxItems": 8,
+          "minItems": 8,
+          "type": "array"
+        },
+        "transition_capacity_limit": {
+          "enum": [
+            2,
+            4,
+            8
+          ]
+        },
+        "transition_fraction": {
+          "additionalProperties": false,
+          "properties": {
+            "denominator": {
+              "const": 4,
+              "type": "integer"
+            },
+            "numerator": {
+              "const": 1,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "denominator",
+            "numerator"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "active_neutral_state",
+        "canonical_ternary_states",
+        "neutral_routes",
+        "pending_route_queue_capacity",
+        "pending_route_retention",
+        "scheduler_period_ticks",
+        "scheduler_state_pattern",
+        "transition_capacity_limit",
+        "transition_fraction"
+      ],
+      "type": "object"
+    },
+    "schema": {
+      "const": "frp.m21.parameterized_qualification_case.v2.3.0"
+    },
+    "sequence": {
+      "maximum": 485,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "source_commit": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "support": {
+      "additionalProperties": false,
+      "properties": {
+        "classification": {
+          "enum": [
+            "SUPPORTED",
+            "UNSUPPORTED"
+          ]
+        },
+        "reason_code": {
+          "enum": [
+            "qualified_combination",
+            "forbidden_retained_route",
+            "scheduler_parameter_mismatch",
+            "transition_capacity_profile_mismatch",
+            "request_lane_capacity_mismatch",
+            "deterministic_workload_unavailable"
+          ]
+        },
+        "reason_detail": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "classification",
+        "reason_code",
+        "reason_detail"
+      ],
+      "type": "object"
+    },
+    "version": {
+      "const": "2.3.0"
+    },
+    "workloads": {
+      "items": {
+        "$ref": "#/$defs/workload"
+      },
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "case_digest",
+    "case_id",
+    "checks",
+    "contour_evidence",
+    "coordinates",
+    "dimensions_digest",
+    "kind",
+    "provenance",
+    "qualification_status",
+    "resolved_parameters",
+    "schema",
+    "sequence",
+    "source_commit",
+    "support",
+    "version",
+    "workloads"
+  ],
+  "title": "FRP M21 Parameterized Qualification Case",
+  "type": "object"
+}

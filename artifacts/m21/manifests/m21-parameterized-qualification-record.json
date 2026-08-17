@@ -1,0 +1,254 @@
+{
+  "check_count": 48,
+  "checks": [
+    {
+      "category": "source_identity",
+      "check_id": "source_commit_exact",
+      "pass": true
+    },
+    {
+      "category": "source_identity",
+      "check_id": "m15_workload_inventory_exact",
+      "pass": true
+    },
+    {
+      "category": "source_identity",
+      "check_id": "m20_boundary_pass",
+      "pass": true
+    },
+    {
+      "category": "dimension",
+      "check_id": "cell_count_dimension_exact",
+      "pass": true
+    },
+    {
+      "category": "dimension",
+      "check_id": "request_lane_dimension_exact",
+      "pass": true
+    },
+    {
+      "category": "dimension",
+      "check_id": "scheduler_mode_dimension_exact",
+      "pass": true
+    },
+    {
+      "category": "dimension",
+      "check_id": "scheduler_parameter_profiles_exact",
+      "pass": true
+    },
+    {
+      "category": "dimension",
+      "check_id": "transition_capacity_profiles_exact",
+      "pass": true
+    },
+    {
+      "category": "dimension",
+      "check_id": "retained_route_profiles_exact",
+      "pass": true
+    },
+    {
+      "category": "dimension",
+      "check_id": "dimension_order_exact",
+      "pass": true
+    },
+    {
+      "category": "coverage",
+      "check_id": "cartesian_case_count_exact",
+      "pass": true
+    },
+    {
+      "category": "coverage",
+      "check_id": "matrix_case_count_exact",
+      "pass": true
+    },
+    {
+      "category": "coverage",
+      "check_id": "coordinate_set_unique",
+      "pass": true
+    },
+    {
+      "category": "coverage",
+      "check_id": "case_sequence_exact",
+      "pass": true
+    },
+    {
+      "category": "coverage",
+      "check_id": "case_ids_exact",
+      "pass": true
+    },
+    {
+      "category": "coverage",
+      "check_id": "supported_count_exact",
+      "pass": true
+    },
+    {
+      "category": "coverage",
+      "check_id": "skipped_count_exact",
+      "pass": true
+    },
+    {
+      "category": "unsupported_combination",
+      "check_id": "skip_reason:forbidden_retained_route",
+      "pass": true
+    },
+    {
+      "category": "unsupported_combination",
+      "check_id": "skip_reason:scheduler_parameter_mismatch",
+      "pass": true
+    },
+    {
+      "category": "unsupported_combination",
+      "check_id": "skip_reason:transition_capacity_profile_mismatch",
+      "pass": true
+    },
+    {
+      "category": "unsupported_combination",
+      "check_id": "skip_reason:request_lane_capacity_mismatch",
+      "pass": true
+    },
+    {
+      "category": "unsupported_combination",
+      "check_id": "skip_reason:deterministic_workload_unavailable",
+      "pass": true
+    },
+    {
+      "category": "supported_combination",
+      "check_id": "supported_coordinate_set_exact",
+      "pass": true
+    },
+    {
+      "category": "supported_combination",
+      "check_id": "supported_status_pass",
+      "pass": true
+    },
+    {
+      "category": "unsupported_combination",
+      "check_id": "unsupported_status_skipped",
+      "pass": true
+    },
+    {
+      "category": "qualification",
+      "check_id": "zero_failed_cases",
+      "pass": true
+    },
+    {
+      "category": "digest",
+      "check_id": "per_case_digest_exact",
+      "pass": true
+    },
+    {
+      "category": "digest",
+      "check_id": "matrix_digest_exact",
+      "pass": true
+    },
+    {
+      "category": "digest",
+      "check_id": "dimensions_digest_exact",
+      "pass": true
+    },
+    {
+      "category": "digest",
+      "check_id": "workload_digests_exact",
+      "pass": true
+    },
+    {
+      "category": "semantic_contour",
+      "check_id": "workload_qualification_pass",
+      "pass": true
+    },
+    {
+      "category": "semantic_contour",
+      "check_id": "balanced_ternary_domain_exact",
+      "pass": true
+    },
+    {
+      "category": "semantic_contour",
+      "check_id": "active_neutral_state_exact",
+      "pass": true
+    },
+    {
+      "category": "semantic_contour",
+      "check_id": "neutral_routes_exact",
+      "pass": true
+    },
+    {
+      "category": "contour_boundary",
+      "check_id": "measurement_contours_separate",
+      "pass": true
+    },
+    {
+      "category": "contour_boundary",
+      "check_id": "no_silent_parameter_substitution",
+      "pass": true
+    },
+    {
+      "category": "cross_layer_contour",
+      "check_id": "cross_layer_16_cell_pass",
+      "pass": true
+    },
+    {
+      "category": "cross_layer_contour",
+      "check_id": "cross_layer_non16_not_applicable",
+      "pass": true
+    },
+    {
+      "category": "provenance",
+      "check_id": "per_case_provenance_present",
+      "pass": true
+    },
+    {
+      "category": "provenance",
+      "check_id": "provenance_digests_exact",
+      "pass": true
+    },
+    {
+      "category": "manifest",
+      "check_id": "manifest_status_pass",
+      "pass": true
+    },
+    {
+      "category": "manifest",
+      "check_id": "manifest_artifact_digest_exact",
+      "pass": true
+    },
+    {
+      "category": "manifest",
+      "check_id": "manifest_source_digest_exact",
+      "pass": true
+    },
+    {
+      "category": "schema",
+      "check_id": "formal_schema_validation",
+      "pass": true
+    },
+    {
+      "category": "negative_test",
+      "check_id": "altered_case_digest_detected",
+      "pass": true
+    },
+    {
+      "category": "negative_test",
+      "check_id": "altered_parameter_detected",
+      "pass": true
+    },
+    {
+      "category": "negative_test",
+      "check_id": "altered_workload_digest_detected",
+      "pass": true
+    },
+    {
+      "category": "negative_test",
+      "check_id": "contour_substitution_detected",
+      "pass": true
+    }
+  ],
+  "failed_count": 0,
+  "kind": "m21_parameterized_qualification_record",
+  "matrix_digest": "a71a74a0b18c701a498fcf8b5b04e4987c6ad40084f8a0df786d000be332c41e",
+  "milestone": "M21 — Parameterized Qualification Matrix",
+  "overall_status": "PASS",
+  "passed_count": 48,
+  "schema": "frp.m21.parameterized_qualification_record.v2.3.0",
+  "source_commit": "be91e69d5d2e51a2bbc9a3ffb8f6d60c88d8bef4",
+  "version": "2.3.0"
+}

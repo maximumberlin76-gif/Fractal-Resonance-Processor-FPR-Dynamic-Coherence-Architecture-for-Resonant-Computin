@@ -1,0 +1,192 @@
+{
+  "artifact_set_digest": "c123231ae218a16e828c46b5a912c38035f7a9e97d4870153d58199b4a008742",
+  "artifacts": [
+    {
+      "byte_length": 7230,
+      "path": "artifacts/m21/matrix/m21-parameter-dimensions.json",
+      "raw_sha256": "fcfac50848deedd6ef90bc0f4184e325931e0070960cbe61fd2175b2f6d0b348",
+      "role": "parameter_dimensions",
+      "schema": "frp.m21.parameter_dimensions.v2.3.0",
+      "status": "PASS"
+    },
+    {
+      "byte_length": 3007362,
+      "path": "artifacts/m21/matrix/m21-parameterized-qualification-matrix.json",
+      "raw_sha256": "0a2ebfe3fe2372727e46e7070af14fbee95a1abf26bae97d47c8f2f6f1b9f9f1",
+      "role": "qualification_matrix",
+      "schema": "frp.m21.parameterized_qualification_matrix.v2.3.0",
+      "status": "PASS"
+    }
+  ],
+  "kind": "m21_parameterized_qualification_manifest",
+  "milestone": "M21 — Parameterized Qualification Matrix",
+  "overall_status": "PASS",
+  "schema": "frp.m21.parameterized_qualification_manifest.v2.3.0",
+  "source_commit": "be91e69d5d2e51a2bbc9a3ffb8f6d60c88d8bef4",
+  "source_release": "FRP v2.2.0 / M20 correlation boundary",
+  "source_set_digest": "731a552394c5f2ca759ed8a4327afa5af2f084de7a003132082c190092dda1df",
+  "sources": [
+    {
+      "byte_length": 32766,
+      "path": ".github/workflows/frp-m21-parameterized-qualification-matrix.yml",
+      "raw_sha256": "e2bde49dd42dcc793abddd52a6baf4a9c433efc0815e6278408ba1050b440532",
+      "role": "technical_source",
+      "source_contour": "m21_technical_source"
+    },
+    {
+      "byte_length": 55806,
+      "path": "MILESTONES.md",
+      "raw_sha256": "c3325932acdf97cc8db365348d49d210bef552949b08bc5a2b5b980d7df7315f",
+      "role": "upstream_source",
+      "source_contour": "milestone_contract"
+    },
+    {
+      "byte_length": 38318,
+      "path": "ROADMAP.md",
+      "raw_sha256": "716930425e848a23f1d52db562c16ef2e574258e32905e3007f1f0d20e1007a8",
+      "role": "upstream_source",
+      "source_contour": "milestone_contract"
+    },
+    {
+      "byte_length": 7374,
+      "path": "artifacts/m18/m15_exports/qualification-closure-manifest.json",
+      "raw_sha256": "bc3d77208b005fba050511dffbaebc21a37cbd7f4327de43405fe38529dec5ac",
+      "role": "upstream_source",
+      "source_contour": "m15_quantized_semantic_reference"
+    },
+    {
+      "byte_length": 2549,
+      "path": "artifacts/m18/structured_output/scaling-16.json",
+      "raw_sha256": "dafc9a1771aa2c66c23e1595f85869fd9ccbc4155bbcef7cd907b6dbe4e27423",
+      "role": "upstream_source",
+      "source_contour": "m15_quantized_semantic_reference"
+    },
+    {
+      "byte_length": 2550,
+      "path": "artifacts/m18/structured_output/scaling-32.json",
+      "raw_sha256": "aca86e4c5e8bbe9570609816bc6a254657a6935427334337866c5b7ccc76bbcf",
+      "role": "upstream_source",
+      "source_contour": "m15_quantized_semantic_reference"
+    },
+    {
+      "byte_length": 2544,
+      "path": "artifacts/m18/structured_output/scaling-8.json",
+      "raw_sha256": "065d9a6b3ac435945fc672d6bff6636845f449595243e5fc1a8af81d7b21d986",
+      "role": "upstream_source",
+      "source_contour": "m15_quantized_semantic_reference"
+    },
+    {
+      "byte_length": 562665,
+      "path": "artifacts/m18/structured_output/trace-1-7.json",
+      "raw_sha256": "7a4cd4388df4e59afee01f18598304dd41bdf963e5186683b4fa47ff8732c4c6",
+      "role": "upstream_source",
+      "source_contour": "m15_quantized_semantic_reference"
+    },
+    {
+      "byte_length": 562468,
+      "path": "artifacts/m18/structured_output/trace-7-1.json",
+      "raw_sha256": "55b2f3e71494b6afe737fa3c82c301011fb560a952b1d356740f79c03f4ed5a9",
+      "role": "upstream_source",
+      "source_contour": "m15_quantized_semantic_reference"
+    },
+    {
+      "byte_length": 562309,
+      "path": "artifacts/m18/structured_output/trace-free.json",
+      "raw_sha256": "2c5f087361a1d28ecf6478289071be6b4dce79c05cc8992010185a2f584ad686",
+      "role": "upstream_source",
+      "source_contour": "m15_quantized_semantic_reference"
+    },
+    {
+      "byte_length": 48081,
+      "path": "artifacts/m20/correlation/m15-m16-fpga-preparation-correlation.json",
+      "raw_sha256": "b5c0eeac923ea6e652cf946f05df3aa6e822ab96e72482a53686994122e67e2f",
+      "role": "upstream_source",
+      "source_contour": "m20_cross_layer_correlation"
+    },
+    {
+      "byte_length": 956295,
+      "path": "artifacts/m20/correlation/m15-m16-rtl-correlation.json",
+      "raw_sha256": "2066bb7a4263ff678c469a3a4f73844857c445cba64ad7fcf9e97fdd3cba6f3d",
+      "role": "upstream_source",
+      "source_contour": "m20_cross_layer_correlation"
+    },
+    {
+      "byte_length": 6894,
+      "path": "artifacts/m20/manifests/m20-cross-layer-correlation-manifest.json",
+      "raw_sha256": "14fc9c14e027afb317b01a71df6ac97b8659a4ae2e042dc5a8a0a9e54dbb78c7",
+      "role": "upstream_source",
+      "source_contour": "m20_cross_layer_correlation"
+    },
+    {
+      "byte_length": 5087,
+      "path": "artifacts/m20/manifests/m20-cross-layer-correlation-qualification.json",
+      "raw_sha256": "c197ddc86420c14ac798cc00abb26292b69cf6eaa09dcaaf1633a464589d7593",
+      "role": "upstream_source",
+      "source_contour": "m20_cross_layer_correlation"
+    },
+    {
+      "byte_length": 58784,
+      "path": "frp_m21_parameterized_qualification_matrix.py",
+      "raw_sha256": "67418d6c5b2e0e5231df1fd1e2c326bc5b122c19710bc37f60101bfb8d74c284",
+      "role": "technical_source",
+      "source_contour": "m21_technical_source"
+    },
+    {
+      "byte_length": 18532,
+      "path": "rtl/m16/frp_m16_pkg.sv",
+      "raw_sha256": "c20fe071e7c91b60ca0411b75d4cf762112d51abbd49dc2a5667d1d8c5d49152",
+      "role": "upstream_source",
+      "source_contour": "rtl_static_parameter_contract"
+    },
+    {
+      "byte_length": 7302,
+      "path": "schemas/m21/frp_m21_parameter_dimensions.v2.3.0.schema.json",
+      "raw_sha256": "739fb42d68af699cc3c59f19f50a47ed714fa04a4aa4b369b7be84f07ab89103",
+      "role": "technical_source",
+      "source_contour": "m21_technical_source"
+    },
+    {
+      "byte_length": 12450,
+      "path": "schemas/m21/frp_m21_parameterized_qualification_case.v2.3.0.schema.json",
+      "raw_sha256": "cd11a79d176072c2c856a52ad433e35edfc74356a5c5c2a7ca504f8a7dc017e9",
+      "role": "technical_source",
+      "source_contour": "m21_technical_source"
+    },
+    {
+      "byte_length": 3468,
+      "path": "schemas/m21/frp_m21_parameterized_qualification_manifest.v2.3.0.schema.json",
+      "raw_sha256": "f46c154d9a7c4b38f3005bb6657a76ce35a71603939813a2e8b9a3995c1e4c7a",
+      "role": "technical_source",
+      "source_contour": "m21_technical_source"
+    },
+    {
+      "byte_length": 3042,
+      "path": "schemas/m21/frp_m21_parameterized_qualification_matrix.v2.3.0.schema.json",
+      "raw_sha256": "bd536a1a60419db7a280532ea42d8ec76091e587ade5b2f2406a02d2c1177d80",
+      "role": "technical_source",
+      "source_contour": "m21_technical_source"
+    },
+    {
+      "byte_length": 2276,
+      "path": "schemas/m21/frp_m21_parameterized_qualification_record.v2.3.0.schema.json",
+      "raw_sha256": "78d9f4ace887745fd78bed54b7824a607630a23c0f567a6404b41b72e7686fde",
+      "role": "technical_source",
+      "source_contour": "m21_technical_source"
+    },
+    {
+      "byte_length": 2076,
+      "path": "schemas/m21/frp_m21_schema_registry.json",
+      "raw_sha256": "5263db2afdf94717c5e88512be9e1aa4c2cdde157b91bd956198696e96e23e5c",
+      "role": "technical_source",
+      "source_contour": "m21_technical_source"
+    },
+    {
+      "byte_length": 15500,
+      "path": "tests/test_frp_m21_parameterized_qualification_matrix.py",
+      "raw_sha256": "3475015c4b4a867d685c5c3bdf54949efa84fc303a630feab5c4b543b9bfaa10",
+      "role": "technical_source",
+      "source_contour": "m21_technical_source"
+    }
+  ],
+  "version": "2.3.0"
+}

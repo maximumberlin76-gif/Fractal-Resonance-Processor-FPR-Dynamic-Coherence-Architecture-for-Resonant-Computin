@@ -1,0 +1,231 @@
+{
+  "declared_cartesian_case_count": 486,
+  "dimension_cardinalities": {
+    "cell_count": 3,
+    "request_lanes": 3,
+    "retained_route_profile": 2,
+    "scheduler_mode": 3,
+    "scheduler_parameter_profile": 3,
+    "transition_capacity_profile": 3
+  },
+  "dimension_order": [
+    "cell_count",
+    "request_lanes",
+    "scheduler_mode",
+    "scheduler_parameter_profile",
+    "transition_capacity_profile",
+    "retained_route_profile"
+  ],
+  "dimensions": {
+    "cell_count": [
+      8,
+      16,
+      32
+    ],
+    "request_lanes": [
+      2,
+      4,
+      8
+    ],
+    "retained_route_profile": [
+      {
+        "active_neutral_state": 0,
+        "canonical_ternary_states": [
+          -1,
+          0,
+          1
+        ],
+        "neutral_routes": [
+          "-1 -> 0 -> 1",
+          "1 -> 0 -> -1"
+        ],
+        "pending_route_retention": true,
+        "profile_id": "active-neutral-retained",
+        "supported": true
+      },
+      {
+        "active_neutral_state": 0,
+        "canonical_ternary_states": [
+          -1,
+          0,
+          1
+        ],
+        "neutral_routes": [
+          "-1 -> 1",
+          "1 -> -1"
+        ],
+        "pending_route_retention": false,
+        "profile_id": "direct-opposite-single-tick",
+        "supported": false
+      }
+    ],
+    "scheduler_mode": [
+      "free",
+      "7/1",
+      "1/7"
+    ],
+    "scheduler_parameter_profile": [
+      {
+        "period_ticks": 8,
+        "profile_id": "free-8",
+        "scheduler_mode": "free",
+        "state_pattern": [
+          "free",
+          "free",
+          "free",
+          "free",
+          "free",
+          "free",
+          "free",
+          "free"
+        ]
+      },
+      {
+        "period_ticks": 8,
+        "profile_id": "balance-7-commit-1",
+        "scheduler_mode": "7/1",
+        "state_pattern": [
+          "balance",
+          "balance",
+          "balance",
+          "balance",
+          "balance",
+          "balance",
+          "balance",
+          "commit"
+        ]
+      },
+      {
+        "period_ticks": 8,
+        "profile_id": "excite-1-neutralize-7",
+        "scheduler_mode": "1/7",
+        "state_pattern": [
+          "excite",
+          "neutralize",
+          "neutralize",
+          "neutralize",
+          "neutralize",
+          "neutralize",
+          "neutralize",
+          "neutralize"
+        ]
+      }
+    ],
+    "transition_capacity_profile": [
+      {
+        "capacity_limit": 2,
+        "cell_count": 8,
+        "fraction_denominator": 4,
+        "fraction_numerator": 1,
+        "profile_id": "cells-8-lanes-2"
+      },
+      {
+        "capacity_limit": 4,
+        "cell_count": 16,
+        "fraction_denominator": 4,
+        "fraction_numerator": 1,
+        "profile_id": "cells-16-lanes-4"
+      },
+      {
+        "capacity_limit": 8,
+        "cell_count": 32,
+        "fraction_denominator": 4,
+        "fraction_numerator": 1,
+        "profile_id": "cells-32-lanes-8"
+      }
+    ]
+  },
+  "dimensions_digest": "e3b53bc66a31e16b00ade17cf11cf1aff57ec22eee07d364131a5859ef0ed886",
+  "kind": "m21_parameter_dimensions",
+  "milestone": "M21 — Parameterized Qualification Matrix",
+  "schema": "frp.m21.parameter_dimensions.v2.3.0",
+  "source_commit": "be91e69d5d2e51a2bbc9a3ffb8f6d60c88d8bef4",
+  "source_release": "FRP v2.2.0 / M20 correlation boundary",
+  "version": "2.3.0",
+  "workload_catalog": [
+    {
+      "byte_length": 2549,
+      "cell_count": 16,
+      "cell_trace_digest": "5c58bf93353e6409b3d25946e1fe20231497b82366cb1fddb3875694e9ea2519",
+      "path": "artifacts/m18/structured_output/scaling-16.json",
+      "preload_digest": "fbd4ce8153133a30bacb4004ef6b126858e64da1f464b763439d29fd8c98b5af",
+      "qualification_status": "PASS",
+      "raw_sha256": "dafc9a1771aa2c66c23e1595f85869fd9ccbc4155bbcef7cd907b6dbe4e27423",
+      "request_lanes": 4,
+      "scheduler_mode": "7/1",
+      "steps": 16,
+      "trace_digest": "e7ec642b7e030b95767e8aa36efd152ec4688416d9b218735f26fe5bfc19bd33",
+      "workload_id": "scaling-16"
+    },
+    {
+      "byte_length": 2550,
+      "cell_count": 32,
+      "cell_trace_digest": "478d331035b6d7862a95892e6fa551c3ebcb616b783ef65ea54d8fba3f19b60f",
+      "path": "artifacts/m18/structured_output/scaling-32.json",
+      "preload_digest": "9fb36e4b0c9795f579cbba3fd7a4216af938c4a5cdcd5c9cc0a34d5e6a4cb2e7",
+      "qualification_status": "PASS",
+      "raw_sha256": "aca86e4c5e8bbe9570609816bc6a254657a6935427334337866c5b7ccc76bbcf",
+      "request_lanes": 8,
+      "scheduler_mode": "7/1",
+      "steps": 16,
+      "trace_digest": "3efa411ea3df7fe894528b42a2c69cff43962b7c77ca838cd06c5d2ecfa4df0d",
+      "workload_id": "scaling-32"
+    },
+    {
+      "byte_length": 2544,
+      "cell_count": 8,
+      "cell_trace_digest": "3af7d12e0524635d1d71a87f45725bb7a06c5ba4dea23f2321c723924c354ae7",
+      "path": "artifacts/m18/structured_output/scaling-8.json",
+      "preload_digest": "6bc121de0a1ea94e227ee987d0e71a900c21b8078b9fa6e3848b7cb715566671",
+      "qualification_status": "PASS",
+      "raw_sha256": "065d9a6b3ac435945fc672d6bff6636845f449595243e5fc1a8af81d7b21d986",
+      "request_lanes": 2,
+      "scheduler_mode": "7/1",
+      "steps": 16,
+      "trace_digest": "13daf0814e2304bf44684904a87784c037200e7d69a194bafc04e87a4d90ef7a",
+      "workload_id": "scaling-8"
+    },
+    {
+      "byte_length": 562665,
+      "cell_count": 16,
+      "cell_trace_digest": "73f424e82d04c081ba34be971b4de8388e212b15cc7d5a298e268ae323c2bfa2",
+      "path": "artifacts/m18/structured_output/trace-1-7.json",
+      "preload_digest": "e6ff22c35223418ffcad522f611262ff7e92cde7f788834597de3ca494b94356",
+      "qualification_status": "PASS",
+      "raw_sha256": "7a4cd4388df4e59afee01f18598304dd41bdf963e5186683b4fa47ff8732c4c6",
+      "request_lanes": 4,
+      "scheduler_mode": "1/7",
+      "steps": 64,
+      "trace_digest": "be370e3a91c1f33d285bac1390e0c5cc686de72221e3ab4afe3731785cdf8c3b",
+      "workload_id": "trace-1-7"
+    },
+    {
+      "byte_length": 562468,
+      "cell_count": 16,
+      "cell_trace_digest": "ba7d5f5a5f45d1c6808a0d4c7d7f612916bb2e2c4d33faf5e182810d704ad544",
+      "path": "artifacts/m18/structured_output/trace-7-1.json",
+      "preload_digest": "fbd4ce8153133a30bacb4004ef6b126858e64da1f464b763439d29fd8c98b5af",
+      "qualification_status": "PASS",
+      "raw_sha256": "55b2f3e71494b6afe737fa3c82c301011fb560a952b1d356740f79c03f4ed5a9",
+      "request_lanes": 4,
+      "scheduler_mode": "7/1",
+      "steps": 64,
+      "trace_digest": "06be197a6f7620796daad6420091e21392295cb0e182b394da2d9990324415be",
+      "workload_id": "trace-7-1"
+    },
+    {
+      "byte_length": 562309,
+      "cell_count": 16,
+      "cell_trace_digest": "dd74e0b3512884ce4ef553e4c54f803a69956227d61ea44033539ce2eec57769",
+      "path": "artifacts/m18/structured_output/trace-free.json",
+      "preload_digest": "0b60385278ca15c47a9cbacc8ffdb71c2eed37c6cd638e5c234040ae26724030",
+      "qualification_status": "PASS",
+      "raw_sha256": "2c5f087361a1d28ecf6478289071be6b4dce79c05cc8992010185a2f584ad686",
+      "request_lanes": 4,
+      "scheduler_mode": "free",
+      "steps": 64,
+      "trace_digest": "e19345ad8da641be9f6802f46015d2fff37cc19e97b538b1252dcc9e967a18de",
+      "workload_id": "trace-free"
+    }
+  ]
+}

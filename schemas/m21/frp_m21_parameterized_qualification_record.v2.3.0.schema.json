@@ -1,0 +1,105 @@
+{
+  "$defs": {
+    "check": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "enum": [
+            "source_identity",
+            "dimension",
+            "coverage",
+            "unsupported_combination",
+            "supported_combination",
+            "qualification",
+            "digest",
+            "semantic_contour",
+            "contour_boundary",
+            "cross_layer_contour",
+            "provenance",
+            "manifest",
+            "schema",
+            "negative_test"
+          ]
+        },
+        "check_id": {
+          "minLength": 1,
+          "pattern": "^[a-z0-9_:/-]+$",
+          "type": "string"
+        },
+        "pass": {
+          "const": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "category",
+        "check_id",
+        "pass"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:frp:schema:frp.m21.parameterized_qualification_record.v2.3.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "check_count": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "checks": {
+      "items": {
+        "$ref": "#/$defs/check"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "failed_count": {
+      "const": 0,
+      "type": "integer"
+    },
+    "kind": {
+      "const": "m21_parameterized_qualification_record"
+    },
+    "matrix_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "milestone": {
+      "const": "M21 — Parameterized Qualification Matrix"
+    },
+    "overall_status": {
+      "const": "PASS"
+    },
+    "passed_count": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "schema": {
+      "const": "frp.m21.parameterized_qualification_record.v2.3.0"
+    },
+    "source_commit": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "version": {
+      "const": "2.3.0"
+    }
+  },
+  "required": [
+    "check_count",
+    "checks",
+    "failed_count",
+    "kind",
+    "matrix_digest",
+    "milestone",
+    "overall_status",
+    "passed_count",
+    "schema",
+    "source_commit",
+    "version"
+  ],
+  "title": "FRP M21 Parameterized Qualification Record",
+  "type": "object"
+}
