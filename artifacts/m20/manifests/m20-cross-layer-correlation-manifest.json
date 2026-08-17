@@ -1,0 +1,175 @@
+{
+  "artifact_set_digest": "a156c56c5db63064e65bf6f067fc112209d4fb10325c2825a516043fa3c53dae",
+  "kind": "m20_cross_layer_correlation_manifest",
+  "milestone": "M20 — Cross-Layer Deterministic Correlation",
+  "overall_status": "PASS",
+  "packages": [
+    {
+      "byte_length": 956295,
+      "correlation_layer": "rtl",
+      "mismatch_count": 0,
+      "path": "artifacts/m20/correlation/m15-m16-rtl-correlation.json",
+      "raw_sha256": "2066bb7a4263ff678c469a3a4f73844857c445cba64ad7fcf9e97fdd3cba6f3d",
+      "record_count": 96,
+      "role": "rtl_correlation_package",
+      "schema": "frp.m20.cross_layer_correlation_package.v2.2.0",
+      "status": "PASS"
+    },
+    {
+      "byte_length": 48081,
+      "correlation_layer": "fpga_preparation",
+      "mismatch_count": 0,
+      "path": "artifacts/m20/correlation/m15-m16-fpga-preparation-correlation.json",
+      "raw_sha256": "b5c0eeac923ea6e652cf946f05df3aa6e822ab96e72482a53686994122e67e2f",
+      "record_count": 4,
+      "role": "fpga_preparation_correlation_package",
+      "schema": "frp.m20.cross_layer_correlation_package.v2.2.0",
+      "status": "PASS"
+    }
+  ],
+  "schema": "frp.m20.cross_layer_correlation_manifest.v2.2.0",
+  "source_commit": "8b5e606f388325ec6e4424c59799c11ba58a8e29",
+  "source_release": "FRP v2.1.0 / M19 evidence boundary",
+  "source_set_digest": "a377c72be280a580653fd7d364626ceaff7be5d18a0b3aac6362f5700326ba13",
+  "sources": [
+    {
+      "byte_length": 30518,
+      "path": ".github/workflows/frp-m20-cross-layer-correlation.yml",
+      "raw_sha256": "d35b5926fc0afbf862d1be5e5e214f5eeb16b37974e0e8e6d9fd97eb391a6c68",
+      "role": "technical_source"
+    },
+    {
+      "byte_length": 7374,
+      "path": "artifacts/m18/m15_exports/qualification-closure-manifest.json",
+      "raw_sha256": "bc3d77208b005fba050511dffbaebc21a37cbd7f4327de43405fe38529dec5ac",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 4687,
+      "path": "artifacts/m18/m15_exports/quantized-reference-shadow-model.json",
+      "raw_sha256": "8c61304182952673b0a0195b181bf1e4e8f8de0ecf79dc4b3fa320d74bb356ae",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 5071,
+      "path": "artifacts/m18/m15_exports/reference-rtl-equivalence-report.json",
+      "raw_sha256": "662b0df1795ac3b31d9e1d95e00fda78408b7cbdf6024b5298eabec1f695d63d",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 2307,
+      "path": "artifacts/m18/m15_exports/rtl-comparison-vector-package.json",
+      "raw_sha256": "75ec68fed692ff9cfddd918dcf6289326b9b9130798d31c9c681c13a5189dbf4",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 2111,
+      "path": "artifacts/m18/m15_exports/synthesizable-rtl-reference-core.json",
+      "raw_sha256": "d90623311383e897b8490c753ac418b759e763f3f77dde65c4bedd3a8f773b87",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 16689,
+      "path": "artifacts/m18/m15_vectors/frp_m15_full_correlation_vectors.vec",
+      "raw_sha256": "c2e2a92d7031b85d2681fdaba839bbc4a0d833be14c8516d15dcaed347940d73",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 5028,
+      "path": "artifacts/m18/m15_vectors/frp_m15_scheduler_1_7_vectors.vec",
+      "raw_sha256": "5cf1912cbc492004656f41fff4ff36e5146e281b4f79a0e90606747b7c0bc649",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 5023,
+      "path": "artifacts/m18/m15_vectors/frp_m15_scheduler_free_vectors.vec",
+      "raw_sha256": "836b9e2fb5079f93f9666e534823735c6f22f48c8def4b6301ec3119ac52a518",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 562665,
+      "path": "artifacts/m18/structured_output/trace-1-7.json",
+      "raw_sha256": "7a4cd4388df4e59afee01f18598304dd41bdf963e5186683b4fa47ff8732c4c6",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 562468,
+      "path": "artifacts/m18/structured_output/trace-7-1.json",
+      "raw_sha256": "55b2f3e71494b6afe737fa3c82c301011fb560a952b1d356740f79c03f4ed5a9",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 562309,
+      "path": "artifacts/m18/structured_output/trace-free.json",
+      "raw_sha256": "2c5f087361a1d28ecf6478289071be6b4dce79c05cc8992010185a2f584ad686",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 9013,
+      "path": "artifacts/m19/execution/m16-fpga-preparation-execution-trace.json",
+      "raw_sha256": "7d58b6741bdcadbfb9acb9049ed0e956305f49b9ad36946e719a4121b5caf22f",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 152109,
+      "path": "artifacts/m19/execution/m16-rtl-execution-trace.json",
+      "raw_sha256": "d7945e0d2b5aaa05c5fff2e4e60d3b984017f7e4ae1984c55920368a110020bd",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 7451,
+      "path": "artifacts/m19/manifests/m19-machine-readable-evidence-manifest.json",
+      "raw_sha256": "b82d8318e7d5fc375c111e342f841b7842571bb0cce4ede5da14e1383ee98fb7",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 3945,
+      "path": "artifacts/m19/manifests/m19-machine-readable-evidence-qualification.json",
+      "raw_sha256": "b80d080598186cfa7f0b93dff4f1d09b86bdc34e82a42f3488e2d549e46e47d5",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 57017,
+      "path": "frp_m20_cross_layer_correlation.py",
+      "raw_sha256": "2aeb8c660b3562d83510ca2819f5697a9cd09b9586e401d32a4359d58c4988b1",
+      "role": "technical_source"
+    },
+    {
+      "byte_length": 9536,
+      "path": "schemas/m20/frp_m20_correlation_record.v2.2.0.schema.json",
+      "raw_sha256": "92a14e1854b40f2c9e0a275e98bb787c3fca96ec3695e3fd05d91c08a1ef2a87",
+      "role": "technical_source"
+    },
+    {
+      "byte_length": 2758,
+      "path": "schemas/m20/frp_m20_cross_layer_correlation_manifest.v2.2.0.schema.json",
+      "raw_sha256": "ba3de555e2c0562f7d80a2522a25e8b86c0ae993c21122928af038b00cc8759a",
+      "role": "technical_source"
+    },
+    {
+      "byte_length": 5501,
+      "path": "schemas/m20/frp_m20_cross_layer_correlation_package.v2.2.0.schema.json",
+      "raw_sha256": "4e26730e094b191086cf475f92e06e13b9725f76b138451040b38a2a5ecd2938",
+      "role": "technical_source"
+    },
+    {
+      "byte_length": 1877,
+      "path": "schemas/m20/frp_m20_cross_layer_correlation_qualification.v2.2.0.schema.json",
+      "raw_sha256": "060b803745095bbd37670efa22ef1e75ca747c60c74dc77e6befb2c92c68f165",
+      "role": "technical_source"
+    },
+    {
+      "byte_length": 1830,
+      "path": "schemas/m20/frp_m20_schema_registry.json",
+      "raw_sha256": "505138d4cf30fe00622cface674188a783742c79480b598ec919c1618763d0c5",
+      "role": "technical_source"
+    },
+    {
+      "byte_length": 8634,
+      "path": "tests/test_frp_m20_cross_layer_correlation.py",
+      "raw_sha256": "703c8bcd310783986a4cc2ec97ba22f2da939c3938de91c99a32e2ebf59aebff",
+      "role": "technical_source"
+    }
+  ],
+  "version": "2.2.0"
+}

@@ -1,0 +1,276 @@
+{
+  "$defs": {
+    "events": {
+      "additionalProperties": false,
+      "properties": {
+        "actual_direct_events": {"minimum": 0, "type": "integer"},
+        "neutral_routed_events": {"minimum": 0, "type": "integer"},
+        "prevented_direct_events": {"minimum": 0, "type": "integer"},
+        "queue_overflow_events": {"minimum": 0, "type": "integer"},
+        "requested_direct_events": {"minimum": 0, "type": "integer"},
+        "reserved_state_events": {"minimum": 0, "type": "integer"}
+      },
+      "required": [
+        "actual_direct_events",
+        "neutral_routed_events",
+        "prevented_direct_events",
+        "queue_overflow_events",
+        "requested_direct_events",
+        "reserved_state_events"
+      ],
+      "type": "object"
+    },
+    "invariants": {
+      "additionalProperties": false,
+      "properties": {
+        "all_pass": {"type": "boolean"},
+        "flags": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "enum": [
+                  "state_domain_valid",
+                  "scheduler_counts_valid",
+                  "request_lane_order_valid",
+                  "pending_polarity_valid",
+                  "active_neutral_valid",
+                  "transition_capacity_valid",
+                  "state_update_valid",
+                  "no_actual_direct_events",
+                  "no_reserved_state",
+                  "no_queue_overflow"
+                ]
+              },
+              "pass": {"type": "boolean"}
+            },
+            "required": ["name", "pass"],
+            "type": "object"
+          },
+          "maxItems": 10,
+          "minItems": 10,
+          "type": "array"
+        }
+      },
+      "required": ["all_pass", "flags"],
+      "type": "object"
+    },
+    "projection": {
+      "additionalProperties": false,
+      "properties": {
+        "accepted_cell_ids": {
+          "items": {"minimum": 0, "type": "integer"},
+          "type": "array",
+          "uniqueItems": true
+        },
+        "accepted_change_cell_ids": {
+          "items": {"minimum": 0, "type": "integer"},
+          "type": "array",
+          "uniqueItems": true
+        },
+        "events": {"$ref": "#/$defs/events"},
+        "invariants": {"$ref": "#/$defs/invariants"},
+        "neutral_routed_cell_ids": {
+          "items": {"minimum": 0, "type": "integer"},
+          "type": "array",
+          "uniqueItems": true
+        },
+        "pending_route_after": {"$ref": "#/$defs/ternaryArray"},
+        "pending_route_before": {"$ref": "#/$defs/ternaryArray"},
+        "requests": {
+          "items": {"$ref": "#/$defs/request"},
+          "minItems": 1,
+          "type": "array"
+        },
+        "retained_state_after": {"$ref": "#/$defs/ternaryArray"},
+        "retained_state_before": {"$ref": "#/$defs/ternaryArray"},
+        "scheduler": {
+          "additionalProperties": false,
+          "properties": {
+            "counters_after": {
+              "additionalProperties": false,
+              "properties": {
+                "balance": {"minimum": 0, "type": "integer"},
+                "commit": {"minimum": 0, "type": "integer"},
+                "excite": {"minimum": 0, "type": "integer"},
+                "free": {"minimum": 0, "type": "integer"},
+                "neutralize": {"minimum": 0, "type": "integer"}
+              },
+              "required": ["balance", "commit", "excite", "free", "neutralize"],
+              "type": "object"
+            },
+            "mode": {"enum": ["free", "7/1", "1/7"]},
+            "state": {"enum": ["free", "balance", "commit", "excite", "neutralize"]},
+            "ticks_after": {"minimum": 1, "type": "integer"},
+            "ticks_before": {"minimum": 0, "type": "integer"}
+          },
+          "required": ["counters_after", "mode", "state", "ticks_after", "ticks_before"],
+          "type": "object"
+        },
+        "telemetry": {
+          "additionalProperties": false,
+          "properties": {
+            "switch_load_denominator": {"minimum": 1, "type": "integer"},
+            "switch_load_numerator": {"minimum": 0, "type": "integer"},
+            "switch_load_q16": {"minimum": 0, "type": "integer"}
+          },
+          "required": ["switch_load_denominator", "switch_load_numerator", "switch_load_q16"],
+          "type": "object"
+        },
+        "transition_capacity": {
+          "additionalProperties": false,
+          "properties": {
+            "accepted_changes": {"minimum": 0, "type": "integer"},
+            "capacity_exhausted": {"type": "boolean"},
+            "capacity_limit": {"minimum": 1, "type": "integer"},
+            "capacity_remaining": {"minimum": 0, "type": "integer"}
+          },
+          "required": ["accepted_changes", "capacity_exhausted", "capacity_limit", "capacity_remaining"],
+          "type": "object"
+        }
+      },
+      "required": [
+        "accepted_cell_ids",
+        "accepted_change_cell_ids",
+        "events",
+        "invariants",
+        "neutral_routed_cell_ids",
+        "pending_route_after",
+        "pending_route_before",
+        "requests",
+        "retained_state_after",
+        "retained_state_before",
+        "scheduler",
+        "telemetry",
+        "transition_capacity"
+      ],
+      "type": "object"
+    },
+    "request": {
+      "additionalProperties": false,
+      "properties": {
+        "accepted": {"type": "boolean"},
+        "cell_index": {"minimum": 0, "type": "integer"},
+        "lane": {"minimum": 0, "type": "integer"},
+        "rejected": {"type": "boolean"},
+        "target_state": {"enum": [-1, 0, 1]},
+        "valid": {"type": "boolean"}
+      },
+      "required": ["accepted", "cell_index", "lane", "rejected", "target_state", "valid"],
+      "type": "object"
+    },
+    "sourceReference": {
+      "additionalProperties": false,
+      "properties": {
+        "measurement_contour": {"minLength": 1, "type": "string"},
+        "path": {"minLength": 1, "type": "string"},
+        "raw_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+        "record": {"type": "object"}
+      },
+      "required": ["measurement_contour", "path", "raw_sha256", "record"],
+      "type": "object"
+    },
+    "ternaryArray": {
+      "items": {"enum": [-1, 0, 1]},
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "$id": "urn:frp:schema:frp.m20.correlation_record.v2.2.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "checks": {
+      "additionalProperties": false,
+      "properties": {
+        "deterministic_inputs": {"type": "boolean"},
+        "event_counters": {"type": "boolean"},
+        "invariant_vector": {"type": "boolean"},
+        "pending_route": {"type": "boolean"},
+        "request_lanes": {"type": "boolean"},
+        "retained_state": {"type": "boolean"},
+        "scheduler_mode": {"type": "boolean"},
+        "scheduler_state": {"type": "boolean"},
+        "tick_alignment": {"type": "boolean"},
+        "transition_capacity": {"type": "boolean"}
+      },
+      "required": [
+        "tick_alignment",
+        "scheduler_mode",
+        "scheduler_state",
+        "deterministic_inputs",
+        "request_lanes",
+        "retained_state",
+        "pending_route",
+        "transition_capacity",
+        "event_counters",
+        "invariant_vector"
+      ],
+      "type": "object"
+    },
+    "correlation_id": {"pattern": "^(rtl|fpga_preparation):[0-9]{8}$", "type": "string"},
+    "execution_epoch": {"minimum": 0, "type": "integer"},
+    "m15_semantic_reference": {"$ref": "#/$defs/sourceReference"},
+    "m15_vector_reference": {"$ref": "#/$defs/sourceReference"},
+    "m16_deterministic_input": {
+      "additionalProperties": false,
+      "properties": {
+        "core_ready": {"type": "boolean"},
+        "phase_derived_targets": {"$ref": "#/$defs/ternaryArray"},
+        "requests": {"items": {"$ref": "#/$defs/request"}, "minItems": 1, "type": "array"}
+      },
+      "required": ["core_ready", "phase_derived_targets", "requests"],
+      "type": "object"
+    },
+    "m16_expected": {"$ref": "#/$defs/projection"},
+    "m16_observed": {"$ref": "#/$defs/projection"},
+    "mismatch_count": {"minimum": 0, "type": "integer"},
+    "mismatches": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "check": {"enum": [
+            "tick_alignment",
+            "scheduler_mode",
+            "scheduler_state",
+            "deterministic_inputs",
+            "request_lanes",
+            "retained_state",
+            "pending_route",
+            "transition_capacity",
+            "event_counters",
+            "invariant_vector"
+          ]},
+          "expected": true,
+          "observed": true
+        },
+        "required": ["check", "expected", "observed"],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "record_status": {"enum": ["PASS", "FAIL"]},
+    "schema": {"const": "frp.m20.correlation_record.v2.2.0"},
+    "sequence": {"minimum": 0, "type": "integer"},
+    "tick": {"minimum": 0, "type": "integer"}
+  },
+  "required": [
+    "checks",
+    "correlation_id",
+    "execution_epoch",
+    "m15_semantic_reference",
+    "m15_vector_reference",
+    "m16_deterministic_input",
+    "m16_expected",
+    "m16_observed",
+    "mismatch_count",
+    "mismatches",
+    "record_status",
+    "schema",
+    "sequence",
+    "tick"
+  ],
+  "title": "FRP M20 Cross-Layer Correlation Record",
+  "type": "object",
+  "x-frp-schema-identifier": "frp.m20.correlation_record.v2.2.0"
+}

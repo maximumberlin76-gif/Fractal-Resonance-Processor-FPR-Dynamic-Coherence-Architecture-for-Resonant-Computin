@@ -1,0 +1,77 @@
+{
+  "$defs": {
+    "source": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_length": {"minimum": 1, "type": "integer"},
+        "path": {"minLength": 1, "type": "string"},
+        "raw_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+        "role": {"enum": ["technical_source", "upstream_source"]}
+      },
+      "required": ["byte_length", "path", "raw_sha256", "role"],
+      "type": "object"
+    }
+  },
+  "$id": "urn:frp:schema:frp.m20.cross_layer_correlation_manifest.v2.2.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_set_digest": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "kind": {"const": "m20_cross_layer_correlation_manifest"},
+    "milestone": {"const": "M20 — Cross-Layer Deterministic Correlation"},
+    "overall_status": {"enum": ["PASS", "FAIL"]},
+    "packages": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "byte_length": {"minimum": 1, "type": "integer"},
+          "correlation_layer": {"enum": ["rtl", "fpga_preparation"]},
+          "mismatch_count": {"minimum": 0, "type": "integer"},
+          "path": {"minLength": 1, "type": "string"},
+          "raw_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+          "record_count": {"minimum": 1, "type": "integer"},
+          "role": {"enum": ["rtl_correlation_package", "fpga_preparation_correlation_package"]},
+          "schema": {"const": "frp.m20.cross_layer_correlation_package.v2.2.0"},
+          "status": {"enum": ["PASS", "FAIL"]}
+        },
+        "required": [
+          "byte_length",
+          "correlation_layer",
+          "mismatch_count",
+          "path",
+          "raw_sha256",
+          "record_count",
+          "role",
+          "schema",
+          "status"
+        ],
+        "type": "object"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array"
+    },
+    "schema": {"const": "frp.m20.cross_layer_correlation_manifest.v2.2.0"},
+    "source_commit": {"pattern": "^[0-9a-f]{40}$", "type": "string"},
+    "source_release": {"const": "FRP v2.1.0 / M19 evidence boundary"},
+    "source_set_digest": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "sources": {"items": {"$ref": "#/$defs/source"}, "minItems": 1, "type": "array"},
+    "version": {"const": "2.2.0"}
+  },
+  "required": [
+    "artifact_set_digest",
+    "kind",
+    "milestone",
+    "overall_status",
+    "packages",
+    "schema",
+    "source_commit",
+    "source_release",
+    "source_set_digest",
+    "sources",
+    "version"
+  ],
+  "title": "FRP M20 Cross-Layer Correlation Manifest",
+  "type": "object",
+  "x-frp-schema-identifier": "frp.m20.cross_layer_correlation_manifest.v2.2.0"
+}

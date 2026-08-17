@@ -1,0 +1,209 @@
+{
+  "check_count": 39,
+  "checks": [
+    {
+      "category": "source_identity",
+      "check_id": "source_commit_exact",
+      "pass": true
+    },
+    {
+      "category": "source_identity",
+      "check_id": "m15_vector_inventory_exact",
+      "pass": true
+    },
+    {
+      "category": "source_identity",
+      "check_id": "m15_semantic_modes_exact",
+      "pass": true
+    },
+    {
+      "category": "scheduler_correlation",
+      "check_id": "m15_vector_scheduler_correlation",
+      "pass": true
+    },
+    {
+      "category": "record_set",
+      "check_id": "rtl:record_count",
+      "pass": true
+    },
+    {
+      "category": "correlation_result",
+      "check_id": "rtl:zero_mismatches",
+      "pass": true
+    },
+    {
+      "category": "correlation_result",
+      "check_id": "rtl:all_checks_pass",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "rtl:tick_alignment",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "rtl:scheduler_mode",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "rtl:scheduler_state",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "rtl:deterministic_inputs",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "rtl:request_lanes",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "rtl:retained_state",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "rtl:pending_route",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "rtl:transition_capacity",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "rtl:event_counters",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "rtl:invariant_vector",
+      "pass": true
+    },
+    {
+      "category": "result_digest",
+      "check_id": "rtl:record_digest",
+      "pass": true
+    },
+    {
+      "category": "result_digest",
+      "check_id": "rtl:mismatch_digest",
+      "pass": true
+    },
+    {
+      "category": "record_set",
+      "check_id": "fpga_preparation:record_count",
+      "pass": true
+    },
+    {
+      "category": "correlation_result",
+      "check_id": "fpga_preparation:zero_mismatches",
+      "pass": true
+    },
+    {
+      "category": "correlation_result",
+      "check_id": "fpga_preparation:all_checks_pass",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "fpga_preparation:tick_alignment",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "fpga_preparation:scheduler_mode",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "fpga_preparation:scheduler_state",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "fpga_preparation:deterministic_inputs",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "fpga_preparation:request_lanes",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "fpga_preparation:retained_state",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "fpga_preparation:pending_route",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "fpga_preparation:transition_capacity",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "fpga_preparation:event_counters",
+      "pass": true
+    },
+    {
+      "category": "record_correlation",
+      "check_id": "fpga_preparation:invariant_vector",
+      "pass": true
+    },
+    {
+      "category": "result_digest",
+      "check_id": "fpga_preparation:record_digest",
+      "pass": true
+    },
+    {
+      "category": "result_digest",
+      "check_id": "fpga_preparation:mismatch_digest",
+      "pass": true
+    },
+    {
+      "category": "manifest",
+      "check_id": "manifest_package_status",
+      "pass": true
+    },
+    {
+      "category": "result_digest",
+      "check_id": "manifest_artifact_set_digest",
+      "pass": true
+    },
+    {
+      "category": "negative_test",
+      "check_id": "deliberate_record_mismatch_detected",
+      "pass": true
+    },
+    {
+      "category": "negative_test",
+      "check_id": "deliberate_vector_mismatch_detected",
+      "pass": true
+    },
+    {
+      "category": "negative_test",
+      "check_id": "deliberate_digest_mismatch_detected",
+      "pass": true
+    }
+  ],
+  "failed_count": 0,
+  "kind": "m20_cross_layer_correlation_qualification",
+  "milestone": "M20 — Cross-Layer Deterministic Correlation",
+  "overall_status": "PASS",
+  "package_set_digest": "a156c56c5db63064e65bf6f067fc112209d4fb10325c2825a516043fa3c53dae",
+  "passed_count": 39,
+  "schema": "frp.m20.cross_layer_correlation_qualification.v2.2.0",
+  "source_commit": "8b5e606f388325ec6e4424c59799c11ba58a8e29",
+  "version": "2.2.0"
+}

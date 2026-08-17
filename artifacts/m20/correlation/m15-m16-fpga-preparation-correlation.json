@@ -1,0 +1,1880 @@
+{
+  "correlation_layer": "fpga_preparation",
+  "interface_mapping": {
+    "active_neutral_state": 0,
+    "canonical_ternary_states": [
+      -1,
+      0,
+      1
+    ],
+    "m15_profile": {
+      "cells": 16,
+      "request_lanes": 4,
+      "transition_fraction_denominator": 4,
+      "transition_fraction_numerator": 1
+    },
+    "m16_profile": {
+      "cells": 8,
+      "request_lanes": 2,
+      "transition_fraction_denominator": 4,
+      "transition_fraction_numerator": 1
+    },
+    "neutral_routes": [
+      "-1 -> 0 -> 1",
+      "1 -> 0 -> -1"
+    ],
+    "scheduler_mode_codes": {
+      "1/7": 2,
+      "7/1": 1,
+      "free": 0
+    },
+    "scheduler_state_codes": {
+      "balance": 1,
+      "commit": 2,
+      "excite": 3,
+      "free": 0,
+      "neutralize": 4
+    },
+    "state_encoding": {
+      "-1": "11",
+      "0": "00",
+      "1": "01"
+    }
+  },
+  "kind": "cross_layer_correlation_package",
+  "milestone": "M20 — Cross-Layer Deterministic Correlation",
+  "mismatch_records": [],
+  "records": [
+    {
+      "checks": {
+        "deterministic_inputs": true,
+        "event_counters": true,
+        "invariant_vector": true,
+        "pending_route": true,
+        "request_lanes": true,
+        "retained_state": true,
+        "scheduler_mode": true,
+        "scheduler_state": true,
+        "tick_alignment": true,
+        "transition_capacity": true
+      },
+      "correlation_id": "fpga_preparation:00000000",
+      "execution_epoch": 0,
+      "m15_semantic_reference": {
+        "measurement_contour": "m15_quantized_semantic_reference",
+        "path": "artifacts/m18/structured_output/trace-free.json",
+        "raw_sha256": "2c5f087361a1d28ecf6478289071be6b4dce79c05cc8992010185a2f584ad686",
+        "record": {
+          "C_minus_P_q16": 42949,
+          "C_q16": 63633,
+          "P_q16": 20684,
+          "actual_direct_events": 0,
+          "global_phase_coherence_q30": 198422044,
+          "heat_global_q16": 4300,
+          "neutral_routed_events": 0,
+          "pending_route_count": 0,
+          "prevented_direct_events": 0,
+          "request_cell_ids": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "request_target_states": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "request_valid_mask": 1,
+          "requested_direct_events": 0,
+          "reserved_state_events": 0,
+          "scheduler_mode": 0,
+          "scheduler_state": 0,
+          "scheduler_state_name": "free",
+          "states_packed_hex": "0F00CFDD",
+          "switch_load_q16": 16384,
+          "tick": 0
+        }
+      },
+      "m15_vector_reference": {
+        "measurement_contour": "m15_implementation_mapping",
+        "path": "artifacts/m18/m15_vectors/frp_m15_scheduler_free_vectors.vec",
+        "raw_sha256": "836b9e2fb5079f93f9666e534823735c6f22f48c8def4b6301ec3119ac52a518",
+        "record": {
+          "C_minus_P_q16": 61742,
+          "C_q16": 65153,
+          "P_q16": 3411,
+          "actual_direct_events": 0,
+          "global_phase_coherence_q30": 198533447,
+          "heat_global_q16": 3411,
+          "neutral_routed_events": 0,
+          "pending_route_count": 0,
+          "prevented_direct_events": 0,
+          "request_cell_ids": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "request_target_state_codes": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "request_valid_mask": 1,
+          "requested_direct_events": 0,
+          "scheduler_mode": 0,
+          "scheduler_state": 0,
+          "states_packed_hex": "0F00CCC0",
+          "switch_load_q16": 0,
+          "tick": 0
+        }
+      },
+      "m16_deterministic_input": {
+        "core_ready": true,
+        "phase_derived_targets": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "requests": [
+          {
+            "accepted": true,
+            "cell_index": 0,
+            "lane": 0,
+            "rejected": false,
+            "target_state": 1,
+            "valid": true
+          },
+          {
+            "accepted": false,
+            "cell_index": 0,
+            "lane": 1,
+            "rejected": false,
+            "target_state": 0,
+            "valid": false
+          }
+        ]
+      },
+      "m16_expected": {
+        "accepted_cell_ids": [
+          0
+        ],
+        "accepted_change_cell_ids": [
+          0
+        ],
+        "events": {
+          "actual_direct_events": 0,
+          "neutral_routed_events": 0,
+          "prevented_direct_events": 0,
+          "queue_overflow_events": 0,
+          "requested_direct_events": 0,
+          "reserved_state_events": 0
+        },
+        "invariants": {
+          "all_pass": true,
+          "flags": [
+            {
+              "name": "state_domain_valid",
+              "pass": true
+            },
+            {
+              "name": "scheduler_counts_valid",
+              "pass": true
+            },
+            {
+              "name": "request_lane_order_valid",
+              "pass": true
+            },
+            {
+              "name": "pending_polarity_valid",
+              "pass": true
+            },
+            {
+              "name": "active_neutral_valid",
+              "pass": true
+            },
+            {
+              "name": "transition_capacity_valid",
+              "pass": true
+            },
+            {
+              "name": "state_update_valid",
+              "pass": true
+            },
+            {
+              "name": "no_actual_direct_events",
+              "pass": true
+            },
+            {
+              "name": "no_reserved_state",
+              "pass": true
+            },
+            {
+              "name": "no_queue_overflow",
+              "pass": true
+            }
+          ]
+        },
+        "neutral_routed_cell_ids": [],
+        "pending_route_after": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "pending_route_before": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "requests": [
+          {
+            "accepted": true,
+            "cell_index": 0,
+            "lane": 0,
+            "rejected": false,
+            "target_state": 1,
+            "valid": true
+          },
+          {
+            "accepted": false,
+            "cell_index": 0,
+            "lane": 1,
+            "rejected": false,
+            "target_state": 0,
+            "valid": false
+          }
+        ],
+        "retained_state_after": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "retained_state_before": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scheduler": {
+          "counters_after": {
+            "balance": 0,
+            "commit": 0,
+            "excite": 0,
+            "free": 1,
+            "neutralize": 0
+          },
+          "mode": "free",
+          "state": "free",
+          "ticks_after": 1,
+          "ticks_before": 0
+        },
+        "telemetry": {
+          "switch_load_denominator": 8,
+          "switch_load_numerator": 1,
+          "switch_load_q16": 8192
+        },
+        "transition_capacity": {
+          "accepted_changes": 1,
+          "capacity_exhausted": false,
+          "capacity_limit": 2,
+          "capacity_remaining": 1
+        }
+      },
+      "m16_observed": {
+        "accepted_cell_ids": [
+          0
+        ],
+        "accepted_change_cell_ids": [
+          0
+        ],
+        "events": {
+          "actual_direct_events": 0,
+          "neutral_routed_events": 0,
+          "prevented_direct_events": 0,
+          "queue_overflow_events": 0,
+          "requested_direct_events": 0,
+          "reserved_state_events": 0
+        },
+        "invariants": {
+          "all_pass": true,
+          "flags": [
+            {
+              "name": "state_domain_valid",
+              "pass": true
+            },
+            {
+              "name": "scheduler_counts_valid",
+              "pass": true
+            },
+            {
+              "name": "request_lane_order_valid",
+              "pass": true
+            },
+            {
+              "name": "pending_polarity_valid",
+              "pass": true
+            },
+            {
+              "name": "active_neutral_valid",
+              "pass": true
+            },
+            {
+              "name": "transition_capacity_valid",
+              "pass": true
+            },
+            {
+              "name": "state_update_valid",
+              "pass": true
+            },
+            {
+              "name": "no_actual_direct_events",
+              "pass": true
+            },
+            {
+              "name": "no_reserved_state",
+              "pass": true
+            },
+            {
+              "name": "no_queue_overflow",
+              "pass": true
+            }
+          ]
+        },
+        "neutral_routed_cell_ids": [],
+        "pending_route_after": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "pending_route_before": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "requests": [
+          {
+            "accepted": true,
+            "cell_index": 0,
+            "lane": 0,
+            "rejected": false,
+            "target_state": 1,
+            "valid": true
+          },
+          {
+            "accepted": false,
+            "cell_index": 0,
+            "lane": 1,
+            "rejected": false,
+            "target_state": 0,
+            "valid": false
+          }
+        ],
+        "retained_state_after": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "retained_state_before": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scheduler": {
+          "counters_after": {
+            "balance": 0,
+            "commit": 0,
+            "excite": 0,
+            "free": 1,
+            "neutralize": 0
+          },
+          "mode": "free",
+          "state": "free",
+          "ticks_after": 1,
+          "ticks_before": 0
+        },
+        "telemetry": {
+          "switch_load_denominator": 8,
+          "switch_load_numerator": 1,
+          "switch_load_q16": 8192
+        },
+        "transition_capacity": {
+          "accepted_changes": 1,
+          "capacity_exhausted": false,
+          "capacity_limit": 2,
+          "capacity_remaining": 1
+        }
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "record_status": "PASS",
+      "schema": "frp.m20.correlation_record.v2.2.0",
+      "sequence": 0,
+      "tick": 0
+    },
+    {
+      "checks": {
+        "deterministic_inputs": true,
+        "event_counters": true,
+        "invariant_vector": true,
+        "pending_route": true,
+        "request_lanes": true,
+        "retained_state": true,
+        "scheduler_mode": true,
+        "scheduler_state": true,
+        "tick_alignment": true,
+        "transition_capacity": true
+      },
+      "correlation_id": "fpga_preparation:00000001",
+      "execution_epoch": 0,
+      "m15_semantic_reference": {
+        "measurement_contour": "m15_quantized_semantic_reference",
+        "path": "artifacts/m18/structured_output/trace-free.json",
+        "raw_sha256": "2c5f087361a1d28ecf6478289071be6b4dce79c05cc8992010185a2f584ad686",
+        "record": {
+          "C_minus_P_q16": 41523,
+          "C_q16": 63147,
+          "P_q16": 21624,
+          "actual_direct_events": 0,
+          "global_phase_coherence_q30": 195909640,
+          "heat_global_q16": 5240,
+          "neutral_routed_events": 1,
+          "pending_route_count": 1,
+          "prevented_direct_events": 1,
+          "request_cell_ids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "request_target_states": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "request_valid_mask": 0,
+          "requested_direct_events": 0,
+          "reserved_state_events": 0,
+          "scheduler_mode": 0,
+          "scheduler_state": 0,
+          "scheduler_state_name": "free",
+          "states_packed_hex": "0CD1CFDD",
+          "switch_load_q16": 16384,
+          "tick": 1
+        }
+      },
+      "m15_vector_reference": {
+        "measurement_contour": "m15_implementation_mapping",
+        "path": "artifacts/m18/m15_vectors/frp_m15_scheduler_free_vectors.vec",
+        "raw_sha256": "836b9e2fb5079f93f9666e534823735c6f22f48c8def4b6301ec3119ac52a518",
+        "record": {
+          "C_minus_P_q16": 61764,
+          "C_q16": 65294,
+          "P_q16": 3530,
+          "actual_direct_events": 0,
+          "global_phase_coherence_q30": 195782704,
+          "heat_global_q16": 3530,
+          "neutral_routed_events": 0,
+          "pending_route_count": 0,
+          "prevented_direct_events": 0,
+          "request_cell_ids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "request_target_state_codes": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "request_valid_mask": 0,
+          "requested_direct_events": 0,
+          "scheduler_mode": 0,
+          "scheduler_state": 0,
+          "states_packed_hex": "0F00CCC0",
+          "switch_load_q16": 0,
+          "tick": 1
+        }
+      },
+      "m16_deterministic_input": {
+        "core_ready": true,
+        "phase_derived_targets": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "requests": [
+          {
+            "accepted": true,
+            "cell_index": 0,
+            "lane": 0,
+            "rejected": false,
+            "target_state": -1,
+            "valid": true
+          },
+          {
+            "accepted": false,
+            "cell_index": 0,
+            "lane": 1,
+            "rejected": false,
+            "target_state": 0,
+            "valid": false
+          }
+        ]
+      },
+      "m16_expected": {
+        "accepted_cell_ids": [
+          0
+        ],
+        "accepted_change_cell_ids": [
+          0
+        ],
+        "events": {
+          "actual_direct_events": 0,
+          "neutral_routed_events": 1,
+          "prevented_direct_events": 1,
+          "queue_overflow_events": 0,
+          "requested_direct_events": 1,
+          "reserved_state_events": 0
+        },
+        "invariants": {
+          "all_pass": true,
+          "flags": [
+            {
+              "name": "state_domain_valid",
+              "pass": true
+            },
+            {
+              "name": "scheduler_counts_valid",
+              "pass": true
+            },
+            {
+              "name": "request_lane_order_valid",
+              "pass": true
+            },
+            {
+              "name": "pending_polarity_valid",
+              "pass": true
+            },
+            {
+              "name": "active_neutral_valid",
+              "pass": true
+            },
+            {
+              "name": "transition_capacity_valid",
+              "pass": true
+            },
+            {
+              "name": "state_update_valid",
+              "pass": true
+            },
+            {
+              "name": "no_actual_direct_events",
+              "pass": true
+            },
+            {
+              "name": "no_reserved_state",
+              "pass": true
+            },
+            {
+              "name": "no_queue_overflow",
+              "pass": true
+            }
+          ]
+        },
+        "neutral_routed_cell_ids": [
+          0
+        ],
+        "pending_route_after": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "pending_route_before": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "requests": [
+          {
+            "accepted": true,
+            "cell_index": 0,
+            "lane": 0,
+            "rejected": false,
+            "target_state": -1,
+            "valid": true
+          },
+          {
+            "accepted": false,
+            "cell_index": 0,
+            "lane": 1,
+            "rejected": false,
+            "target_state": 0,
+            "valid": false
+          }
+        ],
+        "retained_state_after": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "retained_state_before": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scheduler": {
+          "counters_after": {
+            "balance": 0,
+            "commit": 0,
+            "excite": 0,
+            "free": 2,
+            "neutralize": 0
+          },
+          "mode": "free",
+          "state": "free",
+          "ticks_after": 2,
+          "ticks_before": 1
+        },
+        "telemetry": {
+          "switch_load_denominator": 8,
+          "switch_load_numerator": 1,
+          "switch_load_q16": 8192
+        },
+        "transition_capacity": {
+          "accepted_changes": 1,
+          "capacity_exhausted": false,
+          "capacity_limit": 2,
+          "capacity_remaining": 1
+        }
+      },
+      "m16_observed": {
+        "accepted_cell_ids": [
+          0
+        ],
+        "accepted_change_cell_ids": [
+          0
+        ],
+        "events": {
+          "actual_direct_events": 0,
+          "neutral_routed_events": 1,
+          "prevented_direct_events": 1,
+          "queue_overflow_events": 0,
+          "requested_direct_events": 1,
+          "reserved_state_events": 0
+        },
+        "invariants": {
+          "all_pass": true,
+          "flags": [
+            {
+              "name": "state_domain_valid",
+              "pass": true
+            },
+            {
+              "name": "scheduler_counts_valid",
+              "pass": true
+            },
+            {
+              "name": "request_lane_order_valid",
+              "pass": true
+            },
+            {
+              "name": "pending_polarity_valid",
+              "pass": true
+            },
+            {
+              "name": "active_neutral_valid",
+              "pass": true
+            },
+            {
+              "name": "transition_capacity_valid",
+              "pass": true
+            },
+            {
+              "name": "state_update_valid",
+              "pass": true
+            },
+            {
+              "name": "no_actual_direct_events",
+              "pass": true
+            },
+            {
+              "name": "no_reserved_state",
+              "pass": true
+            },
+            {
+              "name": "no_queue_overflow",
+              "pass": true
+            }
+          ]
+        },
+        "neutral_routed_cell_ids": [
+          0
+        ],
+        "pending_route_after": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "pending_route_before": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "requests": [
+          {
+            "accepted": true,
+            "cell_index": 0,
+            "lane": 0,
+            "rejected": false,
+            "target_state": -1,
+            "valid": true
+          },
+          {
+            "accepted": false,
+            "cell_index": 0,
+            "lane": 1,
+            "rejected": false,
+            "target_state": 0,
+            "valid": false
+          }
+        ],
+        "retained_state_after": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "retained_state_before": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scheduler": {
+          "counters_after": {
+            "balance": 0,
+            "commit": 0,
+            "excite": 0,
+            "free": 2,
+            "neutralize": 0
+          },
+          "mode": "free",
+          "state": "free",
+          "ticks_after": 2,
+          "ticks_before": 1
+        },
+        "telemetry": {
+          "switch_load_denominator": 8,
+          "switch_load_numerator": 1,
+          "switch_load_q16": 8192
+        },
+        "transition_capacity": {
+          "accepted_changes": 1,
+          "capacity_exhausted": false,
+          "capacity_limit": 2,
+          "capacity_remaining": 1
+        }
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "record_status": "PASS",
+      "schema": "frp.m20.correlation_record.v2.2.0",
+      "sequence": 1,
+      "tick": 1
+    },
+    {
+      "checks": {
+        "deterministic_inputs": true,
+        "event_counters": true,
+        "invariant_vector": true,
+        "pending_route": true,
+        "request_lanes": true,
+        "retained_state": true,
+        "scheduler_mode": true,
+        "scheduler_state": true,
+        "tick_alignment": true,
+        "transition_capacity": true
+      },
+      "correlation_id": "fpga_preparation:00000002",
+      "execution_epoch": 0,
+      "m15_semantic_reference": {
+        "measurement_contour": "m15_quantized_semantic_reference",
+        "path": "artifacts/m18/structured_output/trace-free.json",
+        "raw_sha256": "2c5f087361a1d28ecf6478289071be6b4dce79c05cc8992010185a2f584ad686",
+        "record": {
+          "C_minus_P_q16": 40257,
+          "C_q16": 62747,
+          "P_q16": 22490,
+          "actual_direct_events": 0,
+          "global_phase_coherence_q30": 196776845,
+          "heat_global_q16": 6106,
+          "neutral_routed_events": 2,
+          "pending_route_count": 1,
+          "prevented_direct_events": 2,
+          "request_cell_ids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "request_target_states": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "request_valid_mask": 0,
+          "requested_direct_events": 0,
+          "reserved_state_events": 0,
+          "scheduler_mode": 0,
+          "scheduler_state": 0,
+          "scheduler_state_name": "free",
+          "states_packed_hex": "F1D1CFDD",
+          "switch_load_q16": 16384,
+          "tick": 2
+        }
+      },
+      "m15_vector_reference": {
+        "measurement_contour": "m15_implementation_mapping",
+        "path": "artifacts/m18/m15_vectors/frp_m15_scheduler_free_vectors.vec",
+        "raw_sha256": "836b9e2fb5079f93f9666e534823735c6f22f48c8def4b6301ec3119ac52a518",
+        "record": {
+          "C_minus_P_q16": 61889,
+          "C_q16": 65527,
+          "P_q16": 3638,
+          "actual_direct_events": 0,
+          "global_phase_coherence_q30": 196498395,
+          "heat_global_q16": 3638,
+          "neutral_routed_events": 0,
+          "pending_route_count": 0,
+          "prevented_direct_events": 0,
+          "request_cell_ids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "request_target_state_codes": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "request_valid_mask": 0,
+          "requested_direct_events": 0,
+          "scheduler_mode": 0,
+          "scheduler_state": 0,
+          "states_packed_hex": "0F00CCC0",
+          "switch_load_q16": 0,
+          "tick": 2
+        }
+      },
+      "m16_deterministic_input": {
+        "core_ready": true,
+        "phase_derived_targets": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "requests": [
+          {
+            "accepted": false,
+            "cell_index": 0,
+            "lane": 0,
+            "rejected": false,
+            "target_state": 0,
+            "valid": false
+          },
+          {
+            "accepted": false,
+            "cell_index": 0,
+            "lane": 1,
+            "rejected": false,
+            "target_state": 0,
+            "valid": false
+          }
+        ]
+      },
+      "m16_expected": {
+        "accepted_cell_ids": [],
+        "accepted_change_cell_ids": [
+          0
+        ],
+        "events": {
+          "actual_direct_events": 0,
+          "neutral_routed_events": 0,
+          "prevented_direct_events": 0,
+          "queue_overflow_events": 0,
+          "requested_direct_events": 0,
+          "reserved_state_events": 0
+        },
+        "invariants": {
+          "all_pass": true,
+          "flags": [
+            {
+              "name": "state_domain_valid",
+              "pass": true
+            },
+            {
+              "name": "scheduler_counts_valid",
+              "pass": true
+            },
+            {
+              "name": "request_lane_order_valid",
+              "pass": true
+            },
+            {
+              "name": "pending_polarity_valid",
+              "pass": true
+            },
+            {
+              "name": "active_neutral_valid",
+              "pass": true
+            },
+            {
+              "name": "transition_capacity_valid",
+              "pass": true
+            },
+            {
+              "name": "state_update_valid",
+              "pass": true
+            },
+            {
+              "name": "no_actual_direct_events",
+              "pass": true
+            },
+            {
+              "name": "no_reserved_state",
+              "pass": true
+            },
+            {
+              "name": "no_queue_overflow",
+              "pass": true
+            }
+          ]
+        },
+        "neutral_routed_cell_ids": [],
+        "pending_route_after": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "pending_route_before": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "requests": [
+          {
+            "accepted": false,
+            "cell_index": 0,
+            "lane": 0,
+            "rejected": false,
+            "target_state": 0,
+            "valid": false
+          },
+          {
+            "accepted": false,
+            "cell_index": 0,
+            "lane": 1,
+            "rejected": false,
+            "target_state": 0,
+            "valid": false
+          }
+        ],
+        "retained_state_after": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "retained_state_before": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scheduler": {
+          "counters_after": {
+            "balance": 0,
+            "commit": 0,
+            "excite": 0,
+            "free": 3,
+            "neutralize": 0
+          },
+          "mode": "free",
+          "state": "free",
+          "ticks_after": 3,
+          "ticks_before": 2
+        },
+        "telemetry": {
+          "switch_load_denominator": 8,
+          "switch_load_numerator": 1,
+          "switch_load_q16": 8192
+        },
+        "transition_capacity": {
+          "accepted_changes": 1,
+          "capacity_exhausted": false,
+          "capacity_limit": 2,
+          "capacity_remaining": 1
+        }
+      },
+      "m16_observed": {
+        "accepted_cell_ids": [],
+        "accepted_change_cell_ids": [
+          0
+        ],
+        "events": {
+          "actual_direct_events": 0,
+          "neutral_routed_events": 0,
+          "prevented_direct_events": 0,
+          "queue_overflow_events": 0,
+          "requested_direct_events": 0,
+          "reserved_state_events": 0
+        },
+        "invariants": {
+          "all_pass": true,
+          "flags": [
+            {
+              "name": "state_domain_valid",
+              "pass": true
+            },
+            {
+              "name": "scheduler_counts_valid",
+              "pass": true
+            },
+            {
+              "name": "request_lane_order_valid",
+              "pass": true
+            },
+            {
+              "name": "pending_polarity_valid",
+              "pass": true
+            },
+            {
+              "name": "active_neutral_valid",
+              "pass": true
+            },
+            {
+              "name": "transition_capacity_valid",
+              "pass": true
+            },
+            {
+              "name": "state_update_valid",
+              "pass": true
+            },
+            {
+              "name": "no_actual_direct_events",
+              "pass": true
+            },
+            {
+              "name": "no_reserved_state",
+              "pass": true
+            },
+            {
+              "name": "no_queue_overflow",
+              "pass": true
+            }
+          ]
+        },
+        "neutral_routed_cell_ids": [],
+        "pending_route_after": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "pending_route_before": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "requests": [
+          {
+            "accepted": false,
+            "cell_index": 0,
+            "lane": 0,
+            "rejected": false,
+            "target_state": 0,
+            "valid": false
+          },
+          {
+            "accepted": false,
+            "cell_index": 0,
+            "lane": 1,
+            "rejected": false,
+            "target_state": 0,
+            "valid": false
+          }
+        ],
+        "retained_state_after": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "retained_state_before": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scheduler": {
+          "counters_after": {
+            "balance": 0,
+            "commit": 0,
+            "excite": 0,
+            "free": 3,
+            "neutralize": 0
+          },
+          "mode": "free",
+          "state": "free",
+          "ticks_after": 3,
+          "ticks_before": 2
+        },
+        "telemetry": {
+          "switch_load_denominator": 8,
+          "switch_load_numerator": 1,
+          "switch_load_q16": 8192
+        },
+        "transition_capacity": {
+          "accepted_changes": 1,
+          "capacity_exhausted": false,
+          "capacity_limit": 2,
+          "capacity_remaining": 1
+        }
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "record_status": "PASS",
+      "schema": "frp.m20.correlation_record.v2.2.0",
+      "sequence": 2,
+      "tick": 2
+    },
+    {
+      "checks": {
+        "deterministic_inputs": true,
+        "event_counters": true,
+        "invariant_vector": true,
+        "pending_route": true,
+        "request_lanes": true,
+        "retained_state": true,
+        "scheduler_mode": true,
+        "scheduler_state": true,
+        "tick_alignment": true,
+        "transition_capacity": true
+      },
+      "correlation_id": "fpga_preparation:00000003",
+      "execution_epoch": 1,
+      "m15_semantic_reference": {
+        "measurement_contour": "m15_quantized_semantic_reference",
+        "path": "artifacts/m18/structured_output/trace-1-7.json",
+        "raw_sha256": "7a4cd4388df4e59afee01f18598304dd41bdf963e5186683b4fa47ff8732c4c6",
+        "record": {
+          "C_minus_P_q16": 42950,
+          "C_q16": 63634,
+          "P_q16": 20684,
+          "actual_direct_events": 0,
+          "global_phase_coherence_q30": 198465317,
+          "heat_global_q16": 4300,
+          "neutral_routed_events": 0,
+          "pending_route_count": 0,
+          "prevented_direct_events": 0,
+          "request_cell_ids": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "request_target_states": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "request_valid_mask": 1,
+          "requested_direct_events": 0,
+          "reserved_state_events": 0,
+          "scheduler_mode": 2,
+          "scheduler_state": 3,
+          "scheduler_state_name": "excite",
+          "states_packed_hex": "0F00CFDD",
+          "switch_load_q16": 16384,
+          "tick": 0
+        }
+      },
+      "m15_vector_reference": {
+        "measurement_contour": "m15_implementation_mapping",
+        "path": "artifacts/m18/m15_vectors/frp_m15_scheduler_1_7_vectors.vec",
+        "raw_sha256": "5cf1912cbc492004656f41fff4ff36e5146e281b4f79a0e90606747b7c0bc649",
+        "record": {
+          "C_minus_P_q16": 57045,
+          "C_q16": 64774,
+          "P_q16": 7729,
+          "actual_direct_events": 0,
+          "global_phase_coherence_q30": 198466679,
+          "heat_global_q16": 3633,
+          "neutral_routed_events": 0,
+          "pending_route_count": 0,
+          "prevented_direct_events": 0,
+          "request_cell_ids": [
+            10,
+            0,
+            0,
+            0
+          ],
+          "request_target_state_codes": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "request_valid_mask": 1,
+          "requested_direct_events": 0,
+          "scheduler_mode": 2,
+          "scheduler_state": 3,
+          "states_packed_hex": "0F10CCC0",
+          "switch_load_q16": 4096,
+          "tick": 0
+        }
+      },
+      "m16_deterministic_input": {
+        "core_ready": true,
+        "phase_derived_targets": [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "requests": [
+          {
+            "accepted": true,
+            "cell_index": 1,
+            "lane": 0,
+            "rejected": false,
+            "target_state": 1,
+            "valid": true
+          },
+          {
+            "accepted": false,
+            "cell_index": 0,
+            "lane": 1,
+            "rejected": false,
+            "target_state": 0,
+            "valid": false
+          }
+        ]
+      },
+      "m16_expected": {
+        "accepted_cell_ids": [
+          1
+        ],
+        "accepted_change_cell_ids": [
+          1
+        ],
+        "events": {
+          "actual_direct_events": 0,
+          "neutral_routed_events": 0,
+          "prevented_direct_events": 0,
+          "queue_overflow_events": 0,
+          "requested_direct_events": 0,
+          "reserved_state_events": 0
+        },
+        "invariants": {
+          "all_pass": true,
+          "flags": [
+            {
+              "name": "state_domain_valid",
+              "pass": true
+            },
+            {
+              "name": "scheduler_counts_valid",
+              "pass": true
+            },
+            {
+              "name": "request_lane_order_valid",
+              "pass": true
+            },
+            {
+              "name": "pending_polarity_valid",
+              "pass": true
+            },
+            {
+              "name": "active_neutral_valid",
+              "pass": true
+            },
+            {
+              "name": "transition_capacity_valid",
+              "pass": true
+            },
+            {
+              "name": "state_update_valid",
+              "pass": true
+            },
+            {
+              "name": "no_actual_direct_events",
+              "pass": true
+            },
+            {
+              "name": "no_reserved_state",
+              "pass": true
+            },
+            {
+              "name": "no_queue_overflow",
+              "pass": true
+            }
+          ]
+        },
+        "neutral_routed_cell_ids": [],
+        "pending_route_after": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "pending_route_before": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "requests": [
+          {
+            "accepted": true,
+            "cell_index": 1,
+            "lane": 0,
+            "rejected": false,
+            "target_state": 1,
+            "valid": true
+          },
+          {
+            "accepted": false,
+            "cell_index": 0,
+            "lane": 1,
+            "rejected": false,
+            "target_state": 0,
+            "valid": false
+          }
+        ],
+        "retained_state_after": [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "retained_state_before": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scheduler": {
+          "counters_after": {
+            "balance": 0,
+            "commit": 0,
+            "excite": 1,
+            "free": 0,
+            "neutralize": 0
+          },
+          "mode": "1/7",
+          "state": "excite",
+          "ticks_after": 1,
+          "ticks_before": 0
+        },
+        "telemetry": {
+          "switch_load_denominator": 8,
+          "switch_load_numerator": 1,
+          "switch_load_q16": 8192
+        },
+        "transition_capacity": {
+          "accepted_changes": 1,
+          "capacity_exhausted": false,
+          "capacity_limit": 2,
+          "capacity_remaining": 1
+        }
+      },
+      "m16_observed": {
+        "accepted_cell_ids": [
+          1
+        ],
+        "accepted_change_cell_ids": [
+          1
+        ],
+        "events": {
+          "actual_direct_events": 0,
+          "neutral_routed_events": 0,
+          "prevented_direct_events": 0,
+          "queue_overflow_events": 0,
+          "requested_direct_events": 0,
+          "reserved_state_events": 0
+        },
+        "invariants": {
+          "all_pass": true,
+          "flags": [
+            {
+              "name": "state_domain_valid",
+              "pass": true
+            },
+            {
+              "name": "scheduler_counts_valid",
+              "pass": true
+            },
+            {
+              "name": "request_lane_order_valid",
+              "pass": true
+            },
+            {
+              "name": "pending_polarity_valid",
+              "pass": true
+            },
+            {
+              "name": "active_neutral_valid",
+              "pass": true
+            },
+            {
+              "name": "transition_capacity_valid",
+              "pass": true
+            },
+            {
+              "name": "state_update_valid",
+              "pass": true
+            },
+            {
+              "name": "no_actual_direct_events",
+              "pass": true
+            },
+            {
+              "name": "no_reserved_state",
+              "pass": true
+            },
+            {
+              "name": "no_queue_overflow",
+              "pass": true
+            }
+          ]
+        },
+        "neutral_routed_cell_ids": [],
+        "pending_route_after": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "pending_route_before": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "requests": [
+          {
+            "accepted": true,
+            "cell_index": 1,
+            "lane": 0,
+            "rejected": false,
+            "target_state": 1,
+            "valid": true
+          },
+          {
+            "accepted": false,
+            "cell_index": 0,
+            "lane": 1,
+            "rejected": false,
+            "target_state": 0,
+            "valid": false
+          }
+        ],
+        "retained_state_after": [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "retained_state_before": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scheduler": {
+          "counters_after": {
+            "balance": 0,
+            "commit": 0,
+            "excite": 1,
+            "free": 0,
+            "neutralize": 0
+          },
+          "mode": "1/7",
+          "state": "excite",
+          "ticks_after": 1,
+          "ticks_before": 0
+        },
+        "telemetry": {
+          "switch_load_denominator": 8,
+          "switch_load_numerator": 1,
+          "switch_load_q16": 8192
+        },
+        "transition_capacity": {
+          "accepted_changes": 1,
+          "capacity_exhausted": false,
+          "capacity_limit": 2,
+          "capacity_remaining": 1
+        }
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "record_status": "PASS",
+      "schema": "frp.m20.correlation_record.v2.2.0",
+      "sequence": 3,
+      "tick": 0
+    }
+  ],
+  "schema": "frp.m20.cross_layer_correlation_package.v2.2.0",
+  "source_commit": "8b5e606f388325ec6e4424c59799c11ba58a8e29",
+  "source_identity": {
+    "m15_equivalence_report": {
+      "byte_length": 5071,
+      "path": "artifacts/m18/m15_exports/reference-rtl-equivalence-report.json",
+      "raw_sha256": "662b0df1795ac3b31d9e1d95e00fda78408b7cbdf6024b5298eabec1f695d63d",
+      "role": "m15_equivalence_report"
+    },
+    "m15_qualification": {
+      "byte_length": 7374,
+      "path": "artifacts/m18/m15_exports/qualification-closure-manifest.json",
+      "raw_sha256": "bc3d77208b005fba050511dffbaebc21a37cbd7f4327de43405fe38529dec5ac",
+      "role": "m15_qualification"
+    },
+    "m15_quantized_shadow": {
+      "byte_length": 4687,
+      "path": "artifacts/m18/m15_exports/quantized-reference-shadow-model.json",
+      "raw_sha256": "8c61304182952673b0a0195b181bf1e4e8f8de0ecf79dc4b3fa320d74bb356ae",
+      "role": "m15_quantized_shadow"
+    },
+    "m15_rtl_reference": {
+      "byte_length": 2111,
+      "path": "artifacts/m18/m15_exports/synthesizable-rtl-reference-core.json",
+      "raw_sha256": "d90623311383e897b8490c753ac418b759e763f3f77dde65c4bedd3a8f773b87",
+      "role": "m15_rtl_reference"
+    },
+    "m15_semantic_traces": [
+      {
+        "byte_length": 562309,
+        "mode": "free",
+        "path": "artifacts/m18/structured_output/trace-free.json",
+        "raw_sha256": "2c5f087361a1d28ecf6478289071be6b4dce79c05cc8992010185a2f584ad686",
+        "role": "m15_semantic_trace",
+        "schema": "frp.structured_output.v1.7.0"
+      },
+      {
+        "byte_length": 562468,
+        "mode": "7/1",
+        "path": "artifacts/m18/structured_output/trace-7-1.json",
+        "raw_sha256": "55b2f3e71494b6afe737fa3c82c301011fb560a952b1d356740f79c03f4ed5a9",
+        "role": "m15_semantic_trace",
+        "schema": "frp.structured_output.v1.7.0"
+      },
+      {
+        "byte_length": 562665,
+        "mode": "1/7",
+        "path": "artifacts/m18/structured_output/trace-1-7.json",
+        "raw_sha256": "7a4cd4388df4e59afee01f18598304dd41bdf963e5186683b4fa47ff8732c4c6",
+        "role": "m15_semantic_trace",
+        "schema": "frp.structured_output.v1.7.0"
+      }
+    ],
+    "m15_vector_package": {
+      "byte_length": 2307,
+      "path": "artifacts/m18/m15_exports/rtl-comparison-vector-package.json",
+      "raw_sha256": "75ec68fed692ff9cfddd918dcf6289326b9b9130798d31c9c681c13a5189dbf4",
+      "role": "m15_vector_package"
+    },
+    "m15_vectors": [
+      {
+        "byte_length": 5023,
+        "format": "frp.m15.vector.v1",
+        "mode": "free",
+        "path": "artifacts/m18/m15_vectors/frp_m15_scheduler_free_vectors.vec",
+        "raw_sha256": "836b9e2fb5079f93f9666e534823735c6f22f48c8def4b6301ec3119ac52a518",
+        "role": "m15_correlation_vector"
+      },
+      {
+        "byte_length": 16689,
+        "format": "frp.m15.vector.v1",
+        "mode": "7/1",
+        "path": "artifacts/m18/m15_vectors/frp_m15_full_correlation_vectors.vec",
+        "raw_sha256": "c2e2a92d7031b85d2681fdaba839bbc4a0d833be14c8516d15dcaed347940d73",
+        "role": "m15_correlation_vector"
+      },
+      {
+        "byte_length": 5028,
+        "format": "frp.m15.vector.v1",
+        "mode": "1/7",
+        "path": "artifacts/m18/m15_vectors/frp_m15_scheduler_1_7_vectors.vec",
+        "raw_sha256": "5cf1912cbc492004656f41fff4ff36e5146e281b4f79a0e90606747b7c0bc649",
+        "role": "m15_correlation_vector"
+      }
+    ],
+    "m16_execution_trace": {
+      "byte_length": 9013,
+      "path": "artifacts/m19/execution/m16-fpga-preparation-execution-trace.json",
+      "raw_sha256": "7d58b6741bdcadbfb9acb9049ed0e956305f49b9ad36946e719a4121b5caf22f",
+      "role": "m16_execution_trace",
+      "schema": "frp.m16.fpga_preparation_execution_trace.v2.1.0"
+    },
+    "m19_manifest": {
+      "byte_length": 7451,
+      "path": "artifacts/m19/manifests/m19-machine-readable-evidence-manifest.json",
+      "raw_sha256": "b82d8318e7d5fc375c111e342f841b7842571bb0cce4ede5da14e1383ee98fb7",
+      "role": "m19_evidence_manifest"
+    },
+    "m19_qualification": {
+      "byte_length": 3945,
+      "path": "artifacts/m19/manifests/m19-machine-readable-evidence-qualification.json",
+      "raw_sha256": "b80d080598186cfa7f0b93dff4f1d09b86bdc34e82a42f3488e2d549e46e47d5",
+      "role": "m19_qualification"
+    }
+  },
+  "source_release": "FRP v2.1.0 / M19 evidence boundary",
+  "summary": {
+    "check_count": 40,
+    "failed_check_count": 0,
+    "mismatch_count": 0,
+    "mismatch_digest": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "overall_status": "PASS",
+    "passed_check_count": 40,
+    "record_count": 4,
+    "record_digest": "da2ed85fcfc5b366d6adb83bb5c365ac9c197c3bca6b85a432bfce13f9cb50b6"
+  },
+  "vector_identities": [
+    {
+      "byte_length": 112549,
+      "name": "frp_m15_cell_trace.vec",
+      "path": "artifacts/m18/m15_vectors/frp_m15_cell_trace.vec",
+      "raw_sha256": "b3192cbfbe89b31517212a09fd4d14f58180e2d1594a45412856399c4be5781d"
+    },
+    {
+      "byte_length": 16689,
+      "name": "frp_m15_full_correlation_vectors.vec",
+      "path": "artifacts/m18/m15_vectors/frp_m15_full_correlation_vectors.vec",
+      "raw_sha256": "c2e2a92d7031b85d2681fdaba839bbc4a0d833be14c8516d15dcaed347940d73"
+    },
+    {
+      "byte_length": 8815,
+      "name": "frp_m15_kernel_vectors.vec",
+      "path": "artifacts/m18/m15_vectors/frp_m15_kernel_vectors.vec",
+      "raw_sha256": "87e063cdbe49d32ecfda129e0a5c6a8c77d022fdfa07eeed891a1b4f271d29bf"
+    },
+    {
+      "byte_length": 818,
+      "name": "frp_m15_pending_routes.trace",
+      "path": "artifacts/m18/m15_vectors/frp_m15_pending_routes.trace",
+      "raw_sha256": "600125de9484bb3b2275a98a64eba06d751a8ce129e29c3eb49b14142e01afc5"
+    },
+    {
+      "byte_length": 1387,
+      "name": "frp_m15_reference_preload.json",
+      "path": "artifacts/m18/m15_vectors/frp_m15_reference_preload.json",
+      "raw_sha256": "88cf005a76a659c0f51a16a1499b6fa6251b09eb26434538eb27ca5718b1a4a0"
+    },
+    {
+      "byte_length": 5028,
+      "name": "frp_m15_scheduler_1_7_vectors.vec",
+      "path": "artifacts/m18/m15_vectors/frp_m15_scheduler_1_7_vectors.vec",
+      "raw_sha256": "5cf1912cbc492004656f41fff4ff36e5146e281b4f79a0e90606747b7c0bc649"
+    },
+    {
+      "byte_length": 5017,
+      "name": "frp_m15_scheduler_7_1_vectors.vec",
+      "path": "artifacts/m18/m15_vectors/frp_m15_scheduler_7_1_vectors.vec",
+      "raw_sha256": "9e777e7eb9fa4adeca52bc83ebedd5275aad2ebbc32f34140102131cd4aa4c7e"
+    },
+    {
+      "byte_length": 5023,
+      "name": "frp_m15_scheduler_free_vectors.vec",
+      "path": "artifacts/m18/m15_vectors/frp_m15_scheduler_free_vectors.vec",
+      "raw_sha256": "836b9e2fb5079f93f9666e534823735c6f22f48c8def4b6301ec3119ac52a518"
+    },
+    {
+      "byte_length": 935,
+      "name": "frp_m15_sha256_manifest.json",
+      "path": "artifacts/m18/m15_vectors/frp_m15_sha256_manifest.json",
+      "raw_sha256": "8dafbe3dea995d94c84a8ea02b9393bd53b9b986b8cc852af55f2ea67dc1d839"
+    },
+    {
+      "byte_length": 72471,
+      "name": "frp_m15_trig_lut_q30.vec",
+      "path": "artifacts/m18/m15_vectors/frp_m15_trig_lut_q30.vec",
+      "raw_sha256": "caadbbf97fe0bacf2d82eaa5da4cd1fb6cf1e1514809d3e743311e19893d11bb"
+    }
+  ],
+  "version": "2.2.0"
+}

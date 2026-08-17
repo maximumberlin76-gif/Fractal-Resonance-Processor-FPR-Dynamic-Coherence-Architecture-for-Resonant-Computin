@@ -1,0 +1,42 @@
+{
+  "kind": "m20_schema_registry",
+  "milestone": "M20 — Cross-Layer Deterministic Correlation",
+  "records": [
+    {
+      "artifact_paths": [
+        "artifacts/m20/correlation/m15-m16-fpga-preparation-correlation.json",
+        "artifacts/m20/correlation/m15-m16-rtl-correlation.json"
+      ],
+      "schema_identifier": "frp.m20.correlation_record.v2.2.0",
+      "schema_path": "schemas/m20/frp_m20_correlation_record.v2.2.0.schema.json",
+      "schema_urn": "urn:frp:schema:frp.m20.correlation_record.v2.2.0"
+    },
+    {
+      "artifact_paths": [
+        "artifacts/m20/manifests/m20-cross-layer-correlation-manifest.json"
+      ],
+      "schema_identifier": "frp.m20.cross_layer_correlation_manifest.v2.2.0",
+      "schema_path": "schemas/m20/frp_m20_cross_layer_correlation_manifest.v2.2.0.schema.json",
+      "schema_urn": "urn:frp:schema:frp.m20.cross_layer_correlation_manifest.v2.2.0"
+    },
+    {
+      "artifact_paths": [
+        "artifacts/m20/correlation/m15-m16-fpga-preparation-correlation.json",
+        "artifacts/m20/correlation/m15-m16-rtl-correlation.json"
+      ],
+      "schema_identifier": "frp.m20.cross_layer_correlation_package.v2.2.0",
+      "schema_path": "schemas/m20/frp_m20_cross_layer_correlation_package.v2.2.0.schema.json",
+      "schema_urn": "urn:frp:schema:frp.m20.cross_layer_correlation_package.v2.2.0"
+    },
+    {
+      "artifact_paths": [
+        "artifacts/m20/manifests/m20-cross-layer-correlation-qualification.json"
+      ],
+      "schema_identifier": "frp.m20.cross_layer_correlation_qualification.v2.2.0",
+      "schema_path": "schemas/m20/frp_m20_cross_layer_correlation_qualification.v2.2.0.schema.json",
+      "schema_urn": "urn:frp:schema:frp.m20.cross_layer_correlation_qualification.v2.2.0"
+    }
+  ],
+  "schema": "frp.m20.schema_registry.v2.2.0",
+  "version": "2.2.0"
+}

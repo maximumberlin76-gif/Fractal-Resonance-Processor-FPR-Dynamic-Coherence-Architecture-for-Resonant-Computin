@@ -1,0 +1,58 @@
+{
+  "$id": "urn:frp:schema:frp.m20.cross_layer_correlation_qualification.v2.2.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "check_count": {"minimum": 1, "type": "integer"},
+    "checks": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "category": {
+            "enum": [
+              "correlation_result",
+              "manifest",
+              "negative_test",
+              "record_correlation",
+              "record_set",
+              "result_digest",
+              "scheduler_correlation",
+              "source_identity"
+            ]
+          },
+          "check_id": {"minLength": 1, "type": "string"},
+          "pass": {"type": "boolean"}
+        },
+        "required": ["category", "check_id", "pass"],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "failed_count": {"minimum": 0, "type": "integer"},
+    "kind": {"const": "m20_cross_layer_correlation_qualification"},
+    "milestone": {"const": "M20 — Cross-Layer Deterministic Correlation"},
+    "overall_status": {"enum": ["PASS", "FAIL"]},
+    "package_set_digest": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "passed_count": {"minimum": 0, "type": "integer"},
+    "schema": {"const": "frp.m20.cross_layer_correlation_qualification.v2.2.0"},
+    "source_commit": {"pattern": "^[0-9a-f]{40}$", "type": "string"},
+    "version": {"const": "2.2.0"}
+  },
+  "required": [
+    "check_count",
+    "checks",
+    "failed_count",
+    "kind",
+    "milestone",
+    "overall_status",
+    "package_set_digest",
+    "passed_count",
+    "schema",
+    "source_commit",
+    "version"
+  ],
+  "title": "FRP M20 Cross-Layer Correlation Qualification",
+  "type": "object",
+  "x-frp-schema-identifier": "frp.m20.cross_layer_correlation_qualification.v2.2.0"
+}

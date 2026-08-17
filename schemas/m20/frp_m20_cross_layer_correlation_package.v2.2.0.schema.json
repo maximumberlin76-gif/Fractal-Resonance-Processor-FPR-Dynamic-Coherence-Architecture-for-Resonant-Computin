@@ -1,0 +1,154 @@
+{
+  "$defs": {
+    "fileRecord": {
+      "additionalProperties": true,
+      "properties": {
+        "byte_length": {"minimum": 1, "type": "integer"},
+        "path": {"minLength": 1, "type": "string"},
+        "raw_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+        "role": {"minLength": 1, "type": "string"}
+      },
+      "required": ["byte_length", "path", "raw_sha256", "role"],
+      "type": "object"
+    },
+    "mismatch": {
+      "additionalProperties": false,
+      "properties": {
+        "check": {"minLength": 1, "type": "string"},
+        "correlation_id": {"pattern": "^(rtl|fpga_preparation):[0-9]{8}$", "type": "string"},
+        "expected": true,
+        "observed": true
+      },
+      "required": ["check", "correlation_id", "expected", "observed"],
+      "type": "object"
+    }
+  },
+  "$id": "urn:frp:schema:frp.m20.cross_layer_correlation_package.v2.2.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "correlation_layer": {"enum": ["rtl", "fpga_preparation"]},
+    "interface_mapping": {
+      "additionalProperties": false,
+      "properties": {
+        "active_neutral_state": {"const": 0},
+        "canonical_ternary_states": {"const": [-1, 0, 1]},
+        "m15_profile": {"type": "object"},
+        "m16_profile": {"type": "object"},
+        "neutral_routes": {"const": ["-1 -> 0 -> 1", "1 -> 0 -> -1"]},
+        "scheduler_mode_codes": {"type": "object"},
+        "scheduler_state_codes": {"type": "object"},
+        "state_encoding": {"const": {"-1": "11", "0": "00", "1": "01"}}
+      },
+      "required": [
+        "active_neutral_state",
+        "canonical_ternary_states",
+        "m15_profile",
+        "m16_profile",
+        "neutral_routes",
+        "scheduler_mode_codes",
+        "scheduler_state_codes",
+        "state_encoding"
+      ],
+      "type": "object"
+    },
+    "kind": {"const": "cross_layer_correlation_package"},
+    "milestone": {"const": "M20 — Cross-Layer Deterministic Correlation"},
+    "mismatch_records": {"items": {"$ref": "#/$defs/mismatch"}, "type": "array"},
+    "records": {
+      "items": {"$ref": "urn:frp:schema:frp.m20.correlation_record.v2.2.0"},
+      "minItems": 1,
+      "type": "array"
+    },
+    "schema": {"const": "frp.m20.cross_layer_correlation_package.v2.2.0"},
+    "source_commit": {"pattern": "^[0-9a-f]{40}$", "type": "string"},
+    "source_identity": {
+      "additionalProperties": false,
+      "properties": {
+        "m15_equivalence_report": {"$ref": "#/$defs/fileRecord"},
+        "m15_qualification": {"$ref": "#/$defs/fileRecord"},
+        "m15_quantized_shadow": {"$ref": "#/$defs/fileRecord"},
+        "m15_rtl_reference": {"$ref": "#/$defs/fileRecord"},
+        "m15_semantic_traces": {"items": {"$ref": "#/$defs/fileRecord"}, "minItems": 3, "maxItems": 3, "type": "array"},
+        "m15_vector_package": {"$ref": "#/$defs/fileRecord"},
+        "m15_vectors": {"items": {"$ref": "#/$defs/fileRecord"}, "minItems": 3, "maxItems": 3, "type": "array"},
+        "m16_execution_trace": {"$ref": "#/$defs/fileRecord"},
+        "m19_manifest": {"$ref": "#/$defs/fileRecord"},
+        "m19_qualification": {"$ref": "#/$defs/fileRecord"}
+      },
+      "required": [
+        "m15_equivalence_report",
+        "m15_qualification",
+        "m15_quantized_shadow",
+        "m15_rtl_reference",
+        "m15_semantic_traces",
+        "m15_vector_package",
+        "m15_vectors",
+        "m16_execution_trace",
+        "m19_manifest",
+        "m19_qualification"
+      ],
+      "type": "object"
+    },
+    "source_release": {"const": "FRP v2.1.0 / M19 evidence boundary"},
+    "summary": {
+      "additionalProperties": false,
+      "properties": {
+        "check_count": {"minimum": 1, "type": "integer"},
+        "failed_check_count": {"minimum": 0, "type": "integer"},
+        "mismatch_count": {"minimum": 0, "type": "integer"},
+        "mismatch_digest": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+        "overall_status": {"enum": ["PASS", "FAIL"]},
+        "passed_check_count": {"minimum": 0, "type": "integer"},
+        "record_count": {"minimum": 1, "type": "integer"},
+        "record_digest": {"pattern": "^[0-9a-f]{64}$", "type": "string"}
+      },
+      "required": [
+        "check_count",
+        "failed_check_count",
+        "mismatch_count",
+        "mismatch_digest",
+        "overall_status",
+        "passed_check_count",
+        "record_count",
+        "record_digest"
+      ],
+      "type": "object"
+    },
+    "vector_identities": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "byte_length": {"minimum": 1, "type": "integer"},
+          "name": {"minLength": 1, "type": "string"},
+          "path": {"minLength": 1, "type": "string"},
+          "raw_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"}
+        },
+        "required": ["byte_length", "name", "path", "raw_sha256"],
+        "type": "object"
+      },
+      "minItems": 10,
+      "maxItems": 10,
+      "type": "array"
+    },
+    "version": {"const": "2.2.0"}
+  },
+  "required": [
+    "correlation_layer",
+    "interface_mapping",
+    "kind",
+    "milestone",
+    "mismatch_records",
+    "records",
+    "schema",
+    "source_commit",
+    "source_identity",
+    "source_release",
+    "summary",
+    "vector_identities",
+    "version"
+  ],
+  "title": "FRP M20 Cross-Layer Correlation Package",
+  "type": "object",
+  "x-frp-schema-identifier": "frp.m20.cross_layer_correlation_package.v2.2.0"
+}
