@@ -1,0 +1,318 @@
+{
+  "check_count": 60,
+  "checks": [
+    {
+      "check_id": "source_commit_exact",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "roadmap_scope_bound",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "milestone_scope_bound",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "m16_package_bound",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "m16_core_bound",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "m21_profiles_bound",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "register_count_exact",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "register_offsets_unique",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "register_offsets_aligned",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "access_policy_complete",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "reset_values_complete",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "scheduler_configuration_exposed",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "request_submission_exposed",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "retained_state_exposed",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "pending_route_exposed",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "transition_capacity_exposed",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "invariant_status_exposed",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "deterministic_read_write_declared",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "invalid_access_policy_complete",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "interface_digest_exact",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "trace_set_digest_exact",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "schema_registry_complete",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "formal_schema_validation",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "active_neutral_zero_preserved",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "balanced_ternary_domain_exact",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "actual_direct_events_zero",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "reserved_state_events_zero",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "queue_overflow_events_zero",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "no_silent_parameter_substitution",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "source_digest_coverage",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-8-lanes-2:trace_status",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-8-lanes-2:cell_count",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-8-lanes-2:request_lanes",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-8-lanes-2:capacity_limit",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-8-lanes-2:invalid_accesses",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-8-lanes-2:actual_direct_zero",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-8-lanes-2:reserved_state_zero",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-8-lanes-2:queue_overflow_zero",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-8-lanes-2:invariants_complete",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-8-lanes-2:trace_digest",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-16-lanes-4:trace_status",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-16-lanes-4:cell_count",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-16-lanes-4:request_lanes",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-16-lanes-4:capacity_limit",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-16-lanes-4:invalid_accesses",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-16-lanes-4:actual_direct_zero",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-16-lanes-4:reserved_state_zero",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-16-lanes-4:queue_overflow_zero",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-16-lanes-4:invariants_complete",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-16-lanes-4:trace_digest",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-32-lanes-8:trace_status",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-32-lanes-8:cell_count",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-32-lanes-8:request_lanes",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-32-lanes-8:capacity_limit",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-32-lanes-8:invalid_accesses",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-32-lanes-8:actual_direct_zero",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-32-lanes-8:reserved_state_zero",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-32-lanes-8:queue_overflow_zero",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-32-lanes-8:invariants_complete",
+      "detail": "verified",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cells-32-lanes-8:trace_digest",
+      "detail": "verified",
+      "status": "PASS"
+    }
+  ],
+  "failed_count": 0,
+  "interface_digest": "4825868c310e2f6ee63a739003136c5dc14487909cf206cbcbd7497cfe737bda",
+  "kind": "m22_control_status_register_qualification",
+  "manifest_digest": "65299fc0a5992ec90618674755bc05029c0e1f3869f38d6fecf1c855ffab56ff",
+  "milestone": "M22 — Control, Status, and Register Interface Realization",
+  "overall_status": "PASS",
+  "passed_count": 60,
+  "profile_count": 3,
+  "register_count": 26,
+  "schema": "frp.m22.control_status_register_qualification.v2.4.0",
+  "source_commit": "759ee446adf028ca135c75ca38388c26e911aa68",
+  "trace_set_digest": "d3769b8fb124190aa206e6b001b982239a1437916568802ace2c64f0f19ab340",
+  "version": "2.4.0"
+}

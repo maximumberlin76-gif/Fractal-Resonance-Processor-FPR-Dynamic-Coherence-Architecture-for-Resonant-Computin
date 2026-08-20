@@ -1,0 +1,86 @@
+{
+  "$defs": {
+    "digest": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "final_state": {
+      "additionalProperties": false,
+      "properties": {
+        "accepted_changes": {"minimum": 0, "type": "integer"},
+        "capacity_exhausted": {"enum": [0, 1]},
+        "capacity_remaining": {"minimum": 0, "type": "integer"},
+        "observe_cell": {"minimum": 0, "type": "integer"},
+        "pending": {"items": {"enum": [-1, 0, 1]}, "minItems": 8, "type": "array"},
+        "request_accept": {"minimum": 0, "type": "integer"},
+        "request_cells": {"items": {"minimum": 0, "type": "integer"}, "minItems": 2, "type": "array"},
+        "request_reject": {"minimum": 0, "type": "integer"},
+        "request_targets": {"items": {"enum": [-1, 0, 1]}, "minItems": 2, "type": "array"},
+        "request_valid": {"items": {"enum": [0, 1]}, "minItems": 2, "type": "array"},
+        "scheduler_mode": {"enum": [0, 1, 2]},
+        "scheduler_mode_active": {"enum": [0, 1, 2]},
+        "scheduler_state": {"minimum": 0, "type": "integer"},
+        "selected_lane": {"minimum": 0, "type": "integer"},
+        "state": {"items": {"enum": [-1, 0, 1]}, "minItems": 8, "type": "array"},
+        "ticks_recorded": {"minimum": 0, "type": "integer"}
+      },
+      "required": ["accepted_changes", "capacity_exhausted", "capacity_remaining", "observe_cell", "pending", "request_accept", "request_cells", "request_reject", "request_targets", "request_valid", "scheduler_mode", "scheduler_mode_active", "scheduler_state", "selected_lane", "state", "ticks_recorded"],
+      "type": "object"
+    },
+    "profile": {
+      "additionalProperties": false,
+      "properties": {
+        "capacity_limit": {"enum": [2, 4, 8]},
+        "cell_count": {"enum": [8, 16, 32]},
+        "final_state": {"$ref": "#/$defs/final_state"},
+        "invalid_access_count": {"const": 12},
+        "profile_id": {"enum": ["cells-8-lanes-2", "cells-16-lanes-4", "cells-32-lanes-8"]},
+        "request_lanes": {"enum": [2, 4, 8]},
+        "status": {"const": "PASS"},
+        "trace_digest": {"$ref": "#/$defs/digest"},
+        "transaction_count": {"minimum": 60, "type": "integer"},
+        "transactions": {"items": {"$ref": "#/$defs/transaction"}, "minItems": 60, "type": "array"}
+      },
+      "required": ["capacity_limit", "cell_count", "final_state", "invalid_access_count", "profile_id", "request_lanes", "status", "trace_digest", "transaction_count", "transactions"],
+      "type": "object"
+    },
+    "transaction": {
+      "additionalProperties": false,
+      "properties": {
+        "address": {"pattern": "^0x[0-9A-F]{2}$", "type": "string"},
+        "error": {"type": "boolean"},
+        "operation": {"enum": ["read", "write"]},
+        "read_data": {"minimum": 0, "type": "integer"},
+        "ready": {"const": true},
+        "register": {
+          "enum": [
+            "CONTROL", "SCHEDULER_MODE", "REQUEST_LANE_SELECT", "REQUEST_CELL_INDEX", "REQUEST_TARGET", "REQUEST_VALID", "OBSERVE_CELL_INDEX", "STATUS", "SCHEDULER_MODE_ACTIVE", "SCHEDULER_STATE", "TICKS_RECORDED", "REQUEST_ACCEPT", "REQUEST_REJECT", "RETAINED_STATE", "PENDING_ROUTE", "ACCEPTED_CHANGES", "CAPACITY_REMAINING", "CAPACITY_EXHAUSTED", "SWITCH_LOAD_NUMERATOR", "INVARIANT_FLAGS", "REQUESTED_DIRECT_EVENTS", "PREVENTED_DIRECT_EVENTS", "NEUTRAL_ROUTED_EVENTS", "ACTUAL_DIRECT_EVENTS", "RESERVED_STATE_EVENTS", "QUEUE_OVERFLOW_EVENTS", "UNMAPPED"
+          ]
+        },
+        "sequence": {"minimum": 0, "type": "integer"},
+        "state_digest": {"$ref": "#/$defs/digest"},
+        "transaction_digest": {"$ref": "#/$defs/digest"},
+        "write_data": {"minimum": 0, "type": "integer"}
+      },
+      "required": ["address", "error", "operation", "read_data", "ready", "register", "sequence", "state_digest", "transaction_digest", "write_data"],
+      "type": "object"
+    }
+  },
+  "$id": "urn:frp:schema:frp.m22.deterministic_transaction_trace.v2.4.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "interface_digest": {"$ref": "#/$defs/digest"},
+    "invalid_access_count": {"const": 36},
+    "kind": {"const": "m22_deterministic_transaction_traces"},
+    "milestone": {"const": "M22 — Control, Status, and Register Interface Realization"},
+    "profile_count": {"const": 3},
+    "profiles": {"items": {"$ref": "#/$defs/profile"}, "maxItems": 3, "minItems": 3, "type": "array"},
+    "schema": {"const": "frp.m22.deterministic_transaction_trace.v2.4.0"},
+    "source_commit": {"const": "759ee446adf028ca135c75ca38388c26e911aa68"},
+    "status": {"const": "PASS"},
+    "trace_set_digest": {"$ref": "#/$defs/digest"},
+    "transaction_count": {"minimum": 180, "type": "integer"},
+    "version": {"const": "2.4.0"}
+  },
+  "required": ["interface_digest", "invalid_access_count", "kind", "milestone", "profile_count", "profiles", "schema", "source_commit", "status", "trace_set_digest", "transaction_count", "version"],
+  "title": "FRP M22 Deterministic Transaction Traces",
+  "type": "object"
+}

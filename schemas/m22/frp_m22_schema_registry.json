@@ -1,0 +1,32 @@
+{
+  "kind": "m22_schema_registry",
+  "milestone": "M22 — Control, Status, and Register Interface Realization",
+  "records": [
+    {
+      "artifact_paths": ["artifacts/m22/interface/m22-control-status-register-interface.json"],
+      "path": "schemas/m22/frp_m22_control_status_register_interface.v2.4.0.schema.json",
+      "schema": "frp.m22.control_status_register_interface.v2.4.0",
+      "urn": "urn:frp:schema:frp.m22.control_status_register_interface.v2.4.0"
+    },
+    {
+      "artifact_paths": ["artifacts/m22/traces/m22-deterministic-transaction-traces.json"],
+      "path": "schemas/m22/frp_m22_deterministic_transaction_trace.v2.4.0.schema.json",
+      "schema": "frp.m22.deterministic_transaction_trace.v2.4.0",
+      "urn": "urn:frp:schema:frp.m22.deterministic_transaction_trace.v2.4.0"
+    },
+    {
+      "artifact_paths": ["artifacts/m22/manifests/m22-control-status-register-manifest.json"],
+      "path": "schemas/m22/frp_m22_control_status_register_manifest.v2.4.0.schema.json",
+      "schema": "frp.m22.control_status_register_manifest.v2.4.0",
+      "urn": "urn:frp:schema:frp.m22.control_status_register_manifest.v2.4.0"
+    },
+    {
+      "artifact_paths": ["artifacts/m22/manifests/m22-control-status-register-qualification.json"],
+      "path": "schemas/m22/frp_m22_control_status_register_qualification.v2.4.0.schema.json",
+      "schema": "frp.m22.control_status_register_qualification.v2.4.0",
+      "urn": "urn:frp:schema:frp.m22.control_status_register_qualification.v2.4.0"
+    }
+  ],
+  "schema": "frp.m22.schema_registry.v2.4.0",
+  "version": "2.4.0"
+}

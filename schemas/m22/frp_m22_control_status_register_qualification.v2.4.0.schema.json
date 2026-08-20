@@ -1,0 +1,38 @@
+{
+  "$defs": {
+    "check": {
+      "additionalProperties": false,
+      "properties": {
+        "check_id": {"minLength": 1, "type": "string"},
+        "detail": {"const": "verified"},
+        "status": {"const": "PASS"}
+      },
+      "required": ["check_id", "detail", "status"],
+      "type": "object"
+    },
+    "digest": {"pattern": "^[0-9a-f]{64}$", "type": "string"}
+  },
+  "$id": "urn:frp:schema:frp.m22.control_status_register_qualification.v2.4.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "check_count": {"const": 60},
+    "checks": {"items": {"$ref": "#/$defs/check"}, "maxItems": 60, "minItems": 60, "type": "array"},
+    "failed_count": {"const": 0},
+    "interface_digest": {"$ref": "#/$defs/digest"},
+    "kind": {"const": "m22_control_status_register_qualification"},
+    "manifest_digest": {"$ref": "#/$defs/digest"},
+    "milestone": {"const": "M22 — Control, Status, and Register Interface Realization"},
+    "overall_status": {"const": "PASS"},
+    "passed_count": {"const": 60},
+    "profile_count": {"const": 3},
+    "register_count": {"const": 26},
+    "schema": {"const": "frp.m22.control_status_register_qualification.v2.4.0"},
+    "source_commit": {"const": "759ee446adf028ca135c75ca38388c26e911aa68"},
+    "trace_set_digest": {"$ref": "#/$defs/digest"},
+    "version": {"const": "2.4.0"}
+  },
+  "required": ["check_count", "checks", "failed_count", "interface_digest", "kind", "manifest_digest", "milestone", "overall_status", "passed_count", "profile_count", "register_count", "schema", "source_commit", "trace_set_digest", "version"],
+  "title": "FRP M22 Control Status Register Qualification",
+  "type": "object"
+}

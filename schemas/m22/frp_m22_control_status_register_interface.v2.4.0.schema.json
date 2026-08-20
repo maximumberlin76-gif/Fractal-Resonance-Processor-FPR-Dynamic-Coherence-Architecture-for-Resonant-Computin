@@ -1,0 +1,186 @@
+{
+  "$defs": {
+    "command": {
+      "additionalProperties": false,
+      "properties": {
+        "command": {"enum": ["tick", "clear_counters", "clear_requests"]},
+        "mask": {"enum": [1, 2, 4]},
+        "semantics": {"minLength": 1, "type": "string"}
+      },
+      "required": ["command", "mask", "semantics"],
+      "type": "object"
+    },
+    "digest": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "encoding_bits": {"pattern": "^[01]{2}$", "type": "string"},
+    "field": {
+      "additionalProperties": false,
+      "properties": {
+        "access": {"enum": ["RO", "RW", "WO", "W1P"]},
+        "lsb": {"maximum": 31, "minimum": 0, "type": "integer"},
+        "meaning": {"minLength": 1, "type": "string"},
+        "msb": {"maximum": 31, "minimum": 0, "type": "integer"},
+        "name": {"pattern": "^[a-z][a-z0-9_]*$", "type": "string"},
+        "reset_value": {"minimum": 0, "type": "integer"}
+      },
+      "required": ["access", "lsb", "meaning", "msb", "name", "reset_value"],
+      "type": "object"
+    },
+    "profile": {
+      "additionalProperties": false,
+      "properties": {
+        "capacity_limit": {"enum": [2, 4, 8]},
+        "cell_count": {"enum": [8, 16, 32]},
+        "profile_id": {"enum": ["cells-8-lanes-2", "cells-16-lanes-4", "cells-32-lanes-8"]},
+        "request_lanes": {"enum": [2, 4, 8]},
+        "transition_fraction_denominator": {"const": 4},
+        "transition_fraction_numerator": {"const": 1}
+      },
+      "required": ["capacity_limit", "cell_count", "profile_id", "request_lanes", "transition_fraction_denominator", "transition_fraction_numerator"],
+      "type": "object"
+    },
+    "register": {
+      "additionalProperties": false,
+      "properties": {
+        "access": {"enum": ["RO", "RW", "WO"]},
+        "address": {"pattern": "^0x[0-9A-F]{2}$", "type": "string"},
+        "description": {"minLength": 1, "type": "string"},
+        "fields": {"items": {"$ref": "#/$defs/field"}, "minItems": 1, "type": "array"},
+        "name": {
+          "enum": [
+            "CONTROL", "SCHEDULER_MODE", "REQUEST_LANE_SELECT", "REQUEST_CELL_INDEX", "REQUEST_TARGET", "REQUEST_VALID", "OBSERVE_CELL_INDEX", "STATUS", "SCHEDULER_MODE_ACTIVE", "SCHEDULER_STATE", "TICKS_RECORDED", "REQUEST_ACCEPT", "REQUEST_REJECT", "RETAINED_STATE", "PENDING_ROUTE", "ACCEPTED_CHANGES", "CAPACITY_REMAINING", "CAPACITY_EXHAUSTED", "SWITCH_LOAD_NUMERATOR", "INVARIANT_FLAGS", "REQUESTED_DIRECT_EVENTS", "PREVENTED_DIRECT_EVENTS", "NEUTRAL_ROUTED_EVENTS", "ACTUAL_DIRECT_EVENTS", "RESERVED_STATE_EVENTS", "QUEUE_OVERFLOW_EVENTS"
+          ]
+        },
+        "offset": {"maximum": 100, "minimum": 0, "multipleOf": 4, "type": "integer"},
+        "reset_value": {"const": 0},
+        "reset_value_hex": {"const": "0x00000000"},
+        "source_signal": {"minLength": 1, "type": "string"},
+        "width_bits": {"const": 32}
+      },
+      "required": ["access", "address", "description", "fields", "name", "offset", "reset_value", "reset_value_hex", "source_signal", "width_bits"],
+      "type": "object"
+    }
+  },
+  "$id": "urn:frp:schema:frp.m22.control_status_register_interface.v2.4.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "bus": {
+      "additionalProperties": false,
+      "properties": {
+        "address_bits": {"const": 8},
+        "alignment_bytes": {"const": 4},
+        "byte_order": {"const": "little-endian"},
+        "data_bits": {"const": 32},
+        "request_signals": {"const": ["csr_valid", "csr_write", "csr_addr", "csr_wdata"]},
+        "response_signals": {"const": ["csr_ready", "csr_error", "csr_rdata"]},
+        "timing": {
+          "additionalProperties": false,
+          "properties": {
+            "acceptance": {"const": "csr_ready is asserted in the request cycle"},
+            "read": {"const": "csr_rdata and csr_error are combinational in the request cycle"},
+            "write": {"const": "accepted writes commit on the rising clock edge"}
+          },
+          "required": ["acceptance", "read", "write"],
+          "type": "object"
+        }
+      },
+      "required": ["address_bits", "alignment_bytes", "byte_order", "data_bits", "request_signals", "response_signals", "timing"],
+      "type": "object"
+    },
+    "control_commands": {"items": {"$ref": "#/$defs/command"}, "maxItems": 3, "minItems": 3, "type": "array"},
+    "encodings": {
+      "additionalProperties": false,
+      "properties": {
+        "active_neutral_state": {"const": 0},
+        "balanced_ternary": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "encoding": {"enum": [0, 1, 3]},
+              "encoding_bits": {"$ref": "#/$defs/encoding_bits"},
+              "semantic_value": {"enum": [-1, 0, 1]}
+            },
+            "required": ["encoding", "encoding_bits", "semantic_value"],
+            "type": "object"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "type": "array"
+        },
+        "reserved_scheduler_encoding": {"const": 3},
+        "reserved_ternary_encoding": {"const": 2},
+        "scheduler_modes": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "encoding": {"enum": [0, 1, 2]},
+              "encoding_bits": {"$ref": "#/$defs/encoding_bits"},
+              "mode": {"enum": ["free", "7/1", "1/7"]}
+            },
+            "required": ["encoding", "encoding_bits", "mode"],
+            "type": "object"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "type": "array"
+        }
+      },
+      "required": ["active_neutral_state", "balanced_ternary", "reserved_scheduler_encoding", "reserved_ternary_encoding", "scheduler_modes"],
+      "type": "object"
+    },
+    "interface_digest": {"$ref": "#/$defs/digest"},
+    "invalid_access_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "error_signal": {"const": "csr_error"},
+        "invalid_read_data": {"const": 0},
+        "no_side_effects": {"const": true},
+        "rejected_classes": {
+          "const": ["misaligned_address", "unmapped_address", "read_from_WO", "write_to_RO", "invalid_control_command", "reserved_scheduler_encoding", "out_of_range_lane", "out_of_range_cell", "reserved_ternary_encoding", "invalid_boolean_payload"]
+        }
+      },
+      "required": ["error_signal", "invalid_read_data", "no_side_effects", "rejected_classes"],
+      "type": "object"
+    },
+    "kind": {"const": "m22_control_status_register_interface"},
+    "milestone": {"const": "M22 — Control, Status, and Register Interface Realization"},
+    "parameter_profiles": {"items": {"$ref": "#/$defs/profile"}, "maxItems": 3, "minItems": 3, "type": "array"},
+    "register_count": {"const": 26},
+    "registers": {"items": {"$ref": "#/$defs/register"}, "maxItems": 26, "minItems": 26, "type": "array"},
+    "rtl": {
+      "additionalProperties": false,
+      "properties": {
+        "core_module": {"const": "frp_m16_core"},
+        "interface_module": {"const": "frp_m22_control_status_register_interface"},
+        "package": {"const": "rtl/m22/frp_m22_csr_pkg.sv"},
+        "source": {"const": "rtl/m22/frp_m22_control_status_register_interface.sv"},
+        "testbench": {"const": "rtl/m22/frp_m22_control_status_register_interface_tb.sv"}
+      },
+      "required": ["core_module", "interface_module", "package", "source", "testbench"],
+      "type": "object"
+    },
+    "schema": {"const": "frp.m22.control_status_register_interface.v2.4.0"},
+    "source_commit": {"const": "759ee446adf028ca135c75ca38388c26e911aa68"},
+    "source_digests": {
+      "additionalProperties": false,
+      "properties": {
+        "m16_core_sha256": {"$ref": "#/$defs/digest"},
+        "m16_package_sha256": {"$ref": "#/$defs/digest"},
+        "m21_dimensions_sha256": {"$ref": "#/$defs/digest"},
+        "m21_matrix_sha256": {"$ref": "#/$defs/digest"},
+        "m21_qualification_sha256": {"$ref": "#/$defs/digest"},
+        "rtl_interface_sha256": {"$ref": "#/$defs/digest"},
+        "rtl_package_sha256": {"$ref": "#/$defs/digest"},
+        "rtl_testbench_sha256": {"$ref": "#/$defs/digest"}
+      },
+      "required": ["m16_core_sha256", "m16_package_sha256", "m21_dimensions_sha256", "m21_matrix_sha256", "m21_qualification_sha256", "rtl_interface_sha256", "rtl_package_sha256", "rtl_testbench_sha256"],
+      "type": "object"
+    },
+    "source_release": {"const": "FRP v2.3.0 / M21 parameterized qualification boundary"},
+    "status": {"const": "PASS"},
+    "version": {"const": "2.4.0"}
+  },
+  "required": ["bus", "control_commands", "encodings", "interface_digest", "invalid_access_policy", "kind", "milestone", "parameter_profiles", "register_count", "registers", "rtl", "schema", "source_commit", "source_digests", "source_release", "status", "version"],
+  "title": "FRP M22 Control Status Register Interface",
+  "type": "object"
+}

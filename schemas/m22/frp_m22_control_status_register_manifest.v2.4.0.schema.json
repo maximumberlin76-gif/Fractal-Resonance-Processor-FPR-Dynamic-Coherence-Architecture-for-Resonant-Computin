@@ -1,0 +1,50 @@
+{
+  "$defs": {
+    "artifact": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_length": {"minimum": 1, "type": "integer"},
+        "path": {"$ref": "#/$defs/path"},
+        "raw_sha256": {"$ref": "#/$defs/digest"},
+        "role": {"enum": ["control_status_register_interface", "deterministic_transaction_traces"]},
+        "schema": {"enum": ["frp.m22.control_status_register_interface.v2.4.0", "frp.m22.deterministic_transaction_trace.v2.4.0"]},
+        "status": {"const": "PASS"}
+      },
+      "required": ["byte_length", "path", "raw_sha256", "role", "schema", "status"],
+      "type": "object"
+    },
+    "digest": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "path": {"minLength": 1, "not": {"pattern": "(^/)|(^|/)\\.\\.?(/|$)|\\\\"}, "type": "string"},
+    "source": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_length": {"minimum": 1, "type": "integer"},
+        "contour": {"enum": ["m22_interface_realization", "m21_parameterized_qualification", "m16_rtl_execution_contract", "milestone_contract"]},
+        "path": {"$ref": "#/$defs/path"},
+        "raw_sha256": {"$ref": "#/$defs/digest"},
+        "role": {"enum": ["technical_source", "upstream_source"]}
+      },
+      "required": ["byte_length", "contour", "path", "raw_sha256", "role"],
+      "type": "object"
+    }
+  },
+  "$id": "urn:frp:schema:frp.m22.control_status_register_manifest.v2.4.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_set_digest": {"$ref": "#/$defs/digest"},
+    "artifacts": {"items": {"$ref": "#/$defs/artifact"}, "maxItems": 2, "minItems": 2, "type": "array"},
+    "kind": {"const": "m22_control_status_register_manifest"},
+    "milestone": {"const": "M22 — Control, Status, and Register Interface Realization"},
+    "overall_status": {"const": "PASS"},
+    "schema": {"const": "frp.m22.control_status_register_manifest.v2.4.0"},
+    "source_commit": {"const": "759ee446adf028ca135c75ca38388c26e911aa68"},
+    "source_release": {"const": "FRP v2.3.0 / M21 parameterized qualification boundary"},
+    "source_set_digest": {"$ref": "#/$defs/digest"},
+    "sources": {"items": {"$ref": "#/$defs/source"}, "maxItems": 18, "minItems": 18, "type": "array"},
+    "version": {"const": "2.4.0"}
+  },
+  "required": ["artifact_set_digest", "artifacts", "kind", "milestone", "overall_status", "schema", "source_commit", "source_release", "source_set_digest", "sources", "version"],
+  "title": "FRP M22 Control Status Register Manifest",
+  "type": "object"
+}

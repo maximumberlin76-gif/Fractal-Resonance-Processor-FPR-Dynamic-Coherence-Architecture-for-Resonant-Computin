@@ -1,0 +1,157 @@
+{
+  "artifact_set_digest": "7acafe173f233abd0805f20ed1f9cc763bb660ca8b2060f9989829ec0455d5fb",
+  "artifacts": [
+    {
+      "byte_length": 22682,
+      "path": "artifacts/m22/interface/m22-control-status-register-interface.json",
+      "raw_sha256": "1b493b15a5f33b724cb56b963cf49351c815ffbe1c5f6df31a718b39895d95bb",
+      "role": "control_status_register_interface",
+      "schema": "frp.m22.control_status_register_interface.v2.4.0",
+      "status": "PASS"
+    },
+    {
+      "byte_length": 157081,
+      "path": "artifacts/m22/traces/m22-deterministic-transaction-traces.json",
+      "raw_sha256": "7e6c011e7cf95a0f541a5bb7009786756f300b78ff9590fcab798e145be74981",
+      "role": "deterministic_transaction_traces",
+      "schema": "frp.m22.deterministic_transaction_trace.v2.4.0",
+      "status": "PASS"
+    }
+  ],
+  "kind": "m22_control_status_register_manifest",
+  "milestone": "M22 — Control, Status, and Register Interface Realization",
+  "overall_status": "PASS",
+  "schema": "frp.m22.control_status_register_manifest.v2.4.0",
+  "source_commit": "759ee446adf028ca135c75ca38388c26e911aa68",
+  "source_release": "FRP v2.3.0 / M21 parameterized qualification boundary",
+  "source_set_digest": "31b3415ee51bf82a9a5e1567b50e790e0ff2d051f10fd535114fcbf6419cac38",
+  "sources": [
+    {
+      "byte_length": 40741,
+      "contour": "m22_interface_realization",
+      "path": ".github/workflows/frp-m22-control-status-register-interface.yml",
+      "raw_sha256": "6d34db1328f91918d20f9ed51bd4ef4c111fe10542e5dda2575018a8a4c9e1f7",
+      "role": "technical_source"
+    },
+    {
+      "byte_length": 55806,
+      "contour": "milestone_contract",
+      "path": "MILESTONES.md",
+      "raw_sha256": "c3325932acdf97cc8db365348d49d210bef552949b08bc5a2b5b980d7df7315f",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 38318,
+      "contour": "milestone_contract",
+      "path": "ROADMAP.md",
+      "raw_sha256": "716930425e848a23f1d52db562c16ef2e574258e32905e3007f1f0d20e1007a8",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 6015,
+      "contour": "m21_parameterized_qualification",
+      "path": "artifacts/m21/manifests/m21-parameterized-qualification-record.json",
+      "raw_sha256": "cd98499a63d84c9fb3970cf12c7828f9ebe584986cd076829de94905ba11aba0",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 7230,
+      "contour": "m21_parameterized_qualification",
+      "path": "artifacts/m21/matrix/m21-parameter-dimensions.json",
+      "raw_sha256": "fcfac50848deedd6ef90bc0f4184e325931e0070960cbe61fd2175b2f6d0b348",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 3007362,
+      "contour": "m21_parameterized_qualification",
+      "path": "artifacts/m21/matrix/m21-parameterized-qualification-matrix.json",
+      "raw_sha256": "0a2ebfe3fe2372727e46e7070af14fbee95a1abf26bae97d47c8f2f6f1b9f9f1",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 51132,
+      "contour": "m22_interface_realization",
+      "path": "frp_m22_control_status_register_interface.py",
+      "raw_sha256": "71c011f8f7a339778227dfa22e096259bcda5e6d7c72410d952b52864e666ff3",
+      "role": "technical_source"
+    },
+    {
+      "byte_length": 33684,
+      "contour": "m16_rtl_execution_contract",
+      "path": "rtl/m16/frp_m16_core.sv",
+      "raw_sha256": "3b94f5caa5ee28da0060a38dd9b4ba4605ef5f86ac93f5425967e515ff1ebd23",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 18532,
+      "contour": "m16_rtl_execution_contract",
+      "path": "rtl/m16/frp_m16_pkg.sv",
+      "raw_sha256": "c20fe071e7c91b60ca0411b75d4cf762112d51abbd49dc2a5667d1d8c5d49152",
+      "role": "upstream_source"
+    },
+    {
+      "byte_length": 16855,
+      "contour": "m22_interface_realization",
+      "path": "rtl/m22/frp_m22_control_status_register_interface.sv",
+      "raw_sha256": "76c3d19cb6ed6070631f2f8d685f9fbffc05acb335609b3e57cc7a743522745d",
+      "role": "technical_source"
+    },
+    {
+      "byte_length": 13653,
+      "contour": "m22_interface_realization",
+      "path": "rtl/m22/frp_m22_control_status_register_interface_tb.sv",
+      "raw_sha256": "37670705d7ab5c6e30c7e0244bdcb0eb2494622dd6a820713091ba7dbe793a37",
+      "role": "technical_source"
+    },
+    {
+      "byte_length": 5586,
+      "contour": "m22_interface_realization",
+      "path": "rtl/m22/frp_m22_csr_pkg.sv",
+      "raw_sha256": "0f3de8054e3704548088b035c43e993d194d5182a2ac1bc32cdad92663a11206",
+      "role": "technical_source"
+    },
+    {
+      "byte_length": 8934,
+      "contour": "m22_interface_realization",
+      "path": "schemas/m22/frp_m22_control_status_register_interface.v2.4.0.schema.json",
+      "raw_sha256": "708c6aa9a72c13a804dfe15ecefe93e7e501638abf4f919ddadd655be8962908",
+      "role": "technical_source"
+    },
+    {
+      "byte_length": 2588,
+      "contour": "m22_interface_realization",
+      "path": "schemas/m22/frp_m22_control_status_register_manifest.v2.4.0.schema.json",
+      "raw_sha256": "c48724735be7291a538dfb9732be4f5e02369c52932fc6f2830aa7928d4ec403",
+      "role": "technical_source"
+    },
+    {
+      "byte_length": 1724,
+      "contour": "m22_interface_realization",
+      "path": "schemas/m22/frp_m22_control_status_register_qualification.v2.4.0.schema.json",
+      "raw_sha256": "2f674c700a44f520ce8c303e6eb58e2a3745a8cf1e5e7447c8152a246ff620f4",
+      "role": "technical_source"
+    },
+    {
+      "byte_length": 5028,
+      "contour": "m22_interface_realization",
+      "path": "schemas/m22/frp_m22_deterministic_transaction_trace.v2.4.0.schema.json",
+      "raw_sha256": "057c2df96de4f8bac5fd91e0daa53e03c3c9afcf2d61329ba2ce3f3e521840a2",
+      "role": "technical_source"
+    },
+    {
+      "byte_length": 1587,
+      "contour": "m22_interface_realization",
+      "path": "schemas/m22/frp_m22_schema_registry.json",
+      "raw_sha256": "003a79bed8cdf2ca7f0d4292c38b856600faef1092abddaa9179c071867e88ca",
+      "role": "technical_source"
+    },
+    {
+      "byte_length": 19083,
+      "contour": "m22_interface_realization",
+      "path": "tests/test_frp_m22_control_status_register_interface.py",
+      "raw_sha256": "6d9b9d3bbc463c97b21f31133e4d1eb561acccda3414144856c49c4381d2c114",
+      "role": "technical_source"
+    }
+  ],
+  "version": "2.4.0"
+}
