@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:m24-formal-bounded-verification-qualification-v2.6.0",
+  "title": "FRP M24 Formal and Bounded Verification Qualification",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "overall_status", "source_commit", "manifest_digest", "evidence_digest", "check_count", "passed_count", "failed_count", "checks", "qualification_digest"],
+  "properties": {
+    "schema_version": {"const": "2.6.0"}, "artifact_id": {"const": "frp-m24-formal-bounded-verification-qualification"}, "milestone": {"const": "M24"}, "status": {"const": "PASS"}, "overall_status": {"const": "PASS"},
+    "source_commit": {"const": "1dcc4e4d47135cdf1e38192cc96f0d928066b13e"}, "manifest_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "evidence_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "check_count": {"const": 76}, "passed_count": {"const": 76}, "failed_count": {"const": 0},
+    "checks": {"type": "array", "minItems": 76, "maxItems": 76, "items": {"type": "object", "additionalProperties": false, "required": ["check_id", "category", "status", "evidence"], "properties": {"check_id": {"type": "string", "pattern": "^Q(0[0-6][0-9]|07[0-6])$"}, "category": {"type": "string", "minLength": 1}, "status": {"const": "PASS"}, "evidence": {}}}},
+    "qualification_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:m24-formal-bounded-verification-contract-v2.6.0",
+  "title": "FRP M24 Formal and Bounded Verification Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "release", "status", "source_commit", "source_release", "qualified_boundary", "method", "required_domains", "property_count", "assumption_count", "bound_count", "proof_run_count", "expected_counterexample_count", "workflow_path", "contract_digest"],
+  "properties": {
+    "schema_version": {"const": "2.6.0"},
+    "artifact_id": {"const": "frp-m24-formal-bounded-verification-contract"},
+    "milestone": {"const": "M24"},
+    "release": {"const": "FRP v2.6.0"},
+    "status": {"const": "PASS"},
+    "source_commit": {"const": "1dcc4e4d47135cdf1e38192cc96f0d928066b13e"},
+    "source_release": {"type": "string", "minLength": 1},
+    "qualified_boundary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["primary_rtl", "integration_rtl", "balanced_ternary_notation", "balanced_ternary_semantic_values", "active_neutral_state", "temporal_scheduler_modes", "service_scheduler_mode", "direct_opposite_polarity_transition"],
+      "properties": {
+        "primary_rtl": {"const": "rtl/m16/frp_m16_core.sv"},
+        "integration_rtl": {"const": "rtl/m23/frp_m23_hardened_integration_boundary.sv"},
+        "balanced_ternary_notation": {"const": "-1/0/1"},
+        "balanced_ternary_semantic_values": {"const": [-1, 0, 1]},
+        "active_neutral_state": {"const": 0},
+        "temporal_scheduler_modes": {"const": ["1/7", "7/1"]},
+        "service_scheduler_mode": {"const": "free"},
+        "direct_opposite_polarity_transition": {"const": "forbidden"}
+      }
+    },
+    "method": {
+      "type": "object", "additionalProperties": false,
+      "required": ["class", "engine", "solver", "rtl_binding", "claim_boundary", "unbounded_proof_claimed"],
+      "properties": {
+        "class": {"const": "bounded_symbolic_model_checking"},
+        "engine": {"const": "Yosys SAT"},
+        "solver": {"const": "minisat"},
+        "rtl_binding": {"type": "string", "minLength": 1},
+        "claim_boundary": {"type": "string", "minLength": 1},
+        "unbounded_proof_claimed": {"const": false}
+      }
+    },
+    "required_domains": {"type": "array", "minItems": 10, "maxItems": 10, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "property_count": {"const": 36},
+    "assumption_count": {"const": 11},
+    "bound_count": {"const": 5},
+    "proof_run_count": {"const": 7},
+    "expected_counterexample_count": {"const": 2},
+    "workflow_path": {"const": ".github/workflows/frp-m24-formal-bounded-verification-closure-workflow.yml"},
+    "contract_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

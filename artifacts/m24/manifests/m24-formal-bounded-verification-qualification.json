@@ -1,0 +1,472 @@
+{
+  "artifact_id": "frp-m24-formal-bounded-verification-qualification",
+  "check_count": 76,
+  "checks": [
+    {
+      "category": "identity",
+      "check_id": "Q001",
+      "evidence": "2.6.0",
+      "status": "PASS"
+    },
+    {
+      "category": "identity",
+      "check_id": "Q002",
+      "evidence": "M24",
+      "status": "PASS"
+    },
+    {
+      "category": "identity",
+      "check_id": "Q003",
+      "evidence": "1dcc4e4d47135cdf1e38192cc96f0d928066b13e",
+      "status": "PASS"
+    },
+    {
+      "category": "identity",
+      "check_id": "Q004",
+      "evidence": "PASS",
+      "status": "PASS"
+    },
+    {
+      "category": "identity",
+      "check_id": "Q005",
+      "evidence": ".github/workflows/frp-m24-formal-bounded-verification-closure-workflow.yml",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q006",
+      "evidence": "M24-P01",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q007",
+      "evidence": "M24-P02",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q008",
+      "evidence": "M24-P03",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q009",
+      "evidence": "M24-P04",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q010",
+      "evidence": "M24-P05",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q011",
+      "evidence": "M24-P06",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q012",
+      "evidence": "M24-P07",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q013",
+      "evidence": "M24-P08",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q014",
+      "evidence": "M24-P09",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q015",
+      "evidence": "M24-P10",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q016",
+      "evidence": "M24-P11",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q017",
+      "evidence": "M24-P12",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q018",
+      "evidence": "M24-P13",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q019",
+      "evidence": "M24-P14",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q020",
+      "evidence": "M24-P15",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q021",
+      "evidence": "M24-P16",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q022",
+      "evidence": "M24-P17",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q023",
+      "evidence": "M24-P18",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q024",
+      "evidence": "M24-P19",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q025",
+      "evidence": "M24-P20",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q026",
+      "evidence": "M24-P21",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q027",
+      "evidence": "M24-P22",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q028",
+      "evidence": "M24-P23",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q029",
+      "evidence": "M24-P24",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q030",
+      "evidence": "M24-P25",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q031",
+      "evidence": "M24-P26",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q032",
+      "evidence": "M24-P27",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q033",
+      "evidence": "M24-P28",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q034",
+      "evidence": "M24-P29",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q035",
+      "evidence": "M24-P30",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q036",
+      "evidence": "M24-P31",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q037",
+      "evidence": "M24-P32",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q038",
+      "evidence": "M24-P33",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q039",
+      "evidence": "M24-P34",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q040",
+      "evidence": "M24-P35",
+      "status": "PASS"
+    },
+    {
+      "category": "property",
+      "check_id": "Q041",
+      "evidence": "M24-P36",
+      "status": "PASS"
+    },
+    {
+      "category": "assumption",
+      "check_id": "Q042",
+      "evidence": "M24-A01",
+      "status": "PASS"
+    },
+    {
+      "category": "assumption",
+      "check_id": "Q043",
+      "evidence": "M24-A02",
+      "status": "PASS"
+    },
+    {
+      "category": "assumption",
+      "check_id": "Q044",
+      "evidence": "M24-A03",
+      "status": "PASS"
+    },
+    {
+      "category": "assumption",
+      "check_id": "Q045",
+      "evidence": "M24-A04",
+      "status": "PASS"
+    },
+    {
+      "category": "assumption",
+      "check_id": "Q046",
+      "evidence": "M24-A05",
+      "status": "PASS"
+    },
+    {
+      "category": "assumption",
+      "check_id": "Q047",
+      "evidence": "M24-A06",
+      "status": "PASS"
+    },
+    {
+      "category": "assumption",
+      "check_id": "Q048",
+      "evidence": "M24-A07",
+      "status": "PASS"
+    },
+    {
+      "category": "assumption",
+      "check_id": "Q049",
+      "evidence": "M24-A08",
+      "status": "PASS"
+    },
+    {
+      "category": "assumption",
+      "check_id": "Q050",
+      "evidence": "M24-A09",
+      "status": "PASS"
+    },
+    {
+      "category": "assumption",
+      "check_id": "Q051",
+      "evidence": "M24-A10",
+      "status": "PASS"
+    },
+    {
+      "category": "assumption",
+      "check_id": "Q052",
+      "evidence": "M24-A11",
+      "status": "PASS"
+    },
+    {
+      "category": "bound",
+      "check_id": "Q053",
+      "evidence": "M24-B01",
+      "status": "PASS"
+    },
+    {
+      "category": "bound",
+      "check_id": "Q054",
+      "evidence": "M24-B02",
+      "status": "PASS"
+    },
+    {
+      "category": "bound",
+      "check_id": "Q055",
+      "evidence": "M24-B03",
+      "status": "PASS"
+    },
+    {
+      "category": "bound",
+      "check_id": "Q056",
+      "evidence": "M24-B04",
+      "status": "PASS"
+    },
+    {
+      "category": "bound",
+      "check_id": "Q057",
+      "evidence": "M24-B05",
+      "status": "PASS"
+    },
+    {
+      "category": "proof_run",
+      "check_id": "Q058",
+      "evidence": "M24-R01",
+      "status": "PASS"
+    },
+    {
+      "category": "proof_run",
+      "check_id": "Q059",
+      "evidence": "M24-R02",
+      "status": "PASS"
+    },
+    {
+      "category": "proof_run",
+      "check_id": "Q060",
+      "evidence": "M24-R03",
+      "status": "PASS"
+    },
+    {
+      "category": "proof_run",
+      "check_id": "Q061",
+      "evidence": "M24-R04",
+      "status": "PASS"
+    },
+    {
+      "category": "proof_run",
+      "check_id": "Q062",
+      "evidence": "M24-R05",
+      "status": "PASS"
+    },
+    {
+      "category": "proof_run",
+      "check_id": "Q063",
+      "evidence": "M24-R06",
+      "status": "PASS"
+    },
+    {
+      "category": "proof_run",
+      "check_id": "Q064",
+      "evidence": "M24-R07",
+      "status": "PASS"
+    },
+    {
+      "category": "counterexample",
+      "check_id": "Q065",
+      "evidence": "M24-N01",
+      "status": "PASS"
+    },
+    {
+      "category": "counterexample",
+      "check_id": "Q066",
+      "evidence": "M24-N02",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "Q067",
+      "evidence": "schemas/m24/frp_m24_formal_bounded_verification_contract.v2.6.0.schema.json",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "Q068",
+      "evidence": "schemas/m24/frp_m24_property_inventory.v2.6.0.schema.json",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "Q069",
+      "evidence": "schemas/m24/frp_m24_formal_bounded_proof_evidence.v2.6.0.schema.json",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "Q070",
+      "evidence": "schemas/m24/frp_m24_formal_bounded_verification_manifest.v2.6.0.schema.json",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "Q071",
+      "evidence": "schemas/m24/frp_m24_formal_bounded_verification_qualification.v2.6.0.schema.json",
+      "status": "PASS"
+    },
+    {
+      "category": "manifest",
+      "check_id": "Q072",
+      "evidence": 15,
+      "status": "PASS"
+    },
+    {
+      "category": "manifest",
+      "check_id": "Q073",
+      "evidence": 13,
+      "status": "PASS"
+    },
+    {
+      "category": "manifest",
+      "check_id": "Q074",
+      "evidence": 3,
+      "status": "PASS"
+    },
+    {
+      "category": "manifest",
+      "check_id": "Q075",
+      "evidence": "a911c02bc9f43a70fa9d837090260563efa5dd5817aed6f05fa0eea1a02cc909",
+      "status": "PASS"
+    },
+    {
+      "category": "assumption_closure",
+      "check_id": "Q076",
+      "evidence": 0,
+      "status": "PASS"
+    }
+  ],
+  "evidence_digest": "89189fc0edef39245d803b090605e36752e942f16d4e74f88111f77d86106019",
+  "failed_count": 0,
+  "manifest_digest": "2d8d8887ca5d304d57c67fa2e62c91d57bf8eac241e8b5e4792de7c80ed04b4d",
+  "milestone": "M24",
+  "overall_status": "PASS",
+  "passed_count": 76,
+  "qualification_digest": "5028c31c8ada749294cd37ea883c27ddfe7db2d86c2c8d8ccbff0cbac45747ef",
+  "schema_version": "2.6.0",
+  "source_commit": "1dcc4e4d47135cdf1e38192cc96f0d928066b13e",
+  "status": "PASS"
+}

@@ -1,0 +1,53 @@
+{
+  "artifact_id": "frp-m24-formal-bounded-verification-contract",
+  "assumption_count": 11,
+  "bound_count": 5,
+  "contract_digest": "13b944c5b034398a8e4a93d60e8927d2d0d71be71b158c293e0bf48a1b9153e4",
+  "expected_counterexample_count": 2,
+  "method": {
+    "claim_boundary": "only listed properties, assumptions, profiles, and depths",
+    "class": "bounded_symbolic_model_checking",
+    "engine": "Yosys SAT",
+    "rtl_binding": "deterministic namespace-only preparation of exact digest-bound RTL",
+    "solver": "minisat",
+    "unbounded_proof_claimed": false
+  },
+  "milestone": "M24",
+  "proof_run_count": 7,
+  "property_count": 36,
+  "qualified_boundary": {
+    "active_neutral_state": 0,
+    "balanced_ternary_notation": "-1/0/1",
+    "balanced_ternary_semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "direct_opposite_polarity_transition": "forbidden",
+    "integration_rtl": "rtl/m23/frp_m23_hardened_integration_boundary.sv",
+    "primary_rtl": "rtl/m16/frp_m16_core.sv",
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ]
+  },
+  "release": "FRP v2.6.0",
+  "required_domains": [
+    "canonical_ternary",
+    "active_neutral",
+    "pending_route",
+    "scheduler_counter",
+    "request_lane",
+    "transition_capacity",
+    "retained_state",
+    "invariant_flag",
+    "reset_readiness",
+    "bounded_liveness"
+  ],
+  "schema_version": "2.6.0",
+  "source_commit": "1dcc4e4d47135cdf1e38192cc96f0d928066b13e",
+  "source_release": "FRP v2.5.0 / M23 clock-reset-CDC integration boundary",
+  "status": "PASS",
+  "workflow_path": ".github/workflows/frp-m24-formal-bounded-verification-closure-workflow.yml"
+}

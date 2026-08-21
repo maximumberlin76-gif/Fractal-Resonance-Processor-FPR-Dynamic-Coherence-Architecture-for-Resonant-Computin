@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:m24-formal-bounded-proof-evidence-v2.6.0",
+  "title": "FRP M24 Formal and Bounded Proof Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "source_commit", "contract_digest", "property_set_digest", "prepared_rtl_digest", "tool", "reproduction_command", "assumption_count", "assumptions", "unrecorded_assumption_count", "bound_count", "bounds", "proof_run_count", "proof_runs", "property_count", "passed_property_count", "failed_property_count", "expected_counterexample_count", "retained_counterexamples", "overall_status", "evidence_digest"],
+  "$defs": {
+    "sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "assumption": {
+      "type": "object", "additionalProperties": false,
+      "required": ["assumption_id", "class", "statement", "implementation", "status", "assumption_digest"],
+      "properties": {
+        "assumption_id": {"type": "string", "pattern": "^M24-A(0[1-9]|1[01])$"},
+        "class": {"type": "string", "minLength": 1},
+        "statement": {"type": "string", "minLength": 1},
+        "implementation": {"type": "string", "minLength": 1},
+        "status": {"const": "DECLARED"},
+        "assumption_digest": {"$ref": "#/$defs/sha"}
+      }
+    },
+    "bound": {
+      "type": "object", "additionalProperties": false,
+      "required": ["bound_id", "run_id", "depth", "cells", "request_lanes", "counter_bits", "scope", "status", "bound_digest"],
+      "properties": {
+        "bound_id": {"type": "string", "pattern": "^M24-B0[1-5]$"},
+        "run_id": {"type": "string", "pattern": "^M24-R0[1-5]$"},
+        "depth": {"type": "integer", "minimum": 1, "maximum": 8},
+        "cells": {"type": "integer", "minimum": 0, "maximum": 2},
+        "request_lanes": {"type": "integer", "minimum": 0, "maximum": 2},
+        "counter_bits": {"type": "integer", "minimum": 0, "maximum": 8},
+        "scope": {"type": "string", "minLength": 1},
+        "status": {"const": "PASS"},
+        "bound_digest": {"$ref": "#/$defs/sha"}
+      }
+    },
+    "run": {
+      "type": "object", "additionalProperties": false,
+      "required": ["run_id", "top", "mode", "depth", "yosys_script", "status"],
+      "properties": {
+        "run_id": {"type": "string", "pattern": "^M24-R0[1-7]$"},
+        "top": {"type": "string", "minLength": 1},
+        "mode": {"enum": ["prove", "expected_counterexample"]},
+        "depth": {"type": "integer", "minimum": 1, "maximum": 8},
+        "yosys_script": {"type": "string", "minLength": 1},
+        "status": {"enum": ["PASS", "EXPECTED_COUNTEREXAMPLE"]},
+        "property_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^M24-P(0[1-9]|[12][0-9]|3[0-6])$"}},
+        "counterexample_id": {"type": "string", "pattern": "^M24-N0[12]$"}
+      }
+    },
+    "counterexample": {
+      "type": "object", "additionalProperties": false,
+      "required": ["counterexample_id", "run_id", "false_claim", "expected_classification", "witness", "status", "witness_digest"],
+      "properties": {
+        "counterexample_id": {"type": "string", "pattern": "^M24-N0[12]$"},
+        "run_id": {"type": "string", "pattern": "^M24-R0[67]$"},
+        "false_claim": {"type": "string", "minLength": 1},
+        "expected_classification": {"type": "string", "minLength": 1},
+        "context": {"type": "object", "additionalProperties": {"type": "string"}},
+        "witness": {"type": "object", "minProperties": 2, "additionalProperties": {"type": "string", "pattern": "^[01]+$"}},
+        "status": {"const": "EXPECTED_COUNTEREXAMPLE"},
+        "witness_digest": {"$ref": "#/$defs/sha"}
+      }
+    }
+  },
+  "properties": {
+    "schema_version": {"const": "2.6.0"},
+    "artifact_id": {"const": "frp-m24-formal-bounded-proof-evidence"},
+    "milestone": {"const": "M24"},
+    "status": {"const": "PASS"},
+    "source_commit": {"const": "1dcc4e4d47135cdf1e38192cc96f0d928066b13e"},
+    "contract_digest": {"$ref": "#/$defs/sha"},
+    "property_set_digest": {"$ref": "#/$defs/sha"},
+    "prepared_rtl_digest": {"$ref": "#/$defs/sha"},
+    "tool": {
+      "type": "object", "additionalProperties": false,
+      "required": ["package", "package_version", "engine", "engine_version", "engine_git_sha", "solver", "logic_semantics"],
+      "properties": {
+        "package": {"const": "yowasp-yosys"},
+        "package_version": {"const": "0.68.0.0.post1208"},
+        "engine": {"const": "Yosys"},
+        "engine_version": {"const": "0.68"},
+        "engine_git_sha": {"const": "38e001a6f"},
+        "solver": {"const": "minisat"},
+        "logic_semantics": {"const": "defined_two_state_bounded_sat"}
+      }
+    },
+    "reproduction_command": {"type": "string", "minLength": 1},
+    "assumption_count": {"const": 11},
+    "assumptions": {"type": "array", "minItems": 11, "maxItems": 11, "items": {"$ref": "#/$defs/assumption"}},
+    "unrecorded_assumption_count": {"const": 0},
+    "bound_count": {"const": 5},
+    "bounds": {"type": "array", "minItems": 5, "maxItems": 5, "items": {"$ref": "#/$defs/bound"}},
+    "proof_run_count": {"const": 7},
+    "proof_runs": {"type": "array", "minItems": 7, "maxItems": 7, "items": {"$ref": "#/$defs/run"}},
+    "property_count": {"const": 36},
+    "passed_property_count": {"const": 36},
+    "failed_property_count": {"const": 0},
+    "expected_counterexample_count": {"const": 2},
+    "retained_counterexamples": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/counterexample"}},
+    "overall_status": {"const": "PASS"},
+    "evidence_digest": {"$ref": "#/$defs/sha"}
+  }
+}

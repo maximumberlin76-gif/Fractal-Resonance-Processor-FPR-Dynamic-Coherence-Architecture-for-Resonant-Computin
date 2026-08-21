@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "artifact_id": "frp-m24-schema-registry",
+  "milestone": "M24",
+  "schema_version": "2.6.0",
+  "status": "PASS",
+  "record_count": 5,
+  "records": [
+    {
+      "schema_id": "m24-formal-bounded-verification-contract-v2.6.0",
+      "path": "schemas/m24/frp_m24_formal_bounded_verification_contract.v2.6.0.schema.json"
+    },
+    {
+      "schema_id": "m24-property-inventory-v2.6.0",
+      "path": "schemas/m24/frp_m24_property_inventory.v2.6.0.schema.json"
+    },
+    {
+      "schema_id": "m24-formal-bounded-proof-evidence-v2.6.0",
+      "path": "schemas/m24/frp_m24_formal_bounded_proof_evidence.v2.6.0.schema.json"
+    },
+    {
+      "schema_id": "m24-formal-bounded-verification-manifest-v2.6.0",
+      "path": "schemas/m24/frp_m24_formal_bounded_verification_manifest.v2.6.0.schema.json"
+    },
+    {
+      "schema_id": "m24-formal-bounded-verification-qualification-v2.6.0",
+      "path": "schemas/m24/frp_m24_formal_bounded_verification_qualification.v2.6.0.schema.json"
+    }
+  ]
+}

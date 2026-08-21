@@ -1,0 +1,313 @@
+{
+  "artifact_id": "frp-m24-formal-bounded-proof-evidence",
+  "assumption_count": 11,
+  "assumptions": [
+    {
+      "assumption_digest": "977cd107ae02caf73901784948d89fa63156a80efd10206d4f295d5f493a1b52",
+      "assumption_id": "M24-A01",
+      "class": "initialization",
+      "implementation": "sat -set-init-zero",
+      "statement": "all proof registers begin at the architectural reset image",
+      "status": "DECLARED"
+    },
+    {
+      "assumption_digest": "909d8fb578a847b5815046c2553c6828768e77e04b12dc10c6a3e2b2ff9cff07",
+      "assumption_id": "M24-A02",
+      "class": "input_domain",
+      "implementation": "frp_is_valid_scheduler_mode assume statements",
+      "statement": "temporal scheduler modes are 1/7 and 7/1; free remains a distinct service mode",
+      "status": "DECLARED"
+    },
+    {
+      "assumption_digest": "c3a3ebacfc2f9b93db021e9b9651828c5d42e7ffb1141501add9c94ac46e1be8",
+      "assumption_id": "M24-A03",
+      "class": "input_domain",
+      "implementation": "two request_target assume statements",
+      "statement": "both symbolic request targets are canonical ternary",
+      "status": "DECLARED"
+    },
+    {
+      "assumption_digest": "89969f582eafe6915303010650880c4788025798473c37ab5e7d032ab67d091d",
+      "assumption_id": "M24-A04",
+      "class": "input_domain",
+      "implementation": "two target_q assume statements",
+      "statement": "both symbolic target-bank cells are canonical ternary",
+      "status": "DECLARED"
+    },
+    {
+      "assumption_digest": "d80ca539ee2d18efb39020536a08661ba96bb039706672773fcfa1f96fca825e",
+      "assumption_id": "M24-A05",
+      "class": "arithmetic_bound",
+      "implementation": "COUNTER_BITS=8 and maximum depth=8",
+      "statement": "eight-bit counters cannot wrap inside the declared proof depths",
+      "status": "DECLARED"
+    },
+    {
+      "assumption_digest": "d2aaa52469b2b5dd0a63a1e39effd46b97e6a5c55057e844bceff542f719865a",
+      "assumption_id": "M24-A06",
+      "class": "liveness_fairness",
+      "implementation": "formal/m24/frp_m24_bounded_liveness_formal.sv",
+      "statement": "liveness trace uses free mode, one enabled tick per step, no clear, and no competing request after the opposite request",
+      "status": "DECLARED"
+    },
+    {
+      "assumption_digest": "c7dc066124815e669000827a711f45c73ad012c6132ab1c1cccd913abfb12edc",
+      "assumption_id": "M24-A07",
+      "class": "reset_sequence",
+      "implementation": "formal/m24/frp_m24_reset_readiness_formal.sv",
+      "statement": "reset is asserted at proof step zero and remains deasserted afterward",
+      "status": "DECLARED"
+    },
+    {
+      "assumption_digest": "a45ecd250c676052c8dae424f7af4f933c0d8cbb1196e76affd678286f61fde9",
+      "assumption_id": "M24-A08",
+      "class": "clock_fairness",
+      "implementation": "host_clk and core_clk share paired_clock in reset/readiness harness",
+      "statement": "one host edge and one core edge occur per paired formal step",
+      "status": "DECLARED"
+    },
+    {
+      "assumption_digest": "64c0a8eb5f4be865e705bfa2ed7113cf216335189c3390a8cd639c90a420d9d1",
+      "assumption_id": "M24-A09",
+      "class": "parameter_bound",
+      "implementation": "explicit harness parameter overrides",
+      "statement": "integrated proof uses CELLS=2/LANES=2 and liveness proof uses CELLS=1/LANES=1",
+      "status": "DECLARED"
+    },
+    {
+      "assumption_digest": "9df9055291569614da5534cbf13631cae38fedffc40211fefb47ef78780a8339",
+      "assumption_id": "M24-A10",
+      "class": "elaboration_transform",
+      "implementation": "audited deterministic prepare_yosys_sources transform",
+      "statement": "Yosys preparation removes only include, package, import, and namespace wrappers while preserving module bodies",
+      "status": "DECLARED"
+    },
+    {
+      "assumption_digest": "bf2886d708646ebece1b6b96c8b8ff8637f747f1a3a4b46a25ebb5619f124c01",
+      "assumption_id": "M24-A11",
+      "class": "logic_semantics",
+      "implementation": "sat -set-def-formal",
+      "statement": "formal variables are defined two-state values",
+      "status": "DECLARED"
+    }
+  ],
+  "bound_count": 5,
+  "bounds": [
+    {
+      "bound_digest": "176d314f848eeaf883afc24319aea6308c6629aa1ee608841ec5fd1a09197ffb",
+      "bound_id": "M24-B01",
+      "cells": 0,
+      "counter_bits": 0,
+      "depth": 1,
+      "request_lanes": 0,
+      "run_id": "M24-R01",
+      "scope": "complete two-bit helper input space",
+      "status": "PASS"
+    },
+    {
+      "bound_digest": "8aeb76b4cdc188b62bed60f21e433b930eb99e0cb1da172b1d53ee4a42441d11",
+      "bound_id": "M24-B02",
+      "cells": 0,
+      "counter_bits": 8,
+      "depth": 8,
+      "request_lanes": 0,
+      "run_id": "M24-R02",
+      "scope": "one complete modulo-eight scheduler period",
+      "status": "PASS"
+    },
+    {
+      "bound_digest": "6485bf952afc0fcf6daa5317c63ace835c2a26be25d96bd1a67a0b0149a5249e",
+      "bound_id": "M24-B03",
+      "cells": 2,
+      "counter_bits": 8,
+      "depth": 3,
+      "request_lanes": 2,
+      "run_id": "M24-R03",
+      "scope": "integrated symbolic M16 safety and retention",
+      "status": "PASS"
+    },
+    {
+      "bound_digest": "b02e310779677cf6a0a47e02422c98385e78f2fe4d3a384bf64db6a5bd2325da",
+      "bound_id": "M24-B04",
+      "cells": 1,
+      "counter_bits": 8,
+      "depth": 4,
+      "request_lanes": 1,
+      "run_id": "M24-R04",
+      "scope": "controlled opposite-polarity pending completion",
+      "status": "PASS"
+    },
+    {
+      "bound_digest": "e9750a8a28ebda0a64ea5a8f6f4104fe52cfda4dd6728dd88cf4ad3782473659",
+      "bound_id": "M24-B05",
+      "cells": 2,
+      "counter_bits": 0,
+      "depth": 7,
+      "request_lanes": 1,
+      "run_id": "M24-R05",
+      "scope": "M23 paired-edge reset release and readiness",
+      "status": "PASS"
+    }
+  ],
+  "contract_digest": "13b944c5b034398a8e4a93d60e8927d2d0d71be71b158c293e0bf48a1b9153e4",
+  "evidence_digest": "89189fc0edef39245d803b090605e36752e942f16d4e74f88111f77d86106019",
+  "expected_counterexample_count": 2,
+  "failed_property_count": 0,
+  "milestone": "M24",
+  "overall_status": "PASS",
+  "passed_property_count": 36,
+  "prepared_rtl_digest": "58b16ccfe34d8879851ee26bbe98764a6e0add5ada5ee2ccf7f46f979f366080",
+  "proof_run_count": 7,
+  "proof_runs": [
+    {
+      "depth": 1,
+      "mode": "prove",
+      "property_ids": [
+        "M24-P01",
+        "M24-P02",
+        "M24-P03",
+        "M24-P04",
+        "M24-P05",
+        "M24-P06",
+        "M24-P07",
+        "M24-P08",
+        "M24-P09"
+      ],
+      "run_id": "M24-R01",
+      "status": "PASS",
+      "top": "frp_m24_package_properties_formal",
+      "yosys_script": "read_verilog -sv -formal prepared/00_frp_m16_pkg_flat.sv prepared/harness/frp_m24_package_properties_formal.sv; prep -top frp_m24_package_properties_formal; flatten; chformal -lower; opt_clean; sat -prove-asserts -set-def-formal -set-init-zero -seq 1 -timeout 300 -verify"
+    },
+    {
+      "depth": 8,
+      "mode": "prove",
+      "property_ids": [
+        "M24-P10",
+        "M24-P11",
+        "M24-P12",
+        "M24-P13",
+        "M24-P14",
+        "M24-P15"
+      ],
+      "run_id": "M24-R02",
+      "status": "PASS",
+      "top": "frp_m24_scheduler_properties_formal",
+      "yosys_script": "read_verilog -sv -formal prepared/00_frp_m16_pkg_flat.sv prepared/m16/frp_m16_scheduler.sv prepared/harness/frp_m24_scheduler_properties_formal.sv; prep -top frp_m24_scheduler_properties_formal; flatten; chformal -lower; async2sync; opt_clean; sat -prove-asserts -set-def-formal -set-init-zero -seq 8 -timeout 300 -set-assumes -verify"
+    },
+    {
+      "depth": 3,
+      "mode": "prove",
+      "property_ids": [
+        "M24-P16",
+        "M24-P17",
+        "M24-P18",
+        "M24-P19",
+        "M24-P20",
+        "M24-P21",
+        "M24-P22",
+        "M24-P23",
+        "M24-P24",
+        "M24-P25",
+        "M24-P26",
+        "M24-P27",
+        "M24-P28",
+        "M24-P29"
+      ],
+      "run_id": "M24-R03",
+      "status": "PASS",
+      "top": "frp_m24_core_properties_formal",
+      "yosys_script": "read_verilog -sv -formal prepared/00_frp_m16_pkg_flat.sv prepared/m16/frp_m16_scheduler.sv prepared/m16/frp_m16_request_lanes.sv prepared/m16/frp_m16_pending_routes.sv prepared/m16/frp_m16_active_neutral.sv prepared/m16/frp_m16_capacity_guard.sv prepared/m16/frp_m16_state_update.sv prepared/m16/frp_m16_core.sv prepared/harness/frp_m24_core_properties_formal.sv; prep -top frp_m24_core_properties_formal; flatten; chformal -lower; async2sync; opt_clean; sat -prove-asserts -set-def-formal -set-init-zero -seq 3 -timeout 300 -set-assumes -verify"
+    },
+    {
+      "depth": 4,
+      "mode": "prove",
+      "property_ids": [
+        "M24-P30",
+        "M24-P31",
+        "M24-P32"
+      ],
+      "run_id": "M24-R04",
+      "status": "PASS",
+      "top": "frp_m24_bounded_liveness_formal",
+      "yosys_script": "read_verilog -sv -formal prepared/00_frp_m16_pkg_flat.sv prepared/m16/frp_m16_scheduler.sv prepared/m16/frp_m16_request_lanes.sv prepared/m16/frp_m16_pending_routes.sv prepared/m16/frp_m16_active_neutral.sv prepared/m16/frp_m16_capacity_guard.sv prepared/m16/frp_m16_state_update.sv prepared/m16/frp_m16_core.sv prepared/harness/frp_m24_bounded_liveness_formal.sv; prep -top frp_m24_bounded_liveness_formal; flatten; chformal -lower; async2sync; opt_clean; sat -prove-asserts -set-def-formal -set-init-zero -seq 4 -timeout 300 -set-assumes -verify"
+    },
+    {
+      "depth": 7,
+      "mode": "prove",
+      "property_ids": [
+        "M24-P33",
+        "M24-P34",
+        "M24-P35",
+        "M24-P36"
+      ],
+      "run_id": "M24-R05",
+      "status": "PASS",
+      "top": "frp_m24_reset_readiness_formal",
+      "yosys_script": "read_verilog -sv -formal prepared/00_frp_m16_pkg_flat.sv prepared/m23/frp_m23_reset_release_sync.sv prepared/m23/frp_m23_csr_cdc_bridge.sv prepared/m23/frp_m23_hardened_integration_boundary.sv prepared/harness/frp_m24_reset_readiness_formal.sv; prep -top frp_m24_reset_readiness_formal; flatten; chformal -lower; async2sync; opt_clean; sat -prove-asserts -set-def-formal -set-init-zero -seq 7 -timeout 300 -verify"
+    },
+    {
+      "counterexample_id": "M24-N01",
+      "depth": 1,
+      "mode": "expected_counterexample",
+      "run_id": "M24-R06",
+      "status": "EXPECTED_COUNTEREXAMPLE",
+      "top": "frp_m24_reserved_encoding_counterexample",
+      "yosys_script": "read_verilog -sv -formal prepared/00_frp_m16_pkg_flat.sv prepared/m16/frp_m16_active_neutral.sv prepared/harness/frp_m24_expected_counterexamples_formal.sv; prep -top frp_m24_reserved_encoding_counterexample; flatten; chformal -lower; opt_clean; sat -prove-asserts -set-def-formal -set-init-zero -seq 1 -timeout 300 -show state_value -show M24_N01_FALSE_CLAIM -dump_json witness/m24-n01.json"
+    },
+    {
+      "counterexample_id": "M24-N02",
+      "depth": 1,
+      "mode": "expected_counterexample",
+      "run_id": "M24-R07",
+      "status": "EXPECTED_COUNTEREXAMPLE",
+      "top": "frp_m24_direct_transition_counterexample",
+      "yosys_script": "read_verilog -sv -formal prepared/00_frp_m16_pkg_flat.sv prepared/m16/frp_m16_active_neutral.sv prepared/harness/frp_m24_expected_counterexamples_formal.sv; prep -top frp_m24_direct_transition_counterexample; flatten; chformal -lower; opt_clean; sat -prove-asserts -set-def-formal -set-init-zero -seq 1 -timeout 300 -show state_candidate_d -show M24_N02_FALSE_CLAIM -dump_json witness/m24-n02.json"
+    }
+  ],
+  "property_count": 36,
+  "property_set_digest": "9e6e0628896204cd12eb2e4b62d005733b4ab36503bf8afaa441dee43311aaf4",
+  "reproduction_command": "python frp_m24_formal_bounded_verification.py --run-formal --repository-root . --work-root /tmp/frp_m24_formal --yosys yowasp-yosys --source-commit 1dcc4e4d47135cdf1e38192cc96f0d928066b13e --output /tmp/frp_m24_evidence/formal-run.json",
+  "retained_counterexamples": [
+    {
+      "counterexample_id": "M24-N01",
+      "expected_classification": "reserved_operand",
+      "false_claim": "reserved encoding 2'b10 is a valid ternary state",
+      "run_id": "M24-R06",
+      "status": "EXPECTED_COUNTEREXAMPLE",
+      "witness": {
+        "M24_N01_FALSE_CLAIM": "0",
+        "state_value": "10"
+      },
+      "witness_digest": "c623fb3d8fe6b5c370e5697e0fef24f7e53f7540e60b46e95dd7ea5d0bc675f6"
+    },
+    {
+      "context": {
+        "request_target": "11",
+        "state_q": "01"
+      },
+      "counterexample_id": "M24-N02",
+      "expected_classification": "active_neutral_route",
+      "false_claim": "1 to -1 executes directly in one retained-state write",
+      "run_id": "M24-R07",
+      "status": "EXPECTED_COUNTEREXAMPLE",
+      "witness": {
+        "M24_N02_FALSE_CLAIM": "0",
+        "state_candidate_d": "00"
+      },
+      "witness_digest": "50fa42947264c630ca45acc8c1d0e92318c10191e33f9c23924c97c070ed9fdc"
+    }
+  ],
+  "schema_version": "2.6.0",
+  "source_commit": "1dcc4e4d47135cdf1e38192cc96f0d928066b13e",
+  "status": "PASS",
+  "tool": {
+    "engine": "Yosys",
+    "engine_git_sha": "38e001a6f",
+    "engine_version": "0.68",
+    "logic_semantics": "defined_two_state_bounded_sat",
+    "package": "yowasp-yosys",
+    "package_version": "0.68.0.0.post1208",
+    "solver": "minisat"
+  },
+  "unrecorded_assumption_count": 0
+}

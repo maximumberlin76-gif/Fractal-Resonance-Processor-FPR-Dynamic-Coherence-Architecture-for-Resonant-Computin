@@ -1,0 +1,549 @@
+{
+  "artifact_id": "frp-m24-property-inventory",
+  "contract_digest": "13b944c5b034398a8e4a93d60e8927d2d0d71be71b158c293e0bf48a1b9153e4",
+  "failed_count": 0,
+  "milestone": "M24",
+  "passed_count": 36,
+  "properties": [
+    {
+      "assumption_ids": [],
+      "domain": "canonical_ternary",
+      "harness": "formal/m24/frp_m24_package_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "6198f564b94dee6dcc6263a57ce6886aa6f90d2fd7195bcf6e6952177e5263d6",
+      "property_id": "M24-P01",
+      "run_id": "M24-R01",
+      "statement": "canonical state is valid exactly when it is not encoding 2'b10",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [],
+      "domain": "canonical_ternary",
+      "harness": "formal/m24/frp_m24_package_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "e29a145d4ee4188867d0b8ba73bea6125ca74dc399fa42151b196a6b414aba9b",
+      "property_id": "M24-P02",
+      "run_id": "M24-R01",
+      "statement": "encodings are -1=11, 0=00, 1=01, reserved=10, and active neutral is 0",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [],
+      "domain": "canonical_ternary",
+      "harness": "formal/m24/frp_m24_package_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "bd07e300d3e3872b747028e7d78ea60273ded07da14385d12d8fb0a4d681212f",
+      "property_id": "M24-P03",
+      "run_id": "M24-R01",
+      "statement": "equal valid state and target with no pending route classify as same-state",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [],
+      "domain": "canonical_ternary",
+      "harness": "formal/m24/frp_m24_package_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "b82a56cbbdefa24f3cfa6f81c94c78f93eb2daccf7cd6773669a701f28aa0250",
+      "property_id": "M24-P04",
+      "run_id": "M24-R01",
+      "statement": "zero to nonzero class is exact for valid operands without pending ownership",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [],
+      "domain": "canonical_ternary",
+      "harness": "formal/m24/frp_m24_package_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "2beafbd2d66768d00c11eb8e7b5c81f5231cfd59df9ebc08c5bf1e3444235686",
+      "property_id": "M24-P05",
+      "run_id": "M24-R01",
+      "statement": "nonzero to zero class is exact for valid operands without pending ownership",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [],
+      "domain": "active_neutral",
+      "harness": "formal/m24/frp_m24_package_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "a9ce3f8a01919cf50731e5e95104e9d1c6b572d8ef6e22fa9c56fd166eae5194",
+      "property_id": "M24-P06",
+      "run_id": "M24-R01",
+      "statement": "opposite valid polarities classify as opposite-polarity",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [],
+      "domain": "active_neutral",
+      "harness": "formal/m24/frp_m24_package_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "451ecee86415291e4885bf5b7af4518d0007ab1a2a2d12800ba2c745d8f345f4",
+      "property_id": "M24-P07",
+      "run_id": "M24-R01",
+      "statement": "opposite-polarity selection is active neutral and direct transition is illegal",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [],
+      "domain": "pending_route",
+      "harness": "formal/m24/frp_m24_package_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "f77c3a0bbfd361bf9f2a9e992c8db80f2b5082a8f4685023da1e9d581adc3ee3",
+      "property_id": "M24-P08",
+      "run_id": "M24-R01",
+      "statement": "nonzero pending route owns zero state and supplies the selected completion target",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [],
+      "domain": "transition_capacity",
+      "harness": "formal/m24/frp_m24_package_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "032c069e139f7f8d359565dc8327d9b134c32f85bb65a1c51ebc891228e1971d",
+      "property_id": "M24-P09",
+      "run_id": "M24-R01",
+      "statement": "same-state consumes no capacity and every state-changing class consumes capacity",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A02",
+        "M24-A05",
+        "M24-A11"
+      ],
+      "domain": "scheduler_counter",
+      "harness": "formal/m24/frp_m24_scheduler_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "0790b0310c25c98f970f22386cc2c52a769d171f426861e1a6eee83f4da11435",
+      "property_id": "M24-P10",
+      "run_id": "M24-R02",
+      "statement": "registered scheduler mode remains inside the declared domain",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A02",
+        "M24-A05",
+        "M24-A11"
+      ],
+      "domain": "scheduler_counter",
+      "harness": "formal/m24/frp_m24_scheduler_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "5bc0daeae1428fdb2590c8a4a098e92196d0fce88a457aea8389ffd19c680b9f",
+      "property_id": "M24-P11",
+      "run_id": "M24-R02",
+      "statement": "registered scheduler state remains inside the declared domain",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A02",
+        "M24-A05"
+      ],
+      "domain": "scheduler_counter",
+      "harness": "formal/m24/frp_m24_scheduler_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "f6da081cf710bdce52af60cf811334de17923711d94bba5001f5c28ddee78f41",
+      "property_id": "M24-P12",
+      "run_id": "M24-R02",
+      "statement": "period index equals tick index modulo eight",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A02",
+        "M24-A05"
+      ],
+      "domain": "scheduler_counter",
+      "harness": "formal/m24/frp_m24_scheduler_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "f1d2641637d52d435efd4bd590463b1a9f8152f91feb870fe5e2839b9306facf",
+      "property_id": "M24-P13",
+      "run_id": "M24-R02",
+      "statement": "scheduler event counters sum exactly to ticks recorded",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A02",
+        "M24-A11"
+      ],
+      "domain": "scheduler_counter",
+      "harness": "formal/m24/frp_m24_scheduler_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "b68213745653cf8f30422185a11a8105f18dc50c8d0e11e345e299b5727063b3",
+      "property_id": "M24-P14",
+      "run_id": "M24-R02",
+      "statement": "enabled tick has exactly one scheduler enable and disabled tick has none",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A02",
+        "M24-A05"
+      ],
+      "domain": "scheduler_counter",
+      "harness": "formal/m24/frp_m24_scheduler_properties_formal.sv",
+      "kind": "bounded_sequence",
+      "property_digest": "a2eb14524c71324a50bf4bca1bdcc9d656c7ec4ecd5e0eb5fba7b1b15bd43452",
+      "property_id": "M24-P15",
+      "run_id": "M24-R02",
+      "statement": "registered scheduler state equals the mode and modulo-eight decode relation",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A02",
+        "M24-A03",
+        "M24-A04",
+        "M24-A09",
+        "M24-A11"
+      ],
+      "domain": "request_lane",
+      "harness": "formal/m24/frp_m24_core_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "3ab55de748c4f3316937b84845860a25bcc76f180a2906677308451c9b209d46",
+      "property_id": "M24-P16",
+      "run_id": "M24-R03",
+      "statement": "a request lane is never accepted and rejected simultaneously",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A02",
+        "M24-A03",
+        "M24-A04",
+        "M24-A09"
+      ],
+      "domain": "request_lane",
+      "harness": "formal/m24/frp_m24_core_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "8a36c1c732f3f8732f6a3e736c4ef5bd720156a060b219f2b1898fc3faabece9",
+      "property_id": "M24-P17",
+      "run_id": "M24-R03",
+      "statement": "accepted change count never exceeds the request-lane boundary",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A02",
+        "M24-A03",
+        "M24-A04",
+        "M24-A09"
+      ],
+      "domain": "request_lane",
+      "harness": "formal/m24/frp_m24_core_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "75c2664172706f2fd357613b2f1117dfc1f0364e53aec87791bea524daaab21a",
+      "property_id": "M24-P18",
+      "run_id": "M24-R03",
+      "statement": "duplicate same-cell lanes cannot both be accepted",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A02",
+        "M24-A03",
+        "M24-A04",
+        "M24-A09"
+      ],
+      "domain": "transition_capacity",
+      "harness": "formal/m24/frp_m24_core_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "b3d64f66bae5a9ce8e1bd503fe68069a73a583670e3a61034e47fa3cd760a84f",
+      "property_id": "M24-P19",
+      "run_id": "M24-R03",
+      "statement": "capacity remaining and exhausted outputs are exact functions of accepted changes",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A02",
+        "M24-A03",
+        "M24-A04",
+        "M24-A09"
+      ],
+      "domain": "transition_capacity",
+      "harness": "formal/m24/frp_m24_core_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "d8de4117a850e2269193c0179ff600e646183750689f736b16923ca49755c1d8",
+      "property_id": "M24-P20",
+      "run_id": "M24-R03",
+      "statement": "switch-load numerator equals accepted changes",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A02",
+        "M24-A03",
+        "M24-A04",
+        "M24-A09"
+      ],
+      "domain": "active_neutral",
+      "harness": "formal/m24/frp_m24_core_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "e29be27a2c93c2561ad0ee6558d808b77e10d15df921d3958b457f1235a097f9",
+      "property_id": "M24-P21",
+      "run_id": "M24-R03",
+      "statement": "neutral routing is a subset of accepted cells and accepted state changes",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A02",
+        "M24-A03",
+        "M24-A04",
+        "M24-A09"
+      ],
+      "domain": "retained_state",
+      "harness": "formal/m24/frp_m24_core_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "c5c2a8d37639c78187deb592022b80396e1fe63bd50cb76e35b6d19df2f8a2b0",
+      "property_id": "M24-P22",
+      "run_id": "M24-R03",
+      "statement": "every retained state output remains canonical ternary",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A02",
+        "M24-A03",
+        "M24-A04",
+        "M24-A09"
+      ],
+      "domain": "pending_route",
+      "harness": "formal/m24/frp_m24_core_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "30c82577541733ea7f98c4cb57b489ac2d204049b15b4ddfb6198e8d331c5182",
+      "property_id": "M24-P23",
+      "run_id": "M24-R03",
+      "statement": "every retained pending-route output remains canonical ternary",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A02",
+        "M24-A03",
+        "M24-A04",
+        "M24-A09"
+      ],
+      "domain": "retained_state",
+      "harness": "formal/m24/frp_m24_core_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "726ea99c54b8699f974f87edd0ea3c390bf2f02d8a11cf258820dc0afaf5c9bc",
+      "property_id": "M24-P24",
+      "run_id": "M24-R03",
+      "statement": "actual direct opposite-polarity event count remains zero",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A02",
+        "M24-A03",
+        "M24-A04",
+        "M24-A09"
+      ],
+      "domain": "retained_state",
+      "harness": "formal/m24/frp_m24_core_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "323d0d246405c065eaff61cc711e3d1c060a3ad884e91a47cdb728141c81b805",
+      "property_id": "M24-P25",
+      "run_id": "M24-R03",
+      "statement": "reserved state event count remains zero",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A02",
+        "M24-A03",
+        "M24-A04",
+        "M24-A09"
+      ],
+      "domain": "pending_route",
+      "harness": "formal/m24/frp_m24_core_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "8dafa34796a1e4a9b2b6600401cb78e08ff948d79951b64e1476498533e513cf",
+      "property_id": "M24-P26",
+      "run_id": "M24-R03",
+      "statement": "queue overflow event count remains zero",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A02",
+        "M24-A03",
+        "M24-A04",
+        "M24-A05",
+        "M24-A09",
+        "M24-A11"
+      ],
+      "domain": "invariant_flag",
+      "harness": "formal/m24/frp_m24_core_properties_formal.sv",
+      "kind": "safety",
+      "property_digest": "7d13976a84c4dd6e06c9bc87bd3ab48999814d93d0f82734cc68b5330f3274b7",
+      "property_id": "M24-P27",
+      "run_id": "M24-R03",
+      "statement": "all ten integrated invariant flags remain asserted",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A02",
+        "M24-A03",
+        "M24-A04",
+        "M24-A09"
+      ],
+      "domain": "retained_state",
+      "harness": "formal/m24/frp_m24_core_properties_formal.sv",
+      "kind": "bounded_sequence",
+      "property_digest": "e2ae43182d4e9f518dd151c821fd9aee2b210257440b521a165786cc87de5faf",
+      "property_id": "M24-P28",
+      "run_id": "M24-R03",
+      "statement": "disabled tick preserves retained state and pending-route banks",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A09"
+      ],
+      "domain": "reset_readiness",
+      "harness": "formal/m24/frp_m24_core_properties_formal.sv",
+      "kind": "initial_state",
+      "property_digest": "19ba163b7b59ceea51864bc34e92fc3ff326a8deea307071a36ee79585dc0e1f",
+      "property_id": "M24-P29",
+      "run_id": "M24-R03",
+      "statement": "formal reset image initializes state, pending routes, and tick count to zero",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A05",
+        "M24-A06",
+        "M24-A09"
+      ],
+      "domain": "bounded_liveness",
+      "harness": "formal/m24/frp_m24_bounded_liveness_formal.sv",
+      "kind": "bounded_sequence",
+      "property_digest": "e4beebb591706365f7888c2f9e8188b97d23beaaebcda2201ea46a1bd7a5f5f3",
+      "property_id": "M24-P30",
+      "run_id": "M24-R04",
+      "statement": "first controlled free-mode request commits 0 to 1",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A05",
+        "M24-A06",
+        "M24-A09"
+      ],
+      "domain": "bounded_liveness",
+      "harness": "formal/m24/frp_m24_bounded_liveness_formal.sv",
+      "kind": "bounded_sequence",
+      "property_digest": "c304f3c0fe30691e1f99e8872120e60772c49d50abe753519bc269067a543080",
+      "property_id": "M24-P31",
+      "run_id": "M24-R04",
+      "statement": "opposite request performs 1 to active-neutral 0 and retains -1 pending polarity",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A05",
+        "M24-A06",
+        "M24-A09"
+      ],
+      "domain": "bounded_liveness",
+      "harness": "formal/m24/frp_m24_bounded_liveness_formal.sv",
+      "kind": "bounded_liveness",
+      "property_digest": "29cae3907555f0b13899d601773ca417b7e3ee211e98020b4219110c1c1b714c",
+      "property_id": "M24-P32",
+      "run_id": "M24-R04",
+      "statement": "retained -1 pending route completes from active-neutral 0 by proof step three",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A07",
+        "M24-A08",
+        "M24-A11"
+      ],
+      "domain": "reset_readiness",
+      "harness": "formal/m24/frp_m24_reset_readiness_formal.sv",
+      "kind": "safety",
+      "property_digest": "63fb0a94455ba2a01d5d2c7a7b5fea7424dd2ba471b086ced136abd809d7449e",
+      "property_id": "M24-P33",
+      "run_id": "M24-R05",
+      "statement": "asynchronous assertion forces both release signals and readiness low",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A07",
+        "M24-A08"
+      ],
+      "domain": "reset_readiness",
+      "harness": "formal/m24/frp_m24_reset_readiness_formal.sv",
+      "kind": "bounded_sequence",
+      "property_digest": "2800236d01c5a637c69d1e5a26b48dfae48a1968039f939a9430b8a3afc3c51b",
+      "property_id": "M24-P34",
+      "run_id": "M24-R05",
+      "statement": "both domain reset synchronizers release within two post-assertion paired edges",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A07",
+        "M24-A08"
+      ],
+      "domain": "reset_readiness",
+      "harness": "formal/m24/frp_m24_reset_readiness_formal.sv",
+      "kind": "safety",
+      "property_digest": "180b06d7ecc01d585722286881f2c2c055978d2eb2ee644755a2be4416fa4b08",
+      "property_id": "M24-P35",
+      "run_id": "M24-R05",
+      "statement": "integration readiness implies both reset domains have released",
+      "status": "PASS"
+    },
+    {
+      "assumption_ids": [
+        "M24-A01",
+        "M24-A07",
+        "M24-A08"
+      ],
+      "domain": "reset_readiness",
+      "harness": "formal/m24/frp_m24_reset_readiness_formal.sv",
+      "kind": "bounded_liveness",
+      "property_digest": "eedfa2054cbe28c4c4af702e07a99f58dcb6c79c1f76631cef575a3e504038b9",
+      "property_id": "M24-P36",
+      "run_id": "M24-R05",
+      "statement": "readiness is asserted by paired-edge proof step six",
+      "status": "PASS"
+    }
+  ],
+  "property_count": 36,
+  "property_set_digest": "9e6e0628896204cd12eb2e4b62d005733b4ab36503bf8afaa441dee43311aaf4",
+  "schema_version": "2.6.0",
+  "source_commit": "1dcc4e4d47135cdf1e38192cc96f0d928066b13e",
+  "status": "PASS"
+}

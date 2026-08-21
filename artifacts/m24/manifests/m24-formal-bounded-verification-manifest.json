@@ -1,0 +1,174 @@
+{
+  "artifact_count": 3,
+  "artifact_id": "frp-m24-formal-bounded-verification-manifest",
+  "artifact_set_digest": "a911c02bc9f43a70fa9d837090260563efa5dd5817aed6f05fa0eea1a02cc909",
+  "artifacts": [
+    {
+      "bytes": 1672,
+      "path": "artifacts/m24/contracts/m24-formal-bounded-verification-contract.json",
+      "raw_sha256": "0bb8a178f211a920c8df52c835367a269b0920941de7503126c44a17544ad452"
+    },
+    {
+      "bytes": 18244,
+      "path": "artifacts/m24/inventory/m24-property-inventory.json",
+      "raw_sha256": "c06ea203681d806aabaf932de5ecf77dc57d90d33ed088137e4f3bfe8c97c03d"
+    },
+    {
+      "bytes": 13211,
+      "path": "artifacts/m24/proofs/m24-formal-bounded-proof-evidence.json",
+      "raw_sha256": "1c2802613a1cf9b9412c806fdf47d6529b291dab8ce6c47495052b7e3d2032cf"
+    }
+  ],
+  "manifest_digest": "2d8d8887ca5d304d57c67fa2e62c91d57bf8eac241e8b5e4792de7c80ed04b4d",
+  "milestone": "M24",
+  "schema_version": "2.6.0",
+  "source_commit": "1dcc4e4d47135cdf1e38192cc96f0d928066b13e",
+  "source_count": 15,
+  "sources": [
+    {
+      "bytes": 38850,
+      "path": ".github/workflows/frp-m24-formal-bounded-verification-closure-workflow.yml",
+      "raw_sha256": "57d7e5c62957f6a868c88d8db479e9d71ced51f00a5b5822abfa1e188a1477f9"
+    },
+    {
+      "bytes": 3859,
+      "path": "formal/m24/frp_m24_bounded_liveness_formal.sv",
+      "raw_sha256": "c1ec4ea463e66974d31e83a7971dc73f27d9df509f0e2082c4b967138003a52b"
+    },
+    {
+      "bytes": 6069,
+      "path": "formal/m24/frp_m24_core_properties_formal.sv",
+      "raw_sha256": "2f90da1cbb7c5441ab0fac38f9e2d9a97e5ecb2fa16d3e90d3b931cf79dacf35"
+    },
+    {
+      "bytes": 3979,
+      "path": "formal/m24/frp_m24_expected_counterexamples_formal.sv",
+      "raw_sha256": "e18cd18f7837db2cf65602d177c46d3a6cf3c0aebee0e823443a95a42c61d6fa"
+    },
+    {
+      "bytes": 2811,
+      "path": "formal/m24/frp_m24_package_properties_formal.sv",
+      "raw_sha256": "555f99285792d91dfb0548407cb3b5c64551b8e7831531d335274e80c03255e3"
+    },
+    {
+      "bytes": 2997,
+      "path": "formal/m24/frp_m24_reset_readiness_formal.sv",
+      "raw_sha256": "943deafa190a165b20a5a875fe1294340cd5eef6a788c3bb348eb586d506af72"
+    },
+    {
+      "bytes": 3098,
+      "path": "formal/m24/frp_m24_scheduler_properties_formal.sv",
+      "raw_sha256": "dcb6aee21c5f10305bf86d9c63fad85fd73f8acc7bf23c3846dbbe0b55e2f779"
+    },
+    {
+      "bytes": 48380,
+      "path": "frp_m24_formal_bounded_verification.py",
+      "raw_sha256": "f75a3fcd19bd0cd95e6dbb48ccefeadf8cb7be5df7c8bb9edf3ba379ea71c7fe"
+    },
+    {
+      "bytes": 5679,
+      "path": "schemas/m24/frp_m24_formal_bounded_proof_evidence.v2.6.0.schema.json",
+      "raw_sha256": "2a8690e4afcde11cd223888e7bfe4cebd25891ba2082dd63790b95fe71c54876"
+    },
+    {
+      "bytes": 2869,
+      "path": "schemas/m24/frp_m24_formal_bounded_verification_contract.v2.6.0.schema.json",
+      "raw_sha256": "dfe24b8d141897586e40a2f933efe1c5e9b6375567520b9ee53bf7780dcd00aa"
+    },
+    {
+      "bytes": 1757,
+      "path": "schemas/m24/frp_m24_formal_bounded_verification_manifest.v2.6.0.schema.json",
+      "raw_sha256": "a3075251292769c3c7d14993c4893e350dd214b13cbabc0be6cf2c5691c082c4"
+    },
+    {
+      "bytes": 1478,
+      "path": "schemas/m24/frp_m24_formal_bounded_verification_qualification.v2.6.0.schema.json",
+      "raw_sha256": "0152923057d397fb81bae1a1b1438f5123042135272f97c3d2fef82b85f40dc1"
+    },
+    {
+      "bytes": 2147,
+      "path": "schemas/m24/frp_m24_property_inventory.v2.6.0.schema.json",
+      "raw_sha256": "2d1e0001d299d5a6adf316981d2c88340d1b5e8463c9b0485a12e6efbc4d01f6"
+    },
+    {
+      "bytes": 1054,
+      "path": "schemas/m24/frp_m24_schema_registry.json",
+      "raw_sha256": "54e5ba75ba8616ef0220bdc16ccdba8dc68722a38bae52a70fe3dc2ddbadaf7a"
+    },
+    {
+      "bytes": 11905,
+      "path": "tests/test_frp_m24_formal_bounded_verification.py",
+      "raw_sha256": "c858e7b999f79d62c8b03949c9c1f5a6d24c99e9f5dde4fe02f6d17ff4cf298c"
+    }
+  ],
+  "status": "PASS",
+  "upstream_dependencies": [
+    {
+      "bytes": 5111,
+      "path": "artifacts/m23/manifests/m23-clock-reset-cdc-interface-hardening-manifest.json",
+      "raw_sha256": "9ee066e9861aba98ca24f561bcd709a16aee80248e490e95ca849073d99fb414"
+    },
+    {
+      "bytes": 10657,
+      "path": "artifacts/m23/manifests/m23-clock-reset-cdc-interface-hardening-qualification.json",
+      "raw_sha256": "ae704ced0487061a29e38be950473e625ff5863a5ecf7d9acc330b120dafbe7a"
+    },
+    {
+      "bytes": 25909,
+      "path": "rtl/m16/frp_m16_active_neutral.sv",
+      "raw_sha256": "9a86ea7bdc2683effcda4fdb3e85026e5277967755659940820152a2f55a11a7"
+    },
+    {
+      "bytes": 20787,
+      "path": "rtl/m16/frp_m16_capacity_guard.sv",
+      "raw_sha256": "0547c30a698b8d8da0e7f5981d69bc464a93641bfc29c930e1cc6ea0782c302d"
+    },
+    {
+      "bytes": 33684,
+      "path": "rtl/m16/frp_m16_core.sv",
+      "raw_sha256": "3b94f5caa5ee28da0060a38dd9b4ba4605ef5f86ac93f5425967e515ff1ebd23"
+    },
+    {
+      "bytes": 17005,
+      "path": "rtl/m16/frp_m16_pending_routes.sv",
+      "raw_sha256": "09e11d150b3b6938820209ac0f2c4f8373ba9f7c6bf7e86fa3934dd9802a8430"
+    },
+    {
+      "bytes": 18532,
+      "path": "rtl/m16/frp_m16_pkg.sv",
+      "raw_sha256": "c20fe071e7c91b60ca0411b75d4cf762112d51abbd49dc2a5667d1d8c5d49152"
+    },
+    {
+      "bytes": 18290,
+      "path": "rtl/m16/frp_m16_request_lanes.sv",
+      "raw_sha256": "afa88b95838c0968d9db5395c9272155c61c792248e0f8bc29cf70354a2a862a"
+    },
+    {
+      "bytes": 10560,
+      "path": "rtl/m16/frp_m16_scheduler.sv",
+      "raw_sha256": "af7713d739b769e8c16651b0e0d340906b6ec8ca6b401599ea4a79946e4033d7"
+    },
+    {
+      "bytes": 18147,
+      "path": "rtl/m16/frp_m16_state_update.sv",
+      "raw_sha256": "4d2b8091dc3c852d86c8787abea38c181736c78b746cdfc3f83817a0f32999dd"
+    },
+    {
+      "bytes": 5127,
+      "path": "rtl/m23/frp_m23_csr_cdc_bridge.sv",
+      "raw_sha256": "f56e3d5c3d4c07ffb54bc0a4d2968be0bdb9fff37106826d854139da2f2f6078"
+    },
+    {
+      "bytes": 4711,
+      "path": "rtl/m23/frp_m23_hardened_integration_boundary.sv",
+      "raw_sha256": "0381bc56a3f3dbd49d3a3d73ba4ff18e4031fb491effad8029d324fb9ac604b3"
+    },
+    {
+      "bytes": 626,
+      "path": "rtl/m23/frp_m23_reset_release_sync.sv",
+      "raw_sha256": "bf55576554f8c42e55f0a835bc62ad56e43004b4b459a84ce6908372f882de85"
+    }
+  ],
+  "upstream_dependency_count": 13,
+  "workflow_path": ".github/workflows/frp-m24-formal-bounded-verification-closure-workflow.yml"
+}
