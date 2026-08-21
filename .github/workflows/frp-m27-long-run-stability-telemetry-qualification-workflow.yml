@@ -1,0 +1,555 @@
+name: FRP M27 Long-Run Stability and Telemetry Qualification
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m27-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  qualify-m27:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      M27_PAYLOAD_ROOT: /tmp/frp_m27_creation
+      M27_SOURCE_COMMIT: 67e9cc6d3e5dd2e96380b7cadb16b66f5e7d2427
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out the selected main revision
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+          persist-credentials: true
+
+      - name: Set up exact Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install exact Python dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check -r requirements.txt
+          python --version
+          python -m pip show jsonschema
+
+      - name: Validate the immutable M26 to M27 source boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          git cat-file -e "${M27_SOURCE_COMMIT}^{commit}"
+          git merge-base --is-ancestor "$M27_SOURCE_COMMIT" HEAD
+          test "$(git show -s --format=%s "$M27_SOURCE_COMMIT")" = "Add M26 declared-target implementation evidence"
+          test "$(git rev-parse "$M27_SOURCE_COMMIT")" = "$M27_SOURCE_COMMIT"
+
+          while IFS= read -r changed_path; do
+            case "$changed_path" in
+              .github/workflows/frp-m27-long-run-stability-telemetry-qualification-workflow.yml|\
+              frp_m27_long_run_stability_telemetry_qualification.py|\
+              schemas/m27/*|\
+              artifacts/m27/*|\
+              tests/test_frp_m27_long_run_stability_telemetry_qualification.py)
+                ;;
+              *)
+                echo "Unexpected change after the exact M26 boundary: $changed_path" >&2
+                exit 1
+                ;;
+            esac
+          done < <(git diff --name-only "$M27_SOURCE_COMMIT"..HEAD)
+
+          test -f .github/workflows/frp-m27-long-run-stability-telemetry-qualification-workflow.yml
+
+      - name: Validate and extract the complete M27 source payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import base64
+          import binascii
+          import bz2
+          import hashlib
+          import io
+          import json
+          import os
+          import shutil
+          import tarfile
+          from pathlib import Path, PurePosixPath
+
+          encoded = """
+          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
+          iWnuJm1LaKG0Dpd9W27JtTMhyTok3ul09bd3QLqqXGsfW5C8kH+KkdONHEtOM0rivINk1hhGtZocFfhSsMThx5pWa5NTDjFK
+          wuTyL0aqrtrrlyvjO+zxc76nC/1ZH58zPjvfFV/XhGdbWfKipiy+m7Vv77l9VU/H66+V9m1XtXW1+J5ZXqd3do1kG8Ky3Riw
+          eFUdPp3nvDLovW6liXwLuu8SprfBezzW6tLNViud/NLVDzOW0sqTrVQcoH1cWlT2GqYWYQ+TsKLVSmGgoXKikwkk9xazClLs
+          2TEVejDdiMx49rXn/M6e6ZLx1HmzQZTFi5HuyoVW/QUySSI03GYNtpCD4GsUWLABQMVKirLEO0hb5xmvQDZO8QNhFBQxVEWI
+          kDz+qw4NjElRo5MFsTABTjiQbSuMLcrSi+hy40a+suWz5myF6OhjF7rgsWYdKPEwVxnmVRr3OQznl3FPClZb3NX55ZZ92lr4
+          v3UoHZj3ZwE9NxL3tUnssYNG2dfU6o6V+2nS63XCfbqsOfmTs23X1Wj4zdFuTgXWmFDBd7bQquNvfYR0tR13usXbTY+gtei/
+          N6fnouuT1i7CNjfQ67sc11vsxrPEluVXDRm0T7CsZEkIfEfbWyecCm5tRLCUoBx+M7TamzXzHbuSsPAM0yy+iJ2AW/EWDtTU
+          mmLBzHAgL8wBrS8g4wfkUnK+BkAmIa23PRAUxBXC1dMxokQXQ0UzRzJFbKGY7KSUc0yoLLK96HWffZ+hKPqVH1qjvpFehAai
+          LrEPfe8CEk7l3Cg01YlgNhsfIvcA8y6LBwx8dZpkdGNOUPduywGxj+Wh+CG7bGzhWmfaS9uPZbbOPtxylSW06SYghH7IPXvZ
+          5pE4lpzd1v7HzD9VnOwM4hEicXRaonKOAlqn84M8/I4ENbCl4zwez2qLlxuMu5UI7pdn4mVEmaUGGU+bsPIXq4/jVTjc/CL4
+          pi6lJpWymffw2mXolKPFd2Ng2rgK1S/RSB2xUMzANVgtbwXktxLQ/R229/mE4g5wQaPjgPyR59cViSEItiqWLAPfWBN4gfJE
+          PkNgIJtoC9U/LE024iD2gg/f+nj+Z9P1fVcnABHQXNrNcl9FXKlIlBBvmDxgrw75XVquhQ1OAGuomJFmkk45bfU0p6PP9oVA
+          86FU0Gl1ki880IUbWTxUqy871RHOy3ycBX1S2+9ds+69cIY456vrVBia8KA/uPOBSGqDyhtTRyOUAteE7t81oUGQiQh0UVYy
+          T6jngYxYsRcF5YqZ9a/A/yXLuP3zi3CRz+UDa9Pq0e9SP9ppAiryjGRgyFApARIqFvKQbWUD0YN3tkPgcgLCX5BVSijwsnP3
+          ZoVO8GcehRUXdD4UIBpyNXKW8evmhxg5HYk+QH4tCjMtuXQROtrDYZTuHgRoIjGJaTF6S6RsA7jJVNtLPHcQZ37z74wripMW
+          RHUzV9nuA+4BmcN9dW2lBIilggkgoMYwr2yQxsYygEcNYI1rYBpewRxS5AXMeYGvkBjVJjYH3gNQNcjaoxqcQG/u1qCPsUgu
+          hBADgpAB0cttXljuMtllIDYDkBgCgadfghEEnPUDhKUAZq5Y9yo4TJLbAQ7g2EsB8v14T5QtCfN+aWsVZ77S6yDrzmQ+shkO
+          SEWPt5ZoTmnJ+x8Fw/orJ9py8bx63okbohhqNlnGUKCmWtMvv3td6OjK2JjBmVzKjDrDzZnIkCENoQkRIJykgEWSKVubuxOB
+          Uu0EDS2RdCGc7o1FPcZVaAMgAmcFs2WkE454k/aLivxRyGAicIpPpMXImyktC1qdmFpWSAC/NlfL5+Ni2RKNhfN7seKH24s+
+          eqKKWCEFIWpPmMAMGEfwunFn4RMiQmRKY0MjIFLKCyKBplYCqSMrCQGhqG5INZKAiIpx6j7FVFOfKe28mSPWJCQBhEj7D5kX
+          3f1AD+MD24/ljcusEif3ifap+gPtUiv5X4UdYNlMgPlUHTqqp+AlYofWB+Uf5RX4QIq6VL6SEDFT+1g+zQiPHdrUt8Yf3q7r
+          YxqqbKS0sE9s1Ler9n8MP3R1WtLFDIzSA60haJCNUrWtnnDpQkwsAH2ADAIKG1LkfZ+b8jmiGD1bEOoNA6QIEe8cj8539ncy
+          iMi9b0DvVMFf8IBYC73saF8BMVAzFwbvimKj4uY3A/Um0CyHUVBRGKIiMV5Envge/CIX1dRfOJ2T0eb1x624D5FzGgDdiQhJ
+          ueggewSexFqoKCkA+NCKAiD7CtT0ffMzzqCbx8FfF/SlgMuECRPg0tlxaDsA7x8wq0qcFe5SlE5ZnOwK4A7lO0XJE7kKadqm
+          9Uslx7c4skVej+lwXS4AYAbhO2fF+eEYSQhIQkI9D9PDYr5hAPYpvR1UTmL0UCj0kIS6NxO8TknMS6vUm4e/qPrhsAliLIhC
+          QT/OfBZF+jbK0ElZYlYv9TMRFT+d05FakM+P+qKDiF8c0T5IS848/krFitSe1BvSMC80xccMRKnrcU9S0vJug6o2B8ANTQOC
+          MR94UDZ1NKXYBZSzYGlCkgaGwLrAsRZCGvQoPN7RLjqV9qp7HyW57Ih5C3UpuDAXEApuP+SuSmwAzXQmSB3iu1VwcFf1AWHq
+          5bij0qnFSr38MUz3dIG1TzTbuVFU82vYnCNpBT2T8c+KaCfUK4PlJNmy08i95abgD4qPfDK3IfgA7wTJZXOpKi8FTTOLTL1K
+          UJHDg5QKZnqXeg0FuSYBStwco2TkDEPWCuSmq5alZwKyU2LkEEiPM5h87OBb8Hq755UukjYPV6sLuH+dKO9jq/PJJS6dNc31
+          HWYadcDiu0ZbSG4KuIcF4UDUTIFahUkYzrQBz4njzLtr2bJwH1IbAPmuKXFYBpF7XvaQbTluGycSD7WHwQx5wdcwKokaUKJU
+          ROoG7Qb7gWzv4zxL+BMC/U0XDGuKnN4kIkGABwUTrBXWbW64tmwEbBgUNjwTcJYLQXv+jzTG8XuIaaDs1zy6qOVKqpJG6jdS
+          SgVIVopFiHLjqpJUkkMPw/2vn6fDHqAOQ0ARIH1KcIAcHigb7ZeZdcKbUxwXHgP5XmYXaquc7C2RbUnW6QIL8qmsQL2uBmNH
+          mCZ6vnkfAk/B1uD0XdCoSVKr7hgsspcrZTSo4POJGWcxWLDhCz8pzVfKWnATfSWNqFUaixpu33gxt3L4a77l6lXS3XzSFdcH
+          lm68iP6t3Q2xWxtA2XpFunSynmN2qoedKVacL4ugYzTvpKG52O12FA68FHRfjuI3OKsfXMnOdGHTG7M3JxXXMwEk9W8nU3p8
+          3toGGtR62s6MhWrVl3bpbBwIX8t8SR+yA5oEhIwg6Db/H4fpRAfV3/PPKA4UgmPrmrcDG0lr+DaQo0YGHfv5LlwJBH6CHwRf
+          igu8O6I7/v0PLZ2sGOxQvcQetUQ+5WYBwpRyiDwh8/KsRWG7Ah1YHdhZiAjAzCzhKaYsXTJgSa+8OYoqwDre4YuVUtft/iA0
+          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
+          """
+          expected_archive_sha256 = "000d013ad03db3e784ffa5fa6b00d0b854642f9c8cd37eb619dc748816922a1e"
+          expected_files = json.loads(r"""{"frp_m27_long_run_stability_telemetry_qualification.py":{"bytes":48903,"raw_sha256":"ffd251d97db3550e66e111737172deeaae267d958c7cb929602a34370456d1fd"},"schemas/m27/frp_m27_long_run_telemetry_contract.v2.9.0.schema.json":{"bytes":3906,"raw_sha256":"2ee7fd6ef7a02d44bec7096631edc6a264bdd8f0708e75afcc49315eee0a7f53"},"schemas/m27/frp_m27_long_run_workload_catalog.v2.9.0.schema.json":{"bytes":3101,"raw_sha256":"515f523d931179fd3c84723da832e3cdb41344e35a1b201a8a325ffe2fd80dd2"},"schemas/m27/frp_m27_long_run_checkpoint_evidence.v2.9.0.schema.json":{"bytes":10764,"raw_sha256":"e74b53a2e88b690c89dd92145d8e5de9050b403fb0d7f736f99080937e4ab056"},"schemas/m27/frp_m27_telemetry_semantics.v2.9.0.schema.json":{"bytes":2609,"raw_sha256":"200daba136349ade552e08f927adbcc3d00e6eb496e5b980f07c42d2887e16fd"},"schemas/m27/frp_m27_long_run_stability_report.v2.9.0.schema.json":{"bytes":3472,"raw_sha256":"82263ad2f3b160e73961f5ae9ab56800b6e2aacf7e85c09ae23c44c64294bc60"},"schemas/m27/frp_m27_long_run_stability_manifest.v2.9.0.schema.json":{"bytes":2669,"raw_sha256":"7c40b29d491588979ab83f1e32727870cc9974645026081d902b0e4b66ace124"},"schemas/m27/frp_m27_long_run_stability_qualification.v2.9.0.schema.json":{"bytes":1980,"raw_sha256":"5d5546cc419e9e535942a11ac96af4d8dd005c7ba98dc51911326b4f3281c61a"},"schemas/m27/frp_m27_schema_registry.json":{"bytes":1054,"raw_sha256":"c4b84b197a3600e7b0a9976e991f578b0cc1053d6f9fa8a59063dfc9a4319141"},"tests/test_frp_m27_long_run_stability_telemetry_qualification.py":{"bytes":16166,"raw_sha256":"27e57d8b8e9ad537794ad0d3ef01e72a27be3d5f8e735771bda1b6efc573b3a3"}}""")
+          payload_root = Path(os.environ["M27_PAYLOAD_ROOT"])
+          staging = payload_root / "staging"
+
+          compact = "".join(encoded.split())
+          try:
+              compressed = base64.b64decode(compact, validate=True)
+          except binascii.Error as exc:
+              raise SystemExit(f"M27 payload Base64 validation failed: {exc}") from exc
+          observed_archive_sha256 = hashlib.sha256(compressed).hexdigest()
+          if observed_archive_sha256 != expected_archive_sha256:
+              raise SystemExit(
+                  "M27 payload digest mismatch: "
+                  f"{observed_archive_sha256} != {expected_archive_sha256}"
+              )
+          try:
+              archive_bytes = bz2.decompress(compressed)
+          except OSError as exc:
+              raise SystemExit(f"M27 payload decompression failed: {exc}") from exc
+
+          if payload_root.exists():
+              shutil.rmtree(payload_root)
+          staging.mkdir(parents=True)
+
+          with tarfile.open(fileobj=io.BytesIO(archive_bytes), mode="r:") as archive:
+              members = archive.getmembers()
+              observed_names = [member.name for member in members]
+              if observed_names != list(expected_files):
+                  raise SystemExit("M27 payload member inventory mismatch")
+              for member in members:
+                  path = PurePosixPath(member.name)
+                  if (
+                      path.is_absolute()
+                      or any(part in ("", ".", "..") for part in member.name.split("/"))
+                      or not member.isfile()
+                      or member.issym()
+                      or member.islnk()
+                  ):
+                      raise SystemExit(f"unsafe M27 payload member: {member.name}")
+                  source = archive.extractfile(member)
+                  if source is None:
+                      raise SystemExit(f"missing M27 payload member data: {member.name}")
+                  raw = source.read()
+                  record = expected_files[member.name]
+                  if len(raw) != record["bytes"]:
+                      raise SystemExit(f"M27 payload byte count mismatch: {member.name}")
+                  if hashlib.sha256(raw).hexdigest() != record["raw_sha256"]:
+                      raise SystemExit(f"M27 payload file digest mismatch: {member.name}")
+                  destination = staging.joinpath(*path.parts)
+                  destination.parent.mkdir(parents=True, exist_ok=True)
+                  destination.write_bytes(raw)
+
+          for relative, record in expected_files.items():
+              source = staging.joinpath(*PurePosixPath(relative).parts)
+              destination = Path(relative)
+              if destination.exists() and destination.is_symlink():
+                  raise SystemExit(f"refusing M27 symlink destination: {relative}")
+              destination.parent.mkdir(parents=True, exist_ok=True)
+              os.replace(source, destination)
+              raw = destination.read_bytes()
+              if len(raw) != record["bytes"] or hashlib.sha256(raw).hexdigest() != record["raw_sha256"]:
+                  raise SystemExit(f"installed M27 source mismatch: {relative}")
+
+          print(f"M27 payload archive sha256: {observed_archive_sha256}")
+          print(f"M27 source files installed: {len(expected_files)}")
+          PY
+
+      - name: Validate the extracted M27 source and immutable core vocabulary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile frp_m27_long_run_stability_telemetry_qualification.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          paths = [Path("frp_m27_long_run_stability_telemetry_qualification.py")]
+          paths.extend(sorted(Path("schemas/m27").glob("*")))
+          paths.append(Path("tests/test_frp_m27_long_run_stability_telemetry_qualification.py"))
+          forbidden = "-1/0/" + "+1"
+          for path in paths:
+              text = path.read_text(encoding="utf-8")
+              if forbidden in text:
+                  raise SystemExit(f"forbidden ternary notation in {path}")
+          registry = json.loads(Path("schemas/m27/frp_m27_schema_registry.json").read_text(encoding="utf-8"))
+          if len(registry["records"]) != 7:
+              raise SystemExit("M27 schema registry is incomplete")
+          print("M27 extracted source and immutable core vocabulary: PASS")
+          PY
+
+      - name: Run the complete deterministic M27 workload twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python frp_m27_long_run_stability_telemetry_qualification.py \
+            --run-long-run \
+            --repository-root . \
+            --source-commit "$M27_SOURCE_COMMIT" \
+            --output /tmp/m27_long_run_a.json \
+            2>&1 | tee /tmp/m27_long_run_a.log
+          python frp_m27_long_run_stability_telemetry_qualification.py \
+            --run-long-run \
+            --repository-root . \
+            --source-commit "$M27_SOURCE_COMMIT" \
+            --output /tmp/m27_long_run_b.json \
+            2>&1 | tee /tmp/m27_long_run_b.log
+          cmp --silent /tmp/m27_long_run_a.json /tmp/m27_long_run_b.json
+          sha256sum /tmp/m27_long_run_a.json /tmp/m27_long_run_b.json | tee /tmp/m27_long_run_sha256.txt
+
+      - name: Generate the complete canonical M27 artifact set
+        shell: bash
+        run: |
+          set -euo pipefail
+          python frp_m27_long_run_stability_telemetry_qualification.py \
+            --generate \
+            --repository-root . \
+            --output-root . \
+            --long-run-result /tmp/m27_long_run_a.json \
+            --source-commit "$M27_SOURCE_COMMIT" \
+            --output /tmp/m27_generation.json \
+            2>&1 | tee /tmp/m27_generation.log
+
+      - name: Run focused M27 qualification tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_frp_m27_long_run_stability_telemetry_qualification \
+            2>&1 | tee /tmp/m27_focused_tests.log
+          python frp_m27_long_run_stability_telemetry_qualification.py \
+            --verify \
+            --repository-root . \
+            --source-commit "$M27_SOURCE_COMMIT" \
+            --output /tmp/m27_verification.json \
+            2>&1 | tee /tmp/m27_verification.log
+          python frp_m27_long_run_stability_telemetry_qualification.py \
+            --self-test \
+            --repository-root . \
+            --source-commit "$M27_SOURCE_COMMIT" \
+            --output /tmp/m27_self_test.json \
+            2>&1 | tee /tmp/m27_self_test.log
+
+      - name: Run the complete repository regression suite
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p 'test_*.py' -v \
+            2>&1 | tee /tmp/m27_full_regression.log
+
+      - name: Validate the closed M27 repository boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          required = [
+              Path("frp_m27_long_run_stability_telemetry_qualification.py"),
+              Path("tests/test_frp_m27_long_run_stability_telemetry_qualification.py"),
+              Path("artifacts/m27/contracts/m27-long-run-telemetry-contract.json"),
+              Path("artifacts/m27/workloads/m27-long-run-workload-catalog.json"),
+              Path("artifacts/m27/checkpoints/m27-long-run-checkpoint-evidence.json"),
+              Path("artifacts/m27/telemetry/m27-telemetry-semantics.json"),
+              Path("artifacts/m27/reports/m27-long-run-stability-report.json"),
+              Path("artifacts/m27/manifests/m27-long-run-stability-manifest.json"),
+              Path("artifacts/m27/manifests/m27-long-run-stability-qualification.json"),
+          ]
+          required.extend(sorted(Path("schemas/m27").glob("*")))
+          missing = [str(path) for path in required if not path.is_file() or path.is_symlink()]
+          if missing:
+              raise SystemExit(f"M27 required file boundary failed: {missing}")
+
+          contract = json.loads(required[2].read_text(encoding="utf-8"))
+          evidence = json.loads(required[4].read_text(encoding="utf-8"))
+          if contract["immutable_core"]["balanced_ternary_notation"] != "-1/0/1":
+              raise SystemExit("M27 immutable ternary notation mismatch")
+          if contract["immutable_core"]["temporal_scheduler_modes"] != ["1/7", "7/1"]:
+              raise SystemExit("M27 scheduler mode boundary mismatch")
+          if evidence["total_ticks"] != 49152 or evidence["checkpoint_count"] != 96:
+              raise SystemExit("M27 long-run evidence boundary mismatch")
+          print("M27 closed repository boundary: PASS")
+          PY
+
+          while IFS= read -r status_path; do
+            changed_path="${status_path:3}"
+            case "$changed_path" in
+              frp_m27_long_run_stability_telemetry_qualification.py|\
+              schemas/m27/*|\
+              artifacts/m27/*|\
+              tests/test_frp_m27_long_run_stability_telemetry_qualification.py)
+                ;;
+              *)
+                echo "Unexpected working-tree change during M27: $changed_path" >&2
+                exit 1
+                ;;
+            esac
+          done < <(git status --porcelain=v1)
+
+      - name: Create the complete M27 qualification commit and publish main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -- \
+            frp_m27_long_run_stability_telemetry_qualification.py \
+            schemas/m27 \
+            artifacts/m27 \
+            tests/test_frp_m27_long_run_stability_telemetry_qualification.py
+
+          while IFS= read -r staged_path; do
+            case "$staged_path" in
+              frp_m27_long_run_stability_telemetry_qualification.py|\
+              schemas/m27/*|\
+              artifacts/m27/*|\
+              tests/test_frp_m27_long_run_stability_telemetry_qualification.py)
+                ;;
+              *)
+                echo "Unexpected staged M27 path: $staged_path" >&2
+                exit 1
+                ;;
+            esac
+          done < <(git diff --cached --name-only)
+
+          if git diff --cached --quiet; then
+            echo "M27 canonical qualification is already committed; no commit is required."
+            exit 0
+          fi
+
+          git commit \
+            -m "Add M27 long-run stability and telemetry qualification" \
+            -m "Qualify 49,152 deterministic ticks across free, 7/1, and 1/7 scheduler profiles. Retain ordered checkpoint chains, zero-event intervals, pending-route and transition-capacity relations, explicitly dimensionless model-derived telemetry proxies, bounded artifacts, and byte-identical rerun evidence while preserving the immutable -1/0/1 core."
+          git push origin HEAD:main
+
+      - name: Retain complete M27 qualification logs and raw reruns
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frp-m27-long-run-stability-telemetry-${{ github.run_id }}
+          if-no-files-found: warn
+          retention-days: 30
+          path: |
+            /tmp/m27_long_run_a.json
+            /tmp/m27_long_run_b.json
+            /tmp/m27_long_run_a.log
+            /tmp/m27_long_run_b.log
+            /tmp/m27_long_run_sha256.txt
+            /tmp/m27_generation.json
+            /tmp/m27_generation.log
+            /tmp/m27_focused_tests.log
+            /tmp/m27_verification.json
+            /tmp/m27_verification.log
+            /tmp/m27_self_test.json
+            /tmp/m27_self_test.log
+            /tmp/m27_full_regression.log
