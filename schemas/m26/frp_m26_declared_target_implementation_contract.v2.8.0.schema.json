@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frp.example/schemas/m26/frp_m26_declared_target_implementation_contract.v2.8.0.schema.json",
+  "title": "FRP M26 declared-target implementation contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "release", "status", "source_commit", "required_scope", "immutable_core", "declared_target", "declared_constraints", "evidence_boundary", "workflow_path", "source_set_digest", "contract_digest"],
+  "properties": {
+    "schema_version": {"const": "2.8.0"},
+    "artifact_id": {"const": "frp-m26-declared-target-implementation-contract"},
+    "milestone": {"const": "M26"},
+    "release": {"const": "FRP v2.8.0"},
+    "status": {"const": "PASS"},
+    "source_commit": {"const": "d83e23785d292adaaf419c31e51abb294ddf98f9"},
+    "required_scope": {
+      "type": "array",
+      "prefixItems": [
+        {"const": "declared_implementation_target"},
+        {"const": "declared_tool_and_version"},
+        {"const": "declared_constraints"},
+        {"const": "synthesis_command_provenance"},
+        {"const": "timing_command_provenance"},
+        {"const": "resource_report_provenance"},
+        {"const": "implementation_warnings"},
+        {"const": "result_digests"},
+        {"const": "reproducibility_records"},
+        {"const": "target_independent_fpga_preparation_separation"},
+        {"const": "physical_measurement_separation"}
+      ],
+      "items": false,
+      "minItems": 11,
+      "maxItems": 11
+    },
+    "immutable_core": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authoritative_rtl", "balanced_ternary_notation", "semantic_values", "active_neutral_state", "temporal_scheduler_modes", "service_scheduler_mode"],
+      "properties": {
+        "authoritative_rtl": {"const": "rtl/m16/frp_m16_core.sv"},
+        "balanced_ternary_notation": {"const": "-1/0/1"},
+        "semantic_values": {"const": [-1, 0, 1]},
+        "active_neutral_state": {"const": 0},
+        "temporal_scheduler_modes": {"const": ["1/7", "7/1"]},
+        "service_scheduler_mode": {"const": "free"}
+      }
+    },
+    "declared_target": {"$ref": "#/$defs/target"},
+    "declared_constraints": {"$ref": "#/$defs/constraints"},
+    "evidence_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_type", "target_independent_fpga_preparation", "physical_measurement_status", "universal_physical_chip_claim", "board_ready_pinout_claim", "proxy_to_physical_conversion", "protocol_monitor_policy", "implementation_warnings_retained"],
+      "properties": {
+        "evidence_type": {"const": "reproducible_tool_derived_declared_target_implementation"},
+        "target_independent_fpga_preparation": {"const": "separate_m16_layer"},
+        "physical_measurement_status": {"const": "not_a_physical_measurement"},
+        "universal_physical_chip_claim": {"const": "not_made"},
+        "board_ready_pinout_claim": {"const": "not_made"},
+        "proxy_to_physical_conversion": {"const": "prohibited"},
+        "protocol_monitor_policy": {"const": "nonfunctional_assertion_monitor_replaced_by_synthesis_stub"},
+        "implementation_warnings_retained": {"const": true}
+      }
+    },
+    "workflow_path": {"const": ".github/workflows/frp-m26-declared-target-implementation-evidence-workflow.yml"},
+    "source_set_digest": {"$ref": "#/$defs/digest"},
+    "contract_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target_id", "family", "device", "package", "top_module", "top_source", "cells", "request_lanes"],
+      "properties": {
+        "target_id": {"const": "ice40-hx8k-ct256-cells8"},
+        "family": {"const": "Lattice iCE40 HX"},
+        "device": {"const": "iCE40HX8K"},
+        "package": {"const": "CT256"},
+        "top_module": {"const": "frp_m26_declared_target_top"},
+        "top_source": {"const": "rtl/m26/frp_m26_declared_target_top.sv"},
+        "cells": {"const": 8},
+        "request_lanes": {"const": 2}
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sdc_path", "host_clock_mhz", "host_period_ns", "core_clock_mhz", "core_period_ns", "board_pinout", "io_placement"],
+      "properties": {
+        "sdc_path": {"const": "constraints/m26/frp_m26_ice40_hx8k_ct256.sdc"},
+        "host_clock_mhz": {"const": 10},
+        "host_period_ns": {"const": 100.0},
+        "core_clock_mhz": {"const": 8},
+        "core_period_ns": {"const": 125.0},
+        "board_pinout": {"const": "unbound"},
+        "io_placement": {"const": "automatic_with_explicit_warning"}
+      }
+    }
+  }
+}

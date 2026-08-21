@@ -1,0 +1,194 @@
+{
+  "artifact_count": 4,
+  "artifact_id": "frp-m26-declared-target-implementation-manifest",
+  "artifact_set_digest": "3f706dbab8b92801aaaf8494f1d52f3a5db9bf716f6c54ceda825ff02dad8ed8",
+  "artifacts": [
+    {
+      "bytes": 2351,
+      "path": "artifacts/m26/contracts/m26-declared-target-implementation-contract.json",
+      "raw_sha256": "6d5f89a48cac179c5f5d62cd2ac91e1a6af72da4983fbe7f8792d1aec5df00b4"
+    },
+    {
+      "bytes": 7071,
+      "path": "artifacts/m26/provenance/m26-tool-command-provenance.json",
+      "raw_sha256": "08c1c07835abe881c841dde74f968020f2021e72e223426dcd3d25e896155dea"
+    },
+    {
+      "bytes": 12899,
+      "path": "artifacts/m26/reports/m26-declared-target-implementation-report.json",
+      "raw_sha256": "1e95efc0bceb31a5d42f4dbde8fafbf7f3492fd36535ef7cf95ebe761b8b4e10"
+    },
+    {
+      "bytes": 2490,
+      "path": "artifacts/m26/reproducibility/m26-reproducibility-record.json",
+      "raw_sha256": "dd15740a0f810db1b0c28e2b525cf115cd5595646dd8333cbb5459af6507bc01"
+    }
+  ],
+  "manifest_digest": "c26827b68e26925143254020f207e7f1a13c32fa436a62bc3ca99219637bae3a",
+  "milestone": "M26",
+  "schema_version": "2.8.0",
+  "source_commit": "d83e23785d292adaaf419c31e51abb294ddf98f9",
+  "source_count": 13,
+  "sources": [
+    {
+      "bytes": 35522,
+      "path": ".github/workflows/frp-m26-declared-target-implementation-evidence-workflow.yml",
+      "raw_sha256": "7aea31cbf8f2fb95f7bd85173f993f6f7bd285c13b31cc0e6de51c7d2d000074"
+    },
+    {
+      "bytes": 130,
+      "path": "constraints/m26/frp_m26_ice40_hx8k_ct256.sdc",
+      "raw_sha256": "fb14c501f2f568301d2697304cc69c721293e8ee888dc25fe4ecc6ea984e0957"
+    },
+    {
+      "bytes": 40794,
+      "path": "frp_m26_declared_target_implementation_evidence.py",
+      "raw_sha256": "03126e4ba71ced2f81d4d360cbfd3a4ceb0f9c97e986d969ef61531c5cb5cfd5"
+    },
+    {
+      "bytes": 1855,
+      "path": "rtl/m26/frp_m26_declared_target_top.sv",
+      "raw_sha256": "4f12873a8b00ef9bdc9ce0eaeaf92549c5e1867527e80d21bf80a79e5e3b3912"
+    },
+    {
+      "bytes": 882,
+      "path": "rtl/m26/frp_m26_protocol_monitor_synthesis_stub.sv",
+      "raw_sha256": "b5d7a79ad7f174b42f262a79e6f76af0199ad8ba8ae4dc491f89324dc0c28a05"
+    },
+    {
+      "bytes": 4852,
+      "path": "schemas/m26/frp_m26_declared_target_implementation_contract.v2.8.0.schema.json",
+      "raw_sha256": "a64cbb7fc6f13d8aa774398c4f099f89e298b783e45652877ffaf479375fd451"
+    },
+    {
+      "bytes": 1839,
+      "path": "schemas/m26/frp_m26_declared_target_implementation_manifest.v2.8.0.schema.json",
+      "raw_sha256": "ba3b7ca1c9c7cb15340cfc6353ed549eea320e2322843031ec27582627acb4b9"
+    },
+    {
+      "bytes": 2064,
+      "path": "schemas/m26/frp_m26_declared_target_implementation_qualification.v2.8.0.schema.json",
+      "raw_sha256": "454c44cdda3d83ab0568c6e74baaab36873241e0acdbed8ea24bc61212dd11f4"
+    },
+    {
+      "bytes": 4262,
+      "path": "schemas/m26/frp_m26_declared_target_implementation_report.v2.8.0.schema.json",
+      "raw_sha256": "c5ad304519816924e741f3e2486450075f854647b1af641f5933c558b06af2d9"
+    },
+    {
+      "bytes": 2012,
+      "path": "schemas/m26/frp_m26_reproducibility_record.v2.8.0.schema.json",
+      "raw_sha256": "4cd9459fc2bceeb469f5fd2493ad45709df74cb44558697a79e2e2260aab0562"
+    },
+    {
+      "bytes": 1011,
+      "path": "schemas/m26/frp_m26_schema_registry.json",
+      "raw_sha256": "236fbaf0ebda06b676eab58176269e3e35283f285689c7bee2dfd6669ffcf40f"
+    },
+    {
+      "bytes": 3116,
+      "path": "schemas/m26/frp_m26_tool_command_provenance.v2.8.0.schema.json",
+      "raw_sha256": "67e6746733b1506d0691dd1607b3225d6c050fd62a89dafde139fe87e4a4ba9b"
+    },
+    {
+      "bytes": 12463,
+      "path": "tests/test_frp_m26_declared_target_implementation_evidence.py",
+      "raw_sha256": "cbd6e2ac90b802a8d4a97d53865a0939f7694491f221eee0092d4ae306cfd8d8"
+    }
+  ],
+  "status": "PASS",
+  "upstream_dependencies": [
+    {
+      "bytes": 2067,
+      "path": "artifacts/m25/contracts/m25-fault-negative-recovery-contract.json",
+      "raw_sha256": "d99ac590126491b87e0cb47c221a9f8cc8bda7642f549b1f90bc2feeb2a1fa72"
+    },
+    {
+      "bytes": 14423,
+      "path": "artifacts/m25/evidence/m25-negative-path-recovery-evidence.json",
+      "raw_sha256": "6db02295d87663978549d20154769ac8a14cabfb7ae13d9c08b5cec62b878bc3"
+    },
+    {
+      "bytes": 6800,
+      "path": "artifacts/m25/manifests/m25-fault-negative-recovery-manifest.json",
+      "raw_sha256": "21f01d5c44ccc48541585c4fd2582fa10e0b0217fd561e79b1e8d3edaada2e2c"
+    },
+    {
+      "bytes": 15716,
+      "path": "artifacts/m25/manifests/m25-fault-negative-recovery-qualification.json",
+      "raw_sha256": "91e989f86a910f1f6c1ddc66cee872077a229dcdf14fbb7db6a41713764adc85"
+    },
+    {
+      "bytes": 25909,
+      "path": "rtl/m16/frp_m16_active_neutral.sv",
+      "raw_sha256": "9a86ea7bdc2683effcda4fdb3e85026e5277967755659940820152a2f55a11a7"
+    },
+    {
+      "bytes": 20787,
+      "path": "rtl/m16/frp_m16_capacity_guard.sv",
+      "raw_sha256": "0547c30a698b8d8da0e7f5981d69bc464a93641bfc29c930e1cc6ea0782c302d"
+    },
+    {
+      "bytes": 33684,
+      "path": "rtl/m16/frp_m16_core.sv",
+      "raw_sha256": "3b94f5caa5ee28da0060a38dd9b4ba4605ef5f86ac93f5425967e515ff1ebd23"
+    },
+    {
+      "bytes": 17005,
+      "path": "rtl/m16/frp_m16_pending_routes.sv",
+      "raw_sha256": "09e11d150b3b6938820209ac0f2c4f8373ba9f7c6bf7e86fa3934dd9802a8430"
+    },
+    {
+      "bytes": 18532,
+      "path": "rtl/m16/frp_m16_pkg.sv",
+      "raw_sha256": "c20fe071e7c91b60ca0411b75d4cf762112d51abbd49dc2a5667d1d8c5d49152"
+    },
+    {
+      "bytes": 18290,
+      "path": "rtl/m16/frp_m16_request_lanes.sv",
+      "raw_sha256": "afa88b95838c0968d9db5395c9272155c61c792248e0f8bc29cf70354a2a862a"
+    },
+    {
+      "bytes": 10560,
+      "path": "rtl/m16/frp_m16_scheduler.sv",
+      "raw_sha256": "af7713d739b769e8c16651b0e0d340906b6ec8ca6b401599ea4a79946e4033d7"
+    },
+    {
+      "bytes": 18147,
+      "path": "rtl/m16/frp_m16_state_update.sv",
+      "raw_sha256": "4d2b8091dc3c852d86c8787abea38c181736c78b746cdfc3f83817a0f32999dd"
+    },
+    {
+      "bytes": 16855,
+      "path": "rtl/m22/frp_m22_control_status_register_interface.sv",
+      "raw_sha256": "76c3d19cb6ed6070631f2f8d685f9fbffc05acb335609b3e57cc7a743522745d"
+    },
+    {
+      "bytes": 5586,
+      "path": "rtl/m22/frp_m22_csr_pkg.sv",
+      "raw_sha256": "0f3de8054e3704548088b035c43e993d194d5182a2ac1bc32cdad92663a11206"
+    },
+    {
+      "bytes": 5127,
+      "path": "rtl/m23/frp_m23_csr_cdc_bridge.sv",
+      "raw_sha256": "f56e3d5c3d4c07ffb54bc0a4d2968be0bdb9fff37106826d854139da2f2f6078"
+    },
+    {
+      "bytes": 4711,
+      "path": "rtl/m23/frp_m23_hardened_integration_boundary.sv",
+      "raw_sha256": "0381bc56a3f3dbd49d3a3d73ba4ff18e4031fb491effad8029d324fb9ac604b3"
+    },
+    {
+      "bytes": 3174,
+      "path": "rtl/m23/frp_m23_interface_protocol_assertions.sv",
+      "raw_sha256": "3f9fe2383bb49dbdcfd0acf46ae85467715998743c60c32f4e3c1da0691d302c"
+    },
+    {
+      "bytes": 626,
+      "path": "rtl/m23/frp_m23_reset_release_sync.sv",
+      "raw_sha256": "bf55576554f8c42e55f0a835bc62ad56e43004b4b459a84ce6908372f882de85"
+    }
+  ],
+  "upstream_dependency_count": 18,
+  "workflow_path": ".github/workflows/frp-m26-declared-target-implementation-evidence-workflow.yml"
+}

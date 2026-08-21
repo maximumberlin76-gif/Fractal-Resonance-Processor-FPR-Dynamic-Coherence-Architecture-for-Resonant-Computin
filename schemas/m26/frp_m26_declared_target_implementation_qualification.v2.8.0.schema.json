@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frp.example/schemas/m26/frp_m26_declared_target_implementation_qualification.v2.8.0.schema.json",
+  "title": "FRP M26 declared-target implementation qualification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "overall_status", "source_commit", "contract_digest", "provenance_digest", "report_digest", "reproducibility_digest", "manifest_digest", "check_count", "passed_count", "failed_count", "checks", "qualification_digest"],
+  "properties": {
+    "schema_version": {"const": "2.8.0"},
+    "artifact_id": {"const": "frp-m26-declared-target-implementation-qualification"},
+    "milestone": {"const": "M26"},
+    "status": {"const": "PASS"},
+    "overall_status": {"const": "PASS"},
+    "source_commit": {"const": "d83e23785d292adaaf419c31e51abb294ddf98f9"},
+    "contract_digest": {"$ref": "#/$defs/digest"},
+    "provenance_digest": {"$ref": "#/$defs/digest"},
+    "report_digest": {"$ref": "#/$defs/digest"},
+    "reproducibility_digest": {"$ref": "#/$defs/digest"},
+    "manifest_digest": {"$ref": "#/$defs/digest"},
+    "check_count": {"type": "integer", "minimum": 55},
+    "passed_count": {"type": "integer", "minimum": 55},
+    "failed_count": {"const": 0},
+    "checks": {
+      "type": "array",
+      "minItems": 55,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["check_id", "category", "status", "evidence"],
+        "properties": {
+          "check_id": {"type": "string", "pattern": "^M26-Q[0-9]{3}$"},
+          "category": {"enum": ["identity", "scope", "target", "constraint", "synthesis", "resource", "timing", "warning", "reproducibility", "tool", "command", "boundary", "schema", "manifest", "closure"]},
+          "status": {"const": "PASS"},
+          "evidence": {}
+        }
+      }
+    },
+    "qualification_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": "2.8.0",
+  "milestone": "M26",
+  "status": "PASS",
+  "records": [
+    {"schema_id": "m26-declared-target-implementation-contract-v2.8.0", "path": "schemas/m26/frp_m26_declared_target_implementation_contract.v2.8.0.schema.json"},
+    {"schema_id": "m26-tool-command-provenance-v2.8.0", "path": "schemas/m26/frp_m26_tool_command_provenance.v2.8.0.schema.json"},
+    {"schema_id": "m26-declared-target-implementation-report-v2.8.0", "path": "schemas/m26/frp_m26_declared_target_implementation_report.v2.8.0.schema.json"},
+    {"schema_id": "m26-reproducibility-record-v2.8.0", "path": "schemas/m26/frp_m26_reproducibility_record.v2.8.0.schema.json"},
+    {"schema_id": "m26-declared-target-implementation-manifest-v2.8.0", "path": "schemas/m26/frp_m26_declared_target_implementation_manifest.v2.8.0.schema.json"},
+    {"schema_id": "m26-declared-target-implementation-qualification-v2.8.0", "path": "schemas/m26/frp_m26_declared_target_implementation_qualification.v2.8.0.schema.json"}
+  ]
+}

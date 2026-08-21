@@ -1,0 +1,606 @@
+{
+  "artifact_id": "frp-m26-declared-target-implementation-qualification",
+  "check_count": 70,
+  "checks": [
+    {
+      "category": "identity",
+      "check_id": "M26-Q001",
+      "evidence": "FRP v2.8.0",
+      "status": "PASS"
+    },
+    {
+      "category": "identity",
+      "check_id": "M26-Q002",
+      "evidence": "d83e23785d292adaaf419c31e51abb294ddf98f9",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M26-Q003",
+      "evidence": "declared_implementation_target",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M26-Q004",
+      "evidence": "declared_tool_and_version",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M26-Q005",
+      "evidence": "declared_constraints",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M26-Q006",
+      "evidence": "synthesis_command_provenance",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M26-Q007",
+      "evidence": "timing_command_provenance",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M26-Q008",
+      "evidence": "resource_report_provenance",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M26-Q009",
+      "evidence": "implementation_warnings",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M26-Q010",
+      "evidence": "result_digests",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M26-Q011",
+      "evidence": "reproducibility_records",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M26-Q012",
+      "evidence": "target_independent_fpga_preparation_separation",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M26-Q013",
+      "evidence": "physical_measurement_separation",
+      "status": "PASS"
+    },
+    {
+      "category": "target",
+      "check_id": "M26-Q014",
+      "evidence": {
+        "target_id": "ice40-hx8k-ct256-cells8"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "target",
+      "check_id": "M26-Q015",
+      "evidence": {
+        "family": "Lattice iCE40 HX"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "target",
+      "check_id": "M26-Q016",
+      "evidence": {
+        "device": "iCE40HX8K"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "target",
+      "check_id": "M26-Q017",
+      "evidence": {
+        "package": "CT256"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "target",
+      "check_id": "M26-Q018",
+      "evidence": {
+        "top_module": "frp_m26_declared_target_top"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "target",
+      "check_id": "M26-Q019",
+      "evidence": {
+        "top_source": "rtl/m26/frp_m26_declared_target_top.sv"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "target",
+      "check_id": "M26-Q020",
+      "evidence": {
+        "cells": 8
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "target",
+      "check_id": "M26-Q021",
+      "evidence": {
+        "request_lanes": 2
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "constraint",
+      "check_id": "M26-Q022",
+      "evidence": {
+        "sdc_path": "constraints/m26/frp_m26_ice40_hx8k_ct256.sdc"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "constraint",
+      "check_id": "M26-Q023",
+      "evidence": {
+        "host_clock_mhz": 10
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "constraint",
+      "check_id": "M26-Q024",
+      "evidence": {
+        "host_period_ns": 100.0
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "constraint",
+      "check_id": "M26-Q025",
+      "evidence": {
+        "core_clock_mhz": 8
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "constraint",
+      "check_id": "M26-Q026",
+      "evidence": {
+        "core_period_ns": 125.0
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "constraint",
+      "check_id": "M26-Q027",
+      "evidence": {
+        "board_pinout": "unbound"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "constraint",
+      "check_id": "M26-Q028",
+      "evidence": {
+        "io_placement": "automatic_with_explicit_warning"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "synthesis",
+      "check_id": "M26-Q029",
+      "evidence": {
+        "cell_types": {
+          "SB_CARRY": 291,
+          "SB_DFFER": 269,
+          "SB_DFFR": 215,
+          "SB_LUT4": 1389
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "synthesis",
+      "check_id": "M26-Q030",
+      "evidence": {
+        "num_cells": 2164
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "synthesis",
+      "check_id": "M26-Q031",
+      "evidence": {
+        "num_port_bits": 87
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "synthesis",
+      "check_id": "M26-Q032",
+      "evidence": {
+        "num_ports": 18
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "resource",
+      "check_id": "M26-Q033",
+      "evidence": {
+        "ICESTORM_LC": {
+          "available": 7680,
+          "used": 1693
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "resource",
+      "check_id": "M26-Q034",
+      "evidence": {
+        "ICESTORM_PLL": {
+          "available": 2,
+          "used": 0
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "resource",
+      "check_id": "M26-Q035",
+      "evidence": {
+        "ICESTORM_RAM": {
+          "available": 32,
+          "used": 0
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "resource",
+      "check_id": "M26-Q036",
+      "evidence": {
+        "SB_GB": {
+          "available": 8,
+          "used": 7
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "resource",
+      "check_id": "M26-Q037",
+      "evidence": {
+        "SB_IO": {
+          "available": 206,
+          "used": 87
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "resource",
+      "check_id": "M26-Q038",
+      "evidence": {
+        "SB_WARMBOOT": {
+          "available": 1,
+          "used": 0
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "timing",
+      "check_id": "M26-Q039",
+      "evidence": {
+        "achieved_mhz": 154.2495880126953,
+        "clock": "host_clk",
+        "constraint_mhz": 10,
+        "margin_mhz": 144.2495880126953,
+        "status": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "timing",
+      "check_id": "M26-Q040",
+      "evidence": {
+        "achieved_mhz": 29.93026351928711,
+        "clock": "core_clk",
+        "constraint_mhz": 8,
+        "margin_mhz": 21.93026351928711,
+        "status": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "warning",
+      "check_id": "M26-Q041",
+      "evidence": {
+        "error_count": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "warning",
+      "check_id": "M26-Q042",
+      "evidence": {
+        "warning_count": 1
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "warning",
+      "check_id": "M26-Q043",
+      "evidence": {
+        "warnings": [
+          {
+            "classification": "declared_target_package_with_unbound_board_pinout",
+            "code": "M26-W01-UNBOUND-BOARD-PINOUT",
+            "message": "Warning: No PCF file specified; IO pins will be placed automatically",
+            "retained": true,
+            "severity": "warning"
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "reproducibility",
+      "check_id": "M26-Q044",
+      "evidence": {
+        "byte_identical": true,
+        "output_id": "design.json",
+        "run_a_bytes": 2616239,
+        "run_a_sha256": "e78d7f1ac465f6277fbbc940b66c2fcd7468ee508048c867a93e17d64b88ac35",
+        "run_b_bytes": 2616239,
+        "run_b_sha256": "e78d7f1ac465f6277fbbc940b66c2fcd7468ee508048c867a93e17d64b88ac35"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "reproducibility",
+      "check_id": "M26-Q045",
+      "evidence": {
+        "byte_identical": true,
+        "output_id": "stat.json",
+        "run_a_bytes": 1368,
+        "run_a_sha256": "d849c364f3977c45d8f5adcc78086c6a6f28e41b9be37dc7aadb58718143d1fd",
+        "run_b_bytes": 1368,
+        "run_b_sha256": "d849c364f3977c45d8f5adcc78086c6a6f28e41b9be37dc7aadb58718143d1fd"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "reproducibility",
+      "check_id": "M26-Q046",
+      "evidence": {
+        "byte_identical": true,
+        "output_id": "design.asc",
+        "run_a_bytes": 3433982,
+        "run_a_sha256": "faf8d56ff83dd441118654deb834c84238cce1411f595f54db87f91d7845110b",
+        "run_b_bytes": 3433982,
+        "run_b_sha256": "faf8d56ff83dd441118654deb834c84238cce1411f595f54db87f91d7845110b"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "reproducibility",
+      "check_id": "M26-Q047",
+      "evidence": {
+        "byte_identical": true,
+        "output_id": "routed.json",
+        "run_a_bytes": 4535938,
+        "run_a_sha256": "4fdf5d092ec11602f8a7c32629d7cb8c0ac258562bc30c0774aeafea0f97983e",
+        "run_b_bytes": 4535938,
+        "run_b_sha256": "4fdf5d092ec11602f8a7c32629d7cb8c0ac258562bc30c0774aeafea0f97983e"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "reproducibility",
+      "check_id": "M26-Q048",
+      "evidence": {
+        "byte_identical": true,
+        "output_id": "nextpnr_report.json",
+        "run_a_bytes": 47504,
+        "run_a_sha256": "767f8c8ad6ab2bb50371a287900bc2e5eb83d804940e15680b563ed08412690a",
+        "run_b_bytes": 47504,
+        "run_b_sha256": "767f8c8ad6ab2bb50371a287900bc2e5eb83d804940e15680b563ed08412690a"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "tool",
+      "check_id": "M26-Q049",
+      "evidence": {
+        "nextpnr": {
+          "engine": "nextpnr-ice40",
+          "engine_version": "nextpnr-0.11.1",
+          "package": "yowasp-nextpnr-ice40",
+          "package_version": "0.11.1.0.post826",
+          "version_output": "\"yowasp-nextpnr-ice40\" -- Next Generation Place and Route (Version nextpnr-0.11.1)"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "tool",
+      "check_id": "M26-Q050",
+      "evidence": {
+        "yosys": {
+          "engine": "Yosys",
+          "engine_git_sha": "38e001a6f",
+          "engine_version": "0.68",
+          "package": "yowasp-yosys",
+          "package_version": "0.68.0.0.post1208",
+          "version_output": "Yosys 0.68 (git sha1 38e001a6f, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "command",
+      "check_id": "M26-Q051",
+      "evidence": "M26-CMD-01-YOSYS",
+      "status": "PASS"
+    },
+    {
+      "category": "command",
+      "check_id": "M26-Q052",
+      "evidence": "M26-CMD-02-YOSYS",
+      "status": "PASS"
+    },
+    {
+      "category": "command",
+      "check_id": "M26-Q053",
+      "evidence": "M26-CMD-03-NEXTPNR",
+      "status": "PASS"
+    },
+    {
+      "category": "command",
+      "check_id": "M26-Q054",
+      "evidence": "M26-CMD-04-NEXTPNR",
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "M26-Q055",
+      "evidence": {
+        "evidence_type": "reproducible_tool_derived_declared_target_implementation"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "M26-Q056",
+      "evidence": {
+        "target_independent_fpga_preparation": "separate_m16_layer"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "M26-Q057",
+      "evidence": {
+        "physical_measurement_status": "not_a_physical_measurement"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "M26-Q058",
+      "evidence": {
+        "universal_physical_chip_claim": "not_made"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "M26-Q059",
+      "evidence": {
+        "board_ready_pinout_claim": "not_made"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "M26-Q060",
+      "evidence": {
+        "proxy_to_physical_conversion": "prohibited"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "M26-Q061",
+      "evidence": {
+        "protocol_monitor_policy": "nonfunctional_assertion_monitor_replaced_by_synthesis_stub"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "M26-Q062",
+      "evidence": {
+        "implementation_warnings_retained": true
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M26-Q063",
+      "evidence": "m26-declared-target-implementation-contract-v2.8.0",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M26-Q064",
+      "evidence": "m26-tool-command-provenance-v2.8.0",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M26-Q065",
+      "evidence": "m26-declared-target-implementation-report-v2.8.0",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M26-Q066",
+      "evidence": "m26-reproducibility-record-v2.8.0",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M26-Q067",
+      "evidence": "m26-declared-target-implementation-manifest-v2.8.0",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M26-Q068",
+      "evidence": "m26-declared-target-implementation-qualification-v2.8.0",
+      "status": "PASS"
+    },
+    {
+      "category": "manifest",
+      "check_id": "M26-Q069",
+      "evidence": "c26827b68e26925143254020f207e7f1a13c32fa436a62bc3ca99219637bae3a",
+      "status": "PASS"
+    },
+    {
+      "category": "closure",
+      "check_id": "M26-Q070",
+      "evidence": "declared-target implementation evidence is reproducible and closed",
+      "status": "PASS"
+    }
+  ],
+  "contract_digest": "2cc2a387bd07f16adc370bf5addcbbe9bed109c5bc73f9f0b5ad3f87fb2482f8",
+  "failed_count": 0,
+  "manifest_digest": "c26827b68e26925143254020f207e7f1a13c32fa436a62bc3ca99219637bae3a",
+  "milestone": "M26",
+  "overall_status": "PASS",
+  "passed_count": 70,
+  "provenance_digest": "25712889753eac60fd3e89ea9490e672d117fad1785e2e7d2429939fa1e7110b",
+  "qualification_digest": "803cdf7717d2bad3185a7f05a5297db10ecbca7d3874440f136e9094ce92bfad",
+  "report_digest": "d97860f7bdf7e1dc0def18e4b0d5393f06e5f265d7bc8973ae7d6021b4db7736",
+  "reproducibility_digest": "2df21f593c7175115a20116c959fe693f1bcbe72bcaad861b3face0994f4abf7",
+  "schema_version": "2.8.0",
+  "source_commit": "d83e23785d292adaaf419c31e51abb294ddf98f9",
+  "status": "PASS"
+}

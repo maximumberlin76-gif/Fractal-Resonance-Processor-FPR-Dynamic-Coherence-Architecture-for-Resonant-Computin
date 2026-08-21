@@ -1,0 +1,219 @@
+{
+  "artifact_id": "frp-m26-tool-command-provenance",
+  "commands": [
+    {
+      "argv": [
+        "yowasp-yosys",
+        "-ql",
+        "run_a/yosys.log",
+        "-p",
+        "read_slang -j 1 --ignore-assertions --ignore-initial --top frp_m26_declared_target_top -I rtl/m16 -I rtl/m22 -I rtl/m23 -I rtl/m26 rtl/m26/frp_m26_declared_target_top.sv; hierarchy -check -top frp_m26_declared_target_top; synth_ice40 -top frp_m26_declared_target_top -json run_a/design.json; tee -o run_a/stat.json stat -json"
+      ],
+      "command_id": "M26-CMD-01-YOSYS",
+      "run_id": "RUN_A",
+      "stage": "synthesis"
+    },
+    {
+      "argv": [
+        "yowasp-yosys",
+        "-ql",
+        "run_b/yosys.log",
+        "-p",
+        "read_slang -j 1 --ignore-assertions --ignore-initial --top frp_m26_declared_target_top -I rtl/m16 -I rtl/m22 -I rtl/m23 -I rtl/m26 rtl/m26/frp_m26_declared_target_top.sv; hierarchy -check -top frp_m26_declared_target_top; synth_ice40 -top frp_m26_declared_target_top -json run_b/design.json; tee -o run_b/stat.json stat -json"
+      ],
+      "command_id": "M26-CMD-02-YOSYS",
+      "run_id": "RUN_B",
+      "stage": "synthesis"
+    },
+    {
+      "argv": [
+        "yowasp-nextpnr-ice40",
+        "--hx8k",
+        "--package",
+        "ct256",
+        "--json",
+        "run_a/design.json",
+        "--asc",
+        "run_a/design.asc",
+        "--write",
+        "run_a/routed.json",
+        "--report",
+        "run_a/nextpnr_report.json",
+        "--sdc",
+        "constraints/m26/frp_m26_ice40_hx8k_ct256.sdc",
+        "--pcf-allow-unconstrained",
+        "--seed",
+        "26",
+        "--threads",
+        "1",
+        "--placer",
+        "heap",
+        "--router",
+        "router1",
+        "--ignore-rel-clk",
+        "--log",
+        "run_a/nextpnr.log"
+      ],
+      "command_id": "M26-CMD-03-NEXTPNR",
+      "run_id": "RUN_A",
+      "stage": "place_route_timing_resource"
+    },
+    {
+      "argv": [
+        "yowasp-nextpnr-ice40",
+        "--hx8k",
+        "--package",
+        "ct256",
+        "--json",
+        "run_b/design.json",
+        "--asc",
+        "run_b/design.asc",
+        "--write",
+        "run_b/routed.json",
+        "--report",
+        "run_b/nextpnr_report.json",
+        "--sdc",
+        "constraints/m26/frp_m26_ice40_hx8k_ct256.sdc",
+        "--pcf-allow-unconstrained",
+        "--seed",
+        "26",
+        "--threads",
+        "1",
+        "--placer",
+        "heap",
+        "--router",
+        "router1",
+        "--ignore-rel-clk",
+        "--log",
+        "run_b/nextpnr.log"
+      ],
+      "command_id": "M26-CMD-04-NEXTPNR",
+      "run_id": "RUN_B",
+      "stage": "place_route_timing_resource"
+    }
+  ],
+  "constraint_record": {
+    "bytes": 130,
+    "path": "constraints/m26/frp_m26_ice40_hx8k_ct256.sdc",
+    "raw_sha256": "fb14c501f2f568301d2697304cc69c721293e8ee888dc25fe4ecc6ea984e0957"
+  },
+  "contract_digest": "2cc2a387bd07f16adc370bf5addcbbe9bed109c5bc73f9f0b5ad3f87fb2482f8",
+  "determinism_controls": {
+    "locale": "C.UTF-8",
+    "python_hash_seed": 0,
+    "seed": 26,
+    "threads": 1,
+    "timezone": "UTC"
+  },
+  "milestone": "M26",
+  "provenance_digest": "25712889753eac60fd3e89ea9490e672d117fad1785e2e7d2429939fa1e7110b",
+  "schema_version": "2.8.0",
+  "source_commit": "d83e23785d292adaaf419c31e51abb294ddf98f9",
+  "source_count": 17,
+  "sources": [
+    {
+      "bytes": 18532,
+      "path": "rtl/m16/frp_m16_pkg.sv",
+      "raw_sha256": "c20fe071e7c91b60ca0411b75d4cf762112d51abbd49dc2a5667d1d8c5d49152"
+    },
+    {
+      "bytes": 10560,
+      "path": "rtl/m16/frp_m16_scheduler.sv",
+      "raw_sha256": "af7713d739b769e8c16651b0e0d340906b6ec8ca6b401599ea4a79946e4033d7"
+    },
+    {
+      "bytes": 18290,
+      "path": "rtl/m16/frp_m16_request_lanes.sv",
+      "raw_sha256": "afa88b95838c0968d9db5395c9272155c61c792248e0f8bc29cf70354a2a862a"
+    },
+    {
+      "bytes": 17005,
+      "path": "rtl/m16/frp_m16_pending_routes.sv",
+      "raw_sha256": "09e11d150b3b6938820209ac0f2c4f8373ba9f7c6bf7e86fa3934dd9802a8430"
+    },
+    {
+      "bytes": 25909,
+      "path": "rtl/m16/frp_m16_active_neutral.sv",
+      "raw_sha256": "9a86ea7bdc2683effcda4fdb3e85026e5277967755659940820152a2f55a11a7"
+    },
+    {
+      "bytes": 20787,
+      "path": "rtl/m16/frp_m16_capacity_guard.sv",
+      "raw_sha256": "0547c30a698b8d8da0e7f5981d69bc464a93641bfc29c930e1cc6ea0782c302d"
+    },
+    {
+      "bytes": 18147,
+      "path": "rtl/m16/frp_m16_state_update.sv",
+      "raw_sha256": "4d2b8091dc3c852d86c8787abea38c181736c78b746cdfc3f83817a0f32999dd"
+    },
+    {
+      "bytes": 33684,
+      "path": "rtl/m16/frp_m16_core.sv",
+      "raw_sha256": "3b94f5caa5ee28da0060a38dd9b4ba4605ef5f86ac93f5425967e515ff1ebd23"
+    },
+    {
+      "bytes": 5586,
+      "path": "rtl/m22/frp_m22_csr_pkg.sv",
+      "raw_sha256": "0f3de8054e3704548088b035c43e993d194d5182a2ac1bc32cdad92663a11206"
+    },
+    {
+      "bytes": 16855,
+      "path": "rtl/m22/frp_m22_control_status_register_interface.sv",
+      "raw_sha256": "76c3d19cb6ed6070631f2f8d685f9fbffc05acb335609b3e57cc7a743522745d"
+    },
+    {
+      "bytes": 626,
+      "path": "rtl/m23/frp_m23_reset_release_sync.sv",
+      "raw_sha256": "bf55576554f8c42e55f0a835bc62ad56e43004b4b459a84ce6908372f882de85"
+    },
+    {
+      "bytes": 5127,
+      "path": "rtl/m23/frp_m23_csr_cdc_bridge.sv",
+      "raw_sha256": "f56e3d5c3d4c07ffb54bc0a4d2968be0bdb9fff37106826d854139da2f2f6078"
+    },
+    {
+      "bytes": 3174,
+      "path": "rtl/m23/frp_m23_interface_protocol_assertions.sv",
+      "raw_sha256": "3f9fe2383bb49dbdcfd0acf46ae85467715998743c60c32f4e3c1da0691d302c"
+    },
+    {
+      "bytes": 4711,
+      "path": "rtl/m23/frp_m23_hardened_integration_boundary.sv",
+      "raw_sha256": "0381bc56a3f3dbd49d3a3d73ba4ff18e4031fb491effad8029d324fb9ac604b3"
+    },
+    {
+      "bytes": 882,
+      "path": "rtl/m26/frp_m26_protocol_monitor_synthesis_stub.sv",
+      "raw_sha256": "b5d7a79ad7f174b42f262a79e6f76af0199ad8ba8ae4dc491f89324dc0c28a05"
+    },
+    {
+      "bytes": 1855,
+      "path": "rtl/m26/frp_m26_declared_target_top.sv",
+      "raw_sha256": "4f12873a8b00ef9bdc9ce0eaeaf92549c5e1867527e80d21bf80a79e5e3b3912"
+    },
+    {
+      "bytes": 130,
+      "path": "constraints/m26/frp_m26_ice40_hx8k_ct256.sdc",
+      "raw_sha256": "fb14c501f2f568301d2697304cc69c721293e8ee888dc25fe4ecc6ea984e0957"
+    }
+  ],
+  "status": "PASS",
+  "target_id": "ice40-hx8k-ct256-cells8",
+  "toolchain": {
+    "nextpnr": {
+      "engine": "nextpnr-ice40",
+      "engine_version": "nextpnr-0.11.1",
+      "package": "yowasp-nextpnr-ice40",
+      "package_version": "0.11.1.0.post826",
+      "version_output": "\"yowasp-nextpnr-ice40\" -- Next Generation Place and Route (Version nextpnr-0.11.1)"
+    },
+    "yosys": {
+      "engine": "Yosys",
+      "engine_git_sha": "38e001a6f",
+      "engine_version": "0.68",
+      "package": "yowasp-yosys",
+      "package_version": "0.68.0.0.post1208",
+      "version_output": "Yosys 0.68 (git sha1 38e001a6f, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)"
+    }
+  }
+}

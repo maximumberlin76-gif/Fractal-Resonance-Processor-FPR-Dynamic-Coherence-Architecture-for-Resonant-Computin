@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frp.example/schemas/m26/frp_m26_reproducibility_record.v2.8.0.schema.json",
+  "title": "FRP M26 reproducibility record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "source_commit", "contract_digest", "provenance_digest", "report_digest", "seed", "single_threaded", "compared_output_count", "matching_output_count", "mismatching_output_count", "outputs", "run_a_digest", "run_b_digest", "canonical_metrics_identical", "reproducibility_digest"],
+  "properties": {
+    "schema_version": {"const": "2.8.0"},
+    "artifact_id": {"const": "frp-m26-reproducibility-record"},
+    "milestone": {"const": "M26"},
+    "status": {"const": "PASS"},
+    "source_commit": {"const": "d83e23785d292adaaf419c31e51abb294ddf98f9"},
+    "contract_digest": {"$ref": "#/$defs/digest"},
+    "provenance_digest": {"$ref": "#/$defs/digest"},
+    "report_digest": {"$ref": "#/$defs/digest"},
+    "seed": {"const": 26},
+    "single_threaded": {"const": true},
+    "compared_output_count": {"const": 5},
+    "matching_output_count": {"const": 5},
+    "mismatching_output_count": {"const": 0},
+    "outputs": {"type": "array", "minItems": 5, "maxItems": 5, "items": {"type": "object", "additionalProperties": false, "required": ["output_id", "run_a_bytes", "run_b_bytes", "run_a_sha256", "run_b_sha256", "byte_identical"], "properties": {"output_id": {"type": "string"}, "run_a_bytes": {"type": "integer", "minimum": 1}, "run_b_bytes": {"type": "integer", "minimum": 1}, "run_a_sha256": {"$ref": "#/$defs/digest"}, "run_b_sha256": {"$ref": "#/$defs/digest"}, "byte_identical": {"const": true}}}},
+    "run_a_digest": {"$ref": "#/$defs/digest"},
+    "run_b_digest": {"$ref": "#/$defs/digest"},
+    "canonical_metrics_identical": {"const": true},
+    "reproducibility_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

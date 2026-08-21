@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frp.example/schemas/m26/frp_m26_declared_target_implementation_manifest.v2.8.0.schema.json",
+  "title": "FRP M26 declared-target implementation manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "source_commit", "workflow_path", "source_count", "sources", "upstream_dependency_count", "upstream_dependencies", "artifact_count", "artifacts", "artifact_set_digest", "manifest_digest"],
+  "properties": {
+    "schema_version": {"const": "2.8.0"},
+    "artifact_id": {"const": "frp-m26-declared-target-implementation-manifest"},
+    "milestone": {"const": "M26"},
+    "status": {"const": "PASS"},
+    "source_commit": {"const": "d83e23785d292adaaf419c31e51abb294ddf98f9"},
+    "workflow_path": {"const": ".github/workflows/frp-m26-declared-target-implementation-evidence-workflow.yml"},
+    "source_count": {"type": "integer", "minimum": 10},
+    "sources": {"type": "array", "minItems": 10, "items": {"$ref": "#/$defs/file"}},
+    "upstream_dependency_count": {"type": "integer", "minimum": 15},
+    "upstream_dependencies": {"type": "array", "minItems": 15, "items": {"$ref": "#/$defs/file"}},
+    "artifact_count": {"const": 4},
+    "artifacts": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"$ref": "#/$defs/file"}},
+    "artifact_set_digest": {"$ref": "#/$defs/digest"},
+    "manifest_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "file": {"type": "object", "additionalProperties": false, "required": ["path", "bytes", "raw_sha256"], "properties": {"path": {"type": "string", "minLength": 1}, "bytes": {"type": "integer", "minimum": 1}, "raw_sha256": {"$ref": "#/$defs/digest"}}}
+  }
+}

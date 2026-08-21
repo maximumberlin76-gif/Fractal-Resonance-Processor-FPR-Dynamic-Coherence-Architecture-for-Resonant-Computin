@@ -1,0 +1,61 @@
+{
+  "artifact_id": "frp-m26-reproducibility-record",
+  "canonical_metrics_identical": true,
+  "compared_output_count": 5,
+  "contract_digest": "2cc2a387bd07f16adc370bf5addcbbe9bed109c5bc73f9f0b5ad3f87fb2482f8",
+  "matching_output_count": 5,
+  "milestone": "M26",
+  "mismatching_output_count": 0,
+  "outputs": [
+    {
+      "byte_identical": true,
+      "output_id": "design.json",
+      "run_a_bytes": 2616239,
+      "run_a_sha256": "e78d7f1ac465f6277fbbc940b66c2fcd7468ee508048c867a93e17d64b88ac35",
+      "run_b_bytes": 2616239,
+      "run_b_sha256": "e78d7f1ac465f6277fbbc940b66c2fcd7468ee508048c867a93e17d64b88ac35"
+    },
+    {
+      "byte_identical": true,
+      "output_id": "stat.json",
+      "run_a_bytes": 1368,
+      "run_a_sha256": "d849c364f3977c45d8f5adcc78086c6a6f28e41b9be37dc7aadb58718143d1fd",
+      "run_b_bytes": 1368,
+      "run_b_sha256": "d849c364f3977c45d8f5adcc78086c6a6f28e41b9be37dc7aadb58718143d1fd"
+    },
+    {
+      "byte_identical": true,
+      "output_id": "design.asc",
+      "run_a_bytes": 3433982,
+      "run_a_sha256": "faf8d56ff83dd441118654deb834c84238cce1411f595f54db87f91d7845110b",
+      "run_b_bytes": 3433982,
+      "run_b_sha256": "faf8d56ff83dd441118654deb834c84238cce1411f595f54db87f91d7845110b"
+    },
+    {
+      "byte_identical": true,
+      "output_id": "routed.json",
+      "run_a_bytes": 4535938,
+      "run_a_sha256": "4fdf5d092ec11602f8a7c32629d7cb8c0ac258562bc30c0774aeafea0f97983e",
+      "run_b_bytes": 4535938,
+      "run_b_sha256": "4fdf5d092ec11602f8a7c32629d7cb8c0ac258562bc30c0774aeafea0f97983e"
+    },
+    {
+      "byte_identical": true,
+      "output_id": "nextpnr_report.json",
+      "run_a_bytes": 47504,
+      "run_a_sha256": "767f8c8ad6ab2bb50371a287900bc2e5eb83d804940e15680b563ed08412690a",
+      "run_b_bytes": 47504,
+      "run_b_sha256": "767f8c8ad6ab2bb50371a287900bc2e5eb83d804940e15680b563ed08412690a"
+    }
+  ],
+  "provenance_digest": "25712889753eac60fd3e89ea9490e672d117fad1785e2e7d2429939fa1e7110b",
+  "report_digest": "d97860f7bdf7e1dc0def18e4b0d5393f06e5f265d7bc8973ae7d6021b4db7736",
+  "reproducibility_digest": "2df21f593c7175115a20116c959fe693f1bcbe72bcaad861b3face0994f4abf7",
+  "run_a_digest": "202cef09b394c0cd7229927180d1de9912fa7a09c4e5c059f7e7b6bd07f65a51",
+  "run_b_digest": "bec3f6935b507ce25594f92d1d8ee9aed21a8a80491b4eff783df87c2630ce7a",
+  "schema_version": "2.8.0",
+  "seed": 26,
+  "single_threaded": true,
+  "source_commit": "d83e23785d292adaaf419c31e51abb294ddf98f9",
+  "status": "PASS"
+}

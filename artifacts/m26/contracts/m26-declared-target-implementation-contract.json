@@ -1,0 +1,68 @@
+{
+  "artifact_id": "frp-m26-declared-target-implementation-contract",
+  "contract_digest": "2cc2a387bd07f16adc370bf5addcbbe9bed109c5bc73f9f0b5ad3f87fb2482f8",
+  "declared_constraints": {
+    "board_pinout": "unbound",
+    "core_clock_mhz": 8,
+    "core_period_ns": 125.0,
+    "host_clock_mhz": 10,
+    "host_period_ns": 100.0,
+    "io_placement": "automatic_with_explicit_warning",
+    "sdc_path": "constraints/m26/frp_m26_ice40_hx8k_ct256.sdc"
+  },
+  "declared_target": {
+    "cells": 8,
+    "device": "iCE40HX8K",
+    "family": "Lattice iCE40 HX",
+    "package": "CT256",
+    "request_lanes": 2,
+    "target_id": "ice40-hx8k-ct256-cells8",
+    "top_module": "frp_m26_declared_target_top",
+    "top_source": "rtl/m26/frp_m26_declared_target_top.sv"
+  },
+  "evidence_boundary": {
+    "board_ready_pinout_claim": "not_made",
+    "evidence_type": "reproducible_tool_derived_declared_target_implementation",
+    "implementation_warnings_retained": true,
+    "physical_measurement_status": "not_a_physical_measurement",
+    "protocol_monitor_policy": "nonfunctional_assertion_monitor_replaced_by_synthesis_stub",
+    "proxy_to_physical_conversion": "prohibited",
+    "target_independent_fpga_preparation": "separate_m16_layer",
+    "universal_physical_chip_claim": "not_made"
+  },
+  "immutable_core": {
+    "active_neutral_state": 0,
+    "authoritative_rtl": "rtl/m16/frp_m16_core.sv",
+    "balanced_ternary_notation": "-1/0/1",
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ]
+  },
+  "milestone": "M26",
+  "release": "FRP v2.8.0",
+  "required_scope": [
+    "declared_implementation_target",
+    "declared_tool_and_version",
+    "declared_constraints",
+    "synthesis_command_provenance",
+    "timing_command_provenance",
+    "resource_report_provenance",
+    "implementation_warnings",
+    "result_digests",
+    "reproducibility_records",
+    "target_independent_fpga_preparation_separation",
+    "physical_measurement_separation"
+  ],
+  "schema_version": "2.8.0",
+  "source_commit": "d83e23785d292adaaf419c31e51abb294ddf98f9",
+  "source_set_digest": "8509a063ec740f76d8a679be41ec9c53f9a9556ef06a86cd4c75075ff681e807",
+  "status": "PASS",
+  "workflow_path": ".github/workflows/frp-m26-declared-target-implementation-evidence-workflow.yml"
+}

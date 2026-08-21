@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frp.example/schemas/m26/frp_m26_declared_target_implementation_report.v2.8.0.schema.json",
+  "title": "FRP M26 declared-target implementation report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "source_commit", "contract_digest", "provenance_digest", "target_id", "synthesis", "implementation", "diagnostics", "raw_outputs", "implementation_result", "evidence_classification", "report_digest"],
+  "properties": {
+    "schema_version": {"const": "2.8.0"},
+    "artifact_id": {"const": "frp-m26-declared-target-implementation-report"},
+    "milestone": {"const": "M26"},
+    "status": {"const": "PASS"},
+    "source_commit": {"const": "d83e23785d292adaaf419c31e51abb294ddf98f9"},
+    "contract_digest": {"$ref": "#/$defs/digest"},
+    "provenance_digest": {"$ref": "#/$defs/digest"},
+    "target_id": {"const": "ice40-hx8k-ct256-cells8"},
+    "synthesis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["num_ports", "num_port_bits", "num_cells", "cell_types"],
+      "properties": {
+        "num_ports": {"const": 18},
+        "num_port_bits": {"const": 87},
+        "num_cells": {"const": 2164},
+        "cell_types": {"const": {"SB_CARRY": 291, "SB_DFFER": 269, "SB_DFFR": 215, "SB_LUT4": 1389}}
+      }
+    },
+    "implementation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["utilization", "clocks", "timing_status"],
+      "properties": {
+        "utilization": {"type": "object", "minProperties": 6},
+        "clocks": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "object", "required": ["clock", "constraint_mhz", "achieved_mhz", "margin_mhz", "status"], "properties": {"clock": {"enum": ["host_clk", "core_clk"]}, "constraint_mhz": {"type": "number", "minimum": 1}, "achieved_mhz": {"type": "number", "minimum": 1}, "margin_mhz": {"type": "number", "minimum": 0}, "status": {"const": "PASS"}}}},
+        "timing_status": {"const": "PASS"}
+      }
+    },
+    "diagnostics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["warning_count", "error_count", "warnings"],
+      "properties": {
+        "warning_count": {"const": 1},
+        "error_count": {"const": 0},
+        "warnings": {"type": "array", "minItems": 1, "maxItems": 1, "items": {"type": "object", "required": ["code", "severity", "message", "classification", "retained"], "properties": {"code": {"const": "M26-W01-UNBOUND-BOARD-PINOUT"}, "severity": {"const": "warning"}, "message": {"const": "Warning: No PCF file specified; IO pins will be placed automatically"}, "classification": {"const": "declared_target_package_with_unbound_board_pinout"}, "retained": {"const": true}}}}
+      }
+    },
+    "raw_outputs": {"type": "array", "minItems": 5, "maxItems": 5, "items": {"$ref": "#/$defs/output"}},
+    "implementation_result": {"type": "object", "required": ["status", "source_commit", "toolchain", "target", "constraints", "run_count", "runs", "reproducibility", "implementation_result_digest"]},
+    "evidence_classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["implementation_tool_evidence", "timing_values_are_tool_derived", "resource_values_are_tool_derived", "physical_measurements", "board_pinout_bound", "universal_chip_claim"],
+      "properties": {
+        "implementation_tool_evidence": {"const": true},
+        "timing_values_are_tool_derived": {"const": true},
+        "resource_values_are_tool_derived": {"const": true},
+        "physical_measurements": {"const": false},
+        "board_pinout_bound": {"const": false},
+        "universal_chip_claim": {"const": false}
+      }
+    },
+    "report_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "output": {"type": "object", "additionalProperties": false, "required": ["output_id", "bytes", "raw_sha256"], "properties": {"output_id": {"enum": ["design.json", "stat.json", "design.asc", "routed.json", "nextpnr_report.json"]}, "bytes": {"type": "integer", "minimum": 1}, "raw_sha256": {"$ref": "#/$defs/digest"}}}
+  }
+}
