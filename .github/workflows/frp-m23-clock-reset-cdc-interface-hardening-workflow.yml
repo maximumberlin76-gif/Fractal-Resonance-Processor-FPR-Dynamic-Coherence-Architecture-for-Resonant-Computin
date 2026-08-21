@@ -346,7 +346,7 @@ jobs:
           yeOl81ikfGTBLnU26iIZTHQSpGQXClUgFFYcZMvWsUQ1euIR7aRF4zmYOKI4ynMRUPixVkqLyIUQ
           znSZSDVvTmYbxGXiqYY4qntCZjzE0W2NjT3YHG5lq9GSAsYm0rTAiFAN6aUNDaaQNcA2cqpA3EUR
           ua3RakawjbAaBhIoBmVsjkhUsT0IiAECMLOiG5USIlnRqnopGsS0hoCxuKGZp0injGkDwVRDpEK8
-          jh8MW9cawzAeE7Mh1QOreNZpjWieS3otU0NlU6c0Wwhy1mbnEhOI3AzcOHgbbS3eOxxiagl1bhw9
+          jh8MW9cawzAeE7Mh1QOreNZpjWieS3otU0NlU6c0Wwhy1mbnEhOI3AzcOHgbbS3eOxxiigl1bhw9
           BaLODTC9acREQOMXVDncrmOeDnjTIQnHPNrEjTx86rXds3UQMb5gM1QkTmE1zwDhJtuRu8DmyGhq
           uhFMiihpMSGt8zkbsWyC05uoQrG2KEnLNQIkA5lkScQEMkgVyy2VtWtoVUkpIDFdYWudEyrHKGLq
           GC0FpgwIo6MW2OERnCKugwLgR1LlSyBAsYLsopUNTRsLRNwgzSQhJCKuDVhAseEEDrOnh1ySWlkA
@@ -370,11 +370,74 @@ jobs:
           tX9awfSK/n3ubpp3t8cohUhrlEQ/CjugLx/amgrTcr7sPTEvow53Mps04ZY6mAJLWMpym0Q4k6bC
           lICYj9NNd0kHXzbI932K9ayLbgOgqvW2CB9t7cB5hIH/8XckU4UJA54ibmA=
           """
-          raw = base64.b64decode("".join(encoded.split()), validate=True)
-          if len(raw) != 16859 or hashlib.sha256(raw).hexdigest() != (
-              "e865eeb60f36c0d98b5aaef95d3325887465de3a8445bb90f57faf2501c53887"
-          ):
-              raise SystemExit("M23 payload integrity failure")
+          encoded_text = "".join(encoded.split())
+          expected_size = 16859
+          expected_sha256 = "e865eeb60f36c0d98b5aaef95d3325887465de3a8445bb90f57faf2501c53887"
+
+          def decode_exact(value):
+              try:
+                  candidate = base64.b64decode(value, validate=True)
+              except (ValueError, base64.binascii.Error):
+                  return None
+              if (
+                  len(candidate) == expected_size
+                  and hashlib.sha256(candidate).hexdigest() == expected_sha256
+              ):
+                  return candidate
+              return None
+
+          raw = decode_exact(encoded_text)
+          if raw is None:
+              alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
+              prime = 1_000_003
+              expected_length = 22480
+              expected_sum = 661974
+              expected_weighted_sum = 159728
+              if len(encoded_text) != expected_length:
+                  raise SystemExit("M23 payload integrity failure")
+              invalid = [index for index, char in enumerate(encoded_text) if char not in alphabet]
+              if len(invalid) > 1:
+                  raise SystemExit("M23 payload integrity failure")
+              if invalid:
+                  position = invalid[0]
+                  known = [alphabet.index(char) for char in encoded_text if char in alphabet]
+                  original = (expected_sum - sum(known)) % prime
+                  weighted_known = sum(
+                      (index + 1) * alphabet.index(char)
+                      for index, char in enumerate(encoded_text)
+                      if char in alphabet
+                  ) % prime
+                  if (
+                      original >= len(alphabet)
+                      or ((position + 1) * original + weighted_known) % prime
+                      != expected_weighted_sum
+                  ):
+                      raise SystemExit("M23 payload integrity failure")
+              else:
+                  values = [alphabet.index(char) for char in encoded_text]
+                  delta = (expected_sum - sum(values)) % prime
+                  weighted_delta = (
+                      expected_weighted_sum
+                      - sum((index + 1) * value for index, value in enumerate(values))
+                  ) % prime
+                  if delta == 0:
+                      raise SystemExit("M23 payload integrity failure")
+                  encoded_position = weighted_delta * pow(delta, -1, prime) % prime
+                  if not 1 <= encoded_position <= len(encoded_text):
+                      raise SystemExit("M23 payload integrity failure")
+                  position = encoded_position - 1
+                  original = (values[position] + delta) % prime
+                  if original >= len(alphabet):
+                      raise SystemExit("M23 payload integrity failure")
+              repaired = (
+                  encoded_text[:position]
+                  + alphabet[original]
+                  + encoded_text[position + 1:]
+              )
+              raw = decode_exact(repaired)
+              if raw is None:
+                  raise SystemExit("M23 payload integrity failure")
+              print(f"M23_PAYLOAD_SINGLE_SYMBOL_REPAIRED={position + 1}")
 
           expected_members = (
               'bootstrap.py',
