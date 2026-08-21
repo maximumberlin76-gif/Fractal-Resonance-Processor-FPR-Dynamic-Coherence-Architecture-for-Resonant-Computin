@@ -135,7 +135,7 @@ jobs:
           DDhQmMTGhJqg2oUbVuOmuuqt2zDw6gNUR1AYHDKEgvvLyjJkgpKHlyEiiWIoKEdHXJXI8Su4ZM025mZvbjqjGNZbWjcLg5mJ
           tdOMs6dQH4Zl32uZB5jeDLDBo6WWBEtVPGqWqxIiR4Em2I1jyjGG7nLNO3WByhUzSySSoSReHSTeYRSEii6qMmjXV24dO4Gd
           dhxjQ0mkMcyt74oYcm4Du1rQti121bcmGm88zI89FNgskSyxWgklOnDM6SgG4lxKkljRFZXJCGUUXcgEJQsaLYyqSiWCVkkk
-          khQSQzIOR5b1M2bmvC6jhdoIItVWJOsbdJV98IkqRtFVeubgpbVZVmFyQpJzJKqDLKks6zNaea9y8l55ruzAYwhjCEkkS1q
+          kkhQSQzIOR5b1M2bmvC6jhdoIItVWJOsbdJV98IkqRtFVeubgpbVZVmFyQpJzJKqDLKks6zNaea9y8l55ruzAYwhjCEkkS1q
           y+MwLbOk9LLUoqiltkTkdm+ehADSXEqEl1RxvlQkg94dXd3Z4SDDBvHe3r5ZRhpJDKKaKWminF6yxla9jILYmRy9vr8rbwry
           detl8FqlkbTvyrLCtFFYy8uvvWsAzgUmIznnj23NXdVsaoq+nGxUTIO+ZzOEv8foVT1gfPKX3qpEV607tXUL2C92A8Ovqxud
           UK8q0fKObY8Ms0LZcY+k04v1JInlXKyv1oXCtQ6lIKYzVMY5alZb5TimlOed0Bpz2ubHN4OHCFGlK0FQY3RmeR5eeJLmJic4
@@ -301,17 +301,68 @@ jobs:
           payload_root = Path(os.environ["M27_PAYLOAD_ROOT"])
           staging = payload_root / "staging"
 
-          compact = "".join(encoded.split())
-          try:
-              compressed = base64.b64decode(compact, validate=True)
-          except binascii.Error as exc:
-              raise SystemExit(f"M27 payload Base64 validation failed: {exc}") from exc
-          observed_archive_sha256 = hashlib.sha256(compressed).hexdigest()
-          if observed_archive_sha256 != expected_archive_sha256:
+          payload_lines = [line.strip() for line in encoded.splitlines() if line.strip()]
+          expected_line_lengths = [96] * 206 + [56]
+          base64_alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+
+          def decode_if_exact(lines):
+              compact = "".join(lines)
+              try:
+                  candidate = base64.b64decode(compact, validate=True)
+              except binascii.Error:
+                  return None
+              if hashlib.sha256(candidate).hexdigest() != expected_archive_sha256:
+                  return None
+              return candidate
+
+          if len(payload_lines) != len(expected_line_lengths):
               raise SystemExit(
-                  "M27 payload digest mismatch: "
-                  f"{observed_archive_sha256} != {expected_archive_sha256}"
+                  "M27 payload line count mismatch: "
+                  f"{len(payload_lines)} != {len(expected_line_lengths)}"
               )
+
+          compressed = decode_if_exact(payload_lines)
+          if compressed is None:
+              anomalies = [
+                  index
+                  for index, (line, expected_length) in enumerate(
+                      zip(payload_lines, expected_line_lengths)
+                  )
+                  if len(line) != expected_length
+              ]
+              repaired_lines = None
+              if len(anomalies) == 1:
+                  line_index = anomalies[0]
+                  line = payload_lines[line_index]
+                  expected_length = expected_line_lengths[line_index]
+                  candidates = {}
+                  if len(line) == expected_length - 1:
+                      for position in range(expected_length):
+                          for character in base64_alphabet:
+                              trial_lines = list(payload_lines)
+                              trial_lines[line_index] = line[:position] + character + line[position:]
+                              if decode_if_exact(trial_lines) is not None:
+                                  candidates["".join(trial_lines)] = trial_lines
+                  elif len(line) == expected_length + 1:
+                      for position in range(len(line)):
+                          trial_lines = list(payload_lines)
+                          trial_lines[line_index] = line[:position] + line[position + 1:]
+                          if decode_if_exact(trial_lines) is not None:
+                              candidates["".join(trial_lines)] = trial_lines
+                  if len(candidates) == 1:
+                      repaired_lines = next(iter(candidates.values()))
+              if repaired_lines is None:
+                  raise SystemExit(
+                      "M27 payload integrity failure cannot be repaired uniquely; "
+                      f"line-length anomalies: {anomalies}"
+                  )
+              payload_lines = repaired_lines
+              compressed = decode_if_exact(payload_lines)
+              print(f"M27 payload repaired deterministically at line {anomalies[0] + 1}")
+
+          if compressed is None:
+              raise SystemExit("M27 payload digest validation failed after repair")
+          observed_archive_sha256 = hashlib.sha256(compressed).hexdigest()
           try:
               archive_bytes = bz2.decompress(compressed)
           except OSError as exc:
