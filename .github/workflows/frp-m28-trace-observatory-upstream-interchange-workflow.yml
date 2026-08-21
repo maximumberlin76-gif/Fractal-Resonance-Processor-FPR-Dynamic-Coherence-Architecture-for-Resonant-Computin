@@ -1,0 +1,574 @@
+name: FRP M28 Trace Observatory Upstream Interchange
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m28-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  qualify-m28:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      M28_PAYLOAD_ROOT: /tmp/frp_m28_creation
+      M28_SOURCE_COMMIT: 23e464206f85cd9473101d9221027ee33d9dd094
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out the selected main revision
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+          persist-credentials: true
+
+      - name: Set up exact Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install exact Python dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check -r requirements.txt
+          python --version
+          python -m pip show jsonschema
+
+      - name: Validate the immutable M27 to M28 source boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          git cat-file -e "${M28_SOURCE_COMMIT}^{commit}"
+          git merge-base --is-ancestor "$M28_SOURCE_COMMIT" HEAD
+          test "$(git show -s --format=%s "$M28_SOURCE_COMMIT")" = "Add M27 long-run stability and telemetry qualification"
+          test "$(git rev-parse "$M28_SOURCE_COMMIT")" = "$M28_SOURCE_COMMIT"
+
+          while IFS= read -r changed_path; do
+            case "$changed_path" in
+              .github/workflows/frp-m28-trace-observatory-upstream-interchange-workflow.yml|\
+              frp_m28_trace_observatory_upstream_interchange.py|\
+              schemas/m28/*|\
+              artifacts/m28/*|\
+              tests/test_frp_m28_trace_observatory_upstream_interchange.py)
+                ;;
+              *)
+                echo "Unexpected change after the exact M27 boundary: $changed_path" >&2
+                exit 1
+                ;;
+            esac
+          done < <(git diff --name-only "$M28_SOURCE_COMMIT"..HEAD)
+
+          test -f .github/workflows/frp-m28-trace-observatory-upstream-interchange-workflow.yml
+
+      - name: Validate and extract the complete M28 source payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import base64
+          import binascii
+          import bz2
+          import hashlib
+          import io
+          import json
+          import os
+          import shutil
+          import tarfile
+          from pathlib import Path, PurePosixPath
+
+          payload_rows = """
+          0000 96 64c0d120fd1ee5b25805abf09f72c34484bbaada3e41d4df0f38bb72385b1910 QlpoOTFBWSZTWWhJk74ATTX/oPzURAB8f///f///7/////4AAggIYD7+++6PQKB0DuV1zga2YroAZVds2MBoGWQ1soWbru13
+          0001 96 6c2164c29ed97012dd03f0fd5ed98bc4edd9b65805d02f59e0389957803ee511 Gnae7G9zjdpmS9Xe6MPJti0tnW7Tarz3uqpzu9uDerrozl47sTtnN02jcaIde9r3rbw9Wt4e9tNe2e6me9dc93ueKLTJXVGw
+          0002 96 2f1bb02f4df058c041704d243d85c1ae81d2f497573b7bdf46a790488ceb740d zpgqqR1ttNVppYqtT157eiHi9jXd2tnualeMC2FPYZVKXtmr3d6vcunYSIgIIETJpPQ0CaU/VPIYSbKPIm9U2QQNGmgGhkAS
+          0003 96 c8a71a2fe5ce3e94c8742845b503cc347ff6e487d1a2fe605eedd954a140cc4f mISQkaRppk0U2U9TQyZBo0AepoMRoAAAAA4aAAGg0GgMEANDTTIBoaNMgBiBoAEmkkIICZCepqZMpp6nqP1T1GnqHpDagyaG
+          0004 96 85650342627a6ea8970135f65c686ef65a481dfc2ed3c181bc17b5933cdd184f gGRoGgA0BEkQkwQwSZoINUx6pvQptTTRk00HpGKNpNHqAxNkh6mESQgQBNTBAT0mKj01GTIaBoAABoANADT7f/51FQmeMuC9
+          0005 96 fff6411b66f8e373c1612a573ecf331500cb22162fe544dbcf9656eb71db582d ZyqBRBn8jOHcZvLrKMgHMggiRChpBUCEQEDxPjr3/kuFQ/Ew/MP81/FhjPyPCcO8Rf9kLpOzCSHDIZ1XmEgUaQYM/GegRZtA
+          0006 96 324d13cf72e89354a7048dd2254947ff2bdda2b3c51487ccc227f38a65083853 xHrPtzFIitf+5A2+6C744Mm6HVxSnGGb3b8m4QqEVRyLNIbJ3L9F0icrWQWCk3ZUtpKybhlLvZtm2QSpq4ZGVFKaymRXUGUS
+          0007 96 a7af52a049c0b178fb868f626954cfb9e014abe54fa47dcc15836e2d2f5b4794 EgSXGk4sMqxvdyUGL/OECITGWMUlUBU3am8wNZBEm2MhOrICkFIJE/rayFQCxCKEGRCSa7bJ0a4nLyShqJDx2C8XrkN95rOa
+          0008 96 00115ec30d55c7ecb29019a4f1d04af42650c31d276c3d088c47b1af1e4513ed EikW7GFAsEMSdXc1PVnQZk1awFkFJ2ZTMeetZIQWHCFYiMUWTEURlViMQthbRtBZyreYOMNJszuS2/lWdh2Ajtaadw545KK4
+          0009 96 42234a0960b82320556c93daece1ea44dcf8e6aade4917491b5c3921d4e49962 hLuVqAO55KQxikqALIVjlkrAMZJpOxJ2uCaERIiJvZREGNvAZ17vM57b8ngMIQSWzIqZMaggiWs5NZGMB6WACwMZmUC2kLbI
+          0010 96 46b3a1d4971dcc27eaa93aeb001c4a5180ae2db54cbca768d92af756372bd32d pC1NbLqlObNGt07l24mCjxvh9vcoigD7Uhz8ZootaWysSfYcXCo0bUtUITs8fbkL/d8vs7S+72KCKAZgoom7rEDEQqEkhJA4
+          0011 96 5666a9ce3a32578a6ad0a90f2466984d9cb05647ce0e5db82dc184ef52e5124b fgdOkNJOP1PuXztH6ksRgJkaW2RWDLIeWzomQZqBUgW0WRJUBWD+uhJhAZGIxmUCraxlFCuYSwFMSjVkh3FCllGiO3lNnn8m
+          0012 96 6eb2aca0c687e7b6a084e5fd811277f4e206d28e48309fc633d2266eae7e6996 2sIQ+ye6J7B+U6cHEJ1ZJSpY2wFPuUzAolLKfTSxMQpgnTyTj+rzOv4f87+P75ozbLpz8ofkp+aj913jCMYEUD9/DJZkKPEL
+          0013 96 67e2f4d6940b9a73ca5b1e234fd8ff3396247fc3319fe0d58e5a3aaeddc205ee 1eTzBVhZjBVF9Ov4doJGz6F3RZuEIf3evo003ruHibAfaMyc5c7TsuVuzN8KCpAWeEQjRztJciYL0ox1gpXeqKZNYa/adwr+
+          0014 96 a1a6c1a7ec71420a4d50f088240fc5d5c5ef8cde066f4ae40b1e842ebeefcbdf /uSQSYBAXZRlHy3g2wR85lyj/T0PRCFtEpEIB/OVy+LuS6Gsygv/rexdtwBvfGKozjUZG0qb+4JePY4cPTvQdKnQRAdy7bCC
+          0015 96 d08eac8f3ac426264949324db8bb89a88fde0242b375580f2bbdfe43c555b94e BCrhoWPTkZsBaFPv7zAyc/V0yQVnNAqJsNipYllajfymHiWGoM678g4nPIbe29DsuUqMYYnXemidzLqarPoozXbGG/3UsymR
+          0016 96 f2603adee3ff8cd65b7ebbaaeb6d3a294d5a8d11f2113d2079cc82f3ea7ae1cb ttjHKW3jg13L2nfQN0dKfdKZwZve7atfUV0GjrUjmXU8L5QbBoU4xUkZugYfr81zDe+jblMtqqhXkASyPo16MkWMmHnmcyDX
+          0017 96 983c6be01abe2bae65924922496ec17f1dc622ca5d3b75480b188700aba8bc56 hW/HNefXBqqN73yVCz1UxC2YaaioZaG/cjv7BnFw/LCIblwfyvN+U9NZOSl8FzfA5FbXrP+1/lPA5KvBr0qI/X9p81boen3D
+          0018 96 3ddda5cc5062c415ffab9251ec65130319622554207c35e568560dc2c0dbf014 6K4upT0OeI5YqVQ9rUnXxHv7jnwtnybRWkG/bCFyLQu07EPTftGZgisJsxEC1WtGvtzMiJoRgPfcCbfEc52+O4TAW0G5Xn3X
+          0019 96 45983e8f06e9168a0b0800e1ed921b977f563359ef504491a64798f745c56383 heidiVKk7S2ascst3GKh3TtA418Nxe53w3ijEI3IX6dJA7hTGueDRoqOpzSXw5MUw+Bcw9bNlGqdL0RrSL4GT0MyWMhpaoX3
+          0020 96 f39c37010504548c022d1ae86f70469173310d233b6bd313b891ab2207910a3d Lfw8SWzddioXeNQB+i+uyDFbDGNNv8EemS1c6BQC3HkjVXRdxh+udkxQCyMr2Z5ko8V48iKNtqeeV6s10cm8pJd6FNfR3DsQ
+          0021 96 50de65054912e3a7441ef24019ca5f0f65b7aea56297a9c3949ee638310a5461 RdFRuWBFntpBIWgifV6o5GN+7l8FeW/xgBSR4JEg8LFqhuhxYXMSiO83YOttxqpZgDGgXwJrY0tadeBrJzXTqebc7RgSDS/E
+          0022 96 0871ec7594be1c48a9726cc338f120cdc9aeec10c657fcb40e168799a1efe1e0 2xkXFgcRFDs1KZPYtQO3mRteZXUqRCiCBoJNVxmg78aEm3LTJhoGJ8AAhiGxjNYgT1F6jpX7voQAdZ+f0Gr7xEdDp85pJ9fb
+          0023 96 8299559f39028356aad1373e48f35a9dc5d4c823890d7461bceb496e8be07327 WtoiO5oDX66SD8l6u16m7u1t7kf6zxX6V9X0nV9v2WT+08q7jtjxS2eaYOdHX41067naYvMHyOGUYiozCHI0ukPXx0vKgRq2
+          0024 96 0879f1f8f0ad9af04fc03a8219e932d5d7b062f14ccedbfc77cb409a8e7dbd76 0fBgw80QY/U579+19y3tiDdgV04+vfa1tykjelDCbqy3CylmsVlFf41EZ543x06js5Z4cYj1Mtrr3MprfpPBcYr1Xc9etnSL
+          0025 96 5ed175d7ff4d19158d222edbc9817e765f36bd4170dda1f1e89bfe93a337f2ee RSpF1WajFO9cMs82wHOmLVxDjU89dPltYtXo6rFd+Hinj59JCXjoyuhePLt7euK9fVxXOZeW+jXQ1LImZJS9SxXye3nMLWvV
+          0026 96 118ea91a4185c90ea39eb726f770630b07368e95098132499b93f4f97b528754 TV2h2rpWnVp9Hxoxy69llfEHryjbx7lv3cTjf1RaQoTEI4ktHfUrizQ9rXPWGF0fpsrcelKlkGQpI5kXz6UqXeHtGej00kcu
+          0027 96 9a96dadede4db97658af7f17dc5f34e125480cf2d6c47381a636b56f8809fdbe D3gwlohh9B2a79/l7OHltzOfOohwPm5pq33M3OJC3t0sMMoxJCQkqNkuT2ZZ2a95mnE52Dy0HLl10cUdi8i0VQV6Nxmn/OdA
+          0028 96 a045127a65b5c5880c5e134025d811d0b6a0a713300068c342d7b6eda6a21160 WEGCC6ZGppBorUd0immAgmF7luPoTWlc5d3hGEFVJUikdqbDpuJOKFZmJtOVxUlxkT1qElgLer3d7QZxXa4eqeZGT409kgoR
+          0029 96 17222c4ed8c52f984dde41c86023d3966dc3c92846d2ea335a47a1de8b3e0b53 YChH6KAVARIkZ6R2BXM5js41FyOubcqqMChPk3m0UzHSegZ6pV2smW2ZYEjXnaIJoaTvF40o5vtrVEG+abWrYrMAxDlou9do
+          0030 96 c650c10e829085abeec2bb0ed79bf5bacfa39d25ce57c32446c2c9acc2d140ae 12iGBfGIiUAb6Q9YkHyettH4hn2I7wJ8y2WVjcNFbAbqNjcW4kklbBaJaXREYlBakwVxqDkYoDVSQUMvMn3w/iVJBSVWVOYu
+          0031 96 4a43ebde418c968f5babde1ac40a531ab390d7f7adf76dc527a30dfc3fc41342 CaEjjcvAiUx4iF0nE00y43IpVUWGS1dTE8mS0lGxqpV41JVy1d04KVcKkCMkkigWFKow+dHbg1xlRIBGKD2m+NuVqtvB3ePD
+          0032 96 676b28bc8c50bae725f1f8dcebd475eee08ad18c7e9bddb1e8349760feec085e 33pu1TaG9kkhVFVHHMrBZy2UJOTk0CbLyeHA6QCXmqyjaNRMzvimVRZoHLKfCNS3FJhzHqQy8py2LUmWNqmNBKyrLpFhTlR0
+          0033 96 2172075b35f509fe5564697565ff41e8fdc6431fee63a35a24ed9ae4acb29477 pVVUjC8VFoxKxYoXmd90hq0lrJmrKpuYWLY1CmlKjxO02u2qgRm6VBSN7YRqiMqDHVbjqm8EruqJQd63EssnJyDw5CpeSoJC
+          0034 96 a8b3104343e4a8deaf99aa3710bf491f6f0b7173eb8c045214fa8783b9174085 QkJFmEmiKNKL0FlTDxYcVoFVcyprWkXERZHxdfn9vRHNnT2n/1vT1HguYkZ7vHpr3+iZpFLjtN6IvRtttr8kM1hg+qlNjEY7
+          0035 96 d2d323a37350c8447706edb0e0bd91cca5e7ad8bbc79202b68febcda2074d50e PYUzMdv2qq+hHrCgE0cBZpP+kArJ2EkSTHZAwjAOo9uNsxQSt+XWtB+ZNldzkm83h3Z6cd+1d+rQvQduxW7DvXBnnV9vpIbp
+          0036 96 dca5ec3b137ef66cb89379f18aa409a489c5871810e8f932668e9e584180cfcf irkglLC1l2XldtqTKy6wKncnb+bea10h+iSW1R48h0Co7XSHTjJ25moariEhLROzwauYXXN6dz6YTtymYah5UGuV247ykZ5M
+          0037 96 a0e8f7677b19f22da09c3c3065aa5708b0b66bc22f411265e176fb865812ea99 6F0FcO4+EFSaUpQieorJpvefXtto6Vw5OOtbVdUvi4RU6nBneefgEUhIVBuIWWqKSIJpi9Ms2+GnFhtgcY7cOCQNLlFzEuIa
+          0038 96 c283339fbbe9fb98ca8b4432f014206e7041c5bdfeb6e407eb51ffb55200b5b2 Z9fl/B7sPSDYfXXlNNIh/yMI1enqNbRb9FFSk98U4xB8V+OK7fB4TpkxOkbLwr1zRcfoD2M7KeIa9+sGHccWhQYgg0gOTyYa
+          0039 96 f71c2294dfe9438235ee95af1757fbe7385bd11078b69935a82c48a2314fd5bf e5UF7EnSKyag7OZvxoPXdYNfbZRQY/BvWcOkV2ZTDBg/zVUBzui3WaVPFz6+wd9M1ubI4BSbs5aXenVdtEtAbZijp3M/T4/J
+          0040 96 f592f36bd0f938f79aa85623a2b8623e845c18ee187a36a1adebc04315fac930 0s2z80yWerh1ZydDv3repeZ6sqOENuOUxJmr50gzQ66rBe4G3TY8rM+LwpwipHemxLIi41unJETqqS91JrlvqiduYxmsLip
+          0041 96 6d9f825154d534faaae49a01ec95e33e2f130a881eafe0f4768a75f8f7d60902 b1ZgfJMu+tXDqq6Bfnls7eqqnTjcm53S6tTLBj7QuHnpPgPbbz7rTKLjBFjXvWBYGndepfAwk+Cfuf3UqLxRBgjQnVDg4Bx5
+          0042 96 5222921fdb8d78d0a673bd4e64b94c58c074b420215fdec9ede0888e45b83e48 xYl+B5um1rJfh7yklvu+qIQnY4FpGF/PfkWgjmh0Djo+Ot6OvT0h1W9y9nzHCeB+dZiSNss6bd3vG2+uoyi7rwvM44qxpGdj
+          0043 96 b1a9a6e19cce9d32d7bc52e2af92010650592fc4f712fc0177f145857f24fe72 nww44Ojqp69l1T1FF3yn8OSmud37kWdvf9azwXkrsrlzvH5YP8qhug7nRUgrawReMoctl4gzBSI8Zw6a762y9cI26C5Vs2jf
+          0044 96 a0d4e927120c1ed48e29864b859a0654d4c5a15083cdeb921ca4e6920ee93239 f39aZ2TXbeHTaK2rk80k0k353aDzusLoJ8aBDQL3TmdUoqNulWtTbFTcYO65wInW2HRPss+frQXoht2VVVTNX5Xmw8w4pDsV
+          0045 96 ae04ab838474f24c64386b8da14ed950c4ca038836b271f84efe9c2e139f06c4 mNVHeXwSt2hTyhbdF0qqqqqq21VVVVVVVmYXFVBFSVJt/FD2XcGJj01+IO+ug4lqrtrVHsQHlksPKzpgcAkYMmIIlnh9fzmu
+          0046 96 a256177b18c2f20ab900addd53deb8d57fba544694269e6ec32af7f413a74f5a 5FgbG9lC0FkR5+WYMRB+aSYYyHfaz5xo0OQIOxPEdzA28hQXi91e1lmck+p/U5ZgN0hJA68o/U7C/wrTcM38K8XuA2d+paPO
+          0047 96 5741c72271c367e47376f1bb8bfe8ef80d7a8bf5596718f0ea6675c043637c98 glVdsbMlWUYPelMEXnCtW6bXBFjKnOJOummKSuLE2DYWMqM1gVtJxeuqVawJej0eH816pYeg+ND3CXDqw8BooRNAer2vyO+4
+          0048 96 3c9aedd904245396a6fe9cd2652bde4d01f7dae6808029812b6572f2f9e3da9e eqnyBeNF3Ff2X49D4O1zSP1GQ105CIrfJN5t8sM7/vbBtnU+xCf4gGsaQQkNNMrEYNURltuje1L91aj2BrFotui3qSDNNcVu
+          0049 96 5e922851bbd1cafda1bbc4a55d651fe804cb29298271236459b43bacf3b53bd8 tYnjFVatpXBVK7CrUyqigckXt5oqTfShpvz0p2H5NIPscnjX6/igRBUIUfs98Eva9NBV/BXPnFdsCoAR2JTj8Pry82STHev1
+          0050 96 ad002efdf8f9b50d675781c0321bc640baab505bce1c79bcb1b2dc7dcb473dba /TxEE2yMWQ7IaL9D3mDC+46menhwgeidj0xaDGL33WFaIiFFRthT62oKcvScvDg95s+O+vHs7eqqlcdIpSMQVS9CF4qmWbck
+          0051 96 6ed56ad0f81ddb9add2a7e6d50499208abe647b1d08251a1e2d0130a08a6eb94 ZyUKVcHB6GrVuiLC4xLE7Ip0NTxpDXtss/RvOjaAsiKi5xrMTG9BkOJfKyDqOQ8ZVI0udn5fhEV8vrMInp440Xae/zh9NzVk
+          0052 96 03a9a18fc29d6fed684786c6c7754006b926da8c347bcaf587c710da9a289536 TjddfT47ZG/6d+VjkQmCuWmRS+EQkVviivRax/HrdxznwQSnUDzNqRvdPcIA5/v8cVVyDsMiPysRP20A9BXIp8Z0lKZMEnge
+          0053 96 ed1d51c579b7c710fce12b0e01e447fb3f0634a914e1288dbbebc6e970371993 c4S9twTHEvgeNH1cqlGVxcwwNq7DM/Fqw0jX8f/h9IuwguEDU/zANZSEXk0GJdmfT9H7lbXXn7x9Zo6p6GX2nY+ivMToA6NA
+          0054 96 e38dc4609a542ce8d89f0ac305a1bd57c0bf08503282a36c3caf8398421d1c08 JSORKQUgqBEghRvG/06j3Hyu9B3RkQouTw9x4v2UtJ0JOo6HUSuLkMlCDQdDGsNtq82MpL6y5bl8JAaZGDBiMSMkSkk2PA/e
+          0055 96 8842af8913c6b4aba2f516e11255dbed96f166543360392475b6bd02aeba2a5b fVYumLD5neVxE9awQ9QEHr6GZvLusRHiQBT3EjCRVA+JEH0QwGhwIeBb1k7jBGWAOx5hjPlXgw/Dp8/3oRPXEKz+N1i8Xoh2
+          0056 96 57a91c555d5f96f61191a4ad208907f52cfbc279414f88990707ce1f4f8869c5 +TFkoQb9xB0qpI1PGftL6p6uzs+P0Fxp9PU7n4612G6v0+vE+u272dYh8CEBMwkcwvCDqYbM370wSrfX0HA62E9fK7IncF2i
+          0057 96 998c85176ca8fe620a81215a17f0fef5bedfd9c80a60dfdd721fc1129c130855 ZnKAA4V7awlQFs5o82/PYMBbiGNSYh7plV7iOP60s/aQM7qQD6E4SAdPDf98yzhtQolO7NoJgiCtQjg7XEC959OaMvXTwPvr
+          0058 96 3d35f5a9b5aa0e021c8daf759689ea5ba14c58ddd4eb7dfafd6c8e415a82403f 610VfSj6mIf7ClESVUEQRkgiCCKxVYiAjCKMVgiRQBgiwYDJBiLFn42ECxIIpEiyBROh+3Oc7ppvgkvzfMfKYhtxNnuiJ+P8
+          0059 96 a8acc036f722e1a138d09d551dcd7389ccd7a61f9e3157a31558300aa5a45d37 qn/RET7QA/lCCsIpAIsB+5E9qKfX/h9Nsg+lQySCv80KID/ZRLOCYCpoA6zoBT4ujWfcom7+qJ4InKhFNIHiKhH4QIo7tJpO
+          0060 96 6c2aaf6d1e8a07b50ae0e442139cc3a6be53b6fe5cb687cbb1cd2da8b72ec709 H12wwqrf1/TGLmWQaIbSIBIDASKPBPp+/oqhvQgchHmAdE1FfwZ+9zehP8cesqAUhCH8AOKH2kBPyivSCwbioZB1pcDJMHtA
+          0061 96 6487057776857b36ca6d4da0a698584d78c646a662de0e130ff5c0eb48b0043e OKifCAZK3DuDkOvgB6YHNIWrm1SRVREVkFRVRRVRYHaekhJ8yCB2gwiURCoH4L+YoGuxsT3e+ryvH4Xvcw8qH3DcoD0JUGag
+          0062 96 b8aa0527a49f21f086c0a67aed517d2297442cc01e8817702412c976edbcde65 gVxEzaO+HcK4d3SvAUTLksqe4iaRGkB4onFXpC55wO3GISJESeUFxFO5LlwLcgLpdpp989MkIz/kt25DmBuDsHsV+iJvG4Hb
+          0063 96 961bc81d0c497c1fee20894c4b0ac394d6167abf033a122e51d640f1938b51e8 WQ1nrtUhjiQxMcy+ZAtVVpavtkGIMZCSIhANgA2CCDeyGcr0rqqd6pqAWV9oW5kFdUj8w3FAMAiJu89FTv0x263Soq09woWe
+          0064 96 10f27522add0e0a40b29aec5686bb89757bbfb1e240edacf1d0c03b31c0c6a2e GawFCpUvcAfYA9cU0vTBZuVsA2FNKP2DdQcQNSOIZIe0dwP3HUHwUO9AMkP5QTyE+AHiBqd32+FvfEJBCQ8vo8v07vEmvlR5
+          0065 96 b6c419b9b294a116c287a12f83053c2c2806cc00fbd752b60f7795065004a3bc y95a3y92LXPl5gJckew8EGgY1yN5zFUVimutKULWAwCXeHeO9yPg6zVj4A4APRAbmwFlE05sJGEiGAUI0kRgMTidAm7wMsa7
+          0066 96 8f67dca79492f78609ded930e8363bf41090ebf3f458db58f5584026538642d3 o27FCrmNsRXUbWlZiuYkU6SSTu9fedyz3aKfrUT3gHMD7hjMctNUOqhwV+ILAscd5v9VIZ1hxVk/SzMVIiyKCkRylBVtpK4s
+          0067 96 e56108fb8f51f8e057ee7db0d93581ebf9d9979e815a621088a93a409d539220 EXJEIc4aOQeMQwkndAGKlFGJANitLdRJcHXnNJOryVeV19d8sYMuAD03kgBISAUO9+ILzAuEW8ZEOR/dE6vDx8ZrDscF98LB
+          0068 96 1fe6833dad7c0c437177ea2e106519df44857c183098a01ac05276fe04e3bed2 CMZv/siajlTpR8gXQz8lE76B5Q+f8A+01fY55lnxFOQLsqJnU+YicYOrV7Px44eT9LZxcTL5LGLamq6SHIceCVVRKzkeKMyZ
+          0069 96 b33679a7c669aea7f1879930fbf5e14c1165d4f6b83315e26f058bf040955e58 WdUhpdq3hzASzZ79qbe9FTiL7o53XEhpfeJSEF/m7AIq3RKFME3w86K9YKfSDwWLWIe4vU1/CojQYExEVERnhlybgzIetNjm
+          0070 96 e2f968ce2000e61cf6b286dc36385baf17eb57265d9a29f4c359e9f370c07da1 C3o5s/dJNgBCJkH+o+n5/b8Py/6cMstsbeP077liqp5uqrQIB6oDvb+fQx3Vk0eFh7U9jFqB0T8Ak5P4UqHZjKG0QMeq+US5
+          0071 96 13db20ad44b496254b7d896a61b3fb78b4276eda800fa14f21baf7ed44c0dc01 njIGPh1fRdvas8gRTLNhcCBs+/BumUcL3ayCkN9t15eGEnwiyNwloyqqqqqqSDYVx4zCwUn1UHgv1+z0+8v86trlpWtRa4mD
+          0072 96 c450f772df50702133499a9dcd1d7c9012aea04810f4d03cebc5dae091aa6d8c crlzKwP6QGP8TCKMZpU2DaBuB5EJwcBBgH4FRaEtsTpIpl/yRdAwlFcA+/Od1ndKRxPETMHlqNuOKRiUjInHFI4pBuMRcUBB
+          0073 96 fba97b98a4f2118c56ef230089c8b129b7f0e8d9b1e46f73008014e3725c5ab8 azbbY2/wLtD1D+f+M5jPTUbKnZ5PZGH+0tfGzjCPevSkojDMj6yyXuiY/vr2TLPaxC1qzC5fKE10S9tsUvYzPu1jK8GQQTj8
+          0074 96 15c658d9f1d84865ee398d3f287db02d59f478c4fd9658ad8f4476b394cee59b kjK1hVGpNOLjchIcWW1KNtjVi4wpaxY2rVGUG19xEVSSYy0hWW47LGBYpbtUO2NVBEE27u+XMRSVfiGFqcjRAYvNu7Yk425K
+          0075 96 1f2a2814787ae076f48c283a9f503307ed841992bc7996bd17ada5cb1d2718a8 tWMcdtQsth6lQhBz6jjdNttJjkcgZx4hfdK6K5WALwWyvQG1zr1ZDwdhjG0gVZRfXcV9SJJJJGkcsBarSaHUth+rFKbbFc6a
+          0076 96 3c8952e0a1cec1b4fcadc0f0ccd629538fb6b5a87fcc16c33160f73f4978c6bb C5KNXa7xeF9/zTlh1LOb3JqtG0njlxohlPC5Uiw79G8uWbjxJE0ZCspAyQOJTRZaiU8+wGfSxTazuYTuNEnPs59/bqipEQVY
+          0077 96 52583a0670aa1d4d585ef79adaa489ed8b2d9bd7bb1147a5ccbe06e0119669b7 p17IoXLGCshrWwcXioIxG8pFznbiGa4YyyjyYdfMknwE9ndx18XxuKKqvsujOg44ljhSwSdej0HTyqs1Fjqn6ajN6oyAo0oi
+          0078 96 933b37bb444f1b13384d274c4cf2afeaf8ee0c1951f1a4fb0c9c75cb26403801 ceFTBuiZIZljcwrLc285trDQ3kHNYucbJFg0ajSlwXY1N+TsOlGHAa3lOZN5OW5Zxya1KYWxII5SxDFtGm3A4HBWmUdBIt2E
+          0079 96 db51c71970ab08cf21359b58810acf6268e64eefa95e734932e0154708e6c055 BojXHIOAuw7fmqPY1FyOK4zqro5pDnnu3FFRJRx4dS1NrGmo8QtGyBMLC5ZO+w3C/ySiR6ltQsZhGDEydaINGoHLmpRhxcI2
+          0080 96 d760b5efdac1fb150b843c43983f236ee4a01ff1411ee2c06b55a1322649917e 0mZbCZZJCDOdvvnFvosVN7Z0RWNCE9a9vAJlkPY6EhuwzEIuiF5Xyd9xv64j2nWrDiZi6Y3KHUsBbLECEd6FkDscD+Ffi1hy
+          0081 96 36596b21ccad35b455685295ee437ddbe9ed2290e7feda575b5a9588dadd7100 CgeWKAz5VpOKRkAhBPoYrICDUkWIlUhVKWpKgslZQr58hnAeXWcAboKBR+oA8kSR3rmMvdb+AH30h7RNV3lum5ZtQImCAnxg
+          0082 96 fa4b84e3e70549c3a92392b9722955ba2709753300abc5d37f9839affb113813 1RlPvESogWtZ7bjTZcaB2pn1k5Z/kAv7xhIJyKAbPd+LEMxh9CGQqOYipuFXjzAevYK9RrpQvMEs7NT3CBSrY7lDsh8XTClY
+          0083 96 f1a9698db928e5d0473133c8b5efbcc1d23620eab1df24bab74c7bde96cf3874 QwdgP51DI9yuNh3WSXE1w+7JrwYFLQdQrvYGoH8kA+y4UTKggmDGIrVsAdtDofCDQ0dIIgHSuozJA2SQXaGzOcA+dOsAy0iq
+          0084 96 aaf140409c99bc25191c20d608f3c0100354c06fc987c5cb5ed48ec1bf1ef366 ZG5dYoSJqIJGtFNjgiDEV46KQjIkbRpoGBACQRxY726FZ9iKSKgkUVBSICDAYxkUkhxsBrjjhNGkMYRoiygjLBJpCZEyIDBi
+          0085 96 17c63cd578cf0c9f97ad1f4ca8a22d1a16d0c787e4941d825165b57042bb33dd QWiXXvCCkkgGANoPBETNiqc+o6IXnTI4ZEluhh8bB7LRdF9Pwn2dx7a+lcT3Fa15+YO3t254GDokK2zxQ3Cw1qSRkYA83gKW
+          0086 96 0cafc1964ad81fb043fab2ef9c970e7e7a0cf77e09f22d7d3f3188f44b2a8d6c A1pyBqdEq6frVxEQp7LiGOgqVICziAjEMMpRIYoISz7XjPtlsJ2i9whgiuFjnOZExWiSyQBqH2HsOjHLaEaWgsiAkVGooo2k
+          0087 96 5a4b060d9a557e0afc34e701431d844fad3f1ee9b21a8aa38daa1209ef87252b sgJEtKyNsVYNG1kWyy1CSgUoQZWBIVBGIISshbYSySMqUiEIBemyaU8wbFx5+1FaTUwA0OZYutOAYINrdTwPsuh1TNPG0xd0
+          0088 96 328b9051d1619ed2a059c3bb8414521d0aaa5359772c5165a15928a24ea20713 cGMvDMthcNahCEJpmEyOyghw2Nd5c6nqWdolCLUIQGSEkUP3V/85ceA9+xnA3ZHMYvCICVMshmExAHVNpMkkrpgG2BE7yvUl
+          0089 96 1069e1c8e0a1199808eb86ae114ce815a6d7e8adbeab02681ecc1c69bf3962c1 WMU1ASXZs3C4YmMQKyAiHUnMTLQzdPehSGi7AqnDPW7FwGgWoCyuiQFahrzH1dVd0QIMWwRCQKZItIEIwgwksIMIDAWAoKMR
+          0090 96 56ad780b1d95f42d9c23f9ef73e721d21ba7e469e13a33e656c41a0b7a0ab9eb iDC0KSCAkwgUJMPDM14X1qO/2ihkZ8tINNhFh8TN9DNXI0yXMyMREHEmGSisWVrtjDAOAlLbA21BpSsNyUqNiRWC59h5xnee
+          0091 96 40d6f2bc8e9b461946bfb24c364392b8527463907fc633f87cd36a5c7f5b6c13 k95ZZNFqok1EmU6SULDqCUQdKKoIxRSCqWVpKQKrFRlAQdLMjrDEQKyrYBbBLkQv4RTo3hwN6BvDh7LEjP6YVLWxxgLM9MiZ
+          0092 96 24cc603376949679961a099924f0735823c3eea3d455232f005f57e00163199c ITbSqKqnw+JCB+4e08STCR9BCsc/Yh3CukkFCA3eAuIOxiqZHAU1QTj3f2aondJHBm0kBewdwUo+2CghsXGoorQsH0kCNL3v
+          0093 96 52e891465e616763bda1e58fc7ed5fb38865ccd30f8f5b01dec6c57d97c1db43 QbTcGoetcmhchEyyByylMYboHxsUuFPTr1EH1QiSREqA53mXijwXHEw19x5+2S1m7CgIhaUBPfrQmKIsJIPvVCFzqT8nihJT
+          0094 96 e8a9f163e29ac27b81abefdb3c5caa6e6afa64f359a0ff480152c131d6920b55 QgVtK5v8mnsHtKtffuLitVKtTubCXnQt0XPtG5VvyjOG/Q6nd8Z5eIVhuem7Rvww7LxvjeuU5F16AZFUKt8OV4FVG9nCG0GP
+          0095 96 e751ba635c04286b6dc699e852832178d8920c9e778393152d68ffa482316d74 m8zmbl3jE+biIrI+NeWnajFjLzsmhKDkqF0Q52Xit4I3BBHlhulStTL3WWmaEmo6k5QrmLbLSSV46KMQklQqg2o6Dv2H3vyz
+          0096 96 52cfbee44c2a71bc8efc01a37e5df7ad51510c9cdedfb087f840ffbfffdc7418 KziTrN9YXDmdJtOm1oKLKzdlTBWC60mWRMpSfjND2H4jJZiGr760YTRptsbSy9kVa5nanbNJoNok0IrEh36yHIdQQ4W7A3fM
+          0097 96 068609711f0a631be94cf1fa12a6ad7708bb87b779d93d842297c17276aaa7ba 0fc3vXDC2FDVMVUVQgrmQFyQZcDOkMI3bpGA0kmLt4RZAtdSDKzoHa6XFsZOKVcoTYMWMBlRXS+TijmFEKyupEKIYTBSELJl
+          0098 96 41b6b68b6e1fb7f4b04ab40c98e95122a6a55f2137c43760df6525552513eb17 SsqgI61rhuqJmGykwu8A6iA6H7XFdAVT7xGDjRBopgBpjQHnBbPDOaIuxvOSflfNMLt1McoKvZUdptMFmtMtttt8XMvGJWYW
+          0099 96 c6dabbbec61673004c0a5b9a717f6458bf1191ea7231b2be27027689acefd676 Asa5uobgyMkcJmLSfdOaHfBRLP4YhnD8k0lhEYLBbsQTOLAsgcAVT5fGgCV8wzHC8EBc3NSkShDoKXR/bdyUrwyIpgAJ1JYt
+          0100 96 47eebb44da70e91eb36e91e92a107895a8d956edb3aeea4880b92539ec244f07 5rZGwbYGMyHoPZ7V26tJqYIof29oDZ1dPLyW0NqlScDhZW5EpVLiNEuRlfPBYGeiG5kgF90D69gEDUIbZ6c3IqvmIeH5dC7w
+          0101 96 c1b22e2bd5be9e9a336c8128f907f66463408185f201c0fbc940d7f8e4d7df52 PidFFOAtngJZDFhk6uEqSKPTpiUa5zJ43QuGoBsVcHJE3APjxBcrMS1xHcvd4evxscXj+J0s7wTqIJwFgIPC5g6Wgxjkr7Nn
+          0102 96 598627577857498e6d4ff1ca14e0508bf03c7cb6298f7e307aa6e1645e701aab ETE0fK2qFHyVxUZZigW5O9Kq4o7JTI4IiLuQdeq5lhtLbKjxSCioihGlVDudYJHRczX7uSqK+r2HeHt6RBh7WChGDJKrFkhR
+          0103 96 5900bae7414244723279ad609cbc0662e97eb4486f9a28fcc4ea8a3d2fc31d28 Bawoha0rICh8SYTGlMhcUSJDJGRYUsCQWo70ZYulyxbChA3ikAQhIwgMGIuxZzflsIYUS4AaLyDpS54m/hXZ8FgPSQYfk63G
+          0104 96 8700f3d405686e5f6e066aac2b240a2e9a8c3b4dc57ff01b7f786c1bf95754f4 5fKzarGkc93CXgdhY0Dvp+Dz4JGMY2FyEi5MJZvRtuQyGPAfRZunuPXth2B6FgkWAyLIQgMkgqIDFBEVEkggCHqk6xh6SQNA
+          0105 96 c57c98f46b2c17bfd7621e93fe5778df830a43ecf839911c7d6cf942015d4f06 xVA+Y8TnsOZBDI1JyPznwAccVWl1wSkEMzmcWn75YuKnyPktgppKIwGMPP26aSSq4MF4vMaHdY0iBACJPEngd4WBt9waQlrN
+          0106 96 258e6bed69b150c547ce5dabea551d7fb983109f49ad4079bbc40fcabfef7ce2 93M1IQtT91fMCo9ZRt0cj4riZGLmWUYZLXJTIvfhihjzl7EjaeLKWtxFmobjrXKMIPn/dSAtVCP8V+qOjGxMsf6WqeKFHir8
+          0107 96 735fb766fb18a1dc354a80f7a0ac95d320f60eb79346063132b3d599576829b4 BXvgC+ShxGsogHU26EJttmbIAGwYUQg1LCI2bexs3YWiGGTs3YgPcC+AKxAGR70IEVoQMgyLlhAbpFBD2Fjtmq+FiQQ1xsaj
+          0108 96 8b1ad7ce55c822e54c92189619992beb6036df09578539d9502c186679509065 ua0ByrgHhBQ2SCHaoB32F8FHLJ5/GAEgtCIfeF5aA37dk6WkGRhJVQ+EkOFm5a0tc94oOUOIQVeZdpmO40FEhywaYMGJCEfN
+          0109 96 0c99213f1c50c348dd02a1b3581c1d574b90614704abadf36793ea1a126a5b92 QUJCaaQMkENyribYiEgEkgsNxG4qRWkAC2zw0nb5AeSIUsG6PeKlvUvdE5D1E5FAhgYkmI+C+BSHc8lvWITfFAUDs6BzGdJ6
+          0110 96 74248c13912c67f88ac84dce3cece08caeaa4383c97705d14b3894ac33194828 qS2EKfzbuAgb3TLjrvNVIE8u/APGJPnS9i31ael1q5LhVKYRvZkS3t5Im6IQiMgEgskUkIKsggEjT6jn6Nw9TAH32hDihoDz
+          0111 96 cdbc48fd8ecd2e190c457f9952923060813fe905849be702b3064e2708ff218f 6ZGQ3IqcEuDpc/QIBdU/AJ6xEcJcUvLwFD6+SPWLzdjy8a9OaaCGbB4OoGs9TSNKBu5LxV0InwgjmKGMBm1jERbJ3L+AIrDq
+          0112 96 4369058ef9168c9d7af2d66637e248cbbcc4c5595d08ddbf77a457ba7f301f41 YBrOYiD5nggey56k9KW5OIvOGxAToYxDoBDaEVgxcfjW7wkD5vI8fcHQYQogQxRgdGVBtSymMCiAGZp4j/RdNkP3Jy2Qh2xK
+          0113 96 104be8293455cc7ae4404809928167566c6c4d40f4f5a857e9bcfb01469ed20b sVAYdoFGT4EiQ+M7UpixjamvQhVoniBLAyMIxTIOVLklkCyL3wvojBDDgFU4D8Q3FKIWgqxD2wDtvTYD5wXXYVNFf0Low5+x
+          0114 96 2d023ae48037c7d3ced2f748f65ac9d4c26f227b3951ee3f336a603f8a05250f bHyAOvyFnqMWSQM4Wxtw7UOMdtl1bIBE3ilLADNSHxBx6XiHqeNxGlsV9pzKWyzR3h8aD5BQ7liDgWLBRRgUKIxPCgHgarRs
+          0115 96 d934b4492f47149d4687cc13aca98ef2dbc1635213638c9a5cd8c8150f3dbef3 CsEbbNvSQ2CewpYhWKSsWZQ+hjSsNQLxCZvyCIcz5HrIDxpAWIZbtdDD8PXc44KlRZHchN5mpURMzeiu7JN++AUpyzWCkAIC
+          0116 96 28c99edd97b6efe3d09e32bf720b1d7dc2c58db84dbf65272260265610e3daf0 2vldAxYE2BjUACDYECueRaoQLoBZHG5rHkV5eeQWBcipL2dAQ5CvFIbJZspQBzWgSjiBuzDlmTCzK2cYR0wBjER1gwYsFWYD
+          0117 96 2d5857146d0416bc961cb1450b203e9d609982da16317c42259bb186b7342d45 JVFjRgoItoR2GjksEhfvIE2RYaphtqQRMBEYTSLKgbMhltYKCz+OmoCwFK5BgkijBF2kYUaRJJpm0QpGQyJN8CwMghJ9p3TT
+          0118 96 f047a5a403e4fa700fa3f036c44be9a33c32a30d3b624652c15b00173c90a472 I00YAwSFiDwOvI3meNgGlN6hCQZAYmq0BrtqWEMgZYJmRll1IJqkIWXIjGRCSMQjEYEkPGU9Q0slsA7uWA0wpuQEgCQEHmQB
+          0119 96 0600a6aa2e303d5f71fe338938fe34f5e318517e29ac11f2dff278fb448cbee7 kBkkpiyOQcMGOmf43ChewDB3GehJqzJCINgSfAIMCdTIoOtpG4Y1EpFBSCMkFAFAWQZApHErWpIxENFhQDrEDFzCYgwEaAVL
+          0120 96 04de337ab79eeedbe26be4d4584bf3aad3d057b25a601da15af06635e7a56944 lBIQiWppSF4VIBFLIfiBTHJNT2bQKse0B6LxO4kgSM6p5wHoiYQkAiOO7xrX0UO3qB7iEgKQLreCFfIedELOc4ecS5fyqQDR
+          0121 96 ce12869c368d81b17c585fc7e31fdf19f4f7ad23812be2bdd48fc88e82b80b4c DtqCgXMxGSCkkkCQWRAjESRILBYyIMjDqwJRgANl+MMAYPPzykbaTLem8ENNKF0u586D8oipAVIC4yBR4hYShYG+Au3U8GbU
+          0122 96 9fcfef8fb834b420e9921ad71a68902f520f03e70242cd1ca6bfd258f66779ec kFKTLKDJBQEbObA0QIY1QMCSBDNSwuQoO7NI8YlapV0FMRQzeAd/weh4gZmRwkkkg8EDiQISgXKJIiSKIUKHtc4dQPOyBIAQ
+          0123 96 17bb4c1be0f1ca0e0d19a834e9e6d43ac540b763b3d5f06dfc4d68aaf439bd3c VTtlZD5ifj5gKbxwLvAVJ3vh0HB37Zx4y3oQ6YyMseTVAhtE0Akc+01EPN9lwGRQ6fV6K8jkTz4wrmc0h0lsCh7UjbGKQw0K
+          0124 96 18945efee51a4ffd074e65baaae58cf47314635829d002704e3e1de430756e24 MgLIfAw5aBbGsbLJsNPkCBlnljZDlz4T5gwkHkAfauE9wGZvFchYnvUKDTChxwJrqH3kQudQwo4wmWNlAmlRz83K9SYLaLz7
+          0125 96 db0cb33cff4fa2aa9ca432cd9f71bf443cb710e0ba77105078074e137cf31d03 Nl2FqtYfGPpvhamNVVaTMDkvu4eXeglIeeEydjNR7HMgQR34H+VRd+JdekIYSpIsONmzYwEJqJaOjSgUERNho0xsEVJEYBIQ
+          0126 96 dec2ac9f2267f13a60795da04317a32437922606ba47056c01af966e77c23b12 ZFArQWCKgKAkZ3DEEEYtZWUkAUJuaoZhhAwUggshmhLJIIKTAYPryUM2Ldh0GUCFkPugyQIwRQPqh3eweh9aRYQhCSSMIwFI
+          0127 96 6052c33bfcc2eec3ca952e34494736710546424ead01a1e06e66b3b7460209ce yIxBgn6zTz6cDBCMOk7kB+TStSIRaFtWWJvTfHbvY7oxfMBpF2gKnWEKEISwOrCwYyMiigjEUQqAR7NKPstReqWnwDZAjtyF
+          0128 96 68c68d9bfc5f9cfb0904b4ef0fc4d86af0070b35ec164fe7fe9cc232465beea3 WNkWAdp35PcyF77LdpmqYjO+SqJIxTwTrKMrhoxQLhkxkvRVQppmIVceSjxinMB+CdHITbY0JIBtORvtkt2QyyaEgtPKImCX
+          0129 96 f3ec0da73d8cc4015652a6a4b0d699dd8799af28bc4c167240808214974534bc 22C5moRaT5QXDiqpSrgITAFES8X/aDU5YT3sDMnJeynPonMHUvfZw3JMm64fMcAsxipEN3sJz8taJdgboSNtjAMOtBvfcVDY
+          0130 96 389f93792bf6e2b21940932cb3c3d2cf3804aae8fc40841cf3edb9d20ef8a407 0OsKk7lHDgyqwkNpDFxeUNWlAPxQDouCyJ73qBMUbQnOAEgRV/P2Bc+oGe5TfzrqQ6Q82qkIskFWAqsFdISwtULtVY2Cic+k
+          0131 96 76c4042543d196c65113f7122eff04db4bd984d25465a70bbb237eaabd2b9643 B9aCPsG5bconQD48oKpIEDpCMSRkiEOl1aEPJC4liLYQSARaA7QAD1cufUevEPAmMZ7Q2X1PoA5rsIRk0ECaJuLNxq2owWNh
+          0132 96 6442e910b1ec4fd297c86c69a3a2268ceee5319138613cfda7e7df6ed6d66fc6 Wyi1jBVbKiWCxkKhUGRC0lYMtjYCktCkLIMkpLJUCWFkLCDGgyFmf4iefvKe/Pf8xwI8/ovBvvd1T0TZizi2Xor+wV8YvE6O
+          0133 96 24a6249f848b622f7d022ac7392c6bdd47b0e42f4e5e52d25dcd9a7a97f7a82f qWntXXTqxNHYXbkmiS4gnGbPrRDYjEPjZrOIOy6lSGcKEH2aBBmOjOrcwVWhK10uLYrQqFBidyZLLtkcMxESzRMMEUpQSlCh
+          0134 96 8ee25f486218299b86e836573ce0c66bf4199286b949c6ed14fc3fd02c953264 GmgiLxXvyCCtCzy4aIW6qXsWtfFESkTcal/bmXuOI8ddF0XTQzWJ8JUBvkbcRauOOp0njwUHjIIbqNwSQeSsrfNeOeOQsQep
+          0135 96 6fce2947c0cd7e008028b309f014757dad2ea1b997969a0d335baf2e6cf6d8fe 9Xkz6OLMglSEIVanQqEi2zDr1M1a66NOrb2cdnAu0gw3Q1JaZ4avjp9haVDucXLwvHSQsijy/gpXY33Tg+1fJ9M8vB7R8YOd
+          0136 96 5331366862b7bf61a981142bbc6e725d5892f381f28a4a744ffe59b5f10339b2 yn0JCF/aXdYuJPpA/DBzA+vEMRqkR9SksDGhnhB7ZxKFFINpJzFQyQWDNqGMJnrOKYx4O74vZ5QCF5TGgwQpEj9m2clVkdyX
+          0137 96 ae009c3dd6b6b9a6241f78d17209b25e27f43da50369d68a256c5279aac5fb96 VDVLhzK3i/E/JSmoRLRCCx3IULHiZC3FcVmJjkyhRbGhhY5SceAAyi0gY/lQzFiIdcRwA3EEzRE5xkgGW3ITB523QEhtxqiS
+          0138 96 b4c3384b28f49dd8390058259e8ce23988c3fe90ec2352bd56393acb5612b1f3 wFER3JAR4a7IS5CIcdyZHlfeNweIQikj39IEBDlgXFXDmdIHwgASW2cwaKnswJ4PiDqOFloSyS+oU9Q1IoyJbCFXcmibTgNp
+          0139 96 6214d58ddb8b4b498cc7758527f7be3a8188c7783eff01bbbdbfb1dcd332da48 KQdWBbqFtBoKVtQ/bHOJpz59y9JIKE0pBToyEpepGQm5IJEQWENRVSMEgshGBlIEpoFoilEUpgJo8njwM0TY3GQ9vVkoWOl9
+          0140 96 df712d3ed7a2c5168819ce860ae2e95be941589afb9e0782505fef8d592be636 C/IxYUz+HEDgjdwInREJIKCGgD4w7hgRBiRBERBDpvoRTNGJrSho5IPWHY7lNPA95u06ee6a7HCPyoxH5G2ITE5ZeQHaXt9Q
+          0141 96 36b7883b80d3b95aab904c308740e21fa540d0478ffd44974c93fdc5df405e3a Kr4DrFvMVqyCVMFdOiN3cQVZu2kHRWuCpa+JCu3xYxtpyjDH8dsoVcVMdDuKkm3HVYOCrKgwUEE3NWGmHgPJ3EFJslYCsWAi
+          0142 96 223c6861f26e8c8cfa7e52fc78d9d2fc7f29c5ccc0c1c31fffbed50ae308c328 Iu2QyFGSsswlFFixqUihLCs5VjByTRZIBmCUZ0TYT6ZqgsXe1N5N8mCsNjV3l3kKjiO1LIDGLiapDmwUeI2Q2Ss2yIGzkNBp
+          0143 96 4d5f3b2d574963b0fcc5fdc057e4a82d6ab1c6fefe594d414562e4a98e11f8b6 khbSTpqwMGTQhc4zQQtbQrol0GTBLCyHMoyJKz7VVttEmQhQuZeWKzTZRcgVIl5eCWjORTcZUFYb4iOQhtSySyxkEkui0otb
+          0144 96 ed68f73fac5e1614bd4be15cecf88dc0c376fd0bbc463036d426e6bc0a314185 XnLQcbbVstAMmYdNE2mFYppFZTmOh5CbTaNCMmhsgjHhYRSDssc0WoB1kYGwG8Njpv6Tu9E8SHlAphUanV3Kk82ECjgKpAQ2
+          0145 96 0700a44e4cfe9e3f21a3c2967d2e01fe45c9fd25d864c0e1cbd86f1ba65c5a04 OCor2FmSQ1CSd9vwiB3pwwizZNIUQloFgayyGmaECOmTv86zxwdj24bEwapjITSN10F6O0O5mEcXYVqh1T+FIqHankVuROnL
+          0146 96 a6aef5edb5b30535c05ef78800eab9e4b0dba607ef871a2f9d01bbf2a2b17af4 MddjepQZcQ7gkXujUUkGEJWmaZpKHRSxE5kqIl/y7XditB1F3owUJJAhEFmhkYuXd+/MsN0jAQ0JAy56kCw9wAkFTqBk90hI
+          0147 96 1b3d0aa4205eeb87caf82d5df1cecffb22363672667ca7746c3f6fd92967e774 xZBFOYxEiIlSi1tpaFFRJKDYMKWeeEsZFMQA6CRQKQpLOnT2WTKCkiEYmI7KFNuKabI5XwDSSGRhKh1lSwLUmphJRUkRhIwh
+          0148 96 22e1a9008c2115f99facf75de3c6f435d5e15e667f53be50f10fc1c3be7dd59a Adbq9c1HMFTsG7Y9h421V7GA5DasjoYODtIUm7p2rG0S1SINhDdQWW2W2W2W2WycenJ2NQ7QIQ7IYZBOwAS9mlOzAAjCMWTd
+          0149 96 309abc1cb817cd4b3370f29c2fef6d7e564c8799b7e15a18b61dd4b3f1fccb74 qFKWIIQiMY7eLKjaoVC4UuLSCIwghiw9VwFc0W2GkCjrUEUmZjJz2PV6mPywOOorCKiagBkqb9NECDAunZIUC60dn9FF3jBV
+          0150 96 1aea47b349b8e3aed3c85abae34c96feb746043a81f20aeab76029e57d5b9c56 5UrW1mTtXSAdoL2HJAqwYiCixhBiQBYAdgZAKAgT6t5xoG6JkGiOwurE+wj1+xYpINIOFyBDz3D8FNwiV1PNPKxyyQU4xMWz
+          0151 96 3a5a210afc7d4fbaf5e9ef8f7de539b2c58a34d1a40c1f6e5c1dd2b7269cd364 mICYI3FAd6BpgPrY0RQIRYpEUMYcWVI27vf+U8HCwB7A4bGYd5uEuQQq6j0JMfMdnkNo7EgbWDUIioXfxHz4MVQkJHR8NDYo
+          0152 96 aff7131c6ddf95c8bbfa1950eb5d65d7c95bc7c947d1b6ade60d1ffbadebe5ef 6KZYyE+eNPbMRwQDIWfOaA+nahJoJEHaUWGZdKg6Oiaah60RPeD2GAhXGIdVwLAXRGAzpw8Q8jrxgiERcdbtjEM69Q2T3A5Q
+          0153 96 45ccff1450111945927f30d3d6461863316257b79eb5523949b5fb602f197001 cJhzIBIkGC1tbB570Om+qsGa5uCPJvTRnkXFai12hlbNGVx+oa4oa3BJfM0rSIuHF2DjzVCWi1IwGQhBiQkD0QxnrW0UrKgp
+          0154 96 c3e7d74f971faecc5bd2e02f19dfe4834a51f09ecf6df6fc9e2edc54edf80d34 tHSKa91N0+zbm19sKxKR45AZNWwLBXeGlmZIFZkSQG6EQvMIuiOCRS4IUlKd0KiGBglbUjUAaIHpYoiDDRYKmo+o8mAsNB7d
+          0155 96 9375a71310cad3bd87d17fa651e68be5f81c931548741fbfad5da2ab69f84bae AoZt3Om53k5qHgMUOpY+9FSEAPsh6S/YlktBcRPm7t/57j/jyHSOBuePXY+rLRNrKOHoFfbw/FPBHV1bfp0p/T/p+yiL/ogq
+          0156 36 57a8a5cf82ee0ef31a7294a84b364b2ed7e3d1fb35b3ec36a1f90734458a73fc 7fthT+vNYHpWDp4eFIf/i7kinChINCTJ3wA=
+          """
+          expected_archive_sha256 = "f82ef614b28e1a32e64565c706438a6973821909ed58980cd39530395f99984b"
+          expected_files = json.loads('{"frp_m28_trace_observatory_upstream_interchange.py":{"bytes":53856,"raw_sha256":"1c0662120fb734e48fb5ff7f88f4ff223f9ae6ed5f8cb38eef0dd90224ef12ab"},"tests/test_frp_m28_trace_observatory_upstream_interchange.py":{"bytes":15069,"raw_sha256":"400bb2d1231884f690e3ee363c0c2667a9ca55479c21ca0254bd66a27103f3af"}}')
+          payload_root = Path(os.environ["M28_PAYLOAD_ROOT"])
+          staging = payload_root / "staging"
+          base64_alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+
+          def row_digest(value):
+              return hashlib.sha256(value.encode("ascii")).hexdigest()
+
+          def repair_row(value, expected_length, expected_digest, row_index):
+              if len(value) == expected_length and row_digest(value) == expected_digest:
+                  return value, False
+              candidates = set()
+              if len(value) == expected_length - 1:
+                  for position in range(expected_length):
+                      for character in base64_alphabet:
+                          candidate = value[:position] + character + value[position:]
+                          if row_digest(candidate) == expected_digest:
+                              candidates.add(candidate)
+              elif len(value) == expected_length + 1:
+                  for position in range(len(value)):
+                      candidate = value[:position] + value[position + 1:]
+                      if row_digest(candidate) == expected_digest:
+                              candidates.add(candidate)
+              elif len(value) == expected_length:
+                  for position, original in enumerate(value):
+                      for character in base64_alphabet:
+                          if character == original:
+                              continue
+                          candidate = value[:position] + character + value[position + 1:]
+                          if row_digest(candidate) == expected_digest:
+                              candidates.add(candidate)
+              if len(candidates) != 1:
+                  raise SystemExit(
+                      "M28 payload row cannot be repaired uniquely: "
+                      f"row={row_index}, length={len(value)}, expected={expected_length}, "
+                      f"candidates={len(candidates)}"
+                  )
+              return next(iter(candidates)), True
+
+          parsed_rows = []
+          repaired_rows = []
+          for raw_line in payload_rows.splitlines():
+              line = raw_line.strip()
+              if not line:
+                  continue
+              parts = line.split(" ", 3)
+              if len(parts) != 4:
+                  raise SystemExit("M28 payload row format mismatch")
+              index_text, length_text, digest, encoded = parts
+              index = int(index_text)
+              expected_length = int(length_text)
+              if index != len(parsed_rows):
+                  raise SystemExit("M28 payload row ordering mismatch")
+              if len(digest) != 64 or any(character not in "0123456789abcdef" for character in digest):
+                  raise SystemExit(f"M28 payload row digest format mismatch: {index}")
+              encoded, repaired = repair_row(encoded, expected_length, digest, index)
+              parsed_rows.append(encoded)
+              if repaired:
+                  repaired_rows.append(index)
+
+          compact = "".join(parsed_rows)
+          try:
+              compressed = base64.b64decode(compact, validate=True)
+          except binascii.Error as exc:
+              raise SystemExit(f"M28 payload Base64 validation failed: {exc}") from exc
+          observed_archive_sha256 = hashlib.sha256(compressed).hexdigest()
+          if observed_archive_sha256 != expected_archive_sha256:
+              raise SystemExit(
+                  "M28 payload digest mismatch: "
+                  f"{observed_archive_sha256} != {expected_archive_sha256}"
+              )
+          try:
+              archive_bytes = bz2.decompress(compressed)
+          except OSError as exc:
+              raise SystemExit(f"M28 payload decompression failed: {exc}") from exc
+
+          if payload_root.exists():
+              shutil.rmtree(payload_root)
+          staging.mkdir(parents=True)
+
+          with tarfile.open(fileobj=io.BytesIO(archive_bytes), mode="r:") as archive:
+              members = archive.getmembers()
+              observed_names = [member.name for member in members]
+              if observed_names != list(expected_files):
+                  raise SystemExit("M28 payload member inventory mismatch")
+              for member in members:
+                  path = PurePosixPath(member.name)
+                  if (
+                      path.is_absolute()
+                      or any(part in ("", ".", "..") for part in member.name.split("/"))
+                      or not member.isfile()
+                      or member.issym()
+                      or member.islnk()
+                  ):
+                      raise SystemExit(f"unsafe M28 payload member: {member.name}")
+                  source = archive.extractfile(member)
+                  if source is None:
+                      raise SystemExit(f"missing M28 payload member data: {member.name}")
+                  raw = source.read()
+                  record = expected_files[member.name]
+                  if len(raw) != record["bytes"]:
+                      raise SystemExit(f"M28 payload byte count mismatch: {member.name}")
+                  if hashlib.sha256(raw).hexdigest() != record["raw_sha256"]:
+                      raise SystemExit(f"M28 payload file digest mismatch: {member.name}")
+                  destination = staging.joinpath(*path.parts)
+                  destination.parent.mkdir(parents=True, exist_ok=True)
+                  destination.write_bytes(raw)
+
+          for relative, record in expected_files.items():
+              source = staging.joinpath(*PurePosixPath(relative).parts)
+              destination = Path(relative)
+              if destination.exists() and destination.is_symlink():
+                  raise SystemExit(f"refusing M28 symlink destination: {relative}")
+              destination.parent.mkdir(parents=True, exist_ok=True)
+              os.replace(source, destination)
+              raw = destination.read_bytes()
+              if len(raw) != record["bytes"] or hashlib.sha256(raw).hexdigest() != record["raw_sha256"]:
+                  raise SystemExit(f"installed M28 source mismatch: {relative}")
+
+          print(f"M28 payload archive sha256: {observed_archive_sha256}")
+          print(f"M28 source files installed: {len(expected_files)}")
+          print(f"M28 payload rows repaired: {repaired_rows}")
+          PY
+
+      - name: Validate the extracted M28 source and immutable vocabulary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile frp_m28_trace_observatory_upstream_interchange.py
+          python - <<'PY'
+          from pathlib import Path
+
+          paths = [
+              Path("frp_m28_trace_observatory_upstream_interchange.py"),
+              Path("tests/test_frp_m28_trace_observatory_upstream_interchange.py"),
+          ]
+          forbidden = "-1/0/" + "+1"
+          for path in paths:
+              text = path.read_text(encoding="utf-8")
+              if forbidden in text:
+                  raise SystemExit(f"forbidden ternary notation in {path}")
+          print("M28 extracted source and immutable vocabulary: PASS")
+          PY
+
+      - name: Generate two byte-identical complete M28 sets
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/m28_generation_a /tmp/m28_generation_b
+          mkdir -p /tmp/m28_generation_a /tmp/m28_generation_b
+          python frp_m28_trace_observatory_upstream_interchange.py \
+            --generate \
+            --repository-root . \
+            --output-root /tmp/m28_generation_a \
+            --source-commit "$M28_SOURCE_COMMIT" \
+            --output /tmp/m28_generation_a.json \
+            2>&1 | tee /tmp/m28_generation_a.log
+          python frp_m28_trace_observatory_upstream_interchange.py \
+            --generate \
+            --repository-root . \
+            --output-root /tmp/m28_generation_b \
+            --source-commit "$M28_SOURCE_COMMIT" \
+            --output /tmp/m28_generation_b.json \
+            2>&1 | tee /tmp/m28_generation_b.log
+          diff --recursive --brief /tmp/m28_generation_a /tmp/m28_generation_b
+          cmp --silent /tmp/m28_generation_a.json /tmp/m28_generation_b.json
+          find /tmp/m28_generation_a -type f -print0 \
+            | sort -z \
+            | xargs -0 sha256sum \
+            | tee /tmp/m28_deterministic_sha256.txt
+
+      - name: Generate the complete canonical M28 repository set
+        shell: bash
+        run: |
+          set -euo pipefail
+          python frp_m28_trace_observatory_upstream_interchange.py \
+            --generate \
+            --repository-root . \
+            --output-root . \
+            --source-commit "$M28_SOURCE_COMMIT" \
+            --output /tmp/m28_generation.json \
+            2>&1 | tee /tmp/m28_generation.log
+
+      - name: Run focused M28 qualification tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_frp_m28_trace_observatory_upstream_interchange \
+            2>&1 | tee /tmp/m28_focused_tests.log
+          python frp_m28_trace_observatory_upstream_interchange.py \
+            --verify \
+            --repository-root . \
+            --source-commit "$M28_SOURCE_COMMIT" \
+            --output /tmp/m28_verification.json \
+            2>&1 | tee /tmp/m28_verification.log
+          python frp_m28_trace_observatory_upstream_interchange.py \
+            --self-test \
+            --repository-root . \
+            --source-commit "$M28_SOURCE_COMMIT" \
+            --output /tmp/m28_self_test.json \
+            2>&1 | tee /tmp/m28_self_test.log
+
+      - name: Run the complete repository regression suite
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p 'test_*.py' -v \
+            2>&1 | tee /tmp/m28_full_regression.log
+
+      - name: Validate the closed M28 repository boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          required = [
+              Path("frp_m28_trace_observatory_upstream_interchange.py"),
+              Path("tests/test_frp_m28_trace_observatory_upstream_interchange.py"),
+              Path("artifacts/m28/contracts/m28-trace-observatory-upstream-contract.json"),
+              Path("artifacts/m28/exports/m28-observatory-canonical-trace-bundle.json"),
+              Path("artifacts/m28/fixtures/m28-observatory-fixture-manifest.json"),
+              Path("artifacts/m28/registry/m28-observatory-compatibility-registry.json"),
+              Path("artifacts/m28/manifests/m28-trace-observatory-interchange-qualification.json"),
+          ]
+          required.extend(sorted(Path("schemas/m28").glob("*")))
+          missing = [str(path) for path in required if not path.is_file() or path.is_symlink()]
+          if missing:
+              raise SystemExit(f"M28 required file boundary failed: {missing}")
+
+          contract = json.loads(required[2].read_text(encoding="utf-8"))
+          trace = json.loads(required[3].read_text(encoding="utf-8"))
+          qualification = json.loads(required[6].read_text(encoding="utf-8"))
+          core = contract["immutable_core"]
+          if core["balanced_ternary_notation"] != "-1/0/1":
+              raise SystemExit("M28 immutable ternary notation mismatch")
+          if core["temporal_scheduler_modes"] != ["1/7", "7/1"]:
+              raise SystemExit("M28 scheduler mode boundary mismatch")
+          if contract["consumer_scaffold_baseline"]["repository"] != "FRP-Trace-Observatory":
+              raise SystemExit("M28 Observatory repository boundary mismatch")
+          if contract["consumer_scaffold_baseline"]["implementation_action"] != "extend_existing_scaffold":
+              raise SystemExit("M28 existing scaffold boundary mismatch")
+          if trace["record_count"] != 196 or trace["dataset_count"] != 3:
+              raise SystemExit("M28 trace bundle boundary mismatch")
+          if qualification["check_count"] != 30 or qualification["failed_count"] != 0:
+              raise SystemExit("M28 qualification boundary mismatch")
+          if required[3].stat().st_size > 600000:
+              raise SystemExit("M28 canonical trace bundle exceeds the bounded file size")
+          print("M28 closed repository boundary: PASS")
+          PY
+
+          while IFS= read -r status_path; do
+            changed_path="${status_path:3}"
+            case "$changed_path" in
+              frp_m28_trace_observatory_upstream_interchange.py|\
+              schemas/m28/*|\
+              artifacts/m28/*|\
+              tests/test_frp_m28_trace_observatory_upstream_interchange.py)
+                ;;
+              *)
+                echo "Unexpected working-tree change during M28: $changed_path" >&2
+                exit 1
+                ;;
+            esac
+          done < <(git status --porcelain=v1)
+
+      - name: Create the complete M28 qualification commit and publish main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -- \
+            frp_m28_trace_observatory_upstream_interchange.py \
+            schemas/m28 \
+            artifacts/m28 \
+            tests/test_frp_m28_trace_observatory_upstream_interchange.py
+
+          while IFS= read -r staged_path; do
+            case "$staged_path" in
+              frp_m28_trace_observatory_upstream_interchange.py|\
+              schemas/m28/*|\
+              artifacts/m28/*|\
+              tests/test_frp_m28_trace_observatory_upstream_interchange.py)
+                ;;
+              *)
+                echo "Unexpected staged M28 path: $staged_path" >&2
+                exit 1
+                ;;
+            esac
+          done < <(git diff --cached --name-only)
+
+          if git diff --cached --quiet; then
+            echo "M28 canonical qualification is already committed; no commit is required."
+            exit 0
+          fi
+
+          git commit \
+            -m "Add M28 Trace Observatory upstream interchange" \
+            -m "Publish a deterministic one-way FRP upstream interchange for the existing FRP Trace Observatory scaffold. Preserve exact source order, raw SHA-256 provenance, the immutable -1/0/1 core, active neutral state 0, and 1/7 and 7/1 temporal scheduling across Artifact Auditor, Trace Explorer, and Ternary Transition Visualizer inputs."
+          git push origin HEAD:main
+
+      - name: Retain complete M28 qualification logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frp-m28-trace-observatory-upstream-interchange-${{ github.run_id }}
+          if-no-files-found: warn
+          retention-days: 30
+          path: |
+            /tmp/m28_generation_a.json
+            /tmp/m28_generation_b.json
+            /tmp/m28_generation_a.log
+            /tmp/m28_generation_b.log
+            /tmp/m28_deterministic_sha256.txt
+            /tmp/m28_generation.json
+            /tmp/m28_generation.log
+            /tmp/m28_focused_tests.log
+            /tmp/m28_verification.json
+            /tmp/m28_verification.log
+            /tmp/m28_self_test.json
+            /tmp/m28_self_test.log
+            /tmp/m28_full_regression.log
