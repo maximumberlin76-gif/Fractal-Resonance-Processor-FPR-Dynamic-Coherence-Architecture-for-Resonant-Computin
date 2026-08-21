@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frp.example/schemas/m25/frp_m25_fault_negative_recovery_contract.v2.7.0.schema.json",
+  "title": "FRP M25 fault, negative-path, and recovery contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "release", "status", "source_commit", "source_release", "qualified_boundary", "required_scope", "closure_requirements", "validator_boundary", "fixture_count", "failure_classification_count", "formal_property_count", "formal_run_count", "workflow_path", "contract_digest"],
+  "properties": {
+    "schema_version": {"const": "2.7.0"},
+    "artifact_id": {"const": "frp-m25-fault-negative-recovery-contract"},
+    "milestone": {"const": "M25"},
+    "release": {"const": "FRP v2.7.0"},
+    "status": {"const": "PASS"},
+    "source_commit": {"const": "a01fb687fd1e4f0159f0d8cd885863afb8b87a1e"},
+    "source_release": {"const": "FRP v2.6.0 / M24 formal bounded verification closure"},
+    "qualified_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authoritative_rtl", "balanced_ternary_notation", "semantic_values", "reserved_encoding", "active_neutral_state", "temporal_scheduler_modes", "service_scheduler_mode", "direct_opposite_polarity_transition"],
+      "properties": {
+        "authoritative_rtl": {"const": "rtl/m16/frp_m16_core.sv"},
+        "balanced_ternary_notation": {"const": "-1/0/1"},
+        "semantic_values": {"const": [-1, 0, 1]},
+        "reserved_encoding": {"const": "2'b10"},
+        "active_neutral_state": {"const": 0},
+        "temporal_scheduler_modes": {"const": ["1/7", "7/1"]},
+        "service_scheduler_mode": {"const": "free"},
+        "direct_opposite_polarity_transition": {"const": "forbidden"}
+      }
+    },
+    "required_scope": {
+      "const": ["invalid_ternary_inputs", "rejected_request_lanes", "scheduler_deferral", "transition_capacity_deferral", "retained_pending_polarity", "pending_route_completion", "queue_overflow_behavior", "invalid_configuration_behavior", "reset_during_pending_execution", "digest_mismatch_detection", "malformed_artifact_rejection", "incomplete_qualification_package_handling", "deterministic_recovery_behavior"]
+    },
+    "closure_requirements": {"type": "array", "minItems": 7, "maxItems": 7, "uniqueItems": true, "items": {"type": "string", "minLength": 8}},
+    "validator_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["format", "digest", "filesystem", "execution"],
+      "properties": {
+        "format": {"const": "strict bounded UTF-8 JSON objects"},
+        "digest": {"const": "SHA-256 over exact bytes"},
+        "filesystem": {"const": "named regular non-symlink repository-relative files"},
+        "execution": {"const": "none"}
+      }
+    },
+    "fixture_count": {"const": 13},
+    "failure_classification_count": {"const": 19},
+    "formal_property_count": {"const": 25},
+    "formal_run_count": {"const": 3},
+    "workflow_path": {"const": ".github/workflows/frp-m25-fault-negative-path-recovery-qualification-workflow.yml"},
+    "contract_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

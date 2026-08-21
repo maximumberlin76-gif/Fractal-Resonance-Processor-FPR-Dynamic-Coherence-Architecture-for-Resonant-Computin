@@ -1,0 +1,164 @@
+{
+  "artifact_id": "frp-m25-failure-classification-registry",
+  "classification_count": 19,
+  "classification_set_digest": "e51a58ef7dc1d75690ec7b3e472a73973a860c1e49e8cceb953596a27d2cc5f8",
+  "contract_digest": "ce0ea3e2a9b49604de5b54348af839a874a466b2b69f4b3ad1cc5836be704a91",
+  "milestone": "M25",
+  "records": [
+    {
+      "category": "input",
+      "classification_digest": "1d804d20c6dc0701d30ef0b8e92a967371e34b50df9f5f99977b6792fc702ad7",
+      "classification_id": "M25-C01",
+      "code": "INVALID_TERNARY",
+      "disposition": "reject",
+      "recovery": "supply one of -1/0/1"
+    },
+    {
+      "category": "request_lane",
+      "classification_digest": "cf3af763fbbfd95fb17b1c251e9667d65912a614e4806d4021fd3bdb45ff00cd",
+      "classification_id": "M25-C02",
+      "code": "INVALID_CELL",
+      "disposition": "reject",
+      "recovery": "supply an in-range cell"
+    },
+    {
+      "category": "request_lane",
+      "classification_digest": "7debd4651e9645db905378b0714b6a5c83d4219e72ae24e19c79fe740b548ccc",
+      "classification_id": "M25-C03",
+      "code": "DUPLICATE_CELL",
+      "disposition": "reject_later_lane",
+      "recovery": "retry after the winning lane"
+    },
+    {
+      "category": "request_lane",
+      "classification_digest": "eebda4b016a4eac26b3f6fc874f1d6fcf55a8e38209cad2e04d9c226d865ca21",
+      "classification_id": "M25-C04",
+      "code": "PENDING_BUSY",
+      "disposition": "defer",
+      "recovery": "complete retained pending route first"
+    },
+    {
+      "category": "request_lane",
+      "classification_digest": "e9fa5eb7b2d8bacb15bbbef2c7d090e6e04919bfff807e8c95a7b8ea0b5d966e",
+      "classification_id": "M25-C05",
+      "code": "TICK_DISABLED",
+      "disposition": "defer",
+      "recovery": "retry on an enabled tick"
+    },
+    {
+      "category": "scheduler",
+      "classification_digest": "1ec461adfb0fdd021567409ba5570c69dad66f15c3d2bc430e9c936a832190fa",
+      "classification_id": "M25-C06",
+      "code": "SCHEDULER_DEFERRAL",
+      "disposition": "defer",
+      "recovery": "retry on an eligible 1/7 or 7/1 phase"
+    },
+    {
+      "category": "capacity",
+      "classification_digest": "464569bb0833f1a840c84e7f22419d7ebb50f60576eed39b81f3743c9c357f97",
+      "classification_id": "M25-C07",
+      "code": "CAPACITY_DEFERRAL",
+      "disposition": "defer",
+      "recovery": "retry after transition capacity is available"
+    },
+    {
+      "category": "pending_route",
+      "classification_digest": "7b444bed634c3312ca02670657328191f598cc225799c576b2be28543c330a9b",
+      "classification_id": "M25-C08",
+      "code": "QUEUE_OVERFLOW_ATTEMPT",
+      "disposition": "reject_without_overwrite",
+      "recovery": "retain first polarity and complete it"
+    },
+    {
+      "category": "configuration",
+      "classification_digest": "1871b62772f2840d7810d20205c150f16ff80259b11b00adf3b74b00f1240e75",
+      "classification_id": "M25-C09",
+      "code": "INVALID_CONFIGURATION",
+      "disposition": "disable_execution",
+      "recovery": "apply free, 1/7, or 7/1"
+    },
+    {
+      "category": "reset",
+      "classification_digest": "1365709926152c60e5b7e8750dcc362578275921604d67dea08a3192628acaac",
+      "classification_id": "M25-C10",
+      "code": "RESET_DURING_PENDING",
+      "disposition": "clear_to_active_neutral",
+      "recovery": "restart from state 0 with no pending route"
+    },
+    {
+      "category": "artifact",
+      "classification_digest": "570d8400d0041e8e71d8390194fa594be5f5d1e0aae94c05102ebb49a6b3f003",
+      "classification_id": "M25-C11",
+      "code": "DIGEST_MISMATCH",
+      "disposition": "reject",
+      "recovery": "restore exact declared bytes"
+    },
+    {
+      "category": "artifact",
+      "classification_digest": "f7fbee7c3a9ada9ed186dfb11ae7714db31ec6555699bb9bf68ddf02975cb4cb",
+      "classification_id": "M25-C12",
+      "code": "MALFORMED_JSON",
+      "disposition": "reject",
+      "recovery": "supply strict UTF-8 JSON object"
+    },
+    {
+      "category": "artifact",
+      "classification_digest": "1379f1af8591b66a63cf2d1e145a8b05ae6dbe180072dbd7c4ad52399392b07a",
+      "classification_id": "M25-C13",
+      "code": "DUPLICATE_JSON_KEY",
+      "disposition": "reject",
+      "recovery": "remove duplicate object keys"
+    },
+    {
+      "category": "artifact",
+      "classification_digest": "9d2dc079ddf1b4ef627402fd194cb59fb1a13efe4309a7c4428e534fde0974ea",
+      "classification_id": "M25-C14",
+      "code": "INCOMPLETE_PACKAGE",
+      "disposition": "reject",
+      "recovery": "supply every required artifact and digest"
+    },
+    {
+      "category": "artifact",
+      "classification_digest": "abf5b15b2d492abcded9163df30addadace7d957faddb028f973e9701f156b7d",
+      "classification_id": "M25-C15",
+      "code": "UNEXPECTED_ARTIFACT",
+      "disposition": "reject",
+      "recovery": "remove undeclared package members"
+    },
+    {
+      "category": "artifact",
+      "classification_digest": "5a18940715d7db9208bd108d452e51c9459fb94bba049f75fcf44908ec06b29f",
+      "classification_id": "M25-C16",
+      "code": "INVALID_DOCUMENT",
+      "disposition": "reject",
+      "recovery": "supply a JSON object encoded as bytes"
+    },
+    {
+      "category": "artifact",
+      "classification_digest": "9b1e848df064a15f8f58d4ba3b8ef52c65f18b8688052de593336b5c4fa8575f",
+      "classification_id": "M25-C17",
+      "code": "UNSAFE_PATH",
+      "disposition": "reject",
+      "recovery": "use a strict repository-relative path"
+    },
+    {
+      "category": "artifact",
+      "classification_digest": "5b8d23904bfa7b215ba99db1dc64156313644492f68618feeb1b0762d95f7d36",
+      "classification_id": "M25-C18",
+      "code": "OVERSIZED_ARTIFACT",
+      "disposition": "reject",
+      "recovery": "supply an artifact within the size bound"
+    },
+    {
+      "category": "recovery",
+      "classification_digest": "546d1ef2b1c39ab8d881f9e82e8831dcac0cdbcd78d91625af28d44e105988a5",
+      "classification_id": "M25-C19",
+      "code": "RECOVERY_COMPLETE",
+      "disposition": "accept",
+      "recovery": "none"
+    }
+  ],
+  "schema_version": "2.7.0",
+  "source_commit": "a01fb687fd1e4f0159f0d8cd885863afb8b87a1e",
+  "status": "PASS"
+}

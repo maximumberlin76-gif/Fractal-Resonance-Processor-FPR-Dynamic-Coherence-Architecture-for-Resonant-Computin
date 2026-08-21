@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frp.example/schemas/m25/frp_m25_failure_classification_registry.v2.7.0.schema.json",
+  "title": "FRP M25 machine-readable failure classification registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "source_commit", "contract_digest", "classification_count", "records", "classification_set_digest"],
+  "properties": {
+    "schema_version": {"const": "2.7.0"},
+    "artifact_id": {"const": "frp-m25-failure-classification-registry"},
+    "milestone": {"const": "M25"},
+    "status": {"const": "PASS"},
+    "source_commit": {"const": "a01fb687fd1e4f0159f0d8cd885863afb8b87a1e"},
+    "contract_digest": {"$ref": "#/$defs/digest"},
+    "classification_count": {"const": 19},
+    "records": {
+      "type": "array", "minItems": 19, "maxItems": 19,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["classification_id", "code", "category", "disposition", "recovery", "classification_digest"],
+        "properties": {
+          "classification_id": {"type": "string", "pattern": "^M25-C(0[1-9]|1[0-9])$"},
+          "code": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]+$"},
+          "category": {"enum": ["input", "request_lane", "scheduler", "capacity", "pending_route", "configuration", "reset", "artifact", "recovery"]},
+          "disposition": {"type": "string", "minLength": 5},
+          "recovery": {"type": "string", "minLength": 4},
+          "classification_digest": {"$ref": "#/$defs/digest"}
+        }
+      }
+    },
+    "classification_set_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

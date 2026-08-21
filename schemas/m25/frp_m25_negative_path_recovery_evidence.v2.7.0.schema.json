@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frp.example/schemas/m25/frp_m25_negative_path_recovery_evidence.v2.7.0.schema.json",
+  "title": "FRP M25 negative-path and recovery evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "overall_status", "source_commit", "contract_digest", "classification_set_digest", "fixture_set_digest", "formal", "fixture_result_count", "passed_fixture_count", "failed_fixture_count", "results", "recovery_state", "evidence_digest"],
+  "properties": {
+    "schema_version": {"const": "2.7.0"},
+    "artifact_id": {"const": "frp-m25-negative-path-recovery-evidence"},
+    "milestone": {"const": "M25"},
+    "status": {"const": "PASS"},
+    "overall_status": {"const": "PASS"},
+    "source_commit": {"const": "a01fb687fd1e4f0159f0d8cd885863afb8b87a1e"},
+    "contract_digest": {"$ref": "#/$defs/digest"},
+    "classification_set_digest": {"$ref": "#/$defs/digest"},
+    "fixture_set_digest": {"$ref": "#/$defs/digest"},
+    "formal": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "tool", "prepared_rtl_digest", "run_count", "property_count", "passed_property_count", "failed_property_count", "runs", "formal_result_digest"],
+      "properties": {
+        "status": {"const": "PASS"},
+        "tool": {"type": "object", "required": ["package", "package_version", "engine", "engine_version", "engine_git_sha", "solver", "logic_semantics"], "additionalProperties": false, "properties": {"package": {"const": "yowasp-yosys"}, "package_version": {"const": "0.68.0.0.post1208"}, "engine": {"const": "Yosys"}, "engine_version": {"const": "0.68"}, "engine_git_sha": {"const": "38e001a6f"}, "solver": {"const": "minisat"}, "logic_semantics": {"const": "defined_two_state_bounded_sat"}}},
+        "prepared_rtl_digest": {"$ref": "#/$defs/digest"},
+        "run_count": {"const": 3}, "property_count": {"const": 25}, "passed_property_count": {"const": 25}, "failed_property_count": {"const": 0},
+        "runs": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "object", "additionalProperties": false, "required": ["run_id", "top", "harness", "depth", "property_ids", "yosys_script", "status"], "properties": {"run_id": {"pattern": "^M25-R0[1-3]$"}, "top": {"type": "string"}, "harness": {"type": "string"}, "depth": {"type": "integer", "minimum": 1, "maximum": 6}, "property_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^M25-P(0[1-9]|1[0-9]|2[0-5])$"}}, "yosys_script": {"type": "string", "minLength": 80}, "status": {"const": "PASS"}}}},
+        "formal_result_digest": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "fixture_result_count": {"const": 13}, "passed_fixture_count": {"const": 13}, "failed_fixture_count": {"const": 0},
+    "results": {"type": "array", "minItems": 13, "maxItems": 13, "items": {"type": "object", "additionalProperties": false, "required": ["fixture_id", "scope", "expected_classification", "observed", "replay_digest", "status", "result_digest"], "properties": {"fixture_id": {"pattern": "^M25-F(0[1-9]|1[0-3])$"}, "scope": {"type": "string"}, "expected_classification": {"pattern": "^[A-Z][A-Z0-9_]+$"}, "observed": {"type": "object", "required": ["outcome", "classification", "state", "pending", "detail"]}, "replay_digest": {"$ref": "#/$defs/digest"}, "status": {"const": "PASS"}, "result_digest": {"$ref": "#/$defs/digest"}}}},
+    "recovery_state": {"type": "object", "additionalProperties": false, "required": ["final_state", "final_pending", "active_neutral", "actual_direct_events", "qualified_queue_overflow_events", "status"], "properties": {"final_state": {"const": [1]}, "final_pending": {"const": [0]}, "active_neutral": {"const": 0}, "actual_direct_events": {"const": 0}, "qualified_queue_overflow_events": {"const": 0}, "status": {"const": "PASS"}}},
+    "evidence_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

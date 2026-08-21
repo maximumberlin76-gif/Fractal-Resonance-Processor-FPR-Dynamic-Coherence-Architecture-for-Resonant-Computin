@@ -1,0 +1,179 @@
+{
+  "artifact_count": 4,
+  "artifact_id": "frp-m25-fault-negative-recovery-manifest",
+  "artifact_set_digest": "187c2c041c532a8f3b4c1c3ef5e35f4d058768fd2925d9e7c97c85361b762a4a",
+  "artifacts": [
+    {
+      "bytes": 2067,
+      "path": "artifacts/m25/contracts/m25-fault-negative-recovery-contract.json",
+      "raw_sha256": "d99ac590126491b87e0cb47c221a9f8cc8bda7642f549b1f90bc2feeb2a1fa72"
+    },
+    {
+      "bytes": 6162,
+      "path": "artifacts/m25/classification/m25-failure-classification-registry.json",
+      "raw_sha256": "905af9ad449861587644cc06333361ff9dc55bf85a9966b9287a42b55cbeafc5"
+    },
+    {
+      "bytes": 6174,
+      "path": "artifacts/m25/fixtures/m25-deterministic-negative-fixtures.json",
+      "raw_sha256": "534dbf9f38973d5572df1a47c7968ba5b1146be53ca2c0f759b0eac37ba80b2f"
+    },
+    {
+      "bytes": 14423,
+      "path": "artifacts/m25/evidence/m25-negative-path-recovery-evidence.json",
+      "raw_sha256": "6db02295d87663978549d20154769ac8a14cabfb7ae13d9c08b5cec62b878bc3"
+    }
+  ],
+  "manifest_digest": "f8a463c015ed315ea4fb08dac22cf44a8c3d4e295d0a8c373c3cd3a142db7dcd",
+  "milestone": "M25",
+  "schema_version": "2.7.0",
+  "source_commit": "a01fb687fd1e4f0159f0d8cd885863afb8b87a1e",
+  "source_count": 14,
+  "sources": [
+    {
+      "bytes": 41598,
+      "path": ".github/workflows/frp-m25-fault-negative-path-recovery-qualification-workflow.yml",
+      "raw_sha256": "fcc8321aeaa771c927aed0df90fb5f94f2432becc20f1b1222979af2ffa6604b"
+    },
+    {
+      "bytes": 2106,
+      "path": "formal/m25/frp_m25_invalid_configuration_formal.sv",
+      "raw_sha256": "593972751d8a0da61e55cf1b3886488a3ddd500fb9a30c1ac724296611da8141"
+    },
+    {
+      "bytes": 13202,
+      "path": "formal/m25/frp_m25_negative_paths_formal.sv",
+      "raw_sha256": "3b127b4d091e751d22781fb58898979e1ea0c0aa8cd57d4286e41e1b49bd22b0"
+    },
+    {
+      "bytes": 3105,
+      "path": "formal/m25/frp_m25_pending_reset_recovery_formal.sv",
+      "raw_sha256": "74a598f3f17cf1027299ef3a12bdf8a6851f9ce03c0d21df9e619ed2e14c57a9"
+    },
+    {
+      "bytes": 45655,
+      "path": "frp_m25_fault_negative_recovery_qualification.py",
+      "raw_sha256": "60e087b54e4d8d0f3eb56154f540cb0597a0b2e490f95d6424513753008cb332"
+    },
+    {
+      "bytes": 6219,
+      "path": "frp_m25_safe_artifact_validator.py",
+      "raw_sha256": "9219d8c827966e9be23cd5b214c9ed5e4ffbd7fc6721e78e0cbc6213421f5d36"
+    },
+    {
+      "bytes": 1910,
+      "path": "schemas/m25/frp_m25_deterministic_negative_fixtures.v2.7.0.schema.json",
+      "raw_sha256": "4703114a1a6028f54e02cc4b86e24cafb1bbdf489978385751fc0ecf8aeca3b0"
+    },
+    {
+      "bytes": 1771,
+      "path": "schemas/m25/frp_m25_failure_classification_registry.v2.7.0.schema.json",
+      "raw_sha256": "6f1a52d54b366ab7d6bb59ec2e6b1f71c507a32e74ade1645ed30d653540655e"
+    },
+    {
+      "bytes": 3282,
+      "path": "schemas/m25/frp_m25_fault_negative_recovery_contract.v2.7.0.schema.json",
+      "raw_sha256": "b985d09818491bc1a960f2bef94f04c9e58cb07eaa18832f7501f9fc93548442"
+    },
+    {
+      "bytes": 1821,
+      "path": "schemas/m25/frp_m25_fault_negative_recovery_manifest.v2.7.0.schema.json",
+      "raw_sha256": "711681568ae22b561c4e058db4bc2e0bddc73157b91dad19e280bec276e957fc"
+    },
+    {
+      "bytes": 1857,
+      "path": "schemas/m25/frp_m25_fault_negative_recovery_qualification.v2.7.0.schema.json",
+      "raw_sha256": "f5b872eec1728a6f4d46c35d38ab488f095969c77e8c447cae8ef44eedf41971"
+    },
+    {
+      "bytes": 4074,
+      "path": "schemas/m25/frp_m25_negative_path_recovery_evidence.v2.7.0.schema.json",
+      "raw_sha256": "0bc3760772596db5bf05eea1427780f434682f8a525ffc2ff1149c9c277c5501"
+    },
+    {
+      "bytes": 1015,
+      "path": "schemas/m25/frp_m25_schema_registry.json",
+      "raw_sha256": "7c98a06929db2a68448d5b8e9ce744a0e78bd1a8afa4150b813d9266564a9209"
+    },
+    {
+      "bytes": 13189,
+      "path": "tests/test_frp_m25_fault_negative_recovery_qualification.py",
+      "raw_sha256": "95f4209adb791c0d2cf68f0c20f75466cac6c46b63f229899882ed0edf6eb091"
+    }
+  ],
+  "status": "PASS",
+  "upstream_dependencies": [
+    {
+      "bytes": 1672,
+      "path": "artifacts/m24/contracts/m24-formal-bounded-verification-contract.json",
+      "raw_sha256": "0bb8a178f211a920c8df52c835367a269b0920941de7503126c44a17544ad452"
+    },
+    {
+      "bytes": 18244,
+      "path": "artifacts/m24/inventory/m24-property-inventory.json",
+      "raw_sha256": "c06ea203681d806aabaf932de5ecf77dc57d90d33ed088137e4f3bfe8c97c03d"
+    },
+    {
+      "bytes": 6485,
+      "path": "artifacts/m24/manifests/m24-formal-bounded-verification-manifest.json",
+      "raw_sha256": "8e92a42bc2666eae2e5378c5355ce96458526f81d4d290e58ebcc6daeb6dadf0"
+    },
+    {
+      "bytes": 10249,
+      "path": "artifacts/m24/manifests/m24-formal-bounded-verification-qualification.json",
+      "raw_sha256": "bc96a66993b4bb693b95e8a72da8731216170d16c09c2438a2ec0b2eb2b8a290"
+    },
+    {
+      "bytes": 13211,
+      "path": "artifacts/m24/proofs/m24-formal-bounded-proof-evidence.json",
+      "raw_sha256": "1c2802613a1cf9b9412c806fdf47d6529b291dab8ce6c47495052b7e3d2032cf"
+    },
+    {
+      "bytes": 25909,
+      "path": "rtl/m16/frp_m16_active_neutral.sv",
+      "raw_sha256": "9a86ea7bdc2683effcda4fdb3e85026e5277967755659940820152a2f55a11a7"
+    },
+    {
+      "bytes": 20787,
+      "path": "rtl/m16/frp_m16_capacity_guard.sv",
+      "raw_sha256": "0547c30a698b8d8da0e7f5981d69bc464a93641bfc29c930e1cc6ea0782c302d"
+    },
+    {
+      "bytes": 33684,
+      "path": "rtl/m16/frp_m16_core.sv",
+      "raw_sha256": "3b94f5caa5ee28da0060a38dd9b4ba4605ef5f86ac93f5425967e515ff1ebd23"
+    },
+    {
+      "bytes": 17005,
+      "path": "rtl/m16/frp_m16_pending_routes.sv",
+      "raw_sha256": "09e11d150b3b6938820209ac0f2c4f8373ba9f7c6bf7e86fa3934dd9802a8430"
+    },
+    {
+      "bytes": 18532,
+      "path": "rtl/m16/frp_m16_pkg.sv",
+      "raw_sha256": "c20fe071e7c91b60ca0411b75d4cf762112d51abbd49dc2a5667d1d8c5d49152"
+    },
+    {
+      "bytes": 18290,
+      "path": "rtl/m16/frp_m16_request_lanes.sv",
+      "raw_sha256": "afa88b95838c0968d9db5395c9272155c61c792248e0f8bc29cf70354a2a862a"
+    },
+    {
+      "bytes": 10560,
+      "path": "rtl/m16/frp_m16_scheduler.sv",
+      "raw_sha256": "af7713d739b769e8c16651b0e0d340906b6ec8ca6b401599ea4a79946e4033d7"
+    },
+    {
+      "bytes": 18147,
+      "path": "rtl/m16/frp_m16_state_update.sv",
+      "raw_sha256": "4d2b8091dc3c852d86c8787abea38c181736c78b746cdfc3f83817a0f32999dd"
+    },
+    {
+      "bytes": 4711,
+      "path": "rtl/m23/frp_m23_hardened_integration_boundary.sv",
+      "raw_sha256": "0381bc56a3f3dbd49d3a3d73ba4ff18e4031fb491effad8029d324fb9ac604b3"
+    }
+  ],
+  "upstream_dependency_count": 14,
+  "workflow_path": ".github/workflows/frp-m25-fault-negative-path-recovery-qualification-workflow.yml"
+}

@@ -1,0 +1,62 @@
+{
+  "artifact_id": "frp-m25-fault-negative-recovery-contract",
+  "closure_requirements": [
+    "explicit expected outcomes",
+    "no arbitrary code execution by artifact validators",
+    "deterministic negative fixtures",
+    "machine-readable failure classification",
+    "recovery-state verification",
+    "complete negative-path test evidence",
+    "successful fault and recovery qualification workflow"
+  ],
+  "contract_digest": "ce0ea3e2a9b49604de5b54348af839a874a466b2b69f4b3ad1cc5836be704a91",
+  "failure_classification_count": 19,
+  "fixture_count": 13,
+  "formal_property_count": 25,
+  "formal_run_count": 3,
+  "milestone": "M25",
+  "qualified_boundary": {
+    "active_neutral_state": 0,
+    "authoritative_rtl": "rtl/m16/frp_m16_core.sv",
+    "balanced_ternary_notation": "-1/0/1",
+    "direct_opposite_polarity_transition": "forbidden",
+    "reserved_encoding": "2'b10",
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ]
+  },
+  "release": "FRP v2.7.0",
+  "required_scope": [
+    "invalid_ternary_inputs",
+    "rejected_request_lanes",
+    "scheduler_deferral",
+    "transition_capacity_deferral",
+    "retained_pending_polarity",
+    "pending_route_completion",
+    "queue_overflow_behavior",
+    "invalid_configuration_behavior",
+    "reset_during_pending_execution",
+    "digest_mismatch_detection",
+    "malformed_artifact_rejection",
+    "incomplete_qualification_package_handling",
+    "deterministic_recovery_behavior"
+  ],
+  "schema_version": "2.7.0",
+  "source_commit": "a01fb687fd1e4f0159f0d8cd885863afb8b87a1e",
+  "source_release": "FRP v2.6.0 / M24 formal bounded verification closure",
+  "status": "PASS",
+  "validator_boundary": {
+    "digest": "SHA-256 over exact bytes",
+    "execution": "none",
+    "filesystem": "named regular non-symlink repository-relative files",
+    "format": "strict bounded UTF-8 JSON objects"
+  },
+  "workflow_path": ".github/workflows/frp-m25-fault-negative-path-recovery-qualification-workflow.yml"
+}

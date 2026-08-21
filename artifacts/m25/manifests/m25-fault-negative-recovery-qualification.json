@@ -1,0 +1,660 @@
+{
+  "artifact_id": "frp-m25-fault-negative-recovery-qualification",
+  "check_count": 105,
+  "checks": [
+    {
+      "category": "identity",
+      "check_id": "M25-Q001",
+      "evidence": "2.7.0",
+      "status": "PASS"
+    },
+    {
+      "category": "identity",
+      "check_id": "M25-Q002",
+      "evidence": "M25",
+      "status": "PASS"
+    },
+    {
+      "category": "identity",
+      "check_id": "M25-Q003",
+      "evidence": "a01fb687fd1e4f0159f0d8cd885863afb8b87a1e",
+      "status": "PASS"
+    },
+    {
+      "category": "identity",
+      "check_id": "M25-Q004",
+      "evidence": ".github/workflows/frp-m25-fault-negative-path-recovery-qualification-workflow.yml",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M25-Q005",
+      "evidence": "invalid_ternary_inputs",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M25-Q006",
+      "evidence": "rejected_request_lanes",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M25-Q007",
+      "evidence": "scheduler_deferral",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M25-Q008",
+      "evidence": "transition_capacity_deferral",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M25-Q009",
+      "evidence": "retained_pending_polarity",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M25-Q010",
+      "evidence": "pending_route_completion",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M25-Q011",
+      "evidence": "queue_overflow_behavior",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M25-Q012",
+      "evidence": "invalid_configuration_behavior",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M25-Q013",
+      "evidence": "reset_during_pending_execution",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M25-Q014",
+      "evidence": "digest_mismatch_detection",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M25-Q015",
+      "evidence": "malformed_artifact_rejection",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M25-Q016",
+      "evidence": "incomplete_qualification_package_handling",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M25-Q017",
+      "evidence": "deterministic_recovery_behavior",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture",
+      "check_id": "M25-Q018",
+      "evidence": "M25-F01",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture",
+      "check_id": "M25-Q019",
+      "evidence": "M25-F02",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture",
+      "check_id": "M25-Q020",
+      "evidence": "M25-F03",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture",
+      "check_id": "M25-Q021",
+      "evidence": "M25-F04",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture",
+      "check_id": "M25-Q022",
+      "evidence": "M25-F05",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture",
+      "check_id": "M25-Q023",
+      "evidence": "M25-F06",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture",
+      "check_id": "M25-Q024",
+      "evidence": "M25-F07",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture",
+      "check_id": "M25-Q025",
+      "evidence": "M25-F08",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture",
+      "check_id": "M25-Q026",
+      "evidence": "M25-F09",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture",
+      "check_id": "M25-Q027",
+      "evidence": "M25-F10",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture",
+      "check_id": "M25-Q028",
+      "evidence": "M25-F11",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture",
+      "check_id": "M25-Q029",
+      "evidence": "M25-F12",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture",
+      "check_id": "M25-Q030",
+      "evidence": "M25-F13",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture_result",
+      "check_id": "M25-Q031",
+      "evidence": "M25-F01",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture_result",
+      "check_id": "M25-Q032",
+      "evidence": "M25-F02",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture_result",
+      "check_id": "M25-Q033",
+      "evidence": "M25-F03",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture_result",
+      "check_id": "M25-Q034",
+      "evidence": "M25-F04",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture_result",
+      "check_id": "M25-Q035",
+      "evidence": "M25-F05",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture_result",
+      "check_id": "M25-Q036",
+      "evidence": "M25-F06",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture_result",
+      "check_id": "M25-Q037",
+      "evidence": "M25-F07",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture_result",
+      "check_id": "M25-Q038",
+      "evidence": "M25-F08",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture_result",
+      "check_id": "M25-Q039",
+      "evidence": "M25-F09",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture_result",
+      "check_id": "M25-Q040",
+      "evidence": "M25-F10",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture_result",
+      "check_id": "M25-Q041",
+      "evidence": "M25-F11",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture_result",
+      "check_id": "M25-Q042",
+      "evidence": "M25-F12",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture_result",
+      "check_id": "M25-Q043",
+      "evidence": "M25-F13",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q044",
+      "evidence": "M25-P01",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q045",
+      "evidence": "M25-P02",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q046",
+      "evidence": "M25-P03",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q047",
+      "evidence": "M25-P04",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q048",
+      "evidence": "M25-P05",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q049",
+      "evidence": "M25-P06",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q050",
+      "evidence": "M25-P07",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q051",
+      "evidence": "M25-P08",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q052",
+      "evidence": "M25-P09",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q053",
+      "evidence": "M25-P10",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q054",
+      "evidence": "M25-P11",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q055",
+      "evidence": "M25-P12",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q056",
+      "evidence": "M25-P13",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q057",
+      "evidence": "M25-P14",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q058",
+      "evidence": "M25-P15",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q059",
+      "evidence": "M25-P16",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q060",
+      "evidence": "M25-P17",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q061",
+      "evidence": "M25-P18",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q062",
+      "evidence": "M25-P19",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q063",
+      "evidence": "M25-P20",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q064",
+      "evidence": "M25-P21",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q065",
+      "evidence": "M25-P22",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q066",
+      "evidence": "M25-P23",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q067",
+      "evidence": "M25-P24",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_property",
+      "check_id": "M25-Q068",
+      "evidence": "M25-P25",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_run",
+      "check_id": "M25-Q069",
+      "evidence": "M25-R01",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_run",
+      "check_id": "M25-Q070",
+      "evidence": "M25-R02",
+      "status": "PASS"
+    },
+    {
+      "category": "formal_run",
+      "check_id": "M25-Q071",
+      "evidence": "M25-R03",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q072",
+      "evidence": "INVALID_TERNARY",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q073",
+      "evidence": "INVALID_CELL",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q074",
+      "evidence": "DUPLICATE_CELL",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q075",
+      "evidence": "PENDING_BUSY",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q076",
+      "evidence": "TICK_DISABLED",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q077",
+      "evidence": "SCHEDULER_DEFERRAL",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q078",
+      "evidence": "CAPACITY_DEFERRAL",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q079",
+      "evidence": "QUEUE_OVERFLOW_ATTEMPT",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q080",
+      "evidence": "INVALID_CONFIGURATION",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q081",
+      "evidence": "RESET_DURING_PENDING",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q082",
+      "evidence": "DIGEST_MISMATCH",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q083",
+      "evidence": "MALFORMED_JSON",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q084",
+      "evidence": "DUPLICATE_JSON_KEY",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q085",
+      "evidence": "INCOMPLETE_PACKAGE",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q086",
+      "evidence": "UNEXPECTED_ARTIFACT",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q087",
+      "evidence": "INVALID_DOCUMENT",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q088",
+      "evidence": "UNSAFE_PATH",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q089",
+      "evidence": "OVERSIZED_ARTIFACT",
+      "status": "PASS"
+    },
+    {
+      "category": "classification",
+      "check_id": "M25-Q090",
+      "evidence": "RECOVERY_COMPLETE",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M25-Q091",
+      "evidence": "schemas/m25/frp_m25_fault_negative_recovery_contract.v2.7.0.schema.json",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M25-Q092",
+      "evidence": "schemas/m25/frp_m25_failure_classification_registry.v2.7.0.schema.json",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M25-Q093",
+      "evidence": "schemas/m25/frp_m25_deterministic_negative_fixtures.v2.7.0.schema.json",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M25-Q094",
+      "evidence": "schemas/m25/frp_m25_negative_path_recovery_evidence.v2.7.0.schema.json",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M25-Q095",
+      "evidence": "schemas/m25/frp_m25_fault_negative_recovery_manifest.v2.7.0.schema.json",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M25-Q096",
+      "evidence": "schemas/m25/frp_m25_fault_negative_recovery_qualification.v2.7.0.schema.json",
+      "status": "PASS"
+    },
+    {
+      "category": "closure",
+      "check_id": "M25-Q097",
+      "evidence": "explicit expected outcomes",
+      "status": "PASS"
+    },
+    {
+      "category": "closure",
+      "check_id": "M25-Q098",
+      "evidence": "no arbitrary code execution by artifact validators",
+      "status": "PASS"
+    },
+    {
+      "category": "closure",
+      "check_id": "M25-Q099",
+      "evidence": "deterministic negative fixtures",
+      "status": "PASS"
+    },
+    {
+      "category": "closure",
+      "check_id": "M25-Q100",
+      "evidence": "machine-readable failure classification",
+      "status": "PASS"
+    },
+    {
+      "category": "closure",
+      "check_id": "M25-Q101",
+      "evidence": "recovery-state verification",
+      "status": "PASS"
+    },
+    {
+      "category": "closure",
+      "check_id": "M25-Q102",
+      "evidence": "complete negative-path test evidence",
+      "status": "PASS"
+    },
+    {
+      "category": "closure",
+      "check_id": "M25-Q103",
+      "evidence": "successful fault and recovery qualification workflow",
+      "status": "PASS"
+    },
+    {
+      "category": "manifest",
+      "check_id": "M25-Q104",
+      "evidence": "187c2c041c532a8f3b4c1c3ef5e35f4d058768fd2925d9e7c97c85361b762a4a",
+      "status": "PASS"
+    },
+    {
+      "category": "recovery",
+      "check_id": "M25-Q105",
+      "evidence": {
+        "active_neutral": 0,
+        "actual_direct_events": 0,
+        "final_pending": [
+          0
+        ],
+        "final_state": [
+          1
+        ],
+        "qualified_queue_overflow_events": 0,
+        "status": "PASS"
+      },
+      "status": "PASS"
+    }
+  ],
+  "classification_set_digest": "e51a58ef7dc1d75690ec7b3e472a73973a860c1e49e8cceb953596a27d2cc5f8",
+  "contract_digest": "ce0ea3e2a9b49604de5b54348af839a874a466b2b69f4b3ad1cc5836be704a91",
+  "evidence_digest": "b49151cd68cad0b188673559ac60b67e05fe8352959f67de13aa5b12cd04b6a7",
+  "failed_count": 0,
+  "fixture_set_digest": "646ed8464ec2a629fa2c8027d699ead9737739879e3701d7c37a8f4663c69e6c",
+  "manifest_digest": "f8a463c015ed315ea4fb08dac22cf44a8c3d4e295d0a8c373c3cd3a142db7dcd",
+  "milestone": "M25",
+  "overall_status": "PASS",
+  "passed_count": 105,
+  "qualification_digest": "f29172c19a214fe247baea3667d9c728b3205cda95c48ea217234bcacf1fdd1a",
+  "schema_version": "2.7.0",
+  "source_commit": "a01fb687fd1e4f0159f0d8cd885863afb8b87a1e",
+  "status": "PASS"
+}

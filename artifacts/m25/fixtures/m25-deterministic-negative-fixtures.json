@@ -1,0 +1,178 @@
+{
+  "artifact_id": "frp-m25-deterministic-negative-fixtures",
+  "contract_digest": "ce0ea3e2a9b49604de5b54348af839a874a466b2b69f4b3ad1cc5836be704a91",
+  "fixture_count": 13,
+  "fixture_set_digest": "646ed8464ec2a629fa2c8027d699ead9737739879e3701d7c37a8f4663c69e6c",
+  "fixtures": [
+    {
+      "classification": "INVALID_TERNARY",
+      "deterministic": true,
+      "expected_outcome": "reject; state and pending unchanged",
+      "fixture_digest": "551efe5c7b2692f387f1350260822170abcafdb718440f50b0a65f19328b2244",
+      "fixture_id": "M25-F01",
+      "formal_property_ids": [
+        "M25-P01",
+        "M25-P02"
+      ],
+      "scope": "invalid_ternary_inputs",
+      "stimulus": "reserved 2'b10"
+    },
+    {
+      "classification": "DUPLICATE_CELL",
+      "deterministic": true,
+      "expected_outcome": "classify every lane; ascending winner only",
+      "fixture_digest": "2de25984a0b2c23f027a1c3e1b21f74dcd47d38fa58b2321bed76d1afdb1d2df",
+      "fixture_id": "M25-F02",
+      "formal_property_ids": [
+        "M25-P03",
+        "M25-P04",
+        "M25-P05",
+        "M25-P08"
+      ],
+      "scope": "rejected_request_lanes",
+      "stimulus": "duplicate, invalid, and disabled lanes"
+    },
+    {
+      "classification": "SCHEDULER_DEFERRAL",
+      "deterministic": true,
+      "expected_outcome": "defer without state mutation",
+      "fixture_digest": "f0ddbde9a48cec09e95250dad7c8cf8dd44913d5a90f4162f9527fa1da1a2376",
+      "fixture_id": "M25-F03",
+      "formal_property_ids": [
+        "M25-P06"
+      ],
+      "scope": "scheduler_deferral",
+      "stimulus": "7/1 balance phase with 0 to 1"
+    },
+    {
+      "classification": "CAPACITY_DEFERRAL",
+      "deterministic": true,
+      "expected_outcome": "defer new lane and retain ownership",
+      "fixture_digest": "fac05a1368886b8f0c915b214778b6868a839a7fd53f15c3d9dfd14ab5f09b6e",
+      "fixture_id": "M25-F04",
+      "formal_property_ids": [
+        "M25-P09",
+        "M25-P10"
+      ],
+      "scope": "transition_capacity_deferral",
+      "stimulus": "pending completion consumes capacity"
+    },
+    {
+      "classification": "RECOVERY_COMPLETE",
+      "deterministic": true,
+      "expected_outcome": "commit 1 to 0 and retain -1",
+      "fixture_digest": "72a2ed426f6361c51b129cecefaf202e66be3b8c88a848df1339a19f5a104824",
+      "fixture_id": "M25-F05",
+      "formal_property_ids": [
+        "M25-P07",
+        "M25-P12",
+        "M25-P19"
+      ],
+      "scope": "retained_pending_polarity",
+      "stimulus": "1 to -1 request"
+    },
+    {
+      "classification": "RECOVERY_COMPLETE",
+      "deterministic": true,
+      "expected_outcome": "commit -1 and clear pending",
+      "fixture_digest": "5336ec614c481830c0bc9655c05ef37448862c664d52da4c5ca285b0c1278108",
+      "fixture_id": "M25-F06",
+      "formal_property_ids": [
+        "M25-P23"
+      ],
+      "scope": "pending_route_completion",
+      "stimulus": "commit-capable tick from 0 with pending -1"
+    },
+    {
+      "classification": "QUEUE_OVERFLOW_ATTEMPT",
+      "deterministic": true,
+      "expected_outcome": "detect; keep first polarity; zero direct execution",
+      "fixture_digest": "09bff7b22cc315610d570389bed384721c66c65c402a3018583ca05e65478307",
+      "fixture_id": "M25-F07",
+      "formal_property_ids": [
+        "M25-P11",
+        "M25-P13",
+        "M25-P14",
+        "M25-P24"
+      ],
+      "scope": "queue_overflow_behavior",
+      "stimulus": "duplicate route creation injection"
+    },
+    {
+      "classification": "INVALID_CONFIGURATION",
+      "deterministic": true,
+      "expected_outcome": "disable then recover to free",
+      "fixture_digest": "cbd56a3d4df964bd08ca58e3e7cb7ea732cd0afd8b1cf0ee58ce257622302422",
+      "fixture_id": "M25-F08",
+      "formal_property_ids": [
+        "M25-P15",
+        "M25-P16",
+        "M25-P17"
+      ],
+      "scope": "invalid_configuration_behavior",
+      "stimulus": "reserved scheduler mode"
+    },
+    {
+      "classification": "RESET_DURING_PENDING",
+      "deterministic": true,
+      "expected_outcome": "clear state and pending to 0",
+      "fixture_digest": "a04038b23d1c166ee7b30706c464da79c5f94ed9d4661c7689a69c0b2a4f71c2",
+      "fixture_id": "M25-F09",
+      "formal_property_ids": [
+        "M25-P20",
+        "M25-P21"
+      ],
+      "scope": "reset_during_pending_execution",
+      "stimulus": "reset with retained pending -1"
+    },
+    {
+      "classification": "DIGEST_MISMATCH",
+      "deterministic": true,
+      "expected_outcome": "reject before document use",
+      "fixture_digest": "432f3814ae0fd4021564992f04b4898e3c90dd9a23db64a150fd177594de415c",
+      "fixture_id": "M25-F10",
+      "formal_property_ids": [],
+      "scope": "digest_mismatch_detection",
+      "stimulus": "one-byte mutation"
+    },
+    {
+      "classification": "MALFORMED_JSON",
+      "deterministic": true,
+      "expected_outcome": "reject as inert data",
+      "fixture_digest": "04a90b43399ff30bda3dbaa7cf24acf19181205f1ca1b7cc1474ba4e0e107cf6",
+      "fixture_id": "M25-F11",
+      "formal_property_ids": [],
+      "scope": "malformed_artifact_rejection",
+      "stimulus": "truncated JSON object"
+    },
+    {
+      "classification": "INCOMPLETE_PACKAGE",
+      "deterministic": true,
+      "expected_outcome": "reject incomplete closed set",
+      "fixture_digest": "58482cc0718de672bf68508bb63d0d1ac337e01680e61143dd279c6b5d88ecec",
+      "fixture_id": "M25-F12",
+      "formal_property_ids": [],
+      "scope": "incomplete_qualification_package_handling",
+      "stimulus": "missing qualification member"
+    },
+    {
+      "classification": "RECOVERY_COMPLETE",
+      "deterministic": true,
+      "expected_outcome": "finish at state 1, pending 0 identically",
+      "fixture_digest": "041b8a5ce5e112e5b0b9b5922d3bc6d5a2e0bdc5eb99d31f376cb6136b9c2e1b",
+      "fixture_id": "M25-F13",
+      "formal_property_ids": [
+        "M25-P18",
+        "M25-P22",
+        "M25-P25"
+      ],
+      "scope": "deterministic_recovery_behavior",
+      "stimulus": "create pending, defer, reset, replay"
+    }
+  ],
+  "milestone": "M25",
+  "schema_version": "2.7.0",
+  "scope_count": 13,
+  "source_commit": "a01fb687fd1e4f0159f0d8cd885863afb8b87a1e",
+  "status": "PASS"
+}

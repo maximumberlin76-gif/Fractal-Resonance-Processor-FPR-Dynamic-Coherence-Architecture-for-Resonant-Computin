@@ -1,0 +1,445 @@
+{
+  "artifact_id": "frp-m25-negative-path-recovery-evidence",
+  "classification_set_digest": "e51a58ef7dc1d75690ec7b3e472a73973a860c1e49e8cceb953596a27d2cc5f8",
+  "contract_digest": "ce0ea3e2a9b49604de5b54348af839a874a466b2b69f4b3ad1cc5836be704a91",
+  "evidence_digest": "b49151cd68cad0b188673559ac60b67e05fe8352959f67de13aa5b12cd04b6a7",
+  "failed_fixture_count": 0,
+  "fixture_result_count": 13,
+  "fixture_set_digest": "646ed8464ec2a629fa2c8027d699ead9737739879e3701d7c37a8f4663c69e6c",
+  "formal": {
+    "failed_property_count": 0,
+    "formal_result_digest": "49fbd536542c55c3eb7e28318bbf740ba0c4471dfa038b51e04758d44c4a681d",
+    "passed_property_count": 25,
+    "prepared_rtl_digest": "d0df9d1d5f8a5aa820c92f6f198a937db000070ca65ffa8c074d245ae8965a88",
+    "property_count": 25,
+    "run_count": 3,
+    "runs": [
+      {
+        "depth": 1,
+        "harness": "formal/m25/frp_m25_negative_paths_formal.sv",
+        "property_ids": [
+          "M25-P01",
+          "M25-P02",
+          "M25-P03",
+          "M25-P04",
+          "M25-P05",
+          "M25-P06",
+          "M25-P07",
+          "M25-P08",
+          "M25-P09",
+          "M25-P10",
+          "M25-P11",
+          "M25-P12",
+          "M25-P13",
+          "M25-P14"
+        ],
+        "run_id": "M25-R01",
+        "status": "PASS",
+        "top": "frp_m25_negative_paths_formal",
+        "yosys_script": "read_verilog -sv -formal prepared/00_frp_m16_pkg_flat.sv prepared/m16/frp_m16_scheduler.sv prepared/m16/frp_m16_request_lanes.sv prepared/m16/frp_m16_pending_routes.sv prepared/m16/frp_m16_active_neutral.sv prepared/m16/frp_m16_capacity_guard.sv prepared/m16/frp_m16_state_update.sv prepared/m16/frp_m16_core.sv prepared/harness/frp_m25_negative_paths_formal.sv; prep -top frp_m25_negative_paths_formal; flatten; chformal -lower; async2sync; opt_clean; sat -prove-asserts -set-def-formal -set-init-zero -seq 1 -timeout 300 -verify"
+      },
+      {
+        "depth": 3,
+        "harness": "formal/m25/frp_m25_invalid_configuration_formal.sv",
+        "property_ids": [
+          "M25-P15",
+          "M25-P16",
+          "M25-P17"
+        ],
+        "run_id": "M25-R02",
+        "status": "PASS",
+        "top": "frp_m25_invalid_configuration_formal",
+        "yosys_script": "read_verilog -sv -formal prepared/00_frp_m16_pkg_flat.sv prepared/m16/frp_m16_scheduler.sv prepared/m16/frp_m16_request_lanes.sv prepared/m16/frp_m16_pending_routes.sv prepared/m16/frp_m16_active_neutral.sv prepared/m16/frp_m16_capacity_guard.sv prepared/m16/frp_m16_state_update.sv prepared/m16/frp_m16_core.sv prepared/harness/frp_m25_invalid_configuration_formal.sv; prep -top frp_m25_invalid_configuration_formal; flatten; chformal -lower; async2sync; opt_clean; sat -prove-asserts -set-def-formal -set-init-zero -seq 3 -timeout 300 -verify"
+      },
+      {
+        "depth": 6,
+        "harness": "formal/m25/frp_m25_pending_reset_recovery_formal.sv",
+        "property_ids": [
+          "M25-P18",
+          "M25-P19",
+          "M25-P20",
+          "M25-P21",
+          "M25-P22",
+          "M25-P23",
+          "M25-P24",
+          "M25-P25"
+        ],
+        "run_id": "M25-R03",
+        "status": "PASS",
+        "top": "frp_m25_pending_reset_recovery_formal",
+        "yosys_script": "read_verilog -sv -formal prepared/00_frp_m16_pkg_flat.sv prepared/m16/frp_m16_scheduler.sv prepared/m16/frp_m16_request_lanes.sv prepared/m16/frp_m16_pending_routes.sv prepared/m16/frp_m16_active_neutral.sv prepared/m16/frp_m16_capacity_guard.sv prepared/m16/frp_m16_state_update.sv prepared/m16/frp_m16_core.sv prepared/harness/frp_m25_pending_reset_recovery_formal.sv; prep -top frp_m25_pending_reset_recovery_formal; flatten; chformal -lower; async2sync; opt_clean; sat -prove-asserts -set-def-formal -set-init-zero -seq 6 -timeout 300 -verify"
+      }
+    ],
+    "status": "PASS",
+    "tool": {
+      "engine": "Yosys",
+      "engine_git_sha": "38e001a6f",
+      "engine_version": "0.68",
+      "logic_semantics": "defined_two_state_bounded_sat",
+      "package": "yowasp-yosys",
+      "package_version": "0.68.0.0.post1208",
+      "solver": "minisat"
+    }
+  },
+  "milestone": "M25",
+  "overall_status": "PASS",
+  "passed_fixture_count": 13,
+  "recovery_state": {
+    "active_neutral": 0,
+    "actual_direct_events": 0,
+    "final_pending": [
+      0
+    ],
+    "final_state": [
+      1
+    ],
+    "qualified_queue_overflow_events": 0,
+    "status": "PASS"
+  },
+  "results": [
+    {
+      "expected_classification": "INVALID_TERNARY",
+      "fixture_id": "M25-F01",
+      "observed": {
+        "classification": "INVALID_TERNARY",
+        "detail": "encoding 2 is reserved; accepted=false",
+        "outcome": "EXPECTED_FAILURE",
+        "pending": [
+          0
+        ],
+        "state": [
+          0
+        ]
+      },
+      "replay_digest": "a15bf3063dc82ea2475df826172a8b78576d62b856c1624c4903f617baaf5c71",
+      "result_digest": "ace0647472789020317d73e81d20e378ce91d4ff2b394b62c51a8f0fb4ac5147",
+      "scope": "invalid_ternary_inputs",
+      "status": "PASS"
+    },
+    {
+      "expected_classification": "DUPLICATE_CELL",
+      "fixture_id": "M25-F02",
+      "observed": {
+        "classification": "DUPLICATE_CELL",
+        "detail": "ascending lane arbitration is deterministic",
+        "lanes": [
+          {
+            "accepted": true,
+            "classification": "RECOVERY_COMPLETE",
+            "lane": 0
+          },
+          {
+            "accepted": false,
+            "classification": "DUPLICATE_CELL",
+            "lane": 1
+          },
+          {
+            "accepted": false,
+            "classification": "INVALID_CELL",
+            "lane": 2
+          },
+          {
+            "accepted": false,
+            "classification": "TICK_DISABLED",
+            "lane": 3
+          }
+        ],
+        "outcome": "EXPECTED_FAILURE",
+        "pending": [
+          0,
+          0
+        ],
+        "state": [
+          0,
+          0
+        ]
+      },
+      "replay_digest": "90747f9c765336218d7e793ae4ef09f8207d03997bb725c47e18a78877e98fc7",
+      "result_digest": "3808084785d360450d64f6cbe5153da491e3e8fc4b1c0225c099dff587106894",
+      "scope": "rejected_request_lanes",
+      "status": "PASS"
+    },
+    {
+      "expected_classification": "SCHEDULER_DEFERRAL",
+      "fixture_id": "M25-F03",
+      "observed": {
+        "classification": "SCHEDULER_DEFERRAL",
+        "detail": "0 to 1 waits during balance in 7/1",
+        "outcome": "EXPECTED_FAILURE",
+        "pending": [
+          0
+        ],
+        "state": [
+          0
+        ]
+      },
+      "replay_digest": "374dca5ac3d2e27e8581a80dfc5cc4c54c29f536c5565b53e58ec3697f0ed4c4",
+      "result_digest": "d36e2f8668dc21e6da24f216dc3b5af36cb879961e586bc210078984a3893531",
+      "scope": "scheduler_deferral",
+      "status": "PASS"
+    },
+    {
+      "expected_classification": "CAPACITY_DEFERRAL",
+      "fixture_id": "M25-F04",
+      "observed": {
+        "accepted_changes": 2,
+        "capacity": 2,
+        "classification": "CAPACITY_DEFERRAL",
+        "deferred_lane": 0,
+        "detail": "two pending completions own capacity two",
+        "outcome": "EXPECTED_FAILURE",
+        "pending": [
+          1,
+          -1,
+          0,
+          0
+        ],
+        "state": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "replay_digest": "7da764f7b6e720ca834d7ce716bf8fa6efa5d9efa9fadcfee2d44775843f86ff",
+      "result_digest": "5fe1c9d3efbac75bdc34a8b8180a5afe5f314c66204e4ebfbf2b7e163d34a74c",
+      "scope": "transition_capacity_deferral",
+      "status": "PASS"
+    },
+    {
+      "expected_classification": "RECOVERY_COMPLETE",
+      "fixture_id": "M25-F05",
+      "observed": {
+        "classification": "RECOVERY_COMPLETE",
+        "detail": "1 to -1 executes first leg through active neutral 0",
+        "outcome": "RETAINED_PENDING",
+        "pending": [
+          -1
+        ],
+        "state": [
+          0
+        ]
+      },
+      "replay_digest": "7be812ac4978cc868bc7443a14fce67a679994cec7708b1ff0c7853a8d438b5c",
+      "result_digest": "6dd5675f60013e4e503857a8ca1b20a9ebbb483870f124e11b08e40d505b20c4",
+      "scope": "retained_pending_polarity",
+      "status": "PASS"
+    },
+    {
+      "expected_classification": "RECOVERY_COMPLETE",
+      "fixture_id": "M25-F06",
+      "observed": {
+        "classification": "RECOVERY_COMPLETE",
+        "detail": "retained -1 completes from active neutral 0",
+        "outcome": "PENDING_COMPLETED",
+        "pending": [
+          0
+        ],
+        "state": [
+          -1
+        ]
+      },
+      "replay_digest": "52c92d3ae5507b21aabfa82f0f177dfa3e69b5659af84bc318204e2c855376a3",
+      "result_digest": "4ba5518f278f32db2efcbbd0f6af7b3e2e0bb6c0b356e2da6c15cd1b56acca55",
+      "scope": "pending_route_completion",
+      "status": "PASS"
+    },
+    {
+      "expected_classification": "QUEUE_OVERFLOW_ATTEMPT",
+      "fixture_id": "M25-F07",
+      "observed": {
+        "actual_direct_events": 0,
+        "classification": "QUEUE_OVERFLOW_ATTEMPT",
+        "detail": "later duplicate creation is detected without overwrite",
+        "outcome": "EXPECTED_FAILURE",
+        "pending": [
+          -1,
+          0
+        ],
+        "queue_overflow_events": 1,
+        "state": [
+          1,
+          0
+        ]
+      },
+      "replay_digest": "159a0ef6ac802132234c170fc2b56844f84325ed90c6245290ea2c9f851165ac",
+      "result_digest": "970b2e1226cc79005a71481269c641bcf9ccd287fe74b30c3cc0bbcfdead3c04",
+      "scope": "queue_overflow_behavior",
+      "status": "PASS"
+    },
+    {
+      "expected_classification": "INVALID_CONFIGURATION",
+      "fixture_id": "M25-F08",
+      "observed": {
+        "classification": "INVALID_CONFIGURATION",
+        "detail": "reserved scheduler mode disables all execution classes",
+        "outcome": "EXPECTED_FAILURE",
+        "pending": [
+          0
+        ],
+        "recovered_mode": "free",
+        "state": [
+          0
+        ]
+      },
+      "replay_digest": "b8cf97265fa901cfe10109b64660ce552602a1337733c1d3ef2aefd8857e4267",
+      "result_digest": "8f65068266130511e0080cbac0a8f879b03fece41be96ce8c309b5f1709476bd",
+      "scope": "invalid_configuration_behavior",
+      "status": "PASS"
+    },
+    {
+      "expected_classification": "RESET_DURING_PENDING",
+      "fixture_id": "M25-F09",
+      "observed": {
+        "classification": "RESET_DURING_PENDING",
+        "detail": "pending -1 and retained 0 clear to reset image",
+        "outcome": "EXPECTED_FAILURE",
+        "pending": [
+          0
+        ],
+        "pre_reset": {
+          "pending": [
+            -1
+          ],
+          "state": [
+            0
+          ]
+        },
+        "state": [
+          0
+        ]
+      },
+      "replay_digest": "8c10ec6dcb6d2d26257ca5e408280708e2ccb3177e209756e51d5cb7956ad49e",
+      "result_digest": "5d56a85633e264a1e811b0b1a39d9096906bf978f673eef0b43d3c66ec2a229a",
+      "scope": "reset_during_pending_execution",
+      "status": "PASS"
+    },
+    {
+      "expected_classification": "DIGEST_MISMATCH",
+      "fixture_id": "M25-F10",
+      "observed": {
+        "classification": "DIGEST_MISMATCH",
+        "detail": "mutated bytes rejected before use",
+        "outcome": "EXPECTED_FAILURE",
+        "pending": [
+          0
+        ],
+        "state": [
+          0
+        ]
+      },
+      "replay_digest": "88933df2225521a0127d29e5a36443b4580d7ee99a89c4b3a7520918797d143c",
+      "result_digest": "588ccb5ba0ce83dd456fc823499c3bb9549a64132089be95f5282bfa5b8b9258",
+      "scope": "digest_mismatch_detection",
+      "status": "PASS"
+    },
+    {
+      "expected_classification": "MALFORMED_JSON",
+      "fixture_id": "M25-F11",
+      "observed": {
+        "classification": "MALFORMED_JSON",
+        "detail": "truncated JSON rejected as inert data",
+        "outcome": "EXPECTED_FAILURE",
+        "pending": [
+          0
+        ],
+        "state": [
+          0
+        ]
+      },
+      "replay_digest": "6865ffc09cf9a2c4ffd2620142f85db160dbeadea9ac56e0b4d299cec062f442",
+      "result_digest": "fb180a13c3214f3552e903a27cd633d96bffbaf27fcbc6e28187c226398122ce",
+      "scope": "malformed_artifact_rejection",
+      "status": "PASS"
+    },
+    {
+      "expected_classification": "INCOMPLETE_PACKAGE",
+      "fixture_id": "M25-F12",
+      "observed": {
+        "classification": "INCOMPLETE_PACKAGE",
+        "detail": "missing qualification member rejected",
+        "outcome": "EXPECTED_FAILURE",
+        "pending": [
+          0
+        ],
+        "state": [
+          0
+        ]
+      },
+      "replay_digest": "4de1ca3eb6f70b8496dda572d10bd7a650b29188954b25ff136498fdea2b4601",
+      "result_digest": "7fa11b278b6585be297a720becf880dff2172ec53d494082498ba266986cea78",
+      "scope": "incomplete_qualification_package_handling",
+      "status": "PASS"
+    },
+    {
+      "expected_classification": "RECOVERY_COMPLETE",
+      "fixture_id": "M25-F13",
+      "observed": {
+        "classification": "RECOVERY_COMPLETE",
+        "detail": "replay after pending reset is byte-stable",
+        "outcome": "RECOVERY_COMPLETE",
+        "pending": [
+          0
+        ],
+        "sequence": [
+          {
+            "pending": [
+              0
+            ],
+            "state": [
+              1
+            ],
+            "step": 0
+          },
+          {
+            "pending": [
+              -1
+            ],
+            "state": [
+              0
+            ],
+            "step": 1
+          },
+          {
+            "pending": [
+              -1
+            ],
+            "state": [
+              0
+            ],
+            "step": 2
+          },
+          {
+            "pending": [
+              0
+            ],
+            "state": [
+              0
+            ],
+            "step": 3
+          },
+          {
+            "pending": [
+              0
+            ],
+            "state": [
+              1
+            ],
+            "step": 4
+          }
+        ],
+        "sequence_digest": "21b179f24091a2c73415d0e4f760385181b9be6c00f2b8caef0dac6b37b12837",
+        "state": [
+          1
+        ]
+      },
+      "replay_digest": "3ee8f9ea122c63585eafacfc3fcd0d7b3ce98756afa7eccc72daf7e7e6ff533d",
+      "result_digest": "f5cad816cb9c4c1757881bf8f3e904a50167e7fb4c9dc0a114a8ef5c35b532f6",
+      "scope": "deterministic_recovery_behavior",
+      "status": "PASS"
+    }
+  ],
+  "schema_version": "2.7.0",
+  "source_commit": "a01fb687fd1e4f0159f0d8cd885863afb8b87a1e",
+  "status": "PASS"
+}

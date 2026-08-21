@@ -1,0 +1,13 @@
+{
+  "schema_version": "2.7.0",
+  "milestone": "M25",
+  "registry_id": "frp-m25-schema-registry",
+  "records": [
+    {"schema_id": "m25-fault-negative-recovery-contract-v2.7.0", "path": "schemas/m25/frp_m25_fault_negative_recovery_contract.v2.7.0.schema.json"},
+    {"schema_id": "m25-failure-classification-registry-v2.7.0", "path": "schemas/m25/frp_m25_failure_classification_registry.v2.7.0.schema.json"},
+    {"schema_id": "m25-deterministic-negative-fixtures-v2.7.0", "path": "schemas/m25/frp_m25_deterministic_negative_fixtures.v2.7.0.schema.json"},
+    {"schema_id": "m25-negative-path-recovery-evidence-v2.7.0", "path": "schemas/m25/frp_m25_negative_path_recovery_evidence.v2.7.0.schema.json"},
+    {"schema_id": "m25-fault-negative-recovery-manifest-v2.7.0", "path": "schemas/m25/frp_m25_fault_negative_recovery_manifest.v2.7.0.schema.json"},
+    {"schema_id": "m25-fault-negative-recovery-qualification-v2.7.0", "path": "schemas/m25/frp_m25_fault_negative_recovery_qualification.v2.7.0.schema.json"}
+  ]
+}

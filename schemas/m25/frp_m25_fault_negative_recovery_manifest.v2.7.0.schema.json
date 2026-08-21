@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frp.example/schemas/m25/frp_m25_fault_negative_recovery_manifest.v2.7.0.schema.json",
+  "title": "FRP M25 source and artifact manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "source_commit", "workflow_path", "source_count", "sources", "upstream_dependency_count", "upstream_dependencies", "artifact_count", "artifacts", "artifact_set_digest", "manifest_digest"],
+  "properties": {
+    "schema_version": {"const": "2.7.0"}, "artifact_id": {"const": "frp-m25-fault-negative-recovery-manifest"}, "milestone": {"const": "M25"}, "status": {"const": "PASS"},
+    "source_commit": {"const": "a01fb687fd1e4f0159f0d8cd885863afb8b87a1e"},
+    "workflow_path": {"const": ".github/workflows/frp-m25-fault-negative-path-recovery-qualification-workflow.yml"},
+    "source_count": {"type": "integer", "minimum": 10},
+    "sources": {"type": "array", "minItems": 10, "items": {"$ref": "#/$defs/record"}},
+    "upstream_dependency_count": {"const": 14},
+    "upstream_dependencies": {"type": "array", "minItems": 14, "maxItems": 14, "items": {"$ref": "#/$defs/record"}},
+    "artifact_count": {"const": 4},
+    "artifacts": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"$ref": "#/$defs/record"}},
+    "artifact_set_digest": {"$ref": "#/$defs/digest"}, "manifest_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "record": {"type": "object", "additionalProperties": false, "required": ["path", "bytes", "raw_sha256"], "properties": {"path": {"type": "string", "pattern": "^[^/\\\\][^\\\\]*$"}, "bytes": {"type": "integer", "minimum": 1}, "raw_sha256": {"$ref": "#/$defs/digest"}}}
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frp.example/schemas/m25/frp_m25_fault_negative_recovery_qualification.v2.7.0.schema.json",
+  "title": "FRP M25 qualification closure",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "overall_status", "source_commit", "contract_digest", "classification_set_digest", "fixture_set_digest", "evidence_digest", "manifest_digest", "check_count", "passed_count", "failed_count", "checks", "qualification_digest"],
+  "properties": {
+    "schema_version": {"const": "2.7.0"}, "artifact_id": {"const": "frp-m25-fault-negative-recovery-qualification"}, "milestone": {"const": "M25"}, "status": {"const": "PASS"}, "overall_status": {"const": "PASS"},
+    "source_commit": {"const": "a01fb687fd1e4f0159f0d8cd885863afb8b87a1e"},
+    "contract_digest": {"$ref": "#/$defs/digest"}, "classification_set_digest": {"$ref": "#/$defs/digest"}, "fixture_set_digest": {"$ref": "#/$defs/digest"}, "evidence_digest": {"$ref": "#/$defs/digest"}, "manifest_digest": {"$ref": "#/$defs/digest"},
+    "check_count": {"type": "integer", "minimum": 90}, "passed_count": {"type": "integer", "minimum": 90}, "failed_count": {"const": 0},
+    "checks": {"type": "array", "minItems": 90, "items": {"type": "object", "additionalProperties": false, "required": ["check_id", "category", "status", "evidence"], "properties": {"check_id": {"type": "string", "pattern": "^M25-Q[0-9]{3}$"}, "category": {"enum": ["identity", "scope", "fixture", "fixture_result", "formal_property", "formal_run", "classification", "schema", "closure", "manifest", "recovery"]}, "status": {"const": "PASS"}, "evidence": {}}}},
+    "qualification_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}
