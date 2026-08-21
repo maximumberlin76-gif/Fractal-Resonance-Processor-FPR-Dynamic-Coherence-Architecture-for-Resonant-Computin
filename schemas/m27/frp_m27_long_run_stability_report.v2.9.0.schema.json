@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frp.example/schemas/m27/frp_m27_long_run_stability_report.v2.9.0.schema.json",
+  "title": "FRP M27 long-run stability report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "source_commit", "contract_digest", "workload_catalog_digest", "checkpoint_evidence_digest", "telemetry_semantics_digest", "deterministic_rerun_requirement", "aggregate", "profiles", "evidence_classification", "report_digest"],
+  "properties": {
+    "schema_version": {"const": "2.9.0"},
+    "artifact_id": {"const": "frp-m27-long-run-stability-report"},
+    "milestone": {"const": "M27"},
+    "status": {"const": "PASS"},
+    "source_commit": {"$ref": "#/$defs/source_commit"},
+    "contract_digest": {"$ref": "#/$defs/digest"},
+    "workload_catalog_digest": {"$ref": "#/$defs/digest"},
+    "checkpoint_evidence_digest": {"$ref": "#/$defs/digest"},
+    "telemetry_semantics_digest": {"$ref": "#/$defs/digest"},
+    "deterministic_rerun_requirement": {"const": {"required_run_count": 2, "comparison": "byte_identical_canonical_json", "workflow_enforced": true}},
+    "aggregate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile_count", "total_ticks", "checkpoint_count", "scheduler_modes", "all_profiles_passed", "all_safety_counters_zero", "all_counter_relations_valid", "all_capacity_relations_valid"],
+      "properties": {
+        "profile_count": {"const": 3},
+        "total_ticks": {"const": 49152},
+        "checkpoint_count": {"const": 96},
+        "scheduler_modes": {"const": ["free", "7/1", "1/7"]},
+        "all_profiles_passed": {"const": true},
+        "all_safety_counters_zero": {"const": true},
+        "all_counter_relations_valid": {"const": true},
+        "all_capacity_relations_valid": {"const": true}
+      }
+    },
+    "profiles": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/profile"}},
+    "evidence_classification": {"const": {"deterministic_model_evidence": true, "physical_measurements": false, "physical_units": false, "universal_chip_claim": false, "proxy_labels_explicit": true}},
+    "report_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_commit": {"const": "67e9cc6d3e5dd2e96380b7cadb16b66f5e7d2427"},
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile_id", "scheduler_mode", "ticks", "checkpoint_count", "zero_event_interval_count", "boundary_observation_status", "minimum_margin_q16", "maximum_pending_routes", "maximum_changes", "final_chain_digest", "status"],
+      "properties": {
+        "profile_id": {"enum": ["free-long-run", "seven-one-long-run", "one-seven-long-run"]},
+        "scheduler_mode": {"enum": ["free", "7/1", "1/7"]},
+        "ticks": {"const": 16384},
+        "checkpoint_count": {"const": 32},
+        "zero_event_interval_count": {"type": "integer", "minimum": 1},
+        "boundary_observation_status": {"enum": ["crossed", "not_crossed"]},
+        "minimum_margin_q16": {"type": "integer"},
+        "maximum_pending_routes": {"type": "integer", "minimum": 0, "maximum": 16},
+        "maximum_changes": {"type": "integer", "minimum": 0, "maximum": 4},
+        "final_chain_digest": {"$ref": "#/$defs/digest"},
+        "status": {"const": "PASS"}
+      }
+    }
+  }
+}

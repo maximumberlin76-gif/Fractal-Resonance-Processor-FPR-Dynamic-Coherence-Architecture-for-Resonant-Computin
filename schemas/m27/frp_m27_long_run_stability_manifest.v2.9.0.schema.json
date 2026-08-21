@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frp.example/schemas/m27/frp_m27_long_run_stability_manifest.v2.9.0.schema.json",
+  "title": "FRP M27 long-run stability manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "source_commit", "source_count", "sources", "upstream_dependency_count", "upstream_dependencies", "artifact_count", "artifacts", "artifact_set_digest", "retention_validation", "manifest_digest"],
+  "properties": {
+    "schema_version": {"const": "2.9.0"},
+    "artifact_id": {"const": "frp-m27-long-run-stability-manifest"},
+    "milestone": {"const": "M27"},
+    "status": {"const": "PASS"},
+    "source_commit": {"$ref": "#/$defs/source_commit"},
+    "source_count": {"const": 11},
+    "sources": {"type": "array", "minItems": 11, "maxItems": 11, "items": {"$ref": "#/$defs/file"}},
+    "upstream_dependency_count": {"const": 6},
+    "upstream_dependencies": {"type": "array", "minItems": 6, "maxItems": 6, "items": {"$ref": "#/$defs/file"}},
+    "artifact_count": {"const": 5},
+    "artifacts": {"type": "array", "minItems": 5, "maxItems": 5, "items": {"$ref": "#/$defs/file"}},
+    "artifact_set_digest": {"$ref": "#/$defs/digest"},
+    "retention_validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["canonical_file_max_bytes", "canonical_primary_set_max_bytes", "observed_primary_set_bytes", "all_primary_files_within_limit", "primary_set_within_limit", "raw_workflow_retention_days", "recursive_metadata_exclusions"],
+      "properties": {
+        "canonical_file_max_bytes": {"const": 524288},
+        "canonical_primary_set_max_bytes": {"const": 2097152},
+        "observed_primary_set_bytes": {"type": "integer", "minimum": 1, "maximum": 2097152},
+        "all_primary_files_within_limit": {"const": true},
+        "primary_set_within_limit": {"const": true},
+        "raw_workflow_retention_days": {"const": 30},
+        "recursive_metadata_exclusions": {"const": ["artifacts/m27/manifests/m27-long-run-stability-manifest.json", "artifacts/m27/manifests/m27-long-run-stability-qualification.json"]}
+      }
+    },
+    "manifest_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_commit": {"const": "67e9cc6d3e5dd2e96380b7cadb16b66f5e7d2427"},
+    "file": {"type": "object", "additionalProperties": false, "required": ["path", "bytes", "raw_sha256"], "properties": {"path": {"type": "string", "minLength": 1}, "bytes": {"type": "integer", "minimum": 1}, "raw_sha256": {"$ref": "#/$defs/digest"}}}
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frp.example/schemas/m27/frp_m27_telemetry_semantics.v2.9.0.schema.json",
+  "title": "FRP M27 telemetry semantics",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "source_commit", "telemetry_count", "telemetry", "validated_relations", "interpretation_boundary", "semantics_digest"],
+  "properties": {
+    "schema_version": {"const": "2.9.0"},
+    "artifact_id": {"const": "frp-m27-telemetry-semantics"},
+    "milestone": {"const": "M27"},
+    "status": {"const": "PASS"},
+    "source_commit": {"$ref": "#/$defs/source_commit"},
+    "telemetry_count": {"const": 6},
+    "telemetry": {"type": "array", "minItems": 6, "maxItems": 6, "items": {"$ref": "#/$defs/telemetry"}},
+    "validated_relations": {"type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "interpretation_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["all_values_are_model_derived", "all_values_are_dimensionless", "physical_units_published", "physical_measurements_published", "unsupported_physical_interpretation"],
+      "properties": {
+        "all_values_are_model_derived": {"const": true},
+        "all_values_are_dimensionless": {"const": true},
+        "physical_units_published": {"const": false},
+        "physical_measurements_published": {"const": false},
+        "unsupported_physical_interpretation": {"const": "prohibited"}
+      }
+    },
+    "semantics_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_commit": {"const": "67e9cc6d3e5dd2e96380b7cadb16b66f5e7d2427"},
+    "telemetry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["telemetry_id", "storage_type", "domain", "relation", "classification"],
+      "properties": {
+        "telemetry_id": {"enum": ["switching_load_q16", "thermal_state_proxy_q16", "transition_pressure_q16", "global_phase_coherence_q30", "coherence_capacity_q16", "stability_margin_q16"]},
+        "storage_type": {"enum": ["signed_integer_s32q16", "signed_integer_s32q30"]},
+        "domain": {"type": "object", "additionalProperties": false, "required": ["minimum", "maximum"], "properties": {"minimum": {"type": "integer"}, "maximum": {"type": "integer"}}},
+        "relation": {"type": "string", "minLength": 1},
+        "classification": {"type": "string", "pattern": "^dimensionless_model_"}
+      }
+    }
+  }
+}

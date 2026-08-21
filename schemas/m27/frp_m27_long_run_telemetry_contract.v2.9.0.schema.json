@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frp.example/schemas/m27/frp_m27_long_run_telemetry_contract.v2.9.0.schema.json",
+  "title": "FRP M27 long-run telemetry contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "milestone_title", "release", "status", "source_commit", "objective", "required_scope", "immutable_core", "long_run_boundary", "retention_policy", "interpretation_boundary", "contract_digest"],
+  "properties": {
+    "schema_version": {"const": "2.9.0"},
+    "artifact_id": {"const": "frp-m27-long-run-telemetry-contract"},
+    "milestone": {"const": "M27"},
+    "milestone_title": {"const": "M27 - Long-Run Stability and Telemetry Qualification"},
+    "release": {"const": "FRP v2.9.0"},
+    "status": {"const": "PASS"},
+    "source_commit": {"$ref": "#/$defs/source_commit"},
+    "objective": {"const": "qualify deterministic long-run execution and published telemetry relations"},
+    "required_scope": {"type": "array", "minItems": 12, "maxItems": 12, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "immutable_core": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["balanced_ternary_notation", "semantic_values", "active_neutral_state", "temporal_scheduler_modes", "service_scheduler_mode", "opposite_transition_route"],
+      "properties": {
+        "balanced_ternary_notation": {"const": "-1/0/1"},
+        "semantic_values": {"const": [-1, 0, 1]},
+        "active_neutral_state": {"const": 0},
+        "temporal_scheduler_modes": {"const": ["1/7", "7/1"]},
+        "service_scheduler_mode": {"const": "free"},
+        "opposite_transition_route": {"const": ["source", "0", "target"]}
+      }
+    },
+    "long_run_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile_count", "ticks_per_profile", "total_ticks", "cells", "request_lanes", "checkpoint_interval_ticks", "full_tick_trace_committed"],
+      "properties": {
+        "profile_count": {"const": 3},
+        "ticks_per_profile": {"const": 16384},
+        "total_ticks": {"const": 49152},
+        "cells": {"const": 16},
+        "request_lanes": {"const": 4},
+        "checkpoint_interval_ticks": {"const": 512},
+        "full_tick_trace_committed": {"const": false}
+      }
+    },
+    "retention_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["canonical_artifacts", "raw_workflow_runs", "raw_workflow_retention_days", "canonical_file_max_bytes", "canonical_primary_set_max_bytes", "per_tick_records"],
+      "properties": {
+        "canonical_artifacts": {"const": "committed"},
+        "raw_workflow_runs": {"const": "github_actions_artifact"},
+        "raw_workflow_retention_days": {"const": 30},
+        "canonical_file_max_bytes": {"const": 524288},
+        "canonical_primary_set_max_bytes": {"const": 2097152},
+        "per_tick_records": {"const": "reduced_to_ordered_checkpoints_and_zero_event_intervals"}
+      }
+    },
+    "interpretation_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["telemetry_is_model_derived", "telemetry_is_dimensionless", "physical_measurement_status", "proxy_to_physical_conversion", "universal_physical_chip_claim"],
+      "properties": {
+        "telemetry_is_model_derived": {"const": true},
+        "telemetry_is_dimensionless": {"const": true},
+        "physical_measurement_status": {"const": "not_a_physical_measurement"},
+        "proxy_to_physical_conversion": {"const": "prohibited"},
+        "universal_physical_chip_claim": {"const": "not_made"}
+      }
+    },
+    "contract_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_commit": {"const": "67e9cc6d3e5dd2e96380b7cadb16b66f5e7d2427"}
+  }
+}

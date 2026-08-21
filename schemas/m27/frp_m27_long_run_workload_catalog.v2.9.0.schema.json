@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frp.example/schemas/m27/frp_m27_long_run_workload_catalog.v2.9.0.schema.json",
+  "title": "FRP M27 long-run workload catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "source_commit", "generator", "profile_count", "profiles", "catalog_digest"],
+  "properties": {
+    "schema_version": {"const": "2.9.0"},
+    "artifact_id": {"const": "frp-m27-long-run-workload-catalog"},
+    "milestone": {"const": "M27"},
+    "status": {"const": "PASS"},
+    "source_commit": {"$ref": "#/$defs/source_commit"},
+    "generator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generator_id", "phase_order", "phase_period_ticks", "active_ticks", "settle_ticks", "idle_ticks", "target_state_domain", "external_requests_during_active_only", "auto_targets_enabled_during_active_and_settle"],
+      "properties": {
+        "generator_id": {"const": "m27-deterministic-lane-pattern-v1"},
+        "phase_order": {"const": ["active", "settle", "idle"]},
+        "phase_period_ticks": {"const": 256},
+        "active_ticks": {"const": 192},
+        "settle_ticks": {"const": 32},
+        "idle_ticks": {"const": 32},
+        "target_state_domain": {"const": [-1, 0, 1]},
+        "external_requests_during_active_only": {"const": true},
+        "auto_targets_enabled_during_active_and_settle": {"const": true}
+      }
+    },
+    "profile_count": {"const": 3},
+    "profiles": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"$ref": "#/$defs/profile"}
+    },
+    "catalog_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_commit": {"const": "67e9cc6d3e5dd2e96380b7cadb16b66f5e7d2427"},
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile_id", "scheduler_mode", "seed", "workload_offset", "cells", "request_lanes", "transition_fraction", "ticks", "checkpoint_interval_ticks", "phase_period_ticks", "phase_partition", "request_generator", "target_state_domain", "workload_identity_digest"],
+      "properties": {
+        "profile_id": {"enum": ["free-long-run", "seven-one-long-run", "one-seven-long-run"]},
+        "scheduler_mode": {"enum": ["free", "7/1", "1/7"]},
+        "seed": {"enum": [27001, 27002, 27003]},
+        "workload_offset": {"enum": [0, 5, 10]},
+        "cells": {"const": 16},
+        "request_lanes": {"const": 4},
+        "transition_fraction": {"const": {"numerator": 1, "denominator": 4}},
+        "ticks": {"const": 16384},
+        "checkpoint_interval_ticks": {"const": 512},
+        "phase_period_ticks": {"const": 256},
+        "phase_partition": {"const": {"active_ticks": 192, "settle_ticks": 32, "idle_ticks": 32}},
+        "request_generator": {"const": "m27-deterministic-lane-pattern-v1"},
+        "target_state_domain": {"const": [-1, 0, 1]},
+        "workload_identity_digest": {"$ref": "#/$defs/digest"}
+      }
+    }
+  }
+}

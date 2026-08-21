@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frp.example/schemas/m27/frp_m27_long_run_checkpoint_evidence.v2.9.0.schema.json",
+  "title": "FRP M27 long-run checkpoint evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "source_commit", "profile_count", "total_ticks", "checkpoint_interval_ticks", "checkpoint_count", "profiles", "checkpoint_set_digest", "evidence_digest"],
+  "properties": {
+    "schema_version": {"const": "2.9.0"},
+    "artifact_id": {"const": "frp-m27-long-run-checkpoint-evidence"},
+    "milestone": {"const": "M27"},
+    "status": {"const": "PASS"},
+    "source_commit": {"$ref": "#/$defs/source_commit"},
+    "profile_count": {"const": 3},
+    "total_ticks": {"const": 49152},
+    "checkpoint_interval_ticks": {"const": 512},
+    "checkpoint_count": {"const": 96},
+    "profiles": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/profile"}},
+    "checkpoint_set_digest": {"$ref": "#/$defs/digest"},
+    "evidence_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_commit": {"const": "67e9cc6d3e5dd2e96380b7cadb16b66f5e7d2427"},
+    "state": {"enum": [-1, 0, 1]},
+    "range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimum", "maximum"],
+      "properties": {"minimum": {"type": "integer"}, "maximum": {"type": "integer"}}
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile_id", "scheduler_mode", "seed", "workload_offset", "cells", "request_lanes", "transition_fraction", "ticks", "checkpoint_interval_ticks", "phase_period_ticks", "phase_partition", "request_generator", "target_state_domain", "workload_identity_digest"],
+      "properties": {
+        "profile_id": {"enum": ["free-long-run", "seven-one-long-run", "one-seven-long-run"]},
+        "scheduler_mode": {"enum": ["free", "7/1", "1/7"]},
+        "seed": {"enum": [27001, 27002, 27003]},
+        "workload_offset": {"enum": [0, 5, 10]},
+        "cells": {"const": 16},
+        "request_lanes": {"const": 4},
+        "transition_fraction": {"const": {"numerator": 1, "denominator": 4}},
+        "ticks": {"const": 16384},
+        "checkpoint_interval_ticks": {"const": 512},
+        "phase_period_ticks": {"const": 256},
+        "phase_partition": {"const": {"active_ticks": 192, "settle_ticks": 32, "idle_ticks": 32}},
+        "request_generator": {"const": "m27-deterministic-lane-pattern-v1"},
+        "target_state_domain": {"const": [-1, 0, 1]},
+        "workload_identity_digest": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "checkpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile_id", "tick", "chain_digest", "scheduler_state", "scheduler_counts", "states", "states_packed_hex", "pending_route_count", "changes", "transition_capacity_remaining", "switching_load_q16", "thermal_state_proxy_q16", "global_phase_coherence_q30", "coherence_capacity_q16", "transition_pressure_q16", "stability_margin_q16", "stability_margin_class", "requested_direct_events", "prevented_direct_events", "neutral_routed_events", "neutralized_conflicts", "actual_direct_events", "reserved_state_events", "queue_overflow_events", "checkpoint_digest"],
+      "properties": {
+        "profile_id": {"enum": ["free-long-run", "seven-one-long-run", "one-seven-long-run"]},
+        "tick": {"type": "integer", "minimum": 0, "maximum": 16383},
+        "chain_digest": {"$ref": "#/$defs/digest"},
+        "scheduler_state": {"enum": ["free", "balance", "commit", "excite", "neutralize"]},
+        "scheduler_counts": {"type": "object", "minProperties": 1, "maxProperties": 2, "additionalProperties": {"type": "integer", "minimum": 0}},
+        "states": {"type": "array", "minItems": 16, "maxItems": 16, "items": {"$ref": "#/$defs/state"}},
+        "states_packed_hex": {"type": "string", "pattern": "^[0-9A-F]+$"},
+        "pending_route_count": {"type": "integer", "minimum": 0, "maximum": 16},
+        "changes": {"type": "integer", "minimum": 0, "maximum": 4},
+        "transition_capacity_remaining": {"type": "integer", "minimum": 0, "maximum": 4},
+        "switching_load_q16": {"type": "integer", "minimum": 0, "maximum": 65536},
+        "thermal_state_proxy_q16": {"type": "integer", "minimum": 0},
+        "global_phase_coherence_q30": {"type": "integer", "minimum": 0, "maximum": 1073741824},
+        "coherence_capacity_q16": {"type": "integer"},
+        "transition_pressure_q16": {"type": "integer", "minimum": 0},
+        "stability_margin_q16": {"type": "integer"},
+        "stability_margin_class": {"enum": ["positive", "zero", "negative"]},
+        "requested_direct_events": {"type": "integer", "minimum": 0},
+        "prevented_direct_events": {"type": "integer", "minimum": 0},
+        "neutral_routed_events": {"type": "integer", "minimum": 0},
+        "neutralized_conflicts": {"type": "integer", "minimum": 0},
+        "actual_direct_events": {"const": 0},
+        "reserved_state_events": {"const": 0},
+        "queue_overflow_events": {"const": 0},
+        "checkpoint_digest": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile_id", "status", "workload_identity", "scheduler_mode", "ticks", "scheduler_counts", "expected_scheduler_counts", "valid_request_count", "transition_capacity", "pending_routes", "counter_relations", "metric_ranges", "stability_boundary_record", "zero_event_record", "checkpoint_count", "checkpoints", "final_chain_digest", "final_states", "bounded_runtime_retention", "profile_result_digest"],
+      "properties": {
+        "profile_id": {"enum": ["free-long-run", "seven-one-long-run", "one-seven-long-run"]},
+        "status": {"const": "PASS"},
+        "workload_identity": {"$ref": "#/$defs/identity"},
+        "scheduler_mode": {"enum": ["free", "7/1", "1/7"]},
+        "ticks": {"const": 16384},
+        "scheduler_counts": {"type": "object", "minProperties": 1, "maxProperties": 2, "additionalProperties": {"type": "integer", "minimum": 0}},
+        "expected_scheduler_counts": {"type": "object", "minProperties": 1, "maxProperties": 2, "additionalProperties": {"type": "integer", "minimum": 0}},
+        "valid_request_count": {"type": "integer", "minimum": 1},
+        "transition_capacity": {"type": "object", "required": ["request_lanes", "maximum_changes_observed", "capacity_relation_valid"], "properties": {"request_lanes": {"const": 4}, "maximum_changes_observed": {"type": "integer", "minimum": 0, "maximum": 4}, "capacity_relation_valid": {"const": true}}},
+        "pending_routes": {"type": "object", "required": ["queue_capacity", "maximum_pending_observed", "final_pending_count", "capacity_relation_valid"], "properties": {"queue_capacity": {"const": 16}, "maximum_pending_observed": {"type": "integer", "minimum": 0, "maximum": 16}, "final_pending_count": {"type": "integer", "minimum": 0, "maximum": 16}, "capacity_relation_valid": {"const": true}}},
+        "counter_relations": {"type": "object", "required": ["requested_direct_events", "prevented_direct_events", "neutral_routed_events", "neutralized_conflicts", "actual_direct_events", "reserved_state_events", "queue_overflow_events", "prevented_covers_requested", "neutral_route_relation_valid", "safety_counters_zero"], "properties": {"requested_direct_events": {"type": "integer", "minimum": 0}, "prevented_direct_events": {"type": "integer", "minimum": 0}, "neutral_routed_events": {"type": "integer", "minimum": 0}, "neutralized_conflicts": {"type": "integer", "minimum": 0}, "actual_direct_events": {"const": 0}, "reserved_state_events": {"const": 0}, "queue_overflow_events": {"const": 0}, "prevented_covers_requested": {"const": true}, "neutral_route_relation_valid": {"const": true}, "safety_counters_zero": {"const": true}}},
+        "metric_ranges": {"type": "object", "minProperties": 8, "maxProperties": 8, "additionalProperties": {"$ref": "#/$defs/range"}},
+        "stability_boundary_record": {"type": "object", "required": ["observation_status", "crossing_count", "crossings", "minimum_margin_q16", "minimum_margin_tick", "final_margin_q16", "final_margin_class"], "properties": {"observation_status": {"enum": ["crossed", "not_crossed"]}, "crossing_count": {"type": "integer", "minimum": 0}, "crossings": {"type": "array", "items": {"type": "object", "required": ["tick", "previous_margin_q16", "current_margin_q16", "direction"], "properties": {"tick": {"type": "integer", "minimum": 1}, "previous_margin_q16": {"type": "integer"}, "current_margin_q16": {"type": "integer"}, "direction": {"enum": ["toward_nonpositive", "toward_positive"]}}}}, "minimum_margin_q16": {"type": "integer"}, "minimum_margin_tick": {"type": "integer", "minimum": 0}, "final_margin_q16": {"type": "integer"}, "final_margin_class": {"enum": ["positive", "zero", "negative"]}}},
+        "zero_event_record": {"type": "object", "required": ["minimum_interval_ticks", "zero_event_tick_count", "retained_interval_count", "intervals"], "properties": {"minimum_interval_ticks": {"const": 8}, "zero_event_tick_count": {"type": "integer", "minimum": 1}, "retained_interval_count": {"type": "integer", "minimum": 1}, "intervals": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["start_tick", "end_tick", "tick_count"], "properties": {"start_tick": {"type": "integer", "minimum": 0}, "end_tick": {"type": "integer", "minimum": 0}, "tick_count": {"type": "integer", "minimum": 8}}}}}},
+        "checkpoint_count": {"const": 32},
+        "checkpoints": {"type": "array", "minItems": 32, "maxItems": 32, "items": {"$ref": "#/$defs/checkpoint"}},
+        "final_chain_digest": {"$ref": "#/$defs/digest"},
+        "final_states": {"type": "array", "minItems": 16, "maxItems": 16, "items": {"$ref": "#/$defs/state"}},
+        "bounded_runtime_retention": {"type": "object", "required": ["per_tick_trace_cleared", "per_cell_trace_cleared", "route_event_trace_cleared", "retained_trace_peak_records", "retained_cell_trace_peak_records", "retained_route_event_peak_records"], "properties": {"per_tick_trace_cleared": {"const": true}, "per_cell_trace_cleared": {"const": true}, "route_event_trace_cleared": {"const": true}, "retained_trace_peak_records": {"type": "integer", "minimum": 1, "maximum": 1}, "retained_cell_trace_peak_records": {"type": "integer", "minimum": 16, "maximum": 16}, "retained_route_event_peak_records": {"type": "integer", "minimum": 0, "maximum": 32}}},
+        "profile_result_digest": {"$ref": "#/$defs/digest"}
+      }
+    }
+  }
+}

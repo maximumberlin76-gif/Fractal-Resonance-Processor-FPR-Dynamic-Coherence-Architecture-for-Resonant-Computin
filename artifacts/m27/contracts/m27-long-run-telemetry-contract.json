@@ -1,0 +1,68 @@
+{
+  "artifact_id": "frp-m27-long-run-telemetry-contract",
+  "contract_digest": "3fe10140819f308aeb181df3bb7b0c0a42010dba97721d1f76919acc254fe133",
+  "immutable_core": {
+    "active_neutral_state": 0,
+    "balanced_ternary_notation": "-1/0/1",
+    "opposite_transition_route": [
+      "source",
+      "0",
+      "target"
+    ],
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ]
+  },
+  "interpretation_boundary": {
+    "physical_measurement_status": "not_a_physical_measurement",
+    "proxy_to_physical_conversion": "prohibited",
+    "telemetry_is_dimensionless": true,
+    "telemetry_is_model_derived": true,
+    "universal_physical_chip_claim": "not_made"
+  },
+  "long_run_boundary": {
+    "cells": 16,
+    "checkpoint_interval_ticks": 512,
+    "full_tick_trace_committed": false,
+    "profile_count": 3,
+    "request_lanes": 4,
+    "ticks_per_profile": 16384,
+    "total_ticks": 49152
+  },
+  "milestone": "M27",
+  "milestone_title": "M27 - Long-Run Stability and Telemetry Qualification",
+  "objective": "qualify deterministic long-run execution and published telemetry relations",
+  "release": "FRP v2.9.0",
+  "required_scope": [
+    "long_run_scheduler_execution",
+    "long_run_pending_route_behavior",
+    "long_run_transition_capacity_behavior",
+    "switching_load_telemetry",
+    "thermal_state_proxy_telemetry",
+    "transition_pressure_telemetry",
+    "coherence_telemetry",
+    "stability_boundary_records",
+    "zero_event_intervals",
+    "deterministic_checkpoint_digests",
+    "bounded_artifact_size_and_retention_policy",
+    "exact_workload_identity"
+  ],
+  "retention_policy": {
+    "canonical_artifacts": "committed",
+    "canonical_file_max_bytes": 524288,
+    "canonical_primary_set_max_bytes": 2097152,
+    "per_tick_records": "reduced_to_ordered_checkpoints_and_zero_event_intervals",
+    "raw_workflow_retention_days": 30,
+    "raw_workflow_runs": "github_actions_artifact"
+  },
+  "schema_version": "2.9.0",
+  "source_commit": "67e9cc6d3e5dd2e96380b7cadb16b66f5e7d2427",
+  "status": "PASS"
+}

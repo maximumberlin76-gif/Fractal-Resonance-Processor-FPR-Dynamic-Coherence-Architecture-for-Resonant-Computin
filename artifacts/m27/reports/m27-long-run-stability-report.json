@@ -1,0 +1,79 @@
+{
+  "aggregate": {
+    "all_capacity_relations_valid": true,
+    "all_counter_relations_valid": true,
+    "all_profiles_passed": true,
+    "all_safety_counters_zero": true,
+    "checkpoint_count": 96,
+    "profile_count": 3,
+    "scheduler_modes": [
+      "free",
+      "7/1",
+      "1/7"
+    ],
+    "total_ticks": 49152
+  },
+  "artifact_id": "frp-m27-long-run-stability-report",
+  "checkpoint_evidence_digest": "59fe18dd66f549c8d7ebee529e8daf6c5dd3c7c92fcecdb004de56f58caaa758",
+  "contract_digest": "3fe10140819f308aeb181df3bb7b0c0a42010dba97721d1f76919acc254fe133",
+  "deterministic_rerun_requirement": {
+    "comparison": "byte_identical_canonical_json",
+    "required_run_count": 2,
+    "workflow_enforced": true
+  },
+  "evidence_classification": {
+    "deterministic_model_evidence": true,
+    "physical_measurements": false,
+    "physical_units": false,
+    "proxy_labels_explicit": true,
+    "universal_chip_claim": false
+  },
+  "milestone": "M27",
+  "profiles": [
+    {
+      "boundary_observation_status": "not_crossed",
+      "checkpoint_count": 32,
+      "final_chain_digest": "1ee22b285f3f5ed54259e8145ad27debf3d5126df354136f30018d2820149a86",
+      "maximum_changes": 4,
+      "maximum_pending_routes": 9,
+      "minimum_margin_q16": 42864,
+      "profile_id": "free-long-run",
+      "scheduler_mode": "free",
+      "status": "PASS",
+      "ticks": 16384,
+      "zero_event_interval_count": 119
+    },
+    {
+      "boundary_observation_status": "not_crossed",
+      "checkpoint_count": 32,
+      "final_chain_digest": "67a092a972c8fb8b6e9ca59215ddad360ef55843af0787dd7f0006a335632f3f",
+      "maximum_changes": 4,
+      "maximum_pending_routes": 10,
+      "minimum_margin_q16": 42491,
+      "profile_id": "seven-one-long-run",
+      "scheduler_mode": "7/1",
+      "status": "PASS",
+      "ticks": 16384,
+      "zero_event_interval_count": 127
+    },
+    {
+      "boundary_observation_status": "not_crossed",
+      "checkpoint_count": 32,
+      "final_chain_digest": "3f51be67e70a4ef480204af910beb63b3861c1435a8ec7f8476c1a7148412fb7",
+      "maximum_changes": 4,
+      "maximum_pending_routes": 11,
+      "minimum_margin_q16": 43201,
+      "profile_id": "one-seven-long-run",
+      "scheduler_mode": "1/7",
+      "status": "PASS",
+      "ticks": 16384,
+      "zero_event_interval_count": 126
+    }
+  ],
+  "report_digest": "6d49b2bc140449e59fe8103c26b7d537d277b04c984b20dab90a9235e659d02e",
+  "schema_version": "2.9.0",
+  "source_commit": "67e9cc6d3e5dd2e96380b7cadb16b66f5e7d2427",
+  "status": "PASS",
+  "telemetry_semantics_digest": "4c3cbbf7e23bf9645d84c6affa009dffc339a1277ee6fc482fd43ba946863599",
+  "workload_catalog_digest": "1eaba9a6524c42bde206ffabd91edca0412ed21b6d36dbb198d8e1be09d42262"
+}

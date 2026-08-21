@@ -1,0 +1,84 @@
+{
+  "artifact_id": "frp-m27-telemetry-semantics",
+  "interpretation_boundary": {
+    "all_values_are_dimensionless": true,
+    "all_values_are_model_derived": true,
+    "physical_measurements_published": false,
+    "physical_units_published": false,
+    "unsupported_physical_interpretation": "prohibited"
+  },
+  "milestone": "M27",
+  "schema_version": "2.9.0",
+  "semantics_digest": "4c3cbbf7e23bf9645d84c6affa009dffc339a1277ee6fc482fd43ba946863599",
+  "source_commit": "67e9cc6d3e5dd2e96380b7cadb16b66f5e7d2427",
+  "status": "PASS",
+  "telemetry": [
+    {
+      "classification": "dimensionless_model_derived_event_fraction_proxy",
+      "domain": {
+        "maximum": 65536,
+        "minimum": 0
+      },
+      "relation": "round(changes * 65536 / cells)",
+      "storage_type": "signed_integer_s32q16",
+      "telemetry_id": "switching_load_q16"
+    },
+    {
+      "classification": "dimensionless_model_state_proxy",
+      "domain": {
+        "maximum": 2147483647,
+        "minimum": 0
+      },
+      "relation": "integer mean of per-cell model heat state",
+      "storage_type": "signed_integer_s32q16",
+      "telemetry_id": "thermal_state_proxy_q16"
+    },
+    {
+      "classification": "dimensionless_model_derived_pressure_proxy",
+      "domain": {
+        "maximum": 2147483647,
+        "minimum": 0
+      },
+      "relation": "thermal_state_proxy_q16 + switching_load_q16",
+      "storage_type": "signed_integer_s32q16",
+      "telemetry_id": "transition_pressure_q16"
+    },
+    {
+      "classification": "dimensionless_model_coherence_metric",
+      "domain": {
+        "maximum": 1073741824,
+        "minimum": 0
+      },
+      "relation": "quantized global phase-order metric",
+      "storage_type": "signed_integer_s32q30",
+      "telemetry_id": "global_phase_coherence_q30"
+    },
+    {
+      "classification": "dimensionless_model_capacity_proxy",
+      "domain": {
+        "maximum": 2147483647,
+        "minimum": -2147483648
+      },
+      "relation": "canonical fixed-point model coherence capacity C",
+      "storage_type": "signed_integer_s32q16",
+      "telemetry_id": "coherence_capacity_q16"
+    },
+    {
+      "classification": "dimensionless_model_stability_margin",
+      "domain": {
+        "maximum": 2147483647,
+        "minimum": -2147483648
+      },
+      "relation": "coherence_capacity_q16 - transition_pressure_q16",
+      "storage_type": "signed_integer_s32q16",
+      "telemetry_id": "stability_margin_q16"
+    }
+  ],
+  "telemetry_count": 6,
+  "validated_relations": [
+    "transition_pressure_q16 equals thermal_state_proxy_q16 plus switching_load_q16",
+    "stability_margin_q16 equals coherence_capacity_q16 minus transition_pressure_q16",
+    "changes never exceeds request_lanes",
+    "pending_route_count never exceeds queue_capacity"
+  ]
+}

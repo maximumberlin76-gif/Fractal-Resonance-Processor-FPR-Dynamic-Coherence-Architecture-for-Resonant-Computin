@@ -1,0 +1,14 @@
+{
+  "schema_version": "2.9.0",
+  "milestone": "M27",
+  "status": "PASS",
+  "records": [
+    {"schema_id": "m27-long-run-telemetry-contract-v2.9.0", "path": "schemas/m27/frp_m27_long_run_telemetry_contract.v2.9.0.schema.json"},
+    {"schema_id": "m27-long-run-workload-catalog-v2.9.0", "path": "schemas/m27/frp_m27_long_run_workload_catalog.v2.9.0.schema.json"},
+    {"schema_id": "m27-long-run-checkpoint-evidence-v2.9.0", "path": "schemas/m27/frp_m27_long_run_checkpoint_evidence.v2.9.0.schema.json"},
+    {"schema_id": "m27-telemetry-semantics-v2.9.0", "path": "schemas/m27/frp_m27_telemetry_semantics.v2.9.0.schema.json"},
+    {"schema_id": "m27-long-run-stability-report-v2.9.0", "path": "schemas/m27/frp_m27_long_run_stability_report.v2.9.0.schema.json"},
+    {"schema_id": "m27-long-run-stability-manifest-v2.9.0", "path": "schemas/m27/frp_m27_long_run_stability_manifest.v2.9.0.schema.json"},
+    {"schema_id": "m27-long-run-stability-qualification-v2.9.0", "path": "schemas/m27/frp_m27_long_run_stability_qualification.v2.9.0.schema.json"}
+  ]
+}

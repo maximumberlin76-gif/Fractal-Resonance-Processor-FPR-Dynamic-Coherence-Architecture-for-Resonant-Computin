@@ -1,0 +1,562 @@
+{
+  "artifact_id": "frp-m27-long-run-stability-qualification",
+  "check_count": 69,
+  "checkpoint_evidence_digest": "59fe18dd66f549c8d7ebee529e8daf6c5dd3c7c92fcecdb004de56f58caaa758",
+  "checks": [
+    {
+      "category": "identity",
+      "check_id": "M27-Q001",
+      "evidence": "FRP v2.9.0",
+      "status": "PASS"
+    },
+    {
+      "category": "identity",
+      "check_id": "M27-Q002",
+      "evidence": "67e9cc6d3e5dd2e96380b7cadb16b66f5e7d2427",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M27-Q003",
+      "evidence": "long_run_scheduler_execution",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M27-Q004",
+      "evidence": "long_run_pending_route_behavior",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M27-Q005",
+      "evidence": "long_run_transition_capacity_behavior",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M27-Q006",
+      "evidence": "switching_load_telemetry",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M27-Q007",
+      "evidence": "thermal_state_proxy_telemetry",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M27-Q008",
+      "evidence": "transition_pressure_telemetry",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M27-Q009",
+      "evidence": "coherence_telemetry",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M27-Q010",
+      "evidence": "stability_boundary_records",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M27-Q011",
+      "evidence": "zero_event_intervals",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M27-Q012",
+      "evidence": "deterministic_checkpoint_digests",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M27-Q013",
+      "evidence": "bounded_artifact_size_and_retention_policy",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M27-Q014",
+      "evidence": "exact_workload_identity",
+      "status": "PASS"
+    },
+    {
+      "category": "workload",
+      "check_id": "M27-Q015",
+      "evidence": "ee57a2e6fb75ff7379e0c16fd6a710a1753a13241ae67d909bb11a894377b732",
+      "status": "PASS"
+    },
+    {
+      "category": "scheduler",
+      "check_id": "M27-Q016",
+      "evidence": {
+        "free": 16384
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "pending_route",
+      "check_id": "M27-Q017",
+      "evidence": {
+        "capacity_relation_valid": true,
+        "final_pending_count": 0,
+        "maximum_pending_observed": 9,
+        "queue_capacity": 16
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "transition_capacity",
+      "check_id": "M27-Q018",
+      "evidence": {
+        "capacity_relation_valid": true,
+        "maximum_changes_observed": 4,
+        "request_lanes": 4
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "counter_relation",
+      "check_id": "M27-Q019",
+      "evidence": {
+        "actual_direct_events": 0,
+        "neutral_route_relation_valid": true,
+        "neutral_routed_events": 12172,
+        "neutralized_conflicts": 12172,
+        "prevented_covers_requested": true,
+        "prevented_direct_events": 12172,
+        "queue_overflow_events": 0,
+        "requested_direct_events": 9322,
+        "reserved_state_events": 0,
+        "safety_counters_zero": true
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "M27-Q020",
+      "evidence": {
+        "crossing_count": 0,
+        "crossings": [],
+        "final_margin_class": "positive",
+        "final_margin_q16": 81026,
+        "minimum_margin_q16": 42864,
+        "minimum_margin_tick": 3,
+        "observation_status": "not_crossed"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "zero_event",
+      "check_id": "M27-Q021",
+      "evidence": 119,
+      "status": "PASS"
+    },
+    {
+      "category": "checkpoint_chain",
+      "check_id": "M27-Q022",
+      "evidence": "1ee22b285f3f5ed54259e8145ad27debf3d5126df354136f30018d2820149a86",
+      "status": "PASS"
+    },
+    {
+      "category": "bounded_runtime",
+      "check_id": "M27-Q023",
+      "evidence": {
+        "per_cell_trace_cleared": true,
+        "per_tick_trace_cleared": true,
+        "retained_cell_trace_peak_records": 16,
+        "retained_route_event_peak_records": 4,
+        "retained_trace_peak_records": 1,
+        "route_event_trace_cleared": true
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "workload",
+      "check_id": "M27-Q024",
+      "evidence": "ae46f7662947ffff2d343ca0e1a24f13b233a6c9dcb603919276bc9fa1532932",
+      "status": "PASS"
+    },
+    {
+      "category": "scheduler",
+      "check_id": "M27-Q025",
+      "evidence": {
+        "balance": 14336,
+        "commit": 2048
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "pending_route",
+      "check_id": "M27-Q026",
+      "evidence": {
+        "capacity_relation_valid": true,
+        "final_pending_count": 0,
+        "maximum_pending_observed": 10,
+        "queue_capacity": 16
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "transition_capacity",
+      "check_id": "M27-Q027",
+      "evidence": {
+        "capacity_relation_valid": true,
+        "maximum_changes_observed": 4,
+        "request_lanes": 4
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "counter_relation",
+      "check_id": "M27-Q028",
+      "evidence": {
+        "actual_direct_events": 0,
+        "neutral_route_relation_valid": true,
+        "neutral_routed_events": 12380,
+        "neutralized_conflicts": 12380,
+        "prevented_covers_requested": true,
+        "prevented_direct_events": 12380,
+        "queue_overflow_events": 0,
+        "requested_direct_events": 9445,
+        "reserved_state_events": 0,
+        "safety_counters_zero": true
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "M27-Q029",
+      "evidence": {
+        "crossing_count": 0,
+        "crossings": [],
+        "final_margin_class": "positive",
+        "final_margin_q16": 84972,
+        "minimum_margin_q16": 42491,
+        "minimum_margin_tick": 1,
+        "observation_status": "not_crossed"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "zero_event",
+      "check_id": "M27-Q030",
+      "evidence": 127,
+      "status": "PASS"
+    },
+    {
+      "category": "checkpoint_chain",
+      "check_id": "M27-Q031",
+      "evidence": "67a092a972c8fb8b6e9ca59215ddad360ef55843af0787dd7f0006a335632f3f",
+      "status": "PASS"
+    },
+    {
+      "category": "bounded_runtime",
+      "check_id": "M27-Q032",
+      "evidence": {
+        "per_cell_trace_cleared": true,
+        "per_tick_trace_cleared": true,
+        "retained_cell_trace_peak_records": 16,
+        "retained_route_event_peak_records": 4,
+        "retained_trace_peak_records": 1,
+        "route_event_trace_cleared": true
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "workload",
+      "check_id": "M27-Q033",
+      "evidence": "df417207ed265a81f696b40fd9e3292733c9922406d4fb05e789a99ca190c787",
+      "status": "PASS"
+    },
+    {
+      "category": "scheduler",
+      "check_id": "M27-Q034",
+      "evidence": {
+        "excite": 2048,
+        "neutralize": 14336
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "pending_route",
+      "check_id": "M27-Q035",
+      "evidence": {
+        "capacity_relation_valid": true,
+        "final_pending_count": 0,
+        "maximum_pending_observed": 11,
+        "queue_capacity": 16
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "transition_capacity",
+      "check_id": "M27-Q036",
+      "evidence": {
+        "capacity_relation_valid": true,
+        "maximum_changes_observed": 4,
+        "request_lanes": 4
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "counter_relation",
+      "check_id": "M27-Q037",
+      "evidence": {
+        "actual_direct_events": 0,
+        "neutral_route_relation_valid": true,
+        "neutral_routed_events": 12142,
+        "neutralized_conflicts": 12142,
+        "prevented_covers_requested": true,
+        "prevented_direct_events": 12142,
+        "queue_overflow_events": 0,
+        "requested_direct_events": 9321,
+        "reserved_state_events": 0,
+        "safety_counters_zero": true
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "M27-Q038",
+      "evidence": {
+        "crossing_count": 0,
+        "crossings": [],
+        "final_margin_class": "positive",
+        "final_margin_q16": 82468,
+        "minimum_margin_q16": 43201,
+        "minimum_margin_tick": 17,
+        "observation_status": "not_crossed"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "zero_event",
+      "check_id": "M27-Q039",
+      "evidence": 126,
+      "status": "PASS"
+    },
+    {
+      "category": "checkpoint_chain",
+      "check_id": "M27-Q040",
+      "evidence": "3f51be67e70a4ef480204af910beb63b3861c1435a8ec7f8476c1a7148412fb7",
+      "status": "PASS"
+    },
+    {
+      "category": "bounded_runtime",
+      "check_id": "M27-Q041",
+      "evidence": {
+        "per_cell_trace_cleared": true,
+        "per_tick_trace_cleared": true,
+        "retained_cell_trace_peak_records": 16,
+        "retained_route_event_peak_records": 4,
+        "retained_trace_peak_records": 1,
+        "route_event_trace_cleared": true
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "telemetry",
+      "check_id": "M27-Q042",
+      "evidence": "switching_load_q16",
+      "status": "PASS"
+    },
+    {
+      "category": "telemetry",
+      "check_id": "M27-Q043",
+      "evidence": "thermal_state_proxy_q16",
+      "status": "PASS"
+    },
+    {
+      "category": "telemetry",
+      "check_id": "M27-Q044",
+      "evidence": "transition_pressure_q16",
+      "status": "PASS"
+    },
+    {
+      "category": "telemetry",
+      "check_id": "M27-Q045",
+      "evidence": "global_phase_coherence_q30",
+      "status": "PASS"
+    },
+    {
+      "category": "telemetry",
+      "check_id": "M27-Q046",
+      "evidence": "coherence_capacity_q16",
+      "status": "PASS"
+    },
+    {
+      "category": "telemetry",
+      "check_id": "M27-Q047",
+      "evidence": "stability_margin_q16",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M27-Q048",
+      "evidence": "m27-long-run-telemetry-contract-v2.9.0",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M27-Q049",
+      "evidence": "m27-long-run-workload-catalog-v2.9.0",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M27-Q050",
+      "evidence": "m27-long-run-checkpoint-evidence-v2.9.0",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M27-Q051",
+      "evidence": "m27-telemetry-semantics-v2.9.0",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M27-Q052",
+      "evidence": "m27-long-run-stability-report-v2.9.0",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M27-Q053",
+      "evidence": "m27-long-run-stability-manifest-v2.9.0",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "M27-Q054",
+      "evidence": "m27-long-run-stability-qualification-v2.9.0",
+      "status": "PASS"
+    },
+    {
+      "category": "upstream_dependency",
+      "check_id": "M27-Q055",
+      "evidence": "frp_prototype_v1_7_0.py",
+      "status": "PASS"
+    },
+    {
+      "category": "upstream_dependency",
+      "check_id": "M27-Q056",
+      "evidence": "artifacts/m21/matrix/m21-parameter-dimensions.json",
+      "status": "PASS"
+    },
+    {
+      "category": "upstream_dependency",
+      "check_id": "M27-Q057",
+      "evidence": "artifacts/m26/contracts/m26-declared-target-implementation-contract.json",
+      "status": "PASS"
+    },
+    {
+      "category": "upstream_dependency",
+      "check_id": "M27-Q058",
+      "evidence": "artifacts/m26/reports/m26-declared-target-implementation-report.json",
+      "status": "PASS"
+    },
+    {
+      "category": "upstream_dependency",
+      "check_id": "M27-Q059",
+      "evidence": "artifacts/m26/manifests/m26-declared-target-implementation-manifest.json",
+      "status": "PASS"
+    },
+    {
+      "category": "upstream_dependency",
+      "check_id": "M27-Q060",
+      "evidence": "artifacts/m26/manifests/m26-declared-target-implementation-qualification.json",
+      "status": "PASS"
+    },
+    {
+      "category": "canonical_artifact",
+      "check_id": "M27-Q061",
+      "evidence": "artifacts/m27/contracts/m27-long-run-telemetry-contract.json",
+      "status": "PASS"
+    },
+    {
+      "category": "canonical_artifact",
+      "check_id": "M27-Q062",
+      "evidence": "artifacts/m27/workloads/m27-long-run-workload-catalog.json",
+      "status": "PASS"
+    },
+    {
+      "category": "canonical_artifact",
+      "check_id": "M27-Q063",
+      "evidence": "artifacts/m27/checkpoints/m27-long-run-checkpoint-evidence.json",
+      "status": "PASS"
+    },
+    {
+      "category": "canonical_artifact",
+      "check_id": "M27-Q064",
+      "evidence": "artifacts/m27/telemetry/m27-telemetry-semantics.json",
+      "status": "PASS"
+    },
+    {
+      "category": "canonical_artifact",
+      "check_id": "M27-Q065",
+      "evidence": "artifacts/m27/reports/m27-long-run-stability-report.json",
+      "status": "PASS"
+    },
+    {
+      "category": "determinism",
+      "check_id": "M27-Q066",
+      "evidence": {
+        "comparison": "byte_identical_canonical_json",
+        "required_run_count": 2,
+        "workflow_enforced": true
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "artifact_retention",
+      "check_id": "M27-Q067",
+      "evidence": {
+        "all_primary_files_within_limit": true,
+        "canonical_file_max_bytes": 524288,
+        "canonical_primary_set_max_bytes": 2097152,
+        "observed_primary_set_bytes": 203448,
+        "primary_set_within_limit": true,
+        "raw_workflow_retention_days": 30,
+        "recursive_metadata_exclusions": [
+          "artifacts/m27/manifests/m27-long-run-stability-manifest.json",
+          "artifacts/m27/manifests/m27-long-run-stability-qualification.json"
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "workload_catalog",
+      "check_id": "M27-Q068",
+      "evidence": "1eaba9a6524c42bde206ffabd91edca0412ed21b6d36dbb198d8e1be09d42262",
+      "status": "PASS"
+    },
+    {
+      "category": "closure",
+      "check_id": "M27-Q069",
+      "evidence": "long-run stability and telemetry qualification is closed",
+      "status": "PASS"
+    }
+  ],
+  "contract_digest": "3fe10140819f308aeb181df3bb7b0c0a42010dba97721d1f76919acc254fe133",
+  "failed_count": 0,
+  "manifest_digest": "87d95b86e05f51a38e4aaafcc35d76e100bea9fc7734fe434748bc3fbba200f9",
+  "milestone": "M27",
+  "overall_status": "PASS",
+  "passed_count": 69,
+  "qualification_digest": "3d8e3a5a343849704a63bfd82403953948f2d1a9d595cae9f84e064671233216",
+  "report_digest": "6d49b2bc140449e59fe8103c26b7d537d277b04c984b20dab90a9235e659d02e",
+  "schema_version": "2.9.0",
+  "source_commit": "67e9cc6d3e5dd2e96380b7cadb16b66f5e7d2427",
+  "status": "PASS",
+  "telemetry_semantics_digest": "4c3cbbf7e23bf9645d84c6affa009dffc339a1277ee6fc482fd43ba946863599",
+  "workload_catalog_digest": "1eaba9a6524c42bde206ffabd91edca0412ed21b6d36dbb198d8e1be09d42262"
+}

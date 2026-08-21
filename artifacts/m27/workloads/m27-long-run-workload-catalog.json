@@ -1,0 +1,111 @@
+{
+  "artifact_id": "frp-m27-long-run-workload-catalog",
+  "catalog_digest": "1eaba9a6524c42bde206ffabd91edca0412ed21b6d36dbb198d8e1be09d42262",
+  "generator": {
+    "active_ticks": 192,
+    "auto_targets_enabled_during_active_and_settle": true,
+    "external_requests_during_active_only": true,
+    "generator_id": "m27-deterministic-lane-pattern-v1",
+    "idle_ticks": 32,
+    "phase_order": [
+      "active",
+      "settle",
+      "idle"
+    ],
+    "phase_period_ticks": 256,
+    "settle_ticks": 32,
+    "target_state_domain": [
+      -1,
+      0,
+      1
+    ]
+  },
+  "milestone": "M27",
+  "profile_count": 3,
+  "profiles": [
+    {
+      "cells": 16,
+      "checkpoint_interval_ticks": 512,
+      "phase_partition": {
+        "active_ticks": 192,
+        "idle_ticks": 32,
+        "settle_ticks": 32
+      },
+      "phase_period_ticks": 256,
+      "profile_id": "free-long-run",
+      "request_generator": "m27-deterministic-lane-pattern-v1",
+      "request_lanes": 4,
+      "scheduler_mode": "free",
+      "seed": 27001,
+      "target_state_domain": [
+        -1,
+        0,
+        1
+      ],
+      "ticks": 16384,
+      "transition_fraction": {
+        "denominator": 4,
+        "numerator": 1
+      },
+      "workload_identity_digest": "ee57a2e6fb75ff7379e0c16fd6a710a1753a13241ae67d909bb11a894377b732",
+      "workload_offset": 0
+    },
+    {
+      "cells": 16,
+      "checkpoint_interval_ticks": 512,
+      "phase_partition": {
+        "active_ticks": 192,
+        "idle_ticks": 32,
+        "settle_ticks": 32
+      },
+      "phase_period_ticks": 256,
+      "profile_id": "seven-one-long-run",
+      "request_generator": "m27-deterministic-lane-pattern-v1",
+      "request_lanes": 4,
+      "scheduler_mode": "7/1",
+      "seed": 27002,
+      "target_state_domain": [
+        -1,
+        0,
+        1
+      ],
+      "ticks": 16384,
+      "transition_fraction": {
+        "denominator": 4,
+        "numerator": 1
+      },
+      "workload_identity_digest": "ae46f7662947ffff2d343ca0e1a24f13b233a6c9dcb603919276bc9fa1532932",
+      "workload_offset": 5
+    },
+    {
+      "cells": 16,
+      "checkpoint_interval_ticks": 512,
+      "phase_partition": {
+        "active_ticks": 192,
+        "idle_ticks": 32,
+        "settle_ticks": 32
+      },
+      "phase_period_ticks": 256,
+      "profile_id": "one-seven-long-run",
+      "request_generator": "m27-deterministic-lane-pattern-v1",
+      "request_lanes": 4,
+      "scheduler_mode": "1/7",
+      "seed": 27003,
+      "target_state_domain": [
+        -1,
+        0,
+        1
+      ],
+      "ticks": 16384,
+      "transition_fraction": {
+        "denominator": 4,
+        "numerator": 1
+      },
+      "workload_identity_digest": "df417207ed265a81f696b40fd9e3292733c9922406d4fb05e789a99ca190c787",
+      "workload_offset": 10
+    }
+  ],
+  "schema_version": "2.9.0",
+  "source_commit": "67e9cc6d3e5dd2e96380b7cadb16b66f5e7d2427",
+  "status": "PASS"
+}

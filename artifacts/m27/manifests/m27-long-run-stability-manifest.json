@@ -1,0 +1,140 @@
+{
+  "artifact_count": 5,
+  "artifact_id": "frp-m27-long-run-stability-manifest",
+  "artifact_set_digest": "b03126b024cab33e1d916e703d6b87198c2c8ea33e644b786f483943f0f9b33b",
+  "artifacts": [
+    {
+      "bytes": 2127,
+      "path": "artifacts/m27/contracts/m27-long-run-telemetry-contract.json",
+      "raw_sha256": "ea1e90ec83916dd9cf8a44c46ac4e0c9347738c6d20b84f504650479d3b18c82"
+    },
+    {
+      "bytes": 2903,
+      "path": "artifacts/m27/workloads/m27-long-run-workload-catalog.json",
+      "raw_sha256": "b7f98418c0901d6b4e572aa4499c3d169a40444551fa4d43fcf04d2130c56617"
+    },
+    {
+      "bytes": 192916,
+      "path": "artifacts/m27/checkpoints/m27-long-run-checkpoint-evidence.json",
+      "raw_sha256": "13221f5e089e7e85b33788b7d9429bc0518f67bac2c2f06af151b03410825f3f"
+    },
+    {
+      "bytes": 2789,
+      "path": "artifacts/m27/telemetry/m27-telemetry-semantics.json",
+      "raw_sha256": "813ae5c66ceaddabc77734d44f1ebf971ca3bd7e11c1984e2e0c8f0204dfd1bc"
+    },
+    {
+      "bytes": 2713,
+      "path": "artifacts/m27/reports/m27-long-run-stability-report.json",
+      "raw_sha256": "465a42c2ee70833e5f14eb5251c811bda83c55b8ca3f87f3a8f9f28d7d178af6"
+    }
+  ],
+  "manifest_digest": "87d95b86e05f51a38e4aaafcc35d76e100bea9fc7734fe434748bc3fbba200f9",
+  "milestone": "M27",
+  "retention_validation": {
+    "all_primary_files_within_limit": true,
+    "canonical_file_max_bytes": 524288,
+    "canonical_primary_set_max_bytes": 2097152,
+    "observed_primary_set_bytes": 203448,
+    "primary_set_within_limit": true,
+    "raw_workflow_retention_days": 30,
+    "recursive_metadata_exclusions": [
+      "artifacts/m27/manifests/m27-long-run-stability-manifest.json",
+      "artifacts/m27/manifests/m27-long-run-stability-qualification.json"
+    ]
+  },
+  "schema_version": "2.9.0",
+  "source_commit": "67e9cc6d3e5dd2e96380b7cadb16b66f5e7d2427",
+  "source_count": 11,
+  "sources": [
+    {
+      "bytes": 41050,
+      "path": ".github/workflows/frp-m27-long-run-stability-telemetry-qualification-workflow.yml",
+      "raw_sha256": "ebdae1809d538553bb47306b44aaa37154ff4e4a2e38dfa9c31b7de3ab6c45ae"
+    },
+    {
+      "bytes": 48903,
+      "path": "frp_m27_long_run_stability_telemetry_qualification.py",
+      "raw_sha256": "ffd251d97db3550e66e111737172deeaae267d958c7cb929602a34370456d1fd"
+    },
+    {
+      "bytes": 3906,
+      "path": "schemas/m27/frp_m27_long_run_telemetry_contract.v2.9.0.schema.json",
+      "raw_sha256": "2ee7fd6ef7a02d44bec7096631edc6a264bdd8f0708e75afcc49315eee0a7f53"
+    },
+    {
+      "bytes": 3101,
+      "path": "schemas/m27/frp_m27_long_run_workload_catalog.v2.9.0.schema.json",
+      "raw_sha256": "515f523d931179fd3c84723da832e3cdb41344e35a1b201a8a325ffe2fd80dd2"
+    },
+    {
+      "bytes": 10764,
+      "path": "schemas/m27/frp_m27_long_run_checkpoint_evidence.v2.9.0.schema.json",
+      "raw_sha256": "e74b53a2e88b690c89dd92145d8e5de9050b403fb0d7f736f99080937e4ab056"
+    },
+    {
+      "bytes": 2609,
+      "path": "schemas/m27/frp_m27_telemetry_semantics.v2.9.0.schema.json",
+      "raw_sha256": "200daba136349ade552e08f927adbcc3d00e6eb496e5b980f07c42d2887e16fd"
+    },
+    {
+      "bytes": 3472,
+      "path": "schemas/m27/frp_m27_long_run_stability_report.v2.9.0.schema.json",
+      "raw_sha256": "82263ad2f3b160e73961f5ae9ab56800b6e2aacf7e85c09ae23c44c64294bc60"
+    },
+    {
+      "bytes": 2669,
+      "path": "schemas/m27/frp_m27_long_run_stability_manifest.v2.9.0.schema.json",
+      "raw_sha256": "7c40b29d491588979ab83f1e32727870cc9974645026081d902b0e4b66ace124"
+    },
+    {
+      "bytes": 1980,
+      "path": "schemas/m27/frp_m27_long_run_stability_qualification.v2.9.0.schema.json",
+      "raw_sha256": "5d5546cc419e9e535942a11ac96af4d8dd005c7ba98dc51911326b4f3281c61a"
+    },
+    {
+      "bytes": 1054,
+      "path": "schemas/m27/frp_m27_schema_registry.json",
+      "raw_sha256": "c4b84b197a3600e7b0a9976e991f578b0cc1053d6f9fa8a59063dfc9a4319141"
+    },
+    {
+      "bytes": 16166,
+      "path": "tests/test_frp_m27_long_run_stability_telemetry_qualification.py",
+      "raw_sha256": "27e57d8b8e9ad537794ad0d3ef01e72a27be3d5f8e735771bda1b6efc573b3a3"
+    }
+  ],
+  "status": "PASS",
+  "upstream_dependencies": [
+    {
+      "bytes": 155713,
+      "path": "frp_prototype_v1_7_0.py",
+      "raw_sha256": "9de085915aa0fb8a73705c0927cc875b106480ef8a75a76f599be04440c0f099"
+    },
+    {
+      "bytes": 7230,
+      "path": "artifacts/m21/matrix/m21-parameter-dimensions.json",
+      "raw_sha256": "fcfac50848deedd6ef90bc0f4184e325931e0070960cbe61fd2175b2f6d0b348"
+    },
+    {
+      "bytes": 2351,
+      "path": "artifacts/m26/contracts/m26-declared-target-implementation-contract.json",
+      "raw_sha256": "6d5f89a48cac179c5f5d62cd2ac91e1a6af72da4983fbe7f8792d1aec5df00b4"
+    },
+    {
+      "bytes": 12899,
+      "path": "artifacts/m26/reports/m26-declared-target-implementation-report.json",
+      "raw_sha256": "1e95efc0bceb31a5d42f4dbde8fafbf7f3492fd36535ef7cf95ebe761b8b4e10"
+    },
+    {
+      "bytes": 7317,
+      "path": "artifacts/m26/manifests/m26-declared-target-implementation-manifest.json",
+      "raw_sha256": "2b59340bd2ab0a034862583c7c0d9c2b9bae12be95d56c42764601c1f46e10a3"
+    },
+    {
+      "bytes": 15044,
+      "path": "artifacts/m26/manifests/m26-declared-target-implementation-qualification.json",
+      "raw_sha256": "732a645688cf1e880ad070049c0d64aee4ad57a2ae0bf1d6465a939e43b55134"
+    }
+  ],
+  "upstream_dependency_count": 6
+}

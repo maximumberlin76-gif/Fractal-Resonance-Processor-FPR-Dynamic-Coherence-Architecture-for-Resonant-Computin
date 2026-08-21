@@ -1,0 +1,6791 @@
+{
+  "artifact_id": "frp-m27-long-run-checkpoint-evidence",
+  "checkpoint_count": 96,
+  "checkpoint_interval_ticks": 512,
+  "checkpoint_set_digest": "e5858c19319c60e91edeaefb49d693e1ef4080803ca25f21433113a6ce47d9fc",
+  "evidence_digest": "59fe18dd66f549c8d7ebee529e8daf6c5dd3c7c92fcecdb004de56f58caaa758",
+  "milestone": "M27",
+  "profile_count": 3,
+  "profiles": [
+    {
+      "bounded_runtime_retention": {
+        "per_cell_trace_cleared": true,
+        "per_tick_trace_cleared": true,
+        "retained_cell_trace_peak_records": 16,
+        "retained_route_event_peak_records": 4,
+        "retained_trace_peak_records": 1,
+        "route_event_trace_cleared": true
+      },
+      "checkpoint_count": 32,
+      "checkpoints": [
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "b99904ab9895b91565ae967db1aa2d8e26863cb4716411b4c14985fc059fedcd",
+          "changes": 0,
+          "checkpoint_digest": "29f749de7fb7f97d36fd9b30e19b839f645a4a3b8abf98efce3787bf22a4ffc7",
+          "coherence_capacity_q16": 89124,
+          "global_phase_coherence_q30": 1073455471,
+          "neutral_routed_events": 383,
+          "neutralized_conflicts": 383,
+          "pending_route_count": 0,
+          "prevented_direct_events": 383,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 295,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 512
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 83510,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00550055",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5614,
+          "tick": 511,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5614
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "396ca2b34b436fc470e22547f337413b153bf1247b480517b708f2748c5f369a",
+          "changes": 0,
+          "checkpoint_digest": "cffa0f22fe4d5d9baeedff95c561052e45a480f17a32c25aff99962d66047e74",
+          "coherence_capacity_q16": 86502,
+          "global_phase_coherence_q30": 1073456012,
+          "neutral_routed_events": 753,
+          "neutralized_conflicts": 753,
+          "pending_route_count": 0,
+          "prevented_direct_events": 753,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 577,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 1024
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81033,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5469,
+          "tick": 1023,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5469
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "759febf621199ebadc06264ff841461f3b65d4c3a57688ad9434fe5c2c2ae960",
+          "changes": 0,
+          "checkpoint_digest": "cc94c69c10d9c747433b60d5569a9112c05f1de5d95d43bc3d5697ca2ed416d3",
+          "coherence_capacity_q16": 86503,
+          "global_phase_coherence_q30": 1073492646,
+          "neutral_routed_events": 1128,
+          "neutralized_conflicts": 1128,
+          "pending_route_count": 0,
+          "prevented_direct_events": 1128,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 861,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 1536
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81200,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5303,
+          "tick": 1535,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5303
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "cfeba9c95d517e5573a0f1d1c48977609fb6680a4d8d44b57d69d6074f009957",
+          "changes": 0,
+          "checkpoint_digest": "f6d24bd12297a1827822c0e8634a260661426d9ae3eacccf03dd4b0c602d5c05",
+          "coherence_capacity_q16": 89124,
+          "global_phase_coherence_q30": 1073450418,
+          "neutral_routed_events": 1517,
+          "neutralized_conflicts": 1517,
+          "pending_route_count": 0,
+          "prevented_direct_events": 1517,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 1153,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 2048
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 83512,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00550055",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5612,
+          "tick": 2047,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5612
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "4abc5ea958a8d5b540ff0c0fa72f6343843c404bee569bb15a1f156fdf1a75e6",
+          "changes": 0,
+          "checkpoint_digest": "7adacb9a4b6560e1542bbf75b5a1a29bec0ea7a4b16e3616703209e2713c0c69",
+          "coherence_capacity_q16": 86505,
+          "global_phase_coherence_q30": 1073595678,
+          "neutral_routed_events": 1895,
+          "neutralized_conflicts": 1895,
+          "pending_route_count": 0,
+          "prevented_direct_events": 1895,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 1442,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 2560
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81041,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5464,
+          "tick": 2559,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5464
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "43ef825c86a1023b9e19da8dbd9202d9d76b9c7c2c8fcd145d08240581ee27e1",
+          "changes": 0,
+          "checkpoint_digest": "6a7d83d7e1efd272cdb08c9f8c040440180a0245a8f28940a5cbf434b59303cb",
+          "coherence_capacity_q16": 86503,
+          "global_phase_coherence_q30": 1073491698,
+          "neutral_routed_events": 2281,
+          "neutralized_conflicts": 2281,
+          "pending_route_count": 0,
+          "prevented_direct_events": 2281,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 1733,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 3072
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81194,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5309,
+          "tick": 3071,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5309
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "4bda0d89edd3e2636e6193fd78722979fd2a38fdb6843e754b1bad93c317e21a",
+          "changes": 0,
+          "checkpoint_digest": "1b317cbdef566595802b6b67b9671b7d595ba0ae30c2ce930b016626714a7f79",
+          "coherence_capacity_q16": 89123,
+          "global_phase_coherence_q30": 1073418133,
+          "neutral_routed_events": 2680,
+          "neutralized_conflicts": 2680,
+          "pending_route_count": 0,
+          "prevented_direct_events": 2680,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 2043,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 3584
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 83533,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00550055",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5590,
+          "tick": 3583,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5590
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "dd9fb69537af3981eca5143b27e1c38680ca00dba820695c955bbcb83eaae77d",
+          "changes": 0,
+          "checkpoint_digest": "0e419cccd89159f6d1e1545d128ea621d83a5326727dd7e019f0a3cd25a98109",
+          "coherence_capacity_q16": 86504,
+          "global_phase_coherence_q30": 1073543807,
+          "neutral_routed_events": 3051,
+          "neutralized_conflicts": 3051,
+          "pending_route_count": 0,
+          "prevented_direct_events": 3051,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 2329,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 4096
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81102,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5402,
+          "tick": 4095,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5402
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "70e7e27892282ab7f3ff19fd1faa4ab26e6ba2a770e1edbe64862b534b8c3ee0",
+          "changes": 0,
+          "checkpoint_digest": "29ed136db6b040e87bb2ae27c0b6ff921aa9fdcc36e70ea47f90534dbcbf8e56",
+          "coherence_capacity_q16": 89124,
+          "global_phase_coherence_q30": 1073447262,
+          "neutral_routed_events": 3437,
+          "neutralized_conflicts": 3437,
+          "pending_route_count": 0,
+          "prevented_direct_events": 3437,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 2621,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 4608
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 83722,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55005500",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5402,
+          "tick": 4607,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5402
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "251a99585c8223004489513c8d9da742baa3c5b4e27c127d78634333a7700407",
+          "changes": 0,
+          "checkpoint_digest": "2aa7116891a59728d325796ded4f2ff963f038fe7b999ba45de44bdc287fcd5e",
+          "coherence_capacity_q16": 91748,
+          "global_phase_coherence_q30": 1073598934,
+          "neutral_routed_events": 3825,
+          "neutralized_conflicts": 3825,
+          "pending_route_count": 0,
+          "prevented_direct_events": 3825,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 2911,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 5120
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 86250,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00000000",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5498,
+          "tick": 5119,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5498
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "11c8ff4502ba0ce1477944c205c4a7f5e791ecb7d6706c881b0e993f1807d87a",
+          "changes": 0,
+          "checkpoint_digest": "b5a8faf38096c81070276574eb68bf6744258dc7a3d2ed56fc3d8549ae3c82e6",
+          "coherence_capacity_q16": 86501,
+          "global_phase_coherence_q30": 1073406827,
+          "neutral_routed_events": 4194,
+          "neutralized_conflicts": 4194,
+          "pending_route_count": 0,
+          "prevented_direct_events": 4194,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 3199,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 5632
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81027,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5474,
+          "tick": 5631,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5474
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "72d27b9932d191a9baea1771b0e03eee52058a29b5ea0542fc9aaa5598f211d3",
+          "changes": 0,
+          "checkpoint_digest": "08fd238f7ddc60a76b0971803c8b3d99912b883085e07a681f3f2e6d348f01ca",
+          "coherence_capacity_q16": 86503,
+          "global_phase_coherence_q30": 1073509068,
+          "neutral_routed_events": 4561,
+          "neutralized_conflicts": 4561,
+          "pending_route_count": 0,
+          "prevented_direct_events": 4561,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 3479,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 6144
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81207,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5296,
+          "tick": 6143,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5296
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "98780766010d56840ce4ad2310890154720788c9d2b1e13d0770d6d18af14ef8",
+          "changes": 0,
+          "checkpoint_digest": "904a46aa17ff5cf2ac8bf891e7c93586812179aa8cf8eb439b3630b299553105",
+          "coherence_capacity_q16": 86505,
+          "global_phase_coherence_q30": 1073601915,
+          "neutral_routed_events": 4948,
+          "neutralized_conflicts": 4948,
+          "pending_route_count": 0,
+          "prevented_direct_events": 4948,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 3782,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 6656
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 80826,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5679,
+          "tick": 6655,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5679
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "81afaa108c3e39f6a9c91d6a1be932d79586d07dc451920551b8296bbcf9523c",
+          "changes": 0,
+          "checkpoint_digest": "2fa277349f3ec64591216893829915a0ea3049bbe9591e8a70cd2d7cc77d2a9c",
+          "coherence_capacity_q16": 86504,
+          "global_phase_coherence_q30": 1073547931,
+          "neutral_routed_events": 5323,
+          "neutralized_conflicts": 5323,
+          "pending_route_count": 0,
+          "prevented_direct_events": 5323,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 4070,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 7168
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81112,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5392,
+          "tick": 7167,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5392
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "b28682641661dc835b1ebb3c8369b70fad587caf9eb43c3eecac31eceb3ff66f",
+          "changes": 0,
+          "checkpoint_digest": "4ccf7345e678667d5528730157f4832e70f70b0362ddd7a3ba981f618b9f17af",
+          "coherence_capacity_q16": 89124,
+          "global_phase_coherence_q30": 1073450105,
+          "neutral_routed_events": 5707,
+          "neutralized_conflicts": 5707,
+          "pending_route_count": 0,
+          "prevented_direct_events": 5707,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 4369,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 7680
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 83717,
+          "states": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55005005",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5407,
+          "tick": 7679,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5407
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "922db5ea678f090b6430208626dda1b122d83219cebdf4f6019a65d10cfe1863",
+          "changes": 0,
+          "checkpoint_digest": "7c022985865df8b5b7b2f145e5a943621348ccefdc3a582ae90e9e8a24c8f21c",
+          "coherence_capacity_q16": 87808,
+          "global_phase_coherence_q30": 1073210674,
+          "neutral_routed_events": 6087,
+          "neutralized_conflicts": 6087,
+          "pending_route_count": 0,
+          "prevented_direct_events": 6087,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 4656,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 8192
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 82151,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5657,
+          "tick": 8191,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5657
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "2233a9feb766b6f69d56292b3f33178842debe6ac57fa786da92421e82f82b12",
+          "changes": 0,
+          "checkpoint_digest": "ee88bdc84fca3680f0d15d7e2239358fbfc4d3b906fe85dbc77ca28a8784224a",
+          "coherence_capacity_q16": 86505,
+          "global_phase_coherence_q30": 1073581782,
+          "neutral_routed_events": 6462,
+          "neutralized_conflicts": 6462,
+          "pending_route_count": 0,
+          "prevented_direct_events": 6462,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 4945,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 8704
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81067,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5438,
+          "tick": 8703,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5438
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "0026666e3f6e2061f6f7832a57017e49bbf43f3ab402d8df0209b6ea79838d67",
+          "changes": 0,
+          "checkpoint_digest": "386c8debaf0a897947567b7a71856f7d1935e40e923d3b7e13be495b815c4177",
+          "coherence_capacity_q16": 86504,
+          "global_phase_coherence_q30": 1073550833,
+          "neutral_routed_events": 6841,
+          "neutralized_conflicts": 6841,
+          "pending_route_count": 0,
+          "prevented_direct_events": 6841,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 5243,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 9216
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81220,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5284,
+          "tick": 9215,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5284
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "6a41e3c341b367736288c6e73e42abd6fce31a1003cbc90738b9546665f7ccd2",
+          "changes": 0,
+          "checkpoint_digest": "08a6549a404a979624b26ef08a9453143a9f7655949de677e2d14f612fd71b6a",
+          "coherence_capacity_q16": 89124,
+          "global_phase_coherence_q30": 1073474832,
+          "neutral_routed_events": 7216,
+          "neutralized_conflicts": 7216,
+          "pending_route_count": 0,
+          "prevented_direct_events": 7216,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 5533,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 9728
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 83516,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00550055",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5608,
+          "tick": 9727,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5608
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "72642731f821efd65cb3256cc17ec8e16c4c54814ff6f6eb3c743959bf6ccc04",
+          "changes": 0,
+          "checkpoint_digest": "6c54def59ff4bc20287b70ebaf3e32b7230ac7eebad8256bcb0645ea11c48faa",
+          "coherence_capacity_q16": 86503,
+          "global_phase_coherence_q30": 1073489191,
+          "neutral_routed_events": 7599,
+          "neutralized_conflicts": 7599,
+          "pending_route_count": 0,
+          "prevented_direct_events": 7599,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 5827,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 10240
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81018,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5485,
+          "tick": 10239,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5485
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "07df22b4f91acb61894ae4eea87008a336594f4826eefe98cc0e72cd028ee178",
+          "changes": 0,
+          "checkpoint_digest": "42b2bfe88029b48fd4238069afd782632201a35bc0edcd5b4864b70b6591b62b",
+          "coherence_capacity_q16": 86503,
+          "global_phase_coherence_q30": 1073518620,
+          "neutral_routed_events": 7974,
+          "neutralized_conflicts": 7974,
+          "pending_route_count": 0,
+          "prevented_direct_events": 7974,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 6115,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 10752
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81214,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5289,
+          "tick": 10751,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5289
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "33fd7b10793e3c8bf6f73f8a861ce055a3ee6104972278ad4640b32846bd4a12",
+          "changes": 0,
+          "checkpoint_digest": "31c3364b0b58004cbe681f1feb838e547e67c62666a044ead124e2bd55d80cdc",
+          "coherence_capacity_q16": 89123,
+          "global_phase_coherence_q30": 1073388766,
+          "neutral_routed_events": 8358,
+          "neutralized_conflicts": 8358,
+          "pending_route_count": 0,
+          "prevented_direct_events": 8358,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 6413,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 11264
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 83507,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00550055",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5616,
+          "tick": 11263,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5616
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "edb8361eca3ce58fe2cb1697246f1fa083582578a22a7792253b05b457f06306",
+          "changes": 0,
+          "checkpoint_digest": "409784e7e3b18213fef1c2dc92bb74741b83feefb188e3a5c88f846d368c84ab",
+          "coherence_capacity_q16": 86502,
+          "global_phase_coherence_q30": 1073449559,
+          "neutral_routed_events": 8727,
+          "neutralized_conflicts": 8727,
+          "pending_route_count": 0,
+          "prevented_direct_events": 8727,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 6691,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 11776
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81097,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5405,
+          "tick": 11775,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5405
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "cf252d8906104e46f064589be9bf10adb0739621fb0ba4e8666f91d525d2537e",
+          "changes": 0,
+          "checkpoint_digest": "d4edfde1f9332a935afe73d776370d7880fe8efa6e6bd9271c330234d7fb8f4d",
+          "coherence_capacity_q16": 86502,
+          "global_phase_coherence_q30": 1073460295,
+          "neutral_routed_events": 9110,
+          "neutralized_conflicts": 9110,
+          "pending_route_count": 0,
+          "prevented_direct_events": 9110,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 6979,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 12288
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81212,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5290,
+          "tick": 12287,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5290
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "ec270dc80e385a23b0c80bd82470c7c28abc85b5605661a22ac92e551ab4c7e3",
+          "changes": 0,
+          "checkpoint_digest": "c02692cddf2b508d5e4cdd0e267adb2a4ea7c22eb63824ad87a2c9772552ab63",
+          "coherence_capacity_q16": 91747,
+          "global_phase_coherence_q30": 1073567255,
+          "neutral_routed_events": 9497,
+          "neutralized_conflicts": 9497,
+          "pending_route_count": 0,
+          "prevented_direct_events": 9497,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 7277,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 12800
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 86221,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00000000",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5526,
+          "tick": 12799,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5526
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "0f77d5b045f4af49844dee7b94cf9e73711748f1398cbcacd4fe6c8b4a897cc8",
+          "changes": 0,
+          "checkpoint_digest": "37aca314554629ebc82d991014cadf1b642784a10a4c9e07eeeb1e6f818c28ee",
+          "coherence_capacity_q16": 86505,
+          "global_phase_coherence_q30": 1073588967,
+          "neutral_routed_events": 9885,
+          "neutralized_conflicts": 9885,
+          "pending_route_count": 0,
+          "prevented_direct_events": 9885,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 7571,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 13312
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81058,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5447,
+          "tick": 13311,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5447
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "e96164bd1e5b532f7d0765655b1e505db89e88b27bde558f4e213dad21d83ace",
+          "changes": 0,
+          "checkpoint_digest": "17dc2c4a0622026e73929b6454dc80e2b330be7b9e458040dd25b050c300cf77",
+          "coherence_capacity_q16": 86504,
+          "global_phase_coherence_q30": 1073527700,
+          "neutral_routed_events": 10258,
+          "neutralized_conflicts": 10258,
+          "pending_route_count": 0,
+          "prevented_direct_events": 10258,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 7855,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 13824
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81177,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5327,
+          "tick": 13823,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5327
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "bcf44161ab647e20e14440515fbd41f8a3bd8bdee01b5b5e65068755fc00af25",
+          "changes": 0,
+          "checkpoint_digest": "8254e944c54f116ebe5d0bd797a5692f5a29d2cc2c7d912b53523defe3985eb3",
+          "coherence_capacity_q16": 90438,
+          "global_phase_coherence_q30": 1073642973,
+          "neutral_routed_events": 10652,
+          "neutralized_conflicts": 10652,
+          "pending_route_count": 0,
+          "prevented_direct_events": 10652,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 8159,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 14336
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 84976,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FF000000",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5462,
+          "tick": 14335,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5462
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "26781e55f290fcb0a2a272288424e0fdef82d8c089fba881d41fed3579c78307",
+          "changes": 0,
+          "checkpoint_digest": "7cd4abaefc2e8de5bc1d4ee003905fa6dc491efa79a0177f948943284dc99266",
+          "coherence_capacity_q16": 86505,
+          "global_phase_coherence_q30": 1073615495,
+          "neutral_routed_events": 11025,
+          "neutralized_conflicts": 11025,
+          "pending_route_count": 0,
+          "prevented_direct_events": 11025,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 8447,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 14848
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 80928,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5577,
+          "tick": 14847,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5577
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "1f2f24bdd2cb07efb119ccc3829fd8d6caaae96c5807ead1aaec864a3ff69e33",
+          "changes": 0,
+          "checkpoint_digest": "363f63c43e0b11e820be8aba0a5c5ad47ef25ebb72844ea2d8b3d04ef1c1e761",
+          "coherence_capacity_q16": 87808,
+          "global_phase_coherence_q30": 1073217935,
+          "neutral_routed_events": 11410,
+          "neutralized_conflicts": 11410,
+          "pending_route_count": 0,
+          "prevented_direct_events": 11410,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 8745,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 15360
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 82467,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55005555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5341,
+          "tick": 15359,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5341
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "f68f014ced858645e24d12416a0a1939f93d63f2a3b4c887cc785a6d8b7dc0c1",
+          "changes": 0,
+          "checkpoint_digest": "9a1c7b6e5a5fca29b2d7ea8c726929adc4f7fa3893f093868deef45a7df8d6d7",
+          "coherence_capacity_q16": 90438,
+          "global_phase_coherence_q30": 1073642361,
+          "neutral_routed_events": 11794,
+          "neutralized_conflicts": 11794,
+          "pending_route_count": 0,
+          "prevented_direct_events": 11794,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 9031,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 15872
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 84862,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00550000",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5576,
+          "tick": 15871,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5576
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "1ee22b285f3f5ed54259e8145ad27debf3d5126df354136f30018d2820149a86",
+          "changes": 0,
+          "checkpoint_digest": "699aa3a777481129334f493876f4d42f6d16a3e57516b65d20b19658f95cfe6c",
+          "coherence_capacity_q16": 86502,
+          "global_phase_coherence_q30": 1073466829,
+          "neutral_routed_events": 12172,
+          "neutralized_conflicts": 12172,
+          "pending_route_count": 0,
+          "prevented_direct_events": 12172,
+          "profile_id": "free-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 9322,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "free": 16384
+          },
+          "scheduler_state": "free",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81026,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5476,
+          "tick": 16383,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5476
+        }
+      ],
+      "counter_relations": {
+        "actual_direct_events": 0,
+        "neutral_route_relation_valid": true,
+        "neutral_routed_events": 12172,
+        "neutralized_conflicts": 12172,
+        "prevented_covers_requested": true,
+        "prevented_direct_events": 12172,
+        "queue_overflow_events": 0,
+        "requested_direct_events": 9322,
+        "reserved_state_events": 0,
+        "safety_counters_zero": true
+      },
+      "expected_scheduler_counts": {
+        "free": 16384
+      },
+      "final_chain_digest": "1ee22b285f3f5ed54259e8145ad27debf3d5126df354136f30018d2820149a86",
+      "final_states": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "metric_ranges": {
+        "changes": {
+          "maximum": 4,
+          "minimum": 0
+        },
+        "coherence_capacity_q16": {
+          "maximum": 91748,
+          "minimum": 65931
+        },
+        "global_phase_coherence_q30": {
+          "maximum": 1073736158,
+          "minimum": 239183185
+        },
+        "pending_route_count": {
+          "maximum": 9,
+          "minimum": 0
+        },
+        "stability_margin_q16": {
+          "maximum": 86255,
+          "minimum": 42864
+        },
+        "switching_load_q16": {
+          "maximum": 16384,
+          "minimum": 0
+        },
+        "thermal_state_proxy_q16": {
+          "maximum": 17027,
+          "minimum": 4291
+        },
+        "transition_pressure_q16": {
+          "maximum": 33411,
+          "minimum": 5265
+        }
+      },
+      "pending_routes": {
+        "capacity_relation_valid": true,
+        "final_pending_count": 0,
+        "maximum_pending_observed": 9,
+        "queue_capacity": 16
+      },
+      "profile_id": "free-long-run",
+      "profile_result_digest": "522240915c7ed7e6c14afa17a7665309a0eac6bad96966af88d995478b6a61f3",
+      "scheduler_counts": {
+        "free": 16384
+      },
+      "scheduler_mode": "free",
+      "stability_boundary_record": {
+        "crossing_count": 0,
+        "crossings": [],
+        "final_margin_class": "positive",
+        "final_margin_q16": 81026,
+        "minimum_margin_q16": 42864,
+        "minimum_margin_tick": 3,
+        "observation_status": "not_crossed"
+      },
+      "status": "PASS",
+      "ticks": 16384,
+      "transition_capacity": {
+        "capacity_relation_valid": true,
+        "maximum_changes_observed": 4,
+        "request_lanes": 4
+      },
+      "valid_request_count": 42130,
+      "workload_identity": {
+        "cells": 16,
+        "checkpoint_interval_ticks": 512,
+        "phase_partition": {
+          "active_ticks": 192,
+          "idle_ticks": 32,
+          "settle_ticks": 32
+        },
+        "phase_period_ticks": 256,
+        "profile_id": "free-long-run",
+        "request_generator": "m27-deterministic-lane-pattern-v1",
+        "request_lanes": 4,
+        "scheduler_mode": "free",
+        "seed": 27001,
+        "target_state_domain": [
+          -1,
+          0,
+          1
+        ],
+        "ticks": 16384,
+        "transition_fraction": {
+          "denominator": 4,
+          "numerator": 1
+        },
+        "workload_identity_digest": "ee57a2e6fb75ff7379e0c16fd6a710a1753a13241ae67d909bb11a894377b732",
+        "workload_offset": 0
+      },
+      "zero_event_record": {
+        "intervals": [
+          {
+            "end_tick": 210,
+            "start_tick": 200,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 255,
+            "start_tick": 220,
+            "tick_count": 36
+          },
+          {
+            "end_tick": 473,
+            "start_tick": 462,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 511,
+            "start_tick": 480,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 733,
+            "start_tick": 722,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 767,
+            "start_tick": 736,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 978,
+            "start_tick": 970,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 1023,
+            "start_tick": 988,
+            "tick_count": 36
+          },
+          {
+            "end_tick": 1241,
+            "start_tick": 1231,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 1279,
+            "start_tick": 1248,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 1535,
+            "start_tick": 1494,
+            "tick_count": 42
+          },
+          {
+            "end_tick": 1746,
+            "start_tick": 1736,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 1791,
+            "start_tick": 1756,
+            "tick_count": 36
+          },
+          {
+            "end_tick": 2009,
+            "start_tick": 1998,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 2047,
+            "start_tick": 2016,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 2270,
+            "start_tick": 2259,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 2303,
+            "start_tick": 2272,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 2514,
+            "start_tick": 2504,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 2559,
+            "start_tick": 2524,
+            "tick_count": 36
+          },
+          {
+            "end_tick": 2778,
+            "start_tick": 2768,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 2815,
+            "start_tick": 2783,
+            "tick_count": 33
+          },
+          {
+            "end_tick": 3020,
+            "start_tick": 3012,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 3071,
+            "start_tick": 3031,
+            "tick_count": 41
+          },
+          {
+            "end_tick": 3282,
+            "start_tick": 3272,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 3327,
+            "start_tick": 3292,
+            "tick_count": 36
+          },
+          {
+            "end_tick": 3544,
+            "start_tick": 3533,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 3583,
+            "start_tick": 3552,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 3839,
+            "start_tick": 3796,
+            "tick_count": 44
+          },
+          {
+            "end_tick": 4048,
+            "start_tick": 4038,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 4095,
+            "start_tick": 4058,
+            "tick_count": 38
+          },
+          {
+            "end_tick": 4309,
+            "start_tick": 4300,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 4351,
+            "start_tick": 4319,
+            "tick_count": 33
+          },
+          {
+            "end_tick": 4573,
+            "start_tick": 4562,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 4607,
+            "start_tick": 4576,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 4818,
+            "start_tick": 4809,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 4863,
+            "start_tick": 4828,
+            "tick_count": 36
+          },
+          {
+            "end_tick": 5082,
+            "start_tick": 5071,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 5119,
+            "start_tick": 5087,
+            "tick_count": 33
+          },
+          {
+            "end_tick": 5375,
+            "start_tick": 5332,
+            "tick_count": 44
+          },
+          {
+            "end_tick": 5586,
+            "start_tick": 5578,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 5631,
+            "start_tick": 5596,
+            "tick_count": 36
+          },
+          {
+            "end_tick": 5850,
+            "start_tick": 5840,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 5887,
+            "start_tick": 5856,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 6092,
+            "start_tick": 6083,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 6143,
+            "start_tick": 6102,
+            "tick_count": 42
+          },
+          {
+            "end_tick": 6353,
+            "start_tick": 6344,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 6399,
+            "start_tick": 6363,
+            "tick_count": 37
+          },
+          {
+            "end_tick": 6615,
+            "start_tick": 6604,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 6655,
+            "start_tick": 6624,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 6911,
+            "start_tick": 6869,
+            "tick_count": 43
+          },
+          {
+            "end_tick": 7120,
+            "start_tick": 7110,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 7167,
+            "start_tick": 7129,
+            "tick_count": 39
+          },
+          {
+            "end_tick": 7383,
+            "start_tick": 7373,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 7423,
+            "start_tick": 7392,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 7645,
+            "start_tick": 7634,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 7679,
+            "start_tick": 7648,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 7887,
+            "start_tick": 7879,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 7935,
+            "start_tick": 7897,
+            "tick_count": 39
+          },
+          {
+            "end_tick": 8152,
+            "start_tick": 8141,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 8191,
+            "start_tick": 8160,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 8447,
+            "start_tick": 8404,
+            "tick_count": 44
+          },
+          {
+            "end_tick": 8657,
+            "start_tick": 8647,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 8703,
+            "start_tick": 8667,
+            "tick_count": 37
+          },
+          {
+            "end_tick": 8922,
+            "start_tick": 8911,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 8959,
+            "start_tick": 8928,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 9163,
+            "start_tick": 9156,
+            "tick_count": 8
+          },
+          {
+            "end_tick": 9215,
+            "start_tick": 9173,
+            "tick_count": 43
+          },
+          {
+            "end_tick": 9426,
+            "start_tick": 9417,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 9471,
+            "start_tick": 9436,
+            "tick_count": 36
+          },
+          {
+            "end_tick": 9689,
+            "start_tick": 9678,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 9727,
+            "start_tick": 9696,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 9983,
+            "start_tick": 9940,
+            "tick_count": 44
+          },
+          {
+            "end_tick": 10195,
+            "start_tick": 10185,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 10239,
+            "start_tick": 10204,
+            "tick_count": 36
+          },
+          {
+            "end_tick": 10459,
+            "start_tick": 10449,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 10495,
+            "start_tick": 10464,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 10699,
+            "start_tick": 10692,
+            "tick_count": 8
+          },
+          {
+            "end_tick": 10751,
+            "start_tick": 10709,
+            "tick_count": 43
+          },
+          {
+            "end_tick": 10961,
+            "start_tick": 10953,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 11007,
+            "start_tick": 10971,
+            "tick_count": 37
+          },
+          {
+            "end_tick": 11225,
+            "start_tick": 11214,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 11263,
+            "start_tick": 11232,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 11486,
+            "start_tick": 11475,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 11519,
+            "start_tick": 11488,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 11728,
+            "start_tick": 11720,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 11775,
+            "start_tick": 11738,
+            "tick_count": 38
+          },
+          {
+            "end_tick": 11992,
+            "start_tick": 11981,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 12031,
+            "start_tick": 12000,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 12287,
+            "start_tick": 12245,
+            "tick_count": 43
+          },
+          {
+            "end_tick": 12499,
+            "start_tick": 12490,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 12543,
+            "start_tick": 12509,
+            "tick_count": 35
+          },
+          {
+            "end_tick": 12763,
+            "start_tick": 12752,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 12799,
+            "start_tick": 12768,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 13055,
+            "start_tick": 13012,
+            "tick_count": 44
+          },
+          {
+            "end_tick": 13266,
+            "start_tick": 13255,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 13311,
+            "start_tick": 13275,
+            "tick_count": 37
+          },
+          {
+            "end_tick": 13531,
+            "start_tick": 13521,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 13567,
+            "start_tick": 13536,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 13773,
+            "start_tick": 13764,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 13823,
+            "start_tick": 13783,
+            "tick_count": 41
+          },
+          {
+            "end_tick": 14037,
+            "start_tick": 14027,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 14079,
+            "start_tick": 14047,
+            "tick_count": 33
+          },
+          {
+            "end_tick": 14300,
+            "start_tick": 14288,
+            "tick_count": 13
+          },
+          {
+            "end_tick": 14335,
+            "start_tick": 14304,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 14542,
+            "start_tick": 14534,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 14591,
+            "start_tick": 14551,
+            "tick_count": 41
+          },
+          {
+            "end_tick": 14805,
+            "start_tick": 14794,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 14847,
+            "start_tick": 14814,
+            "tick_count": 34
+          },
+          {
+            "end_tick": 15065,
+            "start_tick": 15055,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 15103,
+            "start_tick": 15072,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 15326,
+            "start_tick": 15315,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 15359,
+            "start_tick": 15328,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 15569,
+            "start_tick": 15559,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 15615,
+            "start_tick": 15578,
+            "tick_count": 38
+          },
+          {
+            "end_tick": 15834,
+            "start_tick": 15823,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 15871,
+            "start_tick": 15840,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 16127,
+            "start_tick": 16084,
+            "tick_count": 44
+          },
+          {
+            "end_tick": 16338,
+            "start_tick": 16329,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 16383,
+            "start_tick": 16348,
+            "tick_count": 36
+          }
+        ],
+        "minimum_interval_ticks": 8,
+        "retained_interval_count": 119,
+        "zero_event_tick_count": 3056
+      }
+    },
+    {
+      "bounded_runtime_retention": {
+        "per_cell_trace_cleared": true,
+        "per_tick_trace_cleared": true,
+        "retained_cell_trace_peak_records": 16,
+        "retained_route_event_peak_records": 4,
+        "retained_trace_peak_records": 1,
+        "route_event_trace_cleared": true
+      },
+      "checkpoint_count": 32,
+      "checkpoints": [
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "d3bb7bff4ff102c89383d2d33d0346ede8facf12fb305d6cfd6f36f8bbabe5ea",
+          "changes": 0,
+          "checkpoint_digest": "2ab2f7acb66608e8a32d3ae732ffac83e55b476583d34bcb12286e2ec33c1d00",
+          "coherence_capacity_q16": 86503,
+          "global_phase_coherence_q30": 1073523772,
+          "neutral_routed_events": 380,
+          "neutralized_conflicts": 380,
+          "pending_route_count": 0,
+          "prevented_direct_events": 380,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 299,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 448,
+            "commit": 64
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81181,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5322,
+          "tick": 511,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5322
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "a06d1fc762c0b63638a21eba85dec5248189d4da0525829b99e13391ee1167d5",
+          "changes": 0,
+          "checkpoint_digest": "77606fac3db238a7c4ed82c9f4e4095bbd763a639f1a230baee946c4b2e755cf",
+          "coherence_capacity_q16": 91748,
+          "global_phase_coherence_q30": 1073581151,
+          "neutral_routed_events": 769,
+          "neutralized_conflicts": 769,
+          "pending_route_count": 0,
+          "prevented_direct_events": 769,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 594,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 896,
+            "commit": 128
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 86229,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00000000",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5519,
+          "tick": 1023,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5519
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "af6ea706efddf26e278ade0e309a2d87fc5f189d6f5339e774c1bb39fd5397e4",
+          "changes": 0,
+          "checkpoint_digest": "86f90101f8b690486d4e122c73afd780c9aa8e42a6e1221d732a5332b9ba3698",
+          "coherence_capacity_q16": 86502,
+          "global_phase_coherence_q30": 1073475593,
+          "neutral_routed_events": 1162,
+          "neutralized_conflicts": 1162,
+          "pending_route_count": 0,
+          "prevented_direct_events": 1162,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 894,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 1344,
+            "commit": 192
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 80908,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5594,
+          "tick": 1535,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5594
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "e7f9c4f818361fb81e02e4523d9a5f16619af7c272ab464d3ecfa749250a0af3",
+          "changes": 0,
+          "checkpoint_digest": "3b09fa39cc5c3a6f8527b12a9f0213351993eaefd0e8b06ed4c644f4022fed9f",
+          "coherence_capacity_q16": 86507,
+          "global_phase_coherence_q30": 1073679922,
+          "neutral_routed_events": 1549,
+          "neutralized_conflicts": 1549,
+          "pending_route_count": 0,
+          "prevented_direct_events": 1549,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 1184,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 1792,
+            "commit": 256
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81175,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5332,
+          "tick": 2047,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5332
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "f53d98ca7f5006c21a4d45766ed908ad4d0644df9c8c654da770d5409d1c46d9",
+          "changes": 0,
+          "checkpoint_digest": "2c9910cd4cfe46b947f0a1373d36b82f22dc69a5adf2b4b25df375b71dd81372",
+          "coherence_capacity_q16": 90438,
+          "global_phase_coherence_q30": 1073641157,
+          "neutral_routed_events": 1932,
+          "neutralized_conflicts": 1932,
+          "pending_route_count": 0,
+          "prevented_direct_events": 1932,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 1471,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 2240,
+            "commit": 320
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 84971,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55000000",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5467,
+          "tick": 2559,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5467
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "b8fc1ae79240f8785e41065409ccd1a2c78a80390886de969c70acb757de7855",
+          "changes": 0,
+          "checkpoint_digest": "f2ca24b9e21b2da250c6611c5abd2450fc04145171eef221cb85a9ede0a06db4",
+          "coherence_capacity_q16": 86503,
+          "global_phase_coherence_q30": 1073483882,
+          "neutral_routed_events": 2328,
+          "neutralized_conflicts": 2328,
+          "pending_route_count": 0,
+          "prevented_direct_events": 2328,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 1775,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 2688,
+            "commit": 384
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 80876,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5627,
+          "tick": 3071,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5627
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "f7fd22dba1580e7a3302b89c9a9bb6fc68f62be3cd0057ca9827fc8c1584da43",
+          "changes": 0,
+          "checkpoint_digest": "6492fc022df2cc7a328e1792fcef96d29d0fd67c62d91ff3cd549a4847f25982",
+          "coherence_capacity_q16": 86505,
+          "global_phase_coherence_q30": 1073608942,
+          "neutral_routed_events": 2722,
+          "neutralized_conflicts": 2722,
+          "pending_route_count": 0,
+          "prevented_direct_events": 2722,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 2067,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 3136,
+            "commit": 448
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81112,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5393,
+          "tick": 3583,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5393
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "8779d6e3c17f9d284558cc7b23267d29c16ccfdb702fad2d971ca4d275677df7",
+          "changes": 0,
+          "checkpoint_digest": "7b80d19f351ff844eaa3bbb414ba53e2b4c037d73e16300aebe40194048b15d6",
+          "coherence_capacity_q16": 90438,
+          "global_phase_coherence_q30": 1073640525,
+          "neutral_routed_events": 3123,
+          "neutralized_conflicts": 3123,
+          "pending_route_count": 0,
+          "prevented_direct_events": 3123,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 2369,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 3584,
+            "commit": 512
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 84976,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55000000",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5462,
+          "tick": 4095,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5462
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "9f22cecbec1f15c6440e4dfb02d910de2fee5ed09c1074d5a2a09151cb2cd1ee",
+          "changes": 0,
+          "checkpoint_digest": "66525c5046ca46b44282a27d2ff6c490bce74db95eff5d5e3c8c95049bade4a7",
+          "coherence_capacity_q16": 86503,
+          "global_phase_coherence_q30": 1073493593,
+          "neutral_routed_events": 3497,
+          "neutralized_conflicts": 3497,
+          "pending_route_count": 0,
+          "prevented_direct_events": 3497,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 2660,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 4032,
+            "commit": 576
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 80949,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5554,
+          "tick": 4607,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5554
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "917192044074bb97df1b4f5c2106d42007fba60ff41fa6865469d60ce7843c7c",
+          "changes": 0,
+          "checkpoint_digest": "a2c9fed8218efbb44f3c0a5d9f1476ed8d3044cf60cea32f3e247eab96842354",
+          "coherence_capacity_q16": 86506,
+          "global_phase_coherence_q30": 1073650551,
+          "neutral_routed_events": 3891,
+          "neutralized_conflicts": 3891,
+          "pending_route_count": 0,
+          "prevented_direct_events": 3891,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 2963,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 4480,
+            "commit": 640
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81186,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5320,
+          "tick": 5119,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5320
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "e8b6b702cdccc108d7efb7bff20551c4e45732651bf114c4f1009e13c07d9e14",
+          "changes": 0,
+          "checkpoint_digest": "c226b00e330a8551f7209fca355fc90cc5d1227134b16502917165c758e00af1",
+          "coherence_capacity_q16": 91749,
+          "global_phase_coherence_q30": 1073647413,
+          "neutral_routed_events": 4278,
+          "neutralized_conflicts": 4278,
+          "pending_route_count": 0,
+          "prevented_direct_events": 4278,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 3264,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 4928,
+            "commit": 704
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 86255,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00000000",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5494,
+          "tick": 5631,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5494
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "f3c55b068798621789c9db17fd3eb59124100456f2d35d672890c1539d31997b",
+          "changes": 0,
+          "checkpoint_digest": "ae329bfe0e47e45d1b4f11602de501aedde6654f019ec986bf1dc197579fcb17",
+          "coherence_capacity_q16": 86503,
+          "global_phase_coherence_q30": 1073515403,
+          "neutral_routed_events": 4667,
+          "neutralized_conflicts": 4667,
+          "pending_route_count": 0,
+          "prevented_direct_events": 4667,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 3562,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 5376,
+            "commit": 768
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 80962,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5541,
+          "tick": 6143,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5541
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "fcf0a8258d3377e937896ab7ed6f6783a774ffd16f9279d7b31ce53a496c38b2",
+          "changes": 0,
+          "checkpoint_digest": "feebb0089e8abc8639f1fd2975619eb1283e662f27856e8009785f653c4ac061",
+          "coherence_capacity_q16": 86506,
+          "global_phase_coherence_q30": 1073665790,
+          "neutral_routed_events": 5057,
+          "neutralized_conflicts": 5057,
+          "pending_route_count": 0,
+          "prevented_direct_events": 5057,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 3860,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 5824,
+            "commit": 832
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81213,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5293,
+          "tick": 6655,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5293
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "34f534e0c8ed1d1264f90c3dce12211465659559a5cd754be4d615e8964048eb",
+          "changes": 0,
+          "checkpoint_digest": "ae0e020d7d4aad3bbb7a6cff965af7fd1c99bfcae077add77ed63260c14ebf84",
+          "coherence_capacity_q16": 87805,
+          "global_phase_coherence_q30": 1073084691,
+          "neutral_routed_events": 5423,
+          "neutralized_conflicts": 5423,
+          "pending_route_count": 0,
+          "prevented_direct_events": 5423,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 4154,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 6272,
+            "commit": 896
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 82185,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00FFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5620,
+          "tick": 7167,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5620
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "28ae50e75391e8a7722640bb597958e8f43ff83cf1020ada5c7b009aebf7c8da",
+          "changes": 0,
+          "checkpoint_digest": "5c8bdbfea3232c93adccd2bc0c9306eed05e5fce5de48af2d97637c934a708e3",
+          "coherence_capacity_q16": 86503,
+          "global_phase_coherence_q30": 1073516217,
+          "neutral_routed_events": 5803,
+          "neutralized_conflicts": 5803,
+          "pending_route_count": 0,
+          "prevented_direct_events": 5803,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 4453,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 6720,
+            "commit": 960
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81024,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5479,
+          "tick": 7679,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5479
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "38de0a3f4312682c8a3df391ec5491717e7130d61810c69f15d7e483b660ef7b",
+          "changes": 0,
+          "checkpoint_digest": "5253ad110cbbde6ec4897270662cd5020fba863748e4e16df5b1d8175f374fe1",
+          "coherence_capacity_q16": 86505,
+          "global_phase_coherence_q30": 1073588967,
+          "neutral_routed_events": 6194,
+          "neutralized_conflicts": 6194,
+          "pending_route_count": 0,
+          "prevented_direct_events": 6194,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 4747,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 7168,
+            "commit": 1024
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81189,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5316,
+          "tick": 8191,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5316
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "db71dbebe1b80b5b7d77e4c9dc9f706995506b46e340a35439164c6b020dfd37",
+          "changes": 0,
+          "checkpoint_digest": "3c63d87bba5a8ee3e0e995b2edb7f9106a6d5de17fd8d04f8773fb5c4a6d6910",
+          "coherence_capacity_q16": 90438,
+          "global_phase_coherence_q30": 1073641083,
+          "neutral_routed_events": 6584,
+          "neutralized_conflicts": 6584,
+          "pending_route_count": 0,
+          "prevented_direct_events": 6584,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 5041,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 7616,
+            "commit": 1088
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 84880,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00FF0000",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5558,
+          "tick": 8703,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5558
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "029e91b2dc8d9e7eb442dea874d2911d4961eea3905c84d402a6889fb49463b0",
+          "changes": 0,
+          "checkpoint_digest": "abb1c0b50753df31feef01fd75022b7972c676ae9107af69b191c7225dad888b",
+          "coherence_capacity_q16": 86502,
+          "global_phase_coherence_q30": 1073435802,
+          "neutral_routed_events": 6963,
+          "neutralized_conflicts": 6963,
+          "pending_route_count": 0,
+          "prevented_direct_events": 6963,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 5333,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 8064,
+            "commit": 1152
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 80923,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5579,
+          "tick": 9215,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5579
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "883ee432a40998f0988763f3430083e6ec1a256ef206084a0f22e75c96ce0fe3",
+          "changes": 0,
+          "checkpoint_digest": "75e8d2ade61efb00eba5b6ac8d8b5c521c53f6b2f444e744daeb9ff84419b81c",
+          "coherence_capacity_q16": 86506,
+          "global_phase_coherence_q30": 1073632120,
+          "neutral_routed_events": 7350,
+          "neutralized_conflicts": 7350,
+          "pending_route_count": 0,
+          "prevented_direct_events": 7350,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 5616,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 8512,
+            "commit": 1216
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81176,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5330,
+          "tick": 9727,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5330
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "ed7148a8b1dc4896a251198a5fa7132cd6cb7f2ad851476939f2cce12c9c5e11",
+          "changes": 0,
+          "checkpoint_digest": "91aba03973831aabd4cc9340eb5d31eab816c9413f07dbb8043d0864eefc5afe",
+          "coherence_capacity_q16": 87810,
+          "global_phase_coherence_q30": 1073306979,
+          "neutral_routed_events": 7733,
+          "neutralized_conflicts": 7733,
+          "pending_route_count": 0,
+          "prevented_direct_events": 7733,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 5904,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 8960,
+            "commit": 1280
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 82484,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55005555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5326,
+          "tick": 10239,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5326
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "598dc4d6d5caacdaaa86c07efed7a8e5d0b7ff10f85e240fbf48ff43ee1ca99f",
+          "changes": 0,
+          "checkpoint_digest": "5b8d010fc99ef8d8d1d5703b3f9cdaa3f1516783227b6d0d2db6f5aaa01d967d",
+          "coherence_capacity_q16": 86503,
+          "global_phase_coherence_q30": 1073523140,
+          "neutral_routed_events": 8121,
+          "neutralized_conflicts": 8121,
+          "pending_route_count": 0,
+          "prevented_direct_events": 8121,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 6199,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 9408,
+            "commit": 1344
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 80892,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5611,
+          "tick": 10751,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5611
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "f05fc4bdb0e0f95a3a142ce1d86db3c45abab8062a2437f0f714ca8a0dfd28a7",
+          "changes": 0,
+          "checkpoint_digest": "11693c59bb2e27ff42732763cda6e5e0376900e3042a1bc09c65291d53d8fdee",
+          "coherence_capacity_q16": 86504,
+          "global_phase_coherence_q30": 1073527700,
+          "neutral_routed_events": 8513,
+          "neutralized_conflicts": 8513,
+          "pending_route_count": 0,
+          "prevented_direct_events": 8513,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 6496,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 9856,
+            "commit": 1408
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81139,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5365,
+          "tick": 11263,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5365
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "71ce03396392174c6ad7f83cfe0b71747c63336c74d989face33b20c030ea6a8",
+          "changes": 0,
+          "checkpoint_digest": "82a33747a5876369b51da1a0d0fbe0f4ac8e4b2358d868e671cc588cde23aed9",
+          "coherence_capacity_q16": 90438,
+          "global_phase_coherence_q30": 1073642835,
+          "neutral_routed_events": 8904,
+          "neutralized_conflicts": 8904,
+          "pending_route_count": 0,
+          "prevented_direct_events": 8904,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 6793,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 10304,
+            "commit": 1472
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 84978,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55000000",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5460,
+          "tick": 11775,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5460
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "42be4ff83b4d1b3579731bd6835a6e31690dce759fb8ad959d92a9d7fae891a3",
+          "changes": 0,
+          "checkpoint_digest": "9930f409847831be5f6604b4b6d42fda7488a9edb25cae2f7514c7a762f45672",
+          "coherence_capacity_q16": 86504,
+          "global_phase_coherence_q30": 1073536305,
+          "neutral_routed_events": 9287,
+          "neutralized_conflicts": 9287,
+          "pending_route_count": 0,
+          "prevented_direct_events": 9287,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 7087,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 10752,
+            "commit": 1536
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 80882,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5622,
+          "tick": 12287,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5622
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "70b8c431c474557a7f6d63e632edc6f05b2454fbbdfd5cea8964b6fda4c8e9e5",
+          "changes": 0,
+          "checkpoint_digest": "caf8627f5948ccebd870879b3bc547b615a125676af2c7c0948335ea3388da1d",
+          "coherence_capacity_q16": 86506,
+          "global_phase_coherence_q30": 1073655683,
+          "neutral_routed_events": 9684,
+          "neutralized_conflicts": 9684,
+          "pending_route_count": 0,
+          "prevented_direct_events": 9684,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 7385,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 11200,
+            "commit": 1600
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81139,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5367,
+          "tick": 12799,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5367
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "e69dbbc67abd047afd69253b2b5a2d52a3dbc456ae5affc43d06ae903fb6993d",
+          "changes": 0,
+          "checkpoint_digest": "1741d4868e6d0a3e462777d8da9105828ff936afd88fbf3b16ebc57b15109594",
+          "coherence_capacity_q16": 90438,
+          "global_phase_coherence_q30": 1073642421,
+          "neutral_routed_events": 10071,
+          "neutralized_conflicts": 10071,
+          "pending_route_count": 0,
+          "prevented_direct_events": 10071,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 7679,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 11648,
+            "commit": 1664
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 84982,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55000000",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5456,
+          "tick": 13311,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5456
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "115122224561dc98ce77a5db5f1a54f07474c0c6984ff8d9fd882e03822cd399",
+          "changes": 0,
+          "checkpoint_digest": "7992872574c67ab19f96b51f9e0b5e8b2f7ed06ee71705eb7a4219d63138e80f",
+          "coherence_capacity_q16": 86505,
+          "global_phase_coherence_q30": 1073601915,
+          "neutral_routed_events": 10461,
+          "neutralized_conflicts": 10461,
+          "pending_route_count": 0,
+          "prevented_direct_events": 10461,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 7976,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 12096,
+            "commit": 1728
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81025,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5480,
+          "tick": 13823,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5480
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "06b46659990746961dcf9067070395ccd0a7329b1a9bae19eb95a176317c3a3f",
+          "changes": 0,
+          "checkpoint_digest": "97d7dc88b0e223e4d1d728e47edcb815a4aebc2697c964a55d9dd4208854d2d4",
+          "coherence_capacity_q16": 86505,
+          "global_phase_coherence_q30": 1073595678,
+          "neutral_routed_events": 10841,
+          "neutralized_conflicts": 10841,
+          "pending_route_count": 0,
+          "prevented_direct_events": 10841,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 8266,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 12544,
+            "commit": 1792
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81196,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5309,
+          "tick": 14335,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5309
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "fade058eeb41b64ce2d7fa54b5db15aff8f4bab7745518c52f155498ec597b2b",
+          "changes": 0,
+          "checkpoint_digest": "7b3a52696075410763c788276a6b11285875d5f6720576c0a3ee15dc4da3f01d",
+          "coherence_capacity_q16": 90438,
+          "global_phase_coherence_q30": 1073641788,
+          "neutral_routed_events": 11222,
+          "neutralized_conflicts": 11222,
+          "pending_route_count": 0,
+          "prevented_direct_events": 11222,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 8558,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 12992,
+            "commit": 1856
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 84882,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00FF0000",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5556,
+          "tick": 14847,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5556
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "4df54c9cf01ed6829a44a25cb25c25d2782f06e0adddfaba71adcae46ec6bdf0",
+          "changes": 0,
+          "checkpoint_digest": "b7d8cffb5cba5486face708427ee6f6f79c374945dd99b189ef404e8719c2867",
+          "coherence_capacity_q16": 86503,
+          "global_phase_coherence_q30": 1073483882,
+          "neutral_routed_events": 11602,
+          "neutralized_conflicts": 11602,
+          "pending_route_count": 0,
+          "prevented_direct_events": 11602,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 8852,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 13440,
+            "commit": 1920
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 80938,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5565,
+          "tick": 15359,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5565
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "8b10ff752b3ab53b76a321b43247b5b025df3dce4e0f73168244cd8a063a7c08",
+          "changes": 0,
+          "checkpoint_digest": "854487b5561f6a8f3952a465bec3210c08c15493b303b20d72c13ae72093d5e2",
+          "coherence_capacity_q16": 86506,
+          "global_phase_coherence_q30": 1073633576,
+          "neutral_routed_events": 11990,
+          "neutralized_conflicts": 11990,
+          "pending_route_count": 0,
+          "prevented_direct_events": 11990,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 9143,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 13888,
+            "commit": 1984
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81208,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5298,
+          "tick": 15871,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5298
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "67a092a972c8fb8b6e9ca59215ddad360ef55843af0787dd7f0006a335632f3f",
+          "changes": 0,
+          "checkpoint_digest": "e08989f1a5ec089feb2af84612b18487cd7a8338615650d9a3f70e11acd6eb84",
+          "coherence_capacity_q16": 90438,
+          "global_phase_coherence_q30": 1073642992,
+          "neutral_routed_events": 12380,
+          "neutralized_conflicts": 12380,
+          "pending_route_count": 0,
+          "prevented_direct_events": 12380,
+          "profile_id": "seven-one-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 9445,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "balance": 14336,
+            "commit": 2048
+          },
+          "scheduler_state": "commit",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 84972,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55000000",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5466,
+          "tick": 16383,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5466
+        }
+      ],
+      "counter_relations": {
+        "actual_direct_events": 0,
+        "neutral_route_relation_valid": true,
+        "neutral_routed_events": 12380,
+        "neutralized_conflicts": 12380,
+        "prevented_covers_requested": true,
+        "prevented_direct_events": 12380,
+        "queue_overflow_events": 0,
+        "requested_direct_events": 9445,
+        "reserved_state_events": 0,
+        "safety_counters_zero": true
+      },
+      "expected_scheduler_counts": {
+        "balance": 14336,
+        "commit": 2048
+      },
+      "final_chain_digest": "67a092a972c8fb8b6e9ca59215ddad360ef55843af0787dd7f0006a335632f3f",
+      "final_states": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "metric_ranges": {
+        "changes": {
+          "maximum": 4,
+          "minimum": 0
+        },
+        "coherence_capacity_q16": {
+          "maximum": 91749,
+          "minimum": 64115
+        },
+        "global_phase_coherence_q30": {
+          "maximum": 1073730612,
+          "minimum": 248392988
+        },
+        "pending_route_count": {
+          "maximum": 10,
+          "minimum": 0
+        },
+        "stability_margin_q16": {
+          "maximum": 86255,
+          "minimum": 42491
+        },
+        "switching_load_q16": {
+          "maximum": 16384,
+          "minimum": 0
+        },
+        "thermal_state_proxy_q16": {
+          "maximum": 16875,
+          "minimum": 4294
+        },
+        "transition_pressure_q16": {
+          "maximum": 33259,
+          "minimum": 5247
+        }
+      },
+      "pending_routes": {
+        "capacity_relation_valid": true,
+        "final_pending_count": 0,
+        "maximum_pending_observed": 10,
+        "queue_capacity": 16
+      },
+      "profile_id": "seven-one-long-run",
+      "profile_result_digest": "b05f94c185b710bb711ada822ae10e13e4de8ba62e25b8be4ab87c61cd718a17",
+      "scheduler_counts": {
+        "balance": 14336,
+        "commit": 2048
+      },
+      "scheduler_mode": "7/1",
+      "stability_boundary_record": {
+        "crossing_count": 0,
+        "crossings": [],
+        "final_margin_class": "positive",
+        "final_margin_q16": 84972,
+        "minimum_margin_q16": 42491,
+        "minimum_margin_tick": 1,
+        "observation_status": "not_crossed"
+      },
+      "status": "PASS",
+      "ticks": 16384,
+      "transition_capacity": {
+        "capacity_relation_valid": true,
+        "maximum_changes_observed": 4,
+        "request_lanes": 4
+      },
+      "valid_request_count": 42130,
+      "workload_identity": {
+        "cells": 16,
+        "checkpoint_interval_ticks": 512,
+        "phase_partition": {
+          "active_ticks": 192,
+          "idle_ticks": 32,
+          "settle_ticks": 32
+        },
+        "phase_period_ticks": 256,
+        "profile_id": "seven-one-long-run",
+        "request_generator": "m27-deterministic-lane-pattern-v1",
+        "request_lanes": 4,
+        "scheduler_mode": "7/1",
+        "seed": 27002,
+        "target_state_domain": [
+          -1,
+          0,
+          1
+        ],
+        "ticks": 16384,
+        "transition_fraction": {
+          "denominator": 4,
+          "numerator": 1
+        },
+        "workload_identity_digest": "ae46f7662947ffff2d343ca0e1a24f13b233a6c9dcb603919276bc9fa1532932",
+        "workload_offset": 5
+      },
+      "zero_event_record": {
+        "intervals": [
+          {
+            "end_tick": 217,
+            "start_tick": 206,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 255,
+            "start_tick": 224,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 511,
+            "start_tick": 470,
+            "tick_count": 42
+          },
+          {
+            "end_tick": 724,
+            "start_tick": 715,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 767,
+            "start_tick": 733,
+            "tick_count": 35
+          },
+          {
+            "end_tick": 987,
+            "start_tick": 976,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 1023,
+            "start_tick": 992,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 1229,
+            "start_tick": 1220,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 1279,
+            "start_tick": 1238,
+            "tick_count": 42
+          },
+          {
+            "end_tick": 1493,
+            "start_tick": 1483,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 1535,
+            "start_tick": 1502,
+            "tick_count": 34
+          },
+          {
+            "end_tick": 1756,
+            "start_tick": 1745,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 1791,
+            "start_tick": 1760,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 1997,
+            "start_tick": 1989,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 2047,
+            "start_tick": 2007,
+            "tick_count": 41
+          },
+          {
+            "end_tick": 2261,
+            "start_tick": 2251,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 2303,
+            "start_tick": 2270,
+            "tick_count": 34
+          },
+          {
+            "end_tick": 2524,
+            "start_tick": 2513,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 2559,
+            "start_tick": 2528,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 2767,
+            "start_tick": 2758,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 2815,
+            "start_tick": 2777,
+            "tick_count": 39
+          },
+          {
+            "end_tick": 3030,
+            "start_tick": 3020,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 3071,
+            "start_tick": 3039,
+            "tick_count": 33
+          },
+          {
+            "end_tick": 3293,
+            "start_tick": 3282,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 3327,
+            "start_tick": 3296,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 3535,
+            "start_tick": 3528,
+            "tick_count": 8
+          },
+          {
+            "end_tick": 3583,
+            "start_tick": 3545,
+            "tick_count": 39
+          },
+          {
+            "end_tick": 3797,
+            "start_tick": 3786,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 3839,
+            "start_tick": 3806,
+            "tick_count": 34
+          },
+          {
+            "end_tick": 4060,
+            "start_tick": 4049,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 4095,
+            "start_tick": 4064,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 4300,
+            "start_tick": 4292,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 4351,
+            "start_tick": 4310,
+            "tick_count": 42
+          },
+          {
+            "end_tick": 4564,
+            "start_tick": 4555,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 4607,
+            "start_tick": 4573,
+            "tick_count": 35
+          },
+          {
+            "end_tick": 4828,
+            "start_tick": 4818,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 4863,
+            "start_tick": 4832,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 5069,
+            "start_tick": 5061,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 5119,
+            "start_tick": 5078,
+            "tick_count": 42
+          },
+          {
+            "end_tick": 5331,
+            "start_tick": 5321,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 5375,
+            "start_tick": 5341,
+            "tick_count": 35
+          },
+          {
+            "end_tick": 5594,
+            "start_tick": 5584,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 5631,
+            "start_tick": 5599,
+            "tick_count": 33
+          },
+          {
+            "end_tick": 5836,
+            "start_tick": 5828,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 5887,
+            "start_tick": 5847,
+            "tick_count": 41
+          },
+          {
+            "end_tick": 6100,
+            "start_tick": 6090,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 6143,
+            "start_tick": 6109,
+            "tick_count": 35
+          },
+          {
+            "end_tick": 6363,
+            "start_tick": 6353,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 6399,
+            "start_tick": 6368,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 6604,
+            "start_tick": 6596,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 6655,
+            "start_tick": 6613,
+            "tick_count": 43
+          },
+          {
+            "end_tick": 6865,
+            "start_tick": 6855,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 6911,
+            "start_tick": 6875,
+            "tick_count": 37
+          },
+          {
+            "end_tick": 7127,
+            "start_tick": 7117,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 7167,
+            "start_tick": 7136,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 7370,
+            "start_tick": 7363,
+            "tick_count": 8
+          },
+          {
+            "end_tick": 7423,
+            "start_tick": 7379,
+            "tick_count": 45
+          },
+          {
+            "end_tick": 7634,
+            "start_tick": 7624,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 7679,
+            "start_tick": 7644,
+            "tick_count": 36
+          },
+          {
+            "end_tick": 7898,
+            "start_tick": 7887,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 7935,
+            "start_tick": 7904,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 8140,
+            "start_tick": 8133,
+            "tick_count": 8
+          },
+          {
+            "end_tick": 8191,
+            "start_tick": 8150,
+            "tick_count": 42
+          },
+          {
+            "end_tick": 8403,
+            "start_tick": 8394,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 8447,
+            "start_tick": 8413,
+            "tick_count": 35
+          },
+          {
+            "end_tick": 8666,
+            "start_tick": 8655,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 8703,
+            "start_tick": 8672,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 8908,
+            "start_tick": 8900,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 8959,
+            "start_tick": 8918,
+            "tick_count": 42
+          },
+          {
+            "end_tick": 9173,
+            "start_tick": 9163,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 9215,
+            "start_tick": 9182,
+            "tick_count": 34
+          },
+          {
+            "end_tick": 9436,
+            "start_tick": 9425,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 9471,
+            "start_tick": 9440,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 9677,
+            "start_tick": 9669,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 9727,
+            "start_tick": 9687,
+            "tick_count": 41
+          },
+          {
+            "end_tick": 9943,
+            "start_tick": 9933,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 9983,
+            "start_tick": 9952,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 10206,
+            "start_tick": 10195,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 10239,
+            "start_tick": 10208,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 10446,
+            "start_tick": 10437,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 10495,
+            "start_tick": 10456,
+            "tick_count": 40
+          },
+          {
+            "end_tick": 10709,
+            "start_tick": 10699,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 10751,
+            "start_tick": 10719,
+            "tick_count": 33
+          },
+          {
+            "end_tick": 10972,
+            "start_tick": 10962,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 11007,
+            "start_tick": 10976,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 11214,
+            "start_tick": 11206,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 11263,
+            "start_tick": 11224,
+            "tick_count": 40
+          },
+          {
+            "end_tick": 11479,
+            "start_tick": 11468,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 11519,
+            "start_tick": 11488,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 11740,
+            "start_tick": 11729,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 11775,
+            "start_tick": 11744,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 11983,
+            "start_tick": 11974,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 12031,
+            "start_tick": 11993,
+            "tick_count": 39
+          },
+          {
+            "end_tick": 12246,
+            "start_tick": 12235,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 12287,
+            "start_tick": 12255,
+            "tick_count": 33
+          },
+          {
+            "end_tick": 12510,
+            "start_tick": 12499,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 12543,
+            "start_tick": 12512,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 12751,
+            "start_tick": 12742,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 12799,
+            "start_tick": 12760,
+            "tick_count": 40
+          },
+          {
+            "end_tick": 13014,
+            "start_tick": 13003,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 13055,
+            "start_tick": 13024,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 13276,
+            "start_tick": 13265,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 13311,
+            "start_tick": 13280,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 13517,
+            "start_tick": 13508,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 13567,
+            "start_tick": 13527,
+            "tick_count": 41
+          },
+          {
+            "end_tick": 13778,
+            "start_tick": 13768,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 13823,
+            "start_tick": 13788,
+            "tick_count": 36
+          },
+          {
+            "end_tick": 14040,
+            "start_tick": 14029,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 14079,
+            "start_tick": 14048,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 14284,
+            "start_tick": 14277,
+            "tick_count": 8
+          },
+          {
+            "end_tick": 14335,
+            "start_tick": 14294,
+            "tick_count": 42
+          },
+          {
+            "end_tick": 14549,
+            "start_tick": 14539,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 14591,
+            "start_tick": 14558,
+            "tick_count": 34
+          },
+          {
+            "end_tick": 14810,
+            "start_tick": 14799,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 14847,
+            "start_tick": 14816,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 15052,
+            "start_tick": 15044,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 15103,
+            "start_tick": 15062,
+            "tick_count": 42
+          },
+          {
+            "end_tick": 15316,
+            "start_tick": 15306,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 15359,
+            "start_tick": 15326,
+            "tick_count": 34
+          },
+          {
+            "end_tick": 15580,
+            "start_tick": 15569,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 15615,
+            "start_tick": 15584,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 15820,
+            "start_tick": 15813,
+            "tick_count": 8
+          },
+          {
+            "end_tick": 15871,
+            "start_tick": 15829,
+            "tick_count": 43
+          },
+          {
+            "end_tick": 16084,
+            "start_tick": 16074,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 16127,
+            "start_tick": 16094,
+            "tick_count": 34
+          },
+          {
+            "end_tick": 16348,
+            "start_tick": 16337,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 16383,
+            "start_tick": 16352,
+            "tick_count": 32
+          }
+        ],
+        "minimum_interval_ticks": 8,
+        "retained_interval_count": 127,
+        "zero_event_tick_count": 3050
+      }
+    },
+    {
+      "bounded_runtime_retention": {
+        "per_cell_trace_cleared": true,
+        "per_tick_trace_cleared": true,
+        "retained_cell_trace_peak_records": 16,
+        "retained_route_event_peak_records": 4,
+        "retained_trace_peak_records": 1,
+        "route_event_trace_cleared": true
+      },
+      "checkpoint_count": 32,
+      "checkpoints": [
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "9b8cd97c66b6c8bd5b3ea29fc9cdbba162a44580a21f6698e23a77ba23d91134",
+          "changes": 0,
+          "checkpoint_digest": "c59dfdec7142c83c6a2c1e61de631893775840787a7fe91d42570c2817eefd87",
+          "coherence_capacity_q16": 86505,
+          "global_phase_coherence_q30": 1073581782,
+          "neutral_routed_events": 357,
+          "neutralized_conflicts": 357,
+          "pending_route_count": 0,
+          "prevented_direct_events": 357,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 268,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 64,
+            "neutralize": 448
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81194,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5311,
+          "tick": 511,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5311
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "6e1750f3675b433cb872f9df91551d06712fd6e6905fce24f6fb67aab04194ea",
+          "changes": 0,
+          "checkpoint_digest": "9b5a9e24d790030c7e9d74a1965963bfcc6eda14629bdc1bcc5d9e5a59688500",
+          "coherence_capacity_q16": 86505,
+          "global_phase_coherence_q30": 1073588967,
+          "neutral_routed_events": 726,
+          "neutralized_conflicts": 726,
+          "pending_route_count": 0,
+          "prevented_direct_events": 726,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 560,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 128,
+            "neutralize": 896
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81226,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5279,
+          "tick": 1023,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5279
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "2721009f8569d93982d15f85e86cfbd7b49b4116a118ea9a1168276dccf93780",
+          "changes": 0,
+          "checkpoint_digest": "f4b14489fc5b371f2ec1bcf759564ee6a8f824af5f59862b26bea7018672f35f",
+          "coherence_capacity_q16": 87816,
+          "global_phase_coherence_q30": 1073600103,
+          "neutral_routed_events": 1109,
+          "neutralized_conflicts": 1109,
+          "pending_route_count": 0,
+          "prevented_direct_events": 1109,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 862,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 192,
+            "neutralize": 1344
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 82178,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFF00FF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5638,
+          "tick": 1535,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5638
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "b67ea14af61c336a31e6fb5783f98080c77c13157d032d8bbcb18929d848eb8d",
+          "changes": 0,
+          "checkpoint_digest": "cada03eb86032739da4f106103c1b5930840f22b8d950c13eeabf36c9759188f",
+          "coherence_capacity_q16": 86505,
+          "global_phase_coherence_q30": 1073574124,
+          "neutral_routed_events": 1494,
+          "neutralized_conflicts": 1494,
+          "pending_route_count": 0,
+          "prevented_direct_events": 1494,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 1159,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 256,
+            "neutralize": 1792
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81065,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5440,
+          "tick": 2047,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5440
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "d436e942caa7e91e740b371497d89684387935fabd7207a5fc715ae429b072a5",
+          "changes": 0,
+          "checkpoint_digest": "e16198cb9ccb68f3325cd89a19fe965d380d3fc9250e27484a15bf9add5022e4",
+          "coherence_capacity_q16": 86505,
+          "global_phase_coherence_q30": 1073595678,
+          "neutral_routed_events": 1882,
+          "neutralized_conflicts": 1882,
+          "pending_route_count": 0,
+          "prevented_direct_events": 1882,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 1447,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 320,
+            "neutralize": 2240
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81209,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5296,
+          "tick": 2559,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5296
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "04e70dee0d6d150541cc430b1fdb57ef948d962d1375e820d01d41030dce95a4",
+          "changes": 0,
+          "checkpoint_digest": "738d07d71325776fb0130f45344ed945da3b9038a2a08918d43b0191d1e3af8e",
+          "coherence_capacity_q16": 87806,
+          "global_phase_coherence_q30": 1073138226,
+          "neutral_routed_events": 2254,
+          "neutralized_conflicts": 2254,
+          "pending_route_count": 0,
+          "prevented_direct_events": 2254,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 1733,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 384,
+            "neutralize": 2688
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 82164,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00FFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5642,
+          "tick": 3071,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5642
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "b631cb1b481b70ac787eb798c81ca5b4101bbc8821a5e7af0183cddacd144908",
+          "changes": 0,
+          "checkpoint_digest": "9e57ab6edef56aa19524f5d0407468ea27eafac2db078f72078bc53cebe51bd2",
+          "coherence_capacity_q16": 86501,
+          "global_phase_coherence_q30": 1073421295,
+          "neutral_routed_events": 2638,
+          "neutralized_conflicts": 2638,
+          "pending_route_count": 0,
+          "prevented_direct_events": 2638,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 2032,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 448,
+            "neutralize": 3136
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81012,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5489,
+          "tick": 3583,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5489
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "f962bb75155e9079b4da06e3516af58a73a6d049df852658abb586c3f3044845",
+          "changes": 0,
+          "checkpoint_digest": "9ebcbab7bfcf549935fcba6443b16e8e5b4c7ba60271fa5447aab733b8ad019f",
+          "coherence_capacity_q16": 89123,
+          "global_phase_coherence_q30": 1073405186,
+          "neutral_routed_events": 3002,
+          "neutralized_conflicts": 3002,
+          "pending_route_count": 0,
+          "prevented_direct_events": 3002,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 2303,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 512,
+            "neutralize": 3584
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 83708,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FF00FF00",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5415,
+          "tick": 4095,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5415
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "02ef632dab20fc08bca89048c1c3d01f13bbc0648f941c0d3703120aa0fb5763",
+          "changes": 0,
+          "checkpoint_digest": "75946529e068389b444627370f7d8c48f94583a4c92499359a48bd15a22bbf16",
+          "coherence_capacity_q16": 86502,
+          "global_phase_coherence_q30": 1073461243,
+          "neutral_routed_events": 3385,
+          "neutralized_conflicts": 3385,
+          "pending_route_count": 0,
+          "prevented_direct_events": 3385,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 2602,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 576,
+            "neutralize": 4032
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 80892,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5610,
+          "tick": 4607,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5610
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "db664c639bb22fc01d88810006896bd93ca4e59993974fbdf979423b9f90f973",
+          "changes": 0,
+          "checkpoint_digest": "cfdca9efe634abd9daeb8b0f62c5c56c069d40da7d8e0540d0d88e5f7d5ecf56",
+          "coherence_capacity_q16": 86504,
+          "global_phase_coherence_q30": 1073547300,
+          "neutral_routed_events": 3757,
+          "neutralized_conflicts": 3757,
+          "pending_route_count": 0,
+          "prevented_direct_events": 3757,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 2892,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 640,
+            "neutralize": 4480
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81131,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5373,
+          "tick": 5119,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5373
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "6e723db13db57ece6e840e9a3510498c7ac6f36e63cba0bd5872b1bb68202856",
+          "changes": 0,
+          "checkpoint_digest": "8c9046055224e36f35add6a8e9f800fe55292541faa066affcdbe3cf5c1ad7d4",
+          "coherence_capacity_q16": 89123,
+          "global_phase_coherence_q30": 1073391609,
+          "neutral_routed_events": 4137,
+          "neutralized_conflicts": 4137,
+          "pending_route_count": 0,
+          "prevented_direct_events": 4137,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 3189,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 704,
+            "neutralize": 4928
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 83714,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FF00FF00",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5409,
+          "tick": 5631,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5409
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "6aa82567f19765d9d0c2a6dd3805d719452e5c380f9ef3ad99d64e6c51400cfc",
+          "changes": 0,
+          "checkpoint_digest": "b9d4bbc178ea381a9ccd8e9f7ddd7a0da8e4f019fd50dfaebedd61485005b9ef",
+          "coherence_capacity_q16": 89121,
+          "global_phase_coherence_q30": 1073328636,
+          "neutral_routed_events": 4517,
+          "neutralized_conflicts": 4517,
+          "pending_route_count": 0,
+          "prevented_direct_events": 4517,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 3481,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 768,
+            "neutralize": 5376
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 83534,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00FFFF00",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5587,
+          "tick": 6143,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5587
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "80b9e6430ad1d8fa1c6f32ea43fa0d53d63711d19a7389a8cfb3614bd388910b",
+          "changes": 0,
+          "checkpoint_digest": "1edafc3c2e0af0f4c5eb913746b6e8f4e016d9578e262343f3adf6e911caa56f",
+          "coherence_capacity_q16": 86503,
+          "global_phase_coherence_q30": 1073494560,
+          "neutral_routed_events": 4893,
+          "neutralized_conflicts": 4893,
+          "pending_route_count": 0,
+          "prevented_direct_events": 4893,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 3776,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 832,
+            "neutralize": 5824
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81053,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5450,
+          "tick": 6655,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5450
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "ca6a28e60771a40833e1aad0375e7ee1b068381b66ac9971cc916501da075342",
+          "changes": 0,
+          "checkpoint_digest": "c1c7579a094b6dd163689c510886cffd62b18f3fcfb8261045887b4cc0a68d56",
+          "coherence_capacity_q16": 87810,
+          "global_phase_coherence_q30": 1073327504,
+          "neutral_routed_events": 5274,
+          "neutralized_conflicts": 5274,
+          "pending_route_count": 0,
+          "prevented_direct_events": 5274,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 4065,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 896,
+            "neutralize": 6272
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 82471,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FF00FFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5339,
+          "tick": 7167,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5339
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "23468e5c23d912a23e45d8eb7d298c0bfa41493d43c232d8918070eae073658b",
+          "changes": 0,
+          "checkpoint_digest": "8e102819db5ef22f52d18caf33820faa8a1ffa62e05798b4e6c79fa0652897e8",
+          "coherence_capacity_q16": 89119,
+          "global_phase_coherence_q30": 1073208474,
+          "neutral_routed_events": 5654,
+          "neutralized_conflicts": 5654,
+          "pending_route_count": 0,
+          "prevented_direct_events": 5654,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 4363,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 960,
+            "neutralize": 6720
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 83545,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00FFFF00",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5574,
+          "tick": 7679,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5574
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "ec6154b7b3b61fe4684d1af47544104cead226ec19ab6fac78a894ad08d0569d",
+          "changes": 0,
+          "checkpoint_digest": "d4f3eccab1f32c15b3532049011b7f4bea04ba81893f0d656bed523387c2d9c6",
+          "coherence_capacity_q16": 86505,
+          "global_phase_coherence_q30": 1073595047,
+          "neutral_routed_events": 6040,
+          "neutralized_conflicts": 6040,
+          "pending_route_count": 0,
+          "prevented_direct_events": 6040,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 4661,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 1024,
+            "neutralize": 7168
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81082,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5423,
+          "tick": 8191,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5423
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "8866cc9a0c338de2ad9c16088c35d8d337fcab6767149909d47b1adee068d31e",
+          "changes": 0,
+          "checkpoint_digest": "de1ccc974d7a769ee31c7b84de8da636826ff0a963aff8ef10a614ac88a4e2fe",
+          "coherence_capacity_q16": 87809,
+          "global_phase_coherence_q30": 1073241617,
+          "neutral_routed_events": 6425,
+          "neutralized_conflicts": 6425,
+          "pending_route_count": 0,
+          "prevented_direct_events": 6425,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 4955,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 1088,
+            "neutralize": 7616
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 82465,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FF00FFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5344,
+          "tick": 8703,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5344
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "4753f28c26bd922de098656601ed51a5b8d5c545e3f839eee5280871a4477e0f",
+          "changes": 0,
+          "checkpoint_digest": "39de86e5513da707cd1850fb64ba4ddb96ba2c24502a224e76c8e0644bda4be0",
+          "coherence_capacity_q16": 89129,
+          "global_phase_coherence_q30": 1073682527,
+          "neutral_routed_events": 6817,
+          "neutralized_conflicts": 6817,
+          "pending_route_count": 0,
+          "prevented_direct_events": 6817,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 5254,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 1152,
+            "neutralize": 8064
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 83527,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFF0000",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5602,
+          "tick": 9215,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5602
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "6edb738adf563c3028019113d0b2bd1d3510c7a11c3391cf7e94f768751435c0",
+          "changes": 0,
+          "checkpoint_digest": "ba847fd8cf4f960827acaf296aafa62be5f23752613b03694b1e89073b4a551a",
+          "coherence_capacity_q16": 86504,
+          "global_phase_coherence_q30": 1073565326,
+          "neutral_routed_events": 7195,
+          "neutralized_conflicts": 7195,
+          "pending_route_count": 0,
+          "prevented_direct_events": 7195,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 5546,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 1216,
+            "neutralize": 8512
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81008,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5496,
+          "tick": 9727,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5496
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "686cfe5782329c17d05b0f4ed970c8393250bc85e079b548b44b279bb67d80cc",
+          "changes": 0,
+          "checkpoint_digest": "d993066f465e44c097070423aa4e2e768f4057a4cc8efc7ea7d6035e6a42b3e0",
+          "coherence_capacity_q16": 87811,
+          "global_phase_coherence_q30": 1073339505,
+          "neutral_routed_events": 7579,
+          "neutralized_conflicts": 7579,
+          "pending_route_count": 0,
+          "prevented_direct_events": 7579,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 5837,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 1280,
+            "neutralize": 8960
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 82475,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FF00FFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5336,
+          "tick": 10239,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5336
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "7a6a9e1ba64a6069c4d8cc14aca9d521964e8879e25841d03ac6d0d29779f31f",
+          "changes": 0,
+          "checkpoint_digest": "2e232c7ea1bc22b2b86f71c7f2ccbe16b42314db07279187240cdcf340ef6ce0",
+          "coherence_capacity_q16": 90438,
+          "global_phase_coherence_q30": 1073638868,
+          "neutral_routed_events": 7972,
+          "neutralized_conflicts": 7972,
+          "pending_route_count": 0,
+          "prevented_direct_events": 7972,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 6142,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 1344,
+            "neutralize": 9408
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 84872,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00FF0000",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5566,
+          "tick": 10751,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5566
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "b894e94ed971e74c811602f2c44fb3f3b06e485f9699235b27a7a6c1aa6c3d84",
+          "changes": 0,
+          "checkpoint_digest": "cb42134f5ef009596acd8a85ad9efa7e565c71597769c4d0f4d0355c695e26f7",
+          "coherence_capacity_q16": 86504,
+          "global_phase_coherence_q30": 1073559281,
+          "neutral_routed_events": 8361,
+          "neutralized_conflicts": 8361,
+          "pending_route_count": 0,
+          "prevented_direct_events": 8361,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 6435,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 1408,
+            "neutralize": 9856
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 80905,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5599,
+          "tick": 11263,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5599
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "8fbf8529aa59d6af16048e3c8ad1944ce8b4a5a15783637642b5c31061bae3f9",
+          "changes": 0,
+          "checkpoint_digest": "19a86ad536bae889ce083e763bedec4cfb06d9538f354aeb4a0b811b25c44d25",
+          "coherence_capacity_q16": 86506,
+          "global_phase_coherence_q30": 1073624674,
+          "neutral_routed_events": 8735,
+          "neutralized_conflicts": 8735,
+          "pending_route_count": 0,
+          "prevented_direct_events": 8735,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 6720,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 1472,
+            "neutralize": 10304
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81230,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5276,
+          "tick": 11775,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5276
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "3ba91b952a5427a7e6e3d5698d2faa181cc93def434fc0ac38310f279a228227",
+          "changes": 0,
+          "checkpoint_digest": "0664cd90731da2e51b7d3d56c37e476a98630daf37b8e508217f1bf9fb5099c9",
+          "coherence_capacity_q16": 89121,
+          "global_phase_coherence_q30": 1073302328,
+          "neutral_routed_events": 9122,
+          "neutralized_conflicts": 9122,
+          "pending_route_count": 0,
+          "prevented_direct_events": 9122,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 7018,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 1536,
+            "neutralize": 10752
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 83549,
+          "states": [
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "states_packed_hex": "00FF0FF0",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5572,
+          "tick": 12287,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5572
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "aba2a6ef38096e36a753b2976584278c688f76f00f53f92b2a9a4634025458d6",
+          "changes": 0,
+          "checkpoint_digest": "eef0c2b20c848f44636f32b03fddb23b37d75da5371766b60e3c223cae324c46",
+          "coherence_capacity_q16": 86504,
+          "global_phase_coherence_q30": 1073550834,
+          "neutral_routed_events": 9492,
+          "neutralized_conflicts": 9492,
+          "pending_route_count": 0,
+          "prevented_direct_events": 9492,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 7302,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 1600,
+            "neutralize": 11200
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81071,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5433,
+          "tick": 12799,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5433
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "d38b69560d4baa21ecfc9a7600cad8e277073e38cb32ebcac6936eaf2f45d64d",
+          "changes": 0,
+          "checkpoint_digest": "a19fa0224db6ed3b71e3bdec0317657d48054d61c9ddfa5359ab58b15c9eb56c",
+          "coherence_capacity_q16": 89124,
+          "global_phase_coherence_q30": 1073431256,
+          "neutral_routed_events": 9873,
+          "neutralized_conflicts": 9873,
+          "pending_route_count": 0,
+          "prevented_direct_events": 9873,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 7586,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 1664,
+            "neutralize": 11648
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 83713,
+          "states": [
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FF00FF00",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5411,
+          "tick": 13311,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5411
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "737cec02f7e1ed48113d0a582903d7e2281c8b189cefa60f820ee94f9a839f08",
+          "changes": 0,
+          "checkpoint_digest": "a80b7e66785f3fdc44cbd91e64cf31d7fce07c1d46aff493d6051b554a3b2f8e",
+          "coherence_capacity_q16": 86503,
+          "global_phase_coherence_q30": 1073524705,
+          "neutral_routed_events": 10244,
+          "neutralized_conflicts": 10244,
+          "pending_route_count": 0,
+          "prevented_direct_events": 10244,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 7878,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 1728,
+            "neutralize": 12096
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 80829,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFFFFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5674,
+          "tick": 13823,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5674
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "310b43ce64568229d6cc5147c00f54a0064d2256ebd0ac1c9bbb1e2fbd816135",
+          "changes": 0,
+          "checkpoint_digest": "b50e14d4be946219ac12ea3bc878fd87f9dc8f5b6ecde40115dee4a9cd2b44a0",
+          "coherence_capacity_q16": 86504,
+          "global_phase_coherence_q30": 1073543806,
+          "neutral_routed_events": 10635,
+          "neutralized_conflicts": 10635,
+          "pending_route_count": 0,
+          "prevented_direct_events": 10635,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 8177,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 1792,
+            "neutralize": 12544
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81028,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5476,
+          "tick": 14335,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5476
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "a79d4fc0258cdc9bf6fb3dbbd9893fe0261e93e07d2d7e61e410a6d85be1bad1",
+          "changes": 0,
+          "checkpoint_digest": "0e5fc535322436729ee97dc30909be6a7c9837f1a0a0cb4d04751bc5914210fe",
+          "coherence_capacity_q16": 87806,
+          "global_phase_coherence_q30": 1073112160,
+          "neutral_routed_events": 11005,
+          "neutralized_conflicts": 11005,
+          "pending_route_count": 0,
+          "prevented_direct_events": 11005,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 8452,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 1856,
+            "neutralize": 12992
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 82467,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FF00FFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5339,
+          "tick": 14847,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5339
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "2de8c403ea218f806daec91b64598604d14ef0812bf28b60516682f30d4209f4",
+          "changes": 0,
+          "checkpoint_digest": "564d320a1d513cb963cecbec8cbb75ed166bb54eeeea6a0f82bf1880df1f6d3c",
+          "coherence_capacity_q16": 87816,
+          "global_phase_coherence_q30": 1073603660,
+          "neutral_routed_events": 11383,
+          "neutralized_conflicts": 11383,
+          "pending_route_count": 0,
+          "prevented_direct_events": 11383,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 8745,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 1920,
+            "neutralize": 13440
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 82173,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FFFF00FF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5643,
+          "tick": 15359,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5643
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "249de102947fa3caa91555472495c30f00a3b2365d5f1b9ccea2e42c47198a4a",
+          "changes": 0,
+          "checkpoint_digest": "ff95e64d4bc45f68cfeeedfbbc863fd214b8f42b085b00d9c15f7c7d4915131a",
+          "coherence_capacity_q16": 86503,
+          "global_phase_coherence_q30": 1073518620,
+          "neutral_routed_events": 11762,
+          "neutralized_conflicts": 11762,
+          "pending_route_count": 0,
+          "prevented_direct_events": 11762,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 9039,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 1984,
+            "neutralize": 13888
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 81084,
+          "states": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "states_packed_hex": "55555555",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5419,
+          "tick": 15871,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5419
+        },
+        {
+          "actual_direct_events": 0,
+          "chain_digest": "3f51be67e70a4ef480204af910beb63b3861c1435a8ec7f8476c1a7148412fb7",
+          "changes": 0,
+          "checkpoint_digest": "1d6ed6b01f0c76333fea01fa8f6fca32623538ad3c129b0b95cf4f52b1c47ce7",
+          "coherence_capacity_q16": 87807,
+          "global_phase_coherence_q30": 1073160329,
+          "neutral_routed_events": 12142,
+          "neutralized_conflicts": 12142,
+          "pending_route_count": 0,
+          "prevented_direct_events": 12142,
+          "profile_id": "one-seven-long-run",
+          "queue_overflow_events": 0,
+          "requested_direct_events": 9321,
+          "reserved_state_events": 0,
+          "scheduler_counts": {
+            "excite": 2048,
+            "neutralize": 14336
+          },
+          "scheduler_state": "neutralize",
+          "stability_margin_class": "positive",
+          "stability_margin_q16": 82468,
+          "states": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "states_packed_hex": "FF00FFFF",
+          "switching_load_q16": 0,
+          "thermal_state_proxy_q16": 5339,
+          "tick": 16383,
+          "transition_capacity_remaining": 4,
+          "transition_pressure_q16": 5339
+        }
+      ],
+      "counter_relations": {
+        "actual_direct_events": 0,
+        "neutral_route_relation_valid": true,
+        "neutral_routed_events": 12142,
+        "neutralized_conflicts": 12142,
+        "prevented_covers_requested": true,
+        "prevented_direct_events": 12142,
+        "queue_overflow_events": 0,
+        "requested_direct_events": 9321,
+        "reserved_state_events": 0,
+        "safety_counters_zero": true
+      },
+      "expected_scheduler_counts": {
+        "excite": 2048,
+        "neutralize": 14336
+      },
+      "final_chain_digest": "3f51be67e70a4ef480204af910beb63b3861c1435a8ec7f8476c1a7148412fb7",
+      "final_states": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "metric_ranges": {
+        "changes": {
+          "maximum": 4,
+          "minimum": 0
+        },
+        "coherence_capacity_q16": {
+          "maximum": 91747,
+          "minimum": 67671
+        },
+        "global_phase_coherence_q30": {
+          "maximum": 1073736316,
+          "minimum": 257013367
+        },
+        "pending_route_count": {
+          "maximum": 11,
+          "minimum": 0
+        },
+        "stability_margin_q16": {
+          "maximum": 86251,
+          "minimum": 43201
+        },
+        "switching_load_q16": {
+          "maximum": 16384,
+          "minimum": 0
+        },
+        "thermal_state_proxy_q16": {
+          "maximum": 16903,
+          "minimum": 4074
+        },
+        "transition_pressure_q16": {
+          "maximum": 33287,
+          "minimum": 5256
+        }
+      },
+      "pending_routes": {
+        "capacity_relation_valid": true,
+        "final_pending_count": 0,
+        "maximum_pending_observed": 11,
+        "queue_capacity": 16
+      },
+      "profile_id": "one-seven-long-run",
+      "profile_result_digest": "8a657a67980b2be4d928030ad71801194d4964196a3d56af06e6b436aed82d7b",
+      "scheduler_counts": {
+        "excite": 2048,
+        "neutralize": 14336
+      },
+      "scheduler_mode": "1/7",
+      "stability_boundary_record": {
+        "crossing_count": 0,
+        "crossings": [],
+        "final_margin_class": "positive",
+        "final_margin_q16": 82468,
+        "minimum_margin_q16": 43201,
+        "minimum_margin_tick": 17,
+        "observation_status": "not_crossed"
+      },
+      "status": "PASS",
+      "ticks": 16384,
+      "transition_capacity": {
+        "capacity_relation_valid": true,
+        "maximum_changes_observed": 4,
+        "request_lanes": 4
+      },
+      "valid_request_count": 42131,
+      "workload_identity": {
+        "cells": 16,
+        "checkpoint_interval_ticks": 512,
+        "phase_partition": {
+          "active_ticks": 192,
+          "idle_ticks": 32,
+          "settle_ticks": 32
+        },
+        "phase_period_ticks": 256,
+        "profile_id": "one-seven-long-run",
+        "request_generator": "m27-deterministic-lane-pattern-v1",
+        "request_lanes": 4,
+        "scheduler_mode": "1/7",
+        "seed": 27003,
+        "target_state_domain": [
+          -1,
+          0,
+          1
+        ],
+        "ticks": 16384,
+        "transition_fraction": {
+          "denominator": 4,
+          "numerator": 1
+        },
+        "workload_identity_digest": "df417207ed265a81f696b40fd9e3292733c9922406d4fb05e789a99ca190c787",
+        "workload_offset": 10
+      },
+      "zero_event_record": {
+        "intervals": [
+          {
+            "end_tick": 218,
+            "start_tick": 208,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 255,
+            "start_tick": 224,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 460,
+            "start_tick": 453,
+            "tick_count": 8
+          },
+          {
+            "end_tick": 511,
+            "start_tick": 470,
+            "tick_count": 42
+          },
+          {
+            "end_tick": 728,
+            "start_tick": 719,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 767,
+            "start_tick": 736,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 1023,
+            "start_tick": 980,
+            "tick_count": 44
+          },
+          {
+            "end_tick": 1232,
+            "start_tick": 1223,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 1279,
+            "start_tick": 1242,
+            "tick_count": 38
+          },
+          {
+            "end_tick": 1496,
+            "start_tick": 1486,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 1535,
+            "start_tick": 1504,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 1738,
+            "start_tick": 1731,
+            "tick_count": 8
+          },
+          {
+            "end_tick": 1791,
+            "start_tick": 1748,
+            "tick_count": 44
+          },
+          {
+            "end_tick": 2001,
+            "start_tick": 1991,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 2047,
+            "start_tick": 2011,
+            "tick_count": 37
+          },
+          {
+            "end_tick": 2264,
+            "start_tick": 2253,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 2303,
+            "start_tick": 2272,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 2559,
+            "start_tick": 2517,
+            "tick_count": 43
+          },
+          {
+            "end_tick": 2769,
+            "start_tick": 2759,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 2815,
+            "start_tick": 2779,
+            "tick_count": 37
+          },
+          {
+            "end_tick": 3032,
+            "start_tick": 3022,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 3071,
+            "start_tick": 3040,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 3274,
+            "start_tick": 3267,
+            "tick_count": 8
+          },
+          {
+            "end_tick": 3327,
+            "start_tick": 3284,
+            "tick_count": 44
+          },
+          {
+            "end_tick": 3538,
+            "start_tick": 3529,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 3583,
+            "start_tick": 3548,
+            "tick_count": 36
+          },
+          {
+            "end_tick": 3802,
+            "start_tick": 3790,
+            "tick_count": 13
+          },
+          {
+            "end_tick": 3839,
+            "start_tick": 3808,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 4061,
+            "start_tick": 4051,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 4095,
+            "start_tick": 4064,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 4305,
+            "start_tick": 4295,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 4351,
+            "start_tick": 4314,
+            "tick_count": 38
+          },
+          {
+            "end_tick": 4565,
+            "start_tick": 4556,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 4607,
+            "start_tick": 4575,
+            "tick_count": 33
+          },
+          {
+            "end_tick": 4828,
+            "start_tick": 4817,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 4863,
+            "start_tick": 4832,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 5071,
+            "start_tick": 5062,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 5119,
+            "start_tick": 5080,
+            "tick_count": 40
+          },
+          {
+            "end_tick": 5333,
+            "start_tick": 5323,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 5375,
+            "start_tick": 5343,
+            "tick_count": 33
+          },
+          {
+            "end_tick": 5597,
+            "start_tick": 5587,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 5631,
+            "start_tick": 5600,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 5840,
+            "start_tick": 5832,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 5887,
+            "start_tick": 5850,
+            "tick_count": 38
+          },
+          {
+            "end_tick": 6104,
+            "start_tick": 6095,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 6143,
+            "start_tick": 6112,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 6366,
+            "start_tick": 6355,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 6399,
+            "start_tick": 6368,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 6609,
+            "start_tick": 6600,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 6655,
+            "start_tick": 6619,
+            "tick_count": 37
+          },
+          {
+            "end_tick": 6873,
+            "start_tick": 6863,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 6911,
+            "start_tick": 6880,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 7134,
+            "start_tick": 7123,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 7167,
+            "start_tick": 7136,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 7377,
+            "start_tick": 7366,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 7423,
+            "start_tick": 7386,
+            "tick_count": 38
+          },
+          {
+            "end_tick": 7640,
+            "start_tick": 7632,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 7679,
+            "start_tick": 7648,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 7882,
+            "start_tick": 7875,
+            "tick_count": 8
+          },
+          {
+            "end_tick": 7935,
+            "start_tick": 7892,
+            "tick_count": 44
+          },
+          {
+            "end_tick": 8145,
+            "start_tick": 8134,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 8191,
+            "start_tick": 8154,
+            "tick_count": 38
+          },
+          {
+            "end_tick": 8406,
+            "start_tick": 8395,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 8447,
+            "start_tick": 8416,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 8670,
+            "start_tick": 8659,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 8703,
+            "start_tick": 8672,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 8914,
+            "start_tick": 8903,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 8959,
+            "start_tick": 8923,
+            "tick_count": 37
+          },
+          {
+            "end_tick": 9177,
+            "start_tick": 9167,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 9215,
+            "start_tick": 9184,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 9419,
+            "start_tick": 9411,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 9471,
+            "start_tick": 9429,
+            "tick_count": 43
+          },
+          {
+            "end_tick": 9682,
+            "start_tick": 9673,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 9727,
+            "start_tick": 9692,
+            "tick_count": 36
+          },
+          {
+            "end_tick": 9946,
+            "start_tick": 9936,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 9983,
+            "start_tick": 9951,
+            "tick_count": 33
+          },
+          {
+            "end_tick": 10186,
+            "start_tick": 10179,
+            "tick_count": 8
+          },
+          {
+            "end_tick": 10206,
+            "start_tick": 10195,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 10239,
+            "start_tick": 10208,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 10450,
+            "start_tick": 10440,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 10495,
+            "start_tick": 10459,
+            "tick_count": 37
+          },
+          {
+            "end_tick": 10714,
+            "start_tick": 10703,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 10751,
+            "start_tick": 10720,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 10956,
+            "start_tick": 10948,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 11007,
+            "start_tick": 10966,
+            "tick_count": 42
+          },
+          {
+            "end_tick": 11221,
+            "start_tick": 11211,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 11263,
+            "start_tick": 11231,
+            "tick_count": 33
+          },
+          {
+            "end_tick": 11482,
+            "start_tick": 11472,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 11519,
+            "start_tick": 11488,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 11775,
+            "start_tick": 11732,
+            "tick_count": 44
+          },
+          {
+            "end_tick": 11984,
+            "start_tick": 11974,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 12031,
+            "start_tick": 11993,
+            "tick_count": 39
+          },
+          {
+            "end_tick": 12248,
+            "start_tick": 12239,
+            "tick_count": 10
+          },
+          {
+            "end_tick": 12287,
+            "start_tick": 12256,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 12491,
+            "start_tick": 12483,
+            "tick_count": 9
+          },
+          {
+            "end_tick": 12543,
+            "start_tick": 12500,
+            "tick_count": 44
+          },
+          {
+            "end_tick": 12753,
+            "start_tick": 12743,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 12799,
+            "start_tick": 12763,
+            "tick_count": 37
+          },
+          {
+            "end_tick": 13015,
+            "start_tick": 13005,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 13055,
+            "start_tick": 13024,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 13277,
+            "start_tick": 13266,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 13311,
+            "start_tick": 13280,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 13520,
+            "start_tick": 13510,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 13567,
+            "start_tick": 13529,
+            "tick_count": 39
+          },
+          {
+            "end_tick": 13783,
+            "start_tick": 13773,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 13823,
+            "start_tick": 13792,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 14026,
+            "start_tick": 14019,
+            "tick_count": 8
+          },
+          {
+            "end_tick": 14079,
+            "start_tick": 14037,
+            "tick_count": 43
+          },
+          {
+            "end_tick": 14290,
+            "start_tick": 14280,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 14335,
+            "start_tick": 14300,
+            "tick_count": 36
+          },
+          {
+            "end_tick": 14552,
+            "start_tick": 14541,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 14591,
+            "start_tick": 14560,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 14814,
+            "start_tick": 14803,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 14847,
+            "start_tick": 14816,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 15057,
+            "start_tick": 15047,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 15103,
+            "start_tick": 15067,
+            "tick_count": 37
+          },
+          {
+            "end_tick": 15320,
+            "start_tick": 15310,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 15359,
+            "start_tick": 15328,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 15582,
+            "start_tick": 15571,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 15615,
+            "start_tick": 15584,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 15825,
+            "start_tick": 15815,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 15871,
+            "start_tick": 15834,
+            "tick_count": 38
+          },
+          {
+            "end_tick": 16087,
+            "start_tick": 16077,
+            "tick_count": 11
+          },
+          {
+            "end_tick": 16127,
+            "start_tick": 16096,
+            "tick_count": 32
+          },
+          {
+            "end_tick": 16350,
+            "start_tick": 16339,
+            "tick_count": 12
+          },
+          {
+            "end_tick": 16383,
+            "start_tick": 16352,
+            "tick_count": 32
+          }
+        ],
+        "minimum_interval_ticks": 8,
+        "retained_interval_count": 126,
+        "zero_event_tick_count": 3048
+      }
+    }
+  ],
+  "schema_version": "2.9.0",
+  "source_commit": "67e9cc6d3e5dd2e96380b7cadb16b66f5e7d2427",
+  "status": "PASS",
+  "total_ticks": 49152
+}

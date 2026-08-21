@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frp.example/schemas/m27/frp_m27_long_run_stability_qualification.v2.9.0.schema.json",
+  "title": "FRP M27 long-run stability qualification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "overall_status", "source_commit", "contract_digest", "workload_catalog_digest", "checkpoint_evidence_digest", "telemetry_semantics_digest", "report_digest", "manifest_digest", "check_count", "passed_count", "failed_count", "checks", "qualification_digest"],
+  "properties": {
+    "schema_version": {"const": "2.9.0"},
+    "artifact_id": {"const": "frp-m27-long-run-stability-qualification"},
+    "milestone": {"const": "M27"},
+    "status": {"const": "PASS"},
+    "overall_status": {"const": "PASS"},
+    "source_commit": {"$ref": "#/$defs/source_commit"},
+    "contract_digest": {"$ref": "#/$defs/digest"},
+    "workload_catalog_digest": {"$ref": "#/$defs/digest"},
+    "checkpoint_evidence_digest": {"$ref": "#/$defs/digest"},
+    "telemetry_semantics_digest": {"$ref": "#/$defs/digest"},
+    "report_digest": {"$ref": "#/$defs/digest"},
+    "manifest_digest": {"$ref": "#/$defs/digest"},
+    "check_count": {"type": "integer", "minimum": 60},
+    "passed_count": {"type": "integer", "minimum": 60},
+    "failed_count": {"const": 0},
+    "checks": {"type": "array", "minItems": 60, "items": {"$ref": "#/$defs/check"}},
+    "qualification_digest": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_commit": {"const": "67e9cc6d3e5dd2e96380b7cadb16b66f5e7d2427"},
+    "check": {"type": "object", "additionalProperties": false, "required": ["check_id", "category", "status", "evidence"], "properties": {"check_id": {"type": "string", "pattern": "^M27-Q[0-9]{3}$"}, "category": {"type": "string", "minLength": 1}, "status": {"const": "PASS"}, "evidence": {}}}
+  }
+}
