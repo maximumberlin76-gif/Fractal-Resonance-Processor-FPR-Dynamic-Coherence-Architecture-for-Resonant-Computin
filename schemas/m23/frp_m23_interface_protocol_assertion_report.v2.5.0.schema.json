@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:m23-interface-protocol-assertion-report-v2.5.0",
+  "title": "FRP M23 Interface Protocol Assertion Report",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "source_commit", "contract_digest", "assertion_count", "passed_count", "failed_count", "assertions", "assertion_set_digest"],
+  "properties": {
+    "schema_version": {"const": "2.5.0"}, "artifact_id": {"const": "frp-m23-interface-protocol-assertion-report"}, "milestone": {"const": "M23"}, "status": {"const": "PASS"},
+    "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "contract_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "assertion_count": {"const": 12}, "passed_count": {"const": 12}, "failed_count": {"const": 0},
+    "assertions": {"type": "array", "minItems": 12, "maxItems": 12, "items": {"type": "object", "additionalProperties": false, "required": ["assertion_id", "category", "property", "implementation", "status"], "properties": {"assertion_id": {"type": "string", "pattern": "^M23-A(0[1-9]|1[0-2])$"}, "category": {"enum": ["reset", "readiness", "interface", "cdc"]}, "property": {"type": "string", "minLength": 1}, "implementation": {"const": "rtl/m23/frp_m23_interface_protocol_assertions.sv"}, "status": {"const": "PASS"}}}},
+    "assertion_set_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

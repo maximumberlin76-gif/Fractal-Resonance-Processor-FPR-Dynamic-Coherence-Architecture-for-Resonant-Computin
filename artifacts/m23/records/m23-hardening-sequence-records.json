@@ -1,0 +1,553 @@
+{
+  "artifact_id": "frp-m23-hardening-sequence-records",
+  "contract_digest": "d324b2ef1aec9b66ab63a9bc7e8a9668e85191e46e98fe1453cbddfdd8459c67",
+  "milestone": "M23",
+  "profile_count": 3,
+  "record_count": 45,
+  "record_set_digest": "2738a4006f9f0ec2d67d9c8f88857fb98cecf123226e04df8b6944d7220007ed",
+  "records": [
+    {
+      "category": "reset",
+      "event": "initial_async_assertion",
+      "evidence": {
+        "covered": true,
+        "release_stages": 2
+      },
+      "profile_id": "cells-8-lanes-2",
+      "record_digest": "807dc14b05b2a62278ea2bfb3460c40739a854294fd76f2ba38e72ac3ad5ae6a",
+      "sequence": 0,
+      "status": "PASS"
+    },
+    {
+      "category": "reset",
+      "event": "independent_synchronous_release",
+      "evidence": {
+        "covered": true,
+        "release_stages": 2
+      },
+      "profile_id": "cells-8-lanes-2",
+      "record_digest": "4150333e747379b292a2618542d0755182e8997216c47fa0cddf5a37e35dfcab",
+      "sequence": 1,
+      "status": "PASS"
+    },
+    {
+      "category": "reset",
+      "event": "pre_readiness_gating",
+      "evidence": {
+        "covered": true,
+        "release_stages": 2
+      },
+      "profile_id": "cells-8-lanes-2",
+      "record_digest": "5a5824fda9429acdf1138bdbf3155d9e5009c94b2a6d350ff21384686e5bcf1e",
+      "sequence": 2,
+      "status": "PASS"
+    },
+    {
+      "category": "reset",
+      "event": "in_flight_reset_interruption",
+      "evidence": {
+        "covered": true,
+        "release_stages": 2
+      },
+      "profile_id": "cells-8-lanes-2",
+      "record_digest": "498322fa51c2003fb2590c8c3fba964116704779085618f9a334e003f9bdacb8",
+      "sequence": 3,
+      "status": "PASS"
+    },
+    {
+      "category": "reset",
+      "event": "repeated_deterministic_restart",
+      "evidence": {
+        "covered": true,
+        "release_stages": 2
+      },
+      "profile_id": "cells-8-lanes-2",
+      "record_digest": "2e659cde4c3efd294591fb0f74638f3df7137b872a5475d74c40715dc6e73d79",
+      "sequence": 4,
+      "status": "PASS"
+    },
+    {
+      "category": "cdc",
+      "event": "host_to_core_request_toggle",
+      "evidence": {
+        "direction": "host-to-core",
+        "kind": "two_stage_toggle_synchronizer"
+      },
+      "profile_id": "cells-8-lanes-2",
+      "record_digest": "5696008a508450f19a06d12ae4f3fe47f14a086c53e53452ed7d729ae09e838a",
+      "sequence": 5,
+      "status": "PASS"
+    },
+    {
+      "category": "cdc",
+      "event": "host_to_core_request_payload",
+      "evidence": {
+        "direction": "host-to-core",
+        "kind": "bundled_data_held_until_response"
+      },
+      "profile_id": "cells-8-lanes-2",
+      "record_digest": "281fb55b8027700509bd5742cadd4e2d42e6cacc7cfd39b0321a83af95dc04fc",
+      "sequence": 6,
+      "status": "PASS"
+    },
+    {
+      "category": "cdc",
+      "event": "core_to_host_response_toggle",
+      "evidence": {
+        "direction": "core-to-host",
+        "kind": "two_stage_toggle_synchronizer"
+      },
+      "profile_id": "cells-8-lanes-2",
+      "record_digest": "526b478a229e583d5280b7fedce8247b3760812b7bf172c733cf7b2ea79bf5ed",
+      "sequence": 7,
+      "status": "PASS"
+    },
+    {
+      "category": "cdc",
+      "event": "core_to_host_response_payload",
+      "evidence": {
+        "direction": "core-to-host",
+        "kind": "bundled_data_held_until_acceptance"
+      },
+      "profile_id": "cells-8-lanes-2",
+      "record_digest": "6125a73a95f60e2d7aa76c0fa5c23314acc7fc4423d875ad9e638e3b8e7f5952",
+      "sequence": 8,
+      "status": "PASS"
+    },
+    {
+      "category": "cdc",
+      "event": "core_to_host_ready_level",
+      "evidence": {
+        "direction": "core-to-host",
+        "kind": "two_stage_level_synchronizer"
+      },
+      "profile_id": "cells-8-lanes-2",
+      "record_digest": "f8a6c225e3b76dc8ab7cbc9478e3f3c525b09689fdaafbb1c4438d89629e2a5f",
+      "sequence": 9,
+      "status": "PASS"
+    },
+    {
+      "category": "negative_sequence",
+      "event": "request_before_ready",
+      "evidence": {
+        "detected": true,
+        "sticky_error": true
+      },
+      "profile_id": "cells-8-lanes-2",
+      "record_digest": "72f912d62b10f87f49319570d945fa72fc19ab2a41821fbb6e101305725e1b14",
+      "sequence": 10,
+      "status": "PASS"
+    },
+    {
+      "category": "negative_sequence",
+      "event": "request_while_busy",
+      "evidence": {
+        "detected": true,
+        "sticky_error": true
+      },
+      "profile_id": "cells-8-lanes-2",
+      "record_digest": "f18b50edb667b2f279b632685805e95807cf595620b4b2c8f519aef13206dd30",
+      "sequence": 11,
+      "status": "PASS"
+    },
+    {
+      "category": "negative_sequence",
+      "event": "request_valid_held",
+      "evidence": {
+        "detected": true,
+        "sticky_error": true
+      },
+      "profile_id": "cells-8-lanes-2",
+      "record_digest": "8e8157d048259d310d5141f938dfdc14d49fc4bf0cb15d012120300fbfc9e419",
+      "sequence": 12,
+      "status": "PASS"
+    },
+    {
+      "category": "reset_interruption",
+      "event": "drop_in_flight_transaction",
+      "evidence": {
+        "busy_after_assertion": false,
+        "completion_emitted": false
+      },
+      "profile_id": "cells-8-lanes-2",
+      "record_digest": "a9da7bf4554e9bda8d5fe4ad6bd59b44c4abeac9a4c461dfb9d0ddb972950be2",
+      "sequence": 13,
+      "status": "PASS"
+    },
+    {
+      "category": "restart",
+      "event": "deterministic_restart_signature",
+      "evidence": {
+        "completed_transactions": 24,
+        "signature": "00010119"
+      },
+      "profile_id": "cells-8-lanes-2",
+      "record_digest": "3d20178bbbc36774a91eee623de0743594846d9bab20b299654b6e94bccbf9fe",
+      "sequence": 14,
+      "status": "PASS"
+    },
+    {
+      "category": "reset",
+      "event": "initial_async_assertion",
+      "evidence": {
+        "covered": true,
+        "release_stages": 2
+      },
+      "profile_id": "cells-16-lanes-4",
+      "record_digest": "b73bdc6cef5f22bac5997585ee9e2ba63199bace7e03f64da1078fba75fb9596",
+      "sequence": 15,
+      "status": "PASS"
+    },
+    {
+      "category": "reset",
+      "event": "independent_synchronous_release",
+      "evidence": {
+        "covered": true,
+        "release_stages": 2
+      },
+      "profile_id": "cells-16-lanes-4",
+      "record_digest": "e5ab377c5cdf108a2f81babdf9546a9287c6966951e7fc3ab65e0a0fb16ce576",
+      "sequence": 16,
+      "status": "PASS"
+    },
+    {
+      "category": "reset",
+      "event": "pre_readiness_gating",
+      "evidence": {
+        "covered": true,
+        "release_stages": 2
+      },
+      "profile_id": "cells-16-lanes-4",
+      "record_digest": "909272ba2de3ea76927a97271c0c6620f4951204d62d27fd5637d846b08c93e0",
+      "sequence": 17,
+      "status": "PASS"
+    },
+    {
+      "category": "reset",
+      "event": "in_flight_reset_interruption",
+      "evidence": {
+        "covered": true,
+        "release_stages": 2
+      },
+      "profile_id": "cells-16-lanes-4",
+      "record_digest": "a73cbcba9edca88ee5c3e76ecbe1beb8bf765a9ee938438a60b6d91dc4ad6c6c",
+      "sequence": 18,
+      "status": "PASS"
+    },
+    {
+      "category": "reset",
+      "event": "repeated_deterministic_restart",
+      "evidence": {
+        "covered": true,
+        "release_stages": 2
+      },
+      "profile_id": "cells-16-lanes-4",
+      "record_digest": "3b0719fcdbbb08d42c6c2d006720d6dcf06c16f087f6fb1acfd4694596f905eb",
+      "sequence": 19,
+      "status": "PASS"
+    },
+    {
+      "category": "cdc",
+      "event": "host_to_core_request_toggle",
+      "evidence": {
+        "direction": "host-to-core",
+        "kind": "two_stage_toggle_synchronizer"
+      },
+      "profile_id": "cells-16-lanes-4",
+      "record_digest": "7839a4eaefc17850ba1d3e718169036829e5dfa0008da0ac5256d8ce7b51bca1",
+      "sequence": 20,
+      "status": "PASS"
+    },
+    {
+      "category": "cdc",
+      "event": "host_to_core_request_payload",
+      "evidence": {
+        "direction": "host-to-core",
+        "kind": "bundled_data_held_until_response"
+      },
+      "profile_id": "cells-16-lanes-4",
+      "record_digest": "a4baea1299237a6bf4373a83ca146ee8a5e209473e88f69ab676b89b3ffef1b8",
+      "sequence": 21,
+      "status": "PASS"
+    },
+    {
+      "category": "cdc",
+      "event": "core_to_host_response_toggle",
+      "evidence": {
+        "direction": "core-to-host",
+        "kind": "two_stage_toggle_synchronizer"
+      },
+      "profile_id": "cells-16-lanes-4",
+      "record_digest": "e0a7252dd243d44de5736fa24c6e8a03608188a94ecdb3c2fc0a5c8885d06415",
+      "sequence": 22,
+      "status": "PASS"
+    },
+    {
+      "category": "cdc",
+      "event": "core_to_host_response_payload",
+      "evidence": {
+        "direction": "core-to-host",
+        "kind": "bundled_data_held_until_acceptance"
+      },
+      "profile_id": "cells-16-lanes-4",
+      "record_digest": "310457ced571853efeaaa1db4e135f6900ee4308e89a8541d157f31e6f442c40",
+      "sequence": 23,
+      "status": "PASS"
+    },
+    {
+      "category": "cdc",
+      "event": "core_to_host_ready_level",
+      "evidence": {
+        "direction": "core-to-host",
+        "kind": "two_stage_level_synchronizer"
+      },
+      "profile_id": "cells-16-lanes-4",
+      "record_digest": "67219d458057f2ffa7b43d99fabda2f252791f4dfd7f3b8555922a94ff7c94f4",
+      "sequence": 24,
+      "status": "PASS"
+    },
+    {
+      "category": "negative_sequence",
+      "event": "request_before_ready",
+      "evidence": {
+        "detected": true,
+        "sticky_error": true
+      },
+      "profile_id": "cells-16-lanes-4",
+      "record_digest": "59082b61392f55db4d5118920a0803095d272da006de9ee48407ba2fc6a45683",
+      "sequence": 25,
+      "status": "PASS"
+    },
+    {
+      "category": "negative_sequence",
+      "event": "request_while_busy",
+      "evidence": {
+        "detected": true,
+        "sticky_error": true
+      },
+      "profile_id": "cells-16-lanes-4",
+      "record_digest": "af8b737f5b7667df7dc2da6d5ed8da0ed2da9b6bfc69ef5b05abf091e38f892a",
+      "sequence": 26,
+      "status": "PASS"
+    },
+    {
+      "category": "negative_sequence",
+      "event": "request_valid_held",
+      "evidence": {
+        "detected": true,
+        "sticky_error": true
+      },
+      "profile_id": "cells-16-lanes-4",
+      "record_digest": "fe3f31b330801688e0625d108f3a72d72747e464c295ebef6fffca0352cd8580",
+      "sequence": 27,
+      "status": "PASS"
+    },
+    {
+      "category": "reset_interruption",
+      "event": "drop_in_flight_transaction",
+      "evidence": {
+        "busy_after_assertion": false,
+        "completion_emitted": false
+      },
+      "profile_id": "cells-16-lanes-4",
+      "record_digest": "bcd84e8da35b24c33792740a7cb5bd9a54e2e1d15cb11c9b09874604bd65c3ef",
+      "sequence": 28,
+      "status": "PASS"
+    },
+    {
+      "category": "restart",
+      "event": "deterministic_restart_signature",
+      "evidence": {
+        "completed_transactions": 24,
+        "signature": "00010101"
+      },
+      "profile_id": "cells-16-lanes-4",
+      "record_digest": "b2bc00787cfc79e7e49485a57e115d1aa0638342524ffe4c7255e20e9c952c6e",
+      "sequence": 29,
+      "status": "PASS"
+    },
+    {
+      "category": "reset",
+      "event": "initial_async_assertion",
+      "evidence": {
+        "covered": true,
+        "release_stages": 2
+      },
+      "profile_id": "cells-32-lanes-8",
+      "record_digest": "c3571e035180b247f77a8bfc16c794532fa951fe5c048c87c3bd5bd97d7d8f2a",
+      "sequence": 30,
+      "status": "PASS"
+    },
+    {
+      "category": "reset",
+      "event": "independent_synchronous_release",
+      "evidence": {
+        "covered": true,
+        "release_stages": 2
+      },
+      "profile_id": "cells-32-lanes-8",
+      "record_digest": "d64633a5b0cf3152e6f6c26d4dc6ca46677b7008ca1e8a5d4a3d406aee0b899a",
+      "sequence": 31,
+      "status": "PASS"
+    },
+    {
+      "category": "reset",
+      "event": "pre_readiness_gating",
+      "evidence": {
+        "covered": true,
+        "release_stages": 2
+      },
+      "profile_id": "cells-32-lanes-8",
+      "record_digest": "2f80f1da5d41178f2191ce8debff464efbfa4b2910550691866e60b5f0d2a1ff",
+      "sequence": 32,
+      "status": "PASS"
+    },
+    {
+      "category": "reset",
+      "event": "in_flight_reset_interruption",
+      "evidence": {
+        "covered": true,
+        "release_stages": 2
+      },
+      "profile_id": "cells-32-lanes-8",
+      "record_digest": "574976c895af08e4e38aafae8d5d0f815a3ea3807eaa4b0790ae502eb61cf581",
+      "sequence": 33,
+      "status": "PASS"
+    },
+    {
+      "category": "reset",
+      "event": "repeated_deterministic_restart",
+      "evidence": {
+        "covered": true,
+        "release_stages": 2
+      },
+      "profile_id": "cells-32-lanes-8",
+      "record_digest": "69be48adf2661971e2e970c9e2c9ff58e49adcad4d6434f9a6810725239ea521",
+      "sequence": 34,
+      "status": "PASS"
+    },
+    {
+      "category": "cdc",
+      "event": "host_to_core_request_toggle",
+      "evidence": {
+        "direction": "host-to-core",
+        "kind": "two_stage_toggle_synchronizer"
+      },
+      "profile_id": "cells-32-lanes-8",
+      "record_digest": "8bd14fd24cc265078c8c447527be48c08eab354d616bdafdf6d25bc3a7dda818",
+      "sequence": 35,
+      "status": "PASS"
+    },
+    {
+      "category": "cdc",
+      "event": "host_to_core_request_payload",
+      "evidence": {
+        "direction": "host-to-core",
+        "kind": "bundled_data_held_until_response"
+      },
+      "profile_id": "cells-32-lanes-8",
+      "record_digest": "239d9c9f43807a7dbcf44dcb215a0db08da1264992a544837888e87ebb00100a",
+      "sequence": 36,
+      "status": "PASS"
+    },
+    {
+      "category": "cdc",
+      "event": "core_to_host_response_toggle",
+      "evidence": {
+        "direction": "core-to-host",
+        "kind": "two_stage_toggle_synchronizer"
+      },
+      "profile_id": "cells-32-lanes-8",
+      "record_digest": "240b245ef5f51d3a49c5adcd51b1c5641d5c271080e4e9214e68e532ff179a56",
+      "sequence": 37,
+      "status": "PASS"
+    },
+    {
+      "category": "cdc",
+      "event": "core_to_host_response_payload",
+      "evidence": {
+        "direction": "core-to-host",
+        "kind": "bundled_data_held_until_acceptance"
+      },
+      "profile_id": "cells-32-lanes-8",
+      "record_digest": "12c5e5c5a3a8466521bfbc336adf2be69fce2e8e85a751b77c065aa942b95f88",
+      "sequence": 38,
+      "status": "PASS"
+    },
+    {
+      "category": "cdc",
+      "event": "core_to_host_ready_level",
+      "evidence": {
+        "direction": "core-to-host",
+        "kind": "two_stage_level_synchronizer"
+      },
+      "profile_id": "cells-32-lanes-8",
+      "record_digest": "dd0ef80ef767a3da5000a320e43c06b9fa65601f2b1782e1163e5ffb86723a27",
+      "sequence": 39,
+      "status": "PASS"
+    },
+    {
+      "category": "negative_sequence",
+      "event": "request_before_ready",
+      "evidence": {
+        "detected": true,
+        "sticky_error": true
+      },
+      "profile_id": "cells-32-lanes-8",
+      "record_digest": "2e7aeac838ee9e6f4279dd3a67ad51888f148a6dbce8fe26d6dfd56ca6f30806",
+      "sequence": 40,
+      "status": "PASS"
+    },
+    {
+      "category": "negative_sequence",
+      "event": "request_while_busy",
+      "evidence": {
+        "detected": true,
+        "sticky_error": true
+      },
+      "profile_id": "cells-32-lanes-8",
+      "record_digest": "d0934063442aeb49624776eb4a3e8620e6294fa99ad6a9604c7a02513fd5bb09",
+      "sequence": 41,
+      "status": "PASS"
+    },
+    {
+      "category": "negative_sequence",
+      "event": "request_valid_held",
+      "evidence": {
+        "detected": true,
+        "sticky_error": true
+      },
+      "profile_id": "cells-32-lanes-8",
+      "record_digest": "3e03aa6ac3b08a033fe9bbebf3deeab6e6f159ff4dfc2c5e2ab4ed70d6c9b28c",
+      "sequence": 42,
+      "status": "PASS"
+    },
+    {
+      "category": "reset_interruption",
+      "event": "drop_in_flight_transaction",
+      "evidence": {
+        "busy_after_assertion": false,
+        "completion_emitted": false
+      },
+      "profile_id": "cells-32-lanes-8",
+      "record_digest": "ecfe1326bbe2c93d79b6ec0ea52438b139b8cc9d7f145887d94adcbe5e40c8cc",
+      "sequence": 43,
+      "status": "PASS"
+    },
+    {
+      "category": "restart",
+      "event": "deterministic_restart_signature",
+      "evidence": {
+        "completed_transactions": 24,
+        "signature": "00010131"
+      },
+      "profile_id": "cells-32-lanes-8",
+      "record_digest": "f21ce9a419fdce258e4e31952fae15e3cf55fba6a38b3e12ec4f8bfd3cbeb6b1",
+      "sequence": 44,
+      "status": "PASS"
+    }
+  ],
+  "schema_version": "2.5.0",
+  "source_commit": "6bb07958710dc942c4deea1e7663ea97017fe3a8",
+  "status": "PASS"
+}

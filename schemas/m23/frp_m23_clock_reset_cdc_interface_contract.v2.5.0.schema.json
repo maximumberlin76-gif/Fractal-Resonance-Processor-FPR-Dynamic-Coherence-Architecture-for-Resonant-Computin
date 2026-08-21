@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:m23-clock-reset-cdc-interface-contract-v2.5.0",
+  "title": "FRP M23 Clock Reset CDC Interface Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "release", "status", "source_commit", "source_release", "upstream_source_digests", "clock_relationship", "clock_domain_count", "clock_domains", "reset_contract", "readiness_contract", "cdc_boundary_count", "cdc_boundaries", "structural_cdc_check_count", "structural_cdc_checks", "interface_handshake", "invalid_sequence_count", "invalid_sequence_classes", "sticky_protocol_error", "assertion_count", "parameter_profile_count", "parameter_profiles", "balanced_ternary", "contract_digest"],
+  "properties": {
+    "schema_version": {"const": "2.5.0"},
+    "artifact_id": {"const": "frp-m23-clock-reset-cdc-interface-contract"},
+    "milestone": {"const": "M23"},
+    "release": {"const": "FRP v2.5.0"},
+    "status": {"const": "PASS"},
+    "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "source_release": {"type": "string", "minLength": 1},
+    "upstream_source_digests": {"type": "object", "minProperties": 6, "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
+    "clock_relationship": {"const": "asynchronous"},
+    "clock_domain_count": {"const": 2},
+    "clock_domains": {
+      "type": "array", "minItems": 2, "maxItems": 2,
+      "items": {"type": "object", "additionalProperties": false, "required": ["domain_id", "clock", "reset", "role"], "properties": {"domain_id": {"enum": ["host", "core"]}, "clock": {"type": "string"}, "reset": {"type": "string"}, "role": {"type": "string"}}}
+    },
+    "reset_contract": {
+      "type": "object", "additionalProperties": false,
+      "required": ["assertion", "release", "release_stages", "shared_assertion_signal", "sequence_count", "sequences"],
+      "properties": {"assertion": {"const": "asynchronous"}, "release": {"const": "synchronous_per_domain"}, "release_stages": {"const": 2}, "shared_assertion_signal": {"const": "rst_n_async"}, "sequence_count": {"const": 5}, "sequences": {"type": "array", "minItems": 5, "maxItems": 5, "uniqueItems": true, "items": {"type": "string"}}}
+    },
+    "readiness_contract": {"type": "object", "required": ["core_ready_source", "host_ready_synchronizer_stages", "pre_readiness_requests", "restart_state"], "additionalProperties": false, "properties": {"core_ready_source": {"const": "core"}, "host_ready_synchronizer_stages": {"const": 2}, "pre_readiness_requests": {"const": "reject_and_record"}, "restart_state": {"const": "not_ready_not_busy"}}},
+    "cdc_boundary_count": {"const": 5},
+    "cdc_boundaries": {"type": "array", "minItems": 5, "maxItems": 5, "items": {"type": "object", "required": ["boundary_id", "direction", "kind", "stages"], "additionalProperties": false, "properties": {"boundary_id": {"type": "string"}, "direction": {"enum": ["host-to-core", "core-to-host"]}, "kind": {"type": "string"}, "stages": {"type": "integer", "minimum": 0, "maximum": 2}}}},
+    "structural_cdc_check_count": {"const": 10},
+    "structural_cdc_checks": {"type": "array", "minItems": 10, "maxItems": 10, "uniqueItems": true, "items": {"type": "string"}},
+    "interface_handshake": {"type": "object", "required": ["request_protocol", "response_protocol", "maximum_outstanding_transactions", "request_payload_width", "response_payload_width", "payload_hold_rule", "reset_interruption"], "additionalProperties": false, "properties": {"request_protocol": {"const": "single_cycle_valid_pulse"}, "response_protocol": {"const": "single_cycle_ready_pulse"}, "maximum_outstanding_transactions": {"const": 1}, "request_payload_width": {"const": 41}, "response_payload_width": {"const": 33}, "payload_hold_rule": {"type": "string"}, "reset_interruption": {"type": "string"}}},
+    "invalid_sequence_count": {"const": 3},
+    "invalid_sequence_classes": {"type": "array", "minItems": 3, "maxItems": 3, "uniqueItems": true, "items": {"enum": ["request_before_ready", "request_while_busy", "request_valid_held"]}},
+    "sticky_protocol_error": {"const": true},
+    "assertion_count": {"const": 12},
+    "parameter_profile_count": {"const": 3},
+    "parameter_profiles": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "object", "required": ["profile_id", "cell_count", "request_lanes", "restart_signature"], "additionalProperties": false, "properties": {"profile_id": {"type": "string"}, "cell_count": {"enum": [8, 16, 32]}, "request_lanes": {"enum": [2, 4, 8]}, "restart_signature": {"type": "string", "pattern": "^[0-9]{8}$"}}}},
+    "balanced_ternary": {"type": "object", "required": ["semantic_values", "active_neutral_state", "direct_positive_negative_transition"], "additionalProperties": false, "properties": {"semantic_values": {"const": [-1, 0, 1]}, "active_neutral_state": {"const": 0}, "direct_positive_negative_transition": {"const": "forbidden"}}},
+    "contract_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

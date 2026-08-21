@@ -1,0 +1,33 @@
+{
+  "schema_version": "2.5.0",
+  "milestone": "M23",
+  "status": "PASS",
+  "record_count": 5,
+  "records": [
+    {
+      "schema": "m23-clock-reset-cdc-interface-contract-v2.5.0",
+      "path": "schemas/m23/frp_m23_clock_reset_cdc_interface_contract.v2.5.0.schema.json",
+      "urn": "urn:frp:schema:m23-clock-reset-cdc-interface-contract-v2.5.0"
+    },
+    {
+      "schema": "m23-hardening-sequence-records-v2.5.0",
+      "path": "schemas/m23/frp_m23_hardening_sequence_records.v2.5.0.schema.json",
+      "urn": "urn:frp:schema:m23-hardening-sequence-records-v2.5.0"
+    },
+    {
+      "schema": "m23-interface-protocol-assertion-report-v2.5.0",
+      "path": "schemas/m23/frp_m23_interface_protocol_assertion_report.v2.5.0.schema.json",
+      "urn": "urn:frp:schema:m23-interface-protocol-assertion-report-v2.5.0"
+    },
+    {
+      "schema": "m23-clock-reset-cdc-interface-hardening-manifest-v2.5.0",
+      "path": "schemas/m23/frp_m23_clock_reset_cdc_interface_hardening_manifest.v2.5.0.schema.json",
+      "urn": "urn:frp:schema:m23-clock-reset-cdc-interface-hardening-manifest-v2.5.0"
+    },
+    {
+      "schema": "m23-clock-reset-cdc-interface-hardening-qualification-v2.5.0",
+      "path": "schemas/m23/frp_m23_clock_reset_cdc_interface_hardening_qualification.v2.5.0.schema.json",
+      "urn": "urn:frp:schema:m23-clock-reset-cdc-interface-hardening-qualification-v2.5.0"
+    }
+  ]
+}

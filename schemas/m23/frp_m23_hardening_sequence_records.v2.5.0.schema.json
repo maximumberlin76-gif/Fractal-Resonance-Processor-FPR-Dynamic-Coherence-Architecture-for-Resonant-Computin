@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:m23-hardening-sequence-records-v2.5.0",
+  "title": "FRP M23 Hardening Sequence Records",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "source_commit", "contract_digest", "profile_count", "record_count", "records", "record_set_digest"],
+  "properties": {
+    "schema_version": {"const": "2.5.0"}, "artifact_id": {"const": "frp-m23-hardening-sequence-records"}, "milestone": {"const": "M23"}, "status": {"const": "PASS"},
+    "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "contract_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "profile_count": {"const": 3}, "record_count": {"const": 45},
+    "records": {"type": "array", "minItems": 45, "maxItems": 45, "items": {"type": "object", "additionalProperties": false, "required": ["sequence", "profile_id", "category", "event", "status", "evidence", "record_digest"], "properties": {"sequence": {"type": "integer", "minimum": 0, "maximum": 44}, "profile_id": {"enum": ["cells-8-lanes-2", "cells-16-lanes-4", "cells-32-lanes-8"]}, "category": {"enum": ["reset", "cdc", "negative_sequence", "reset_interruption", "restart"]}, "event": {"type": "string", "minLength": 1}, "status": {"const": "PASS"}, "evidence": {"type": "object"}, "record_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}}},
+    "record_set_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

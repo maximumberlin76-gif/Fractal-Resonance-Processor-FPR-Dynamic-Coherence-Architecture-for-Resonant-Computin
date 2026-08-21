@@ -1,0 +1,147 @@
+{
+  "artifact_id": "frp-m23-clock-reset-cdc-interface-contract",
+  "assertion_count": 12,
+  "balanced_ternary": {
+    "active_neutral_state": 0,
+    "direct_positive_negative_transition": "forbidden",
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ]
+  },
+  "cdc_boundaries": [
+    {
+      "boundary_id": "host_to_core_request_toggle",
+      "direction": "host-to-core",
+      "kind": "two_stage_toggle_synchronizer",
+      "stages": 2
+    },
+    {
+      "boundary_id": "host_to_core_request_payload",
+      "direction": "host-to-core",
+      "kind": "bundled_data_held_until_response",
+      "stages": 0
+    },
+    {
+      "boundary_id": "core_to_host_response_toggle",
+      "direction": "core-to-host",
+      "kind": "two_stage_toggle_synchronizer",
+      "stages": 2
+    },
+    {
+      "boundary_id": "core_to_host_response_payload",
+      "direction": "core-to-host",
+      "kind": "bundled_data_held_until_acceptance",
+      "stages": 0
+    },
+    {
+      "boundary_id": "core_to_host_ready_level",
+      "direction": "core-to-host",
+      "kind": "two_stage_level_synchronizer",
+      "stages": 2
+    }
+  ],
+  "cdc_boundary_count": 5,
+  "clock_domain_count": 2,
+  "clock_domains": [
+    {
+      "clock": "host_clk",
+      "domain_id": "host",
+      "reset": "host_reset_released",
+      "role": "integration CSR initiator"
+    },
+    {
+      "clock": "core_clk",
+      "domain_id": "core",
+      "reset": "core_reset_released",
+      "role": "M22 CSR target and M16 execution core"
+    }
+  ],
+  "clock_relationship": "asynchronous",
+  "contract_digest": "d324b2ef1aec9b66ab63a9bc7e8a9668e85191e46e98fe1453cbddfdd8459c67",
+  "interface_handshake": {
+    "maximum_outstanding_transactions": 1,
+    "payload_hold_rule": "stable_until_corresponding_toggle_is_observed",
+    "request_payload_width": 41,
+    "request_protocol": "single_cycle_valid_pulse",
+    "reset_interruption": "drop_in_flight_transaction_without_completion",
+    "response_payload_width": 33,
+    "response_protocol": "single_cycle_ready_pulse"
+  },
+  "invalid_sequence_classes": [
+    "request_before_ready",
+    "request_while_busy",
+    "request_valid_held"
+  ],
+  "invalid_sequence_count": 3,
+  "milestone": "M23",
+  "parameter_profile_count": 3,
+  "parameter_profiles": [
+    {
+      "cell_count": 8,
+      "profile_id": "cells-8-lanes-2",
+      "request_lanes": 2,
+      "restart_signature": "00010119"
+    },
+    {
+      "cell_count": 16,
+      "profile_id": "cells-16-lanes-4",
+      "request_lanes": 4,
+      "restart_signature": "00010101"
+    },
+    {
+      "cell_count": 32,
+      "profile_id": "cells-32-lanes-8",
+      "request_lanes": 8,
+      "restart_signature": "00010131"
+    }
+  ],
+  "readiness_contract": {
+    "core_ready_source": "core",
+    "host_ready_synchronizer_stages": 2,
+    "pre_readiness_requests": "reject_and_record",
+    "restart_state": "not_ready_not_busy"
+  },
+  "release": "FRP v2.5.0",
+  "reset_contract": {
+    "assertion": "asynchronous",
+    "release": "synchronous_per_domain",
+    "release_stages": 2,
+    "sequence_count": 5,
+    "sequences": [
+      "initial_async_assertion",
+      "independent_synchronous_release",
+      "pre_readiness_gating",
+      "in_flight_reset_interruption",
+      "repeated_deterministic_restart"
+    ],
+    "shared_assertion_signal": "rst_n_async"
+  },
+  "schema_version": "2.5.0",
+  "source_commit": "6bb07958710dc942c4deea1e7663ea97017fe3a8",
+  "source_release": "FRP v2.4.0 / M22 control-status-register interface boundary",
+  "status": "PASS",
+  "sticky_protocol_error": true,
+  "structural_cdc_check_count": 10,
+  "structural_cdc_checks": [
+    "host_reset_two_stage_release",
+    "core_reset_two_stage_release",
+    "request_toggle_async_reg",
+    "response_toggle_async_reg",
+    "ready_level_async_reg",
+    "request_payload_held",
+    "response_payload_held",
+    "single_outstanding_transaction",
+    "no_combinational_clock_crossing",
+    "shared_async_assertion_source"
+  ],
+  "upstream_source_digests": {
+    "frp_m16_core.sv_sha256": "3b94f5caa5ee28da0060a38dd9b4ba4605ef5f86ac93f5425967e515ff1ebd23",
+    "frp_m16_pkg.sv_sha256": "c20fe071e7c91b60ca0411b75d4cf762112d51abbd49dc2a5667d1d8c5d49152",
+    "frp_m22_control_status_register_interface.sv_sha256": "76c3d19cb6ed6070631f2f8d685f9fbffc05acb335609b3e57cc7a743522745d",
+    "frp_m22_csr_pkg.sv_sha256": "0f3de8054e3704548088b035c43e993d194d5182a2ac1bc32cdad92663a11206",
+    "m22-control-status-register-interface.json_sha256": "1b493b15a5f33b724cb56b963cf49351c815ffbe1c5f6df31a718b39895d95bb",
+    "m22-control-status-register-qualification.json_sha256": "140b8c72a833dd87952f029fb85d30b85b8e17067277bfddf2845142cae6ea16"
+  }
+}

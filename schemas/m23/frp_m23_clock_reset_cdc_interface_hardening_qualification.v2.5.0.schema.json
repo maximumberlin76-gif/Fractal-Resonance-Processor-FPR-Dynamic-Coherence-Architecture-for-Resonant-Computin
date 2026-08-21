@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:m23-clock-reset-cdc-interface-hardening-qualification-v2.5.0",
+  "title": "FRP M23 Clock Reset CDC Interface Hardening Qualification",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "overall_status", "source_commit", "manifest_digest", "check_count", "passed_count", "failed_count", "checks", "qualification_digest"],
+  "properties": {
+    "schema_version": {"const": "2.5.0"}, "artifact_id": {"const": "frp-m23-clock-reset-cdc-interface-hardening-qualification"}, "milestone": {"const": "M23"}, "status": {"const": "PASS"}, "overall_status": {"const": "PASS"},
+    "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "manifest_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "check_count": {"const": 72}, "passed_count": {"const": 72}, "failed_count": {"const": 0},
+    "checks": {"type": "array", "minItems": 72, "maxItems": 72, "items": {"type": "object", "additionalProperties": false, "required": ["check_id", "category", "status", "evidence"], "properties": {"check_id": {"type": "string", "pattern": "^Q(0[0-6][0-9]|07[0-2])$"}, "category": {"type": "string", "minLength": 1}, "status": {"const": "PASS"}, "evidence": {}}}},
+    "qualification_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

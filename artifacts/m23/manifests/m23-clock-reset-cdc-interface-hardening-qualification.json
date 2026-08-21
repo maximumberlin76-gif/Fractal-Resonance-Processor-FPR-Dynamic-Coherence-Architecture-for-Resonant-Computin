@@ -1,0 +1,455 @@
+{
+  "artifact_id": "frp-m23-clock-reset-cdc-interface-hardening-qualification",
+  "check_count": 72,
+  "checks": [
+    {
+      "category": "identity",
+      "check_id": "Q001",
+      "evidence": "2.5.0",
+      "status": "PASS"
+    },
+    {
+      "category": "identity",
+      "check_id": "Q002",
+      "evidence": "M23",
+      "status": "PASS"
+    },
+    {
+      "category": "identity",
+      "check_id": "Q003",
+      "evidence": "6bb07958710dc942c4deea1e7663ea97017fe3a8",
+      "status": "PASS"
+    },
+    {
+      "category": "identity",
+      "check_id": "Q004",
+      "evidence": "PASS",
+      "status": "PASS"
+    },
+    {
+      "category": "semantics",
+      "check_id": "Q005",
+      "evidence": {
+        "active_neutral_state": 0,
+        "direct_positive_negative_transition": "forbidden",
+        "semantic_values": [
+          -1,
+          0,
+          1
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "workflow",
+      "check_id": "Q006",
+      "evidence": ".github/workflows/frp-m23-clock-reset-cdc-interface-hardening-workflow.yml",
+      "status": "PASS"
+    },
+    {
+      "category": "reset_sequence",
+      "check_id": "Q007",
+      "evidence": "initial_async_assertion",
+      "status": "PASS"
+    },
+    {
+      "category": "reset_sequence",
+      "check_id": "Q008",
+      "evidence": "independent_synchronous_release",
+      "status": "PASS"
+    },
+    {
+      "category": "reset_sequence",
+      "check_id": "Q009",
+      "evidence": "pre_readiness_gating",
+      "status": "PASS"
+    },
+    {
+      "category": "reset_sequence",
+      "check_id": "Q010",
+      "evidence": "in_flight_reset_interruption",
+      "status": "PASS"
+    },
+    {
+      "category": "reset_sequence",
+      "check_id": "Q011",
+      "evidence": "repeated_deterministic_restart",
+      "status": "PASS"
+    },
+    {
+      "category": "reset_contract",
+      "check_id": "Q012",
+      "evidence": "asynchronous_assertion",
+      "status": "PASS"
+    },
+    {
+      "category": "reset_contract",
+      "check_id": "Q013",
+      "evidence": "synchronous_host_release",
+      "status": "PASS"
+    },
+    {
+      "category": "reset_contract",
+      "check_id": "Q014",
+      "evidence": "synchronous_core_release",
+      "status": "PASS"
+    },
+    {
+      "category": "reset_contract",
+      "check_id": "Q015",
+      "evidence": "two_release_stages",
+      "status": "PASS"
+    },
+    {
+      "category": "reset_contract",
+      "check_id": "Q016",
+      "evidence": "pre_readiness_gating",
+      "status": "PASS"
+    },
+    {
+      "category": "cdc_boundary",
+      "check_id": "Q017",
+      "evidence": "host_to_core_request_toggle",
+      "status": "PASS"
+    },
+    {
+      "category": "cdc_boundary",
+      "check_id": "Q018",
+      "evidence": "host_to_core_request_payload",
+      "status": "PASS"
+    },
+    {
+      "category": "cdc_boundary",
+      "check_id": "Q019",
+      "evidence": "core_to_host_response_toggle",
+      "status": "PASS"
+    },
+    {
+      "category": "cdc_boundary",
+      "check_id": "Q020",
+      "evidence": "core_to_host_response_payload",
+      "status": "PASS"
+    },
+    {
+      "category": "cdc_boundary",
+      "check_id": "Q021",
+      "evidence": "core_to_host_ready_level",
+      "status": "PASS"
+    },
+    {
+      "category": "cdc_structure",
+      "check_id": "Q022",
+      "evidence": "host_reset_two_stage_release",
+      "status": "PASS"
+    },
+    {
+      "category": "cdc_structure",
+      "check_id": "Q023",
+      "evidence": "core_reset_two_stage_release",
+      "status": "PASS"
+    },
+    {
+      "category": "cdc_structure",
+      "check_id": "Q024",
+      "evidence": "request_toggle_async_reg",
+      "status": "PASS"
+    },
+    {
+      "category": "cdc_structure",
+      "check_id": "Q025",
+      "evidence": "response_toggle_async_reg",
+      "status": "PASS"
+    },
+    {
+      "category": "cdc_structure",
+      "check_id": "Q026",
+      "evidence": "ready_level_async_reg",
+      "status": "PASS"
+    },
+    {
+      "category": "cdc_structure",
+      "check_id": "Q027",
+      "evidence": "request_payload_held",
+      "status": "PASS"
+    },
+    {
+      "category": "cdc_structure",
+      "check_id": "Q028",
+      "evidence": "response_payload_held",
+      "status": "PASS"
+    },
+    {
+      "category": "cdc_structure",
+      "check_id": "Q029",
+      "evidence": "single_outstanding_transaction",
+      "status": "PASS"
+    },
+    {
+      "category": "cdc_structure",
+      "check_id": "Q030",
+      "evidence": "no_combinational_clock_crossing",
+      "status": "PASS"
+    },
+    {
+      "category": "cdc_structure",
+      "check_id": "Q031",
+      "evidence": "shared_async_assertion_source",
+      "status": "PASS"
+    },
+    {
+      "category": "protocol_assertion",
+      "check_id": "Q032",
+      "evidence": "M23-A01",
+      "status": "PASS"
+    },
+    {
+      "category": "protocol_assertion",
+      "check_id": "Q033",
+      "evidence": "M23-A02",
+      "status": "PASS"
+    },
+    {
+      "category": "protocol_assertion",
+      "check_id": "Q034",
+      "evidence": "M23-A03",
+      "status": "PASS"
+    },
+    {
+      "category": "protocol_assertion",
+      "check_id": "Q035",
+      "evidence": "M23-A04",
+      "status": "PASS"
+    },
+    {
+      "category": "protocol_assertion",
+      "check_id": "Q036",
+      "evidence": "M23-A05",
+      "status": "PASS"
+    },
+    {
+      "category": "protocol_assertion",
+      "check_id": "Q037",
+      "evidence": "M23-A06",
+      "status": "PASS"
+    },
+    {
+      "category": "protocol_assertion",
+      "check_id": "Q038",
+      "evidence": "M23-A07",
+      "status": "PASS"
+    },
+    {
+      "category": "protocol_assertion",
+      "check_id": "Q039",
+      "evidence": "M23-A08",
+      "status": "PASS"
+    },
+    {
+      "category": "protocol_assertion",
+      "check_id": "Q040",
+      "evidence": "M23-A09",
+      "status": "PASS"
+    },
+    {
+      "category": "protocol_assertion",
+      "check_id": "Q041",
+      "evidence": "M23-A10",
+      "status": "PASS"
+    },
+    {
+      "category": "protocol_assertion",
+      "check_id": "Q042",
+      "evidence": "M23-A11",
+      "status": "PASS"
+    },
+    {
+      "category": "protocol_assertion",
+      "check_id": "Q043",
+      "evidence": "M23-A12",
+      "status": "PASS"
+    },
+    {
+      "category": "negative_sequence",
+      "check_id": "Q044",
+      "evidence": "request_before_ready",
+      "status": "PASS"
+    },
+    {
+      "category": "negative_sequence",
+      "check_id": "Q045",
+      "evidence": "request_while_busy",
+      "status": "PASS"
+    },
+    {
+      "category": "negative_sequence",
+      "check_id": "Q046",
+      "evidence": "request_valid_held",
+      "status": "PASS"
+    },
+    {
+      "category": "parameter_profile",
+      "check_id": "Q047",
+      "evidence": 8,
+      "status": "PASS"
+    },
+    {
+      "category": "parameter_profile",
+      "check_id": "Q048",
+      "evidence": 2,
+      "status": "PASS"
+    },
+    {
+      "category": "restart_signature",
+      "check_id": "Q049",
+      "evidence": "00010119",
+      "status": "PASS"
+    },
+    {
+      "category": "completed_transactions",
+      "check_id": "Q050",
+      "evidence": 24,
+      "status": "PASS"
+    },
+    {
+      "category": "parameter_profile",
+      "check_id": "Q051",
+      "evidence": 16,
+      "status": "PASS"
+    },
+    {
+      "category": "parameter_profile",
+      "check_id": "Q052",
+      "evidence": 4,
+      "status": "PASS"
+    },
+    {
+      "category": "restart_signature",
+      "check_id": "Q053",
+      "evidence": "00010101",
+      "status": "PASS"
+    },
+    {
+      "category": "completed_transactions",
+      "check_id": "Q054",
+      "evidence": 24,
+      "status": "PASS"
+    },
+    {
+      "category": "parameter_profile",
+      "check_id": "Q055",
+      "evidence": 32,
+      "status": "PASS"
+    },
+    {
+      "category": "parameter_profile",
+      "check_id": "Q056",
+      "evidence": 8,
+      "status": "PASS"
+    },
+    {
+      "category": "restart_signature",
+      "check_id": "Q057",
+      "evidence": "00010131",
+      "status": "PASS"
+    },
+    {
+      "category": "completed_transactions",
+      "check_id": "Q058",
+      "evidence": 24,
+      "status": "PASS"
+    },
+    {
+      "category": "records",
+      "check_id": "Q059",
+      "evidence": 45,
+      "status": "PASS"
+    },
+    {
+      "category": "records",
+      "check_id": "Q060",
+      "evidence": 3,
+      "status": "PASS"
+    },
+    {
+      "category": "records",
+      "check_id": "Q061",
+      "evidence": "2738a4006f9f0ec2d67d9c8f88857fb98cecf123226e04df8b6944d7220007ed",
+      "status": "PASS"
+    },
+    {
+      "category": "reset_interruption",
+      "check_id": "Q062",
+      "evidence": 3,
+      "status": "PASS"
+    },
+    {
+      "category": "deterministic_restart",
+      "check_id": "Q063",
+      "evidence": 3,
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "Q064",
+      "evidence": "schemas/m23/frp_m23_clock_reset_cdc_interface_contract.v2.5.0.schema.json",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "Q065",
+      "evidence": "schemas/m23/frp_m23_hardening_sequence_records.v2.5.0.schema.json",
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "Q066",
+      "evidence": "schemas/m23/frp_m23_interface_protocol_assertion_report.v2.5.0.schema.json",
+      "status": "PASS"
+    },
+    {
+      "category": "manifest",
+      "check_id": "Q067",
+      "evidence": 14,
+      "status": "PASS"
+    },
+    {
+      "category": "manifest",
+      "check_id": "Q068",
+      "evidence": 3,
+      "status": "PASS"
+    },
+    {
+      "category": "manifest",
+      "check_id": "Q069",
+      "evidence": "53068d8777afb8ee10277998155376cd4fdcb74f9abdf2d23a4d3a43818cc670",
+      "status": "PASS"
+    },
+    {
+      "category": "upstream",
+      "check_id": "Q070",
+      "evidence": 6,
+      "status": "PASS"
+    },
+    {
+      "category": "schema_registry",
+      "check_id": "Q071",
+      "evidence": 5,
+      "status": "PASS"
+    },
+    {
+      "category": "schema",
+      "check_id": "Q072",
+      "evidence": "schemas/m23/frp_m23_clock_reset_cdc_interface_hardening_qualification.v2.5.0.schema.json",
+      "status": "PASS"
+    }
+  ],
+  "failed_count": 0,
+  "manifest_digest": "bbaf581b0fe0c1e3e8e7ce28feda02e756a4d37054ad4a7b0d806b79fd0e0804",
+  "milestone": "M23",
+  "overall_status": "PASS",
+  "passed_count": 72,
+  "qualification_digest": "1d1559b8e39cf2b4b559032e9a24cf479e28a88df398c6f068eab2b8fb718075",
+  "schema_version": "2.5.0",
+  "source_commit": "6bb07958710dc942c4deea1e7663ea97017fe3a8",
+  "status": "PASS"
+}

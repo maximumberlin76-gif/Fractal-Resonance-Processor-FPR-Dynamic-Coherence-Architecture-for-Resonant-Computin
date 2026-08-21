@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:frp:schema:m23-clock-reset-cdc-interface-hardening-manifest-v2.5.0",
+  "title": "FRP M23 Clock Reset CDC Interface Hardening Manifest",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "milestone", "status", "source_commit", "workflow_path", "source_count", "sources", "upstream_dependency_count", "upstream_dependencies", "artifact_count", "artifacts", "artifact_set_digest", "manifest_digest"],
+  "$defs": {
+    "file": {"type": "object", "additionalProperties": false, "required": ["path", "bytes", "raw_sha256"], "properties": {"path": {"type": "string", "minLength": 1}, "bytes": {"type": "integer", "minimum": 1}, "raw_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}}
+  },
+  "properties": {
+    "schema_version": {"const": "2.5.0"}, "artifact_id": {"const": "frp-m23-clock-reset-cdc-interface-hardening-manifest"}, "milestone": {"const": "M23"}, "status": {"const": "PASS"},
+    "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "workflow_path": {"const": ".github/workflows/frp-m23-clock-reset-cdc-interface-hardening-workflow.yml"},
+    "source_count": {"const": 14}, "sources": {"type": "array", "minItems": 14, "maxItems": 14, "items": {"$ref": "#/$defs/file"}},
+    "upstream_dependency_count": {"const": 6}, "upstream_dependencies": {"type": "array", "minItems": 6, "maxItems": 6, "items": {"$ref": "#/$defs/file"}},
+    "artifact_count": {"const": 3}, "artifacts": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/file"}},
+    "artifact_set_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "manifest_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

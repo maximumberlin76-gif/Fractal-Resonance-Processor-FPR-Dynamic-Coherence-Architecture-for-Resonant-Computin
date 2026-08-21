@@ -1,0 +1,134 @@
+{
+  "artifact_count": 3,
+  "artifact_id": "frp-m23-clock-reset-cdc-interface-hardening-manifest",
+  "artifact_set_digest": "53068d8777afb8ee10277998155376cd4fdcb74f9abdf2d23a4d3a43818cc670",
+  "artifacts": [
+    {
+      "bytes": 4659,
+      "path": "artifacts/m23/contracts/m23-clock-reset-cdc-interface-contract.json",
+      "raw_sha256": "be553fc33d572199c2164d510939f7379d749330cfc3a44648600067bcfa6b78"
+    },
+    {
+      "bytes": 16577,
+      "path": "artifacts/m23/records/m23-hardening-sequence-records.json",
+      "raw_sha256": "84be5d7dfe885d1b244d043edeb1e6ae32d422cdaacf369538bbcef15f9ff7a9"
+    },
+    {
+      "bytes": 3414,
+      "path": "artifacts/m23/reports/m23-interface-protocol-assertion-report.json",
+      "raw_sha256": "c359b10a2c37187cc89d3ff6cc5427624a0df02d2faf7ab62e50b7741c38beae"
+    }
+  ],
+  "manifest_digest": "bbaf581b0fe0c1e3e8e7ce28feda02e756a4d37054ad4a7b0d806b79fd0e0804",
+  "milestone": "M23",
+  "schema_version": "2.5.0",
+  "source_commit": "6bb07958710dc942c4deea1e7663ea97017fe3a8",
+  "source_count": 14,
+  "sources": [
+    {
+      "bytes": 34716,
+      "path": ".github/workflows/frp-m23-clock-reset-cdc-interface-hardening-workflow.yml",
+      "raw_sha256": "82137c6450c69e0794c6a7a1b66d0cc7f97cbde5e80af48433549ed8a8532b72"
+    },
+    {
+      "bytes": 26716,
+      "path": "frp_m23_clock_reset_cdc_interface_hardening.py",
+      "raw_sha256": "a090abc0229536991e399372b686f35e48ce2c667f9e26d3abb5dc7da01f145d"
+    },
+    {
+      "bytes": 5127,
+      "path": "rtl/m23/frp_m23_csr_cdc_bridge.sv",
+      "raw_sha256": "f56e3d5c3d4c07ffb54bc0a4d2968be0bdb9fff37106826d854139da2f2f6078"
+    },
+    {
+      "bytes": 4711,
+      "path": "rtl/m23/frp_m23_hardened_integration_boundary.sv",
+      "raw_sha256": "0381bc56a3f3dbd49d3a3d73ba4ff18e4031fb491effad8029d324fb9ac604b3"
+    },
+    {
+      "bytes": 7052,
+      "path": "rtl/m23/frp_m23_hardened_integration_boundary_tb.sv",
+      "raw_sha256": "0f7a89fd4c62844b1016444dd662cd4a00bbddf0ff9fbc949411099ef72a599a"
+    },
+    {
+      "bytes": 3174,
+      "path": "rtl/m23/frp_m23_interface_protocol_assertions.sv",
+      "raw_sha256": "3f9fe2383bb49dbdcfd0acf46ae85467715998743c60c32f4e3c1da0691d302c"
+    },
+    {
+      "bytes": 626,
+      "path": "rtl/m23/frp_m23_reset_release_sync.sv",
+      "raw_sha256": "bf55576554f8c42e55f0a835bc62ad56e43004b4b459a84ce6908372f882de85"
+    },
+    {
+      "bytes": 5088,
+      "path": "schemas/m23/frp_m23_clock_reset_cdc_interface_contract.v2.5.0.schema.json",
+      "raw_sha256": "13b42d8584f8348ec6bebb9303b4665cd937f724c25682ebb9215201f1e5801b"
+    },
+    {
+      "bytes": 1768,
+      "path": "schemas/m23/frp_m23_clock_reset_cdc_interface_hardening_manifest.v2.5.0.schema.json",
+      "raw_sha256": "4b052aa36ea5e8903664ff5594f822ee01d34efaa4e74b5bd8bc2bd5216ae824"
+    },
+    {
+      "bytes": 1405,
+      "path": "schemas/m23/frp_m23_clock_reset_cdc_interface_hardening_qualification.v2.5.0.schema.json",
+      "raw_sha256": "8ed7a4f8a187d30b1c4dd4fec444311b5b1d0d2347d1b3ef672e04d79ee6a64e"
+    },
+    {
+      "bytes": 1525,
+      "path": "schemas/m23/frp_m23_hardening_sequence_records.v2.5.0.schema.json",
+      "raw_sha256": "6794d2ff57793e0862f325c40b0718785a86c4ba3e77dafeac59b645512dd4f1"
+    },
+    {
+      "bytes": 1479,
+      "path": "schemas/m23/frp_m23_interface_protocol_assertion_report.v2.5.0.schema.json",
+      "raw_sha256": "802f452cf0d4c7848124289a959df1ae93b7c8b8eaf39835b524bca74c649538"
+    },
+    {
+      "bytes": 1393,
+      "path": "schemas/m23/frp_m23_schema_registry.json",
+      "raw_sha256": "7aeb7bedde0cdc866d8663e846dee9d091290c6af1d471a8087f7b6bb23dd0d3"
+    },
+    {
+      "bytes": 12450,
+      "path": "tests/test_frp_m23_clock_reset_cdc_interface_hardening.py",
+      "raw_sha256": "19fdc9f8e66f8514fad128530593819a8ca7943ee9daf248ea04f8f59354163f"
+    }
+  ],
+  "status": "PASS",
+  "upstream_dependencies": [
+    {
+      "bytes": 22682,
+      "path": "artifacts/m22/interface/m22-control-status-register-interface.json",
+      "raw_sha256": "1b493b15a5f33b724cb56b963cf49351c815ffbe1c5f6df31a718b39895d95bb"
+    },
+    {
+      "bytes": 7543,
+      "path": "artifacts/m22/manifests/m22-control-status-register-qualification.json",
+      "raw_sha256": "140b8c72a833dd87952f029fb85d30b85b8e17067277bfddf2845142cae6ea16"
+    },
+    {
+      "bytes": 33684,
+      "path": "rtl/m16/frp_m16_core.sv",
+      "raw_sha256": "3b94f5caa5ee28da0060a38dd9b4ba4605ef5f86ac93f5425967e515ff1ebd23"
+    },
+    {
+      "bytes": 18532,
+      "path": "rtl/m16/frp_m16_pkg.sv",
+      "raw_sha256": "c20fe071e7c91b60ca0411b75d4cf762112d51abbd49dc2a5667d1d8c5d49152"
+    },
+    {
+      "bytes": 16855,
+      "path": "rtl/m22/frp_m22_control_status_register_interface.sv",
+      "raw_sha256": "76c3d19cb6ed6070631f2f8d685f9fbffc05acb335609b3e57cc7a743522745d"
+    },
+    {
+      "bytes": 5586,
+      "path": "rtl/m22/frp_m22_csr_pkg.sv",
+      "raw_sha256": "0f3de8054e3704548088b035c43e993d194d5182a2ac1bc32cdad92663a11206"
+    }
+  ],
+  "upstream_dependency_count": 6,
+  "workflow_path": ".github/workflows/frp-m23-clock-reset-cdc-interface-hardening-workflow.yml"
+}

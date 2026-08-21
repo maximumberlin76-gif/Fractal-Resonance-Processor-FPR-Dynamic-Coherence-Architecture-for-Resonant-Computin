@@ -1,0 +1,98 @@
+{
+  "artifact_id": "frp-m23-interface-protocol-assertion-report",
+  "assertion_count": 12,
+  "assertion_set_digest": "39611081597be3e30145c227b0aba13b3f21edc5e101298d30440677589adf33",
+  "assertions": [
+    {
+      "assertion_id": "M23-A01",
+      "category": "reset",
+      "implementation": "rtl/m23/frp_m23_interface_protocol_assertions.sv",
+      "property": "host reset release is monotonic until asynchronous assertion",
+      "status": "PASS"
+    },
+    {
+      "assertion_id": "M23-A02",
+      "category": "reset",
+      "implementation": "rtl/m23/frp_m23_interface_protocol_assertions.sv",
+      "property": "core reset release is monotonic until asynchronous assertion",
+      "status": "PASS"
+    },
+    {
+      "assertion_id": "M23-A03",
+      "category": "readiness",
+      "implementation": "rtl/m23/frp_m23_interface_protocol_assertions.sv",
+      "property": "host readiness follows host reset release",
+      "status": "PASS"
+    },
+    {
+      "assertion_id": "M23-A04",
+      "category": "readiness",
+      "implementation": "rtl/m23/frp_m23_interface_protocol_assertions.sv",
+      "property": "core readiness follows core reset release",
+      "status": "PASS"
+    },
+    {
+      "assertion_id": "M23-A05",
+      "category": "interface",
+      "implementation": "rtl/m23/frp_m23_interface_protocol_assertions.sv",
+      "property": "core request occurs only after core readiness",
+      "status": "PASS"
+    },
+    {
+      "assertion_id": "M23-A06",
+      "category": "interface",
+      "implementation": "rtl/m23/frp_m23_interface_protocol_assertions.sv",
+      "property": "host response clears the single outstanding transaction",
+      "status": "PASS"
+    },
+    {
+      "assertion_id": "M23-A07",
+      "category": "cdc",
+      "implementation": "rtl/m23/frp_m23_interface_protocol_assertions.sv",
+      "property": "request toggle changes only after host readiness",
+      "status": "PASS"
+    },
+    {
+      "assertion_id": "M23-A08",
+      "category": "cdc",
+      "implementation": "rtl/m23/frp_m23_interface_protocol_assertions.sv",
+      "property": "bundled request payload remains stable while busy",
+      "status": "PASS"
+    },
+    {
+      "assertion_id": "M23-A09",
+      "category": "interface",
+      "implementation": "rtl/m23/frp_m23_interface_protocol_assertions.sv",
+      "property": "core response requires an active core request",
+      "status": "PASS"
+    },
+    {
+      "assertion_id": "M23-A10",
+      "category": "cdc",
+      "implementation": "rtl/m23/frp_m23_interface_protocol_assertions.sv",
+      "property": "bundled response payload remains stable between responses",
+      "status": "PASS"
+    },
+    {
+      "assertion_id": "M23-A11",
+      "category": "cdc",
+      "implementation": "rtl/m23/frp_m23_interface_protocol_assertions.sv",
+      "property": "response toggle changes only after core readiness",
+      "status": "PASS"
+    },
+    {
+      "assertion_id": "M23-A12",
+      "category": "interface",
+      "implementation": "rtl/m23/frp_m23_interface_protocol_assertions.sv",
+      "property": "host response occurs only after host readiness",
+      "status": "PASS"
+    }
+  ],
+  "contract_digest": "d324b2ef1aec9b66ab63a9bc7e8a9668e85191e46e98fe1453cbddfdd8459c67",
+  "failed_count": 0,
+  "milestone": "M23",
+  "passed_count": 12,
+  "schema_version": "2.5.0",
+  "source_commit": "6bb07958710dc942c4deea1e7663ea97017fe3a8",
+  "status": "PASS"
+}
