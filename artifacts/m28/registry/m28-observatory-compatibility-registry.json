@@ -1,0 +1,113 @@
+{
+  "consumer_registration_state": "upstream_published_downstream_registration_required",
+  "consumer_registry_path": "schemas/registry.py",
+  "consumer_repository": "FRP-Trace-Observatory",
+  "kind": "trace_observatory_compatibility_registry",
+  "milestone": "M28",
+  "record_count": 5,
+  "records": [
+    {
+      "artifact_format": "json",
+      "artifact_kind": "trace_observatory_upstream_contract",
+      "canonical_fixture_source_path": "artifacts/m28/contracts/m28-trace-observatory-upstream-contract.json",
+      "downstream_registration_state": "registration_required",
+      "evidence_kind": "committed_artifact",
+      "evidence_path": "artifacts/m28/contracts/m28-trace-observatory-upstream-contract.json",
+      "identifier": "frp.m28.trace_observatory_upstream_contract.v3.0.0",
+      "identifier_field": "schema",
+      "measurement_contour": "m28_upstream_integration_contract",
+      "observatory_modes": [
+        "artifact_auditor"
+      ],
+      "producer_path": "frp_m28_trace_observatory_upstream_interchange.py",
+      "producer_version": "3.0.0",
+      "schema_path": "schemas/m28/frp_m28_trace_observatory_upstream_contract.v3.0.0.schema.json",
+      "schema_version": "3.0.0",
+      "upstream_release": "FRP v3.0.0 / M28"
+    },
+    {
+      "artifact_format": "json",
+      "artifact_kind": "trace_observatory_canonical_trace_bundle",
+      "canonical_fixture_source_path": "artifacts/m28/exports/m28-observatory-canonical-trace-bundle.json",
+      "downstream_registration_state": "registration_required",
+      "evidence_kind": "committed_artifact",
+      "evidence_path": "artifacts/m28/exports/m28-observatory-canonical-trace-bundle.json",
+      "identifier": "frp.m28.trace_observatory_canonical_trace_bundle.v3.0.0",
+      "identifier_field": "schema",
+      "measurement_contour": "m16_m27_observatory_trace_interchange",
+      "observatory_modes": [
+        "artifact_auditor",
+        "ternary_transition_visualizer",
+        "trace_explorer"
+      ],
+      "producer_path": "frp_m28_trace_observatory_upstream_interchange.py",
+      "producer_version": "3.0.0",
+      "schema_path": "schemas/m28/frp_m28_trace_observatory_canonical_trace_bundle.v3.0.0.schema.json",
+      "schema_version": "3.0.0",
+      "upstream_release": "FRP v3.0.0 / M28"
+    },
+    {
+      "artifact_format": "json",
+      "artifact_kind": "trace_observatory_fixture_manifest",
+      "canonical_fixture_source_path": "artifacts/m28/fixtures/m28-observatory-fixture-manifest.json",
+      "downstream_registration_state": "registration_required",
+      "evidence_kind": "committed_artifact",
+      "evidence_path": "artifacts/m28/fixtures/m28-observatory-fixture-manifest.json",
+      "identifier": "frp.m28.trace_observatory_fixture_manifest.v3.0.0",
+      "identifier_field": "schema",
+      "measurement_contour": "m28_upstream_fixture_inventory",
+      "observatory_modes": [
+        "artifact_auditor"
+      ],
+      "producer_path": "frp_m28_trace_observatory_upstream_interchange.py",
+      "producer_version": "3.0.0",
+      "schema_path": "schemas/m28/frp_m28_trace_observatory_fixture_manifest.v3.0.0.schema.json",
+      "schema_version": "3.0.0",
+      "upstream_release": "FRP v3.0.0 / M28"
+    },
+    {
+      "artifact_format": "json",
+      "artifact_kind": "trace_observatory_compatibility_registry",
+      "canonical_fixture_source_path": "artifacts/m28/registry/m28-observatory-compatibility-registry.json",
+      "downstream_registration_state": "registration_required",
+      "evidence_kind": "committed_artifact",
+      "evidence_path": "artifacts/m28/registry/m28-observatory-compatibility-registry.json",
+      "identifier": "frp.m28.trace_observatory_compatibility_registry.v3.0.0",
+      "identifier_field": "schema",
+      "measurement_contour": "m28_upstream_compatibility_registry",
+      "observatory_modes": [
+        "artifact_auditor"
+      ],
+      "producer_path": "frp_m28_trace_observatory_upstream_interchange.py",
+      "producer_version": "3.0.0",
+      "schema_path": "schemas/m28/frp_m28_trace_observatory_compatibility_registry.v3.0.0.schema.json",
+      "schema_version": "3.0.0",
+      "upstream_release": "FRP v3.0.0 / M28"
+    },
+    {
+      "artifact_format": "json",
+      "artifact_kind": "trace_observatory_interchange_qualification",
+      "canonical_fixture_source_path": "artifacts/m28/manifests/m28-trace-observatory-interchange-qualification.json",
+      "downstream_registration_state": "registration_required",
+      "evidence_kind": "committed_artifact",
+      "evidence_path": "artifacts/m28/manifests/m28-trace-observatory-interchange-qualification.json",
+      "identifier": "frp.m28.trace_observatory_interchange_qualification.v3.0.0",
+      "identifier_field": "schema",
+      "measurement_contour": "m28_upstream_interchange_qualification",
+      "observatory_modes": [
+        "artifact_auditor"
+      ],
+      "producer_path": "frp_m28_trace_observatory_upstream_interchange.py",
+      "producer_version": "3.0.0",
+      "schema_path": "schemas/m28/frp_m28_trace_observatory_interchange_qualification.v3.0.0.schema.json",
+      "schema_version": "3.0.0",
+      "upstream_release": "FRP v3.0.0 / M28"
+    }
+  ],
+  "registry_digest": "e4cddb040ab4577c4cc21dc89431750e239a31b22c276a4ff1c6a6bbe1b99ff8",
+  "registry_revision": "m28-v3.0.0",
+  "schema": "frp.m28.trace_observatory_compatibility_registry.v3.0.0",
+  "source_commit": "23e464206f85cd9473101d9221027ee33d9dd094",
+  "status": "PASS",
+  "version": "3.0.0"
+}

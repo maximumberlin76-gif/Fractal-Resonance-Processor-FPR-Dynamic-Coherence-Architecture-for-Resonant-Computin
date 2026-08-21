@@ -1,0 +1,34 @@
+{
+  "kind": "m28_schema_registry",
+  "milestone": "M28",
+  "records": [
+    {
+      "schema_identifier": "frp.m28.trace_observatory_upstream_contract.v3.0.0",
+      "schema_path": "schemas/m28/frp_m28_trace_observatory_upstream_contract.v3.0.0.schema.json",
+      "schema_urn": "urn:frp:schema:frp.m28.trace_observatory_upstream_contract.v3.0.0"
+    },
+    {
+      "schema_identifier": "frp.m28.trace_observatory_canonical_trace_bundle.v3.0.0",
+      "schema_path": "schemas/m28/frp_m28_trace_observatory_canonical_trace_bundle.v3.0.0.schema.json",
+      "schema_urn": "urn:frp:schema:frp.m28.trace_observatory_canonical_trace_bundle.v3.0.0"
+    },
+    {
+      "schema_identifier": "frp.m28.trace_observatory_fixture_manifest.v3.0.0",
+      "schema_path": "schemas/m28/frp_m28_trace_observatory_fixture_manifest.v3.0.0.schema.json",
+      "schema_urn": "urn:frp:schema:frp.m28.trace_observatory_fixture_manifest.v3.0.0"
+    },
+    {
+      "schema_identifier": "frp.m28.trace_observatory_compatibility_registry.v3.0.0",
+      "schema_path": "schemas/m28/frp_m28_trace_observatory_compatibility_registry.v3.0.0.schema.json",
+      "schema_urn": "urn:frp:schema:frp.m28.trace_observatory_compatibility_registry.v3.0.0"
+    },
+    {
+      "schema_identifier": "frp.m28.trace_observatory_interchange_qualification.v3.0.0",
+      "schema_path": "schemas/m28/frp_m28_trace_observatory_interchange_qualification.v3.0.0.schema.json",
+      "schema_urn": "urn:frp:schema:frp.m28.trace_observatory_interchange_qualification.v3.0.0"
+    }
+  ],
+  "schema": "frp.m28.schema_registry.v3.0.0",
+  "status": "PASS",
+  "version": "3.0.0"
+}

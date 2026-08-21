@@ -1,0 +1,257 @@
+{
+  "artifact_count": 4,
+  "artifacts": [
+    {
+      "bytes": 2735,
+      "path": "artifacts/m28/contracts/m28-trace-observatory-upstream-contract.json",
+      "raw_sha256": "556cd2921014d78184dad625438e053632c2650164f95787f39a6fc871b4a3f0"
+    },
+    {
+      "bytes": 511783,
+      "path": "artifacts/m28/exports/m28-observatory-canonical-trace-bundle.json",
+      "raw_sha256": "9774e80d00c628193d5656608f2b1f830a05f960abadb83d9c4840f262ca07ed"
+    },
+    {
+      "bytes": 5720,
+      "path": "artifacts/m28/fixtures/m28-observatory-fixture-manifest.json",
+      "raw_sha256": "5d1be27e20a6a5978cb75e1185b9360621a92eb116b7a712fa5d6b813d0951fe"
+    },
+    {
+      "bytes": 5486,
+      "path": "artifacts/m28/registry/m28-observatory-compatibility-registry.json",
+      "raw_sha256": "91affd08a74401d10a4196f3c38ad2ad8c4576e51532f7ee0fc169e97e996fea"
+    }
+  ],
+  "check_count": 30,
+  "checks": [
+    {
+      "category": "source",
+      "check_id": "m28-source-boundary",
+      "evidence": "23e464206f85cd9473101d9221027ee33d9dd094",
+      "status": "PASS"
+    },
+    {
+      "category": "consumer",
+      "check_id": "m28-observatory-repository",
+      "evidence": "FRP-Trace-Observatory",
+      "status": "PASS"
+    },
+    {
+      "category": "consumer",
+      "check_id": "m28-observatory-baseline",
+      "evidence": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+      "status": "PASS"
+    },
+    {
+      "category": "consumer",
+      "check_id": "m28-observatory-ci",
+      "evidence": ".github/workflows/observatory-ci.yml",
+      "status": "PASS"
+    },
+    {
+      "category": "consumer",
+      "check_id": "m28-observatory-registry",
+      "evidence": "schemas/registry.py",
+      "status": "PASS"
+    },
+    {
+      "category": "consumer",
+      "check_id": "m28-observatory-tests",
+      "evidence": 275,
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "m28-existing-scaffold",
+      "evidence": "extend_existing_scaffold",
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "m28-one-way-integration",
+      "evidence": "upstream_to_downstream_only",
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "m28-no-writeback",
+      "evidence": "forbidden",
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "m28-no-source-mutation",
+      "evidence": "forbidden",
+      "status": "PASS"
+    },
+    {
+      "category": "core",
+      "check_id": "m28-ternary-domain",
+      "evidence": [
+        -1,
+        0,
+        1
+      ],
+      "status": "PASS"
+    },
+    {
+      "category": "core",
+      "check_id": "m28-active-neutral",
+      "evidence": 0,
+      "status": "PASS"
+    },
+    {
+      "category": "core",
+      "check_id": "m28-temporal-schedulers",
+      "evidence": [
+        "1/7",
+        "7/1"
+      ],
+      "status": "PASS"
+    },
+    {
+      "category": "consumer",
+      "check_id": "m28-mode-count",
+      "evidence": 3,
+      "status": "PASS"
+    },
+    {
+      "category": "trace",
+      "check_id": "m28-dataset-count",
+      "evidence": 3,
+      "status": "PASS"
+    },
+    {
+      "category": "trace",
+      "check_id": "m28-record-count",
+      "evidence": 196,
+      "status": "PASS"
+    },
+    {
+      "category": "trace",
+      "check_id": "m28-rtl-records",
+      "evidence": 96,
+      "status": "PASS"
+    },
+    {
+      "category": "trace",
+      "check_id": "m28-fpga-records",
+      "evidence": 4,
+      "status": "PASS"
+    },
+    {
+      "category": "trace",
+      "check_id": "m28-checkpoint-records",
+      "evidence": 96,
+      "status": "PASS"
+    },
+    {
+      "category": "trace",
+      "check_id": "m28-source-order",
+      "evidence": "source_dataset_order_then_source_record_order",
+      "status": "PASS"
+    },
+    {
+      "category": "fixture",
+      "check_id": "m28-fixture-count",
+      "evidence": 6,
+      "status": "PASS"
+    },
+    {
+      "category": "fixture",
+      "check_id": "m28-raw-byte-digests",
+      "evidence": {
+        "algorithm": "sha256",
+        "pre_parse": true,
+        "scope": "raw_source_bytes"
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "fixture",
+      "check_id": "m28-unchanged-copy",
+      "evidence": "unchanged_upstream_bytes",
+      "status": "PASS"
+    },
+    {
+      "category": "registry",
+      "check_id": "m28-registry-record-count",
+      "evidence": 5,
+      "status": "PASS"
+    },
+    {
+      "category": "registry",
+      "check_id": "m28-exact-schema-resolution",
+      "evidence": "schema_and_kind",
+      "status": "PASS"
+    },
+    {
+      "category": "registry",
+      "check_id": "m28-consumer-registration",
+      "evidence": "upstream_published_downstream_registration_required",
+      "status": "PASS"
+    },
+    {
+      "category": "digest",
+      "check_id": "m28-contract-digest",
+      "evidence": "43543c810738cb0505937311e53fd3f5b5f65029bd936c7a0ca615322fcca0da",
+      "status": "PASS"
+    },
+    {
+      "category": "digest",
+      "check_id": "m28-trace-digest",
+      "evidence": "34d09ed25c5d5f85f26dc5430a12e58c7abccfaa5f9850e15efb84f302d76d51",
+      "status": "PASS"
+    },
+    {
+      "category": "digest",
+      "check_id": "m28-fixture-digest",
+      "evidence": "42cc4416622c0e4050ac080ab9d11e595a97f00cd553484f3d97b4ae1a0ac591",
+      "status": "PASS"
+    },
+    {
+      "category": "digest",
+      "check_id": "m28-registry-digest",
+      "evidence": "e4cddb040ab4577c4cc21dc89431750e239a31b22c276a4ff1c6a6bbe1b99ff8",
+      "status": "PASS"
+    }
+  ],
+  "failed_count": 0,
+  "kind": "trace_observatory_interchange_qualification",
+  "milestone": "M28",
+  "passed_count": 30,
+  "qualification_digest": "64ddd51a70831375bd74752c7a8c85df727c0a2fc5e3778b788c172c6807419c",
+  "qualification_id": "frp-m28-trace-observatory-interchange-qualification",
+  "schema": "frp.m28.trace_observatory_interchange_qualification.v3.0.0",
+  "schema_count": 5,
+  "schemas": [
+    {
+      "bytes": 1396,
+      "path": "schemas/m28/frp_m28_trace_observatory_upstream_contract.v3.0.0.schema.json",
+      "raw_sha256": "c2c527ec3f8203b238774a40e60fccebde1aa1c1f4cd8c7ac44afd88186e895e"
+    },
+    {
+      "bytes": 1617,
+      "path": "schemas/m28/frp_m28_trace_observatory_canonical_trace_bundle.v3.0.0.schema.json",
+      "raw_sha256": "468f1cadac34c2bba1ce74501563dd6ed54c129ac1c0d9e61fe96e6188dc4743"
+    },
+    {
+      "bytes": 1453,
+      "path": "schemas/m28/frp_m28_trace_observatory_fixture_manifest.v3.0.0.schema.json",
+      "raw_sha256": "5eaeb17c2217593eadc013bd3d6b5b56b166a2e7d9c78eb25e7976da9c6bf689"
+    },
+    {
+      "bytes": 1519,
+      "path": "schemas/m28/frp_m28_trace_observatory_compatibility_registry.v3.0.0.schema.json",
+      "raw_sha256": "5533cf5665aff3b236628c50cb0159c564fcf8cde138b164561484084d0934ee"
+    },
+    {
+      "bytes": 1739,
+      "path": "schemas/m28/frp_m28_trace_observatory_interchange_qualification.v3.0.0.schema.json",
+      "raw_sha256": "9815a2aea4ef78044b0bfaf662f1557059e37596268d44e408779d949719af2d"
+    }
+  ],
+  "source_commit": "23e464206f85cd9473101d9221027ee33d9dd094",
+  "status": "PASS",
+  "version": "3.0.0"
+}

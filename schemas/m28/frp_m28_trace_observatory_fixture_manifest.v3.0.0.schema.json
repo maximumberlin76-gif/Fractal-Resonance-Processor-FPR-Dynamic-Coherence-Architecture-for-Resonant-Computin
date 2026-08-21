@@ -1,0 +1,67 @@
+{
+  "$id": "urn:frp:schema:frp.m28.trace_observatory_fixture_manifest.v3.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "copy_requirement": {
+      "const": "unchanged_upstream_bytes"
+    },
+    "digest_contract": {
+      "type": "object"
+    },
+    "fixture_count": {
+      "const": 6
+    },
+    "fixture_set_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "fixtures": {
+      "maxItems": 6,
+      "minItems": 6,
+      "type": "array"
+    },
+    "kind": {
+      "const": "trace_observatory_fixture_manifest"
+    },
+    "manifest_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "manifest_id": {
+      "const": "frp-m28-observatory-fixture-manifest"
+    },
+    "milestone": {
+      "const": "M28"
+    },
+    "schema": {
+      "const": "frp.m28.trace_observatory_fixture_manifest.v3.0.0"
+    },
+    "source_commit": {
+      "const": "23e464206f85cd9473101d9221027ee33d9dd094"
+    },
+    "status": {
+      "const": "PASS"
+    },
+    "version": {
+      "const": "3.0.0"
+    }
+  },
+  "required": [
+    "schema",
+    "kind",
+    "version",
+    "milestone",
+    "source_commit",
+    "status",
+    "manifest_id",
+    "digest_contract",
+    "copy_requirement",
+    "fixture_count",
+    "fixtures",
+    "fixture_set_digest",
+    "manifest_digest"
+  ],
+  "title": "FRP M28 Observatory fixture manifest",
+  "type": "object"
+}

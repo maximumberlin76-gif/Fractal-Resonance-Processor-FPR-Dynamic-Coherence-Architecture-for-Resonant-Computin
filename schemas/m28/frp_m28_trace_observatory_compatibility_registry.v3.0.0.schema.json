@@ -1,0 +1,66 @@
+{
+  "$id": "urn:frp:schema:frp.m28.trace_observatory_compatibility_registry.v3.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "consumer_registration_state": {
+      "const": "upstream_published_downstream_registration_required"
+    },
+    "consumer_registry_path": {
+      "const": "schemas/registry.py"
+    },
+    "consumer_repository": {
+      "const": "FRP-Trace-Observatory"
+    },
+    "kind": {
+      "const": "trace_observatory_compatibility_registry"
+    },
+    "milestone": {
+      "const": "M28"
+    },
+    "record_count": {
+      "const": 5
+    },
+    "records": {
+      "maxItems": 5,
+      "minItems": 5,
+      "type": "array"
+    },
+    "registry_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "registry_revision": {
+      "const": "m28-v3.0.0"
+    },
+    "schema": {
+      "const": "frp.m28.trace_observatory_compatibility_registry.v3.0.0"
+    },
+    "source_commit": {
+      "const": "23e464206f85cd9473101d9221027ee33d9dd094"
+    },
+    "status": {
+      "const": "PASS"
+    },
+    "version": {
+      "const": "3.0.0"
+    }
+  },
+  "required": [
+    "schema",
+    "kind",
+    "version",
+    "milestone",
+    "source_commit",
+    "status",
+    "registry_revision",
+    "consumer_repository",
+    "consumer_registry_path",
+    "consumer_registration_state",
+    "record_count",
+    "records",
+    "registry_digest"
+  ],
+  "title": "FRP M28 Observatory compatibility registry",
+  "type": "object"
+}

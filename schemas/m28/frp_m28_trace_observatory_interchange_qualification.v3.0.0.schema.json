@@ -1,0 +1,83 @@
+{
+  "$id": "urn:frp:schema:frp.m28.trace_observatory_interchange_qualification.v3.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_count": {
+      "const": 4
+    },
+    "artifacts": {
+      "maxItems": 4,
+      "minItems": 4,
+      "type": "array"
+    },
+    "check_count": {
+      "minimum": 20,
+      "type": "integer"
+    },
+    "checks": {
+      "minItems": 1,
+      "type": "array"
+    },
+    "failed_count": {
+      "const": 0
+    },
+    "kind": {
+      "const": "trace_observatory_interchange_qualification"
+    },
+    "milestone": {
+      "const": "M28"
+    },
+    "passed_count": {
+      "minimum": 20,
+      "type": "integer"
+    },
+    "qualification_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "qualification_id": {
+      "const": "frp-m28-trace-observatory-interchange-qualification"
+    },
+    "schema": {
+      "const": "frp.m28.trace_observatory_interchange_qualification.v3.0.0"
+    },
+    "schema_count": {
+      "const": 5
+    },
+    "schemas": {
+      "maxItems": 5,
+      "minItems": 5,
+      "type": "array"
+    },
+    "source_commit": {
+      "const": "23e464206f85cd9473101d9221027ee33d9dd094"
+    },
+    "status": {
+      "const": "PASS"
+    },
+    "version": {
+      "const": "3.0.0"
+    }
+  },
+  "required": [
+    "schema",
+    "kind",
+    "version",
+    "milestone",
+    "source_commit",
+    "status",
+    "qualification_id",
+    "check_count",
+    "passed_count",
+    "failed_count",
+    "checks",
+    "artifact_count",
+    "artifacts",
+    "schema_count",
+    "schemas",
+    "qualification_digest"
+  ],
+  "title": "FRP M28 Trace Observatory interchange qualification",
+  "type": "object"
+}

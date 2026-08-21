@@ -1,0 +1,64 @@
+{
+  "$id": "urn:frp:schema:frp.m28.trace_observatory_upstream_contract.v3.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "consumer_scaffold_baseline": {
+      "type": "object"
+    },
+    "contract_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "data_contract": {
+      "type": "object"
+    },
+    "export_scope": {
+      "type": "object"
+    },
+    "immutable_core": {
+      "type": "object"
+    },
+    "integration_direction": {
+      "type": "object"
+    },
+    "kind": {
+      "const": "trace_observatory_upstream_contract"
+    },
+    "milestone": {
+      "const": "M28"
+    },
+    "schema": {
+      "const": "frp.m28.trace_observatory_upstream_contract.v3.0.0"
+    },
+    "source_commit": {
+      "const": "23e464206f85cd9473101d9221027ee33d9dd094"
+    },
+    "status": {
+      "const": "PASS"
+    },
+    "upstream_release": {
+      "const": "FRP v3.0.0 / M28"
+    },
+    "version": {
+      "const": "3.0.0"
+    }
+  },
+  "required": [
+    "schema",
+    "kind",
+    "version",
+    "milestone",
+    "source_commit",
+    "status",
+    "upstream_release",
+    "consumer_scaffold_baseline",
+    "integration_direction",
+    "immutable_core",
+    "data_contract",
+    "export_scope",
+    "contract_digest"
+  ],
+  "title": "FRP M28 Trace Observatory upstream contract",
+  "type": "object"
+}

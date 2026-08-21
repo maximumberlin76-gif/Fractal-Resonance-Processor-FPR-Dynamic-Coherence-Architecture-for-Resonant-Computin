@@ -1,0 +1,78 @@
+{
+  "$id": "urn:frp:schema:frp.m28.trace_observatory_canonical_trace_bundle.v3.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "bundle_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "bundle_id": {
+      "const": "frp-m28-observatory-canonical-trace-bundle"
+    },
+    "canonical_ternary_domain": {
+      "const": [
+        -1,
+        0,
+        1
+      ]
+    },
+    "dataset_count": {
+      "const": 3
+    },
+    "datasets": {
+      "maxItems": 3,
+      "minItems": 3,
+      "type": "array"
+    },
+    "kind": {
+      "const": "trace_observatory_canonical_trace_bundle"
+    },
+    "milestone": {
+      "const": "M28"
+    },
+    "ordering_rule": {
+      "const": "source_dataset_order_then_source_record_order"
+    },
+    "record_count": {
+      "const": 196
+    },
+    "scheduler_modes": {
+      "const": [
+        "free",
+        "7/1",
+        "1/7"
+      ]
+    },
+    "schema": {
+      "const": "frp.m28.trace_observatory_canonical_trace_bundle.v3.0.0"
+    },
+    "source_commit": {
+      "const": "23e464206f85cd9473101d9221027ee33d9dd094"
+    },
+    "status": {
+      "const": "PASS"
+    },
+    "version": {
+      "const": "3.0.0"
+    }
+  },
+  "required": [
+    "schema",
+    "kind",
+    "version",
+    "milestone",
+    "source_commit",
+    "status",
+    "bundle_id",
+    "ordering_rule",
+    "canonical_ternary_domain",
+    "scheduler_modes",
+    "dataset_count",
+    "record_count",
+    "datasets",
+    "bundle_digest"
+  ],
+  "title": "FRP M28 Observatory canonical trace bundle",
+  "type": "object"
+}

@@ -1,0 +1,94 @@
+{
+  "consumer_scaffold_baseline": {
+    "audited_commit": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+    "ci_workflow_path": ".github/workflows/observatory-ci.yml",
+    "compatibility_registry_path": "schemas/registry.py",
+    "implementation_action": "extend_existing_scaffold",
+    "implemented_layers": [
+      {
+        "mode": "artifact_auditor",
+        "path": "artifact_auditor/"
+      },
+      {
+        "mode": "trace_explorer",
+        "path": "trace_explorer/"
+      },
+      {
+        "mode": "ternary_transition_visualizer",
+        "path": "transition_visualizer/"
+      }
+    ],
+    "integration_contract_path": "docs/integration_contract.md",
+    "repository": "FRP-Trace-Observatory",
+    "verified_test_count": 275
+  },
+  "contract_digest": "43543c810738cb0505937311e53fd3f5b5f65029bd936c7a0ca615322fcca0da",
+  "data_contract": {
+    "absent_is_zero": false,
+    "automatic_schema_migration": "forbidden",
+    "container_format": "json",
+    "digest_algorithm": "sha256",
+    "digest_scope": "raw_source_bytes",
+    "missing_field_policy": "remain_absent",
+    "ordering": "preserve_source_order",
+    "producer_command_execution_by_consumer": "forbidden",
+    "schema_aliases": "forbidden",
+    "schema_resolution": "exact_identifier_and_kind",
+    "source_execution": "forbidden",
+    "text_encoding": "utf-8"
+  },
+  "export_scope": {
+    "downstream_repository_files_modified": false,
+    "measurement_contours_remain_separate": true,
+    "published_observatory_modes": [
+      "artifact_auditor",
+      "ternary_transition_visualizer",
+      "trace_explorer"
+    ],
+    "source_fixture_count": 6,
+    "trace_dataset_count": 3,
+    "ui_dependencies_in_upstream": false
+  },
+  "immutable_core": {
+    "active_neutral_state": 0,
+    "balanced_ternary_notation": "-1/0/1",
+    "opposite_transition_routes": [
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        -1
+      ]
+    ],
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ]
+  },
+  "integration_direction": {
+    "consumer": "FRP-Trace-Observatory",
+    "direction": "upstream_to_downstream_only",
+    "downstream_source_mutation": "forbidden",
+    "downstream_writeback": "forbidden",
+    "producer": "Fractal-Resonance-Processor",
+    "transport": "published_versioned_artifacts",
+    "upstream_semantic_authority": true
+  },
+  "kind": "trace_observatory_upstream_contract",
+  "milestone": "M28",
+  "schema": "frp.m28.trace_observatory_upstream_contract.v3.0.0",
+  "source_commit": "23e464206f85cd9473101d9221027ee33d9dd094",
+  "status": "PASS",
+  "upstream_release": "FRP v3.0.0 / M28",
+  "version": "3.0.0"
+}

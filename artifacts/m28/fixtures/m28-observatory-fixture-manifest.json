@@ -1,0 +1,123 @@
+{
+  "copy_requirement": "unchanged_upstream_bytes",
+  "digest_contract": {
+    "algorithm": "sha256",
+    "pre_parse": true,
+    "scope": "raw_source_bytes"
+  },
+  "fixture_count": 6,
+  "fixture_set_digest": "c72be639b95b96917341d3800d2ee25a55a03e2156cd1d7f504825025053429a",
+  "fixtures": [
+    {
+      "artifact_bytes": 152109,
+      "artifact_path": "artifacts/m19/execution/m16-rtl-execution-trace.json",
+      "artifact_raw_sha256": "d7945e0d2b5aaa05c5fff2e4e60d3b984017f7e4ae1984c55920368a110020bd",
+      "copy_requirement": "unchanged_upstream_bytes",
+      "fixture_id": "m16-rtl-execution-trace",
+      "measurement_contour": "m16_rtl_execution",
+      "observatory_modes": [
+        "artifact_auditor",
+        "ternary_transition_visualizer",
+        "trace_explorer"
+      ],
+      "schema_bytes": 2043,
+      "schema_path": "schemas/m19/frp_m16_rtl_execution_trace.v2.1.0.schema.json",
+      "schema_raw_sha256": "f947c0f2f902d1ce1814beae9547ccfea5011adeac16f437ba6efe15b6f179ea",
+      "source_identifier": "frp.m16.rtl_execution_trace.v2.1.0",
+      "source_kind": "m16_rtl_execution_trace"
+    },
+    {
+      "artifact_bytes": 9013,
+      "artifact_path": "artifacts/m19/execution/m16-fpga-preparation-execution-trace.json",
+      "artifact_raw_sha256": "7d58b6741bdcadbfb9acb9049ed0e956305f49b9ad36946e719a4121b5caf22f",
+      "copy_requirement": "unchanged_upstream_bytes",
+      "fixture_id": "m16-fpga-preparation-execution-trace",
+      "measurement_contour": "m16_fpga_preparation_execution",
+      "observatory_modes": [
+        "artifact_auditor",
+        "ternary_transition_visualizer",
+        "trace_explorer"
+      ],
+      "schema_bytes": 2018,
+      "schema_path": "schemas/m19/frp_m16_fpga_preparation_execution_trace.v2.1.0.schema.json",
+      "schema_raw_sha256": "b6e6e248fee1bb6b5e20ff5fc1796cff7c7cbb0aa6f6ee03cb6c9dca7f5c0a95",
+      "source_identifier": "frp.m16.fpga_preparation_execution_trace.v2.1.0",
+      "source_kind": "m16_fpga_preparation_execution_trace"
+    },
+    {
+      "artifact_bytes": 192916,
+      "artifact_path": "artifacts/m27/checkpoints/m27-long-run-checkpoint-evidence.json",
+      "artifact_raw_sha256": "13221f5e089e7e85b33788b7d9429bc0518f67bac2c2f06af151b03410825f3f",
+      "copy_requirement": "unchanged_upstream_bytes",
+      "fixture_id": "m27-long-run-checkpoint-evidence",
+      "measurement_contour": "m27_long_run_checkpoint_qualification",
+      "observatory_modes": [
+        "artifact_auditor",
+        "ternary_transition_visualizer",
+        "trace_explorer"
+      ],
+      "schema_bytes": 10764,
+      "schema_path": "schemas/m27/frp_m27_long_run_checkpoint_evidence.v2.9.0.schema.json",
+      "schema_raw_sha256": "e74b53a2e88b690c89dd92145d8e5de9050b403fb0d7f736f99080937e4ab056",
+      "source_identifier": "m27-long-run-checkpoint-evidence-v2.9.0",
+      "source_kind": "long_run_checkpoint_evidence"
+    },
+    {
+      "artifact_bytes": 2789,
+      "artifact_path": "artifacts/m27/telemetry/m27-telemetry-semantics.json",
+      "artifact_raw_sha256": "813ae5c66ceaddabc77734d44f1ebf971ca3bd7e11c1984e2e0c8f0204dfd1bc",
+      "copy_requirement": "unchanged_upstream_bytes",
+      "fixture_id": "m27-telemetry-semantics",
+      "measurement_contour": "m27_long_run_telemetry_semantics",
+      "observatory_modes": [
+        "artifact_auditor",
+        "ternary_transition_visualizer"
+      ],
+      "schema_bytes": 2609,
+      "schema_path": "schemas/m27/frp_m27_telemetry_semantics.v2.9.0.schema.json",
+      "schema_raw_sha256": "200daba136349ade552e08f927adbcc3d00e6eb496e5b980f07c42d2887e16fd",
+      "source_identifier": "m27-telemetry-semantics-v2.9.0",
+      "source_kind": "telemetry_semantics"
+    },
+    {
+      "artifact_bytes": 2127,
+      "artifact_path": "artifacts/m27/contracts/m27-long-run-telemetry-contract.json",
+      "artifact_raw_sha256": "ea1e90ec83916dd9cf8a44c46ac4e0c9347738c6d20b84f504650479d3b18c82",
+      "copy_requirement": "unchanged_upstream_bytes",
+      "fixture_id": "m27-long-run-telemetry-contract",
+      "measurement_contour": "m27_long_run_telemetry_qualification",
+      "observatory_modes": [
+        "artifact_auditor"
+      ],
+      "schema_bytes": 3906,
+      "schema_path": "schemas/m27/frp_m27_long_run_telemetry_contract.v2.9.0.schema.json",
+      "schema_raw_sha256": "2ee7fd6ef7a02d44bec7096631edc6a264bdd8f0708e75afcc49315eee0a7f53",
+      "source_identifier": "m27-long-run-telemetry-contract-v2.9.0",
+      "source_kind": "long_run_telemetry_contract"
+    },
+    {
+      "artifact_bytes": 15591,
+      "artifact_path": "artifacts/m27/manifests/m27-long-run-stability-qualification.json",
+      "artifact_raw_sha256": "23bee717555c2c1111912d33559e70dcc13cc29e9bb1f9433bf52cb5063c6969",
+      "copy_requirement": "unchanged_upstream_bytes",
+      "fixture_id": "m27-long-run-stability-qualification",
+      "measurement_contour": "m27_long_run_telemetry_qualification",
+      "observatory_modes": [
+        "artifact_auditor"
+      ],
+      "schema_bytes": 1980,
+      "schema_path": "schemas/m27/frp_m27_long_run_stability_qualification.v2.9.0.schema.json",
+      "schema_raw_sha256": "5d5546cc419e9e535942a11ac96af4d8dd005c7ba98dc51911326b4f3281c61a",
+      "source_identifier": "m27-long-run-stability-qualification-v2.9.0",
+      "source_kind": "long_run_stability_qualification"
+    }
+  ],
+  "kind": "trace_observatory_fixture_manifest",
+  "manifest_digest": "42cc4416622c0e4050ac080ab9d11e595a97f00cd553484f3d97b4ae1a0ac591",
+  "manifest_id": "frp-m28-observatory-fixture-manifest",
+  "milestone": "M28",
+  "schema": "frp.m28.trace_observatory_fixture_manifest.v3.0.0",
+  "source_commit": "23e464206f85cd9473101d9221027ee33d9dd094",
+  "status": "PASS",
+  "version": "3.0.0"
+}
