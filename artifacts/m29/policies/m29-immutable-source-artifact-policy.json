@@ -1,0 +1,34 @@
+{
+  "byte_identity": {
+    "algorithm": "sha256",
+    "copy_mode": "byte_exact",
+    "digest_before_parse": true,
+    "digest_scope": "raw_source_bytes",
+    "field_reordering": "forbidden",
+    "source_mutation": "forbidden",
+    "text_normalization": "forbidden"
+  },
+  "consumer_rules": {
+    "absent_field_policy": "remain_absent",
+    "absent_is_zero": false,
+    "automatic_schema_migration": "forbidden",
+    "producer_execution": "forbidden",
+    "schema_aliasing": "forbidden",
+    "source_execution": "forbidden",
+    "unknown_field_inference": "forbidden"
+  },
+  "kind": "immutable_source_artifact_policy",
+  "milestone": "M29",
+  "policy_digest": "4dee2ba2664720ccfbefcbd297706cbfdfd7f59bb233134dc874498a49fcb5fa",
+  "policy_id": "frp-m29-immutable-source-bytes-v1",
+  "schema": "frp.m29.immutable_source_artifact_policy.v3.1.0",
+  "source_commit": "a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+  "status": "PASS",
+  "version": "3.1.0",
+  "violation_behavior": {
+    "digest_mismatch": "reject_before_parse",
+    "unknown_identifier": "reject_before_parse",
+    "unsafe_path": "reject_before_read",
+    "unsupported_version": "reject_before_parse"
+  }
+}

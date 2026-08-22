@@ -1,0 +1,62 @@
+{
+  "$id": "frp.m29.unsupported_version_behavior.v3.1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "behavior_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "case_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "cases": {
+      "type": "array"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "milestone": {
+      "const": "M29",
+      "type": "string"
+    },
+    "policy_id": {
+      "type": "string"
+    },
+    "resolution": {
+      "type": "object"
+    },
+    "schema": {
+      "const": "frp.m29.unsupported_version_behavior.v3.1.0",
+      "type": "string"
+    },
+    "source_commit": {
+      "const": "a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+      "type": "string"
+    },
+    "status": {
+      "const": "PASS",
+      "type": "string"
+    },
+    "version": {
+      "const": "3.1.0",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "kind",
+    "milestone",
+    "version",
+    "source_commit",
+    "policy_id",
+    "resolution",
+    "case_count",
+    "cases",
+    "status",
+    "behavior_digest"
+  ],
+  "title": "frp.m29.unsupported_version_behavior.v3.1.0",
+  "type": "object"
+}

@@ -1,0 +1,57 @@
+{
+  "behavior_digest": "f5fe13ff09fa60beb948fdf43cd3845e6604b252b7d47ca2559886b5d5a14b6b",
+  "case_count": 6,
+  "cases": [
+    {
+      "case_id": "unknown-schema-identifier",
+      "condition": "schema identifier absent from exact allowlist",
+      "expected_action": "reject_before_parse",
+      "reason_code": "UNSUPPORTED_SCHEMA_IDENTIFIER"
+    },
+    {
+      "case_id": "unsupported-major-version",
+      "condition": "identifier version is not exactly registered",
+      "expected_action": "reject_before_parse",
+      "reason_code": "UNSUPPORTED_SCHEMA_VERSION"
+    },
+    {
+      "case_id": "unsupported-minor-version",
+      "condition": "minor version is not exactly registered",
+      "expected_action": "reject_before_parse",
+      "reason_code": "UNSUPPORTED_SCHEMA_VERSION"
+    },
+    {
+      "case_id": "schema-alias",
+      "condition": "consumer substitutes an alias for the published identifier",
+      "expected_action": "reject_before_parse",
+      "reason_code": "SCHEMA_ALIAS_FORBIDDEN"
+    },
+    {
+      "case_id": "source-digest-mismatch",
+      "condition": "published raw-byte digest does not match",
+      "expected_action": "reject_before_parse",
+      "reason_code": "SOURCE_DIGEST_MISMATCH"
+    },
+    {
+      "case_id": "unsafe-source-path",
+      "condition": "source path is absolute or leaves repository boundary",
+      "expected_action": "reject_before_read",
+      "reason_code": "UNSAFE_SOURCE_PATH"
+    }
+  ],
+  "kind": "unsupported_version_behavior",
+  "milestone": "M29",
+  "policy_id": "frp-m29-exact-compatibility-resolution-v1",
+  "resolution": {
+    "aliases": "forbidden",
+    "automatic_migration": "forbidden",
+    "fail_closed": true,
+    "key": "exact_schema_identifier",
+    "unknown_identifiers": "unsupported",
+    "version_ranges": "not_inferred"
+  },
+  "schema": "frp.m29.unsupported_version_behavior.v3.1.0",
+  "source_commit": "a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+  "status": "PASS",
+  "version": "3.1.0"
+}

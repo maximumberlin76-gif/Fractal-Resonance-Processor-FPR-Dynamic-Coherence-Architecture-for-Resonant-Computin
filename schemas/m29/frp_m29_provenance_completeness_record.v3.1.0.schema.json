@@ -1,0 +1,70 @@
+{
+  "$id": "frp.m29.provenance_completeness_record.v3.1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "check_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "checks": {
+      "type": "array"
+    },
+    "coverage": {
+      "type": "object"
+    },
+    "inventory_counts": {
+      "type": "object"
+    },
+    "inventory_digests": {
+      "type": "object"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "milestone": {
+      "const": "M29",
+      "type": "string"
+    },
+    "record_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "record_id": {
+      "type": "string"
+    },
+    "schema": {
+      "const": "frp.m29.provenance_completeness_record.v3.1.0",
+      "type": "string"
+    },
+    "source_commit": {
+      "const": "a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+      "type": "string"
+    },
+    "status": {
+      "const": "PASS",
+      "type": "string"
+    },
+    "version": {
+      "const": "3.1.0",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "kind",
+    "milestone",
+    "version",
+    "source_commit",
+    "record_id",
+    "inventory_counts",
+    "inventory_digests",
+    "coverage",
+    "checks",
+    "check_count",
+    "status",
+    "record_digest"
+  ],
+  "title": "frp.m29.provenance_completeness_record.v3.1.0",
+  "type": "object"
+}

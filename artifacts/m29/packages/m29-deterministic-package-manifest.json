@@ -1,0 +1,51 @@
+{
+  "generation": {
+    "command": "python frp_m29_system_integration_downstream_compatibility.py --generate --repository-root . --output-root <output-root> --source-commit a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+    "ordering": "declared_member_order",
+    "producer": "frp_m29_system_integration_downstream_compatibility.py",
+    "serialization": "utf8_sorted_keys_indent_2_single_newline",
+    "timestamps": "excluded"
+  },
+  "kind": "deterministic_package_manifest",
+  "manifest_digest": "9e6c26abfa785eb4b6bc47f24c629492344ca8f9d42646ab0fbcce55e92b3b53",
+  "manifest_id": "frp-m29-canonical-demo-package-manifest",
+  "member_count": 4,
+  "members": [
+    {
+      "byte_length": 9013,
+      "member_id": "m16-fpga-preparation-execution-trace",
+      "raw_sha256": "7d58b6741bdcadbfb9acb9049ed0e956305f49b9ad36946e719a4121b5caf22f",
+      "schema_identifier": "frp.m16.fpga_preparation_execution_trace.v2.1.0",
+      "source_path": "artifacts/m19/execution/m16-fpga-preparation-execution-trace.json"
+    },
+    {
+      "byte_length": 2789,
+      "member_id": "m27-telemetry-semantics",
+      "raw_sha256": "813ae5c66ceaddabc77734d44f1ebf971ca3bd7e11c1984e2e0c8f0204dfd1bc",
+      "schema_identifier": "m27-telemetry-semantics-v2.9.0",
+      "source_path": "artifacts/m27/telemetry/m27-telemetry-semantics.json"
+    },
+    {
+      "byte_length": 2735,
+      "member_id": "m28-trace-observatory-upstream-contract",
+      "raw_sha256": "556cd2921014d78184dad625438e053632c2650164f95787f39a6fc871b4a3f0",
+      "schema_identifier": "frp.m28.trace_observatory_upstream_contract.v3.0.0",
+      "source_path": "artifacts/m28/contracts/m28-trace-observatory-upstream-contract.json"
+    },
+    {
+      "byte_length": 3560,
+      "member_id": "m28-hierarchical-scaling-contract",
+      "raw_sha256": "13f85ac82b63d0191157bd2cfa04dd37358ef66d8e69bdb96bb1892abb77dbae",
+      "schema_identifier": "frp.m28.hierarchical_scaling_contract.v3.0.0",
+      "source_path": "artifacts/m28/hierarchy/contracts/m28-hierarchical-scaling-contract.json"
+    }
+  ],
+  "milestone": "M29",
+  "package_bytes": 27373,
+  "package_path": "artifacts/m29/packages/m29-canonical-demo-artifact-package.json",
+  "package_raw_sha256": "d91b2b63bf0771a2abe634d64bb5596cc2925093df24147cbe5f2edca5136fd4",
+  "schema": "frp.m29.deterministic_package_manifest.v3.1.0",
+  "source_commit": "a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+  "status": "PASS",
+  "version": "3.1.0"
+}

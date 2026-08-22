@@ -1,0 +1,76 @@
+{
+  "check_count": 10,
+  "checks": [
+    {
+      "check_id": "schema-path-coverage",
+      "status": "PASS"
+    },
+    {
+      "check_id": "schema-identifier-coverage",
+      "status": "PASS"
+    },
+    {
+      "check_id": "schema-raw-digest-coverage",
+      "status": "PASS"
+    },
+    {
+      "check_id": "artifact-path-coverage",
+      "status": "PASS"
+    },
+    {
+      "check_id": "artifact-identifier-coverage",
+      "status": "PASS"
+    },
+    {
+      "check_id": "artifact-raw-digest-coverage",
+      "status": "PASS"
+    },
+    {
+      "check_id": "json-schema-validation-coverage",
+      "status": "PASS"
+    },
+    {
+      "check_id": "producer-command-coverage",
+      "status": "PASS"
+    },
+    {
+      "check_id": "source-commit-coverage",
+      "status": "PASS"
+    },
+    {
+      "check_id": "measurement-contour-separation",
+      "status": "PASS"
+    }
+  ],
+  "coverage": {
+    "measurement_contours_merged": 0,
+    "missing_artifact_identifiers": 0,
+    "missing_producer_paths": 0,
+    "missing_raw_digests": 0,
+    "missing_schema_identifiers": 0,
+    "required_fields_present": true,
+    "source_bytes_rewritten": 0
+  },
+  "inventory_counts": {
+    "complete_upstream_publication_files": 193,
+    "json_artifacts_validated": 86,
+    "producer_records": 12,
+    "upstream_artifacts": 97,
+    "upstream_schema_definitions": 84,
+    "upstream_schema_registries": 12
+  },
+  "inventory_digests": {
+    "producer_records": "86720a3960cb1182443245806a600e28ea9124dc4b76ff40b6e4eaaa3b1057bc",
+    "source_schema_registries": "b94c407520e8b31360777f51bd8a33e522826c0e01a7d593ce7a74a29877daf6",
+    "supported_artifact_records": "4781650514390ab862b8c69aac6d12997a53b0c47f3709fa486f24be84dd8b1d",
+    "supported_schema_records": "7ebfb796c0764b55eb94937fa754ea48646c90bd485b89613942e2d0d2ae2fa9"
+  },
+  "kind": "provenance_completeness_record",
+  "milestone": "M29",
+  "record_digest": "e20b39210970ba9ed0a185b0456a4d9eaeb70b2118fecb522d86e84cf4cf4333",
+  "record_id": "frp-m29-complete-upstream-publication-provenance",
+  "schema": "frp.m29.provenance_completeness_record.v3.1.0",
+  "source_commit": "a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+  "status": "PASS",
+  "version": "3.1.0"
+}

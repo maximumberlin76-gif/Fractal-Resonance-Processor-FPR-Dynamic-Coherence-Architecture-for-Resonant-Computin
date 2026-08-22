@@ -1,0 +1,126 @@
+{
+  "contract_digest": "2495fa8ef47f3e9d00539934350f99afd877cf0c5b449fb1add9833773a35c40",
+  "immutable_core": {
+    "active_neutral_state": 0,
+    "actual_direct_events": 0,
+    "balanced_ternary_notation": "-1/0/1",
+    "opposite_transition_routes": [
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        -1
+      ]
+    ],
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ]
+  },
+  "integration_boundary": {
+    "direction": "upstream_to_published_bytes_to_downstream",
+    "downstream_audited_commit": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+    "downstream_files_modified_by_m29": false,
+    "downstream_modes": [
+      "artifact_auditor",
+      "ternary_transition_visualizer",
+      "trace_explorer"
+    ],
+    "downstream_repository": "FRP-Trace-Observatory",
+    "downstream_semantic_reimplementation": "forbidden",
+    "downstream_source_mutation": "forbidden",
+    "downstream_verified_test_count": 275,
+    "downstream_writeback": "forbidden",
+    "existing_scaffold_action": "preserve_existing_scaffold",
+    "preserved_m28_observatory_commit": "566a4ff88baa57f844691b46937552253e095434",
+    "upstream_dependency_on_downstream_code": false,
+    "upstream_repository": "Fractal-Resonance-Processor",
+    "upstream_semantic_authority": true
+  },
+  "inventory_boundary": {
+    "complete_upstream_publication_files": 193,
+    "identity": "exact_identifiers_paths_and_raw_sha256",
+    "measurement_contours": "preserved_separately",
+    "milestones": [
+      "M18",
+      "M19",
+      "M20",
+      "M21",
+      "M22",
+      "M23",
+      "M24",
+      "M25",
+      "M26",
+      "M27",
+      "M28"
+    ],
+    "upstream_artifacts": 97,
+    "upstream_schema_definitions": 84,
+    "upstream_schema_registries": 12
+  },
+  "kind": "system_integration_contract",
+  "milestone": "M29",
+  "milestone_title": "M29 - System Integration and Downstream Compatibility Closure",
+  "objective": "close the published integration boundary without coupling FRP qualification to downstream implementation code",
+  "required_deliverables": [
+    {
+      "deliverable": "supported_schema_registry",
+      "path": "schemas/m29/frp_m29_supported_schema_registry.json"
+    },
+    {
+      "deliverable": "supported_artifact_registry",
+      "path": "artifacts/m29/registries/m29-supported-artifact-registry.json"
+    },
+    {
+      "deliverable": "compatibility_version_declarations",
+      "path": "artifacts/m29/compatibility/m29-compatibility-version-declarations.json"
+    },
+    {
+      "deliverable": "canonical_demo_artifact_package",
+      "path": "artifacts/m29/packages/m29-canonical-demo-artifact-package.json"
+    },
+    {
+      "deliverable": "deterministic_package_manifest",
+      "path": "artifacts/m29/packages/m29-deterministic-package-manifest.json"
+    },
+    {
+      "deliverable": "producer_command_registry",
+      "path": "artifacts/m29/registries/m29-producer-command-registry.json"
+    },
+    {
+      "deliverable": "immutable_source_artifact_policy",
+      "path": "artifacts/m29/policies/m29-immutable-source-artifact-policy.json"
+    },
+    {
+      "deliverable": "provenance_completeness",
+      "path": "artifacts/m29/provenance/m29-provenance-completeness-record.json"
+    },
+    {
+      "deliverable": "unsupported_version_behavior",
+      "path": "artifacts/m29/compatibility/m29-unsupported-version-behavior.json"
+    },
+    {
+      "deliverable": "downstream_consumption_test_vectors",
+      "path": "artifacts/m29/vectors/m29-downstream-consumption-test-vectors.json"
+    },
+    {
+      "deliverable": "release_independent_compatibility_records",
+      "path": "artifacts/m29/compatibility/m29-release-independent-compatibility-records.json"
+    }
+  ],
+  "schema": "frp.m29.system_integration_contract.v3.1.0",
+  "source_commit": "a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+  "source_subject": "Add M28 hierarchical scaling and hotspot-containment realization",
+  "status": "PASS",
+  "version": "3.1.0"
+}

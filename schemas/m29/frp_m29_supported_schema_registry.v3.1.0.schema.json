@@ -1,0 +1,77 @@
+{
+  "$id": "frp.m29.supported_schema_registry.v3.1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "identity_policy": {
+      "type": "object"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "m29_schema_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "milestone": {
+      "const": "M29",
+      "type": "string"
+    },
+    "record_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "records": {
+      "type": "array"
+    },
+    "registry_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema": {
+      "const": "frp.m29.supported_schema_registry.v3.1.0",
+      "type": "string"
+    },
+    "source_commit": {
+      "const": "a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+      "type": "string"
+    },
+    "source_registries": {
+      "type": "array"
+    },
+    "source_registry_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "status": {
+      "const": "PASS",
+      "type": "string"
+    },
+    "upstream_schema_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "version": {
+      "const": "3.1.0",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "kind",
+    "milestone",
+    "version",
+    "source_commit",
+    "upstream_schema_count",
+    "m29_schema_count",
+    "record_count",
+    "source_registry_count",
+    "source_registries",
+    "records",
+    "identity_policy",
+    "status",
+    "registry_digest"
+  ],
+  "title": "frp.m29.supported_schema_registry.v3.1.0",
+  "type": "object"
+}

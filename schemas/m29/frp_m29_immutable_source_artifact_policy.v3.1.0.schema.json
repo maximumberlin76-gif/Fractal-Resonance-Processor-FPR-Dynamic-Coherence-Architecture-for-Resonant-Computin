@@ -1,0 +1,61 @@
+{
+  "$id": "frp.m29.immutable_source_artifact_policy.v3.1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "byte_identity": {
+      "type": "object"
+    },
+    "consumer_rules": {
+      "type": "object"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "milestone": {
+      "const": "M29",
+      "type": "string"
+    },
+    "policy_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "policy_id": {
+      "type": "string"
+    },
+    "schema": {
+      "const": "frp.m29.immutable_source_artifact_policy.v3.1.0",
+      "type": "string"
+    },
+    "source_commit": {
+      "const": "a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+      "type": "string"
+    },
+    "status": {
+      "const": "PASS",
+      "type": "string"
+    },
+    "version": {
+      "const": "3.1.0",
+      "type": "string"
+    },
+    "violation_behavior": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "kind",
+    "milestone",
+    "version",
+    "source_commit",
+    "policy_id",
+    "byte_identity",
+    "consumer_rules",
+    "violation_behavior",
+    "status",
+    "policy_digest"
+  ],
+  "title": "frp.m29.immutable_source_artifact_policy.v3.1.0",
+  "type": "object"
+}

@@ -1,0 +1,86 @@
+{
+  "compatibility_key_contract": {
+    "algorithm": "sha256",
+    "excluded_fields": [
+      "upstream_release_label",
+      "consumer_baseline_commit",
+      "consumer_version"
+    ],
+    "included_fields": [
+      "member_id",
+      "schema_identifier",
+      "raw_sha256"
+    ],
+    "observatory_versioning": "independent"
+  },
+  "kind": "release_independent_compatibility_records",
+  "milestone": "M29",
+  "record_count": 4,
+  "record_set_digest": "b990f050a32d46fa27bd44f33d053ec26808d59658f1c2d7b2c87e7ac96b25da",
+  "record_set_id": "frp-m29-release-independent-compatibility-v1",
+  "records": [
+    {
+      "compatibility_key": "a221aecb0d24518c8a2dd562405dad9b47ff53be5b4b2f6a972b6ecedc066ff2",
+      "compatibility_state": "supported",
+      "consumer_baseline_commit": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+      "consumer_version_in_key": false,
+      "member_id": "m16-fpga-preparation-execution-trace",
+      "observatory_modes": [
+        "artifact_auditor",
+        "ternary_transition_visualizer",
+        "trace_explorer"
+      ],
+      "raw_sha256": "7d58b6741bdcadbfb9acb9049ed0e956305f49b9ad36946e719a4121b5caf22f",
+      "release_label_in_key": false,
+      "schema_identifier": "frp.m16.fpga_preparation_execution_trace.v2.1.0",
+      "upstream_release_label": "FRP v2.1.0 / M19"
+    },
+    {
+      "compatibility_key": "06c74930ea2d928fa07c0f2ca86ee886b67ce6846cdea855dba66acff0bb82b6",
+      "compatibility_state": "supported",
+      "consumer_baseline_commit": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+      "consumer_version_in_key": false,
+      "member_id": "m27-telemetry-semantics",
+      "observatory_modes": [
+        "artifact_auditor",
+        "ternary_transition_visualizer"
+      ],
+      "raw_sha256": "813ae5c66ceaddabc77734d44f1ebf971ca3bd7e11c1984e2e0c8f0204dfd1bc",
+      "release_label_in_key": false,
+      "schema_identifier": "m27-telemetry-semantics-v2.9.0",
+      "upstream_release_label": "FRP v2.9.0 / M27"
+    },
+    {
+      "compatibility_key": "c5d60d4b37f669cc650b56be99bf61eb42ef837491e50cb9081cebc94cea14b0",
+      "compatibility_state": "supported",
+      "consumer_baseline_commit": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+      "consumer_version_in_key": false,
+      "member_id": "m28-trace-observatory-upstream-contract",
+      "observatory_modes": [
+        "artifact_auditor"
+      ],
+      "raw_sha256": "556cd2921014d78184dad625438e053632c2650164f95787f39a6fc871b4a3f0",
+      "release_label_in_key": false,
+      "schema_identifier": "frp.m28.trace_observatory_upstream_contract.v3.0.0",
+      "upstream_release_label": "FRP v3.0.0 / M28"
+    },
+    {
+      "compatibility_key": "737e7e29b051a0928575508e506d31b0b275933a490f161b16de0264d4d01746",
+      "compatibility_state": "supported",
+      "consumer_baseline_commit": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+      "consumer_version_in_key": false,
+      "member_id": "m28-hierarchical-scaling-contract",
+      "observatory_modes": [
+        "artifact_auditor"
+      ],
+      "raw_sha256": "13f85ac82b63d0191157bd2cfa04dd37358ef66d8e69bdb96bb1892abb77dbae",
+      "release_label_in_key": false,
+      "schema_identifier": "frp.m28.hierarchical_scaling_contract.v3.0.0",
+      "upstream_release_label": "FRP v3.0.0 / M28"
+    }
+  ],
+  "schema": "frp.m29.release_independent_compatibility_records.v3.1.0",
+  "source_commit": "a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+  "status": "PASS",
+  "version": "3.1.0"
+}

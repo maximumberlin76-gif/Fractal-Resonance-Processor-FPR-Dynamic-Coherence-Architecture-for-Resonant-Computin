@@ -1,0 +1,76 @@
+{
+  "$id": "frp.m29.deterministic_package_manifest.v3.1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "generation": {
+      "type": "object"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "manifest_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "manifest_id": {
+      "type": "string"
+    },
+    "member_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "members": {
+      "type": "array"
+    },
+    "milestone": {
+      "const": "M29",
+      "type": "string"
+    },
+    "package_bytes": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "package_path": {
+      "type": "string"
+    },
+    "package_raw_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema": {
+      "const": "frp.m29.deterministic_package_manifest.v3.1.0",
+      "type": "string"
+    },
+    "source_commit": {
+      "const": "a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+      "type": "string"
+    },
+    "status": {
+      "const": "PASS",
+      "type": "string"
+    },
+    "version": {
+      "const": "3.1.0",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "kind",
+    "milestone",
+    "version",
+    "source_commit",
+    "manifest_id",
+    "package_path",
+    "package_bytes",
+    "package_raw_sha256",
+    "member_count",
+    "members",
+    "generation",
+    "status",
+    "manifest_digest"
+  ],
+  "title": "frp.m29.deterministic_package_manifest.v3.1.0",
+  "type": "object"
+}

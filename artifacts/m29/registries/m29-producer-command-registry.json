@@ -1,0 +1,179 @@
+{
+  "execution_boundary": {
+    "commands_are_upstream_records": true,
+    "consumer_repository": "FRP-Trace-Observatory",
+    "downstream_command_execution": "forbidden",
+    "producer_repository": "Fractal-Resonance-Processor",
+    "upstream_dependency_on_downstream_code": false
+  },
+  "kind": "producer_command_registry",
+  "milestone": "M29",
+  "record_count": 12,
+  "records": [
+    {
+      "command_count": 1,
+      "commands": [
+        "python frp_m18_canonical_artifacts.py --generate --repository-root . --output-root <output-root>"
+      ],
+      "downstream_execution": "forbidden",
+      "milestone": "M18",
+      "producer_bytes": 89905,
+      "producer_id": "m18-canonical-artifacts",
+      "producer_path": "frp_m18_canonical_artifacts.py",
+      "producer_raw_sha256": "4562e0d6b5a0611ce7623d66b563aea7e90afb98e9f534a581a64d59e47c11b1",
+      "role": "upstream_reproducibility_record"
+    },
+    {
+      "command_count": 1,
+      "commands": [
+        "python frp_m19_m16_evidence.py --generate --repository-root . --rtl-log <rtl-log> --fpga-log <fpga-log> --output-root <output-root>"
+      ],
+      "downstream_execution": "forbidden",
+      "milestone": "M19",
+      "producer_bytes": 58131,
+      "producer_id": "m19-m16-evidence",
+      "producer_path": "frp_m19_m16_evidence.py",
+      "producer_raw_sha256": "490451e2f117e6027b9608a1217fbd2c7b5c9cc882d647e3af8af084a504567d",
+      "role": "upstream_reproducibility_record"
+    },
+    {
+      "command_count": 1,
+      "commands": [
+        "python frp_m20_cross_layer_correlation.py --generate --repository-root . --output-root <output-root> --source-commit <m19-commit>"
+      ],
+      "downstream_execution": "forbidden",
+      "milestone": "M20",
+      "producer_bytes": 57017,
+      "producer_id": "m20-cross-layer-correlation",
+      "producer_path": "frp_m20_cross_layer_correlation.py",
+      "producer_raw_sha256": "2aeb8c660b3562d83510ca2819f5697a9cd09b9586e401d32a4359d58c4988b1",
+      "role": "upstream_reproducibility_record"
+    },
+    {
+      "command_count": 1,
+      "commands": [
+        "python frp_m21_parameterized_qualification_matrix.py --generate --repository-root . --output-root <output-root> --source-commit <m20-commit>"
+      ],
+      "downstream_execution": "forbidden",
+      "milestone": "M21",
+      "producer_bytes": 58784,
+      "producer_id": "m21-parameterized-qualification-matrix",
+      "producer_path": "frp_m21_parameterized_qualification_matrix.py",
+      "producer_raw_sha256": "67418d6c5b2e0e5231df1fd1e2c326bc5b122c19710bc37f60101bfb8d74c284",
+      "role": "upstream_reproducibility_record"
+    },
+    {
+      "command_count": 1,
+      "commands": [
+        "python frp_m22_control_status_register_interface.py --generate --repository-root . --output-root <output-root> --source-commit <m21-commit>"
+      ],
+      "downstream_execution": "forbidden",
+      "milestone": "M22",
+      "producer_bytes": 51132,
+      "producer_id": "m22-control-status-register-interface",
+      "producer_path": "frp_m22_control_status_register_interface.py",
+      "producer_raw_sha256": "71c011f8f7a339778227dfa22e096259bcda5e6d7c72410d952b52864e666ff3",
+      "role": "upstream_reproducibility_record"
+    },
+    {
+      "command_count": 1,
+      "commands": [
+        "python frp_m23_clock_reset_cdc_interface_hardening.py --generate --repository-root . --output-root <output-root> --source-commit <m22-commit>"
+      ],
+      "downstream_execution": "forbidden",
+      "milestone": "M23",
+      "producer_bytes": 26716,
+      "producer_id": "m23-clock-reset-cdc-interface-hardening",
+      "producer_path": "frp_m23_clock_reset_cdc_interface_hardening.py",
+      "producer_raw_sha256": "a090abc0229536991e399372b686f35e48ce2c667f9e26d3abb5dc7da01f145d",
+      "role": "upstream_reproducibility_record"
+    },
+    {
+      "command_count": 2,
+      "commands": [
+        "python frp_m24_formal_bounded_verification.py --run-formal --repository-root . --work-root <work-root> --source-commit <m23-commit>",
+        "python frp_m24_formal_bounded_verification.py --generate --repository-root . --output-root <output-root> --formal-result <formal-result> --source-commit <m23-commit>"
+      ],
+      "downstream_execution": "forbidden",
+      "milestone": "M24",
+      "producer_bytes": 48380,
+      "producer_id": "m24-formal-bounded-verification",
+      "producer_path": "frp_m24_formal_bounded_verification.py",
+      "producer_raw_sha256": "f75a3fcd19bd0cd95e6dbb48ccefeadf8cb7be5df7c8bb9edf3ba379ea71c7fe",
+      "role": "upstream_reproducibility_record"
+    },
+    {
+      "command_count": 2,
+      "commands": [
+        "python frp_m25_fault_negative_recovery_qualification.py --run-formal --repository-root . --work-root <work-root> --source-commit <m24-commit>",
+        "python frp_m25_fault_negative_recovery_qualification.py --generate --repository-root . --output-root <output-root> --formal-result <formal-result> --source-commit <m24-commit>"
+      ],
+      "downstream_execution": "forbidden",
+      "milestone": "M25",
+      "producer_bytes": 45655,
+      "producer_id": "m25-fault-negative-recovery-qualification",
+      "producer_path": "frp_m25_fault_negative_recovery_qualification.py",
+      "producer_raw_sha256": "60e087b54e4d8d0f3eb56154f540cb0597a0b2e490f95d6424513753008cb332",
+      "role": "upstream_reproducibility_record"
+    },
+    {
+      "command_count": 2,
+      "commands": [
+        "python frp_m26_declared_target_implementation_evidence.py --run-implementation --repository-root . --work-root <work-root> --source-commit <m25-commit>",
+        "python frp_m26_declared_target_implementation_evidence.py --generate --repository-root . --output-root <output-root> --implementation-result <implementation-result> --source-commit <m25-commit>"
+      ],
+      "downstream_execution": "forbidden",
+      "milestone": "M26",
+      "producer_bytes": 40794,
+      "producer_id": "m26-declared-target-implementation-evidence",
+      "producer_path": "frp_m26_declared_target_implementation_evidence.py",
+      "producer_raw_sha256": "03126e4ba71ced2f81d4d360cbfd3a4ceb0f9c97e986d969ef61531c5cb5cfd5",
+      "role": "upstream_reproducibility_record"
+    },
+    {
+      "command_count": 2,
+      "commands": [
+        "python frp_m27_long_run_stability_telemetry_qualification.py --run-long-run --repository-root . --output-root <output-root> --source-commit <m26-commit>",
+        "python frp_m27_long_run_stability_telemetry_qualification.py --generate --repository-root . --output-root <output-root> --long-run-result <long-run-result> --source-commit <m26-commit>"
+      ],
+      "downstream_execution": "forbidden",
+      "milestone": "M27",
+      "producer_bytes": 48903,
+      "producer_id": "m27-long-run-stability-telemetry-qualification",
+      "producer_path": "frp_m27_long_run_stability_telemetry_qualification.py",
+      "producer_raw_sha256": "ffd251d97db3550e66e111737172deeaae267d958c7cb929602a34370456d1fd",
+      "role": "upstream_reproducibility_record"
+    },
+    {
+      "command_count": 1,
+      "commands": [
+        "python frp_m28_trace_observatory_upstream_interchange.py --generate --repository-root . --output-root <output-root> --source-commit <m27-commit>"
+      ],
+      "downstream_execution": "forbidden",
+      "milestone": "M28",
+      "producer_bytes": 53856,
+      "producer_id": "m28-trace-observatory-upstream-interchange",
+      "producer_path": "frp_m28_trace_observatory_upstream_interchange.py",
+      "producer_raw_sha256": "1c0662120fb734e48fb5ff7f88f4ff223f9ae6ed5f8cb38eef0dd90224ef12ab",
+      "role": "upstream_reproducibility_record"
+    },
+    {
+      "command_count": 1,
+      "commands": [
+        "python frp_m28_hierarchical_scaling_hotspot_containment.py --generate --repository-root . --output-root <output-root> --source-commit <m27-commit>"
+      ],
+      "downstream_execution": "forbidden",
+      "milestone": "M28",
+      "producer_bytes": 51133,
+      "producer_id": "m28-hierarchical-scaling-hotspot-containment",
+      "producer_path": "frp_m28_hierarchical_scaling_hotspot_containment.py",
+      "producer_raw_sha256": "beea882d99290b08a618c354201c8b65a578e1c6cbe53842c428c0bc02615da7",
+      "role": "upstream_reproducibility_record"
+    }
+  ],
+  "registry_digest": "8e85211649cc4f6fb295bd44c6cd6ce884c6a457cd56954f35879aba5318e079",
+  "schema": "frp.m29.producer_command_registry.v3.1.0",
+  "source_commit": "a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+  "status": "PASS",
+  "version": "3.1.0"
+}

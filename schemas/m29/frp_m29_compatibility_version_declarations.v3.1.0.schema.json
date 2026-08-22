@@ -1,0 +1,62 @@
+{
+  "$id": "frp.m29.compatibility_version_declarations.v3.1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "compatibility_revision": {
+      "type": "string"
+    },
+    "declaration_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "declarations": {
+      "type": "array"
+    },
+    "declarations_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "milestone": {
+      "const": "M29",
+      "type": "string"
+    },
+    "resolution_policy": {
+      "type": "object"
+    },
+    "schema": {
+      "const": "frp.m29.compatibility_version_declarations.v3.1.0",
+      "type": "string"
+    },
+    "source_commit": {
+      "const": "a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+      "type": "string"
+    },
+    "status": {
+      "const": "PASS",
+      "type": "string"
+    },
+    "version": {
+      "const": "3.1.0",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "kind",
+    "milestone",
+    "version",
+    "source_commit",
+    "compatibility_revision",
+    "declaration_count",
+    "declarations",
+    "resolution_policy",
+    "status",
+    "declarations_digest"
+  ],
+  "title": "frp.m29.compatibility_version_declarations.v3.1.0",
+  "type": "object"
+}

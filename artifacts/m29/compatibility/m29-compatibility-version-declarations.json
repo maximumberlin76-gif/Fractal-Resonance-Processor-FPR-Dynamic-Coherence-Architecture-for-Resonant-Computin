@@ -1,0 +1,131 @@
+{
+  "compatibility_revision": "m29-compatibility-1",
+  "declaration_count": 14,
+  "declarations": [
+    {
+      "artifact_count": 0,
+      "compatibility_state": "supported_by_exact_identifier",
+      "range_inference": "forbidden",
+      "release_label_role": "informational_only",
+      "schema_count": 6,
+      "schema_version": "1"
+    },
+    {
+      "artifact_count": 24,
+      "compatibility_state": "supported_by_exact_identifier",
+      "range_inference": "forbidden",
+      "release_label_role": "informational_only",
+      "schema_count": 14,
+      "schema_version": "1.7.0"
+    },
+    {
+      "artifact_count": 3,
+      "compatibility_state": "supported_by_exact_identifier",
+      "range_inference": "forbidden",
+      "release_label_role": "informational_only",
+      "schema_count": 4,
+      "schema_version": "2.0.0"
+    },
+    {
+      "artifact_count": 8,
+      "compatibility_state": "supported_by_exact_identifier",
+      "range_inference": "forbidden",
+      "release_label_role": "informational_only",
+      "schema_count": 8,
+      "schema_version": "2.1.0"
+    },
+    {
+      "artifact_count": 4,
+      "compatibility_state": "supported_by_exact_identifier",
+      "range_inference": "forbidden",
+      "release_label_role": "informational_only",
+      "schema_count": 4,
+      "schema_version": "2.2.0"
+    },
+    {
+      "artifact_count": 4,
+      "compatibility_state": "supported_by_exact_identifier",
+      "range_inference": "forbidden",
+      "release_label_role": "informational_only",
+      "schema_count": 5,
+      "schema_version": "2.3.0"
+    },
+    {
+      "artifact_count": 4,
+      "compatibility_state": "supported_by_exact_identifier",
+      "range_inference": "forbidden",
+      "release_label_role": "informational_only",
+      "schema_count": 4,
+      "schema_version": "2.4.0"
+    },
+    {
+      "artifact_count": 5,
+      "compatibility_state": "supported_by_exact_identifier",
+      "range_inference": "forbidden",
+      "release_label_role": "informational_only",
+      "schema_count": 5,
+      "schema_version": "2.5.0"
+    },
+    {
+      "artifact_count": 5,
+      "compatibility_state": "supported_by_exact_identifier",
+      "range_inference": "forbidden",
+      "release_label_role": "informational_only",
+      "schema_count": 5,
+      "schema_version": "2.6.0"
+    },
+    {
+      "artifact_count": 6,
+      "compatibility_state": "supported_by_exact_identifier",
+      "range_inference": "forbidden",
+      "release_label_role": "informational_only",
+      "schema_count": 6,
+      "schema_version": "2.7.0"
+    },
+    {
+      "artifact_count": 6,
+      "compatibility_state": "supported_by_exact_identifier",
+      "range_inference": "forbidden",
+      "release_label_role": "informational_only",
+      "schema_count": 6,
+      "schema_version": "2.8.0"
+    },
+    {
+      "artifact_count": 7,
+      "compatibility_state": "supported_by_exact_identifier",
+      "range_inference": "forbidden",
+      "release_label_role": "informational_only",
+      "schema_count": 7,
+      "schema_version": "2.9.0"
+    },
+    {
+      "artifact_count": 10,
+      "compatibility_state": "supported_by_exact_identifier",
+      "range_inference": "forbidden",
+      "release_label_role": "informational_only",
+      "schema_count": 10,
+      "schema_version": "3.0.0"
+    },
+    {
+      "artifact_count": 0,
+      "compatibility_state": "supported_by_exact_identifier",
+      "range_inference": "forbidden",
+      "release_label_role": "informational_only",
+      "schema_count": 13,
+      "schema_version": "3.1.0"
+    }
+  ],
+  "declarations_digest": "ab2c4246c2fadfea7961423275806dad0c6febd05c1d03ada3c8fdd6f8b4ec80",
+  "kind": "compatibility_version_declarations",
+  "milestone": "M29",
+  "resolution_policy": {
+    "observatory_versions": "independent",
+    "supported": "exact_identifier_allowlist",
+    "unsupported": "reject_before_parse",
+    "upstream_release_labels": "not_identity_keys"
+  },
+  "schema": "frp.m29.compatibility_version_declarations.v3.1.0",
+  "source_commit": "a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+  "status": "PASS",
+  "version": "3.1.0"
+}

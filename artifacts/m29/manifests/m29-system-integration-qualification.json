@@ -1,0 +1,452 @@
+{
+  "check_count": 48,
+  "checks": [
+    {
+      "category": "source",
+      "check_id": "source-commit",
+      "evidence": "a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+      "status": "PASS"
+    },
+    {
+      "category": "source",
+      "check_id": "source-subject",
+      "evidence": "Add M28 hierarchical scaling and hotspot-containment realization",
+      "status": "PASS"
+    },
+    {
+      "category": "source",
+      "check_id": "m28-observatory-preserved",
+      "evidence": "566a4ff88baa57f844691b46937552253e095434",
+      "status": "PASS"
+    },
+    {
+      "category": "downstream",
+      "check_id": "observatory-baseline",
+      "evidence": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+      "status": "PASS"
+    },
+    {
+      "category": "downstream",
+      "check_id": "observatory-tests",
+      "evidence": 275,
+      "status": "PASS"
+    },
+    {
+      "category": "downstream",
+      "check_id": "observatory-mode-count",
+      "evidence": 3,
+      "status": "PASS"
+    },
+    {
+      "category": "downstream",
+      "check_id": "existing-scaffold",
+      "evidence": "preserve_existing_scaffold",
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "one-way-integration",
+      "evidence": "upstream_to_published_bytes_to_downstream",
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "no-downstream-writeback",
+      "evidence": "forbidden",
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "no-downstream-source-mutation",
+      "evidence": "forbidden",
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "no-semantic-reimplementation",
+      "evidence": "forbidden",
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "no-upstream-downstream-dependency",
+      "evidence": false,
+      "status": "PASS"
+    },
+    {
+      "category": "core",
+      "check_id": "ternary-notation",
+      "evidence": "-1/0/1",
+      "status": "PASS"
+    },
+    {
+      "category": "core",
+      "check_id": "ternary-domain",
+      "evidence": [
+        -1,
+        0,
+        1
+      ],
+      "status": "PASS"
+    },
+    {
+      "category": "core",
+      "check_id": "active-neutral",
+      "evidence": 0,
+      "status": "PASS"
+    },
+    {
+      "category": "core",
+      "check_id": "opposite-transition-routes",
+      "evidence": [
+        [
+          -1,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          -1
+        ]
+      ],
+      "status": "PASS"
+    },
+    {
+      "category": "core",
+      "check_id": "temporal-schedulers",
+      "evidence": [
+        "1/7",
+        "7/1"
+      ],
+      "status": "PASS"
+    },
+    {
+      "category": "core",
+      "check_id": "service-scheduler",
+      "evidence": "free",
+      "status": "PASS"
+    },
+    {
+      "category": "core",
+      "check_id": "direct-events",
+      "evidence": 0,
+      "status": "PASS"
+    },
+    {
+      "category": "inventory",
+      "check_id": "upstream-schema-count",
+      "evidence": 84,
+      "status": "PASS"
+    },
+    {
+      "category": "inventory",
+      "check_id": "source-registry-count",
+      "evidence": 12,
+      "status": "PASS"
+    },
+    {
+      "category": "inventory",
+      "check_id": "m29-schema-count",
+      "evidence": 13,
+      "status": "PASS"
+    },
+    {
+      "category": "inventory",
+      "check_id": "supported-schema-count",
+      "evidence": 97,
+      "status": "PASS"
+    },
+    {
+      "category": "inventory",
+      "check_id": "upstream-artifact-count",
+      "evidence": 97,
+      "status": "PASS"
+    },
+    {
+      "category": "inventory",
+      "check_id": "json-artifact-count",
+      "evidence": 86,
+      "status": "PASS"
+    },
+    {
+      "category": "inventory",
+      "check_id": "byte-artifact-count",
+      "evidence": 11,
+      "status": "PASS"
+    },
+    {
+      "category": "inventory",
+      "check_id": "validated-json-count",
+      "evidence": 86,
+      "status": "PASS"
+    },
+    {
+      "category": "inventory",
+      "check_id": "provenance-file-count",
+      "evidence": 193,
+      "status": "PASS"
+    },
+    {
+      "category": "compatibility",
+      "check_id": "exact-schema-identifiers",
+      "evidence": "exact_schema_identifier_only",
+      "status": "PASS"
+    },
+    {
+      "category": "compatibility",
+      "check_id": "exact-artifact-identifiers",
+      "evidence": "exact_path_identifier_and_raw_sha256",
+      "status": "PASS"
+    },
+    {
+      "category": "compatibility",
+      "check_id": "compatibility-declarations",
+      "evidence": 14,
+      "status": "PASS"
+    },
+    {
+      "category": "compatibility",
+      "check_id": "unsupported-version-fail-closed",
+      "evidence": true,
+      "status": "PASS"
+    },
+    {
+      "category": "compatibility",
+      "check_id": "unsupported-case-count",
+      "evidence": 6,
+      "status": "PASS"
+    },
+    {
+      "category": "bytes",
+      "check_id": "immutable-pre-parse-digest",
+      "evidence": true,
+      "status": "PASS"
+    },
+    {
+      "category": "bytes",
+      "check_id": "immutable-copy-mode",
+      "evidence": "byte_exact",
+      "status": "PASS"
+    },
+    {
+      "category": "package",
+      "check_id": "demo-member-count",
+      "evidence": 4,
+      "status": "PASS"
+    },
+    {
+      "category": "package",
+      "check_id": "package-raw-digest",
+      "evidence": "d91b2b63bf0771a2abe634d64bb5596cc2925093df24147cbe5f2edca5136fd4",
+      "status": "PASS"
+    },
+    {
+      "category": "package",
+      "check_id": "manifest-member-count",
+      "evidence": 4,
+      "status": "PASS"
+    },
+    {
+      "category": "producer",
+      "check_id": "producer-record-count",
+      "evidence": 12,
+      "status": "PASS"
+    },
+    {
+      "category": "producer",
+      "check_id": "downstream-command-execution",
+      "evidence": "forbidden",
+      "status": "PASS"
+    },
+    {
+      "category": "compatibility",
+      "check_id": "consumption-vector-count",
+      "evidence": 12,
+      "status": "PASS"
+    },
+    {
+      "category": "compatibility",
+      "check_id": "accepted-vector-count",
+      "evidence": 4,
+      "status": "PASS"
+    },
+    {
+      "category": "compatibility",
+      "check_id": "rejected-vector-count",
+      "evidence": 8,
+      "status": "PASS"
+    },
+    {
+      "category": "compatibility",
+      "check_id": "release-independent-record-count",
+      "evidence": 4,
+      "status": "PASS"
+    },
+    {
+      "category": "compatibility",
+      "check_id": "release-label-excluded",
+      "evidence": false,
+      "status": "PASS"
+    },
+    {
+      "category": "compatibility",
+      "check_id": "consumer-version-excluded",
+      "evidence": false,
+      "status": "PASS"
+    },
+    {
+      "category": "provenance",
+      "check_id": "provenance-check-count",
+      "evidence": 10,
+      "status": "PASS"
+    },
+    {
+      "category": "workflow",
+      "check_id": "workflow-path",
+      "evidence": ".github/workflows/frp-m29-system-integration-downstream-compatibility-closure-workflow.yml",
+      "status": "PASS"
+    }
+  ],
+  "document_count": 12,
+  "documents": [
+    {
+      "byte_length": 61839,
+      "path": "schemas/m29/frp_m29_supported_schema_registry.json",
+      "raw_sha256": "1fbe4350a020bca2185d4111c99e2f94f1c81fb77e1e998df199e518a4a84557"
+    },
+    {
+      "byte_length": 4071,
+      "path": "artifacts/m29/contracts/m29-system-integration-contract.json",
+      "raw_sha256": "6e14d93abe5646b4e094f27b07217d9e4dcd833d8af0d5afb30da21b904c4642"
+    },
+    {
+      "byte_length": 83376,
+      "path": "artifacts/m29/registries/m29-supported-artifact-registry.json",
+      "raw_sha256": "cf955f1a1f8318e8d5e3414dd7b09c88a7efb944caf16bb7af22fd73099b4f31"
+    },
+    {
+      "byte_length": 4110,
+      "path": "artifacts/m29/compatibility/m29-compatibility-version-declarations.json",
+      "raw_sha256": "fa13a1a1bc7822e4c1f557b56aad0153554c24ab6a86eda3fe764b5957810c61"
+    },
+    {
+      "byte_length": 27373,
+      "path": "artifacts/m29/packages/m29-canonical-demo-artifact-package.json",
+      "raw_sha256": "d91b2b63bf0771a2abe634d64bb5596cc2925093df24147cbe5f2edca5136fd4"
+    },
+    {
+      "byte_length": 2438,
+      "path": "artifacts/m29/packages/m29-deterministic-package-manifest.json",
+      "raw_sha256": "204cf8b32dc92da3e9316479ac548326dc5ca9ab2c2c838e2ccf0ad523a579fc"
+    },
+    {
+      "byte_length": 8496,
+      "path": "artifacts/m29/registries/m29-producer-command-registry.json",
+      "raw_sha256": "21ba5cf5c1dfea1b5f1b196cfca2500695c7ed6ae6d2c10f6513929e46815f04"
+    },
+    {
+      "byte_length": 1164,
+      "path": "artifacts/m29/policies/m29-immutable-source-artifact-policy.json",
+      "raw_sha256": "b934ad627ebe3f2a4e358b7223dbe38dffe605c497fe3f5f5b44e9ccb85e20fe"
+    },
+    {
+      "byte_length": 2203,
+      "path": "artifacts/m29/provenance/m29-provenance-completeness-record.json",
+      "raw_sha256": "a8a5b414e3a7acca9d2a42f8ff71f89c1915640568c1cc4fbf65c4f0712da7e1"
+    },
+    {
+      "byte_length": 1971,
+      "path": "artifacts/m29/compatibility/m29-unsupported-version-behavior.json",
+      "raw_sha256": "e4bdc90db777110443056f60b24bf6cccf6604f29953b0e4d375a0d61eddf455"
+    },
+    {
+      "byte_length": 7222,
+      "path": "artifacts/m29/vectors/m29-downstream-consumption-test-vectors.json",
+      "raw_sha256": "21bf0d91f32a66c416d132c45b0aca3cd620d91c38fe1315b42010921f3a68cc"
+    },
+    {
+      "byte_length": 3447,
+      "path": "artifacts/m29/compatibility/m29-release-independent-compatibility-records.json",
+      "raw_sha256": "643cbeddf03d8d9da456b79f43eec32cc96e2f914e43b7657724f5f563931d60"
+    }
+  ],
+  "failed_count": 0,
+  "kind": "system_integration_qualification",
+  "milestone": "M29",
+  "passed_count": 48,
+  "qualification_digest": "eeac7f87e797a44f96e311200423ec0ce51714a6b58c12a1d152d981571172cc",
+  "qualification_id": "frp-m29-system-integration-closure",
+  "schema": "frp.m29.system_integration_qualification.v3.1.0",
+  "schema_count": 13,
+  "schemas": [
+    {
+      "byte_length": 1508,
+      "path": "schemas/m29/frp_m29_system_integration_contract.v3.1.0.schema.json",
+      "raw_sha256": "de396994128d610af5281e18cd721cf66e206705a801ad14c155078c134f0111"
+    },
+    {
+      "byte_length": 1581,
+      "path": "schemas/m29/frp_m29_supported_schema_registry.v3.1.0.schema.json",
+      "raw_sha256": "dc1e9d8e4480bb9c1da592ed01bb7462509df1536a9e9e25cdf18c96116a3d78"
+    },
+    {
+      "byte_length": 1477,
+      "path": "schemas/m29/frp_m29_supported_artifact_registry.v3.1.0.schema.json",
+      "raw_sha256": "2f5a32a782810c4fb25b6258c7203d81742930504ae8d1b8fdbd4fc116424a94"
+    },
+    {
+      "byte_length": 1328,
+      "path": "schemas/m29/frp_m29_compatibility_version_declarations.v3.1.0.schema.json",
+      "raw_sha256": "0c292ee509c4f05af5895af4f8882a58a2c01bf3326a764b371eb5f45e788431"
+    },
+    {
+      "byte_length": 1267,
+      "path": "schemas/m29/frp_m29_canonical_demo_artifact_package.v3.1.0.schema.json",
+      "raw_sha256": "1661d03cf573e27e964ecc8b8e201b82e35f8716f87a3c0f10043faed1a6994f"
+    },
+    {
+      "byte_length": 1538,
+      "path": "schemas/m29/frp_m29_deterministic_package_manifest.v3.1.0.schema.json",
+      "raw_sha256": "7e4fca21ec6e5b452f1289bb05520d3f5c91c786e035b6ff1657bfdaa5c709f7"
+    },
+    {
+      "byte_length": 1183,
+      "path": "schemas/m29/frp_m29_producer_command_registry.v3.1.0.schema.json",
+      "raw_sha256": "ab8a045becd4863fe4c1281fb853ee935bbee69b12ccb25029c023d6f4b7efa6"
+    },
+    {
+      "byte_length": 1262,
+      "path": "schemas/m29/frp_m29_immutable_source_artifact_policy.v3.1.0.schema.json",
+      "raw_sha256": "aa8b3d0da6d5e4c6b6b91844b116051f939976dc3e64469e4668bf79c142a8fd"
+    },
+    {
+      "byte_length": 1398,
+      "path": "schemas/m29/frp_m29_provenance_completeness_record.v3.1.0.schema.json",
+      "raw_sha256": "52d2e87bfc0a271c6ad385cc2741e1d6ee7acb4c5a9d1f96f02daf79250ae95b"
+    },
+    {
+      "byte_length": 1234,
+      "path": "schemas/m29/frp_m29_unsupported_version_behavior.v3.1.0.schema.json",
+      "raw_sha256": "f4061bb83142f733e1e76ceb098e69a04c5e1dceea2e2ae2e4ee733ac8f8a8b0"
+    },
+    {
+      "byte_length": 1401,
+      "path": "schemas/m29/frp_m29_downstream_consumption_test_vectors.v3.1.0.schema.json",
+      "raw_sha256": "fbc9f4c73797a4dd545ee7276595b2e578ddac92f363a49163d6e8e3d3f3ad1e"
+    },
+    {
+      "byte_length": 1325,
+      "path": "schemas/m29/frp_m29_release_independent_compatibility_records.v3.1.0.schema.json",
+      "raw_sha256": "ce60da0de0bb69aeed8de915645135ca5dc2499c413e0118368f752091476853"
+    },
+    {
+      "byte_length": 1708,
+      "path": "schemas/m29/frp_m29_system_integration_qualification.v3.1.0.schema.json",
+      "raw_sha256": "07cf078a0da67cef969370b389a4e666e4919e4a58c642f71a809b51d6de3bb3"
+    }
+  ],
+  "source_commit": "a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+  "status": "PASS",
+  "version": "3.1.0"
+}

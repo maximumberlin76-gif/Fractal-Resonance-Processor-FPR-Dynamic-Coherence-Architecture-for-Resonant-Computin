@@ -1,0 +1,68 @@
+{
+  "$id": "frp.m29.downstream_consumption_test_vectors.v3.1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "accepted_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "milestone": {
+      "const": "M29",
+      "type": "string"
+    },
+    "rejected_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "schema": {
+      "const": "frp.m29.downstream_consumption_test_vectors.v3.1.0",
+      "type": "string"
+    },
+    "source_commit": {
+      "const": "a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+      "type": "string"
+    },
+    "status": {
+      "const": "PASS",
+      "type": "string"
+    },
+    "vector_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "vector_set_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "vector_set_id": {
+      "type": "string"
+    },
+    "vectors": {
+      "type": "array"
+    },
+    "version": {
+      "const": "3.1.0",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "kind",
+    "milestone",
+    "version",
+    "source_commit",
+    "vector_set_id",
+    "vector_count",
+    "accepted_count",
+    "rejected_count",
+    "vectors",
+    "status",
+    "vector_set_digest"
+  ],
+  "title": "frp.m29.downstream_consumption_test_vectors.v3.1.0",
+  "type": "object"
+}

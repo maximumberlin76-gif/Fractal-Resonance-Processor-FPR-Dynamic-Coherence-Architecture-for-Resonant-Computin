@@ -1,0 +1,72 @@
+{
+  "$id": "frp.m29.supported_artifact_registry.v3.1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "byte_artifact_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "identity_policy": {
+      "type": "object"
+    },
+    "json_artifact_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "milestone": {
+      "const": "M29",
+      "type": "string"
+    },
+    "milestone_counts": {
+      "type": "object"
+    },
+    "record_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "records": {
+      "type": "array"
+    },
+    "registry_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema": {
+      "const": "frp.m29.supported_artifact_registry.v3.1.0",
+      "type": "string"
+    },
+    "source_commit": {
+      "const": "a1c0bb2fa0a4731b9339e6cd996589e1bf226c04",
+      "type": "string"
+    },
+    "status": {
+      "const": "PASS",
+      "type": "string"
+    },
+    "version": {
+      "const": "3.1.0",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "kind",
+    "milestone",
+    "version",
+    "source_commit",
+    "record_count",
+    "json_artifact_count",
+    "byte_artifact_count",
+    "milestone_counts",
+    "records",
+    "identity_policy",
+    "status",
+    "registry_digest"
+  ],
+  "title": "frp.m29.supported_artifact_registry.v3.1.0",
+  "type": "object"
+}
