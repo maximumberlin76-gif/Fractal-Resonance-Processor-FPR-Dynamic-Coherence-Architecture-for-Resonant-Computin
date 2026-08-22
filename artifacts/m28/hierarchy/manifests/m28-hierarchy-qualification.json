@@ -1,0 +1,290 @@
+{
+  "artifacts": [
+    {
+      "bytes": 3560,
+      "path": "artifacts/m28/hierarchy/contracts/m28-hierarchical-scaling-contract.json",
+      "raw_sha256": "13f85ac82b63d0191157bd2cfa04dd37358ef66d8e69bdb96bb1892abb77dbae"
+    },
+    {
+      "bytes": 56376,
+      "path": "artifacts/m28/hierarchy/topology/m28-hierarchy-topology-manifest.json",
+      "raw_sha256": "40c70eacabbd44a7dc7404d939117001825b92c0ed2e99f835c6c39e3422a897"
+    },
+    {
+      "bytes": 207219,
+      "path": "artifacts/m28/hierarchy/scaling/m28-hierarchical-scaling-matrix.json",
+      "raw_sha256": "9d47c85d73de41868ef56aefc7a66831fa975f5ad81e854929dc43527173660d"
+    },
+    {
+      "bytes": 143946,
+      "path": "artifacts/m28/hierarchy/containment/m28-hotspot-containment-evidence.json",
+      "raw_sha256": "d06e68d9b4c2cfd774e461eba45308dbd5c57b28118756e117db2ab4228caa55"
+    }
+  ],
+  "check_count": 29,
+  "checks": [
+    {
+      "category": "identity",
+      "check_id": "M28-HQ001",
+      "evidence": "FRP v3.0.0",
+      "status": "PASS"
+    },
+    {
+      "category": "source",
+      "check_id": "M28-HQ002",
+      "evidence": "23e464206f85cd9473101d9221027ee33d9dd094",
+      "status": "PASS"
+    },
+    {
+      "category": "supplement",
+      "check_id": "M28-HQ003",
+      "evidence": "566a4ff88baa57f844691b46937552253e095434",
+      "status": "PASS"
+    },
+    {
+      "category": "core",
+      "check_id": "M28-HQ004",
+      "evidence": "-1/0/1",
+      "status": "PASS"
+    },
+    {
+      "category": "core",
+      "check_id": "M28-HQ005",
+      "evidence": 0,
+      "status": "PASS"
+    },
+    {
+      "category": "scheduler",
+      "check_id": "M28-HQ006",
+      "evidence": [
+        "1/7",
+        "7/1"
+      ],
+      "status": "PASS"
+    },
+    {
+      "category": "scheduler",
+      "check_id": "M28-HQ007",
+      "evidence": "free",
+      "status": "PASS"
+    },
+    {
+      "category": "scope",
+      "check_id": "M28-HQ008",
+      "evidence": [
+        "declared_hierarchy_topology",
+        "cluster_identities",
+        "cell_to_cluster_mapping",
+        "cluster_local_scheduler_observation",
+        "cluster_local_transition_capacity_observation",
+        "cluster_local_telemetry",
+        "hotspot_containment_indicators",
+        "hierarchy_level_provenance",
+        "deterministic_scaling_matrices",
+        "explicit_aggregation_equations",
+        "machine_readable_hierarchy_manifests"
+      ],
+      "status": "PASS"
+    },
+    {
+      "category": "topology",
+      "check_id": "M28-HQ009",
+      "evidence": 3,
+      "status": "PASS"
+    },
+    {
+      "category": "topology",
+      "check_id": "M28-HQ010",
+      "evidence": [
+        3,
+        4,
+        5
+      ],
+      "status": "PASS"
+    },
+    {
+      "category": "topology",
+      "check_id": "M28-HQ011",
+      "evidence": [
+        2,
+        4,
+        8
+      ],
+      "status": "PASS"
+    },
+    {
+      "category": "scaling",
+      "check_id": "M28-HQ012",
+      "evidence": 6,
+      "status": "PASS"
+    },
+    {
+      "category": "scaling",
+      "check_id": "M28-HQ013",
+      "evidence": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+      ],
+      "status": "PASS"
+    },
+    {
+      "category": "containment",
+      "check_id": "M28-HQ014",
+      "evidence": 3,
+      "status": "PASS"
+    },
+    {
+      "category": "containment",
+      "check_id": "M28-HQ015",
+      "evidence": [
+        "PASS",
+        "PASS",
+        "PASS"
+      ],
+      "status": "PASS"
+    },
+    {
+      "category": "containment",
+      "check_id": "M28-HQ016",
+      "evidence": [
+        true,
+        true,
+        true
+      ],
+      "status": "PASS"
+    },
+    {
+      "category": "aggregation",
+      "check_id": "M28-HQ017",
+      "evidence": {
+        "cluster_heat_mean": "sum(cell_heat_q16) // cluster_cell_count",
+        "cluster_heat_peak": "max(cell_heat_q16)",
+        "cluster_pressure_q16": "cluster_heat_mean_q16 + cluster_switch_load_q16",
+        "cluster_state_count": "count(state == value for state in cluster)",
+        "cluster_switch_changes": "sum(cell_switch_activity)",
+        "cluster_switch_load_q16": "round(cluster_switch_changes * 65536 / cluster_cell_count)",
+        "global_from_cluster_count": "sum(cluster_count)",
+        "no_undeclared_metric_aggregation": true
+      },
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "M28-HQ018",
+      "evidence": "measurement_contours_separate",
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "M28-HQ019",
+      "evidence": "model_derived_dimensionless_proxy",
+      "status": "PASS"
+    },
+    {
+      "category": "boundary",
+      "check_id": "M28-HQ020",
+      "evidence": "no_universal_physical_chip_claim",
+      "status": "PASS"
+    },
+    {
+      "category": "scaling_profile",
+      "check_id": "M28-HQ-S-8-1_7",
+      "evidence": "13c3dd6503e1956e9f5a5f10fbe31a0d7c221d629b980785af449b0967b4309f",
+      "status": "PASS"
+    },
+    {
+      "category": "scaling_profile",
+      "check_id": "M28-HQ-S-8-7_1",
+      "evidence": "a9225f61ac6f206a69946113be1cae410dc8fbee2b51982962e545ee4b3bb1f6",
+      "status": "PASS"
+    },
+    {
+      "category": "scaling_profile",
+      "check_id": "M28-HQ-S-16-1_7",
+      "evidence": "6fe8d3ad8efe8fe07249b9217b8ba6aa6330a2fb96a09f8de2cccd34d35c5e80",
+      "status": "PASS"
+    },
+    {
+      "category": "scaling_profile",
+      "check_id": "M28-HQ-S-16-7_1",
+      "evidence": "ab329b240cc6cafebbd269f27a23cc8da12b6e26a9e99d989ce938f364e3492b",
+      "status": "PASS"
+    },
+    {
+      "category": "scaling_profile",
+      "check_id": "M28-HQ-S-32-1_7",
+      "evidence": "bba2bc1bc4daf4cc928a740df92110ab9372dbb912e8928bc78ef906df1deeb9",
+      "status": "PASS"
+    },
+    {
+      "category": "scaling_profile",
+      "check_id": "M28-HQ-S-32-7_1",
+      "evidence": "7dae1a66bb0613b12a7cef450ef2e25c4601aca082445e26bee242efa72ebef9",
+      "status": "PASS"
+    },
+    {
+      "category": "containment_profile",
+      "check_id": "M28-HQ-C-free",
+      "evidence": "8883c7428f0a19e08ff5677679daf5d817310370382ebd68a32a99558fe4171e",
+      "status": "PASS"
+    },
+    {
+      "category": "containment_profile",
+      "check_id": "M28-HQ-C-1_7",
+      "evidence": "2cfdbb4c3046219f4136131a115f9e731bd95f8beb9f13ff24871ba1e7920ddf",
+      "status": "PASS"
+    },
+    {
+      "category": "containment_profile",
+      "check_id": "M28-HQ-C-7_1",
+      "evidence": "5732eac0ab8aa72df0e6e5f08365b1226c2cd2c4d0191e6c3ec31b8c779617f7",
+      "status": "PASS"
+    }
+  ],
+  "failed_count": 0,
+  "kind": "hierarchy_qualification",
+  "milestone": "M28",
+  "passed_count": 29,
+  "qualification_digest": "d543d7dd1375abfee0c0b9da7b22fc2f100e5dfd8769f7c5694686c3936aad98",
+  "qualification_id": "frp-m28-hierarchical-scaling-hotspot-containment",
+  "schema": "frp.m28.hierarchy_qualification.v3.0.0",
+  "schemas": [
+    {
+      "bytes": 1237,
+      "identifier": "frp.m28.hierarchical_scaling_contract.v3.0.0",
+      "path": "schemas/m28/frp_m28_hierarchical_scaling_contract.v3.0.0.schema.json",
+      "raw_sha256": "16ed6a7bcbba10733ed0af59618de71d3868ccc2d187c5c834523bcce91b22d9"
+    },
+    {
+      "bytes": 963,
+      "identifier": "frp.m28.hierarchy_topology_manifest.v3.0.0",
+      "path": "schemas/m28/frp_m28_hierarchy_topology_manifest.v3.0.0.schema.json",
+      "raw_sha256": "c1bde0c8161e8cd1245ef28c6cbdb52e2cd00bfecfaff8a14506282fb70a97b9"
+    },
+    {
+      "bytes": 1113,
+      "identifier": "frp.m28.hierarchical_scaling_matrix.v3.0.0",
+      "path": "schemas/m28/frp_m28_hierarchical_scaling_matrix.v3.0.0.schema.json",
+      "raw_sha256": "929bf7fba5ae1acd88b09f7db84543d739b663191380c27139be886b4464f484"
+    },
+    {
+      "bytes": 949,
+      "identifier": "frp.m28.hotspot_containment_evidence.v3.0.0",
+      "path": "schemas/m28/frp_m28_hotspot_containment_evidence.v3.0.0.schema.json",
+      "raw_sha256": "0aaa1ad7e023d96b8d373ff5a7c08cd2672509f5e42752e962a3f7c527e87cc1"
+    },
+    {
+      "bytes": 1055,
+      "identifier": "frp.m28.hierarchy_qualification.v3.0.0",
+      "path": "schemas/m28/frp_m28_hierarchy_qualification.v3.0.0.schema.json",
+      "raw_sha256": "66354f846c5d46d4f96a0fc7bcd4d6a3b6550eda8f931d0cfa965ea83e4afaea"
+    }
+  ],
+  "source_commit": "23e464206f85cd9473101d9221027ee33d9dd094",
+  "status": "PASS",
+  "version": "3.0.0"
+}

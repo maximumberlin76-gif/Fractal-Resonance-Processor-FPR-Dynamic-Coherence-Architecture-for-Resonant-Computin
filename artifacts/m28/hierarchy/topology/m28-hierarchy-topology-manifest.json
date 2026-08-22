@@ -1,0 +1,2262 @@
+{
+  "kind": "hierarchy_topology_manifest",
+  "manifest_digest": "33b5e83fd06f04e9daa3ca8dfc8c0e8d64039bc45951cdaacde5a03774988338",
+  "milestone": "M28",
+  "profile_count": 3,
+  "profiles": [
+    {
+      "cell_to_cluster": [
+        {
+          "cell_id": 0,
+          "cluster_id": "N8-C0",
+          "cluster_index": 0,
+          "cluster_offset": 0
+        },
+        {
+          "cell_id": 1,
+          "cluster_id": "N8-C0",
+          "cluster_index": 0,
+          "cluster_offset": 1
+        },
+        {
+          "cell_id": 2,
+          "cluster_id": "N8-C0",
+          "cluster_index": 0,
+          "cluster_offset": 2
+        },
+        {
+          "cell_id": 3,
+          "cluster_id": "N8-C0",
+          "cluster_index": 0,
+          "cluster_offset": 3
+        },
+        {
+          "cell_id": 4,
+          "cluster_id": "N8-C1",
+          "cluster_index": 1,
+          "cluster_offset": 0
+        },
+        {
+          "cell_id": 5,
+          "cluster_id": "N8-C1",
+          "cluster_index": 1,
+          "cluster_offset": 1
+        },
+        {
+          "cell_id": 6,
+          "cluster_id": "N8-C1",
+          "cluster_index": 1,
+          "cluster_offset": 2
+        },
+        {
+          "cell_id": 7,
+          "cluster_id": "N8-C1",
+          "cluster_index": 1,
+          "cluster_offset": 3
+        }
+      ],
+      "cells": 8,
+      "cluster_count": 2,
+      "cluster_size": 4,
+      "clusters": [
+        {
+          "cell_count": 4,
+          "cell_end": 3,
+          "cell_ids": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "cell_start": 0,
+          "cluster_id": "N8-C0",
+          "cluster_index": 0
+        },
+        {
+          "cell_count": 4,
+          "cell_end": 7,
+          "cell_ids": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "cell_start": 4,
+          "cluster_id": "N8-C1",
+          "cluster_index": 1
+        }
+      ],
+      "coupling_topology_metrics": {
+        "diagonal_error_max": 0.0,
+        "diagonal_zero": true,
+        "hierarchy_depth": 3,
+        "row_sum_error_max": 0.0,
+        "row_sum_match": true,
+        "shell_influence_monotonic": true,
+        "shell_influence_profile": [
+          {
+            "aggregate_shell_influence": 0.480992322537,
+            "distance": 1,
+            "normalized_pair_weight": 0.480992322537,
+            "shell_population": 1
+          },
+          {
+            "aggregate_shell_influence": 0.296085505376,
+            "distance": 2,
+            "normalized_pair_weight": 0.148042752688,
+            "shell_population": 2
+          },
+          {
+            "aggregate_shell_influence": 0.222922172087,
+            "distance": 3,
+            "normalized_pair_weight": 0.055730543022,
+            "shell_population": 4
+          }
+        ],
+        "symmetry_error_max": 0.0,
+        "symmetry_match": true
+      },
+      "fixed_point_validation": {
+        "cells": 8,
+        "checks": {
+          "cells_power_of_two": true,
+          "coupling_shell_influence_monotonic": true,
+          "coupling_sum_exact": true,
+          "hierarchy_depth_exact": true,
+          "shell_populations_exact": true,
+          "thermal_shell_influence_monotonic": true,
+          "thermal_sum_exact": true
+        },
+        "coupling_sum_q30": 1073741824,
+        "status": "PASS",
+        "thermal_sum_q30": 1073741824
+      },
+      "hierarchy_depth": 3,
+      "levels": [
+        {
+          "domain_count": 8,
+          "domain_size": 1,
+          "domains": [
+            {
+              "cell_count": 1,
+              "cell_end": 0,
+              "cell_ids": [
+                0
+              ],
+              "cell_start": 0,
+              "domain_id": "N8-L0-D0",
+              "domain_index": 0
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 1,
+              "cell_ids": [
+                1
+              ],
+              "cell_start": 1,
+              "domain_id": "N8-L0-D1",
+              "domain_index": 1
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 2,
+              "cell_ids": [
+                2
+              ],
+              "cell_start": 2,
+              "domain_id": "N8-L0-D2",
+              "domain_index": 2
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 3,
+              "cell_ids": [
+                3
+              ],
+              "cell_start": 3,
+              "domain_id": "N8-L0-D3",
+              "domain_index": 3
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 4,
+              "cell_ids": [
+                4
+              ],
+              "cell_start": 4,
+              "domain_id": "N8-L0-D4",
+              "domain_index": 4
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 5,
+              "cell_ids": [
+                5
+              ],
+              "cell_start": 5,
+              "domain_id": "N8-L0-D5",
+              "domain_index": 5
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 6,
+              "cell_ids": [
+                6
+              ],
+              "cell_start": 6,
+              "domain_id": "N8-L0-D6",
+              "domain_index": 6
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 7,
+              "cell_ids": [
+                7
+              ],
+              "cell_start": 7,
+              "domain_id": "N8-L0-D7",
+              "domain_index": 7
+            }
+          ],
+          "level": 0,
+          "role": "individual_cell"
+        },
+        {
+          "domain_count": 4,
+          "domain_size": 2,
+          "domains": [
+            {
+              "cell_count": 2,
+              "cell_end": 1,
+              "cell_ids": [
+                0,
+                1
+              ],
+              "cell_start": 0,
+              "domain_id": "N8-L1-D0",
+              "domain_index": 0
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 3,
+              "cell_ids": [
+                2,
+                3
+              ],
+              "cell_start": 2,
+              "domain_id": "N8-L1-D1",
+              "domain_index": 1
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 5,
+              "cell_ids": [
+                4,
+                5
+              ],
+              "cell_start": 4,
+              "domain_id": "N8-L1-D2",
+              "domain_index": 2
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 7,
+              "cell_ids": [
+                6,
+                7
+              ],
+              "cell_start": 6,
+              "domain_id": "N8-L1-D3",
+              "domain_index": 3
+            }
+          ],
+          "level": 1,
+          "role": "pair_domain"
+        },
+        {
+          "domain_count": 2,
+          "domain_size": 4,
+          "domains": [
+            {
+              "cell_count": 4,
+              "cell_end": 3,
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cell_start": 0,
+              "domain_id": "N8-L2-D0",
+              "domain_index": 0
+            },
+            {
+              "cell_count": 4,
+              "cell_end": 7,
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cell_start": 4,
+              "domain_id": "N8-L2-D1",
+              "domain_index": 1
+            }
+          ],
+          "level": 2,
+          "role": "local_cluster"
+        },
+        {
+          "domain_count": 1,
+          "domain_size": 8,
+          "domains": [
+            {
+              "cell_count": 8,
+              "cell_end": 7,
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "cell_start": 0,
+              "domain_id": "N8-L3-D0",
+              "domain_index": 0
+            }
+          ],
+          "level": 3,
+          "role": "global_cell_domain"
+        }
+      ],
+      "profile_id": "dyadic-8",
+      "thermal_topology_metrics": {
+        "diagonal_error_max": 0.0,
+        "diagonal_zero": true,
+        "hierarchy_depth": 3,
+        "row_sum_error_max": 0.0,
+        "row_sum_match": true,
+        "shell_influence_monotonic": true,
+        "shell_influence_profile": [
+          {
+            "aggregate_shell_influence": 0.587248784476,
+            "distance": 1,
+            "normalized_pair_weight": 0.587248784476,
+            "shell_population": 1
+          },
+          {
+            "aggregate_shell_influence": 0.25561488006,
+            "distance": 2,
+            "normalized_pair_weight": 0.12780744003,
+            "shell_population": 2
+          },
+          {
+            "aggregate_shell_influence": 0.157136335464,
+            "distance": 3,
+            "normalized_pair_weight": 0.039284083866,
+            "shell_population": 4
+          }
+        ],
+        "symmetry_error_max": 0.0,
+        "symmetry_match": true
+      }
+    },
+    {
+      "cell_to_cluster": [
+        {
+          "cell_id": 0,
+          "cluster_id": "N16-C0",
+          "cluster_index": 0,
+          "cluster_offset": 0
+        },
+        {
+          "cell_id": 1,
+          "cluster_id": "N16-C0",
+          "cluster_index": 0,
+          "cluster_offset": 1
+        },
+        {
+          "cell_id": 2,
+          "cluster_id": "N16-C0",
+          "cluster_index": 0,
+          "cluster_offset": 2
+        },
+        {
+          "cell_id": 3,
+          "cluster_id": "N16-C0",
+          "cluster_index": 0,
+          "cluster_offset": 3
+        },
+        {
+          "cell_id": 4,
+          "cluster_id": "N16-C1",
+          "cluster_index": 1,
+          "cluster_offset": 0
+        },
+        {
+          "cell_id": 5,
+          "cluster_id": "N16-C1",
+          "cluster_index": 1,
+          "cluster_offset": 1
+        },
+        {
+          "cell_id": 6,
+          "cluster_id": "N16-C1",
+          "cluster_index": 1,
+          "cluster_offset": 2
+        },
+        {
+          "cell_id": 7,
+          "cluster_id": "N16-C1",
+          "cluster_index": 1,
+          "cluster_offset": 3
+        },
+        {
+          "cell_id": 8,
+          "cluster_id": "N16-C2",
+          "cluster_index": 2,
+          "cluster_offset": 0
+        },
+        {
+          "cell_id": 9,
+          "cluster_id": "N16-C2",
+          "cluster_index": 2,
+          "cluster_offset": 1
+        },
+        {
+          "cell_id": 10,
+          "cluster_id": "N16-C2",
+          "cluster_index": 2,
+          "cluster_offset": 2
+        },
+        {
+          "cell_id": 11,
+          "cluster_id": "N16-C2",
+          "cluster_index": 2,
+          "cluster_offset": 3
+        },
+        {
+          "cell_id": 12,
+          "cluster_id": "N16-C3",
+          "cluster_index": 3,
+          "cluster_offset": 0
+        },
+        {
+          "cell_id": 13,
+          "cluster_id": "N16-C3",
+          "cluster_index": 3,
+          "cluster_offset": 1
+        },
+        {
+          "cell_id": 14,
+          "cluster_id": "N16-C3",
+          "cluster_index": 3,
+          "cluster_offset": 2
+        },
+        {
+          "cell_id": 15,
+          "cluster_id": "N16-C3",
+          "cluster_index": 3,
+          "cluster_offset": 3
+        }
+      ],
+      "cells": 16,
+      "cluster_count": 4,
+      "cluster_size": 4,
+      "clusters": [
+        {
+          "cell_count": 4,
+          "cell_end": 3,
+          "cell_ids": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "cell_start": 0,
+          "cluster_id": "N16-C0",
+          "cluster_index": 0
+        },
+        {
+          "cell_count": 4,
+          "cell_end": 7,
+          "cell_ids": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "cell_start": 4,
+          "cluster_id": "N16-C1",
+          "cluster_index": 1
+        },
+        {
+          "cell_count": 4,
+          "cell_end": 11,
+          "cell_ids": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "cell_start": 8,
+          "cluster_id": "N16-C2",
+          "cluster_index": 2
+        },
+        {
+          "cell_count": 4,
+          "cell_end": 15,
+          "cell_ids": [
+            12,
+            13,
+            14,
+            15
+          ],
+          "cell_start": 12,
+          "cluster_id": "N16-C3",
+          "cluster_index": 3
+        }
+      ],
+      "coupling_topology_metrics": {
+        "diagonal_error_max": 0.0,
+        "diagonal_zero": true,
+        "hierarchy_depth": 4,
+        "row_sum_error_max": 0.0,
+        "row_sum_match": true,
+        "shell_influence_monotonic": true,
+        "shell_influence_profile": [
+          {
+            "aggregate_shell_influence": 0.406840716626,
+            "distance": 1,
+            "normalized_pair_weight": 0.406840716626,
+            "shell_population": 1
+          },
+          {
+            "aggregate_shell_influence": 0.250439837697,
+            "distance": 2,
+            "normalized_pair_weight": 0.125219918849,
+            "shell_population": 2
+          },
+          {
+            "aggregate_shell_influence": 0.188555642147,
+            "distance": 3,
+            "normalized_pair_weight": 0.047138910537,
+            "shell_population": 4
+          },
+          {
+            "aggregate_shell_influence": 0.15416380353,
+            "distance": 4,
+            "normalized_pair_weight": 0.019270475441,
+            "shell_population": 8
+          }
+        ],
+        "symmetry_error_max": 0.0,
+        "symmetry_match": true
+      },
+      "fixed_point_validation": {
+        "cells": 16,
+        "checks": {
+          "cells_power_of_two": true,
+          "coupling_shell_influence_monotonic": true,
+          "coupling_sum_exact": true,
+          "hierarchy_depth_exact": true,
+          "shell_populations_exact": true,
+          "thermal_shell_influence_monotonic": true,
+          "thermal_sum_exact": true
+        },
+        "coupling_sum_q30": 1073741824,
+        "status": "PASS",
+        "thermal_sum_q30": 1073741824
+      },
+      "hierarchy_depth": 4,
+      "levels": [
+        {
+          "domain_count": 16,
+          "domain_size": 1,
+          "domains": [
+            {
+              "cell_count": 1,
+              "cell_end": 0,
+              "cell_ids": [
+                0
+              ],
+              "cell_start": 0,
+              "domain_id": "N16-L0-D0",
+              "domain_index": 0
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 1,
+              "cell_ids": [
+                1
+              ],
+              "cell_start": 1,
+              "domain_id": "N16-L0-D1",
+              "domain_index": 1
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 2,
+              "cell_ids": [
+                2
+              ],
+              "cell_start": 2,
+              "domain_id": "N16-L0-D2",
+              "domain_index": 2
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 3,
+              "cell_ids": [
+                3
+              ],
+              "cell_start": 3,
+              "domain_id": "N16-L0-D3",
+              "domain_index": 3
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 4,
+              "cell_ids": [
+                4
+              ],
+              "cell_start": 4,
+              "domain_id": "N16-L0-D4",
+              "domain_index": 4
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 5,
+              "cell_ids": [
+                5
+              ],
+              "cell_start": 5,
+              "domain_id": "N16-L0-D5",
+              "domain_index": 5
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 6,
+              "cell_ids": [
+                6
+              ],
+              "cell_start": 6,
+              "domain_id": "N16-L0-D6",
+              "domain_index": 6
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 7,
+              "cell_ids": [
+                7
+              ],
+              "cell_start": 7,
+              "domain_id": "N16-L0-D7",
+              "domain_index": 7
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 8,
+              "cell_ids": [
+                8
+              ],
+              "cell_start": 8,
+              "domain_id": "N16-L0-D8",
+              "domain_index": 8
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 9,
+              "cell_ids": [
+                9
+              ],
+              "cell_start": 9,
+              "domain_id": "N16-L0-D9",
+              "domain_index": 9
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 10,
+              "cell_ids": [
+                10
+              ],
+              "cell_start": 10,
+              "domain_id": "N16-L0-D10",
+              "domain_index": 10
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 11,
+              "cell_ids": [
+                11
+              ],
+              "cell_start": 11,
+              "domain_id": "N16-L0-D11",
+              "domain_index": 11
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 12,
+              "cell_ids": [
+                12
+              ],
+              "cell_start": 12,
+              "domain_id": "N16-L0-D12",
+              "domain_index": 12
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 13,
+              "cell_ids": [
+                13
+              ],
+              "cell_start": 13,
+              "domain_id": "N16-L0-D13",
+              "domain_index": 13
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 14,
+              "cell_ids": [
+                14
+              ],
+              "cell_start": 14,
+              "domain_id": "N16-L0-D14",
+              "domain_index": 14
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 15,
+              "cell_ids": [
+                15
+              ],
+              "cell_start": 15,
+              "domain_id": "N16-L0-D15",
+              "domain_index": 15
+            }
+          ],
+          "level": 0,
+          "role": "individual_cell"
+        },
+        {
+          "domain_count": 8,
+          "domain_size": 2,
+          "domains": [
+            {
+              "cell_count": 2,
+              "cell_end": 1,
+              "cell_ids": [
+                0,
+                1
+              ],
+              "cell_start": 0,
+              "domain_id": "N16-L1-D0",
+              "domain_index": 0
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 3,
+              "cell_ids": [
+                2,
+                3
+              ],
+              "cell_start": 2,
+              "domain_id": "N16-L1-D1",
+              "domain_index": 1
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 5,
+              "cell_ids": [
+                4,
+                5
+              ],
+              "cell_start": 4,
+              "domain_id": "N16-L1-D2",
+              "domain_index": 2
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 7,
+              "cell_ids": [
+                6,
+                7
+              ],
+              "cell_start": 6,
+              "domain_id": "N16-L1-D3",
+              "domain_index": 3
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 9,
+              "cell_ids": [
+                8,
+                9
+              ],
+              "cell_start": 8,
+              "domain_id": "N16-L1-D4",
+              "domain_index": 4
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 11,
+              "cell_ids": [
+                10,
+                11
+              ],
+              "cell_start": 10,
+              "domain_id": "N16-L1-D5",
+              "domain_index": 5
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 13,
+              "cell_ids": [
+                12,
+                13
+              ],
+              "cell_start": 12,
+              "domain_id": "N16-L1-D6",
+              "domain_index": 6
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 15,
+              "cell_ids": [
+                14,
+                15
+              ],
+              "cell_start": 14,
+              "domain_id": "N16-L1-D7",
+              "domain_index": 7
+            }
+          ],
+          "level": 1,
+          "role": "pair_domain"
+        },
+        {
+          "domain_count": 4,
+          "domain_size": 4,
+          "domains": [
+            {
+              "cell_count": 4,
+              "cell_end": 3,
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cell_start": 0,
+              "domain_id": "N16-L2-D0",
+              "domain_index": 0
+            },
+            {
+              "cell_count": 4,
+              "cell_end": 7,
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cell_start": 4,
+              "domain_id": "N16-L2-D1",
+              "domain_index": 1
+            },
+            {
+              "cell_count": 4,
+              "cell_end": 11,
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cell_start": 8,
+              "domain_id": "N16-L2-D2",
+              "domain_index": 2
+            },
+            {
+              "cell_count": 4,
+              "cell_end": 15,
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cell_start": 12,
+              "domain_id": "N16-L2-D3",
+              "domain_index": 3
+            }
+          ],
+          "level": 2,
+          "role": "local_cluster"
+        },
+        {
+          "domain_count": 2,
+          "domain_size": 8,
+          "domains": [
+            {
+              "cell_count": 8,
+              "cell_end": 7,
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "cell_start": 0,
+              "domain_id": "N16-L3-D0",
+              "domain_index": 0
+            },
+            {
+              "cell_count": 8,
+              "cell_end": 15,
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15
+              ],
+              "cell_start": 8,
+              "domain_id": "N16-L3-D1",
+              "domain_index": 1
+            }
+          ],
+          "level": 3,
+          "role": "supercluster_level_1"
+        },
+        {
+          "domain_count": 1,
+          "domain_size": 16,
+          "domains": [
+            {
+              "cell_count": 16,
+              "cell_end": 15,
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15
+              ],
+              "cell_start": 0,
+              "domain_id": "N16-L4-D0",
+              "domain_index": 0
+            }
+          ],
+          "level": 4,
+          "role": "global_cell_domain"
+        }
+      ],
+      "profile_id": "dyadic-16",
+      "thermal_topology_metrics": {
+        "diagonal_error_max": 0.0,
+        "diagonal_zero": true,
+        "hierarchy_depth": 4,
+        "row_sum_error_max": 0.0,
+        "row_sum_match": true,
+        "shell_influence_monotonic": true,
+        "shell_influence_profile": [
+          {
+            "aggregate_shell_influence": 0.52845174329,
+            "distance": 1,
+            "normalized_pair_weight": 0.52845174329,
+            "shell_population": 1
+          },
+          {
+            "aggregate_shell_influence": 0.230021981398,
+            "distance": 2,
+            "normalized_pair_weight": 0.115010990699,
+            "shell_population": 2
+          },
+          {
+            "aggregate_shell_influence": 0.141403392574,
+            "distance": 3,
+            "normalized_pair_weight": 0.035350848144,
+            "shell_population": 4
+          },
+          {
+            "aggregate_shell_influence": 0.100122882738,
+            "distance": 4,
+            "normalized_pair_weight": 0.012515360342,
+            "shell_population": 8
+          }
+        ],
+        "symmetry_error_max": 0.0,
+        "symmetry_match": true
+      }
+    },
+    {
+      "cell_to_cluster": [
+        {
+          "cell_id": 0,
+          "cluster_id": "N32-C0",
+          "cluster_index": 0,
+          "cluster_offset": 0
+        },
+        {
+          "cell_id": 1,
+          "cluster_id": "N32-C0",
+          "cluster_index": 0,
+          "cluster_offset": 1
+        },
+        {
+          "cell_id": 2,
+          "cluster_id": "N32-C0",
+          "cluster_index": 0,
+          "cluster_offset": 2
+        },
+        {
+          "cell_id": 3,
+          "cluster_id": "N32-C0",
+          "cluster_index": 0,
+          "cluster_offset": 3
+        },
+        {
+          "cell_id": 4,
+          "cluster_id": "N32-C1",
+          "cluster_index": 1,
+          "cluster_offset": 0
+        },
+        {
+          "cell_id": 5,
+          "cluster_id": "N32-C1",
+          "cluster_index": 1,
+          "cluster_offset": 1
+        },
+        {
+          "cell_id": 6,
+          "cluster_id": "N32-C1",
+          "cluster_index": 1,
+          "cluster_offset": 2
+        },
+        {
+          "cell_id": 7,
+          "cluster_id": "N32-C1",
+          "cluster_index": 1,
+          "cluster_offset": 3
+        },
+        {
+          "cell_id": 8,
+          "cluster_id": "N32-C2",
+          "cluster_index": 2,
+          "cluster_offset": 0
+        },
+        {
+          "cell_id": 9,
+          "cluster_id": "N32-C2",
+          "cluster_index": 2,
+          "cluster_offset": 1
+        },
+        {
+          "cell_id": 10,
+          "cluster_id": "N32-C2",
+          "cluster_index": 2,
+          "cluster_offset": 2
+        },
+        {
+          "cell_id": 11,
+          "cluster_id": "N32-C2",
+          "cluster_index": 2,
+          "cluster_offset": 3
+        },
+        {
+          "cell_id": 12,
+          "cluster_id": "N32-C3",
+          "cluster_index": 3,
+          "cluster_offset": 0
+        },
+        {
+          "cell_id": 13,
+          "cluster_id": "N32-C3",
+          "cluster_index": 3,
+          "cluster_offset": 1
+        },
+        {
+          "cell_id": 14,
+          "cluster_id": "N32-C3",
+          "cluster_index": 3,
+          "cluster_offset": 2
+        },
+        {
+          "cell_id": 15,
+          "cluster_id": "N32-C3",
+          "cluster_index": 3,
+          "cluster_offset": 3
+        },
+        {
+          "cell_id": 16,
+          "cluster_id": "N32-C4",
+          "cluster_index": 4,
+          "cluster_offset": 0
+        },
+        {
+          "cell_id": 17,
+          "cluster_id": "N32-C4",
+          "cluster_index": 4,
+          "cluster_offset": 1
+        },
+        {
+          "cell_id": 18,
+          "cluster_id": "N32-C4",
+          "cluster_index": 4,
+          "cluster_offset": 2
+        },
+        {
+          "cell_id": 19,
+          "cluster_id": "N32-C4",
+          "cluster_index": 4,
+          "cluster_offset": 3
+        },
+        {
+          "cell_id": 20,
+          "cluster_id": "N32-C5",
+          "cluster_index": 5,
+          "cluster_offset": 0
+        },
+        {
+          "cell_id": 21,
+          "cluster_id": "N32-C5",
+          "cluster_index": 5,
+          "cluster_offset": 1
+        },
+        {
+          "cell_id": 22,
+          "cluster_id": "N32-C5",
+          "cluster_index": 5,
+          "cluster_offset": 2
+        },
+        {
+          "cell_id": 23,
+          "cluster_id": "N32-C5",
+          "cluster_index": 5,
+          "cluster_offset": 3
+        },
+        {
+          "cell_id": 24,
+          "cluster_id": "N32-C6",
+          "cluster_index": 6,
+          "cluster_offset": 0
+        },
+        {
+          "cell_id": 25,
+          "cluster_id": "N32-C6",
+          "cluster_index": 6,
+          "cluster_offset": 1
+        },
+        {
+          "cell_id": 26,
+          "cluster_id": "N32-C6",
+          "cluster_index": 6,
+          "cluster_offset": 2
+        },
+        {
+          "cell_id": 27,
+          "cluster_id": "N32-C6",
+          "cluster_index": 6,
+          "cluster_offset": 3
+        },
+        {
+          "cell_id": 28,
+          "cluster_id": "N32-C7",
+          "cluster_index": 7,
+          "cluster_offset": 0
+        },
+        {
+          "cell_id": 29,
+          "cluster_id": "N32-C7",
+          "cluster_index": 7,
+          "cluster_offset": 1
+        },
+        {
+          "cell_id": 30,
+          "cluster_id": "N32-C7",
+          "cluster_index": 7,
+          "cluster_offset": 2
+        },
+        {
+          "cell_id": 31,
+          "cluster_id": "N32-C7",
+          "cluster_index": 7,
+          "cluster_offset": 3
+        }
+      ],
+      "cells": 32,
+      "cluster_count": 8,
+      "cluster_size": 4,
+      "clusters": [
+        {
+          "cell_count": 4,
+          "cell_end": 3,
+          "cell_ids": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "cell_start": 0,
+          "cluster_id": "N32-C0",
+          "cluster_index": 0
+        },
+        {
+          "cell_count": 4,
+          "cell_end": 7,
+          "cell_ids": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "cell_start": 4,
+          "cluster_id": "N32-C1",
+          "cluster_index": 1
+        },
+        {
+          "cell_count": 4,
+          "cell_end": 11,
+          "cell_ids": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "cell_start": 8,
+          "cluster_id": "N32-C2",
+          "cluster_index": 2
+        },
+        {
+          "cell_count": 4,
+          "cell_end": 15,
+          "cell_ids": [
+            12,
+            13,
+            14,
+            15
+          ],
+          "cell_start": 12,
+          "cluster_id": "N32-C3",
+          "cluster_index": 3
+        },
+        {
+          "cell_count": 4,
+          "cell_end": 19,
+          "cell_ids": [
+            16,
+            17,
+            18,
+            19
+          ],
+          "cell_start": 16,
+          "cluster_id": "N32-C4",
+          "cluster_index": 4
+        },
+        {
+          "cell_count": 4,
+          "cell_end": 23,
+          "cell_ids": [
+            20,
+            21,
+            22,
+            23
+          ],
+          "cell_start": 20,
+          "cluster_id": "N32-C5",
+          "cluster_index": 5
+        },
+        {
+          "cell_count": 4,
+          "cell_end": 27,
+          "cell_ids": [
+            24,
+            25,
+            26,
+            27
+          ],
+          "cell_start": 24,
+          "cluster_id": "N32-C6",
+          "cluster_index": 6
+        },
+        {
+          "cell_count": 4,
+          "cell_end": 31,
+          "cell_ids": [
+            28,
+            29,
+            30,
+            31
+          ],
+          "cell_start": 28,
+          "cluster_id": "N32-C7",
+          "cluster_index": 7
+        }
+      ],
+      "coupling_topology_metrics": {
+        "diagonal_error_max": 0.0,
+        "diagonal_zero": true,
+        "hierarchy_depth": 5,
+        "row_sum_error_max": 0.0,
+        "row_sum_match": true,
+        "shell_influence_monotonic": true,
+        "shell_influence_profile": [
+          {
+            "aggregate_shell_influence": 0.359441262652,
+            "distance": 1,
+            "normalized_pair_weight": 0.359441262652,
+            "shell_population": 1
+          },
+          {
+            "aggregate_shell_influence": 0.22126205122,
+            "distance": 2,
+            "normalized_pair_weight": 0.11063102561,
+            "shell_population": 2
+          },
+          {
+            "aggregate_shell_influence": 0.166587746319,
+            "distance": 3,
+            "normalized_pair_weight": 0.04164693658,
+            "shell_population": 4
+          },
+          {
+            "aggregate_shell_influence": 0.136202769122,
+            "distance": 4,
+            "normalized_pair_weight": 0.01702534614,
+            "shell_population": 8
+          },
+          {
+            "aggregate_shell_influence": 0.116506170688,
+            "distance": 5,
+            "normalized_pair_weight": 0.007281635668,
+            "shell_population": 16
+          }
+        ],
+        "symmetry_error_max": 0.0,
+        "symmetry_match": true
+      },
+      "fixed_point_validation": {
+        "cells": 32,
+        "checks": {
+          "cells_power_of_two": true,
+          "coupling_shell_influence_monotonic": true,
+          "coupling_sum_exact": true,
+          "hierarchy_depth_exact": true,
+          "shell_populations_exact": true,
+          "thermal_shell_influence_monotonic": true,
+          "thermal_sum_exact": true
+        },
+        "coupling_sum_q30": 1073741824,
+        "status": "PASS",
+        "thermal_sum_q30": 1073741824
+      },
+      "hierarchy_depth": 5,
+      "levels": [
+        {
+          "domain_count": 32,
+          "domain_size": 1,
+          "domains": [
+            {
+              "cell_count": 1,
+              "cell_end": 0,
+              "cell_ids": [
+                0
+              ],
+              "cell_start": 0,
+              "domain_id": "N32-L0-D0",
+              "domain_index": 0
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 1,
+              "cell_ids": [
+                1
+              ],
+              "cell_start": 1,
+              "domain_id": "N32-L0-D1",
+              "domain_index": 1
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 2,
+              "cell_ids": [
+                2
+              ],
+              "cell_start": 2,
+              "domain_id": "N32-L0-D2",
+              "domain_index": 2
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 3,
+              "cell_ids": [
+                3
+              ],
+              "cell_start": 3,
+              "domain_id": "N32-L0-D3",
+              "domain_index": 3
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 4,
+              "cell_ids": [
+                4
+              ],
+              "cell_start": 4,
+              "domain_id": "N32-L0-D4",
+              "domain_index": 4
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 5,
+              "cell_ids": [
+                5
+              ],
+              "cell_start": 5,
+              "domain_id": "N32-L0-D5",
+              "domain_index": 5
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 6,
+              "cell_ids": [
+                6
+              ],
+              "cell_start": 6,
+              "domain_id": "N32-L0-D6",
+              "domain_index": 6
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 7,
+              "cell_ids": [
+                7
+              ],
+              "cell_start": 7,
+              "domain_id": "N32-L0-D7",
+              "domain_index": 7
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 8,
+              "cell_ids": [
+                8
+              ],
+              "cell_start": 8,
+              "domain_id": "N32-L0-D8",
+              "domain_index": 8
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 9,
+              "cell_ids": [
+                9
+              ],
+              "cell_start": 9,
+              "domain_id": "N32-L0-D9",
+              "domain_index": 9
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 10,
+              "cell_ids": [
+                10
+              ],
+              "cell_start": 10,
+              "domain_id": "N32-L0-D10",
+              "domain_index": 10
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 11,
+              "cell_ids": [
+                11
+              ],
+              "cell_start": 11,
+              "domain_id": "N32-L0-D11",
+              "domain_index": 11
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 12,
+              "cell_ids": [
+                12
+              ],
+              "cell_start": 12,
+              "domain_id": "N32-L0-D12",
+              "domain_index": 12
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 13,
+              "cell_ids": [
+                13
+              ],
+              "cell_start": 13,
+              "domain_id": "N32-L0-D13",
+              "domain_index": 13
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 14,
+              "cell_ids": [
+                14
+              ],
+              "cell_start": 14,
+              "domain_id": "N32-L0-D14",
+              "domain_index": 14
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 15,
+              "cell_ids": [
+                15
+              ],
+              "cell_start": 15,
+              "domain_id": "N32-L0-D15",
+              "domain_index": 15
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 16,
+              "cell_ids": [
+                16
+              ],
+              "cell_start": 16,
+              "domain_id": "N32-L0-D16",
+              "domain_index": 16
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 17,
+              "cell_ids": [
+                17
+              ],
+              "cell_start": 17,
+              "domain_id": "N32-L0-D17",
+              "domain_index": 17
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 18,
+              "cell_ids": [
+                18
+              ],
+              "cell_start": 18,
+              "domain_id": "N32-L0-D18",
+              "domain_index": 18
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 19,
+              "cell_ids": [
+                19
+              ],
+              "cell_start": 19,
+              "domain_id": "N32-L0-D19",
+              "domain_index": 19
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 20,
+              "cell_ids": [
+                20
+              ],
+              "cell_start": 20,
+              "domain_id": "N32-L0-D20",
+              "domain_index": 20
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 21,
+              "cell_ids": [
+                21
+              ],
+              "cell_start": 21,
+              "domain_id": "N32-L0-D21",
+              "domain_index": 21
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 22,
+              "cell_ids": [
+                22
+              ],
+              "cell_start": 22,
+              "domain_id": "N32-L0-D22",
+              "domain_index": 22
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 23,
+              "cell_ids": [
+                23
+              ],
+              "cell_start": 23,
+              "domain_id": "N32-L0-D23",
+              "domain_index": 23
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 24,
+              "cell_ids": [
+                24
+              ],
+              "cell_start": 24,
+              "domain_id": "N32-L0-D24",
+              "domain_index": 24
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 25,
+              "cell_ids": [
+                25
+              ],
+              "cell_start": 25,
+              "domain_id": "N32-L0-D25",
+              "domain_index": 25
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 26,
+              "cell_ids": [
+                26
+              ],
+              "cell_start": 26,
+              "domain_id": "N32-L0-D26",
+              "domain_index": 26
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 27,
+              "cell_ids": [
+                27
+              ],
+              "cell_start": 27,
+              "domain_id": "N32-L0-D27",
+              "domain_index": 27
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 28,
+              "cell_ids": [
+                28
+              ],
+              "cell_start": 28,
+              "domain_id": "N32-L0-D28",
+              "domain_index": 28
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 29,
+              "cell_ids": [
+                29
+              ],
+              "cell_start": 29,
+              "domain_id": "N32-L0-D29",
+              "domain_index": 29
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 30,
+              "cell_ids": [
+                30
+              ],
+              "cell_start": 30,
+              "domain_id": "N32-L0-D30",
+              "domain_index": 30
+            },
+            {
+              "cell_count": 1,
+              "cell_end": 31,
+              "cell_ids": [
+                31
+              ],
+              "cell_start": 31,
+              "domain_id": "N32-L0-D31",
+              "domain_index": 31
+            }
+          ],
+          "level": 0,
+          "role": "individual_cell"
+        },
+        {
+          "domain_count": 16,
+          "domain_size": 2,
+          "domains": [
+            {
+              "cell_count": 2,
+              "cell_end": 1,
+              "cell_ids": [
+                0,
+                1
+              ],
+              "cell_start": 0,
+              "domain_id": "N32-L1-D0",
+              "domain_index": 0
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 3,
+              "cell_ids": [
+                2,
+                3
+              ],
+              "cell_start": 2,
+              "domain_id": "N32-L1-D1",
+              "domain_index": 1
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 5,
+              "cell_ids": [
+                4,
+                5
+              ],
+              "cell_start": 4,
+              "domain_id": "N32-L1-D2",
+              "domain_index": 2
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 7,
+              "cell_ids": [
+                6,
+                7
+              ],
+              "cell_start": 6,
+              "domain_id": "N32-L1-D3",
+              "domain_index": 3
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 9,
+              "cell_ids": [
+                8,
+                9
+              ],
+              "cell_start": 8,
+              "domain_id": "N32-L1-D4",
+              "domain_index": 4
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 11,
+              "cell_ids": [
+                10,
+                11
+              ],
+              "cell_start": 10,
+              "domain_id": "N32-L1-D5",
+              "domain_index": 5
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 13,
+              "cell_ids": [
+                12,
+                13
+              ],
+              "cell_start": 12,
+              "domain_id": "N32-L1-D6",
+              "domain_index": 6
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 15,
+              "cell_ids": [
+                14,
+                15
+              ],
+              "cell_start": 14,
+              "domain_id": "N32-L1-D7",
+              "domain_index": 7
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 17,
+              "cell_ids": [
+                16,
+                17
+              ],
+              "cell_start": 16,
+              "domain_id": "N32-L1-D8",
+              "domain_index": 8
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 19,
+              "cell_ids": [
+                18,
+                19
+              ],
+              "cell_start": 18,
+              "domain_id": "N32-L1-D9",
+              "domain_index": 9
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 21,
+              "cell_ids": [
+                20,
+                21
+              ],
+              "cell_start": 20,
+              "domain_id": "N32-L1-D10",
+              "domain_index": 10
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 23,
+              "cell_ids": [
+                22,
+                23
+              ],
+              "cell_start": 22,
+              "domain_id": "N32-L1-D11",
+              "domain_index": 11
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 25,
+              "cell_ids": [
+                24,
+                25
+              ],
+              "cell_start": 24,
+              "domain_id": "N32-L1-D12",
+              "domain_index": 12
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 27,
+              "cell_ids": [
+                26,
+                27
+              ],
+              "cell_start": 26,
+              "domain_id": "N32-L1-D13",
+              "domain_index": 13
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 29,
+              "cell_ids": [
+                28,
+                29
+              ],
+              "cell_start": 28,
+              "domain_id": "N32-L1-D14",
+              "domain_index": 14
+            },
+            {
+              "cell_count": 2,
+              "cell_end": 31,
+              "cell_ids": [
+                30,
+                31
+              ],
+              "cell_start": 30,
+              "domain_id": "N32-L1-D15",
+              "domain_index": 15
+            }
+          ],
+          "level": 1,
+          "role": "pair_domain"
+        },
+        {
+          "domain_count": 8,
+          "domain_size": 4,
+          "domains": [
+            {
+              "cell_count": 4,
+              "cell_end": 3,
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cell_start": 0,
+              "domain_id": "N32-L2-D0",
+              "domain_index": 0
+            },
+            {
+              "cell_count": 4,
+              "cell_end": 7,
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cell_start": 4,
+              "domain_id": "N32-L2-D1",
+              "domain_index": 1
+            },
+            {
+              "cell_count": 4,
+              "cell_end": 11,
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cell_start": 8,
+              "domain_id": "N32-L2-D2",
+              "domain_index": 2
+            },
+            {
+              "cell_count": 4,
+              "cell_end": 15,
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cell_start": 12,
+              "domain_id": "N32-L2-D3",
+              "domain_index": 3
+            },
+            {
+              "cell_count": 4,
+              "cell_end": 19,
+              "cell_ids": [
+                16,
+                17,
+                18,
+                19
+              ],
+              "cell_start": 16,
+              "domain_id": "N32-L2-D4",
+              "domain_index": 4
+            },
+            {
+              "cell_count": 4,
+              "cell_end": 23,
+              "cell_ids": [
+                20,
+                21,
+                22,
+                23
+              ],
+              "cell_start": 20,
+              "domain_id": "N32-L2-D5",
+              "domain_index": 5
+            },
+            {
+              "cell_count": 4,
+              "cell_end": 27,
+              "cell_ids": [
+                24,
+                25,
+                26,
+                27
+              ],
+              "cell_start": 24,
+              "domain_id": "N32-L2-D6",
+              "domain_index": 6
+            },
+            {
+              "cell_count": 4,
+              "cell_end": 31,
+              "cell_ids": [
+                28,
+                29,
+                30,
+                31
+              ],
+              "cell_start": 28,
+              "domain_id": "N32-L2-D7",
+              "domain_index": 7
+            }
+          ],
+          "level": 2,
+          "role": "local_cluster"
+        },
+        {
+          "domain_count": 4,
+          "domain_size": 8,
+          "domains": [
+            {
+              "cell_count": 8,
+              "cell_end": 7,
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "cell_start": 0,
+              "domain_id": "N32-L3-D0",
+              "domain_index": 0
+            },
+            {
+              "cell_count": 8,
+              "cell_end": 15,
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15
+              ],
+              "cell_start": 8,
+              "domain_id": "N32-L3-D1",
+              "domain_index": 1
+            },
+            {
+              "cell_count": 8,
+              "cell_end": 23,
+              "cell_ids": [
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23
+              ],
+              "cell_start": 16,
+              "domain_id": "N32-L3-D2",
+              "domain_index": 2
+            },
+            {
+              "cell_count": 8,
+              "cell_end": 31,
+              "cell_ids": [
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31
+              ],
+              "cell_start": 24,
+              "domain_id": "N32-L3-D3",
+              "domain_index": 3
+            }
+          ],
+          "level": 3,
+          "role": "supercluster_level_1"
+        },
+        {
+          "domain_count": 2,
+          "domain_size": 16,
+          "domains": [
+            {
+              "cell_count": 16,
+              "cell_end": 15,
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15
+              ],
+              "cell_start": 0,
+              "domain_id": "N32-L4-D0",
+              "domain_index": 0
+            },
+            {
+              "cell_count": 16,
+              "cell_end": 31,
+              "cell_ids": [
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31
+              ],
+              "cell_start": 16,
+              "domain_id": "N32-L4-D1",
+              "domain_index": 1
+            }
+          ],
+          "level": 4,
+          "role": "supercluster_level_2"
+        },
+        {
+          "domain_count": 1,
+          "domain_size": 32,
+          "domains": [
+            {
+              "cell_count": 32,
+              "cell_end": 31,
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31
+              ],
+              "cell_start": 0,
+              "domain_id": "N32-L5-D0",
+              "domain_index": 0
+            }
+          ],
+          "level": 5,
+          "role": "global_cell_domain"
+        }
+      ],
+      "profile_id": "dyadic-32",
+      "thermal_topology_metrics": {
+        "diagonal_error_max": 0.0,
+        "diagonal_zero": true,
+        "hierarchy_depth": 5,
+        "row_sum_error_max": 0.0,
+        "row_sum_match": true,
+        "shell_influence_monotonic": true,
+        "shell_influence_profile": [
+          {
+            "aggregate_shell_influence": 0.490851435891,
+            "distance": 1,
+            "normalized_pair_weight": 0.490851435891,
+            "shell_population": 1
+          },
+          {
+            "aggregate_shell_influence": 0.213655497005,
+            "distance": 2,
+            "normalized_pair_weight": 0.106827748502,
+            "shell_population": 2
+          },
+          {
+            "aggregate_shell_influence": 0.131342282746,
+            "distance": 3,
+            "normalized_pair_weight": 0.032835570687,
+            "shell_population": 4
+          },
+          {
+            "aggregate_shell_influence": 0.092998956634,
+            "distance": 4,
+            "normalized_pair_weight": 0.011624869579,
+            "shell_population": 8
+          },
+          {
+            "aggregate_shell_influence": 0.071151827724,
+            "distance": 5,
+            "normalized_pair_weight": 0.004446989233,
+            "shell_population": 16
+          }
+        ],
+        "symmetry_error_max": 0.0,
+        "symmetry_match": true
+      }
+    }
+  ],
+  "schema": "frp.m28.hierarchy_topology_manifest.v3.0.0",
+  "source_commit": "23e464206f85cd9473101d9221027ee33d9dd094",
+  "source_records": [
+    {
+      "bytes": 155713,
+      "path": "frp_prototype_v1_7_0.py",
+      "raw_sha256": "9de085915aa0fb8a73705c0927cc875b106480ef8a75a76f599be04440c0f099",
+      "role": "semantic_authority"
+    },
+    {
+      "bytes": 192916,
+      "path": "artifacts/m27/checkpoints/m27-long-run-checkpoint-evidence.json",
+      "raw_sha256": "13221f5e089e7e85b33788b7d9429bc0518f67bac2c2f06af151b03410825f3f",
+      "role": "long_run_evidence"
+    },
+    {
+      "bytes": 2127,
+      "path": "artifacts/m27/contracts/m27-long-run-telemetry-contract.json",
+      "raw_sha256": "ea1e90ec83916dd9cf8a44c46ac4e0c9347738c6d20b84f504650479d3b18c82",
+      "role": "long_run_contract"
+    },
+    {
+      "bytes": 33248,
+      "path": "docs/m14_physical_implementation_correlation_production_qualification.md",
+      "raw_sha256": "8f493c04fdc21ac180035171fd6f30dccbe3a486be73e50d511cf59d3d6dd32c",
+      "role": "prior_hierarchy_evidence"
+    }
+  ],
+  "status": "PASS",
+  "topology_set_digest": "08ccbd57b7ccc1c6d3ef266bb585f27a078c2e351a4d4bfae2bdc39a2b09de61",
+  "version": "3.0.0"
+}

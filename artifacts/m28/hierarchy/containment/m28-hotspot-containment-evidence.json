@@ -1,0 +1,4754 @@
+{
+  "evidence_digest": "e5535421f79c80ce25f40d2afad81c70ec470c007f6698d404204a180b5d518d",
+  "kind": "hotspot_containment_evidence",
+  "limits": {
+    "cross_cluster_thermal_propagation_ratio_lt": 0.75,
+    "remote_thermal_propagation_ratio_lt": 0.7,
+    "source": "docs/m14_physical_implementation_correlation_production_qualification.md"
+  },
+  "milestone": "M28",
+  "profile_count": 3,
+  "profile_set_digest": "6ef3f945f3a4ec44e2da83cd54d0b120a31e3161e51e74e1c6d057762fbd04f8",
+  "profiles": [
+    {
+      "checks": {
+        "active_cluster_hotter_than_inactive_mean": true,
+        "actual_direct_events_zero": true,
+        "balanced_ternary_state_domain": true,
+        "cross_cluster_thermal_propagation_bounded": true,
+        "global_C_minus_P_positive": true,
+        "neutral_routed_events_cover_prevention": true,
+        "prevented_direct_events_cover_requests": true,
+        "recovery_completed": true,
+        "remote_cluster_cooler_than_active_cluster": true,
+        "requested_direct_events_present": true,
+        "scheduler_counts_valid": true,
+        "switch_load_within_transition_fraction": true
+      },
+      "configuration": {
+        "active_cluster_cells": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "active_cluster_id": "N16-C0",
+        "adjacent_cluster_cells": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "adjacent_cluster_id": "N16-C1",
+        "cells": 16,
+        "cluster_size": 4,
+        "hostile_requests_per_stress_tick": 2,
+        "recovery_ticks": 96,
+        "remote_cluster_cells": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "remote_cluster_id": "N16-C3",
+        "stress_ticks": 72,
+        "total_ticks": 168
+      },
+      "containment_markers": {
+        "active_cluster_coherence_min_q30": 248548442,
+        "active_cluster_heat_peak_q16": 48036,
+        "adjacent_cluster_heat_peak_q16": 7596,
+        "cross_cluster_thermal_propagation_bounded": true,
+        "cross_cluster_thermal_propagation_ratio_q30": 145564573,
+        "inactive_cluster_heat_mean_peak_q16": 6512,
+        "localized_hotspot_containment_pass": true,
+        "remote_cluster_coherence_min_q30": 246527338,
+        "remote_cluster_heat_peak_q16": 5970,
+        "remote_thermal_propagation_ratio_q30": 133453613
+      },
+      "limits": {
+        "cross_cluster_thermal_propagation_ratio_lt": 0.75,
+        "limit_provenance": "docs/m14_physical_implementation_correlation_production_qualification.md",
+        "recovery_heat_limit": 0.13,
+        "recovery_lag_limit": 0.01,
+        "recovery_margin_min": 0.2,
+        "remote_thermal_propagation_ratio_lt": 0.7
+      },
+      "profile_id": "hotspot-free",
+      "recovery": {
+        "completed": true,
+        "completion_tick": 88,
+        "duration_ticks": 16,
+        "start_tick": 72
+      },
+      "scheduler": "free",
+      "scheduler_class": "service",
+      "snapshot_digest": "8883c7428f0a19e08ff5677679daf5d817310370382ebd68a32a99558fe4171e",
+      "snapshots": [
+        {
+          "active_cluster_heat_mean_q16": 30851,
+          "adjacent_cluster_heat_mean_q16": 4960,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": -78815,
+              "heat_mean_q16": 30851,
+              "heat_peak_q16": 31415,
+              "phase_coherence_q30": 287902543,
+              "pressure_q16": 96387,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 1,
+                "0": 2,
+                "1": 1
+              },
+              "switch_changes_observed": 4,
+              "switch_load_q16": 65536
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 36195,
+              "heat_mean_q16": 4960,
+              "heat_peak_q16": 4960,
+              "phase_coherence_q30": 674286900,
+              "pressure_q16": 4960,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 28202,
+              "heat_mean_q16": 4563,
+              "heat_peak_q16": 4563,
+              "phase_coherence_q30": 536813635,
+              "pressure_q16": 4563,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 42059,
+              "heat_mean_q16": 4563,
+              "heat_peak_q16": 4563,
+              "phase_coherence_q30": 763853496,
+              "pressure_q16": 4563,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 4695,
+          "phase": "stress",
+          "remote_cluster_heat_mean_q16": 4563,
+          "scheduler_state": "free",
+          "tick": 11
+        },
+        {
+          "active_cluster_heat_mean_q16": 41687,
+          "adjacent_cluster_heat_mean_q16": 6220,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": -82058,
+              "heat_mean_q16": 41687,
+              "heat_peak_q16": 41855,
+              "phase_coherence_q30": 412301296,
+              "pressure_q16": 107223,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 1,
+                "0": 2,
+                "1": 1
+              },
+              "switch_changes_observed": 4,
+              "switch_load_q16": 65536
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 38680,
+              "heat_mean_q16": 6220,
+              "heat_peak_q16": 6220,
+              "phase_coherence_q30": 735646311,
+              "pressure_q16": 6220,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 58245,
+              "heat_mean_q16": 5259,
+              "heat_peak_q16": 5259,
+              "phase_coherence_q30": 1040453572,
+              "pressure_q16": 5259,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 56587,
+              "heat_mean_q16": 5259,
+              "heat_peak_q16": 5259,
+              "phase_coherence_q30": 1013286781,
+              "pressure_q16": 5259,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 5580,
+          "phase": "stress",
+          "remote_cluster_heat_mean_q16": 5259,
+          "scheduler_state": "free",
+          "tick": 23
+        },
+        {
+          "active_cluster_heat_mean_q16": 45730,
+          "adjacent_cluster_heat_mean_q16": 6956,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": -81729,
+              "heat_mean_q16": 45730,
+              "heat_peak_q16": 45780,
+              "phase_coherence_q30": 483923348,
+              "pressure_q16": 111266,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 1,
+                "0": 2,
+                "1": 1
+              },
+              "switch_changes_observed": 4,
+              "switch_load_q16": 65536
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 44369,
+              "heat_mean_q16": 6956,
+              "heat_peak_q16": 6956,
+              "phase_coherence_q30": 840910229,
+              "pressure_q16": 6956,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 59873,
+              "heat_mean_q16": 5640,
+              "heat_peak_q16": 5640,
+              "phase_coherence_q30": 1073375779,
+              "pressure_q16": 5640,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 59522,
+              "heat_mean_q16": 5640,
+              "heat_peak_q16": 5640,
+              "phase_coherence_q30": 1067622098,
+              "pressure_q16": 5640,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 6079,
+          "phase": "stress",
+          "remote_cluster_heat_mean_q16": 5640,
+          "scheduler_state": "free",
+          "tick": 35
+        },
+        {
+          "active_cluster_heat_mean_q16": 47246,
+          "adjacent_cluster_heat_mean_q16": 7332,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": -81008,
+              "heat_mean_q16": 47246,
+              "heat_peak_q16": 47261,
+              "phase_coherence_q30": 520587812,
+              "pressure_q16": 112782,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 1,
+                "0": 2,
+                "1": 1
+              },
+              "switch_changes_observed": 4,
+              "switch_load_q16": 65536
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 56153,
+              "heat_mean_q16": 7332,
+              "heat_peak_q16": 7332,
+              "phase_coherence_q30": 1040139553,
+              "pressure_q16": 7332,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 59702,
+              "heat_mean_q16": 5832,
+              "heat_peak_q16": 5832,
+              "phase_coherence_q30": 1073723993,
+              "pressure_q16": 5832,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 59660,
+              "heat_mean_q16": 5832,
+              "heat_peak_q16": 5832,
+              "phase_coherence_q30": 1073033237,
+              "pressure_q16": 5832,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 6332,
+          "phase": "stress",
+          "remote_cluster_heat_mean_q16": 5832,
+          "scheduler_state": "free",
+          "tick": 47
+        },
+        {
+          "active_cluster_heat_mean_q16": 47819,
+          "adjacent_cluster_heat_mean_q16": 7510,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": -61124,
+              "heat_mean_q16": 47819,
+              "heat_peak_q16": 47823,
+              "phase_coherence_q30": 855742971,
+              "pressure_q16": 113355,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 1,
+                "0": 2,
+                "1": 1
+              },
+              "switch_changes_observed": 4,
+              "switch_load_q16": 65536
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 57949,
+              "heat_mean_q16": 7510,
+              "heat_peak_q16": 7510,
+              "phase_coherence_q30": 1072477036,
+              "pressure_q16": 7510,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 59611,
+              "heat_mean_q16": 5925,
+              "heat_peak_q16": 5925,
+              "phase_coherence_q30": 1073740693,
+              "pressure_q16": 5925,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 59607,
+              "heat_mean_q16": 5925,
+              "heat_peak_q16": 5925,
+              "phase_coherence_q30": 1073674263,
+              "pressure_q16": 5925,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 6453,
+          "phase": "stress",
+          "remote_cluster_heat_mean_q16": 5925,
+          "scheduler_state": "free",
+          "tick": 59
+        },
+        {
+          "active_cluster_heat_mean_q16": 48036,
+          "adjacent_cluster_heat_mean_q16": 7591,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": -53888,
+              "heat_mean_q16": 48036,
+              "heat_peak_q16": 48037,
+              "phase_coherence_q30": 977856337,
+              "pressure_q16": 113572,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 1,
+                "0": 2,
+                "1": 1
+              },
+              "switch_changes_observed": 4,
+              "switch_load_q16": 65536
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 57943,
+              "heat_mean_q16": 7591,
+              "heat_peak_q16": 7591,
+              "phase_coherence_q30": 1073710414,
+              "pressure_q16": 7591,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 59568,
+              "heat_mean_q16": 5968,
+              "heat_peak_q16": 5968,
+              "phase_coherence_q30": 1073741783,
+              "pressure_q16": 5968,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 59568,
+              "heat_mean_q16": 5968,
+              "heat_peak_q16": 5968,
+              "phase_coherence_q30": 1073738823,
+              "pressure_q16": 5968,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 6509,
+          "phase": "stress",
+          "remote_cluster_heat_mean_q16": 5968,
+          "scheduler_state": "free",
+          "tick": 71
+        },
+        {
+          "active_cluster_heat_mean_q16": 21743,
+          "adjacent_cluster_heat_mean_q16": 7010,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 37732,
+              "heat_mean_q16": 21743,
+              "heat_peak_q16": 22314,
+              "phase_coherence_q30": 974434878,
+              "pressure_q16": 21743,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 58526,
+              "heat_mean_q16": 7010,
+              "heat_peak_q16": 7010,
+              "phase_coherence_q30": 1073740060,
+              "pressure_q16": 7010,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 59773,
+              "heat_mean_q16": 5763,
+              "heat_peak_q16": 5763,
+              "phase_coherence_q30": 1073741823,
+              "pressure_q16": 5763,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 59773,
+              "heat_mean_q16": 5763,
+              "heat_peak_q16": 5763,
+              "phase_coherence_q30": 1073741713,
+              "pressure_q16": 5763,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 6178,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 5763,
+          "scheduler_state": "free",
+          "tick": 83
+        },
+        {
+          "active_cluster_heat_mean_q16": 11202,
+          "adjacent_cluster_heat_mean_q16": 6115,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 53778,
+              "heat_mean_q16": 11202,
+              "heat_peak_q16": 11372,
+              "phase_coherence_q30": 1064627704,
+              "pressure_q16": 11202,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 59421,
+              "heat_mean_q16": 6115,
+              "heat_peak_q16": 6115,
+              "phase_coherence_q30": 1073741268,
+              "pressure_q16": 6115,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60111,
+              "heat_mean_q16": 5425,
+              "heat_peak_q16": 5425,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 5425,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60111,
+              "heat_mean_q16": 5425,
+              "heat_peak_q16": 5425,
+              "phase_coherence_q30": 1073741818,
+              "pressure_q16": 5425,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 5655,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 5425,
+          "scheduler_state": "free",
+          "tick": 95
+        },
+        {
+          "active_cluster_heat_mean_q16": 7281,
+          "adjacent_cluster_heat_mean_q16": 5525,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 58249,
+              "heat_mean_q16": 7281,
+              "heat_peak_q16": 7332,
+              "phase_coherence_q30": 1073642957,
+              "pressure_q16": 7281,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 60011,
+              "heat_mean_q16": 5525,
+              "heat_peak_q16": 5525,
+              "phase_coherence_q30": 1073741649,
+              "pressure_q16": 5525,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60346,
+              "heat_mean_q16": 5190,
+              "heat_peak_q16": 5190,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 5190,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60346,
+              "heat_mean_q16": 5190,
+              "heat_peak_q16": 5190,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 5190,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 5302,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 5190,
+          "scheduler_state": "free",
+          "tick": 107
+        },
+        {
+          "active_cluster_heat_mean_q16": 5816,
+          "adjacent_cluster_heat_mean_q16": 5210,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 59720,
+              "heat_mean_q16": 5816,
+              "heat_peak_q16": 5831,
+              "phase_coherence_q30": 1073740325,
+              "pressure_q16": 5816,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 60326,
+              "heat_mean_q16": 5210,
+              "heat_peak_q16": 5210,
+              "phase_coherence_q30": 1073741808,
+              "pressure_q16": 5210,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60478,
+              "heat_mean_q16": 5058,
+              "heat_peak_q16": 5058,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 5058,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60478,
+              "heat_mean_q16": 5058,
+              "heat_peak_q16": 5058,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 5058,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 5108,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 5058,
+          "scheduler_state": "free",
+          "tick": 119
+        },
+        {
+          "active_cluster_heat_mean_q16": 5265,
+          "adjacent_cluster_heat_mean_q16": 5056,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 60271,
+              "heat_mean_q16": 5265,
+              "heat_peak_q16": 5269,
+              "phase_coherence_q30": 1073741790,
+              "pressure_q16": 5265,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 60480,
+              "heat_mean_q16": 5056,
+              "heat_peak_q16": 5056,
+              "phase_coherence_q30": 1073741823,
+              "pressure_q16": 5056,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60546,
+              "heat_mean_q16": 4990,
+              "heat_peak_q16": 4990,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4990,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60546,
+              "heat_mean_q16": 4990,
+              "heat_peak_q16": 4990,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4990,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 5012,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 4990,
+          "scheduler_state": "free",
+          "tick": 131
+        },
+        {
+          "active_cluster_heat_mean_q16": 5057,
+          "adjacent_cluster_heat_mean_q16": 4985,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 60479,
+              "heat_mean_q16": 5057,
+              "heat_peak_q16": 5058,
+              "phase_coherence_q30": 1073741823,
+              "pressure_q16": 5057,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 60551,
+              "heat_mean_q16": 4985,
+              "heat_peak_q16": 4985,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4985,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60579,
+              "heat_mean_q16": 4957,
+              "heat_peak_q16": 4957,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4957,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60579,
+              "heat_mean_q16": 4957,
+              "heat_peak_q16": 4957,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4957,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 4966,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 4957,
+          "scheduler_state": "free",
+          "tick": 143
+        },
+        {
+          "active_cluster_heat_mean_q16": 4978,
+          "adjacent_cluster_heat_mean_q16": 4953,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 60558,
+              "heat_mean_q16": 4978,
+              "heat_peak_q16": 4978,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4978,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 60583,
+              "heat_mean_q16": 4953,
+              "heat_peak_q16": 4953,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4953,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60595,
+              "heat_mean_q16": 4941,
+              "heat_peak_q16": 4941,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4941,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60595,
+              "heat_mean_q16": 4941,
+              "heat_peak_q16": 4941,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4941,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 4945,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 4941,
+          "scheduler_state": "free",
+          "tick": 155
+        },
+        {
+          "active_cluster_heat_mean_q16": 4947,
+          "adjacent_cluster_heat_mean_q16": 4939,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 60589,
+              "heat_mean_q16": 4947,
+              "heat_peak_q16": 4947,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4947,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 60597,
+              "heat_mean_q16": 4939,
+              "heat_peak_q16": 4939,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4939,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60602,
+              "heat_mean_q16": 4934,
+              "heat_peak_q16": 4934,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4934,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60602,
+              "heat_mean_q16": 4934,
+              "heat_peak_q16": 4934,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4934,
+              "scheduler_state_observed": "free",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 4936,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 4934,
+          "scheduler_state": "free",
+          "tick": 167
+        }
+      ],
+      "status": "PASS",
+      "summary": {
+        "C_minus_P_final": 1.244637,
+        "C_minus_P_min": 0.564896,
+        "actual_direct_events": 0,
+        "balanced_ternary_state_domain": true,
+        "boundary_detected": false,
+        "cells": 16,
+        "cluster_coherence_mean_final": 1.0,
+        "cluster_coherence_min": 0.229596,
+        "coherence_compression_final": 1.0,
+        "coherence_compression_min": 0.951859,
+        "coherence_dispersion_across_clusters_peak": 0.237067,
+        "coupling_path": "hierarchical",
+        "effective_coherence_final": 0.999976,
+        "effective_coherence_min": 0.182225,
+        "effective_coupling_min": 0.077635,
+        "first_C_minus_P_crossing": null,
+        "fractal_alpha": 0.7,
+        "frequency_lag_peak": 0.1008,
+        "gamma_drift_peak": 0.034196,
+        "gamma_nominal": 0.9424777960769379,
+        "gamma_nominal_q16": 61766,
+        "generated_power_peak": 0.055614,
+        "global_phase_coherence_final": 0.999976,
+        "heat_final": 0.075355,
+        "heat_peak": 0.257733,
+        "hierarchy_depth": 4,
+        "local_heat_peak": 0.733107,
+        "match": 1.0,
+        "match_q16": 65536,
+        "mean_frequency_lag_final": 0.0,
+        "mean_frequency_lag_peak": 0.04725,
+        "milestone": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package",
+        "neutral_routed_events": 144,
+        "neutralized_conflicts": 144,
+        "pair_domain_coherence_mean_final": 1.0,
+        "pair_domain_coherence_min": 0.002411,
+        "pending_neutral_routes_final": 0,
+        "prevented_direct_events": 144,
+        "raw_phase_coherence_final": 0.999976,
+        "raw_phase_coherence_min": 0.182225,
+        "requested_direct_events": 144,
+        "scheduler": "free",
+        "scheduler_counts": {
+          "free": 168
+        },
+        "scheduler_counts_valid": true,
+        "steps": 168,
+        "supercluster_coherence_mean_final": 0.999999,
+        "supercluster_coherence_min": 0.041084,
+        "switch_load_peak": 0.25,
+        "thermal_beta": 1.2,
+        "thermal_overload_peak": 0.513107,
+        "ticks_recorded": 168,
+        "transition_fraction": 0.25,
+        "transition_fraction_q16": 16384,
+        "version": "1.7.0"
+      }
+    },
+    {
+      "checks": {
+        "active_cluster_hotter_than_inactive_mean": true,
+        "actual_direct_events_zero": true,
+        "balanced_ternary_state_domain": true,
+        "cross_cluster_thermal_propagation_bounded": true,
+        "global_C_minus_P_positive": true,
+        "neutral_routed_events_cover_prevention": true,
+        "prevented_direct_events_cover_requests": true,
+        "recovery_completed": true,
+        "remote_cluster_cooler_than_active_cluster": true,
+        "requested_direct_events_present": true,
+        "scheduler_counts_valid": true,
+        "switch_load_within_transition_fraction": true
+      },
+      "configuration": {
+        "active_cluster_cells": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "active_cluster_id": "N16-C0",
+        "adjacent_cluster_cells": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "adjacent_cluster_id": "N16-C1",
+        "cells": 16,
+        "cluster_size": 4,
+        "hostile_requests_per_stress_tick": 2,
+        "recovery_ticks": 96,
+        "remote_cluster_cells": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "remote_cluster_id": "N16-C3",
+        "stress_ticks": 72,
+        "total_ticks": 168
+      },
+      "containment_markers": {
+        "active_cluster_coherence_min_q30": 248548442,
+        "active_cluster_heat_peak_q16": 48036,
+        "adjacent_cluster_heat_peak_q16": 7596,
+        "cross_cluster_thermal_propagation_bounded": true,
+        "cross_cluster_thermal_propagation_ratio_q30": 145564573,
+        "inactive_cluster_heat_mean_peak_q16": 6512,
+        "localized_hotspot_containment_pass": true,
+        "remote_cluster_coherence_min_q30": 246527338,
+        "remote_cluster_heat_peak_q16": 5970,
+        "remote_thermal_propagation_ratio_q30": 133453613
+      },
+      "limits": {
+        "cross_cluster_thermal_propagation_ratio_lt": 0.75,
+        "limit_provenance": "docs/m14_physical_implementation_correlation_production_qualification.md",
+        "recovery_heat_limit": 0.13,
+        "recovery_lag_limit": 0.01,
+        "recovery_margin_min": 0.2,
+        "remote_thermal_propagation_ratio_lt": 0.7
+      },
+      "profile_id": "hotspot-1_7",
+      "recovery": {
+        "completed": true,
+        "completion_tick": 88,
+        "duration_ticks": 16,
+        "start_tick": 72
+      },
+      "scheduler": "1/7",
+      "scheduler_class": "temporal",
+      "snapshot_digest": "2cfdbb4c3046219f4136131a115f9e731bd95f8beb9f13ff24871ba1e7920ddf",
+      "snapshots": [
+        {
+          "active_cluster_heat_mean_q16": 30851,
+          "adjacent_cluster_heat_mean_q16": 4960,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": -78815,
+              "heat_mean_q16": 30851,
+              "heat_peak_q16": 31415,
+              "phase_coherence_q30": 287902543,
+              "pressure_q16": 96387,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 1,
+                "0": 2,
+                "1": 1
+              },
+              "switch_changes_observed": 4,
+              "switch_load_q16": 65536
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 36195,
+              "heat_mean_q16": 4960,
+              "heat_peak_q16": 4960,
+              "phase_coherence_q30": 674286900,
+              "pressure_q16": 4960,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 28202,
+              "heat_mean_q16": 4563,
+              "heat_peak_q16": 4563,
+              "phase_coherence_q30": 536813635,
+              "pressure_q16": 4563,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 42059,
+              "heat_mean_q16": 4563,
+              "heat_peak_q16": 4563,
+              "phase_coherence_q30": 763853496,
+              "pressure_q16": 4563,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 4695,
+          "phase": "stress",
+          "remote_cluster_heat_mean_q16": 4563,
+          "scheduler_state": "neutralize",
+          "tick": 11
+        },
+        {
+          "active_cluster_heat_mean_q16": 41687,
+          "adjacent_cluster_heat_mean_q16": 6220,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": -82058,
+              "heat_mean_q16": 41687,
+              "heat_peak_q16": 41855,
+              "phase_coherence_q30": 412301296,
+              "pressure_q16": 107223,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 1,
+                "0": 2,
+                "1": 1
+              },
+              "switch_changes_observed": 4,
+              "switch_load_q16": 65536
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 38680,
+              "heat_mean_q16": 6220,
+              "heat_peak_q16": 6220,
+              "phase_coherence_q30": 735646311,
+              "pressure_q16": 6220,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 58245,
+              "heat_mean_q16": 5259,
+              "heat_peak_q16": 5259,
+              "phase_coherence_q30": 1040453572,
+              "pressure_q16": 5259,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 56587,
+              "heat_mean_q16": 5259,
+              "heat_peak_q16": 5259,
+              "phase_coherence_q30": 1013286781,
+              "pressure_q16": 5259,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 5580,
+          "phase": "stress",
+          "remote_cluster_heat_mean_q16": 5259,
+          "scheduler_state": "neutralize",
+          "tick": 23
+        },
+        {
+          "active_cluster_heat_mean_q16": 45730,
+          "adjacent_cluster_heat_mean_q16": 6956,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": -81729,
+              "heat_mean_q16": 45730,
+              "heat_peak_q16": 45780,
+              "phase_coherence_q30": 483923348,
+              "pressure_q16": 111266,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 1,
+                "0": 2,
+                "1": 1
+              },
+              "switch_changes_observed": 4,
+              "switch_load_q16": 65536
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 44369,
+              "heat_mean_q16": 6956,
+              "heat_peak_q16": 6956,
+              "phase_coherence_q30": 840910229,
+              "pressure_q16": 6956,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 59873,
+              "heat_mean_q16": 5640,
+              "heat_peak_q16": 5640,
+              "phase_coherence_q30": 1073375779,
+              "pressure_q16": 5640,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 59522,
+              "heat_mean_q16": 5640,
+              "heat_peak_q16": 5640,
+              "phase_coherence_q30": 1067622098,
+              "pressure_q16": 5640,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 6079,
+          "phase": "stress",
+          "remote_cluster_heat_mean_q16": 5640,
+          "scheduler_state": "neutralize",
+          "tick": 35
+        },
+        {
+          "active_cluster_heat_mean_q16": 47246,
+          "adjacent_cluster_heat_mean_q16": 7332,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": -81008,
+              "heat_mean_q16": 47246,
+              "heat_peak_q16": 47261,
+              "phase_coherence_q30": 520587812,
+              "pressure_q16": 112782,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 1,
+                "0": 2,
+                "1": 1
+              },
+              "switch_changes_observed": 4,
+              "switch_load_q16": 65536
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 56153,
+              "heat_mean_q16": 7332,
+              "heat_peak_q16": 7332,
+              "phase_coherence_q30": 1040139553,
+              "pressure_q16": 7332,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 59702,
+              "heat_mean_q16": 5832,
+              "heat_peak_q16": 5832,
+              "phase_coherence_q30": 1073723993,
+              "pressure_q16": 5832,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 59660,
+              "heat_mean_q16": 5832,
+              "heat_peak_q16": 5832,
+              "phase_coherence_q30": 1073033237,
+              "pressure_q16": 5832,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 6332,
+          "phase": "stress",
+          "remote_cluster_heat_mean_q16": 5832,
+          "scheduler_state": "neutralize",
+          "tick": 47
+        },
+        {
+          "active_cluster_heat_mean_q16": 47819,
+          "adjacent_cluster_heat_mean_q16": 7510,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": -61124,
+              "heat_mean_q16": 47819,
+              "heat_peak_q16": 47823,
+              "phase_coherence_q30": 855742971,
+              "pressure_q16": 113355,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 1,
+                "0": 2,
+                "1": 1
+              },
+              "switch_changes_observed": 4,
+              "switch_load_q16": 65536
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 57949,
+              "heat_mean_q16": 7510,
+              "heat_peak_q16": 7510,
+              "phase_coherence_q30": 1072477036,
+              "pressure_q16": 7510,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 59611,
+              "heat_mean_q16": 5925,
+              "heat_peak_q16": 5925,
+              "phase_coherence_q30": 1073740693,
+              "pressure_q16": 5925,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 59607,
+              "heat_mean_q16": 5925,
+              "heat_peak_q16": 5925,
+              "phase_coherence_q30": 1073674263,
+              "pressure_q16": 5925,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 6453,
+          "phase": "stress",
+          "remote_cluster_heat_mean_q16": 5925,
+          "scheduler_state": "neutralize",
+          "tick": 59
+        },
+        {
+          "active_cluster_heat_mean_q16": 48036,
+          "adjacent_cluster_heat_mean_q16": 7591,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": -53888,
+              "heat_mean_q16": 48036,
+              "heat_peak_q16": 48037,
+              "phase_coherence_q30": 977856337,
+              "pressure_q16": 113572,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 1,
+                "0": 2,
+                "1": 1
+              },
+              "switch_changes_observed": 4,
+              "switch_load_q16": 65536
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 57943,
+              "heat_mean_q16": 7591,
+              "heat_peak_q16": 7591,
+              "phase_coherence_q30": 1073710414,
+              "pressure_q16": 7591,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 59568,
+              "heat_mean_q16": 5968,
+              "heat_peak_q16": 5968,
+              "phase_coherence_q30": 1073741783,
+              "pressure_q16": 5968,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 59568,
+              "heat_mean_q16": 5968,
+              "heat_peak_q16": 5968,
+              "phase_coherence_q30": 1073738823,
+              "pressure_q16": 5968,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 6509,
+          "phase": "stress",
+          "remote_cluster_heat_mean_q16": 5968,
+          "scheduler_state": "neutralize",
+          "tick": 71
+        },
+        {
+          "active_cluster_heat_mean_q16": 21743,
+          "adjacent_cluster_heat_mean_q16": 7010,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 37732,
+              "heat_mean_q16": 21743,
+              "heat_peak_q16": 22314,
+              "phase_coherence_q30": 974434878,
+              "pressure_q16": 21743,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 58526,
+              "heat_mean_q16": 7010,
+              "heat_peak_q16": 7010,
+              "phase_coherence_q30": 1073740060,
+              "pressure_q16": 7010,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 59773,
+              "heat_mean_q16": 5763,
+              "heat_peak_q16": 5763,
+              "phase_coherence_q30": 1073741823,
+              "pressure_q16": 5763,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 59773,
+              "heat_mean_q16": 5763,
+              "heat_peak_q16": 5763,
+              "phase_coherence_q30": 1073741713,
+              "pressure_q16": 5763,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 6178,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 5763,
+          "scheduler_state": "neutralize",
+          "tick": 83
+        },
+        {
+          "active_cluster_heat_mean_q16": 11202,
+          "adjacent_cluster_heat_mean_q16": 6115,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 53778,
+              "heat_mean_q16": 11202,
+              "heat_peak_q16": 11372,
+              "phase_coherence_q30": 1064627704,
+              "pressure_q16": 11202,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 59421,
+              "heat_mean_q16": 6115,
+              "heat_peak_q16": 6115,
+              "phase_coherence_q30": 1073741268,
+              "pressure_q16": 6115,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60111,
+              "heat_mean_q16": 5425,
+              "heat_peak_q16": 5425,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 5425,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60111,
+              "heat_mean_q16": 5425,
+              "heat_peak_q16": 5425,
+              "phase_coherence_q30": 1073741818,
+              "pressure_q16": 5425,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 5655,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 5425,
+          "scheduler_state": "neutralize",
+          "tick": 95
+        },
+        {
+          "active_cluster_heat_mean_q16": 7281,
+          "adjacent_cluster_heat_mean_q16": 5525,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 58249,
+              "heat_mean_q16": 7281,
+              "heat_peak_q16": 7332,
+              "phase_coherence_q30": 1073642957,
+              "pressure_q16": 7281,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 60011,
+              "heat_mean_q16": 5525,
+              "heat_peak_q16": 5525,
+              "phase_coherence_q30": 1073741649,
+              "pressure_q16": 5525,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60346,
+              "heat_mean_q16": 5190,
+              "heat_peak_q16": 5190,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 5190,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60346,
+              "heat_mean_q16": 5190,
+              "heat_peak_q16": 5190,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 5190,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 5302,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 5190,
+          "scheduler_state": "neutralize",
+          "tick": 107
+        },
+        {
+          "active_cluster_heat_mean_q16": 5816,
+          "adjacent_cluster_heat_mean_q16": 5210,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 59720,
+              "heat_mean_q16": 5816,
+              "heat_peak_q16": 5831,
+              "phase_coherence_q30": 1073740325,
+              "pressure_q16": 5816,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 60326,
+              "heat_mean_q16": 5210,
+              "heat_peak_q16": 5210,
+              "phase_coherence_q30": 1073741808,
+              "pressure_q16": 5210,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60478,
+              "heat_mean_q16": 5058,
+              "heat_peak_q16": 5058,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 5058,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60478,
+              "heat_mean_q16": 5058,
+              "heat_peak_q16": 5058,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 5058,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 5108,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 5058,
+          "scheduler_state": "neutralize",
+          "tick": 119
+        },
+        {
+          "active_cluster_heat_mean_q16": 5265,
+          "adjacent_cluster_heat_mean_q16": 5056,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 60271,
+              "heat_mean_q16": 5265,
+              "heat_peak_q16": 5269,
+              "phase_coherence_q30": 1073741790,
+              "pressure_q16": 5265,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 60480,
+              "heat_mean_q16": 5056,
+              "heat_peak_q16": 5056,
+              "phase_coherence_q30": 1073741823,
+              "pressure_q16": 5056,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60546,
+              "heat_mean_q16": 4990,
+              "heat_peak_q16": 4990,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4990,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60546,
+              "heat_mean_q16": 4990,
+              "heat_peak_q16": 4990,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4990,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 5012,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 4990,
+          "scheduler_state": "neutralize",
+          "tick": 131
+        },
+        {
+          "active_cluster_heat_mean_q16": 5057,
+          "adjacent_cluster_heat_mean_q16": 4985,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 60479,
+              "heat_mean_q16": 5057,
+              "heat_peak_q16": 5058,
+              "phase_coherence_q30": 1073741823,
+              "pressure_q16": 5057,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 60551,
+              "heat_mean_q16": 4985,
+              "heat_peak_q16": 4985,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4985,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60579,
+              "heat_mean_q16": 4957,
+              "heat_peak_q16": 4957,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4957,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60579,
+              "heat_mean_q16": 4957,
+              "heat_peak_q16": 4957,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4957,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 4966,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 4957,
+          "scheduler_state": "neutralize",
+          "tick": 143
+        },
+        {
+          "active_cluster_heat_mean_q16": 4978,
+          "adjacent_cluster_heat_mean_q16": 4953,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 60558,
+              "heat_mean_q16": 4978,
+              "heat_peak_q16": 4978,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4978,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 60583,
+              "heat_mean_q16": 4953,
+              "heat_peak_q16": 4953,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4953,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60595,
+              "heat_mean_q16": 4941,
+              "heat_peak_q16": 4941,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4941,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60595,
+              "heat_mean_q16": 4941,
+              "heat_peak_q16": 4941,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4941,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 4945,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 4941,
+          "scheduler_state": "neutralize",
+          "tick": 155
+        },
+        {
+          "active_cluster_heat_mean_q16": 4947,
+          "adjacent_cluster_heat_mean_q16": 4939,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 60589,
+              "heat_mean_q16": 4947,
+              "heat_peak_q16": 4947,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4947,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 60597,
+              "heat_mean_q16": 4939,
+              "heat_peak_q16": 4939,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4939,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60602,
+              "heat_mean_q16": 4934,
+              "heat_peak_q16": 4934,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4934,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60602,
+              "heat_mean_q16": 4934,
+              "heat_peak_q16": 4934,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4934,
+              "scheduler_state_observed": "neutralize",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 4936,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 4934,
+          "scheduler_state": "neutralize",
+          "tick": 167
+        }
+      ],
+      "status": "PASS",
+      "summary": {
+        "C_minus_P_final": 1.244637,
+        "C_minus_P_min": 0.564896,
+        "actual_direct_events": 0,
+        "balanced_ternary_state_domain": true,
+        "boundary_detected": false,
+        "cells": 16,
+        "cluster_coherence_mean_final": 1.0,
+        "cluster_coherence_min": 0.229596,
+        "coherence_compression_final": 1.0,
+        "coherence_compression_min": 0.951859,
+        "coherence_dispersion_across_clusters_peak": 0.237067,
+        "coupling_path": "hierarchical",
+        "effective_coherence_final": 0.999976,
+        "effective_coherence_min": 0.182225,
+        "effective_coupling_min": 0.077635,
+        "first_C_minus_P_crossing": null,
+        "fractal_alpha": 0.7,
+        "frequency_lag_peak": 0.1008,
+        "gamma_drift_peak": 0.034196,
+        "gamma_nominal": 0.9424777960769379,
+        "gamma_nominal_q16": 61766,
+        "generated_power_peak": 0.055614,
+        "global_phase_coherence_final": 0.999976,
+        "heat_final": 0.075355,
+        "heat_peak": 0.257733,
+        "hierarchy_depth": 4,
+        "local_heat_peak": 0.733107,
+        "match": 1.0,
+        "match_q16": 65536,
+        "mean_frequency_lag_final": 0.0,
+        "mean_frequency_lag_peak": 0.04725,
+        "milestone": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package",
+        "neutral_routed_events": 144,
+        "neutralized_conflicts": 144,
+        "pair_domain_coherence_mean_final": 1.0,
+        "pair_domain_coherence_min": 0.002411,
+        "pending_neutral_routes_final": 0,
+        "prevented_direct_events": 144,
+        "raw_phase_coherence_final": 0.999976,
+        "raw_phase_coherence_min": 0.182225,
+        "requested_direct_events": 144,
+        "scheduler": "1/7",
+        "scheduler_counts": {
+          "excite": 21,
+          "neutralize": 147
+        },
+        "scheduler_counts_valid": true,
+        "steps": 168,
+        "supercluster_coherence_mean_final": 0.999999,
+        "supercluster_coherence_min": 0.041084,
+        "switch_load_peak": 0.25,
+        "thermal_beta": 1.2,
+        "thermal_overload_peak": 0.513107,
+        "ticks_recorded": 168,
+        "transition_fraction": 0.25,
+        "transition_fraction_q16": 16384,
+        "version": "1.7.0"
+      }
+    },
+    {
+      "checks": {
+        "active_cluster_hotter_than_inactive_mean": true,
+        "actual_direct_events_zero": true,
+        "balanced_ternary_state_domain": true,
+        "cross_cluster_thermal_propagation_bounded": true,
+        "global_C_minus_P_positive": true,
+        "neutral_routed_events_cover_prevention": true,
+        "prevented_direct_events_cover_requests": true,
+        "recovery_completed": true,
+        "remote_cluster_cooler_than_active_cluster": true,
+        "requested_direct_events_present": true,
+        "scheduler_counts_valid": true,
+        "switch_load_within_transition_fraction": true
+      },
+      "configuration": {
+        "active_cluster_cells": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "active_cluster_id": "N16-C0",
+        "adjacent_cluster_cells": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "adjacent_cluster_id": "N16-C1",
+        "cells": 16,
+        "cluster_size": 4,
+        "hostile_requests_per_stress_tick": 2,
+        "recovery_ticks": 96,
+        "remote_cluster_cells": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "remote_cluster_id": "N16-C3",
+        "stress_ticks": 72,
+        "total_ticks": 168
+      },
+      "containment_markers": {
+        "active_cluster_coherence_min_q30": 248548442,
+        "active_cluster_heat_peak_q16": 48036,
+        "adjacent_cluster_heat_peak_q16": 7596,
+        "cross_cluster_thermal_propagation_bounded": true,
+        "cross_cluster_thermal_propagation_ratio_q30": 145564573,
+        "inactive_cluster_heat_mean_peak_q16": 6512,
+        "localized_hotspot_containment_pass": true,
+        "remote_cluster_coherence_min_q30": 246527338,
+        "remote_cluster_heat_peak_q16": 5970,
+        "remote_thermal_propagation_ratio_q30": 133453613
+      },
+      "limits": {
+        "cross_cluster_thermal_propagation_ratio_lt": 0.75,
+        "limit_provenance": "docs/m14_physical_implementation_correlation_production_qualification.md",
+        "recovery_heat_limit": 0.13,
+        "recovery_lag_limit": 0.01,
+        "recovery_margin_min": 0.2,
+        "remote_thermal_propagation_ratio_lt": 0.7
+      },
+      "profile_id": "hotspot-7_1",
+      "recovery": {
+        "completed": true,
+        "completion_tick": 88,
+        "duration_ticks": 16,
+        "start_tick": 72
+      },
+      "scheduler": "7/1",
+      "scheduler_class": "temporal",
+      "snapshot_digest": "5732eac0ab8aa72df0e6e5f08365b1226c2cd2c4d0191e6c3ec31b8c779617f7",
+      "snapshots": [
+        {
+          "active_cluster_heat_mean_q16": 30851,
+          "adjacent_cluster_heat_mean_q16": 4960,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": -78815,
+              "heat_mean_q16": 30851,
+              "heat_peak_q16": 31415,
+              "phase_coherence_q30": 287902543,
+              "pressure_q16": 96387,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 1,
+                "0": 2,
+                "1": 1
+              },
+              "switch_changes_observed": 4,
+              "switch_load_q16": 65536
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 36195,
+              "heat_mean_q16": 4960,
+              "heat_peak_q16": 4960,
+              "phase_coherence_q30": 674286900,
+              "pressure_q16": 4960,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 28202,
+              "heat_mean_q16": 4563,
+              "heat_peak_q16": 4563,
+              "phase_coherence_q30": 536813635,
+              "pressure_q16": 4563,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 42059,
+              "heat_mean_q16": 4563,
+              "heat_peak_q16": 4563,
+              "phase_coherence_q30": 763853496,
+              "pressure_q16": 4563,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 4695,
+          "phase": "stress",
+          "remote_cluster_heat_mean_q16": 4563,
+          "scheduler_state": "balance",
+          "tick": 11
+        },
+        {
+          "active_cluster_heat_mean_q16": 41687,
+          "adjacent_cluster_heat_mean_q16": 6220,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": -82058,
+              "heat_mean_q16": 41687,
+              "heat_peak_q16": 41855,
+              "phase_coherence_q30": 412301296,
+              "pressure_q16": 107223,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 1,
+                "0": 2,
+                "1": 1
+              },
+              "switch_changes_observed": 4,
+              "switch_load_q16": 65536
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 38680,
+              "heat_mean_q16": 6220,
+              "heat_peak_q16": 6220,
+              "phase_coherence_q30": 735646311,
+              "pressure_q16": 6220,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 58245,
+              "heat_mean_q16": 5259,
+              "heat_peak_q16": 5259,
+              "phase_coherence_q30": 1040453572,
+              "pressure_q16": 5259,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 56587,
+              "heat_mean_q16": 5259,
+              "heat_peak_q16": 5259,
+              "phase_coherence_q30": 1013286781,
+              "pressure_q16": 5259,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 5580,
+          "phase": "stress",
+          "remote_cluster_heat_mean_q16": 5259,
+          "scheduler_state": "commit",
+          "tick": 23
+        },
+        {
+          "active_cluster_heat_mean_q16": 45730,
+          "adjacent_cluster_heat_mean_q16": 6956,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": -81729,
+              "heat_mean_q16": 45730,
+              "heat_peak_q16": 45780,
+              "phase_coherence_q30": 483923348,
+              "pressure_q16": 111266,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 1,
+                "0": 2,
+                "1": 1
+              },
+              "switch_changes_observed": 4,
+              "switch_load_q16": 65536
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 44369,
+              "heat_mean_q16": 6956,
+              "heat_peak_q16": 6956,
+              "phase_coherence_q30": 840910229,
+              "pressure_q16": 6956,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 59873,
+              "heat_mean_q16": 5640,
+              "heat_peak_q16": 5640,
+              "phase_coherence_q30": 1073375779,
+              "pressure_q16": 5640,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 59522,
+              "heat_mean_q16": 5640,
+              "heat_peak_q16": 5640,
+              "phase_coherence_q30": 1067622098,
+              "pressure_q16": 5640,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 6079,
+          "phase": "stress",
+          "remote_cluster_heat_mean_q16": 5640,
+          "scheduler_state": "balance",
+          "tick": 35
+        },
+        {
+          "active_cluster_heat_mean_q16": 47246,
+          "adjacent_cluster_heat_mean_q16": 7332,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": -81008,
+              "heat_mean_q16": 47246,
+              "heat_peak_q16": 47261,
+              "phase_coherence_q30": 520587812,
+              "pressure_q16": 112782,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 1,
+                "0": 2,
+                "1": 1
+              },
+              "switch_changes_observed": 4,
+              "switch_load_q16": 65536
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 56153,
+              "heat_mean_q16": 7332,
+              "heat_peak_q16": 7332,
+              "phase_coherence_q30": 1040139553,
+              "pressure_q16": 7332,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 59702,
+              "heat_mean_q16": 5832,
+              "heat_peak_q16": 5832,
+              "phase_coherence_q30": 1073723993,
+              "pressure_q16": 5832,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 59660,
+              "heat_mean_q16": 5832,
+              "heat_peak_q16": 5832,
+              "phase_coherence_q30": 1073033237,
+              "pressure_q16": 5832,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 6332,
+          "phase": "stress",
+          "remote_cluster_heat_mean_q16": 5832,
+          "scheduler_state": "commit",
+          "tick": 47
+        },
+        {
+          "active_cluster_heat_mean_q16": 47819,
+          "adjacent_cluster_heat_mean_q16": 7510,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": -61124,
+              "heat_mean_q16": 47819,
+              "heat_peak_q16": 47823,
+              "phase_coherence_q30": 855742971,
+              "pressure_q16": 113355,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 1,
+                "0": 2,
+                "1": 1
+              },
+              "switch_changes_observed": 4,
+              "switch_load_q16": 65536
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 57949,
+              "heat_mean_q16": 7510,
+              "heat_peak_q16": 7510,
+              "phase_coherence_q30": 1072477036,
+              "pressure_q16": 7510,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 59611,
+              "heat_mean_q16": 5925,
+              "heat_peak_q16": 5925,
+              "phase_coherence_q30": 1073740693,
+              "pressure_q16": 5925,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 59607,
+              "heat_mean_q16": 5925,
+              "heat_peak_q16": 5925,
+              "phase_coherence_q30": 1073674263,
+              "pressure_q16": 5925,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 6453,
+          "phase": "stress",
+          "remote_cluster_heat_mean_q16": 5925,
+          "scheduler_state": "balance",
+          "tick": 59
+        },
+        {
+          "active_cluster_heat_mean_q16": 48036,
+          "adjacent_cluster_heat_mean_q16": 7591,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": -53888,
+              "heat_mean_q16": 48036,
+              "heat_peak_q16": 48037,
+              "phase_coherence_q30": 977856337,
+              "pressure_q16": 113572,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 1,
+                "0": 2,
+                "1": 1
+              },
+              "switch_changes_observed": 4,
+              "switch_load_q16": 65536
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 57943,
+              "heat_mean_q16": 7591,
+              "heat_peak_q16": 7591,
+              "phase_coherence_q30": 1073710414,
+              "pressure_q16": 7591,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 59568,
+              "heat_mean_q16": 5968,
+              "heat_peak_q16": 5968,
+              "phase_coherence_q30": 1073741783,
+              "pressure_q16": 5968,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 59568,
+              "heat_mean_q16": 5968,
+              "heat_peak_q16": 5968,
+              "phase_coherence_q30": 1073738823,
+              "pressure_q16": 5968,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 6509,
+          "phase": "stress",
+          "remote_cluster_heat_mean_q16": 5968,
+          "scheduler_state": "commit",
+          "tick": 71
+        },
+        {
+          "active_cluster_heat_mean_q16": 21743,
+          "adjacent_cluster_heat_mean_q16": 7010,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 37732,
+              "heat_mean_q16": 21743,
+              "heat_peak_q16": 22314,
+              "phase_coherence_q30": 974434878,
+              "pressure_q16": 21743,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 58526,
+              "heat_mean_q16": 7010,
+              "heat_peak_q16": 7010,
+              "phase_coherence_q30": 1073740060,
+              "pressure_q16": 7010,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 59773,
+              "heat_mean_q16": 5763,
+              "heat_peak_q16": 5763,
+              "phase_coherence_q30": 1073741823,
+              "pressure_q16": 5763,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 59773,
+              "heat_mean_q16": 5763,
+              "heat_peak_q16": 5763,
+              "phase_coherence_q30": 1073741713,
+              "pressure_q16": 5763,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 6178,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 5763,
+          "scheduler_state": "balance",
+          "tick": 83
+        },
+        {
+          "active_cluster_heat_mean_q16": 11202,
+          "adjacent_cluster_heat_mean_q16": 6115,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 53778,
+              "heat_mean_q16": 11202,
+              "heat_peak_q16": 11372,
+              "phase_coherence_q30": 1064627704,
+              "pressure_q16": 11202,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 59421,
+              "heat_mean_q16": 6115,
+              "heat_peak_q16": 6115,
+              "phase_coherence_q30": 1073741268,
+              "pressure_q16": 6115,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60111,
+              "heat_mean_q16": 5425,
+              "heat_peak_q16": 5425,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 5425,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60111,
+              "heat_mean_q16": 5425,
+              "heat_peak_q16": 5425,
+              "phase_coherence_q30": 1073741818,
+              "pressure_q16": 5425,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 5655,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 5425,
+          "scheduler_state": "commit",
+          "tick": 95
+        },
+        {
+          "active_cluster_heat_mean_q16": 7281,
+          "adjacent_cluster_heat_mean_q16": 5525,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 58249,
+              "heat_mean_q16": 7281,
+              "heat_peak_q16": 7332,
+              "phase_coherence_q30": 1073642957,
+              "pressure_q16": 7281,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 60011,
+              "heat_mean_q16": 5525,
+              "heat_peak_q16": 5525,
+              "phase_coherence_q30": 1073741649,
+              "pressure_q16": 5525,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60346,
+              "heat_mean_q16": 5190,
+              "heat_peak_q16": 5190,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 5190,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60346,
+              "heat_mean_q16": 5190,
+              "heat_peak_q16": 5190,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 5190,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 5302,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 5190,
+          "scheduler_state": "balance",
+          "tick": 107
+        },
+        {
+          "active_cluster_heat_mean_q16": 5816,
+          "adjacent_cluster_heat_mean_q16": 5210,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 59720,
+              "heat_mean_q16": 5816,
+              "heat_peak_q16": 5831,
+              "phase_coherence_q30": 1073740325,
+              "pressure_q16": 5816,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 60326,
+              "heat_mean_q16": 5210,
+              "heat_peak_q16": 5210,
+              "phase_coherence_q30": 1073741808,
+              "pressure_q16": 5210,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60478,
+              "heat_mean_q16": 5058,
+              "heat_peak_q16": 5058,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 5058,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60478,
+              "heat_mean_q16": 5058,
+              "heat_peak_q16": 5058,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 5058,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 5108,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 5058,
+          "scheduler_state": "commit",
+          "tick": 119
+        },
+        {
+          "active_cluster_heat_mean_q16": 5265,
+          "adjacent_cluster_heat_mean_q16": 5056,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 60271,
+              "heat_mean_q16": 5265,
+              "heat_peak_q16": 5269,
+              "phase_coherence_q30": 1073741790,
+              "pressure_q16": 5265,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 60480,
+              "heat_mean_q16": 5056,
+              "heat_peak_q16": 5056,
+              "phase_coherence_q30": 1073741823,
+              "pressure_q16": 5056,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60546,
+              "heat_mean_q16": 4990,
+              "heat_peak_q16": 4990,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4990,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60546,
+              "heat_mean_q16": 4990,
+              "heat_peak_q16": 4990,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4990,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 5012,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 4990,
+          "scheduler_state": "balance",
+          "tick": 131
+        },
+        {
+          "active_cluster_heat_mean_q16": 5057,
+          "adjacent_cluster_heat_mean_q16": 4985,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 60479,
+              "heat_mean_q16": 5057,
+              "heat_peak_q16": 5058,
+              "phase_coherence_q30": 1073741823,
+              "pressure_q16": 5057,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 60551,
+              "heat_mean_q16": 4985,
+              "heat_peak_q16": 4985,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4985,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60579,
+              "heat_mean_q16": 4957,
+              "heat_peak_q16": 4957,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4957,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60579,
+              "heat_mean_q16": 4957,
+              "heat_peak_q16": 4957,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4957,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 4966,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 4957,
+          "scheduler_state": "commit",
+          "tick": 143
+        },
+        {
+          "active_cluster_heat_mean_q16": 4978,
+          "adjacent_cluster_heat_mean_q16": 4953,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 60558,
+              "heat_mean_q16": 4978,
+              "heat_peak_q16": 4978,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4978,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 60583,
+              "heat_mean_q16": 4953,
+              "heat_peak_q16": 4953,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4953,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60595,
+              "heat_mean_q16": 4941,
+              "heat_peak_q16": 4941,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4941,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60595,
+              "heat_mean_q16": 4941,
+              "heat_peak_q16": 4941,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4941,
+              "scheduler_state_observed": "balance",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 4945,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 4941,
+          "scheduler_state": "balance",
+          "tick": 155
+        },
+        {
+          "active_cluster_heat_mean_q16": 4947,
+          "adjacent_cluster_heat_mean_q16": 4939,
+          "clusters": [
+            {
+              "cell_ids": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "cluster_id": "N16-C0",
+              "cluster_index": 0,
+              "coherence_margin_q16": 60589,
+              "heat_mean_q16": 4947,
+              "heat_peak_q16": 4947,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4947,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "cluster_id": "N16-C1",
+              "cluster_index": 1,
+              "coherence_margin_q16": 60597,
+              "heat_mean_q16": 4939,
+              "heat_peak_q16": 4939,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4939,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "cluster_id": "N16-C2",
+              "cluster_index": 2,
+              "coherence_margin_q16": 60602,
+              "heat_mean_q16": 4934,
+              "heat_peak_q16": 4934,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4934,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            },
+            {
+              "cell_ids": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "cluster_id": "N16-C3",
+              "cluster_index": 3,
+              "coherence_margin_q16": 60602,
+              "heat_mean_q16": 4934,
+              "heat_peak_q16": 4934,
+              "phase_coherence_q30": 1073741824,
+              "pressure_q16": 4934,
+              "scheduler_state_observed": "commit",
+              "state_counts": {
+                "-1": 2,
+                "0": 0,
+                "1": 2
+              },
+              "switch_changes_observed": 0,
+              "switch_load_q16": 0
+            }
+          ],
+          "inactive_cluster_heat_mean_q16": 4936,
+          "phase": "recovery",
+          "remote_cluster_heat_mean_q16": 4934,
+          "scheduler_state": "commit",
+          "tick": 167
+        }
+      ],
+      "status": "PASS",
+      "summary": {
+        "C_minus_P_final": 1.244637,
+        "C_minus_P_min": 0.564896,
+        "actual_direct_events": 0,
+        "balanced_ternary_state_domain": true,
+        "boundary_detected": false,
+        "cells": 16,
+        "cluster_coherence_mean_final": 1.0,
+        "cluster_coherence_min": 0.229596,
+        "coherence_compression_final": 1.0,
+        "coherence_compression_min": 0.951859,
+        "coherence_dispersion_across_clusters_peak": 0.237067,
+        "coupling_path": "hierarchical",
+        "effective_coherence_final": 0.999976,
+        "effective_coherence_min": 0.182225,
+        "effective_coupling_min": 0.077635,
+        "first_C_minus_P_crossing": null,
+        "fractal_alpha": 0.7,
+        "frequency_lag_peak": 0.1008,
+        "gamma_drift_peak": 0.034196,
+        "gamma_nominal": 0.9424777960769379,
+        "gamma_nominal_q16": 61766,
+        "generated_power_peak": 0.055614,
+        "global_phase_coherence_final": 0.999976,
+        "heat_final": 0.075355,
+        "heat_peak": 0.257733,
+        "hierarchy_depth": 4,
+        "local_heat_peak": 0.733107,
+        "match": 1.0,
+        "match_q16": 65536,
+        "mean_frequency_lag_final": 0.0,
+        "mean_frequency_lag_peak": 0.04725,
+        "milestone": "M15 — Implementation Mapping, Domain Interface, and Qualification Closure Package",
+        "neutral_routed_events": 144,
+        "neutralized_conflicts": 144,
+        "pair_domain_coherence_mean_final": 1.0,
+        "pair_domain_coherence_min": 0.002411,
+        "pending_neutral_routes_final": 0,
+        "prevented_direct_events": 144,
+        "raw_phase_coherence_final": 0.999976,
+        "raw_phase_coherence_min": 0.182225,
+        "requested_direct_events": 144,
+        "scheduler": "7/1",
+        "scheduler_counts": {
+          "balance": 147,
+          "commit": 21
+        },
+        "scheduler_counts_valid": true,
+        "steps": 168,
+        "supercluster_coherence_mean_final": 0.999999,
+        "supercluster_coherence_min": 0.041084,
+        "switch_load_peak": 0.25,
+        "thermal_beta": 1.2,
+        "thermal_overload_peak": 0.513107,
+        "ticks_recorded": 168,
+        "transition_fraction": 0.25,
+        "transition_fraction_q16": 16384,
+        "version": "1.7.0"
+      }
+    }
+  ],
+  "schema": "frp.m28.hotspot_containment_evidence.v3.0.0",
+  "source_commit": "23e464206f85cd9473101d9221027ee33d9dd094",
+  "status": "PASS",
+  "version": "3.0.0"
+}

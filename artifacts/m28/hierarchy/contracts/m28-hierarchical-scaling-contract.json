@@ -1,0 +1,100 @@
+{
+  "aggregation_equations": {
+    "cluster_heat_mean": "sum(cell_heat_q16) // cluster_cell_count",
+    "cluster_heat_peak": "max(cell_heat_q16)",
+    "cluster_pressure_q16": "cluster_heat_mean_q16 + cluster_switch_load_q16",
+    "cluster_state_count": "count(state == value for state in cluster)",
+    "cluster_switch_changes": "sum(cell_switch_activity)",
+    "cluster_switch_load_q16": "round(cluster_switch_changes * 65536 / cluster_cell_count)",
+    "global_from_cluster_count": "sum(cluster_count)",
+    "no_undeclared_metric_aggregation": true
+  },
+  "contract_digest": "637669410ebb3131c86d710af1997417c17558a5ea7dbbe46de956a3ff3c8f3a",
+  "hierarchy_boundary": {
+    "cluster_size_cells": 4,
+    "declared_interaction_scaling": "O(N log N)",
+    "execution_path": "hierarchical_reference",
+    "hierarchy_depth_relation": "log2(cells)",
+    "hierarchy_distance_relation": "bit_length(cell_i XOR cell_j)",
+    "qualified_cell_counts": [
+      8,
+      16,
+      32
+    ],
+    "shell_population_relation": "2^(distance-1)",
+    "topology": "dyadic_ultrametric_contiguous_domains"
+  },
+  "immutable_core": {
+    "active_neutral_state": 0,
+    "actual_direct_events_target": 0,
+    "balanced_ternary_notation": "-1/0/1",
+    "opposite_transition_routes": [
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        -1
+      ]
+    ],
+    "queue_overflow_events_target": 0,
+    "reserved_state_events_target": 0,
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ]
+  },
+  "kind": "hierarchical_scaling_contract",
+  "measurement_boundary": {
+    "cluster_telemetry": "model_derived_dimensionless_proxy",
+    "measurement_contours": [
+      "hierarchical_scaling",
+      "localized_hotspot_containment",
+      "m27_long_run_telemetry",
+      "m28_observatory_publication_interchange"
+    ],
+    "measurement_contours_remain_separate": true,
+    "physical_measurement_status": "not_a_physical_measurement",
+    "proxy_to_physical_conversion": "prohibited",
+    "universal_physical_chip_claim": "not_made"
+  },
+  "milestone": "M28",
+  "milestone_title": "M28 - Hierarchical Scaling and Hotspot-Containment Realization",
+  "objective": "realize and qualify declared hierarchical execution and containment boundaries",
+  "provenance_boundary": {
+    "hierarchy_role": "primary_M28_realization",
+    "long_run_contract": "artifacts/m27/contracts/m27-long-run-telemetry-contract.json",
+    "long_run_source": "artifacts/m27/checkpoints/m27-long-run-checkpoint-evidence.json",
+    "observatory_interchange_commit": "566a4ff88baa57f844691b46937552253e095434",
+    "observatory_interchange_role": "additional_publication_layer",
+    "prior_hierarchy_qualification": "docs/m14_physical_implementation_correlation_production_qualification.md",
+    "semantic_authority": "frp_prototype_v1_7_0.py"
+  },
+  "release": "FRP v3.0.0",
+  "required_scope": [
+    "declared_hierarchy_topology",
+    "cluster_identities",
+    "cell_to_cluster_mapping",
+    "cluster_local_scheduler_observation",
+    "cluster_local_transition_capacity_observation",
+    "cluster_local_telemetry",
+    "hotspot_containment_indicators",
+    "hierarchy_level_provenance",
+    "deterministic_scaling_matrices",
+    "explicit_aggregation_equations",
+    "machine_readable_hierarchy_manifests"
+  ],
+  "schema": "frp.m28.hierarchical_scaling_contract.v3.0.0",
+  "source_commit": "23e464206f85cd9473101d9221027ee33d9dd094",
+  "status": "PASS",
+  "version": "3.0.0"
+}

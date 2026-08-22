@@ -1,0 +1,45 @@
+{
+  "$id": "frp.m28.hotspot_containment_evidence.v3.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "evidence_digest": {},
+    "kind": {
+      "const": "hotspot_containment_evidence"
+    },
+    "limits": {},
+    "milestone": {
+      "const": "M28"
+    },
+    "profile_count": {},
+    "profile_set_digest": {},
+    "profiles": {},
+    "schema": {
+      "const": "frp.m28.hotspot_containment_evidence.v3.0.0"
+    },
+    "source_commit": {
+      "const": "23e464206f85cd9473101d9221027ee33d9dd094"
+    },
+    "status": {
+      "const": "PASS"
+    },
+    "version": {
+      "const": "3.0.0"
+    }
+  },
+  "required": [
+    "schema",
+    "kind",
+    "version",
+    "milestone",
+    "status",
+    "source_commit",
+    "profile_count",
+    "profiles",
+    "limits",
+    "profile_set_digest",
+    "evidence_digest"
+  ],
+  "title": "hotspot_containment_evidence",
+  "type": "object"
+}

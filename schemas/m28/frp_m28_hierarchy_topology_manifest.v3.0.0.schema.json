@@ -1,0 +1,45 @@
+{
+  "$id": "frp.m28.hierarchy_topology_manifest.v3.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "kind": {
+      "const": "hierarchy_topology_manifest"
+    },
+    "manifest_digest": {},
+    "milestone": {
+      "const": "M28"
+    },
+    "profile_count": {},
+    "profiles": {},
+    "schema": {
+      "const": "frp.m28.hierarchy_topology_manifest.v3.0.0"
+    },
+    "source_commit": {
+      "const": "23e464206f85cd9473101d9221027ee33d9dd094"
+    },
+    "source_records": {},
+    "status": {
+      "const": "PASS"
+    },
+    "topology_set_digest": {},
+    "version": {
+      "const": "3.0.0"
+    }
+  },
+  "required": [
+    "schema",
+    "kind",
+    "version",
+    "milestone",
+    "status",
+    "source_commit",
+    "profile_count",
+    "profiles",
+    "source_records",
+    "topology_set_digest",
+    "manifest_digest"
+  ],
+  "title": "hierarchy_topology_manifest",
+  "type": "object"
+}

@@ -1,0 +1,55 @@
+{
+  "$id": "frp.m28.hierarchical_scaling_contract.v3.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "aggregation_equations": {},
+    "contract_digest": {},
+    "hierarchy_boundary": {},
+    "immutable_core": {},
+    "kind": {
+      "const": "hierarchical_scaling_contract"
+    },
+    "measurement_boundary": {},
+    "milestone": {
+      "const": "M28"
+    },
+    "milestone_title": {},
+    "objective": {},
+    "provenance_boundary": {},
+    "release": {},
+    "required_scope": {},
+    "schema": {
+      "const": "frp.m28.hierarchical_scaling_contract.v3.0.0"
+    },
+    "source_commit": {
+      "const": "23e464206f85cd9473101d9221027ee33d9dd094"
+    },
+    "status": {
+      "const": "PASS"
+    },
+    "version": {
+      "const": "3.0.0"
+    }
+  },
+  "required": [
+    "schema",
+    "kind",
+    "version",
+    "milestone",
+    "status",
+    "source_commit",
+    "release",
+    "milestone_title",
+    "objective",
+    "required_scope",
+    "immutable_core",
+    "hierarchy_boundary",
+    "aggregation_equations",
+    "provenance_boundary",
+    "measurement_boundary",
+    "contract_digest"
+  ],
+  "title": "hierarchical_scaling_contract",
+  "type": "object"
+}
