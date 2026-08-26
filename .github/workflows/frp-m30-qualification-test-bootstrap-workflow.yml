@@ -1,0 +1,197 @@
+name: FRP M30 Qualification Test Bootstrap Workflow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m30-qualification-test-bootstrap-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  bootstrap-m30-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      M30_SOURCE_COMMIT: ff3dd434da5dcbd9e8fa62444f658ed4c495b540
+      M30_SOURCE_PATH: frp_m30_reproducibility_qualification_archival_closure.py
+      M30_SOURCE_SHA256: 764b82eace9d90b79d7955a80c571e9e4d22de395d2e5b6ee4d38e910af0c870
+      M30_TEST_PATH: tests/test_frp_m30_reproducibility_qualification_archival_closure.py
+      M30_TEST_SHA256: 170baba6ff3e498c13f75307f434b63e2e27ec8f3a7ef88ce029d20ef847a587
+      M30_TEST_BZ2_SHA256: 954c88aa42ca60a750a2c7d43b6a68fe42cb9a99aea9788cc7bb403baf907d12
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out the selected main revision
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+          persist-credentials: true
+
+      - name: Set up exact Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Validate the committed M30 producer and M29 ancestry
+        shell: bash
+        run: |
+          set -euo pipefail
+          git cat-file -e "${M30_SOURCE_COMMIT}^{commit}"
+          git merge-base --is-ancestor "$M30_SOURCE_COMMIT" HEAD
+          test "$(git show -s --format=%s "$M30_SOURCE_COMMIT")" = \
+            "Add M29 system integration and downstream compatibility closure"
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          source = Path(os.environ["M30_SOURCE_PATH"])
+          if not source.is_file() or source.is_symlink():
+              raise SystemExit("M30 producer source is missing")
+          raw = source.read_bytes()
+          if hashlib.sha256(raw).hexdigest() != os.environ["M30_SOURCE_SHA256"]:
+              raise SystemExit("M30 producer source digest mismatch")
+          compile(raw, str(source), "exec")
+          forbidden = "-1/0/" + "+1"
+          if forbidden in raw.decode("utf-8"):
+              raise SystemExit("forbidden ternary notation in M30 producer")
+          print("Committed M30 producer source: PASS")
+          PY
+
+      - name: Restore and validate the complete M30 qualification test
+        shell: bash
+        run: |
+          set -euo pipefail
+          install -d /tmp/frp_m30_test_bootstrap
+          base64 --decode > /tmp/frp_m30_test_bootstrap/test.py.bz2 <<'M30_TEST_B64'
+          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
+          U4UJDt7/1zA=
+          M30_TEST_B64
+          python - <<'PY'
+          import bz2
+          import hashlib
+          import os
+          from pathlib import Path
+
+          compressed_path = Path("/tmp/frp_m30_test_bootstrap/test.py.bz2")
+          compressed = compressed_path.read_bytes()
+          if hashlib.sha256(compressed).hexdigest() != os.environ["M30_TEST_BZ2_SHA256"]:
+              raise SystemExit("M30 test compressed digest mismatch")
+          try:
+              raw = bz2.decompress(compressed)
+          except OSError as exc:
+              raise SystemExit("M30 test bzip2 validation failed") from exc
+          if hashlib.sha256(raw).hexdigest() != os.environ["M30_TEST_SHA256"]:
+              raise SystemExit("M30 test source digest mismatch")
+          destination = Path(os.environ["M30_TEST_PATH"])
+          if destination.exists() and destination.is_symlink():
+              raise SystemExit("refusing M30 test symlink destination")
+          destination.parent.mkdir(parents=True, exist_ok=True)
+          destination.write_bytes(raw)
+          if destination.stat().st_size != 16022:
+              raise SystemExit("M30 test byte count mismatch")
+          compile(raw, str(destination), "exec")
+          text = raw.decode("utf-8")
+          forbidden = "-1/0/" + "+1"
+          if forbidden in text:
+              raise SystemExit("forbidden ternary notation in M30 test")
+          required = (
+              'self.assertEqual(m30.CORE["balanced_ternary_notation"], "-1/0/1")',
+              'self.assertEqual(m30.CORE["temporal_scheduler_modes"], ["1/7", "7/1"])',
+              'self.assertEqual(m30.CORE["service_scheduler_mode"], "free")',
+              '"FRP-Trace-Observatory"',
+              'self.assertEqual(value["record_count"], 40)',
+              'self.assertEqual(self.summary["generated_path_count"], 38)',
+          )
+          missing = [value for value in required if value not in text]
+          if missing:
+              raise SystemExit(f"M30 test boundary missing: {missing}")
+          print("M30 qualification test restored: PASS")
+          PY
+
+      - name: Commit and publish only the M30 qualification test
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$M30_TEST_PATH"
+          if git diff --cached --quiet; then
+            echo "M30 qualification test is already committed; no commit is required."
+            exit 0
+          fi
+          test "$(git diff --cached --name-only)" = "$M30_TEST_PATH"
+          git commit \
+            -m "Add M30 reproducibility qualification test" \
+            -m "Add the integrity-verified M30 qualification test for deterministic generation, complete regression, archival verification, the immutable -1/0/1 core, active neutral state 0, schedulers 1/7 and 7/1, separate free service mode, and the FRP Trace Observatory one-way read-only boundary."
+          git push origin HEAD:main
