@@ -106,15 +106,14 @@ jobs:
               raise SystemExit("M30 immutable core mismatch")
           expected_observatory = {
               "repository": "FRP-Trace-Observatory",
+              "audited_commit": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+              "upstream_interchange_commit": "566a4ff88baa57f844691b46937552253e095434",
               "integration_direction": "upstream_to_downstream_only",
-              "published_byte_boundary": "read_only",
-              "existing_scaffold_action": "preserve_existing_scaffold",
               "downstream_writeback": "forbidden",
               "downstream_semantic_reimplementation": "forbidden",
               "upstream_dependency_on_downstream_code": False,
               "downstream_files_modified_by_m30": False,
-              "audited_commit": "8d3446b24ffb4489d48e0c47f25c767598ccddc2",
-              "upstream_interchange_commit": "7cd5131",
+              "existing_scaffold_action": "preserve_existing_scaffold",
           }
           if m30.OBSERVATORY_BOUNDARY != expected_observatory:
               raise SystemExit("M30 Observatory boundary mismatch")
