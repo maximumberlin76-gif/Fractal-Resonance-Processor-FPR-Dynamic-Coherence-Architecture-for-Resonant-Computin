@@ -1,0 +1,486 @@
+name: FRP M30 Reproducibility Qualification and Archival Release Closure Workflow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: frp-m30-reproducibility-closure-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  close-m30-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      M30_SOURCE_COMMIT: ff3dd434da5dcbd9e8fa62444f658ed4c495b540
+      M30_SOURCE_PATH: frp_m30_reproducibility_qualification_archival_closure.py
+      M30_TEST_PATH: tests/test_frp_m30_reproducibility_qualification_archival_closure.py
+      M30_PRODUCER_WORKFLOW_PATH: .github/workflows/frp-m30-producer-source-bootstrap-workflow.yml
+      M30_TEST_WORKFLOW_PATH: .github/workflows/frp-m30-qualification-test-bootstrap-workflow.yml
+      M30_WORKFLOW_PATH: .github/workflows/frp-m30-reproducibility-qualification-archival-release-closure-workflow.yml
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out the selected main revision
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+          persist-credentials: true
+
+      - name: Set up exact Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install exact Python dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check -r requirements.txt
+          python --version
+          python -m pip show jsonschema
+
+      - name: Validate the complete sequential M30 source boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          git cat-file -e "${M30_SOURCE_COMMIT}^{commit}"
+          git merge-base --is-ancestor "$M30_SOURCE_COMMIT" HEAD
+          test "$(git rev-parse "$M30_SOURCE_COMMIT")" = "$M30_SOURCE_COMMIT"
+          test "$(git show -s --format=%s "$M30_SOURCE_COMMIT")" = \
+            "Add M29 system integration and downstream compatibility closure"
+
+          while IFS= read -r changed_path; do
+            case "$changed_path" in
+              .github/workflows/frp-m30-producer-source-bootstrap-workflow.yml|\
+              .github/workflows/frp-m30-qualification-test-bootstrap-workflow.yml|\
+              .github/workflows/frp-m30-reproducibility-qualification-archival-release-closure-workflow.yml|\
+              frp_m30_reproducibility_qualification_archival_closure.py|\
+              tests/test_frp_m30_reproducibility_qualification_archival_closure.py|\
+              schemas/m30/*|artifacts/m30/*|\
+              README.md|PROJECT_STRUCTURE.md|CI.md|\
+              CHANGELOG.md|CITATION.cff|REPRODUCIBILITY.md|\
+              RELEASE_NOTES_v3_2_0.md|TEST_REPORT_v3_2_0.md|\
+              FRP_VALIDATION_INDEX_v3_2_0.md)
+                ;;
+              *)
+                echo "Unexpected change after the complete M29 boundary: $changed_path" >&2
+                exit 1
+                ;;
+            esac
+          done < <(git diff --name-only "$M30_SOURCE_COMMIT"..HEAD)
+
+          test -f "$M30_PRODUCER_WORKFLOW_PATH"
+          test -f "$M30_TEST_WORKFLOW_PATH"
+          test -f "$M30_WORKFLOW_PATH"
+          test -f "$M30_SOURCE_PATH"
+          test -f "$M30_TEST_PATH"
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          import frp_m30_reproducibility_qualification_archival_closure as m30
+
+          source_commit = os.environ["M30_SOURCE_COMMIT"]
+          m30.validate_source_boundary(Path("."), source_commit)
+          expected_core = {
+              "balanced_ternary_notation": "-1/0/1",
+              "semantic_values": [-1, 0, 1],
+              "active_neutral_state": 0,
+              "temporal_scheduler_modes": ["1/7", "7/1"],
+              "service_scheduler_mode": "free",
+              "opposite_polarity_routes": [[-1, 0, 1], [1, 0, -1]],
+          }
+          if m30.CORE != expected_core:
+              raise SystemExit("M30 immutable core mismatch")
+          expected_observatory = {
+              "repository": "FRP-Trace-Observatory",
+              "integration_direction": "upstream_to_downstream_only",
+              "published_byte_boundary": "read_only",
+              "existing_scaffold_action": "preserve_existing_scaffold",
+              "downstream_writeback": "forbidden",
+              "downstream_semantic_reimplementation": "forbidden",
+              "upstream_dependency_on_downstream_code": False,
+              "downstream_files_modified_by_m30": False,
+              "audited_commit": "8d3446b24ffb4489d48e0c47f25c767598ccddc2",
+              "upstream_interchange_commit": "7cd5131",
+          }
+          if m30.OBSERVATORY_BOUNDARY != expected_observatory:
+              raise SystemExit("M30 Observatory boundary mismatch")
+          expected_digests = {
+              os.environ["M30_SOURCE_PATH"]: "764b82eace9d90b79d7955a80c571e9e4d22de395d2e5b6ee4d38e910af0c870",
+              os.environ["M30_TEST_PATH"]: "170baba6ff3e498c13f75307f434b63e2e27ec8f3a7ef88ce029d20ef847a587",
+          }
+          for relative, expected in expected_digests.items():
+              path = Path(relative)
+              raw = path.read_bytes()
+              if hashlib.sha256(raw).hexdigest() != expected:
+                  raise SystemExit(f"M30 committed source digest mismatch: {relative}")
+              compile(raw, relative, "exec")
+          workflows = (
+              Path(os.environ["M30_PRODUCER_WORKFLOW_PATH"]),
+              Path(os.environ["M30_TEST_WORKFLOW_PATH"]),
+              Path(os.environ["M30_WORKFLOW_PATH"]),
+          )
+          if tuple(path.as_posix() for path in workflows) != m30.M30_WORKFLOWS:
+              raise SystemExit("M30 sequential workflow inventory mismatch")
+          forbidden = "-1/0/" + "+1"
+          for path in (*workflows, Path(os.environ["M30_SOURCE_PATH"]), Path(os.environ["M30_TEST_PATH"])):
+              text = path.read_text(encoding="utf-8")
+              if forbidden in text:
+                  raise SystemExit(f"forbidden ternary notation in {path}")
+              if path in workflows:
+                  lines = text.splitlines()
+                  try:
+                      on_index = lines.index("on:")
+                  except ValueError as exc:
+                      raise SystemExit(f"workflow trigger block missing: {path}") from exc
+                  trigger_block = []
+                  for line in lines[on_index + 1:]:
+                      if line and not line.startswith(" "):
+                          break
+                      if line.strip() and not line.lstrip().startswith("#"):
+                          trigger_block.append(line.strip())
+                  if trigger_block != ["workflow_dispatch:"]:
+                      raise SystemExit(f"manual-only trigger mismatch: {path}")
+          print("Complete sequential M30 source boundary: PASS")
+          PY
+
+      - name: Capture successful M17 through M29 workflow records
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          import re
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+          from pathlib import Path
+
+          required = (
+              ".github/workflows/frp-m17-published-artifact-integration.yml",
+              ".github/workflows/frp-m18-formal-schema-canonical-artifacts.yml",
+              ".github/workflows/frp-m19-create-machine-readable-m16-evidence.yml",
+              ".github/workflows/frp-m20-cross-layer-correlation.yml",
+              ".github/workflows/frp-m21-parameterized-qualification-matrix.yml",
+              ".github/workflows/frp-m22-control-status-register-interface.yml",
+              ".github/workflows/frp-m23-clock-reset-cdc-interface-hardening-workflow.yml",
+              ".github/workflows/frp-m24-formal-bounded-verification-closure-workflow.yml",
+              ".github/workflows/frp-m25-fault-negative-path-recovery-qualification-workflow.yml",
+              ".github/workflows/frp-m26-declared-target-implementation-evidence-workflow.yml",
+              ".github/workflows/frp-m27-long-run-stability-telemetry-qualification-workflow.yml",
+              ".github/workflows/frp-m28-hierarchical-scaling-hotspot-containment-closure-workflow.yml",
+              ".github/workflows/frp-m28-trace-observatory-upstream-interchange-workflow.yml",
+              ".github/workflows/frp-m29-system-integration-downstream-compatibility-closure-workflow.yml",
+          )
+          repository = os.environ["GITHUB_REPOSITORY"]
+          token = os.environ["GH_TOKEN"]
+          headers = {
+              "Accept": "application/vnd.github+json",
+              "Authorization": f"Bearer {token}",
+              "X-GitHub-Api-Version": "2022-11-28",
+              "User-Agent": "frp-m30-qualification",
+          }
+          records = []
+          for path in required:
+              filename = Path(path).name
+              endpoint = (
+                  f"https://api.github.com/repos/{repository}/actions/workflows/"
+                  f"{urllib.parse.quote(filename, safe='')}/runs"
+                  "?status=success&per_page=100"
+              )
+              request = urllib.request.Request(endpoint, headers=headers)
+              try:
+                  with urllib.request.urlopen(request, timeout=30) as response:
+                      value = json.load(response)
+              except urllib.error.HTTPError as exc:
+                  detail = exc.read().decode("utf-8", errors="replace")
+                  raise SystemExit(
+                      f"GitHub Actions evidence request failed for {path}: "
+                      f"HTTP {exc.code}: {detail}"
+                  ) from exc
+              runs = [
+                  item
+                  for item in value.get("workflow_runs", [])
+                  if item.get("status") == "completed"
+                  and item.get("conclusion") == "success"
+              ]
+              if not runs:
+                  raise SystemExit(f"No successful completed run found for {path}")
+              run = runs[0]
+              workflow_text = Path(path).read_text(encoding="utf-8")
+              match = re.search(r"(?m)^name:\s*(.+?)\s*$", workflow_text)
+              if not match:
+                  raise SystemExit(f"Workflow name is missing: {path}")
+              head_sha = run.get("head_sha")
+              if not isinstance(head_sha, str) or not re.fullmatch(
+                  r"[0-9a-f]{40}", head_sha
+              ):
+                  raise SystemExit(f"Invalid successful run SHA for {path}")
+              records.append(
+                  {
+                      "workflow_path": path,
+                      "workflow_name": match.group(1).strip("\"'"),
+                      "run_id": int(run["id"]),
+                      "run_number": int(run["run_number"]),
+                      "head_sha": head_sha,
+                      "event": str(run.get("event", "unknown")),
+                      "status": "completed",
+                      "conclusion": "success",
+                      "html_url": str(run["html_url"]),
+                      "evidence_source": "github_actions_api",
+                  }
+              )
+          output = {
+              "schema": "frp.m30.required_workflow_success_capture.v3.2.0",
+              "repository": repository,
+              "record_count": len(records),
+              "records": records,
+          }
+          destination = Path("/tmp/m30_workflow_evidence.json")
+          destination.write_text(
+              json.dumps(output, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          print(f"Successful required workflow records captured: {len(records)}")
+          for item in records:
+              print(
+                  f"{item['workflow_path']}: run {item['run_number']} "
+                  f"({item['head_sha'][:12]})"
+              )
+          PY
+
+      - name: Generate two byte-identical complete M30 closure sets
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/m30_generation_a /tmp/m30_generation_b
+          mkdir -p /tmp/m30_generation_a /tmp/m30_generation_b
+          python frp_m30_reproducibility_qualification_archival_closure.py \
+            --generate --repository-root . --output-root /tmp/m30_generation_a \
+            --source-commit "$M30_SOURCE_COMMIT" \
+            --workflow-evidence /tmp/m30_workflow_evidence.json \
+            --output /tmp/m30_generation_a.json \
+            2>&1 | tee /tmp/m30_generation_a.log
+          python frp_m30_reproducibility_qualification_archival_closure.py \
+            --generate --repository-root . --output-root /tmp/m30_generation_b \
+            --source-commit "$M30_SOURCE_COMMIT" \
+            --workflow-evidence /tmp/m30_workflow_evidence.json \
+            --output /tmp/m30_generation_b.json \
+            2>&1 | tee /tmp/m30_generation_b.log
+          diff --recursive --brief /tmp/m30_generation_a /tmp/m30_generation_b
+          cmp --silent /tmp/m30_generation_a.json /tmp/m30_generation_b.json
+          test "$(find /tmp/m30_generation_a -type f | wc -l)" -eq 38
+          find /tmp/m30_generation_a -type f -print0 \
+            | sort -z | xargs -0 sha256sum \
+            | tee /tmp/m30_deterministic_sha256.txt
+
+      - name: Generate the complete canonical M30 repository set
+        shell: bash
+        run: |
+          set -euo pipefail
+          python frp_m30_reproducibility_qualification_archival_closure.py \
+            --generate --repository-root . --output-root . \
+            --source-commit "$M30_SOURCE_COMMIT" \
+            --workflow-evidence /tmp/m30_workflow_evidence.json \
+            --output /tmp/m30_generation.json \
+            2>&1 | tee /tmp/m30_generation.log
+
+      - name: Run focused M30 reproducibility qualification
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest -v \
+            tests.test_frp_m30_reproducibility_qualification_archival_closure \
+            2>&1 | tee /tmp/m30_focused_tests.log
+          grep -F "Ran 61 tests" /tmp/m30_focused_tests.log
+          python frp_m30_reproducibility_qualification_archival_closure.py \
+            --verify --repository-root . --source-commit "$M30_SOURCE_COMMIT" \
+            --workflow-evidence /tmp/m30_workflow_evidence.json \
+            --output /tmp/m30_verification.json \
+            2>&1 | tee /tmp/m30_verification.log
+          python frp_m30_reproducibility_qualification_archival_closure.py \
+            --self-test --repository-root . --source-commit "$M30_SOURCE_COMMIT" \
+            --workflow-evidence /tmp/m30_workflow_evidence.json \
+            --output /tmp/m30_self_test.json \
+            2>&1 | tee /tmp/m30_self_test.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          generation = json.loads(Path("/tmp/m30_generation.json").read_text(encoding="utf-8"))
+          verification = json.loads(Path("/tmp/m30_verification.json").read_text(encoding="utf-8"))
+          self_test = json.loads(Path("/tmp/m30_self_test.json").read_text(encoding="utf-8"))
+          for name, result in (("generation", generation), ("verification", verification), ("self-test", self_test)):
+              if result["status"] != "PASS":
+                  raise SystemExit(f"M30 {name} failed")
+          expected = {
+              "generated_path_count": 38,
+              "schema_count": 14,
+              "document_count": 14,
+              "aligned_document_count": 6,
+              "release_document_count": 3,
+              "milestone_evidence_count": 13,
+              "final_schema_count": 124,
+              "canonical_artifact_count": 109,
+              "producer_count": 15,
+              "workflow_count": 40,
+              "required_successful_workflow_count": 14,
+              "qualification_manifest_count": 20,
+              "qualification_check_count": 55,
+          }
+          for key, value in expected.items():
+              if generation[key] != value or verification[key] != value:
+                  raise SystemExit(f"M30 result boundary mismatch: {key}")
+          if generation["package_sha256"] != verification["package_sha256"]:
+              raise SystemExit("M30 package digest result mismatch")
+          if self_test["check_count"] != 9:
+              raise SystemExit("M30 self-test count mismatch")
+          print("M30 focused reproducibility qualification: PASS")
+          PY
+
+      - name: Run the complete repository regression suite
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p 'test_*.py' -v \
+            2>&1 | tee /tmp/m30_full_regression.log
+          grep -F "Ran 524 tests" /tmp/m30_full_regression.log
+
+      - name: Validate the closed M30 repository boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          import frp_m30_reproducibility_qualification_archival_closure as m30
+
+          required = [Path(m30.SOURCE_PATH), Path(m30.TEST_PATH), *(Path(relative) for relative in m30.GENERATED_PATHS)]
+          if len(required) != 40 or len(required) != len(set(required)):
+              raise SystemExit("M30 required path inventory mismatch")
+          missing = [str(path) for path in required if not path.is_file() or path.is_symlink()]
+          if missing:
+              raise SystemExit(f"M30 required file boundary failed: {missing}")
+          qualification = json.loads(Path(m30.ARTIFACT_PATHS["reproducibility_qualification"]).read_text(encoding="utf-8"))
+          workflows = json.loads(Path(m30.ARTIFACT_PATHS["workflow_index"]).read_text(encoding="utf-8"))
+          package = json.loads(Path(m30.ARTIFACT_PATHS["release_package_manifest"]).read_text(encoding="utf-8"))
+          if qualification["status"] != "PASS" or qualification["summary"]["failed_count"] != 0:
+              raise SystemExit("M30 qualification failed")
+          if qualification["record_count"] != 55:
+              raise SystemExit("M30 qualification check count mismatch")
+          if workflows["record_count"] != 40:
+              raise SystemExit("M30 workflow index count mismatch")
+          if package["summary"]["package_member_count"] != 519:
+              raise SystemExit("M30 package member count mismatch")
+          forbidden = "-1/0/" + "+1"
+          for path in required:
+              if path != Path(m30.PACKAGE_PATH) and forbidden in path.read_text(encoding="utf-8"):
+                  raise SystemExit(f"forbidden ternary notation in {path}")
+          print("Closed M30 repository boundary: PASS")
+          PY
+          python - <<'PY'
+          import subprocess
+          from pathlib import Path
+
+          source = "ff3dd434da5dcbd9e8fa62444f658ed4c495b540"
+          families = ("RELEASE_NOTES_v", "TEST_REPORT_v", "FRP_VALIDATION_INDEX_v")
+          source_paths = subprocess.check_output(["git", "ls-tree", "-r", "--name-only", source], text=True).splitlines()
+          historical = [path for path in source_paths if Path(path).name.startswith(families)]
+          for relative in historical:
+              expected = subprocess.check_output(["git", "show", f"{source}:{relative}"])
+              if Path(relative).read_bytes() != expected:
+                  raise SystemExit(f"Historical release record changed: {relative}")
+          print(f"Historical release records preserved: {len(historical)}")
+          PY
+          while IFS= read -r status_path; do
+            changed_path="${status_path:3}"
+            case "$changed_path" in
+              frp_m30_reproducibility_qualification_archival_closure.py|\
+              tests/test_frp_m30_reproducibility_qualification_archival_closure.py|\
+              schemas/m30/*|artifacts/m30/*|\
+              README.md|PROJECT_STRUCTURE.md|CI.md|\
+              CHANGELOG.md|CITATION.cff|REPRODUCIBILITY.md|\
+              RELEASE_NOTES_v3_2_0.md|TEST_REPORT_v3_2_0.md|FRP_VALIDATION_INDEX_v3_2_0.md)
+                ;;
+              *)
+                echo "Unexpected working-tree change during M30 closure: $changed_path" >&2
+                exit 1
+                ;;
+            esac
+          done < <(git status --porcelain=v1)
+
+      - name: Create the complete M30 release commit and publish main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- \
+            schemas/m30 artifacts/m30 \
+            README.md PROJECT_STRUCTURE.md CI.md \
+            CHANGELOG.md CITATION.cff REPRODUCIBILITY.md \
+            RELEASE_NOTES_v3_2_0.md TEST_REPORT_v3_2_0.md \
+            FRP_VALIDATION_INDEX_v3_2_0.md
+          if git diff --cached --quiet; then
+            echo "M30 release closure is already committed; no commit is required."
+            exit 0
+          fi
+          test "$(git diff --cached --name-only | wc -l)" -eq 38
+          while IFS= read -r staged_path; do
+            case "$staged_path" in
+              schemas/m30/*|artifacts/m30/*|\
+              README.md|PROJECT_STRUCTURE.md|CI.md|\
+              CHANGELOG.md|CITATION.cff|REPRODUCIBILITY.md|\
+              RELEASE_NOTES_v3_2_0.md|TEST_REPORT_v3_2_0.md|FRP_VALIDATION_INDEX_v3_2_0.md)
+                ;;
+              *)
+                echo "Unexpected staged M30 path: $staged_path" >&2
+                exit 1
+                ;;
+            esac
+          done < <(git diff --cached --name-only)
+          git commit \
+            -m "Close M30 reproducibility qualification and archival release" \
+            -m "Close the planned M17 through M30 progression with complete milestone, schema, canonical-artifact, producer-command, workflow, qualification-manifest, and SHA-256 digest indexes; deterministic clean-environment reproduction; a byte-verified FRP v3.2.0 archival package; release-specific notes, test report, and validation index; and current-state repository alignment that preserves historical records. Preserve the immutable -1/0/1 core, active neutral state 0, temporal schedulers 1/7 and 7/1, separate free service mode, and the existing FRP Trace Observatory one-way read-only published-byte boundary without downstream code or writeback in FRP."
+          git push origin HEAD:main
+
+      - name: Retain complete M30 reproducibility qualification logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frp-m30-reproducibility-closure-${{ github.run_id }}
+          if-no-files-found: warn
+          retention-days: 30
+          path: |
+            /tmp/m30_workflow_evidence.json
+            /tmp/m30_generation_a.json
+            /tmp/m30_generation_b.json
+            /tmp/m30_generation_a.log
+            /tmp/m30_generation_b.log
+            /tmp/m30_deterministic_sha256.txt
+            /tmp/m30_generation.json
+            /tmp/m30_generation.log
+            /tmp/m30_focused_tests.log
+            /tmp/m30_verification.json
+            /tmp/m30_verification.log
+            /tmp/m30_self_test.json
+            /tmp/m30_self_test.log
+            /tmp/m30_full_regression.log
+            artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz
