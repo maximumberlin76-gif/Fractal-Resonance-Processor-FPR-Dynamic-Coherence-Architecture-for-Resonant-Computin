@@ -1,6 +1,7 @@
-[![Version](https://img.shields.io/badge/version-v1.8.0-blue.svg)](#release-status)
+[![Version](https://img.shields.io/badge/version-v3.2.0-blue.svg)](#release-status)
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](#quick-start)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](LICENSE)
+[![FRP M30 Reproducibility Qualification and Archival Release Closure](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m30-reproducibility-qualification-archival-release-closure-workflow.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m30-reproducibility-qualification-archival-release-closure-workflow.yml)
 [![FRP M16 RTL Artifact Boundary](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m16-rtl-artifact-boundary.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m16-rtl-artifact-boundary.yml)
 [![FRP M16 FPGA Preparation](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m16-fpga-preparation.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m16-fpga-preparation.yml)
 
@@ -111,67 +112,50 @@ Detailed execution references:
 
 | Field | Current value |
 |---|---|
-| Version | `FRP v1.8.0` |
-| Milestone | `M16 — RTL Core Realization and Execution Semantics Package` |
+| Version | `FRP v3.2.0` |
+| Milestone | `M30 — Reproducibility, Qualification, and Archival Release Closure` |
 | Executable semantic reference | `frp_prototype_v1_7_0.py` |
-| M15 semantic and implementation-mapping qualification | `41 / 41 PASS` |
-| M16 RTL execution qualification | `PASS` |
-| M16 FPGA preparation qualification | `PASS` |
-| Current architecture status | `M16 RTL EXECUTION LAYER CLOSED` |
-| Current FPGA status | `M16 FPGA PREPARATION LAYER CLOSED` |
+| RTL and FPGA implementation anchor | `M16 — PASS` |
+| M17 through M29 qualification gates | `13 / 13 milestones PASS` |
+| M30 reproducibility qualification | `PASS` |
+| Current release status | `M30 REPRODUCIBILITY AND ARCHIVAL RELEASE CLOSED` |
 
-FRP v1.8.0 extends the M15-qualified deterministic implementation-mapping boundary into an executable SystemVerilog RTL core and a target-independent FPGA integration layer.
+FRP v3.2.0 closes the M17 through M30 progression with complete milestone,
+schema, canonical-artifact, producer-command, workflow, qualification-manifest,
+and digest indexes; deterministic clean-environment reproduction; a verified
+archival release package; release metadata; and aligned current-state records.
 
-FRP v1.7.0 extends the published M14 floating semantic reference into a deterministic fixed-point hardware-interface domain.
+The executable semantic reference remains `frp_prototype_v1_7_0.py`. The
+qualified RTL and target-independent FPGA implementation anchor remains M16.
+M30 does not redefine processor semantics, measurement contours, or the
+published-byte boundary to the existing FRP Trace Observatory scaffold.
 
-M15 remains the qualified semantic and implementation-mapping foundation of M16.
+Immutable processor domain:
 
-The M15 layer provides:
+`-1/0/1`
 
-- a deterministic fixed-point interface profile;
-- canonical balanced ternary hardware encoding;
-- a stateful quantized hardware shadow;
-- cycle-exact integer reference traces;
-- deterministic RTL comparison vectors;
-- SystemVerilog testbench interface mapping;
-- synthesizable RTL reference-core mapping;
-- RTL assertion correlation;
-- reference RTL equivalence;
-- exact deterministic replay;
-- qualification closure.
+Active neutral state:
 
-The current architecture chain is:
+`0`
 
-`M14 floating semantic reference → M15 quantized hardware shadow → cycle-exact integer golden trace → deterministic RTL comparison vectors → SystemVerilog correlation contract → RTL equivalence and exact replay → M15 qualification closure → M16 executable SystemVerilog RTL core → M16 target-independent FPGA integration → FPGA preparation qualification closure`
+Temporal scheduler modes:
 
-M15 qualification evidence:
+`1/7` and `7/1`
 
-- `41 / 41 PASS` self-test assertions;
-- `10 / 10` deterministic vector files byte-identical after regeneration;
-- `5 / 5` required semantic correlation matches equal to `1.0`;
-- `6 / 6` exact deterministic replay matches equal to `1.0`;
-- `actual_direct_events = 0`;
-- `reserved_state_events = 0`;
-- `queue_overflow_events = 0`;
-- `fixed_point_topology_sum_exact = True`;
-- `fixed_point_thermal_sum_exact = True`.
+Separate service scheduler mode:
 
-The current M16 layer adds:
+`free`
 
-- ten integrated SystemVerilog RTL artifacts;
-- executable Verilator elaboration, build, and architectural simulation;
-- architectural assertion execution;
-- deterministic request-lane arbitration;
-- retained pending-route execution;
-- active-neutral opposite-polarity routing;
-- bounded transition-capacity enforcement;
-- retained balanced ternary writeback;
-- target-independent FPGA integration;
-- asynchronous reset assertion and two-stage synchronous reset release;
-- `core_ready` execution gating;
-- executable FPGA integration qualification;
-- all ten integrated invariant flags equal to `1`;
-- zero actual direct-transition, reserved-state, and queue-overflow events.
+M30 release records:
+
+- `RELEASE_NOTES_v3_2_0.md`;
+- `TEST_REPORT_v3_2_0.md`;
+- `FRP_VALIDATION_INDEX_v3_2_0.md`;
+- `artifacts/m30/`;
+- `schemas/m30/`.
+
+The M16 section below remains the qualified implementation-layer record.
+Historical release records remain unchanged.
 
 ## FRP v1.8.0 — M16 RTL Core Realization and FPGA Preparation
 
@@ -4254,11 +4238,11 @@ Current published-artifact integration qualification state:
 
 ## Project Milestones
 
-FRP v1.8.0 / M16 remains the current published release boundary.
+FRP v3.2.0 / M30 is the current published release closure. FRP v1.8.0 / M16 remains the qualified RTL and FPGA implementation anchor.
 
 The M17 published-artifact integration qualification boundary is closed with `PASS`. Its machine-readable inventory milestone state remains `planned`, and `v1.9.0` remains a provisional release target.
 
-M18 through M30 remain planned architecture targets. Version assignments from M17 through M30 remain provisional until the applicable release records are complete.
+M17 through M30 are closed by the FRP v3.2.0 reproducibility, qualification, and archival release record.
 
 | Milestone | Version | Architecture layer | Status |
 |---|---|---|---|
@@ -4279,20 +4263,20 @@ M18 through M30 remain planned architecture targets. Version assignments from M1
 | M14 | v1.6.0 | Physical Implementation Correlation and Production Qualification Package | Completed |
 | M15 | v1.7.0 | Implementation Mapping, Domain Interface, and Qualification Closure Package | Qualified semantic and implementation-mapping foundation |
 | M16 | v1.8.0 | RTL Core Realization and Execution Semantics Package | Current qualified layer |
-| M17 | v1.9.0 | Published Artifact Integration Contract | Qualification boundary closed; release target remains provisional |
-| M18 | v2.0.0 | Formal Schema and Canonical Artifact Publication | Planned |
-| M19 | v2.1.0 | Machine-Readable M16 Execution and Qualification Evidence | Planned |
-| M20 | v2.2.0 | Cross-Layer Deterministic Correlation | Planned |
-| M21 | v2.3.0 | Parameterized Qualification Matrix | Planned |
-| M22 | v2.4.0 | Control, Status, and Register Interface Realization | Planned |
-| M23 | v2.5.0 | Clock, Reset, CDC, and Interface Hardening | Planned |
-| M24 | v2.6.0 | Formal and Bounded Verification Closure | Planned |
-| M25 | v2.7.0 | Fault, Negative-Path, and Recovery Qualification | Planned |
-| M26 | v2.8.0 | Declared-Target Implementation Evidence | Planned |
-| M27 | v2.9.0 | Long-Run Stability and Telemetry Qualification | Planned |
-| M28 | v3.0.0 | Hierarchical Scaling and Hotspot-Containment Realization | Planned |
-| M29 | v3.1.0 | System Integration and Downstream Compatibility Closure | Planned |
-| M30 | v3.2.0 | Reproducibility, Qualification, and Archival Release Closure | Planned |
+| M17 | v1.9.0 | Published Artifact Integration Contract | Completed |
+| M18 | v2.0.0 | Formal Schema and Canonical Artifact Publication | Completed |
+| M19 | v2.1.0 | Machine-Readable M16 Execution and Qualification Evidence | Completed |
+| M20 | v2.2.0 | Cross-Layer Deterministic Correlation | Completed |
+| M21 | v2.3.0 | Parameterized Qualification Matrix | Completed |
+| M22 | v2.4.0 | Control, Status, and Register Interface Realization | Completed |
+| M23 | v2.5.0 | Clock, Reset, CDC, and Interface Hardening | Completed |
+| M24 | v2.6.0 | Formal and Bounded Verification Closure | Completed |
+| M25 | v2.7.0 | Fault, Negative-Path, and Recovery Qualification | Completed |
+| M26 | v2.8.0 | Declared-Target Implementation Evidence | Completed |
+| M27 | v2.9.0 | Long-Run Stability and Telemetry Qualification | Completed |
+| M28 | v3.0.0 | Hierarchical Scaling and Hotspot-Containment Realization | Completed |
+| M29 | v3.1.0 | System Integration and Downstream Compatibility Closure | Completed |
+| M30 | v3.2.0 | Reproducibility, Qualification, and Archival Release Closure | Completed |
 
 M15 qualification record:
 
@@ -4682,11 +4666,11 @@ Funding brief:
 
 Current release:
 
-`FRP v1.8.0`
+`FRP v3.2.0`
 
 Current milestone:
 
-`M16 — RTL Core Realization and Execution Semantics Package`
+`M30 — Reproducibility, Qualification, and Archival Release Closure`
 
 Current release qualification state:
 
@@ -4694,7 +4678,15 @@ Current release qualification state:
 
 Current release layer:
 
+`FRP v3.2.0 — M30 Reproducibility, Qualification, and Archival Release Closure`
+
+Current implementation anchor:
+
 `FRP v1.8.0 — M16 RTL Core Realization and Execution Semantics Package`
+
+M17 through M29 milestone-gate result:
+
+`13 / 13 milestones PASS`
 
 Inherited M15 semantic and implementation-mapping qualification:
 
@@ -4838,17 +4830,3 @@ Historical archived DOI:
 Maksym Marnov (Alchimist)
 
 **Berlin, 8 July 2026**
-
-
-
-
-
-
-
-
-
-
-
-
-
-

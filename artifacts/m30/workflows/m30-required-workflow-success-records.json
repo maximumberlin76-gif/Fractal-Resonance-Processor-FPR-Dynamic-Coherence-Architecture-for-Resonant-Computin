@@ -1,0 +1,223 @@
+{
+  "content_digest": "97271ac53a28bd251d5d1b2452c3ff67e2e058386d16603b3527b202c68925de",
+  "immutable_core": {
+    "active_neutral_state": 0,
+    "balanced_ternary_notation": "-1/0/1",
+    "opposite_polarity_routes": [
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        -1
+      ]
+    ],
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ]
+  },
+  "kind": "required_workflow_success_records",
+  "milestone": "M30",
+  "observatory_boundary": {
+    "audited_commit": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+    "downstream_files_modified_by_m30": false,
+    "downstream_semantic_reimplementation": "forbidden",
+    "downstream_writeback": "forbidden",
+    "existing_scaffold_action": "preserve_existing_scaffold",
+    "integration_direction": "upstream_to_downstream_only",
+    "repository": "FRP-Trace-Observatory",
+    "upstream_dependency_on_downstream_code": false,
+    "upstream_interchange_commit": "566a4ff88baa57f844691b46937552253e095434"
+  },
+  "record_count": 14,
+  "records": [
+    {
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "evidence_source": "github_actions_api",
+      "head_sha": "1ce73e3c86eae4a84e4ad492021193103c67538f",
+      "html_url": "https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/runs/30737299360",
+      "run_id": 30737299360,
+      "run_number": 3,
+      "status": "completed",
+      "workflow_name": "FRP M17 Published Artifact Integration",
+      "workflow_path": ".github/workflows/frp-m17-published-artifact-integration.yml"
+    },
+    {
+      "conclusion": "success",
+      "event": "push",
+      "evidence_source": "github_actions_api",
+      "head_sha": "e00fc28bec8410b1e029d8de67faf404d1c960e4",
+      "html_url": "https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/runs/31949809650",
+      "run_id": 31949809650,
+      "run_number": 2,
+      "status": "completed",
+      "workflow_name": "FRP M18 Formal Schema and Canonical Artifacts",
+      "workflow_path": ".github/workflows/frp-m18-formal-schema-canonical-artifacts.yml"
+    },
+    {
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "evidence_source": "github_actions_api",
+      "head_sha": "0534ab4ccfb05426a70eb6140e0aa43eb8e5f90a",
+      "html_url": "https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/runs/31970943547",
+      "run_id": 31970943547,
+      "run_number": 2,
+      "status": "completed",
+      "workflow_name": "FRP M19 Create Machine-Readable M16 Evidence",
+      "workflow_path": ".github/workflows/frp-m19-create-machine-readable-m16-evidence.yml"
+    },
+    {
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "evidence_source": "github_actions_api",
+      "head_sha": "be91e69d5d2e51a2bbc9a3ffb8f6d60c88d8bef4",
+      "html_url": "https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/runs/31996464351",
+      "run_id": 31996464351,
+      "run_number": 2,
+      "status": "completed",
+      "workflow_name": "FRP M20 Cross-Layer Deterministic Correlation",
+      "workflow_path": ".github/workflows/frp-m20-cross-layer-correlation.yml"
+    },
+    {
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "evidence_source": "github_actions_api",
+      "head_sha": "759ee446adf028ca135c75ca38388c26e911aa68",
+      "html_url": "https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/runs/32003442502",
+      "run_id": 32003442502,
+      "run_number": 2,
+      "status": "completed",
+      "workflow_name": "FRP M21 Parameterized Qualification Matrix",
+      "workflow_path": ".github/workflows/frp-m21-parameterized-qualification-matrix.yml"
+    },
+    {
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "evidence_source": "github_actions_api",
+      "head_sha": "6bb07958710dc942c4deea1e7663ea97017fe3a8",
+      "html_url": "https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/runs/32408065390",
+      "run_id": 32408065390,
+      "run_number": 2,
+      "status": "completed",
+      "workflow_name": "FRP M22 Control Status Register Interface",
+      "workflow_path": ".github/workflows/frp-m22-control-status-register-interface.yml"
+    },
+    {
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "evidence_source": "github_actions_api",
+      "head_sha": "1dcc4e4d47135cdf1e38192cc96f0d928066b13e",
+      "html_url": "https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/runs/32468035735",
+      "run_id": 32468035735,
+      "run_number": 3,
+      "status": "completed",
+      "workflow_name": "FRP M23 Clock Reset CDC Interface Hardening",
+      "workflow_path": ".github/workflows/frp-m23-clock-reset-cdc-interface-hardening-workflow.yml"
+    },
+    {
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "evidence_source": "github_actions_api",
+      "head_sha": "a01fb687fd1e4f0159f0d8cd885863afb8b87a1e",
+      "html_url": "https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/runs/32473916258",
+      "run_id": 32473916258,
+      "run_number": 2,
+      "status": "completed",
+      "workflow_name": "FRP M24 Formal Bounded Verification Closure",
+      "workflow_path": ".github/workflows/frp-m24-formal-bounded-verification-closure-workflow.yml"
+    },
+    {
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "evidence_source": "github_actions_api",
+      "head_sha": "e9dee012e046c68dac0c63060da4c7a6ca85a3db",
+      "html_url": "https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/runs/32483777228",
+      "run_id": 32483777228,
+      "run_number": 1,
+      "status": "completed",
+      "workflow_name": "FRP M25 Fault Negative-Path and Recovery Qualification",
+      "workflow_path": ".github/workflows/frp-m25-fault-negative-path-recovery-qualification-workflow.yml"
+    },
+    {
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "evidence_source": "github_actions_api",
+      "head_sha": "5ee33ed7f1f90212123c1c32120dfd41a9a130ae",
+      "html_url": "https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/runs/32501134817",
+      "run_id": 32501134817,
+      "run_number": 2,
+      "status": "completed",
+      "workflow_name": "FRP M26 Declared-Target Implementation Evidence",
+      "workflow_path": ".github/workflows/frp-m26-declared-target-implementation-evidence-workflow.yml"
+    },
+    {
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "evidence_source": "github_actions_api",
+      "head_sha": "2bcf6423d0f2ec3bde2150628f878e2464491724",
+      "html_url": "https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/runs/32515928901",
+      "run_id": 32515928901,
+      "run_number": 2,
+      "status": "completed",
+      "workflow_name": "FRP M27 Long-Run Stability and Telemetry Qualification",
+      "workflow_path": ".github/workflows/frp-m27-long-run-stability-telemetry-qualification-workflow.yml"
+    },
+    {
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "evidence_source": "github_actions_api",
+      "head_sha": "6e4ca103672192f7ec7f238d7ad7b8a79bd0ed59",
+      "html_url": "https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/runs/32557702332",
+      "run_id": 32557702332,
+      "run_number": 1,
+      "status": "completed",
+      "workflow_name": "FRP M28 Hierarchical Scaling and Hotspot-Containment Closure",
+      "workflow_path": ".github/workflows/frp-m28-hierarchical-scaling-hotspot-containment-closure-workflow.yml"
+    },
+    {
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "evidence_source": "github_actions_api",
+      "head_sha": "7cd513183d04558d499b11597e4a0cbde59e1fce",
+      "html_url": "https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/runs/32522797719",
+      "run_id": 32522797719,
+      "run_number": 1,
+      "status": "completed",
+      "workflow_name": "FRP M28 Trace Observatory Upstream Interchange",
+      "workflow_path": ".github/workflows/frp-m28-trace-observatory-upstream-interchange-workflow.yml"
+    },
+    {
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "evidence_source": "github_actions_api",
+      "head_sha": "f2de59ac4541e19c9aa0e482c5de8aec754a821b",
+      "html_url": "https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/runs/32561199353",
+      "run_id": 32561199353,
+      "run_number": 1,
+      "status": "completed",
+      "workflow_name": "FRP M29 System Integration and Downstream Compatibility Closure",
+      "workflow_path": ".github/workflows/frp-m29-system-integration-downstream-compatibility-closure-workflow.yml"
+    }
+  ],
+  "schema": "frp.m30.required_workflow_success_records.v3.2.0",
+  "source_commit": "ff3dd434da5dcbd9e8fa62444f658ed4c495b540",
+  "status": "PASS",
+  "summary": {
+    "all_conclusions": "success",
+    "required_workflow_count": 14,
+    "scope": "M17_through_M29_required_workflows",
+    "successful_workflow_count": 14
+  },
+  "version": "3.2.0"
+}

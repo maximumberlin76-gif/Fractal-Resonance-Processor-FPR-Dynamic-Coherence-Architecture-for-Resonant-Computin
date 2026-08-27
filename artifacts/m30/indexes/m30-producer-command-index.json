@@ -1,0 +1,204 @@
+{
+  "content_digest": "6462d510244b076cc83cc8b3c626381b21c1c8180ee479ca7e48f26d59dcda66",
+  "immutable_core": {
+    "active_neutral_state": 0,
+    "balanced_ternary_notation": "-1/0/1",
+    "opposite_polarity_routes": [
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        -1
+      ]
+    ],
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ]
+  },
+  "kind": "producer_command_index",
+  "milestone": "M30",
+  "observatory_boundary": {
+    "audited_commit": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+    "downstream_files_modified_by_m30": false,
+    "downstream_semantic_reimplementation": "forbidden",
+    "downstream_writeback": "forbidden",
+    "existing_scaffold_action": "preserve_existing_scaffold",
+    "integration_direction": "upstream_to_downstream_only",
+    "repository": "FRP-Trace-Observatory",
+    "upstream_dependency_on_downstream_code": false,
+    "upstream_interchange_commit": "566a4ff88baa57f844691b46937552253e095434"
+  },
+  "record_count": 15,
+  "records": [
+    {
+      "byte_length": 46521,
+      "commands": [
+        "python frp_m17_publication_inventory.py --self-test --repository-root ."
+      ],
+      "milestone": "M17",
+      "mode": "--self-test",
+      "path": "frp_m17_publication_inventory.py",
+      "raw_sha256": "7556ad75fdb67cfa236f9112015592ddf091250d4ee2b2ecbc1c0b0f4bb306ce"
+    },
+    {
+      "byte_length": 89905,
+      "commands": [
+        "python frp_m18_canonical_artifacts.py --verify --repository-root ."
+      ],
+      "milestone": "M18",
+      "mode": "--verify",
+      "path": "frp_m18_canonical_artifacts.py",
+      "raw_sha256": "4562e0d6b5a0611ce7623d66b563aea7e90afb98e9f534a581a64d59e47c11b1"
+    },
+    {
+      "byte_length": 58131,
+      "commands": [
+        "python frp_m19_m16_evidence.py --verify --repository-root ."
+      ],
+      "milestone": "M19",
+      "mode": "--verify",
+      "path": "frp_m19_m16_evidence.py",
+      "raw_sha256": "490451e2f117e6027b9608a1217fbd2c7b5c9cc882d647e3af8af084a504567d"
+    },
+    {
+      "byte_length": 57017,
+      "commands": [
+        "python frp_m20_cross_layer_correlation.py --verify --repository-root . --source-commit recorded_by_producer"
+      ],
+      "milestone": "M20",
+      "mode": "--verify",
+      "path": "frp_m20_cross_layer_correlation.py",
+      "raw_sha256": "2aeb8c660b3562d83510ca2819f5697a9cd09b9586e401d32a4359d58c4988b1"
+    },
+    {
+      "byte_length": 58784,
+      "commands": [
+        "python frp_m21_parameterized_qualification_matrix.py --verify --repository-root . --source-commit recorded_by_producer"
+      ],
+      "milestone": "M21",
+      "mode": "--verify",
+      "path": "frp_m21_parameterized_qualification_matrix.py",
+      "raw_sha256": "67418d6c5b2e0e5231df1fd1e2c326bc5b122c19710bc37f60101bfb8d74c284"
+    },
+    {
+      "byte_length": 51132,
+      "commands": [
+        "python frp_m22_control_status_register_interface.py --verify --repository-root . --source-commit recorded_by_producer"
+      ],
+      "milestone": "M22",
+      "mode": "--verify",
+      "path": "frp_m22_control_status_register_interface.py",
+      "raw_sha256": "71c011f8f7a339778227dfa22e096259bcda5e6d7c72410d952b52864e666ff3"
+    },
+    {
+      "byte_length": 26716,
+      "commands": [
+        "python frp_m23_clock_reset_cdc_interface_hardening.py --verify --repository-root . --source-commit recorded_by_producer"
+      ],
+      "milestone": "M23",
+      "mode": "--verify",
+      "path": "frp_m23_clock_reset_cdc_interface_hardening.py",
+      "raw_sha256": "a090abc0229536991e399372b686f35e48ce2c667f9e26d3abb5dc7da01f145d"
+    },
+    {
+      "byte_length": 48380,
+      "commands": [
+        "python frp_m24_formal_bounded_verification.py --verify --repository-root . --source-commit recorded_by_producer"
+      ],
+      "milestone": "M24",
+      "mode": "--verify",
+      "path": "frp_m24_formal_bounded_verification.py",
+      "raw_sha256": "f75a3fcd19bd0cd95e6dbb48ccefeadf8cb7be5df7c8bb9edf3ba379ea71c7fe"
+    },
+    {
+      "byte_length": 45655,
+      "commands": [
+        "python frp_m25_fault_negative_recovery_qualification.py --verify --repository-root . --source-commit recorded_by_producer"
+      ],
+      "milestone": "M25",
+      "mode": "--verify",
+      "path": "frp_m25_fault_negative_recovery_qualification.py",
+      "raw_sha256": "60e087b54e4d8d0f3eb56154f540cb0597a0b2e490f95d6424513753008cb332"
+    },
+    {
+      "byte_length": 40794,
+      "commands": [
+        "python frp_m26_declared_target_implementation_evidence.py --verify --repository-root . --source-commit recorded_by_producer"
+      ],
+      "milestone": "M26",
+      "mode": "--verify",
+      "path": "frp_m26_declared_target_implementation_evidence.py",
+      "raw_sha256": "03126e4ba71ced2f81d4d360cbfd3a4ceb0f9c97e986d969ef61531c5cb5cfd5"
+    },
+    {
+      "byte_length": 48903,
+      "commands": [
+        "python frp_m27_long_run_stability_telemetry_qualification.py --verify --repository-root . --source-commit recorded_by_producer"
+      ],
+      "milestone": "M27",
+      "mode": "--verify",
+      "path": "frp_m27_long_run_stability_telemetry_qualification.py",
+      "raw_sha256": "ffd251d97db3550e66e111737172deeaae267d958c7cb929602a34370456d1fd"
+    },
+    {
+      "byte_length": 51133,
+      "commands": [
+        "python frp_m28_hierarchical_scaling_hotspot_containment.py --verify --repository-root . --source-commit recorded_by_producer"
+      ],
+      "milestone": "M28",
+      "mode": "--verify",
+      "path": "frp_m28_hierarchical_scaling_hotspot_containment.py",
+      "raw_sha256": "beea882d99290b08a618c354201c8b65a578e1c6cbe53842c428c0bc02615da7"
+    },
+    {
+      "byte_length": 53856,
+      "commands": [
+        "python frp_m28_trace_observatory_upstream_interchange.py --verify --repository-root . --source-commit recorded_by_producer"
+      ],
+      "milestone": "M28",
+      "mode": "--verify",
+      "path": "frp_m28_trace_observatory_upstream_interchange.py",
+      "raw_sha256": "1c0662120fb734e48fb5ff7f88f4ff223f9ae6ed5f8cb38eef0dd90224ef12ab"
+    },
+    {
+      "byte_length": 80805,
+      "commands": [
+        "python frp_m29_system_integration_downstream_compatibility.py --verify --repository-root . --source-commit recorded_by_producer"
+      ],
+      "milestone": "M29",
+      "mode": "--verify",
+      "path": "frp_m29_system_integration_downstream_compatibility.py",
+      "raw_sha256": "a335d75a15db1d04c26d2c6b5260599c6f7b027bcc7637efb5470640f9b88ed9"
+    },
+    {
+      "byte_length": 89441,
+      "commands": [
+        "python frp_m30_reproducibility_qualification_archival_closure.py --verify --repository-root . --source-commit ff3dd434da5dcbd9e8fa62444f658ed4c495b540"
+      ],
+      "milestone": "M30",
+      "mode": "--verify",
+      "path": "frp_m30_reproducibility_qualification_archival_closure.py",
+      "raw_sha256": "764b82eace9d90b79d7955a80c571e9e4d22de395d2e5b6ee4d38e910af0c870"
+    }
+  ],
+  "schema": "frp.m30.producer_command_index.v3.2.0",
+  "source_commit": "ff3dd434da5dcbd9e8fa62444f658ed4c495b540",
+  "status": "PASS",
+  "summary": {
+    "first_milestone": "M17",
+    "last_milestone": "M30",
+    "producer_count": 15
+  },
+  "version": "3.2.0"
+}

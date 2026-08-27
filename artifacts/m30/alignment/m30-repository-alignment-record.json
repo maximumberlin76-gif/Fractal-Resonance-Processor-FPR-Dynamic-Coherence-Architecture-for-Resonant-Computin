@@ -1,0 +1,97 @@
+{
+  "content_digest": "ce94e5d99dd37bb86c1c8a75df1084cd060241fbea2f10342c4e53e0f738d218",
+  "immutable_core": {
+    "active_neutral_state": 0,
+    "balanced_ternary_notation": "-1/0/1",
+    "opposite_polarity_routes": [
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        -1
+      ]
+    ],
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ]
+  },
+  "kind": "repository_alignment_record",
+  "milestone": "M30",
+  "observatory_boundary": {
+    "audited_commit": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+    "downstream_files_modified_by_m30": false,
+    "downstream_semantic_reimplementation": "forbidden",
+    "downstream_writeback": "forbidden",
+    "existing_scaffold_action": "preserve_existing_scaffold",
+    "integration_direction": "upstream_to_downstream_only",
+    "repository": "FRP-Trace-Observatory",
+    "upstream_dependency_on_downstream_code": false,
+    "upstream_interchange_commit": "566a4ff88baa57f844691b46937552253e095434"
+  },
+  "record_count": 6,
+  "records": [
+    {
+      "after_sha256": "ee2d3e3c4d8cff459ba669307777ac97b86e3843f5c7a3d521ad817a5e7b0d60",
+      "before_sha256": "0fd53206fc2c2ac002afb29eaf3788f8ce090eeed47b31d57a32d1896ce72785",
+      "historical_content_policy": "preserved",
+      "path": "README.md",
+      "status": "aligned"
+    },
+    {
+      "after_sha256": "dab46be1d1e1db3c6ebe03b2ee629b677c328021d599e604a682c527cd2bc4b1",
+      "before_sha256": "500029cab3b6093ceed12ed11c491779670371f0cf327517863107ad035d2130",
+      "historical_content_policy": "preserved",
+      "path": "PROJECT_STRUCTURE.md",
+      "status": "aligned"
+    },
+    {
+      "after_sha256": "5f34c4402f5aad9ca0d64cdc12d508e2a67a8b4d3424ab67a4a4831162d90dab",
+      "before_sha256": "44cee7e6069fac4d06452e0709f3a79c3fe9be15432425dca148cf6eb6709e47",
+      "historical_content_policy": "preserved",
+      "path": "CI.md",
+      "status": "aligned"
+    },
+    {
+      "after_sha256": "965b5dec90d479e80c5b7495ec898b1ed9d596a69c2b026eac0023ca40c6073b",
+      "before_sha256": "9dc566d575297c54ae8ceba385315c0cab4789f4e186e406efb90585246c0693",
+      "historical_content_policy": "preserved",
+      "path": "CHANGELOG.md",
+      "status": "aligned"
+    },
+    {
+      "after_sha256": "4939a7a61e779b44b086e15cbac337e2d184022e1a0fbea444abaf1c01c04dbb",
+      "before_sha256": "4f2ba5ca091ef0630c2080222d776d5279d1888a904e9c40c3eb847d8246572a",
+      "historical_content_policy": "preserved",
+      "path": "CITATION.cff",
+      "status": "aligned"
+    },
+    {
+      "after_sha256": "a25c61fd4293c5ebf3f3e110c1e1d24025905694537cc0aecb441e7384011976",
+      "before_sha256": "26f490610bdf0831ea29cbec4fde93e8b95439bd3202abbe29203ddff04093e6",
+      "historical_content_policy": "preserved",
+      "path": "REPRODUCIBILITY.md",
+      "status": "aligned"
+    }
+  ],
+  "schema": "frp.m30.repository_alignment_record.v3.2.0",
+  "source_commit": "ff3dd434da5dcbd9e8fa62444f658ed4c495b540",
+  "status": "PASS",
+  "summary": {
+    "aligned_document_count": 6,
+    "current_milestone": "M30 - Reproducibility, Qualification, and Archival Release Closure",
+    "current_release": "FRP v3.2.0",
+    "historical_records_preserved": true
+  },
+  "version": "3.2.0"
+}

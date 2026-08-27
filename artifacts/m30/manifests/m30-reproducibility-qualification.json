@@ -1,0 +1,277 @@
+{
+  "content_digest": "4fa0c4b273b93ffcc2cf8d56d9310bdbff8138bb79e0a04c7a8acf3e5295a7be",
+  "immutable_core": {
+    "active_neutral_state": 0,
+    "balanced_ternary_notation": "-1/0/1",
+    "opposite_polarity_routes": [
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        -1
+      ]
+    ],
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ]
+  },
+  "kind": "reproducibility_qualification",
+  "milestone": "M30",
+  "observatory_boundary": {
+    "audited_commit": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+    "downstream_files_modified_by_m30": false,
+    "downstream_semantic_reimplementation": "forbidden",
+    "downstream_writeback": "forbidden",
+    "existing_scaffold_action": "preserve_existing_scaffold",
+    "integration_direction": "upstream_to_downstream_only",
+    "repository": "FRP-Trace-Observatory",
+    "upstream_dependency_on_downstream_code": false,
+    "upstream_interchange_commit": "566a4ff88baa57f844691b46937552253e095434"
+  },
+  "record_count": 55,
+  "records": [
+    {
+      "check": "exact_M29_source_commit",
+      "result": "PASS"
+    },
+    {
+      "check": "M29_subject_exact",
+      "result": "PASS"
+    },
+    {
+      "check": "M29_qualification_48_of_48_PASS",
+      "result": "PASS"
+    },
+    {
+      "check": "M17_through_M29_milestone_count_13",
+      "result": "PASS"
+    },
+    {
+      "check": "M17_through_M29_all_gates_PASS",
+      "result": "PASS"
+    },
+    {
+      "check": "schema_index_complete",
+      "result": "PASS"
+    },
+    {
+      "check": "upstream_canonical_artifact_index_complete",
+      "result": "PASS"
+    },
+    {
+      "check": "producer_command_index_complete",
+      "result": "PASS"
+    },
+    {
+      "check": "workflow_index_complete",
+      "result": "PASS"
+    },
+    {
+      "check": "required_workflow_success_records_complete",
+      "result": "PASS"
+    },
+    {
+      "check": "required_workflow_conclusions_success",
+      "result": "PASS"
+    },
+    {
+      "check": "qualification_manifest_index_nonempty",
+      "result": "PASS"
+    },
+    {
+      "check": "qualification_manifests_all_PASS",
+      "result": "PASS"
+    },
+    {
+      "check": "complete_digest_inventory_nonempty",
+      "result": "PASS"
+    },
+    {
+      "check": "digest_paths_unique",
+      "result": "PASS"
+    },
+    {
+      "check": "package_gzip_valid",
+      "result": "PASS"
+    },
+    {
+      "check": "package_internal_manifest_valid",
+      "result": "PASS"
+    },
+    {
+      "check": "package_members_byte_exact",
+      "result": "PASS"
+    },
+    {
+      "check": "package_sha256_recorded",
+      "result": "PASS"
+    },
+    {
+      "check": "clean_environment_commands_complete",
+      "result": "PASS"
+    },
+    {
+      "check": "aligned_current_document_count_6",
+      "result": "PASS"
+    },
+    {
+      "check": "historical_records_preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "release_notes_present",
+      "result": "PASS"
+    },
+    {
+      "check": "test_report_present",
+      "result": "PASS"
+    },
+    {
+      "check": "validation_index_present",
+      "result": "PASS"
+    },
+    {
+      "check": "archival_metadata_complete",
+      "result": "PASS"
+    },
+    {
+      "check": "balanced_ternary_notation_exact",
+      "result": "PASS"
+    },
+    {
+      "check": "semantic_values_exact",
+      "result": "PASS"
+    },
+    {
+      "check": "active_neutral_exact",
+      "result": "PASS"
+    },
+    {
+      "check": "temporal_scheduler_modes_exact",
+      "result": "PASS"
+    },
+    {
+      "check": "free_service_mode_separate",
+      "result": "PASS"
+    },
+    {
+      "check": "opposite_routes_neutral_mediated",
+      "result": "PASS"
+    },
+    {
+      "check": "Observatory_repository_preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "Observatory_direction_one_way",
+      "result": "PASS"
+    },
+    {
+      "check": "Observatory_writeback_forbidden",
+      "result": "PASS"
+    },
+    {
+      "check": "Observatory_semantic_reimplementation_forbidden",
+      "result": "PASS"
+    },
+    {
+      "check": "no_upstream_downstream_code_dependency",
+      "result": "PASS"
+    },
+    {
+      "check": "no_downstream_file_modification",
+      "result": "PASS"
+    },
+    {
+      "check": "M30_manual_trigger_only",
+      "result": "PASS"
+    },
+    {
+      "check": "M30_workflow_name_explicit",
+      "result": "PASS"
+    },
+    {
+      "check": "release_version_exact",
+      "result": "PASS"
+    },
+    {
+      "check": "release_milestone_exact",
+      "result": "PASS"
+    },
+    {
+      "check": "release_objective_exact",
+      "result": "PASS"
+    },
+    {
+      "check": "source_files_present",
+      "result": "PASS"
+    },
+    {
+      "check": "schemas_draft_2020_12_valid",
+      "result": "PASS"
+    },
+    {
+      "check": "JSON_documents_content_digests_valid",
+      "result": "PASS"
+    },
+    {
+      "check": "release_package_deterministic_metadata",
+      "result": "PASS"
+    },
+    {
+      "check": "package_member_paths_safe",
+      "result": "PASS"
+    },
+    {
+      "check": "package_member_types_regular",
+      "result": "PASS"
+    },
+    {
+      "check": "measurement_contours_preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "unsupported_physical_chip_claim_count_zero",
+      "result": "PASS"
+    },
+    {
+      "check": "historical_release_file_mutation_count_zero",
+      "result": "PASS"
+    },
+    {
+      "check": "repository_current_state_aligned",
+      "result": "PASS"
+    },
+    {
+      "check": "M30_release_files_complete",
+      "result": "PASS"
+    },
+    {
+      "check": "M30_generated_path_inventory_unique",
+      "result": "PASS"
+    }
+  ],
+  "schema": "frp.m30.reproducibility_qualification.v3.2.0",
+  "source_commit": "ff3dd434da5dcbd9e8fa62444f658ed4c495b540",
+  "status": "PASS",
+  "summary": {
+    "check_count": 55,
+    "closure_status": "M30_REPRODUCIBILITY_AND_ARCHIVAL_RELEASE_CLOSED",
+    "failed_count": 0,
+    "objective": "close the planned M17 through M30 architecture progression with reproducible qualification and archival evidence",
+    "package_sha256": "05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa",
+    "passed_count": 55
+  },
+  "version": "3.2.0"
+}

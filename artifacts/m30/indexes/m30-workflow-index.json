@@ -1,0 +1,495 @@
+{
+  "content_digest": "36bc03d1884036b94b7461073e1a684b4372a49a7b61f483bd4ce08d11496f82",
+  "immutable_core": {
+    "active_neutral_state": 0,
+    "balanced_ternary_notation": "-1/0/1",
+    "opposite_polarity_routes": [
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        -1
+      ]
+    ],
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ]
+  },
+  "kind": "workflow_index",
+  "milestone": "M30",
+  "observatory_boundary": {
+    "audited_commit": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+    "downstream_files_modified_by_m30": false,
+    "downstream_semantic_reimplementation": "forbidden",
+    "downstream_writeback": "forbidden",
+    "existing_scaffold_action": "preserve_existing_scaffold",
+    "integration_direction": "upstream_to_downstream_only",
+    "repository": "FRP-Trace-Observatory",
+    "upstream_dependency_on_downstream_code": false,
+    "upstream_interchange_commit": "566a4ff88baa57f844691b46937552253e095434"
+  },
+  "record_count": 40,
+  "records": [
+    {
+      "byte_length": 12020,
+      "name": "FRP Comparative Architecture Benchmark",
+      "path": ".github/workflows/frp-architecture-comparison.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "24d161548b6993b06d987621d84cd981cdd5eb952e7b9b6efe422ef5f48bf0e7",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 1037,
+      "name": "FRP Benchmark Smoke Test",
+      "path": ".github/workflows/frp-benchmark-smoke.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "3c570e828f80f8cc2ce05c79199d1adbaf80651320fab7b19ed9b7afd59aa597",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 27660,
+      "name": "FRP Hardware Sensitivity Comparison",
+      "path": ".github/workflows/frp-hardware-sensitivity-comparison.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "daf20b64534267c10c3755783f5c8feca81ac25dc8ae605cb4fce7802df4e456",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 8958,
+      "name": "FRP Hardware Sensitivity Profile Qualification",
+      "path": ".github/workflows/frp-hardware-sensitivity-profile.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "74d20d7add6919491ff93f5c32a1fc00bc20e5e81424f98bc55373a46d46ac72",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 14501,
+      "name": "FRP M10 Silicon Production and Tapeout Readiness",
+      "path": ".github/workflows/frp-m10-silicon-production-tapeout.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "199efebc3798bc072e4a538a8180d72ed833536905188f24b2cc2425835b07dd",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 14735,
+      "name": "FRP M11 Production Integration and External Handoff",
+      "path": ".github/workflows/frp-m11-production-integration-handoff.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "91cbd029e8fff1359644edcef39ea06808030974db292feac8ea13ce4a6c1e1c",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 17620,
+      "name": "FRP M12 External Implementation Feedback and Production Iteration",
+      "path": ".github/workflows/frp-m12-feedback-iteration.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "9895928d03ae5633818a30e4d85db28920d093b2dbf9310a83f3ba237ec48f9b",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 17960,
+      "name": "FRP M13 Production Scaling and Implementation Stabilization",
+      "path": ".github/workflows/frp-m13-production-scaling-stabilization.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "02aa97b4d42c9ab660374c4e3a7da0707d8ec75ef5618b688d2038f225445263",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 29595,
+      "name": "FRP M14 Physical Implementation Correlation and Production Qualification",
+      "path": ".github/workflows/frp-m14-physical-implementation-qualification.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "7ed2ace6a008235064c6bc322b6f16c9c976cdcff19754ef69cc1fbc963dc0fe",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 21176,
+      "name": "FRP M15 Implementation Mapping and Qualification Closure",
+      "path": ".github/workflows/frp-m15-implementation-mapping-qualification.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "82889522e1c93d1f682a61648dc17d00d7f5f714ffe49ed2d767af8e295d61aa",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 8813,
+      "name": "FRP M16 Canonical Core Domain",
+      "path": ".github/workflows/frp-m16-canonical-core-domain.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "5986dcaaf8f6e3cf489841300f08aaf24a07416cc9499d25e9574fc50e3ce05d",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "workflow_dispatch"
+    },
+    {
+      "byte_length": 10789,
+      "name": "FRP M16 FPGA Preparation",
+      "path": ".github/workflows/frp-m16-fpga-preparation.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "7cfc4751e3dd3c723530a6f3998b912232eb9027a7b16524628490323ce490f9",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "workflow_dispatch"
+    },
+    {
+      "byte_length": 1830,
+      "name": "FRP M16 Reserved Cell Cleanup",
+      "path": ".github/workflows/frp-m16-reserved-cell-cleanup.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "6f90654b2764b37849243f178e50baa84f3811c60cf0d66d2c33354d7aa23156",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "workflow_dispatch"
+    },
+    {
+      "byte_length": 9035,
+      "name": "FRP M16 RTL Artifact Boundary",
+      "path": ".github/workflows/frp-m16-rtl-artifact-boundary.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "d704fceeb9f28056ae32c7ac3906e080c44e0fa14ac00120af30e6614a7f7565",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "workflow_dispatch"
+    },
+    {
+      "byte_length": 13879,
+      "name": "FRP M17 Published Artifact Integration",
+      "path": ".github/workflows/frp-m17-published-artifact-integration.yml",
+      "qualification_state": "SUCCESS",
+      "raw_sha256": "b49e9a1c50540c4240f1506b89c7a9fec619a4f0ef54e6376862e76b49b45ced",
+      "successful_head_sha": "1ce73e3c86eae4a84e4ad492021193103c67538f",
+      "successful_run_id": 30737299360,
+      "successful_run_number": 3,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 19452,
+      "name": "FRP M18 Formal Schema and Canonical Artifacts",
+      "path": ".github/workflows/frp-m18-formal-schema-canonical-artifacts.yml",
+      "qualification_state": "SUCCESS",
+      "raw_sha256": "1473d60590d5ff883066d812a96e46c8a0df5e6fdc31b9d8217412e47ad908d4",
+      "successful_head_sha": "e00fc28bec8410b1e029d8de67faf404d1c960e4",
+      "successful_run_id": 31949809650,
+      "successful_run_number": 2,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 7951,
+      "name": "FRP M19 Create Machine-Readable M16 Evidence",
+      "path": ".github/workflows/frp-m19-create-machine-readable-m16-evidence.yml",
+      "qualification_state": "SUCCESS",
+      "raw_sha256": "af193943c4336ce73fb1d1a65cc72903b1868313486811ef2222b5f1c9d41b3b",
+      "successful_head_sha": "0534ab4ccfb05426a70eb6140e0aa43eb8e5f90a",
+      "successful_run_id": 31970943547,
+      "successful_run_number": 2,
+      "trigger": "workflow_dispatch"
+    },
+    {
+      "byte_length": 30518,
+      "name": "FRP M20 Cross-Layer Deterministic Correlation",
+      "path": ".github/workflows/frp-m20-cross-layer-correlation.yml",
+      "qualification_state": "SUCCESS",
+      "raw_sha256": "d35b5926fc0afbf862d1be5e5e214f5eeb16b37974e0e8e6d9fd97eb391a6c68",
+      "successful_head_sha": "be91e69d5d2e51a2bbc9a3ffb8f6d60c88d8bef4",
+      "successful_run_id": 31996464351,
+      "successful_run_number": 2,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 32766,
+      "name": "FRP M21 Parameterized Qualification Matrix",
+      "path": ".github/workflows/frp-m21-parameterized-qualification-matrix.yml",
+      "qualification_state": "SUCCESS",
+      "raw_sha256": "e2bde49dd42dcc793abddd52a6baf4a9c433efc0815e6278408ba1050b440532",
+      "successful_head_sha": "759ee446adf028ca135c75ca38388c26e911aa68",
+      "successful_run_id": 32003442502,
+      "successful_run_number": 2,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 40741,
+      "name": "FRP M22 Control Status Register Interface",
+      "path": ".github/workflows/frp-m22-control-status-register-interface.yml",
+      "qualification_state": "SUCCESS",
+      "raw_sha256": "6d34db1328f91918d20f9ed51bd4ef4c111fe10542e5dda2575018a8a4c9e1f7",
+      "successful_head_sha": "6bb07958710dc942c4deea1e7663ea97017fe3a8",
+      "successful_run_id": 32408065390,
+      "successful_run_number": 2,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 34716,
+      "name": "FRP M23 Clock Reset CDC Interface Hardening",
+      "path": ".github/workflows/frp-m23-clock-reset-cdc-interface-hardening-workflow.yml",
+      "qualification_state": "SUCCESS",
+      "raw_sha256": "82137c6450c69e0794c6a7a1b66d0cc7f97cbde5e80af48433549ed8a8532b72",
+      "successful_head_sha": "1dcc4e4d47135cdf1e38192cc96f0d928066b13e",
+      "successful_run_id": 32468035735,
+      "successful_run_number": 3,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 38850,
+      "name": "FRP M24 Formal Bounded Verification Closure",
+      "path": ".github/workflows/frp-m24-formal-bounded-verification-closure-workflow.yml",
+      "qualification_state": "SUCCESS",
+      "raw_sha256": "57d7e5c62957f6a868c88d8db479e9d71ced51f00a5b5822abfa1e188a1477f9",
+      "successful_head_sha": "a01fb687fd1e4f0159f0d8cd885863afb8b87a1e",
+      "successful_run_id": 32473916258,
+      "successful_run_number": 2,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 41598,
+      "name": "FRP M25 Fault Negative-Path and Recovery Qualification",
+      "path": ".github/workflows/frp-m25-fault-negative-path-recovery-qualification-workflow.yml",
+      "qualification_state": "SUCCESS",
+      "raw_sha256": "fcc8321aeaa771c927aed0df90fb5f94f2432becc20f1b1222979af2ffa6604b",
+      "successful_head_sha": "e9dee012e046c68dac0c63060da4c7a6ca85a3db",
+      "successful_run_id": 32483777228,
+      "successful_run_number": 1,
+      "trigger": "workflow_dispatch"
+    },
+    {
+      "byte_length": 35522,
+      "name": "FRP M26 Declared-Target Implementation Evidence",
+      "path": ".github/workflows/frp-m26-declared-target-implementation-evidence-workflow.yml",
+      "qualification_state": "SUCCESS",
+      "raw_sha256": "7aea31cbf8f2fb95f7bd85173f993f6f7bd285c13b31cc0e6de51c7d2d000074",
+      "successful_head_sha": "5ee33ed7f1f90212123c1c32120dfd41a9a130ae",
+      "successful_run_id": 32501134817,
+      "successful_run_number": 2,
+      "trigger": "workflow_dispatch"
+    },
+    {
+      "byte_length": 41050,
+      "name": "FRP M27 Long-Run Stability and Telemetry Qualification",
+      "path": ".github/workflows/frp-m27-long-run-stability-telemetry-qualification-workflow.yml",
+      "qualification_state": "SUCCESS",
+      "raw_sha256": "ebdae1809d538553bb47306b44aaa37154ff4e4a2e38dfa9c31b7de3ab6c45ae",
+      "successful_head_sha": "2bcf6423d0f2ec3bde2150628f878e2464491724",
+      "successful_run_id": 32515928901,
+      "successful_run_number": 2,
+      "trigger": "workflow_dispatch"
+    },
+    {
+      "byte_length": 57462,
+      "name": "FRP M28 Hierarchical Scaling and Hotspot-Containment Closure",
+      "path": ".github/workflows/frp-m28-hierarchical-scaling-hotspot-containment-closure-workflow.yml",
+      "qualification_state": "SUCCESS",
+      "raw_sha256": "12f8c7d291ba0bbec77d76a9f156a557e27abd2ddae3213dc2b059d86e2545f5",
+      "successful_head_sha": "6e4ca103672192f7ec7f238d7ad7b8a79bd0ed59",
+      "successful_run_id": 32557702332,
+      "successful_run_number": 1,
+      "trigger": "workflow_dispatch"
+    },
+    {
+      "byte_length": 46806,
+      "name": "FRP M28 Trace Observatory Upstream Interchange",
+      "path": ".github/workflows/frp-m28-trace-observatory-upstream-interchange-workflow.yml",
+      "qualification_state": "SUCCESS",
+      "raw_sha256": "34677e5c4ca2dc187a0cc7b01c681a12e3deb4818998d5d4c6edc0e30f69ddcb",
+      "successful_head_sha": "7cd513183d04558d499b11597e4a0cbde59e1fce",
+      "successful_run_id": 32522797719,
+      "successful_run_number": 1,
+      "trigger": "workflow_dispatch"
+    },
+    {
+      "byte_length": 70579,
+      "name": "FRP M29 System Integration and Downstream Compatibility Closure",
+      "path": ".github/workflows/frp-m29-system-integration-downstream-compatibility-closure-workflow.yml",
+      "qualification_state": "SUCCESS",
+      "raw_sha256": "52aca76812af52db37dbbf0873a79ea4545795fe2aaf83bdb86c39a80954e112",
+      "successful_head_sha": "f2de59ac4541e19c9aa0e482c5de8aec754a821b",
+      "successful_run_id": 32561199353,
+      "successful_run_number": 1,
+      "trigger": "workflow_dispatch"
+    },
+    {
+      "byte_length": 7052,
+      "name": "FRP M3 Benchmark and Signal Map",
+      "path": ".github/workflows/frp-m3-benchmark-signal-map.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "6fa7fa812524dd3c562cb5a21a9fea0ed518c6e7b8a345b70eaade6c7ed98534",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 33635,
+      "name": "FRP M30 Producer Source Bootstrap Workflow",
+      "path": ".github/workflows/frp-m30-producer-source-bootstrap-workflow.yml",
+      "qualification_state": "manual_bootstrap",
+      "raw_sha256": "054441acd5773279fe98d0a1511530883db3095a960448b364578ff7e651027b",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "workflow_dispatch"
+    },
+    {
+      "byte_length": 11231,
+      "name": "FRP M30 Qualification Test Bootstrap Workflow",
+      "path": ".github/workflows/frp-m30-qualification-test-bootstrap-workflow.yml",
+      "qualification_state": "manual_bootstrap",
+      "raw_sha256": "01431e5c55be31a4d1b5377cc3423282b1042375dae1ef78b80aea29d9bf9c6f",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "workflow_dispatch"
+    },
+    {
+      "byte_length": 23546,
+      "name": "FRP M30 Reproducibility Qualification and Archival Release Closure Workflow",
+      "path": ".github/workflows/frp-m30-reproducibility-qualification-archival-release-closure-workflow.yml",
+      "qualification_state": "current_manual_run",
+      "raw_sha256": "cbb07732ad5bd2f3c0ec09905e348b568553964bbea24694c7f9698acbdb9ff8",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "workflow_dispatch"
+    },
+    {
+      "byte_length": 6781,
+      "name": "FRP M4 HDL Trace and Testbench",
+      "path": ".github/workflows/frp-m4-hdl-trace.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "1e42a1d5742f0de75103c757db9c32891e060a57d74dad901b2611d74354c9ec",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 7973,
+      "name": "FRP M5 RTL Interface and Assertion Harness",
+      "path": ".github/workflows/frp-m5-rtl-assertion-harness.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "da56ec865226113db1348ec4e4800a2d81b3cd59897032df27b451e82efec0f3",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 7053,
+      "name": "FRP M6 Formal Verification and Equivalence Scaffold",
+      "path": ".github/workflows/frp-m6-formal-verification.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "75d318e452f15b59b1197a12c2f1a0b1a3e0e1830d642fe0b2f98da501776eee",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 7963,
+      "name": "FRP M7 FPGA Synthesis and Timing Scaffold",
+      "path": ".github/workflows/frp-m7-fpga-synthesis.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "7d312bfc6120126bdaf4cab37c327421c98a16e5a4a000ec7f757dc78a5a043e",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 10307,
+      "name": "FRP M8 Production Release Package",
+      "path": ".github/workflows/frp-m8-production-release.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "600cb19657b171302d784df2e8b87d471d8007de3fb8ff375eb9c0f2e36663c1",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 12957,
+      "name": "FRP M9 Silicon and Heterogeneous Architecture",
+      "path": ".github/workflows/frp-m9-silicon-architecture.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "0905435ce353f6d4e6f736ddb6cd5f1f5295bb43e16c549d780974fa77a06c51",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 767,
+      "name": "FRP Self Test",
+      "path": ".github/workflows/frp-self-test.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "38eac9a0fd98d5b683e48c3f2dc4285a091a747f44dbb4a3a6b164f676ce24e1",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    },
+    {
+      "byte_length": 5564,
+      "name": "FRP Structured Output",
+      "path": ".github/workflows/frp-structured-output.yml",
+      "qualification_state": "indexed",
+      "raw_sha256": "10a86cefeb722a320f83162d9f2387e46e3c5068036afef5aef6e6f5b4da8c00",
+      "successful_head_sha": null,
+      "successful_run_id": null,
+      "successful_run_number": null,
+      "trigger": "mixed"
+    }
+  ],
+  "schema": "frp.m30.workflow_index.v3.2.0",
+  "source_commit": "ff3dd434da5dcbd9e8fa62444f658ed4c495b540",
+  "status": "PASS",
+  "summary": {
+    "m30_current_run_recorded_externally": true,
+    "m30_trigger": "workflow_dispatch",
+    "required_success_count": 14,
+    "workflow_count": 40
+  },
+  "version": "3.2.0"
+}

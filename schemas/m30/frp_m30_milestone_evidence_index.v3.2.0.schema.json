@@ -1,0 +1,167 @@
+{
+  "$id": "frp.m30.milestone_evidence_index.v3.2.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "content_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "immutable_core": {
+      "additionalProperties": false,
+      "properties": {
+        "active_neutral_state": {
+          "const": 0
+        },
+        "balanced_ternary_notation": {
+          "const": "-1/0/1"
+        },
+        "opposite_polarity_routes": {
+          "const": [
+            [
+              -1,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              -1
+            ]
+          ]
+        },
+        "semantic_values": {
+          "const": [
+            -1,
+            0,
+            1
+          ]
+        },
+        "service_scheduler_mode": {
+          "const": "free"
+        },
+        "temporal_scheduler_modes": {
+          "const": [
+            "1/7",
+            "7/1"
+          ]
+        }
+      },
+      "required": [
+        "balanced_ternary_notation",
+        "semantic_values",
+        "active_neutral_state",
+        "temporal_scheduler_modes",
+        "service_scheduler_mode",
+        "opposite_polarity_routes"
+      ],
+      "type": "object"
+    },
+    "kind": {
+      "const": "milestone_evidence_index"
+    },
+    "milestone": {
+      "const": "M30"
+    },
+    "observatory_boundary": {
+      "additionalProperties": false,
+      "properties": {
+        "audited_commit": {
+          "const": "a9d71657c56221d0d9b72fb6e954e0028f096a9e"
+        },
+        "downstream_files_modified_by_m30": {
+          "const": false
+        },
+        "downstream_semantic_reimplementation": {
+          "const": "forbidden"
+        },
+        "downstream_writeback": {
+          "const": "forbidden"
+        },
+        "existing_scaffold_action": {
+          "const": "preserve_existing_scaffold"
+        },
+        "integration_direction": {
+          "const": "upstream_to_downstream_only"
+        },
+        "repository": {
+          "const": "FRP-Trace-Observatory"
+        },
+        "upstream_dependency_on_downstream_code": {
+          "const": false
+        },
+        "upstream_interchange_commit": {
+          "const": "566a4ff88baa57f844691b46937552253e095434"
+        }
+      },
+      "required": [
+        "repository",
+        "audited_commit",
+        "upstream_interchange_commit",
+        "integration_direction",
+        "downstream_writeback",
+        "downstream_semantic_reimplementation",
+        "upstream_dependency_on_downstream_code",
+        "downstream_files_modified_by_m30",
+        "existing_scaffold_action"
+      ],
+      "type": "object"
+    },
+    "record_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "records": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "gate_count": {},
+          "milestone": {},
+          "qualification_paths": {},
+          "status": {},
+          "version": {}
+        },
+        "required": [
+          "milestone",
+          "version",
+          "gate_count",
+          "qualification_paths",
+          "status"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "schema": {
+      "const": "frp.m30.milestone_evidence_index.v3.2.0"
+    },
+    "source_commit": {
+      "const": "ff3dd434da5dcbd9e8fa62444f658ed4c495b540"
+    },
+    "status": {
+      "const": "PASS"
+    },
+    "summary": {
+      "type": "object"
+    },
+    "version": {
+      "const": "3.2.0"
+    }
+  },
+  "required": [
+    "schema",
+    "kind",
+    "version",
+    "milestone",
+    "status",
+    "source_commit",
+    "immutable_core",
+    "observatory_boundary",
+    "record_count",
+    "records",
+    "summary",
+    "content_digest"
+  ],
+  "title": "frp.m30.milestone_evidence_index.v3.2.0",
+  "type": "object"
+}

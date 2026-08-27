@@ -1,5 +1,7 @@
 # CI — Fractal Resonance Processor (FRP)
 
+[![FRP M30 Reproducibility Qualification and Archival Release Closure](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m30-reproducibility-qualification-archival-release-closure-workflow.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m30-reproducibility-qualification-archival-release-closure-workflow.yml)
+
 [![FRP M17 Published Artifact Integration](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m17-published-artifact-integration.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m17-published-artifact-integration.yml)
 [![FRP M16 RTL Artifact Boundary](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m16-rtl-artifact-boundary.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m16-rtl-artifact-boundary.yml)
 [![FRP M16 FPGA Preparation](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m16-fpga-preparation.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m16-fpga-preparation.yml)
@@ -31,11 +33,11 @@ This document defines the Continuous Integration validation structure of the Fra
 
 Current published release:
 
-`FRP v1.8.0`
+`FRP v3.2.0`
 
 Current released milestone:
 
-`M16 — RTL Core Realization and Execution Semantics Package`
+`M30 — Reproducibility, Qualification, and Archival Release Closure`
 
 Completed post-release qualification boundary:
 
@@ -4593,8 +4595,22 @@ M17 published-artifact integration qualification state:
 M17 remains a planned publication milestone and does not replace the current
 `FRP v1.8.0 / M16` release.
 
+## 46. M30 Reproducibility Qualification and Archival Closure
 
+Current release closure:
 
+`FRP v3.2.0 / M30 — PASS`
 
+Workflow:
 
+`.github/workflows/frp-m30-reproducibility-qualification-archival-release-closure-workflow.yml`
 
+The workflow validates the immutable M29 source boundary, captures the latest
+successful M17 through M29 workflow records, regenerates the complete M30
+closure twice, runs the focused M30 suite and the complete repository suite,
+verifies the archival package member-by-member, validates every M30 schema and
+document, and commits only the declared M30 release surface.
+
+The M16 RTL and FPGA records remain the qualified implementation anchor. The
+M17 through M29 records remain their exact milestone evidence. M30 aligns the
+current release layer without rewriting historical release records.

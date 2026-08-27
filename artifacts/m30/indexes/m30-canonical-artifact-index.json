@@ -1,0 +1,927 @@
+{
+  "content_digest": "417abc383881820c4b617363f08df4853e51b3a18547d795ab12d6ee30fa843b",
+  "immutable_core": {
+    "active_neutral_state": 0,
+    "balanced_ternary_notation": "-1/0/1",
+    "opposite_polarity_routes": [
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        -1
+      ]
+    ],
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ]
+  },
+  "kind": "canonical_artifact_index",
+  "milestone": "M30",
+  "observatory_boundary": {
+    "audited_commit": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+    "downstream_files_modified_by_m30": false,
+    "downstream_semantic_reimplementation": "forbidden",
+    "downstream_writeback": "forbidden",
+    "existing_scaffold_action": "preserve_existing_scaffold",
+    "integration_direction": "upstream_to_downstream_only",
+    "repository": "FRP-Trace-Observatory",
+    "upstream_dependency_on_downstream_code": false,
+    "upstream_interchange_commit": "566a4ff88baa57f844691b46937552253e095434"
+  },
+  "record_count": 109,
+  "records": [
+    {
+      "byte_length": 1688,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/benchmark_matrix/benchmark-matrix.json",
+      "raw_sha256": "055b765a8a6e03c8c98fb817bc737e27d80338cf26025114696cbf0378bf2902",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2625,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_exports/balanced-ternary-hardware-encoding-map.json",
+      "raw_sha256": "92e108ac5551800658e3b4f81221fc145aa899b0914542a91bdfa78d30af0543",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 89243,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_exports/cycle-exact-reference-trace.json",
+      "raw_sha256": "7aa0bf41f88ce4bbb53fcc3e52dc596fb0fc9b37899237cd9cd6119c3485f0af",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4549,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_exports/fixed-point-interface-profile.json",
+      "raw_sha256": "840adfcf86b2d7dcac5c4153dd7ee63f9e21fe8b7842c68288a5faf596ff6e0a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7374,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_exports/qualification-closure-manifest.json",
+      "raw_sha256": "bc3d77208b005fba050511dffbaebc21a37cbd7f4327de43405fe38529dec5ac",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4687,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_exports/quantized-reference-shadow-model.json",
+      "raw_sha256": "8c61304182952673b0a0195b181bf1e4e8f8de0ecf79dc4b3fa320d74bb356ae",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5071,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_exports/reference-rtl-equivalence-report.json",
+      "raw_sha256": "662b0df1795ac3b31d9e1d95e00fda78408b7cbdf6024b5298eabec1f695d63d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1146,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_exports/rtl-assertion-correlation-harness.json",
+      "raw_sha256": "40117f4f89eb6b2e062c3f8a9a894f5115ab2f710fd2275cbc6f775a440ef477",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2307,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_exports/rtl-comparison-vector-package.json",
+      "raw_sha256": "75ec68fed692ff9cfddd918dcf6289326b9b9130798d31c9c681c13a5189dbf4",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2111,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_exports/synthesizable-rtl-reference-core.json",
+      "raw_sha256": "d90623311383e897b8490c753ac418b759e763f3f77dde65c4bedd3a8f773b87",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1500,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_exports/systemverilog-testbench-interface-map.json",
+      "raw_sha256": "c58f552fdf42c2b8be4349d95d5aa6de5db6d145e8586850cf53ad957d9186da",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 112549,
+      "format": "vec",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_vectors/frp_m15_cell_trace.vec",
+      "raw_sha256": "b3192cbfbe89b31517212a09fd4d14f58180e2d1594a45412856399c4be5781d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 16689,
+      "format": "vec",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_vectors/frp_m15_full_correlation_vectors.vec",
+      "raw_sha256": "c2e2a92d7031b85d2681fdaba839bbc4a0d833be14c8516d15dcaed347940d73",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 8815,
+      "format": "vec",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_vectors/frp_m15_kernel_vectors.vec",
+      "raw_sha256": "87e063cdbe49d32ecfda129e0a5c6a8c77d022fdfa07eeed891a1b4f271d29bf",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 818,
+      "format": "trace",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_vectors/frp_m15_pending_routes.trace",
+      "raw_sha256": "600125de9484bb3b2275a98a64eba06d751a8ce129e29c3eb49b14142e01afc5",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1387,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_vectors/frp_m15_reference_preload.json",
+      "raw_sha256": "88cf005a76a659c0f51a16a1499b6fa6251b09eb26434538eb27ca5718b1a4a0",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5028,
+      "format": "vec",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_vectors/frp_m15_scheduler_1_7_vectors.vec",
+      "raw_sha256": "5cf1912cbc492004656f41fff4ff36e5146e281b4f79a0e90606747b7c0bc649",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5017,
+      "format": "vec",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_vectors/frp_m15_scheduler_7_1_vectors.vec",
+      "raw_sha256": "9e777e7eb9fa4adeca52bc83ebedd5275aad2ebbc32f34140102131cd4aa4c7e",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5023,
+      "format": "vec",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_vectors/frp_m15_scheduler_free_vectors.vec",
+      "raw_sha256": "836b9e2fb5079f93f9666e534823735c6f22f48c8def4b6301ec3119ac52a518",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 935,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_vectors/frp_m15_sha256_manifest.json",
+      "raw_sha256": "8dafbe3dea995d94c84a8ea02b9393bd53b9b986b8cc852af55f2ea67dc1d839",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 72471,
+      "format": "vec",
+      "milestone": "M18",
+      "path": "artifacts/m18/m15_vectors/frp_m15_trig_lut_q30.vec",
+      "raw_sha256": "caadbbf97fe0bacf2d82eaa5da4cd1fb6cf1e1514809d3e743311e19893d11bb",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 45927,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/manifests/canonical-artifact-manifest.json",
+      "raw_sha256": "bdf034303e9557a87ff53fce9193b9480360202e5ece8247d35f44678a871710",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 100619,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/manifests/canonical-artifact-qualification.json",
+      "raw_sha256": "432fef4d9a96e1181a6dc5b96dab64ac5726b1aeccb92702d02bce0721c87c13",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 9055,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/manifests/canonical-artifact-self-test.json",
+      "raw_sha256": "0c05d34d1a550086248e8b95b8ecbc00fd056081bf77ad9b88e65eaa9995950a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2549,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/structured_output/scaling-16.json",
+      "raw_sha256": "dafc9a1771aa2c66c23e1595f85869fd9ccbc4155bbcef7cd907b6dbe4e27423",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2550,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/structured_output/scaling-32.json",
+      "raw_sha256": "aca86e4c5e8bbe9570609816bc6a254657a6935427334337866c5b7ccc76bbcf",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2544,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/structured_output/scaling-8.json",
+      "raw_sha256": "065d9a6b3ac435945fc672d6bff6636845f449595243e5fc1a8af81d7b21d986",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 30785,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/structured_output/self-test-1-7.json",
+      "raw_sha256": "9940930b2a4404147ca4f3b4240b5e98e387002bd6a1f3fb7ffa6f9b7c1aa64c",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 30781,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/structured_output/self-test-7-1.json",
+      "raw_sha256": "c2f1b9e57857247a212d0f81073d0a71b6f1e0e7f5e3b32556b439cc2c97e660",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 30781,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/structured_output/self-test-default.json",
+      "raw_sha256": "c2f1b9e57857247a212d0f81073d0a71b6f1e0e7f5e3b32556b439cc2c97e660",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 30733,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/structured_output/self-test-free.json",
+      "raw_sha256": "44dbf8e3a8fb803aa61533542b1349398026bc83e42a274daa23cefef3417197",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2551,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/structured_output/structured-output.json",
+      "raw_sha256": "cf5ed113afc7ed9127be66ee48e1593b52af477c94753d0ac9904f865ee3ce55",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 562665,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/structured_output/trace-1-7.json",
+      "raw_sha256": "7a4cd4388df4e59afee01f18598304dd41bdf963e5186683b4fa47ff8732c4c6",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 562468,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/structured_output/trace-7-1.json",
+      "raw_sha256": "55b2f3e71494b6afe737fa3c82c301011fb560a952b1d356740f79c03f4ed5a9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 562309,
+      "format": "json",
+      "milestone": "M18",
+      "path": "artifacts/m18/structured_output/trace-free.json",
+      "raw_sha256": "2c5f087361a1d28ecf6478289071be6b4dce79c05cc8992010185a2f584ad686",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 794,
+      "format": "csv",
+      "milestone": "M18",
+      "path": "artifacts/m18/tabular/benchmark-matrix.csv",
+      "raw_sha256": "045f9235e6dd441d09b80336e26b9b3e169ebc9910734eddcf52bc0917cd5021",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 9013,
+      "format": "json",
+      "milestone": "M19",
+      "path": "artifacts/m19/execution/m16-fpga-preparation-execution-trace.json",
+      "raw_sha256": "7d58b6741bdcadbfb9acb9049ed0e956305f49b9ad36946e719a4121b5caf22f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 152109,
+      "format": "json",
+      "milestone": "M19",
+      "path": "artifacts/m19/execution/m16-rtl-execution-trace.json",
+      "raw_sha256": "d7945e0d2b5aaa05c5fff2e4e60d3b984017f7e4ae1984c55920368a110020bd",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7451,
+      "format": "json",
+      "milestone": "M19",
+      "path": "artifacts/m19/manifests/m19-machine-readable-evidence-manifest.json",
+      "raw_sha256": "b82d8318e7d5fc375c111e342f841b7842571bb0cce4ede5da14e1383ee98fb7",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3945,
+      "format": "json",
+      "milestone": "M19",
+      "path": "artifacts/m19/manifests/m19-machine-readable-evidence-qualification.json",
+      "raw_sha256": "b80d080598186cfa7f0b93dff4f1d09b86bdc34e82a42f3488e2d549e46e47d5",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3316,
+      "format": "json",
+      "milestone": "M19",
+      "path": "artifacts/m19/qualification/m16-fpga-preparation-qualification-manifest.json",
+      "raw_sha256": "b955656392205a0af8e373298db689c790d0ef9726b3dc8a18cd8f8a248fa44a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 628,
+      "format": "json",
+      "milestone": "M19",
+      "path": "artifacts/m19/qualification/m16-fpga-preparation-zero-event-qualification.json",
+      "raw_sha256": "8208f1d516939090f7a9302f66926a3c05416a8fd0a459e7cd9379ca7a6fe4af",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3099,
+      "format": "json",
+      "milestone": "M19",
+      "path": "artifacts/m19/qualification/m16-rtl-qualification-manifest.json",
+      "raw_sha256": "ee1d6e503a38beba8070f3f73a335a3c970ea809b2881f5bdae85641da2f3da8",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 604,
+      "format": "json",
+      "milestone": "M19",
+      "path": "artifacts/m19/qualification/m16-rtl-zero-event-qualification.json",
+      "raw_sha256": "6532733fde3b39fd5a3643d735e03d90ed17c83f790d23f39973c366555618c2",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 396,
+      "format": "trace",
+      "milestone": "M19",
+      "path": "artifacts/m19/raw/m16-fpga-preparation-execution.trace",
+      "raw_sha256": "05168f3d1e9b56f6f99fa5001a705168355431e976b3b152972d2bceb07a3439",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 8566,
+      "format": "trace",
+      "milestone": "M19",
+      "path": "artifacts/m19/raw/m16-rtl-execution.trace",
+      "raw_sha256": "c18c38c6010a9852a045ecf381e4af402d45c9c423fe061f595fd90b1428448b",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 48081,
+      "format": "json",
+      "milestone": "M20",
+      "path": "artifacts/m20/correlation/m15-m16-fpga-preparation-correlation.json",
+      "raw_sha256": "b5c0eeac923ea6e652cf946f05df3aa6e822ab96e72482a53686994122e67e2f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 956295,
+      "format": "json",
+      "milestone": "M20",
+      "path": "artifacts/m20/correlation/m15-m16-rtl-correlation.json",
+      "raw_sha256": "2066bb7a4263ff678c469a3a4f73844857c445cba64ad7fcf9e97fdd3cba6f3d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6894,
+      "format": "json",
+      "milestone": "M20",
+      "path": "artifacts/m20/manifests/m20-cross-layer-correlation-manifest.json",
+      "raw_sha256": "14fc9c14e027afb317b01a71df6ac97b8659a4ae2e042dc5a8a0a9e54dbb78c7",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5087,
+      "format": "json",
+      "milestone": "M20",
+      "path": "artifacts/m20/manifests/m20-cross-layer-correlation-qualification.json",
+      "raw_sha256": "c197ddc86420c14ac798cc00abb26292b69cf6eaa09dcaaf1633a464589d7593",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7775,
+      "format": "json",
+      "milestone": "M21",
+      "path": "artifacts/m21/manifests/m21-parameterized-qualification-manifest.json",
+      "raw_sha256": "210a21cb1b279acc00de1d3d6d3ff4213eebad37c2f12e5b575ebb03469a7c09",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6015,
+      "format": "json",
+      "milestone": "M21",
+      "path": "artifacts/m21/manifests/m21-parameterized-qualification-record.json",
+      "raw_sha256": "cd98499a63d84c9fb3970cf12c7828f9ebe584986cd076829de94905ba11aba0",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7230,
+      "format": "json",
+      "milestone": "M21",
+      "path": "artifacts/m21/matrix/m21-parameter-dimensions.json",
+      "raw_sha256": "fcfac50848deedd6ef90bc0f4184e325931e0070960cbe61fd2175b2f6d0b348",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3007362,
+      "format": "json",
+      "milestone": "M21",
+      "path": "artifacts/m21/matrix/m21-parameterized-qualification-matrix.json",
+      "raw_sha256": "0a2ebfe3fe2372727e46e7070af14fbee95a1abf26bae97d47c8f2f6f1b9f9f1",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 22682,
+      "format": "json",
+      "milestone": "M22",
+      "path": "artifacts/m22/interface/m22-control-status-register-interface.json",
+      "raw_sha256": "1b493b15a5f33b724cb56b963cf49351c815ffbe1c5f6df31a718b39895d95bb",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6246,
+      "format": "json",
+      "milestone": "M22",
+      "path": "artifacts/m22/manifests/m22-control-status-register-manifest.json",
+      "raw_sha256": "65299fc0a5992ec90618674755bc05029c0e1f3869f38d6fecf1c855ffab56ff",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7543,
+      "format": "json",
+      "milestone": "M22",
+      "path": "artifacts/m22/manifests/m22-control-status-register-qualification.json",
+      "raw_sha256": "140b8c72a833dd87952f029fb85d30b85b8e17067277bfddf2845142cae6ea16",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 157081,
+      "format": "json",
+      "milestone": "M22",
+      "path": "artifacts/m22/traces/m22-deterministic-transaction-traces.json",
+      "raw_sha256": "7e6c011e7cf95a0f541a5bb7009786756f300b78ff9590fcab798e145be74981",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4659,
+      "format": "json",
+      "milestone": "M23",
+      "path": "artifacts/m23/contracts/m23-clock-reset-cdc-interface-contract.json",
+      "raw_sha256": "be553fc33d572199c2164d510939f7379d749330cfc3a44648600067bcfa6b78",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5111,
+      "format": "json",
+      "milestone": "M23",
+      "path": "artifacts/m23/manifests/m23-clock-reset-cdc-interface-hardening-manifest.json",
+      "raw_sha256": "9ee066e9861aba98ca24f561bcd709a16aee80248e490e95ca849073d99fb414",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 10657,
+      "format": "json",
+      "milestone": "M23",
+      "path": "artifacts/m23/manifests/m23-clock-reset-cdc-interface-hardening-qualification.json",
+      "raw_sha256": "ae704ced0487061a29e38be950473e625ff5863a5ecf7d9acc330b120dafbe7a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 16577,
+      "format": "json",
+      "milestone": "M23",
+      "path": "artifacts/m23/records/m23-hardening-sequence-records.json",
+      "raw_sha256": "84be5d7dfe885d1b244d043edeb1e6ae32d422cdaacf369538bbcef15f9ff7a9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3414,
+      "format": "json",
+      "milestone": "M23",
+      "path": "artifacts/m23/reports/m23-interface-protocol-assertion-report.json",
+      "raw_sha256": "c359b10a2c37187cc89d3ff6cc5427624a0df02d2faf7ab62e50b7741c38beae",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1672,
+      "format": "json",
+      "milestone": "M24",
+      "path": "artifacts/m24/contracts/m24-formal-bounded-verification-contract.json",
+      "raw_sha256": "0bb8a178f211a920c8df52c835367a269b0920941de7503126c44a17544ad452",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 18244,
+      "format": "json",
+      "milestone": "M24",
+      "path": "artifacts/m24/inventory/m24-property-inventory.json",
+      "raw_sha256": "c06ea203681d806aabaf932de5ecf77dc57d90d33ed088137e4f3bfe8c97c03d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6485,
+      "format": "json",
+      "milestone": "M24",
+      "path": "artifacts/m24/manifests/m24-formal-bounded-verification-manifest.json",
+      "raw_sha256": "8e92a42bc2666eae2e5378c5355ce96458526f81d4d290e58ebcc6daeb6dadf0",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 10249,
+      "format": "json",
+      "milestone": "M24",
+      "path": "artifacts/m24/manifests/m24-formal-bounded-verification-qualification.json",
+      "raw_sha256": "bc96a66993b4bb693b95e8a72da8731216170d16c09c2438a2ec0b2eb2b8a290",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 13211,
+      "format": "json",
+      "milestone": "M24",
+      "path": "artifacts/m24/proofs/m24-formal-bounded-proof-evidence.json",
+      "raw_sha256": "1c2802613a1cf9b9412c806fdf47d6529b291dab8ce6c47495052b7e3d2032cf",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6162,
+      "format": "json",
+      "milestone": "M25",
+      "path": "artifacts/m25/classification/m25-failure-classification-registry.json",
+      "raw_sha256": "905af9ad449861587644cc06333361ff9dc55bf85a9966b9287a42b55cbeafc5",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2067,
+      "format": "json",
+      "milestone": "M25",
+      "path": "artifacts/m25/contracts/m25-fault-negative-recovery-contract.json",
+      "raw_sha256": "d99ac590126491b87e0cb47c221a9f8cc8bda7642f549b1f90bc2feeb2a1fa72",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 14423,
+      "format": "json",
+      "milestone": "M25",
+      "path": "artifacts/m25/evidence/m25-negative-path-recovery-evidence.json",
+      "raw_sha256": "6db02295d87663978549d20154769ac8a14cabfb7ae13d9c08b5cec62b878bc3",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6174,
+      "format": "json",
+      "milestone": "M25",
+      "path": "artifacts/m25/fixtures/m25-deterministic-negative-fixtures.json",
+      "raw_sha256": "534dbf9f38973d5572df1a47c7968ba5b1146be53ca2c0f759b0eac37ba80b2f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6800,
+      "format": "json",
+      "milestone": "M25",
+      "path": "artifacts/m25/manifests/m25-fault-negative-recovery-manifest.json",
+      "raw_sha256": "21f01d5c44ccc48541585c4fd2582fa10e0b0217fd561e79b1e8d3edaada2e2c",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 15716,
+      "format": "json",
+      "milestone": "M25",
+      "path": "artifacts/m25/manifests/m25-fault-negative-recovery-qualification.json",
+      "raw_sha256": "91e989f86a910f1f6c1ddc66cee872077a229dcdf14fbb7db6a41713764adc85",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2351,
+      "format": "json",
+      "milestone": "M26",
+      "path": "artifacts/m26/contracts/m26-declared-target-implementation-contract.json",
+      "raw_sha256": "6d5f89a48cac179c5f5d62cd2ac91e1a6af72da4983fbe7f8792d1aec5df00b4",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7317,
+      "format": "json",
+      "milestone": "M26",
+      "path": "artifacts/m26/manifests/m26-declared-target-implementation-manifest.json",
+      "raw_sha256": "2b59340bd2ab0a034862583c7c0d9c2b9bae12be95d56c42764601c1f46e10a3",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 15044,
+      "format": "json",
+      "milestone": "M26",
+      "path": "artifacts/m26/manifests/m26-declared-target-implementation-qualification.json",
+      "raw_sha256": "732a645688cf1e880ad070049c0d64aee4ad57a2ae0bf1d6465a939e43b55134",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7071,
+      "format": "json",
+      "milestone": "M26",
+      "path": "artifacts/m26/provenance/m26-tool-command-provenance.json",
+      "raw_sha256": "08c1c07835abe881c841dde74f968020f2021e72e223426dcd3d25e896155dea",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 12899,
+      "format": "json",
+      "milestone": "M26",
+      "path": "artifacts/m26/reports/m26-declared-target-implementation-report.json",
+      "raw_sha256": "1e95efc0bceb31a5d42f4dbde8fafbf7f3492fd36535ef7cf95ebe761b8b4e10",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2490,
+      "format": "json",
+      "milestone": "M26",
+      "path": "artifacts/m26/reproducibility/m26-reproducibility-record.json",
+      "raw_sha256": "dd15740a0f810db1b0c28e2b525cf115cd5595646dd8333cbb5459af6507bc01",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 192916,
+      "format": "json",
+      "milestone": "M27",
+      "path": "artifacts/m27/checkpoints/m27-long-run-checkpoint-evidence.json",
+      "raw_sha256": "13221f5e089e7e85b33788b7d9429bc0518f67bac2c2f06af151b03410825f3f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2127,
+      "format": "json",
+      "milestone": "M27",
+      "path": "artifacts/m27/contracts/m27-long-run-telemetry-contract.json",
+      "raw_sha256": "ea1e90ec83916dd9cf8a44c46ac4e0c9347738c6d20b84f504650479d3b18c82",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5413,
+      "format": "json",
+      "milestone": "M27",
+      "path": "artifacts/m27/manifests/m27-long-run-stability-manifest.json",
+      "raw_sha256": "97d0cbd9fad314d2462db4f4df12fd7845b88d83bad9e55f37c1b6c227eb6851",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 15591,
+      "format": "json",
+      "milestone": "M27",
+      "path": "artifacts/m27/manifests/m27-long-run-stability-qualification.json",
+      "raw_sha256": "23bee717555c2c1111912d33559e70dcc13cc29e9bb1f9433bf52cb5063c6969",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2713,
+      "format": "json",
+      "milestone": "M27",
+      "path": "artifacts/m27/reports/m27-long-run-stability-report.json",
+      "raw_sha256": "465a42c2ee70833e5f14eb5251c811bda83c55b8ca3f87f3a8f9f28d7d178af6",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2789,
+      "format": "json",
+      "milestone": "M27",
+      "path": "artifacts/m27/telemetry/m27-telemetry-semantics.json",
+      "raw_sha256": "813ae5c66ceaddabc77734d44f1ebf971ca3bd7e11c1984e2e0c8f0204dfd1bc",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2903,
+      "format": "json",
+      "milestone": "M27",
+      "path": "artifacts/m27/workloads/m27-long-run-workload-catalog.json",
+      "raw_sha256": "b7f98418c0901d6b4e572aa4499c3d169a40444551fa4d43fcf04d2130c56617",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2735,
+      "format": "json",
+      "milestone": "M28",
+      "path": "artifacts/m28/contracts/m28-trace-observatory-upstream-contract.json",
+      "raw_sha256": "556cd2921014d78184dad625438e053632c2650164f95787f39a6fc871b4a3f0",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 511783,
+      "format": "json",
+      "milestone": "M28",
+      "path": "artifacts/m28/exports/m28-observatory-canonical-trace-bundle.json",
+      "raw_sha256": "9774e80d00c628193d5656608f2b1f830a05f960abadb83d9c4840f262ca07ed",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5720,
+      "format": "json",
+      "milestone": "M28",
+      "path": "artifacts/m28/fixtures/m28-observatory-fixture-manifest.json",
+      "raw_sha256": "5d1be27e20a6a5978cb75e1185b9360621a92eb116b7a712fa5d6b813d0951fe",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 143946,
+      "format": "json",
+      "milestone": "M28",
+      "path": "artifacts/m28/hierarchy/containment/m28-hotspot-containment-evidence.json",
+      "raw_sha256": "d06e68d9b4c2cfd774e461eba45308dbd5c57b28118756e117db2ab4228caa55",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3560,
+      "format": "json",
+      "milestone": "M28",
+      "path": "artifacts/m28/hierarchy/contracts/m28-hierarchical-scaling-contract.json",
+      "raw_sha256": "13f85ac82b63d0191157bd2cfa04dd37358ef66d8e69bdb96bb1892abb77dbae",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 8380,
+      "format": "json",
+      "milestone": "M28",
+      "path": "artifacts/m28/hierarchy/manifests/m28-hierarchy-qualification.json",
+      "raw_sha256": "1983d2fcd7fe1ea15ea4c93c0dec57faa279ed34adf6f310c9cee4f23b4e4dc6",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 207219,
+      "format": "json",
+      "milestone": "M28",
+      "path": "artifacts/m28/hierarchy/scaling/m28-hierarchical-scaling-matrix.json",
+      "raw_sha256": "9d47c85d73de41868ef56aefc7a66831fa975f5ad81e854929dc43527173660d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 56376,
+      "format": "json",
+      "milestone": "M28",
+      "path": "artifacts/m28/hierarchy/topology/m28-hierarchy-topology-manifest.json",
+      "raw_sha256": "40c70eacabbd44a7dc7404d939117001825b92c0ed2e99f835c6c39e3422a897",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7136,
+      "format": "json",
+      "milestone": "M28",
+      "path": "artifacts/m28/manifests/m28-trace-observatory-interchange-qualification.json",
+      "raw_sha256": "5f23b387967d61afa4c1e1c1c5a4ec26e9f1ff02c146bf7bf8ffe1c4f30e0c0c",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5486,
+      "format": "json",
+      "milestone": "M28",
+      "path": "artifacts/m28/registry/m28-observatory-compatibility-registry.json",
+      "raw_sha256": "91affd08a74401d10a4196f3c38ad2ad8c4576e51532f7ee0fc169e97e996fea",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4110,
+      "format": "json",
+      "milestone": "M29",
+      "path": "artifacts/m29/compatibility/m29-compatibility-version-declarations.json",
+      "raw_sha256": "fa13a1a1bc7822e4c1f557b56aad0153554c24ab6a86eda3fe764b5957810c61",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3447,
+      "format": "json",
+      "milestone": "M29",
+      "path": "artifacts/m29/compatibility/m29-release-independent-compatibility-records.json",
+      "raw_sha256": "643cbeddf03d8d9da456b79f43eec32cc96e2f914e43b7657724f5f563931d60",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1971,
+      "format": "json",
+      "milestone": "M29",
+      "path": "artifacts/m29/compatibility/m29-unsupported-version-behavior.json",
+      "raw_sha256": "e4bdc90db777110443056f60b24bf6cccf6604f29953b0e4d375a0d61eddf455",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4071,
+      "format": "json",
+      "milestone": "M29",
+      "path": "artifacts/m29/contracts/m29-system-integration-contract.json",
+      "raw_sha256": "6e14d93abe5646b4e094f27b07217d9e4dcd833d8af0d5afb30da21b904c4642",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 12920,
+      "format": "json",
+      "milestone": "M29",
+      "path": "artifacts/m29/manifests/m29-system-integration-qualification.json",
+      "raw_sha256": "3cc8d1382f3953fdbf5aa2e22f7b0b315f57395a69bbe998a661919372ff7088",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 27373,
+      "format": "json",
+      "milestone": "M29",
+      "path": "artifacts/m29/packages/m29-canonical-demo-artifact-package.json",
+      "raw_sha256": "d91b2b63bf0771a2abe634d64bb5596cc2925093df24147cbe5f2edca5136fd4",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2438,
+      "format": "json",
+      "milestone": "M29",
+      "path": "artifacts/m29/packages/m29-deterministic-package-manifest.json",
+      "raw_sha256": "204cf8b32dc92da3e9316479ac548326dc5ca9ab2c2c838e2ccf0ad523a579fc",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1164,
+      "format": "json",
+      "milestone": "M29",
+      "path": "artifacts/m29/policies/m29-immutable-source-artifact-policy.json",
+      "raw_sha256": "b934ad627ebe3f2a4e358b7223dbe38dffe605c497fe3f5f5b44e9ccb85e20fe",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2203,
+      "format": "json",
+      "milestone": "M29",
+      "path": "artifacts/m29/provenance/m29-provenance-completeness-record.json",
+      "raw_sha256": "a8a5b414e3a7acca9d2a42f8ff71f89c1915640568c1cc4fbf65c4f0712da7e1",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 8496,
+      "format": "json",
+      "milestone": "M29",
+      "path": "artifacts/m29/registries/m29-producer-command-registry.json",
+      "raw_sha256": "21ba5cf5c1dfea1b5f1b196cfca2500695c7ed6ae6d2c10f6513929e46815f04",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 83376,
+      "format": "json",
+      "milestone": "M29",
+      "path": "artifacts/m29/registries/m29-supported-artifact-registry.json",
+      "raw_sha256": "cf955f1a1f8318e8d5e3414dd7b09c88a7efb944caf16bb7af22fd73099b4f31",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7222,
+      "format": "json",
+      "milestone": "M29",
+      "path": "artifacts/m29/vectors/m29-downstream-consumption-test-vectors.json",
+      "raw_sha256": "21bf0d91f32a66c416d132c45b0aca3cd620d91c38fe1315b42010921f3a68cc",
+      "source_layer": "M29_source_commit"
+    }
+  ],
+  "schema": "frp.m30.canonical_artifact_index.v3.2.0",
+  "source_commit": "ff3dd434da5dcbd9e8fa62444f658ed4c495b540",
+  "status": "PASS",
+  "summary": {
+    "artifact_count": 109,
+    "digest_algorithm": "sha256",
+    "first_milestone": "M18",
+    "last_milestone": "M29"
+  },
+  "version": "3.2.0"
+}

@@ -1,0 +1,296 @@
+{
+  "content_digest": "7d9a8e1482e730c11932d6337f98df9bcdf769fcdcd6529b73b438be2b5ee79a",
+  "immutable_core": {
+    "active_neutral_state": 0,
+    "balanced_ternary_notation": "-1/0/1",
+    "opposite_polarity_routes": [
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        -1
+      ]
+    ],
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ]
+  },
+  "kind": "milestone_evidence_index",
+  "milestone": "M30",
+  "observatory_boundary": {
+    "audited_commit": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+    "downstream_files_modified_by_m30": false,
+    "downstream_semantic_reimplementation": "forbidden",
+    "downstream_writeback": "forbidden",
+    "existing_scaffold_action": "preserve_existing_scaffold",
+    "integration_direction": "upstream_to_downstream_only",
+    "repository": "FRP-Trace-Observatory",
+    "upstream_dependency_on_downstream_code": false,
+    "upstream_interchange_commit": "566a4ff88baa57f844691b46937552253e095434"
+  },
+  "record_count": 13,
+  "records": [
+    {
+      "check_count": 25,
+      "gate_count": 1,
+      "gates": [
+        {
+          "byte_length": 9065,
+          "path": "docs/m17_published_artifact_integration_qualification.md",
+          "raw_sha256": "7b88303dc190c473cd13761ae3304b3e04fdd3b6b61c2f13f2f400dac3c45ec5",
+          "status": "PASS"
+        }
+      ],
+      "milestone": "M17",
+      "qualification_paths": [
+        "docs/m17_published_artifact_integration_qualification.md"
+      ],
+      "status": "PASS",
+      "version": "1.9.0"
+    },
+    {
+      "check_count": 187,
+      "gate_count": 1,
+      "gates": [
+        {
+          "byte_length": 100619,
+          "path": "artifacts/m18/manifests/canonical-artifact-qualification.json",
+          "raw_sha256": "432fef4d9a96e1181a6dc5b96dab64ac5726b1aeccb92702d02bce0721c87c13",
+          "status": "PASS"
+        }
+      ],
+      "milestone": "M18",
+      "qualification_paths": [
+        "artifacts/m18/manifests/canonical-artifact-qualification.json"
+      ],
+      "status": "PASS",
+      "version": "2.0.0"
+    },
+    {
+      "check_count": 37,
+      "gate_count": 1,
+      "gates": [
+        {
+          "byte_length": 3945,
+          "path": "artifacts/m19/manifests/m19-machine-readable-evidence-qualification.json",
+          "raw_sha256": "b80d080598186cfa7f0b93dff4f1d09b86bdc34e82a42f3488e2d549e46e47d5",
+          "status": "PASS"
+        }
+      ],
+      "milestone": "M19",
+      "qualification_paths": [
+        "artifacts/m19/manifests/m19-machine-readable-evidence-qualification.json"
+      ],
+      "status": "PASS",
+      "version": "2.1.0"
+    },
+    {
+      "check_count": 39,
+      "gate_count": 1,
+      "gates": [
+        {
+          "byte_length": 5087,
+          "path": "artifacts/m20/manifests/m20-cross-layer-correlation-qualification.json",
+          "raw_sha256": "c197ddc86420c14ac798cc00abb26292b69cf6eaa09dcaaf1633a464589d7593",
+          "status": "PASS"
+        }
+      ],
+      "milestone": "M20",
+      "qualification_paths": [
+        "artifacts/m20/manifests/m20-cross-layer-correlation-qualification.json"
+      ],
+      "status": "PASS",
+      "version": "2.2.0"
+    },
+    {
+      "check_count": 48,
+      "gate_count": 1,
+      "gates": [
+        {
+          "byte_length": 6015,
+          "path": "artifacts/m21/manifests/m21-parameterized-qualification-record.json",
+          "raw_sha256": "cd98499a63d84c9fb3970cf12c7828f9ebe584986cd076829de94905ba11aba0",
+          "status": "PASS"
+        }
+      ],
+      "milestone": "M21",
+      "qualification_paths": [
+        "artifacts/m21/manifests/m21-parameterized-qualification-record.json"
+      ],
+      "status": "PASS",
+      "version": "2.3.0"
+    },
+    {
+      "check_count": 60,
+      "gate_count": 1,
+      "gates": [
+        {
+          "byte_length": 7543,
+          "path": "artifacts/m22/manifests/m22-control-status-register-qualification.json",
+          "raw_sha256": "140b8c72a833dd87952f029fb85d30b85b8e17067277bfddf2845142cae6ea16",
+          "status": "PASS"
+        }
+      ],
+      "milestone": "M22",
+      "qualification_paths": [
+        "artifacts/m22/manifests/m22-control-status-register-qualification.json"
+      ],
+      "status": "PASS",
+      "version": "2.4.0"
+    },
+    {
+      "check_count": 72,
+      "gate_count": 1,
+      "gates": [
+        {
+          "byte_length": 10657,
+          "path": "artifacts/m23/manifests/m23-clock-reset-cdc-interface-hardening-qualification.json",
+          "raw_sha256": "ae704ced0487061a29e38be950473e625ff5863a5ecf7d9acc330b120dafbe7a",
+          "status": "PASS"
+        }
+      ],
+      "milestone": "M23",
+      "qualification_paths": [
+        "artifacts/m23/manifests/m23-clock-reset-cdc-interface-hardening-qualification.json"
+      ],
+      "status": "PASS",
+      "version": "2.5.0"
+    },
+    {
+      "check_count": 76,
+      "gate_count": 1,
+      "gates": [
+        {
+          "byte_length": 10249,
+          "path": "artifacts/m24/manifests/m24-formal-bounded-verification-qualification.json",
+          "raw_sha256": "bc96a66993b4bb693b95e8a72da8731216170d16c09c2438a2ec0b2eb2b8a290",
+          "status": "PASS"
+        }
+      ],
+      "milestone": "M24",
+      "qualification_paths": [
+        "artifacts/m24/manifests/m24-formal-bounded-verification-qualification.json"
+      ],
+      "status": "PASS",
+      "version": "2.6.0"
+    },
+    {
+      "check_count": 105,
+      "gate_count": 1,
+      "gates": [
+        {
+          "byte_length": 15716,
+          "path": "artifacts/m25/manifests/m25-fault-negative-recovery-qualification.json",
+          "raw_sha256": "91e989f86a910f1f6c1ddc66cee872077a229dcdf14fbb7db6a41713764adc85",
+          "status": "PASS"
+        }
+      ],
+      "milestone": "M25",
+      "qualification_paths": [
+        "artifacts/m25/manifests/m25-fault-negative-recovery-qualification.json"
+      ],
+      "status": "PASS",
+      "version": "2.7.0"
+    },
+    {
+      "check_count": 70,
+      "gate_count": 1,
+      "gates": [
+        {
+          "byte_length": 15044,
+          "path": "artifacts/m26/manifests/m26-declared-target-implementation-qualification.json",
+          "raw_sha256": "732a645688cf1e880ad070049c0d64aee4ad57a2ae0bf1d6465a939e43b55134",
+          "status": "PASS"
+        }
+      ],
+      "milestone": "M26",
+      "qualification_paths": [
+        "artifacts/m26/manifests/m26-declared-target-implementation-qualification.json"
+      ],
+      "status": "PASS",
+      "version": "2.8.0"
+    },
+    {
+      "check_count": 69,
+      "gate_count": 1,
+      "gates": [
+        {
+          "byte_length": 15591,
+          "path": "artifacts/m27/manifests/m27-long-run-stability-qualification.json",
+          "raw_sha256": "23bee717555c2c1111912d33559e70dcc13cc29e9bb1f9433bf52cb5063c6969",
+          "status": "PASS"
+        }
+      ],
+      "milestone": "M27",
+      "qualification_paths": [
+        "artifacts/m27/manifests/m27-long-run-stability-qualification.json"
+      ],
+      "status": "PASS",
+      "version": "2.9.0"
+    },
+    {
+      "check_count": 59,
+      "gate_count": 2,
+      "gates": [
+        {
+          "byte_length": 8380,
+          "path": "artifacts/m28/hierarchy/manifests/m28-hierarchy-qualification.json",
+          "raw_sha256": "1983d2fcd7fe1ea15ea4c93c0dec57faa279ed34adf6f310c9cee4f23b4e4dc6",
+          "status": "PASS"
+        },
+        {
+          "byte_length": 7136,
+          "path": "artifacts/m28/manifests/m28-trace-observatory-interchange-qualification.json",
+          "raw_sha256": "5f23b387967d61afa4c1e1c1c5a4ec26e9f1ff02c146bf7bf8ffe1c4f30e0c0c",
+          "status": "PASS"
+        }
+      ],
+      "milestone": "M28",
+      "qualification_paths": [
+        "artifacts/m28/hierarchy/manifests/m28-hierarchy-qualification.json",
+        "artifacts/m28/manifests/m28-trace-observatory-interchange-qualification.json"
+      ],
+      "status": "PASS",
+      "version": "3.0.0"
+    },
+    {
+      "check_count": 48,
+      "gate_count": 1,
+      "gates": [
+        {
+          "byte_length": 12920,
+          "path": "artifacts/m29/manifests/m29-system-integration-qualification.json",
+          "raw_sha256": "3cc8d1382f3953fdbf5aa2e22f7b0b315f57395a69bbe998a661919372ff7088",
+          "status": "PASS"
+        }
+      ],
+      "milestone": "M29",
+      "qualification_paths": [
+        "artifacts/m29/manifests/m29-system-integration-qualification.json"
+      ],
+      "status": "PASS",
+      "version": "3.1.0"
+    }
+  ],
+  "schema": "frp.m30.milestone_evidence_index.v3.2.0",
+  "source_commit": "ff3dd434da5dcbd9e8fa62444f658ed4c495b540",
+  "status": "PASS",
+  "summary": {
+    "all_status": "PASS",
+    "first_milestone": "M17",
+    "last_upstream_milestone": "M29",
+    "milestone_count": 13
+  },
+  "version": "3.2.0"
+}

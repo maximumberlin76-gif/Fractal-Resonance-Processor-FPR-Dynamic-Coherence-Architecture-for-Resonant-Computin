@@ -1,0 +1,89 @@
+{
+  "content_digest": "c921ad7563b5396cf62285afce847b0deca6a683357fff7cacbe1e1abbcf1202",
+  "immutable_core": {
+    "active_neutral_state": 0,
+    "balanced_ternary_notation": "-1/0/1",
+    "opposite_polarity_routes": [
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        -1
+      ]
+    ],
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ]
+  },
+  "kind": "clean_environment_reproduction",
+  "milestone": "M30",
+  "observatory_boundary": {
+    "audited_commit": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+    "downstream_files_modified_by_m30": false,
+    "downstream_semantic_reimplementation": "forbidden",
+    "downstream_writeback": "forbidden",
+    "existing_scaffold_action": "preserve_existing_scaffold",
+    "integration_direction": "upstream_to_downstream_only",
+    "repository": "FRP-Trace-Observatory",
+    "upstream_dependency_on_downstream_code": false,
+    "upstream_interchange_commit": "566a4ff88baa57f844691b46937552253e095434"
+  },
+  "record_count": 6,
+  "records": [
+    {
+      "command": "python -m pip install -r requirements.txt",
+      "purpose": "install exact dependencies",
+      "sequence": 1
+    },
+    {
+      "command": "python --version",
+      "purpose": "record Python 3.12 runtime",
+      "sequence": 2
+    },
+    {
+      "command": "python -m unittest -v tests.test_frp_m30_reproducibility_qualification_archival_closure",
+      "purpose": "run focused M30 qualification",
+      "sequence": 3
+    },
+    {
+      "command": "python -m unittest discover -s tests -p 'test_*.py' -v",
+      "purpose": "run complete repository regression",
+      "sequence": 4
+    },
+    {
+      "command": "python frp_m30_reproducibility_qualification_archival_closure.py --verify --repository-root . --source-commit ff3dd434da5dcbd9e8fa62444f658ed4c495b540",
+      "purpose": "verify committed M30 closure",
+      "sequence": 5
+    },
+    {
+      "command": "sha256sum artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz",
+      "purpose": "verify archival package digest",
+      "sequence": 6
+    }
+  ],
+  "schema": "frp.m30.clean_environment_reproduction.v3.2.0",
+  "source_commit": "ff3dd434da5dcbd9e8fa62444f658ed4c495b540",
+  "status": "PASS",
+  "summary": {
+    "byte_identity_required": true,
+    "independent_generation_count": 2,
+    "locale": "C.UTF-8",
+    "operating_system": "ubuntu-latest",
+    "package_sha256": "05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa",
+    "python": "3.12",
+    "pythonhashseed": "0",
+    "timezone": "UTC"
+  },
+  "version": "3.2.0"
+}

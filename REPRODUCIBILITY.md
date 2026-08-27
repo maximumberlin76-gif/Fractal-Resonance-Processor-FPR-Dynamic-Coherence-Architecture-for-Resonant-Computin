@@ -170,11 +170,11 @@ Validated kernel invariant:
 
 Current version:
 
-`FRP v1.8.0`
+`FRP v3.2.0`
 
 Current milestone:
 
-`M16 — RTL Core Realization and Execution Semantics Package`
+`M30 — Reproducibility, Qualification, and Archival Release Closure`
 
 Main executable semantic reference file:
 
@@ -3253,11 +3253,11 @@ Current FPGA preparation form:
 
 Current version:
 
-`FRP v1.8.0`
+`FRP v3.2.0`
 
 Current milestone:
 
-`M16 — RTL Core Realization and Execution Semantics Package`
+`M30 — Reproducibility, Qualification, and Archival Release Closure`
 
 Current executable semantic reference:
 
@@ -3327,11 +3327,25 @@ Physical foundation:
 
 `docs/physical_foundation.md`
 
+## 73. M30 Clean-Environment Reproduction
 
+M30 reproduction uses Python 3.12, the exact repository requirements, the
+immutable M29 source commit, the captured successful M17 through M29 workflow
+records, and the committed M30 producer and test source.
 
+Primary command:
 
+`python frp_m30_reproducibility_qualification_archival_closure.py --verify --repository-root . --source-commit ff3dd434da5dcbd9e8fa62444f658ed4c495b540`
 
+Complete repository test command:
 
+`python -m unittest discover -s tests -p 'test_*.py' -v`
 
+The reproduction procedure constructs two independent M30 output trees,
+requires byte identity, verifies the archival package SHA-256 digest, validates
+every archive member, and validates all committed M30 JSON documents against
+their declared schemas.
 
-
+Canonical processor notation remains `-1/0/1`; active neutral state remains
+`0`; temporal scheduler modes remain `1/7` and `7/1`; `free` remains a separate
+service scheduler mode.

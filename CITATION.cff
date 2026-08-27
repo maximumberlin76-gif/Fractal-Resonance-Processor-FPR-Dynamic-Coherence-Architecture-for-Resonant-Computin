@@ -9,7 +9,9 @@ authors:
     alias: "Alchimist"
     orcid: "https://orcid.org/0009-0000-0832-9597"
 
-version: "v1.8.0"
+version: "v3.2.0"
+
+date-released: "2026-08-25"
 
 doi: "10.5281/zenodo.21183966"
 
@@ -103,4 +105,8 @@ abstract: >-
   architecture-specific coefficients or winner assertions. The balanced
   ternary state domain -1, 0, and 1, active neutral state 0, and resonant phase
   dynamics define a future research direction for qutrit-oriented resonant
-  computation.
+  computation. FRP v3.2.0 closes M17 through M30 with deterministic
+  publication, schema, artifact, workflow, qualification, digest,
+  release-package, and archival evidence while preserving the M16
+  implementation anchor and the one-way published-byte boundary to FRP
+  Trace Observatory.

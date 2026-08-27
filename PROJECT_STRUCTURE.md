@@ -6,11 +6,11 @@ This document describes the current public repository structure of the Fractal R
 
 Current version:
 
-`FRP v1.8.0`
+`FRP v3.2.0`
 
 Current milestone:
 
-`M16 — RTL Core Realization and Execution Semantics Package`
+`M30 — Reproducibility, Qualification, and Archival Release Closure`
 
 Main executable semantic reference file:
 
@@ -18,15 +18,15 @@ Main executable semantic reference file:
 
 Current test report:
 
-`TEST_REPORT_v1_8_0.md`
+`TEST_REPORT_v3_2_0.md`
 
 Current validation index:
 
-`FRP_VALIDATION_INDEX_v1_8_0.md`
+`FRP_VALIDATION_INDEX_v3_2_0.md`
 
 Current release notes:
 
-`RELEASE_NOTES_v1_8_0.md`
+`RELEASE_NOTES_v3_2_0.md`
 
 Inherited M15 qualification workflow:
 
@@ -74,7 +74,7 @@ Current M17 machine-readable inventory milestone state:
 
 Current published release boundary:
 
-`FRP v1.8.0 / M16`
+`FRP v3.2.0 / M30`
 
 ## 1. Repository Role
 
@@ -1720,7 +1720,7 @@ M17 release target:
 
 `v1.9.0 — provisional`
 
-M18 through M30 remain planned architecture targets.
+M17 through M30 are completed qualification and archival release targets.
 
 | Milestone | Version | Architecture layer | Status |
 |---|---|---|---|
@@ -1741,20 +1741,20 @@ M18 through M30 remain planned architecture targets.
 | M14 | v1.6.0 | Physical Implementation Correlation and Production Qualification Package | Completed |
 | M15 | v1.7.0 | Implementation Mapping, Domain Interface, and Qualification Closure Package | Qualified semantic and implementation-mapping foundation |
 | M16 | v1.8.0 | RTL Core Realization and Execution Semantics Package | Current RTL execution and FPGA preparation layer |
-| M17 | v1.9.0 | Published Artifact Integration Contract | Qualification boundary closed; release target remains provisional |
-| M18 | v2.0.0 | Formal Schema and Canonical Artifact Publication | Planned |
-| M19 | v2.1.0 | Machine-Readable M16 Execution and Qualification Evidence | Planned |
-| M20 | v2.2.0 | Cross-Layer Deterministic Correlation | Planned |
-| M21 | v2.3.0 | Parameterized Qualification Matrix | Planned |
-| M22 | v2.4.0 | Control, Status, and Register Interface Realization | Planned |
-| M23 | v2.5.0 | Clock, Reset, CDC, and Interface Hardening | Planned |
-| M24 | v2.6.0 | Formal and Bounded Verification Closure | Planned |
-| M25 | v2.7.0 | Fault, Negative-Path, and Recovery Qualification | Planned |
-| M26 | v2.8.0 | Declared-Target Implementation Evidence | Planned |
-| M27 | v2.9.0 | Long-Run Stability and Telemetry Qualification | Planned |
-| M28 | v3.0.0 | Hierarchical Scaling and Hotspot-Containment Realization | Planned |
-| M29 | v3.1.0 | System Integration and Downstream Compatibility Closure | Planned |
-| M30 | v3.2.0 | Reproducibility, Qualification, and Archival Release Closure | Planned |
+| M17 | v1.9.0 | Published Artifact Integration Contract | Completed |
+| M18 | v2.0.0 | Formal Schema and Canonical Artifact Publication | Completed |
+| M19 | v2.1.0 | Machine-Readable M16 Execution and Qualification Evidence | Completed |
+| M20 | v2.2.0 | Cross-Layer Deterministic Correlation | Completed |
+| M21 | v2.3.0 | Parameterized Qualification Matrix | Completed |
+| M22 | v2.4.0 | Control, Status, and Register Interface Realization | Completed |
+| M23 | v2.5.0 | Clock, Reset, CDC, and Interface Hardening | Completed |
+| M24 | v2.6.0 | Formal and Bounded Verification Closure | Completed |
+| M25 | v2.7.0 | Fault, Negative-Path, and Recovery Qualification | Completed |
+| M26 | v2.8.0 | Declared-Target Implementation Evidence | Completed |
+| M27 | v2.9.0 | Long-Run Stability and Telemetry Qualification | Completed |
+| M28 | v3.0.0 | Hierarchical Scaling and Hotspot-Containment Realization | Completed |
+| M29 | v3.1.0 | System Integration and Downstream Compatibility Closure | Completed |
+| M30 | v3.2.0 | Reproducibility, Qualification, and Archival Release Closure | Completed |
 
 Architecture tracking is maintained in:
 
@@ -2249,3 +2249,21 @@ Next provisional version:
 Current repository role:
 
 `preserve the complete published Fractal Resonance Processor architecture from Kuramoto-Sakaguchi resonant phase evolution, hierarchical fractal coupling, resonance selection, multiscale phase coherence, delay and thermal-phase dynamics, nonlinear coherence compression, phase-derived balanced ternary state formation, distributed active-neutral routing, and retained coherent state through structured validation, hardware-facing implementation mapping, cycle-exact execution, RTL correlation, reference equivalence, M15 qualification closure, M16 SystemVerilog RTL execution, target-independent FPGA preparation, and the qualified M17 one-way published-artifact integration boundary`
+
+## 29. M30 Reproducibility and Archival Release Layer
+
+M30 adds the following repository surfaces:
+
+- `frp_m30_reproducibility_qualification_archival_closure.py`;
+- `tests/test_frp_m30_reproducibility_qualification_archival_closure.py`;
+- `.github/workflows/frp-m30-reproducibility-qualification-archival-release-closure-workflow.yml`;
+- `schemas/m30/`;
+- `artifacts/m30/`;
+- `RELEASE_NOTES_v3_2_0.md`;
+- `TEST_REPORT_v3_2_0.md`;
+- `FRP_VALIDATION_INDEX_v3_2_0.md`.
+
+The M30 package indexes the complete M17 through M29 evidence boundary,
+records exact SHA-256 digests, captures successful required workflow runs,
+constructs and verifies the deterministic archival release package, and
+preserves the existing FRP Trace Observatory one-way read-only boundary.

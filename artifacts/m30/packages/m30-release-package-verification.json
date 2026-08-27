@@ -1,0 +1,88 @@
+{
+  "content_digest": "5070c88be2a48e5ddb663c70fe9a3e425d8f445ea4429a86136587c8bcbaff1c",
+  "immutable_core": {
+    "active_neutral_state": 0,
+    "balanced_ternary_notation": "-1/0/1",
+    "opposite_polarity_routes": [
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        -1
+      ]
+    ],
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ]
+  },
+  "kind": "release_package_verification",
+  "milestone": "M30",
+  "observatory_boundary": {
+    "audited_commit": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+    "downstream_files_modified_by_m30": false,
+    "downstream_semantic_reimplementation": "forbidden",
+    "downstream_writeback": "forbidden",
+    "existing_scaffold_action": "preserve_existing_scaffold",
+    "integration_direction": "upstream_to_downstream_only",
+    "repository": "FRP-Trace-Observatory",
+    "upstream_dependency_on_downstream_code": false,
+    "upstream_interchange_commit": "566a4ff88baa57f844691b46937552253e095434"
+  },
+  "record_count": 8,
+  "records": [
+    {
+      "check": "gzip_stream_valid",
+      "result": "PASS"
+    },
+    {
+      "check": "tar_member_order_lexicographic",
+      "result": "PASS"
+    },
+    {
+      "check": "single_package_root",
+      "result": "PASS"
+    },
+    {
+      "check": "member_paths_safe",
+      "result": "PASS"
+    },
+    {
+      "check": "member_types_regular_files_only",
+      "result": "PASS"
+    },
+    {
+      "check": "internal_manifest_matches_members",
+      "result": "PASS"
+    },
+    {
+      "check": "member_bytes_match_expected",
+      "result": "PASS"
+    },
+    {
+      "check": "package_sha256_recorded",
+      "result": "PASS"
+    }
+  ],
+  "schema": "frp.m30.release_package_verification.v3.2.0",
+  "source_commit": "ff3dd434da5dcbd9e8fa62444f658ed4c495b540",
+  "status": "PASS",
+  "summary": {
+    "check_count": 8,
+    "failed_count": 0,
+    "package_path": "artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz",
+    "package_sha256": "05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa",
+    "verified_member_count": 519
+  },
+  "version": "3.2.0"
+}

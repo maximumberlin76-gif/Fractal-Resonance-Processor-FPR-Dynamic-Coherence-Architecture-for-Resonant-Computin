@@ -1,0 +1,103 @@
+{
+  "content_digest": "2e9c14dda8d9710594ec8b53a6665504abbd841b075bc0a018b605521a203662",
+  "immutable_core": {
+    "active_neutral_state": 0,
+    "balanced_ternary_notation": "-1/0/1",
+    "opposite_polarity_routes": [
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        -1
+      ]
+    ],
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ]
+  },
+  "kind": "archival_metadata",
+  "milestone": "M30",
+  "observatory_boundary": {
+    "audited_commit": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+    "downstream_files_modified_by_m30": false,
+    "downstream_semantic_reimplementation": "forbidden",
+    "downstream_writeback": "forbidden",
+    "existing_scaffold_action": "preserve_existing_scaffold",
+    "integration_direction": "upstream_to_downstream_only",
+    "repository": "FRP-Trace-Observatory",
+    "upstream_dependency_on_downstream_code": false,
+    "upstream_interchange_commit": "566a4ff88baa57f844691b46937552253e095434"
+  },
+  "record_count": 12,
+  "records": [
+    {
+      "field": "title",
+      "value": "Fractal Resonance Processor (FRP)"
+    },
+    {
+      "field": "version",
+      "value": "FRP v3.2.0"
+    },
+    {
+      "field": "milestone",
+      "value": "M30 - Reproducibility, Qualification, and Archival Release Closure"
+    },
+    {
+      "field": "release_date",
+      "value": "2026-08-25"
+    },
+    {
+      "field": "author",
+      "value": "Maksym Marnov"
+    },
+    {
+      "field": "author_alias",
+      "value": "Alchimist"
+    },
+    {
+      "field": "license",
+      "value": "Apache-2.0"
+    },
+    {
+      "field": "doi",
+      "value": "10.5281/zenodo.21183966"
+    },
+    {
+      "field": "repository",
+      "value": "https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor"
+    },
+    {
+      "field": "source_commit",
+      "value": "ff3dd434da5dcbd9e8fa62444f658ed4c495b540"
+    },
+    {
+      "field": "package_path",
+      "value": "artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz"
+    },
+    {
+      "field": "package_sha256",
+      "value": "05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa"
+    }
+  ],
+  "schema": "frp.m30.archival_metadata.v3.2.0",
+  "source_commit": "ff3dd434da5dcbd9e8fa62444f658ed4c495b540",
+  "status": "PASS",
+  "summary": {
+    "metadata_field_count": 12,
+    "release_notes": "RELEASE_NOTES_v3_2_0.md",
+    "test_report": "TEST_REPORT_v3_2_0.md",
+    "validation_index": "FRP_VALIDATION_INDEX_v3_2_0.md"
+  },
+  "version": "3.2.0"
+}

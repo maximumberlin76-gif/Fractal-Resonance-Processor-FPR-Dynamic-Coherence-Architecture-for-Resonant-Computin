@@ -2,6 +2,25 @@
 
 All notable changes to the Fractal Resonance Processor (FRP) project are documented in this file.
 
+## [v3.2.0] — M30 Reproducibility, Qualification, and Archival Release Closure
+
+### Current Release Layer
+
+- Closed the M17 through M30 qualification progression.
+- Added complete milestone, schema, canonical-artifact, producer-command,
+  workflow, qualification-manifest, and digest indexes.
+- Added deterministic clean-environment reproduction records.
+- Added and verified the FRP v3.2.0 archival release package.
+- Added release-specific notes, test report, and validation index.
+- Aligned current-state repository records while preserving historical files.
+- Preserved the immutable `-1/0/1` core, active neutral state `0`, temporal
+  schedulers `1/7` and `7/1`, and separate `free` service mode.
+- Preserved the existing FRP Trace Observatory one-way read-only boundary.
+
+### Qualification Result
+
+`M30 REPRODUCIBILITY AND ARCHIVAL RELEASE CLOSED — PASS`
+
 ## [v1.8.0] — M16 RTL Core Realization and Execution Semantics Package
 
 ### Current Release Layer

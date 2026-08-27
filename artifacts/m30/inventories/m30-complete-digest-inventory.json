@@ -1,0 +1,3196 @@
+{
+  "content_digest": "8886c87bb61033adcf190b768f735f5d0b1ac6cd29f2cac9894edfd5e0edb9ab",
+  "immutable_core": {
+    "active_neutral_state": 0,
+    "balanced_ternary_notation": "-1/0/1",
+    "opposite_polarity_routes": [
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        -1
+      ]
+    ],
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ]
+  },
+  "kind": "digest_inventory",
+  "milestone": "M30",
+  "observatory_boundary": {
+    "audited_commit": "a9d71657c56221d0d9b72fb6e954e0028f096a9e",
+    "downstream_files_modified_by_m30": false,
+    "downstream_semantic_reimplementation": "forbidden",
+    "downstream_writeback": "forbidden",
+    "existing_scaffold_action": "preserve_existing_scaffold",
+    "integration_direction": "upstream_to_downstream_only",
+    "repository": "FRP-Trace-Observatory",
+    "upstream_dependency_on_downstream_code": false,
+    "upstream_interchange_commit": "566a4ff88baa57f844691b46937552253e095434"
+  },
+  "record_count": 523,
+  "records": [
+    {
+      "byte_length": 12020,
+      "path": ".github/workflows/frp-architecture-comparison.yml",
+      "raw_sha256": "24d161548b6993b06d987621d84cd981cdd5eb952e7b9b6efe422ef5f48bf0e7",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1037,
+      "path": ".github/workflows/frp-benchmark-smoke.yml",
+      "raw_sha256": "3c570e828f80f8cc2ce05c79199d1adbaf80651320fab7b19ed9b7afd59aa597",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 27660,
+      "path": ".github/workflows/frp-hardware-sensitivity-comparison.yml",
+      "raw_sha256": "daf20b64534267c10c3755783f5c8feca81ac25dc8ae605cb4fce7802df4e456",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 8958,
+      "path": ".github/workflows/frp-hardware-sensitivity-profile.yml",
+      "raw_sha256": "74d20d7add6919491ff93f5c32a1fc00bc20e5e81424f98bc55373a46d46ac72",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 14501,
+      "path": ".github/workflows/frp-m10-silicon-production-tapeout.yml",
+      "raw_sha256": "199efebc3798bc072e4a538a8180d72ed833536905188f24b2cc2425835b07dd",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 14735,
+      "path": ".github/workflows/frp-m11-production-integration-handoff.yml",
+      "raw_sha256": "91cbd029e8fff1359644edcef39ea06808030974db292feac8ea13ce4a6c1e1c",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 17620,
+      "path": ".github/workflows/frp-m12-feedback-iteration.yml",
+      "raw_sha256": "9895928d03ae5633818a30e4d85db28920d093b2dbf9310a83f3ba237ec48f9b",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 17960,
+      "path": ".github/workflows/frp-m13-production-scaling-stabilization.yml",
+      "raw_sha256": "02aa97b4d42c9ab660374c4e3a7da0707d8ec75ef5618b688d2038f225445263",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 29595,
+      "path": ".github/workflows/frp-m14-physical-implementation-qualification.yml",
+      "raw_sha256": "7ed2ace6a008235064c6bc322b6f16c9c976cdcff19754ef69cc1fbc963dc0fe",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 21176,
+      "path": ".github/workflows/frp-m15-implementation-mapping-qualification.yml",
+      "raw_sha256": "82889522e1c93d1f682a61648dc17d00d7f5f714ffe49ed2d767af8e295d61aa",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 8813,
+      "path": ".github/workflows/frp-m16-canonical-core-domain.yml",
+      "raw_sha256": "5986dcaaf8f6e3cf489841300f08aaf24a07416cc9499d25e9574fc50e3ce05d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 10789,
+      "path": ".github/workflows/frp-m16-fpga-preparation.yml",
+      "raw_sha256": "7cfc4751e3dd3c723530a6f3998b912232eb9027a7b16524628490323ce490f9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1830,
+      "path": ".github/workflows/frp-m16-reserved-cell-cleanup.yml",
+      "raw_sha256": "6f90654b2764b37849243f178e50baa84f3811c60cf0d66d2c33354d7aa23156",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 9035,
+      "path": ".github/workflows/frp-m16-rtl-artifact-boundary.yml",
+      "raw_sha256": "d704fceeb9f28056ae32c7ac3906e080c44e0fa14ac00120af30e6614a7f7565",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 13879,
+      "path": ".github/workflows/frp-m17-published-artifact-integration.yml",
+      "raw_sha256": "b49e9a1c50540c4240f1506b89c7a9fec619a4f0ef54e6376862e76b49b45ced",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 19452,
+      "path": ".github/workflows/frp-m18-formal-schema-canonical-artifacts.yml",
+      "raw_sha256": "1473d60590d5ff883066d812a96e46c8a0df5e6fdc31b9d8217412e47ad908d4",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7951,
+      "path": ".github/workflows/frp-m19-create-machine-readable-m16-evidence.yml",
+      "raw_sha256": "af193943c4336ce73fb1d1a65cc72903b1868313486811ef2222b5f1c9d41b3b",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 30518,
+      "path": ".github/workflows/frp-m20-cross-layer-correlation.yml",
+      "raw_sha256": "d35b5926fc0afbf862d1be5e5e214f5eeb16b37974e0e8e6d9fd97eb391a6c68",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 32766,
+      "path": ".github/workflows/frp-m21-parameterized-qualification-matrix.yml",
+      "raw_sha256": "e2bde49dd42dcc793abddd52a6baf4a9c433efc0815e6278408ba1050b440532",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 40741,
+      "path": ".github/workflows/frp-m22-control-status-register-interface.yml",
+      "raw_sha256": "6d34db1328f91918d20f9ed51bd4ef4c111fe10542e5dda2575018a8a4c9e1f7",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 34716,
+      "path": ".github/workflows/frp-m23-clock-reset-cdc-interface-hardening-workflow.yml",
+      "raw_sha256": "82137c6450c69e0794c6a7a1b66d0cc7f97cbde5e80af48433549ed8a8532b72",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 38850,
+      "path": ".github/workflows/frp-m24-formal-bounded-verification-closure-workflow.yml",
+      "raw_sha256": "57d7e5c62957f6a868c88d8db479e9d71ced51f00a5b5822abfa1e188a1477f9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 41598,
+      "path": ".github/workflows/frp-m25-fault-negative-path-recovery-qualification-workflow.yml",
+      "raw_sha256": "fcc8321aeaa771c927aed0df90fb5f94f2432becc20f1b1222979af2ffa6604b",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 35522,
+      "path": ".github/workflows/frp-m26-declared-target-implementation-evidence-workflow.yml",
+      "raw_sha256": "7aea31cbf8f2fb95f7bd85173f993f6f7bd285c13b31cc0e6de51c7d2d000074",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 41050,
+      "path": ".github/workflows/frp-m27-long-run-stability-telemetry-qualification-workflow.yml",
+      "raw_sha256": "ebdae1809d538553bb47306b44aaa37154ff4e4a2e38dfa9c31b7de3ab6c45ae",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 57462,
+      "path": ".github/workflows/frp-m28-hierarchical-scaling-hotspot-containment-closure-workflow.yml",
+      "raw_sha256": "12f8c7d291ba0bbec77d76a9f156a557e27abd2ddae3213dc2b059d86e2545f5",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 46806,
+      "path": ".github/workflows/frp-m28-trace-observatory-upstream-interchange-workflow.yml",
+      "raw_sha256": "34677e5c4ca2dc187a0cc7b01c681a12e3deb4818998d5d4c6edc0e30f69ddcb",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 70579,
+      "path": ".github/workflows/frp-m29-system-integration-downstream-compatibility-closure-workflow.yml",
+      "raw_sha256": "52aca76812af52db37dbbf0873a79ea4545795fe2aaf83bdb86c39a80954e112",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7052,
+      "path": ".github/workflows/frp-m3-benchmark-signal-map.yml",
+      "raw_sha256": "6fa7fa812524dd3c562cb5a21a9fea0ed518c6e7b8a345b70eaade6c7ed98534",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 33635,
+      "path": ".github/workflows/frp-m30-producer-source-bootstrap-workflow.yml",
+      "raw_sha256": "054441acd5773279fe98d0a1511530883db3095a960448b364578ff7e651027b",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 11231,
+      "path": ".github/workflows/frp-m30-qualification-test-bootstrap-workflow.yml",
+      "raw_sha256": "01431e5c55be31a4d1b5377cc3423282b1042375dae1ef78b80aea29d9bf9c6f",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 23546,
+      "path": ".github/workflows/frp-m30-reproducibility-qualification-archival-release-closure-workflow.yml",
+      "raw_sha256": "cbb07732ad5bd2f3c0ec09905e348b568553964bbea24694c7f9698acbdb9ff8",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 6781,
+      "path": ".github/workflows/frp-m4-hdl-trace.yml",
+      "raw_sha256": "1e42a1d5742f0de75103c757db9c32891e060a57d74dad901b2611d74354c9ec",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7973,
+      "path": ".github/workflows/frp-m5-rtl-assertion-harness.yml",
+      "raw_sha256": "da56ec865226113db1348ec4e4800a2d81b3cd59897032df27b451e82efec0f3",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7053,
+      "path": ".github/workflows/frp-m6-formal-verification.yml",
+      "raw_sha256": "75d318e452f15b59b1197a12c2f1a0b1a3e0e1830d642fe0b2f98da501776eee",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7963,
+      "path": ".github/workflows/frp-m7-fpga-synthesis.yml",
+      "raw_sha256": "7d312bfc6120126bdaf4cab37c327421c98a16e5a4a000ec7f757dc78a5a043e",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 10307,
+      "path": ".github/workflows/frp-m8-production-release.yml",
+      "raw_sha256": "600cb19657b171302d784df2e8b87d471d8007de3fb8ff375eb9c0f2e36663c1",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 12957,
+      "path": ".github/workflows/frp-m9-silicon-architecture.yml",
+      "raw_sha256": "0905435ce353f6d4e6f736ddb6cd5f1f5295bb43e16c549d780974fa77a06c51",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 767,
+      "path": ".github/workflows/frp-self-test.yml",
+      "raw_sha256": "38eac9a0fd98d5b683e48c3f2dc4285a091a747f44dbb4a3a6b164f676ce24e1",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5564,
+      "path": ".github/workflows/frp-structured-output.yml",
+      "raw_sha256": "10a86cefeb722a320f83162d9f2387e46e3c5068036afef5aef6e6f5b4da8c00",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 446,
+      "path": ".gitignore",
+      "raw_sha256": "af53f36546ff98da944ec27d97ded13f427827afb222dd67c87f63c9f3c23ece",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 123441,
+      "path": "CHANGELOG.md",
+      "raw_sha256": "965b5dec90d479e80c5b7495ec898b1ed9d596a69c2b026eac0023ca40c6073b",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 126063,
+      "path": "CI.md",
+      "raw_sha256": "5f34c4402f5aad9ca0d64cdc12d508e2a67a8b4d3424ab67a4a4831162d90dab",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 5513,
+      "path": "CITATION.cff",
+      "raw_sha256": "4939a7a61e779b44b086e15cbac337e2d184022e1a0fbea444abaf1c01c04dbb",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 5351,
+      "path": "CODE_OF_CONDUCT.md",
+      "raw_sha256": "108b04e642f7545bfeda2f9f567b3e341fad0f4aa5ecc1f42479578904422ae4",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 72128,
+      "path": "CONTRIBUTING.md",
+      "raw_sha256": "e08d2bcb2b54dc0a87d90fc8fd035296afb8eecdb817e5f092cb61ca75415a67",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6573,
+      "path": "FRP_PRODUCTION_RELEASE_MANIFEST_v1_0_0.md",
+      "raw_sha256": "fc05c9d475a6c352a8ed06fa0664fd51254b397235651409ce40e6e70ac2eb85",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4797,
+      "path": "FRP_VALIDATION_INDEX_v0_9_9.md",
+      "raw_sha256": "e43b24dc2b4d278f474988bdb1129ba9d31fe6404e427ca9ef0256c8c62dd5fa",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7260,
+      "path": "FRP_VALIDATION_INDEX_v1_0_0.md",
+      "raw_sha256": "0f026bb4eb4f5bedcc3f9a8d651b7ca8c479da49cb6c00e70ea65422e3eefaad",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7900,
+      "path": "FRP_VALIDATION_INDEX_v1_1_0.md",
+      "raw_sha256": "ad783ab4a0af40137310a42695d99ac7710e2c563159f38c36d41c7555b7d173",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 9770,
+      "path": "FRP_VALIDATION_INDEX_v1_2_0.md",
+      "raw_sha256": "f0d07cde225d0403d2dd0c5c34d979f2c5afda122db66a61429db644b5e611c8",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 10814,
+      "path": "FRP_VALIDATION_INDEX_v1_3_0.md",
+      "raw_sha256": "1edf672fe0af53fe378dbd063cd559be56a2cd48aed35d4b0bbe0dcf882fd414",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 13883,
+      "path": "FRP_VALIDATION_INDEX_v1_4_0.md",
+      "raw_sha256": "76f6b59b66a6adf418dc4c5bf2fc0461ac207f6bdefcad03623be47c8163e07a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 21098,
+      "path": "FRP_VALIDATION_INDEX_v1_5_0.md",
+      "raw_sha256": "59cc700e8e3189534c1b347fd8c9674bc922570eb06365f850de58d9ab6a154f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 32970,
+      "path": "FRP_VALIDATION_INDEX_v1_6_0.md",
+      "raw_sha256": "3f2fe1c0fe7e73edf3a91468fefa95b011eeabf29723edb7a38aef726380bc80",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 42335,
+      "path": "FRP_VALIDATION_INDEX_v1_7_0.md",
+      "raw_sha256": "8acc695196abe7257adb0284d19955c2cae196fe117217bff1e69f163e87acbf",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 38466,
+      "path": "FRP_VALIDATION_INDEX_v1_8_0.md",
+      "raw_sha256": "9f1b5d3a8830c56efe9ca6d65cd4e4501653daf63f69c3b4e5304348826b80b1",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1575,
+      "path": "FRP_VALIDATION_INDEX_v3_2_0.md",
+      "raw_sha256": "1ea82ca0358e5b304cf7c75f162a1309c83eb4cdde4dc4f9cbd1ba1af4230541",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 46649,
+      "path": "INSTALL.md",
+      "raw_sha256": "da18c32bcac851aaa06d914b22c2a00266c10c45e6d914c5979fd0a695676f73",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 10204,
+      "path": "LICENSE",
+      "raw_sha256": "ea6233ec9cd025f4b4b08ead7f4c3aafdee865d1703a76ed7bbd8a5ddb444227",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 55806,
+      "path": "MILESTONES.md",
+      "raw_sha256": "c3325932acdf97cc8db365348d49d210bef552949b08bc5a2b5b980d7df7315f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5587,
+      "path": "NOTICE.md",
+      "raw_sha256": "7ba6ff4e7f53fdfa0558338071a3ac5456fdee1db9a985690995b730d9bab8f7",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 64391,
+      "path": "PROJECT_STRUCTURE.md",
+      "raw_sha256": "dab46be1d1e1db3c6ebe03b2ee629b677c328021d599e604a682c527cd2bc4b1",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 118858,
+      "path": "README.md",
+      "raw_sha256": "ee2d3e3c4d8cff459ba669307777ac97b86e3843f5c7a3d521ad817a5e7b0d60",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 13935,
+      "path": "RELEASE_CHECKLIST_v0_9_3.md",
+      "raw_sha256": "4e1e2ceb2aabcaa7aa01b1daafad1d11673938e31bdf746851f78b148e75560b",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 14963,
+      "path": "RELEASE_CHECKLIST_v1_7_0.md",
+      "raw_sha256": "fb875a9e8f1c7fbe9a43909968e9779a2033655e584287bbf2f792f226947310",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 28528,
+      "path": "RELEASE_CHECKLIST_v1_8_0.md",
+      "raw_sha256": "6924f0e72bd2982125c8767d2a127e1c2084afe3c8e790b70772677e6263f8c6",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 17937,
+      "path": "RELEASE_NOTES_v0_9_3.md",
+      "raw_sha256": "2d9321bae98433d6165b2edcf731d0b27c1db9695175bbed0221b5c130491bd9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6988,
+      "path": "RELEASE_NOTES_v0_9_4.md",
+      "raw_sha256": "378e2265fe211f6b90c7e0908f9304e5d574f954d7426551539a9c06d2c3cefc",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6404,
+      "path": "RELEASE_NOTES_v0_9_5.md",
+      "raw_sha256": "5aa933173e4591e70a65fa9ddafe67335b51e218d5e8d66f1a0d69cc740b3c15",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2840,
+      "path": "RELEASE_NOTES_v0_9_6.md",
+      "raw_sha256": "46314150b355b6b045a20f575e7cca7b79c996a34f32785450e2ef4799d8c866",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3405,
+      "path": "RELEASE_NOTES_v0_9_7.md",
+      "raw_sha256": "ede898a01d0afc2e9551b7c51d465b82fa266532e9b5d08538da8d937019f737",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4424,
+      "path": "RELEASE_NOTES_v0_9_8.md",
+      "raw_sha256": "9c22a7d11676719ae10244dfa777f5ab5c43af1e68b7841b3ea5f8b868328f5f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4474,
+      "path": "RELEASE_NOTES_v0_9_9.md",
+      "raw_sha256": "6d29ed5e7689542e4e0097facf72afd1f1551aaca478ffa665f064c2437c4d8c",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5765,
+      "path": "RELEASE_NOTES_v1_0_0.md",
+      "raw_sha256": "6a475e04dc420e91c64765cbcdf3e3a059e472b15e5976719f3ad82201233ecd",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5781,
+      "path": "RELEASE_NOTES_v1_1_0.md",
+      "raw_sha256": "e90a81ce1b12901f739d4d3d2a0e806cbeb525ff730aeaa510622482f07ca02f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 9023,
+      "path": "RELEASE_NOTES_v1_2_0.md",
+      "raw_sha256": "22475c56e399892c13483fac34302e9aab3094651dd74818e769ee59c90b1a67",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 9438,
+      "path": "RELEASE_NOTES_v1_3_0.md",
+      "raw_sha256": "468d54ca5fde999aa2247e8dd67db2245ec39e468f2fcf8b983421c3555e263f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 10333,
+      "path": "RELEASE_NOTES_v1_4_0.md",
+      "raw_sha256": "ba45de33a5f963d4c76c9efa5da770f172b7cae23357c95acc977aa954eb15d8",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 17991,
+      "path": "RELEASE_NOTES_v1_5_0.md",
+      "raw_sha256": "39cc3f1b7214a2bbd459e534b2d3c1b39e41e4317aa121ce84d301b7140cdf04",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 29368,
+      "path": "RELEASE_NOTES_v1_6_0.md",
+      "raw_sha256": "306bccf7da1d3134f361e5ce78cd88b9508b6913dd45b4e0287d932f791a8828",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 34276,
+      "path": "RELEASE_NOTES_v1_7_0.md",
+      "raw_sha256": "1cd7735eaabc6e0506a84082a1c26e7f179d3f3aaaab71102f9eb0128141062d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 36120,
+      "path": "RELEASE_NOTES_v1_8_0.md",
+      "raw_sha256": "e7d2a08120ea53c6e690b8e95c7aa2f347aa322e8d71383889db2753cab63dba",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1295,
+      "path": "RELEASE_NOTES_v3_2_0.md",
+      "raw_sha256": "07a68cd952447888e49f485be891b9ff30533d10c0b65ecc051e00a7c0a97c08",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 74670,
+      "path": "REPRODUCIBILITY.md",
+      "raw_sha256": "a25c61fd4293c5ebf3f3e110c1e1d24025905694537cc0aecb441e7384011976",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 38318,
+      "path": "ROADMAP.md",
+      "raw_sha256": "716930425e848a23f1d52db562c16ef2e574258e32905e3007f1f0d20e1007a8",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6549,
+      "path": "SECURITY.md",
+      "raw_sha256": "d6fed8be4b2af376a6eb8625f0eb7bd8f01ae19caf067693514ef5dcb34bbd15",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 9009,
+      "path": "TEST_REPORT_v0_9_3.md",
+      "raw_sha256": "c6fe86f2c0c922243a8bd001742e9fcbfd3c31cdedf40a6a728b989dbd01679e",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7956,
+      "path": "TEST_REPORT_v0_9_4.md",
+      "raw_sha256": "f614f2f1e3def0d3d76df5a21815e11944a8fca33ad280c3d8492e90ff80d526",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7676,
+      "path": "TEST_REPORT_v0_9_5.md",
+      "raw_sha256": "1b7b221cf9232e39258d1b51435254d5059c322b3a416faf113fc16a9b1c5f4a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2800,
+      "path": "TEST_REPORT_v0_9_6.md",
+      "raw_sha256": "c8eecf4bca6679f131362a2ad5c9e08a57f9ad7e59a1186798727fee7d6074c5",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3342,
+      "path": "TEST_REPORT_v0_9_7.md",
+      "raw_sha256": "a357f933ec56d905b04cd6916343c5f3c0a6e3d61cd8a7a0ffc6aba1abf2f606",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4111,
+      "path": "TEST_REPORT_v0_9_8.md",
+      "raw_sha256": "cd6967f3fdd5feeba00be7e85a38ff2d1cc6d50db67818acba9b16aa9643620e",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4137,
+      "path": "TEST_REPORT_v0_9_9.md",
+      "raw_sha256": "aeeac14bc3fcf962a4f86b514c645aa2e2efd39f6ae99905759ed2071c641308",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5678,
+      "path": "TEST_REPORT_v1_0_0.md",
+      "raw_sha256": "2d295a5ed52407a49cb7d9d94a4757c7809adc5d8996e583c0d87d6ec62a4f31",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7974,
+      "path": "TEST_REPORT_v1_1_0.md",
+      "raw_sha256": "02c692aadf4e010cfb006dc0f135d222f23dbf1409a4eee7d0caa47b85ebad28",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 9340,
+      "path": "TEST_REPORT_v1_2_0.md",
+      "raw_sha256": "7baaf64ad37b3cf51e423682c9c331f07b41e59df9de5fa714d8fc45e3b16781",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 9745,
+      "path": "TEST_REPORT_v1_3_0.md",
+      "raw_sha256": "22b8ded3da75fc49078acc7750ee5c26f30a461e1e47464e93f5f887483ebc66",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7932,
+      "path": "TEST_REPORT_v1_4_0.md",
+      "raw_sha256": "31c416419086a8fb923964cd0085b25344e2decc10e62dbdd1b1b0e4b1dce3e1",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 15496,
+      "path": "TEST_REPORT_v1_5_0.md",
+      "raw_sha256": "200efb428f1df17a58cf71986488592d0acd7c2aff481fb8e88d8362ac3cf27d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 27425,
+      "path": "TEST_REPORT_v1_6_0.md",
+      "raw_sha256": "b809e382aa4f5c8931d4faf1eb27035a1ebe66518e021be255017f15552de421",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 25016,
+      "path": "TEST_REPORT_v1_7_0.md",
+      "raw_sha256": "0654d6f7d13cd10567dea461935441d0601b3fb90bd8496670943ce8b5e8764b",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 31244,
+      "path": "TEST_REPORT_v1_8_0.md",
+      "raw_sha256": "f948f165ecf7ea18d022b5c63cc29d806cf495a1be4591ed2f6833bf2056231a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1018,
+      "path": "TEST_REPORT_v3_2_0.md",
+      "raw_sha256": "9cd0f8f7f427bbd19c766e83415a9ecd6c43b3b5a63b5e7aabfcd728caa06d16",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 59696,
+      "path": "USAGE.md",
+      "raw_sha256": "98810673a9b6debfe415cadbfd418e9cbed1bb1f6ced126e073669edba42b4b2",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1688,
+      "path": "artifacts/m18/benchmark_matrix/benchmark-matrix.json",
+      "raw_sha256": "055b765a8a6e03c8c98fb817bc737e27d80338cf26025114696cbf0378bf2902",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2625,
+      "path": "artifacts/m18/m15_exports/balanced-ternary-hardware-encoding-map.json",
+      "raw_sha256": "92e108ac5551800658e3b4f81221fc145aa899b0914542a91bdfa78d30af0543",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 89243,
+      "path": "artifacts/m18/m15_exports/cycle-exact-reference-trace.json",
+      "raw_sha256": "7aa0bf41f88ce4bbb53fcc3e52dc596fb0fc9b37899237cd9cd6119c3485f0af",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4549,
+      "path": "artifacts/m18/m15_exports/fixed-point-interface-profile.json",
+      "raw_sha256": "840adfcf86b2d7dcac5c4153dd7ee63f9e21fe8b7842c68288a5faf596ff6e0a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7374,
+      "path": "artifacts/m18/m15_exports/qualification-closure-manifest.json",
+      "raw_sha256": "bc3d77208b005fba050511dffbaebc21a37cbd7f4327de43405fe38529dec5ac",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4687,
+      "path": "artifacts/m18/m15_exports/quantized-reference-shadow-model.json",
+      "raw_sha256": "8c61304182952673b0a0195b181bf1e4e8f8de0ecf79dc4b3fa320d74bb356ae",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5071,
+      "path": "artifacts/m18/m15_exports/reference-rtl-equivalence-report.json",
+      "raw_sha256": "662b0df1795ac3b31d9e1d95e00fda78408b7cbdf6024b5298eabec1f695d63d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1146,
+      "path": "artifacts/m18/m15_exports/rtl-assertion-correlation-harness.json",
+      "raw_sha256": "40117f4f89eb6b2e062c3f8a9a894f5115ab2f710fd2275cbc6f775a440ef477",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2307,
+      "path": "artifacts/m18/m15_exports/rtl-comparison-vector-package.json",
+      "raw_sha256": "75ec68fed692ff9cfddd918dcf6289326b9b9130798d31c9c681c13a5189dbf4",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2111,
+      "path": "artifacts/m18/m15_exports/synthesizable-rtl-reference-core.json",
+      "raw_sha256": "d90623311383e897b8490c753ac418b759e763f3f77dde65c4bedd3a8f773b87",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1500,
+      "path": "artifacts/m18/m15_exports/systemverilog-testbench-interface-map.json",
+      "raw_sha256": "c58f552fdf42c2b8be4349d95d5aa6de5db6d145e8586850cf53ad957d9186da",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 112549,
+      "path": "artifacts/m18/m15_vectors/frp_m15_cell_trace.vec",
+      "raw_sha256": "b3192cbfbe89b31517212a09fd4d14f58180e2d1594a45412856399c4be5781d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 16689,
+      "path": "artifacts/m18/m15_vectors/frp_m15_full_correlation_vectors.vec",
+      "raw_sha256": "c2e2a92d7031b85d2681fdaba839bbc4a0d833be14c8516d15dcaed347940d73",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 8815,
+      "path": "artifacts/m18/m15_vectors/frp_m15_kernel_vectors.vec",
+      "raw_sha256": "87e063cdbe49d32ecfda129e0a5c6a8c77d022fdfa07eeed891a1b4f271d29bf",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 818,
+      "path": "artifacts/m18/m15_vectors/frp_m15_pending_routes.trace",
+      "raw_sha256": "600125de9484bb3b2275a98a64eba06d751a8ce129e29c3eb49b14142e01afc5",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1387,
+      "path": "artifacts/m18/m15_vectors/frp_m15_reference_preload.json",
+      "raw_sha256": "88cf005a76a659c0f51a16a1499b6fa6251b09eb26434538eb27ca5718b1a4a0",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5028,
+      "path": "artifacts/m18/m15_vectors/frp_m15_scheduler_1_7_vectors.vec",
+      "raw_sha256": "5cf1912cbc492004656f41fff4ff36e5146e281b4f79a0e90606747b7c0bc649",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5017,
+      "path": "artifacts/m18/m15_vectors/frp_m15_scheduler_7_1_vectors.vec",
+      "raw_sha256": "9e777e7eb9fa4adeca52bc83ebedd5275aad2ebbc32f34140102131cd4aa4c7e",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5023,
+      "path": "artifacts/m18/m15_vectors/frp_m15_scheduler_free_vectors.vec",
+      "raw_sha256": "836b9e2fb5079f93f9666e534823735c6f22f48c8def4b6301ec3119ac52a518",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 935,
+      "path": "artifacts/m18/m15_vectors/frp_m15_sha256_manifest.json",
+      "raw_sha256": "8dafbe3dea995d94c84a8ea02b9393bd53b9b986b8cc852af55f2ea67dc1d839",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 72471,
+      "path": "artifacts/m18/m15_vectors/frp_m15_trig_lut_q30.vec",
+      "raw_sha256": "caadbbf97fe0bacf2d82eaa5da4cd1fb6cf1e1514809d3e743311e19893d11bb",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 45927,
+      "path": "artifacts/m18/manifests/canonical-artifact-manifest.json",
+      "raw_sha256": "bdf034303e9557a87ff53fce9193b9480360202e5ece8247d35f44678a871710",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 100619,
+      "path": "artifacts/m18/manifests/canonical-artifact-qualification.json",
+      "raw_sha256": "432fef4d9a96e1181a6dc5b96dab64ac5726b1aeccb92702d02bce0721c87c13",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 9055,
+      "path": "artifacts/m18/manifests/canonical-artifact-self-test.json",
+      "raw_sha256": "0c05d34d1a550086248e8b95b8ecbc00fd056081bf77ad9b88e65eaa9995950a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2549,
+      "path": "artifacts/m18/structured_output/scaling-16.json",
+      "raw_sha256": "dafc9a1771aa2c66c23e1595f85869fd9ccbc4155bbcef7cd907b6dbe4e27423",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2550,
+      "path": "artifacts/m18/structured_output/scaling-32.json",
+      "raw_sha256": "aca86e4c5e8bbe9570609816bc6a254657a6935427334337866c5b7ccc76bbcf",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2544,
+      "path": "artifacts/m18/structured_output/scaling-8.json",
+      "raw_sha256": "065d9a6b3ac435945fc672d6bff6636845f449595243e5fc1a8af81d7b21d986",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 30785,
+      "path": "artifacts/m18/structured_output/self-test-1-7.json",
+      "raw_sha256": "9940930b2a4404147ca4f3b4240b5e98e387002bd6a1f3fb7ffa6f9b7c1aa64c",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 30781,
+      "path": "artifacts/m18/structured_output/self-test-7-1.json",
+      "raw_sha256": "c2f1b9e57857247a212d0f81073d0a71b6f1e0e7f5e3b32556b439cc2c97e660",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 30781,
+      "path": "artifacts/m18/structured_output/self-test-default.json",
+      "raw_sha256": "c2f1b9e57857247a212d0f81073d0a71b6f1e0e7f5e3b32556b439cc2c97e660",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 30733,
+      "path": "artifacts/m18/structured_output/self-test-free.json",
+      "raw_sha256": "44dbf8e3a8fb803aa61533542b1349398026bc83e42a274daa23cefef3417197",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2551,
+      "path": "artifacts/m18/structured_output/structured-output.json",
+      "raw_sha256": "cf5ed113afc7ed9127be66ee48e1593b52af477c94753d0ac9904f865ee3ce55",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 562665,
+      "path": "artifacts/m18/structured_output/trace-1-7.json",
+      "raw_sha256": "7a4cd4388df4e59afee01f18598304dd41bdf963e5186683b4fa47ff8732c4c6",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 562468,
+      "path": "artifacts/m18/structured_output/trace-7-1.json",
+      "raw_sha256": "55b2f3e71494b6afe737fa3c82c301011fb560a952b1d356740f79c03f4ed5a9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 562309,
+      "path": "artifacts/m18/structured_output/trace-free.json",
+      "raw_sha256": "2c5f087361a1d28ecf6478289071be6b4dce79c05cc8992010185a2f584ad686",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 794,
+      "path": "artifacts/m18/tabular/benchmark-matrix.csv",
+      "raw_sha256": "045f9235e6dd441d09b80336e26b9b3e169ebc9910734eddcf52bc0917cd5021",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 9013,
+      "path": "artifacts/m19/execution/m16-fpga-preparation-execution-trace.json",
+      "raw_sha256": "7d58b6741bdcadbfb9acb9049ed0e956305f49b9ad36946e719a4121b5caf22f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 152109,
+      "path": "artifacts/m19/execution/m16-rtl-execution-trace.json",
+      "raw_sha256": "d7945e0d2b5aaa05c5fff2e4e60d3b984017f7e4ae1984c55920368a110020bd",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7451,
+      "path": "artifacts/m19/manifests/m19-machine-readable-evidence-manifest.json",
+      "raw_sha256": "b82d8318e7d5fc375c111e342f841b7842571bb0cce4ede5da14e1383ee98fb7",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3945,
+      "path": "artifacts/m19/manifests/m19-machine-readable-evidence-qualification.json",
+      "raw_sha256": "b80d080598186cfa7f0b93dff4f1d09b86bdc34e82a42f3488e2d549e46e47d5",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3316,
+      "path": "artifacts/m19/qualification/m16-fpga-preparation-qualification-manifest.json",
+      "raw_sha256": "b955656392205a0af8e373298db689c790d0ef9726b3dc8a18cd8f8a248fa44a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 628,
+      "path": "artifacts/m19/qualification/m16-fpga-preparation-zero-event-qualification.json",
+      "raw_sha256": "8208f1d516939090f7a9302f66926a3c05416a8fd0a459e7cd9379ca7a6fe4af",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3099,
+      "path": "artifacts/m19/qualification/m16-rtl-qualification-manifest.json",
+      "raw_sha256": "ee1d6e503a38beba8070f3f73a335a3c970ea809b2881f5bdae85641da2f3da8",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 604,
+      "path": "artifacts/m19/qualification/m16-rtl-zero-event-qualification.json",
+      "raw_sha256": "6532733fde3b39fd5a3643d735e03d90ed17c83f790d23f39973c366555618c2",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 396,
+      "path": "artifacts/m19/raw/m16-fpga-preparation-execution.trace",
+      "raw_sha256": "05168f3d1e9b56f6f99fa5001a705168355431e976b3b152972d2bceb07a3439",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 8566,
+      "path": "artifacts/m19/raw/m16-rtl-execution.trace",
+      "raw_sha256": "c18c38c6010a9852a045ecf381e4af402d45c9c423fe061f595fd90b1428448b",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 48081,
+      "path": "artifacts/m20/correlation/m15-m16-fpga-preparation-correlation.json",
+      "raw_sha256": "b5c0eeac923ea6e652cf946f05df3aa6e822ab96e72482a53686994122e67e2f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 956295,
+      "path": "artifacts/m20/correlation/m15-m16-rtl-correlation.json",
+      "raw_sha256": "2066bb7a4263ff678c469a3a4f73844857c445cba64ad7fcf9e97fdd3cba6f3d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6894,
+      "path": "artifacts/m20/manifests/m20-cross-layer-correlation-manifest.json",
+      "raw_sha256": "14fc9c14e027afb317b01a71df6ac97b8659a4ae2e042dc5a8a0a9e54dbb78c7",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5087,
+      "path": "artifacts/m20/manifests/m20-cross-layer-correlation-qualification.json",
+      "raw_sha256": "c197ddc86420c14ac798cc00abb26292b69cf6eaa09dcaaf1633a464589d7593",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7775,
+      "path": "artifacts/m21/manifests/m21-parameterized-qualification-manifest.json",
+      "raw_sha256": "210a21cb1b279acc00de1d3d6d3ff4213eebad37c2f12e5b575ebb03469a7c09",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6015,
+      "path": "artifacts/m21/manifests/m21-parameterized-qualification-record.json",
+      "raw_sha256": "cd98499a63d84c9fb3970cf12c7828f9ebe584986cd076829de94905ba11aba0",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7230,
+      "path": "artifacts/m21/matrix/m21-parameter-dimensions.json",
+      "raw_sha256": "fcfac50848deedd6ef90bc0f4184e325931e0070960cbe61fd2175b2f6d0b348",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3007362,
+      "path": "artifacts/m21/matrix/m21-parameterized-qualification-matrix.json",
+      "raw_sha256": "0a2ebfe3fe2372727e46e7070af14fbee95a1abf26bae97d47c8f2f6f1b9f9f1",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 22682,
+      "path": "artifacts/m22/interface/m22-control-status-register-interface.json",
+      "raw_sha256": "1b493b15a5f33b724cb56b963cf49351c815ffbe1c5f6df31a718b39895d95bb",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6246,
+      "path": "artifacts/m22/manifests/m22-control-status-register-manifest.json",
+      "raw_sha256": "65299fc0a5992ec90618674755bc05029c0e1f3869f38d6fecf1c855ffab56ff",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7543,
+      "path": "artifacts/m22/manifests/m22-control-status-register-qualification.json",
+      "raw_sha256": "140b8c72a833dd87952f029fb85d30b85b8e17067277bfddf2845142cae6ea16",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 157081,
+      "path": "artifacts/m22/traces/m22-deterministic-transaction-traces.json",
+      "raw_sha256": "7e6c011e7cf95a0f541a5bb7009786756f300b78ff9590fcab798e145be74981",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4659,
+      "path": "artifacts/m23/contracts/m23-clock-reset-cdc-interface-contract.json",
+      "raw_sha256": "be553fc33d572199c2164d510939f7379d749330cfc3a44648600067bcfa6b78",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5111,
+      "path": "artifacts/m23/manifests/m23-clock-reset-cdc-interface-hardening-manifest.json",
+      "raw_sha256": "9ee066e9861aba98ca24f561bcd709a16aee80248e490e95ca849073d99fb414",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 10657,
+      "path": "artifacts/m23/manifests/m23-clock-reset-cdc-interface-hardening-qualification.json",
+      "raw_sha256": "ae704ced0487061a29e38be950473e625ff5863a5ecf7d9acc330b120dafbe7a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 16577,
+      "path": "artifacts/m23/records/m23-hardening-sequence-records.json",
+      "raw_sha256": "84be5d7dfe885d1b244d043edeb1e6ae32d422cdaacf369538bbcef15f9ff7a9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3414,
+      "path": "artifacts/m23/reports/m23-interface-protocol-assertion-report.json",
+      "raw_sha256": "c359b10a2c37187cc89d3ff6cc5427624a0df02d2faf7ab62e50b7741c38beae",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1672,
+      "path": "artifacts/m24/contracts/m24-formal-bounded-verification-contract.json",
+      "raw_sha256": "0bb8a178f211a920c8df52c835367a269b0920941de7503126c44a17544ad452",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 18244,
+      "path": "artifacts/m24/inventory/m24-property-inventory.json",
+      "raw_sha256": "c06ea203681d806aabaf932de5ecf77dc57d90d33ed088137e4f3bfe8c97c03d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6485,
+      "path": "artifacts/m24/manifests/m24-formal-bounded-verification-manifest.json",
+      "raw_sha256": "8e92a42bc2666eae2e5378c5355ce96458526f81d4d290e58ebcc6daeb6dadf0",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 10249,
+      "path": "artifacts/m24/manifests/m24-formal-bounded-verification-qualification.json",
+      "raw_sha256": "bc96a66993b4bb693b95e8a72da8731216170d16c09c2438a2ec0b2eb2b8a290",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 13211,
+      "path": "artifacts/m24/proofs/m24-formal-bounded-proof-evidence.json",
+      "raw_sha256": "1c2802613a1cf9b9412c806fdf47d6529b291dab8ce6c47495052b7e3d2032cf",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6162,
+      "path": "artifacts/m25/classification/m25-failure-classification-registry.json",
+      "raw_sha256": "905af9ad449861587644cc06333361ff9dc55bf85a9966b9287a42b55cbeafc5",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2067,
+      "path": "artifacts/m25/contracts/m25-fault-negative-recovery-contract.json",
+      "raw_sha256": "d99ac590126491b87e0cb47c221a9f8cc8bda7642f549b1f90bc2feeb2a1fa72",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 14423,
+      "path": "artifacts/m25/evidence/m25-negative-path-recovery-evidence.json",
+      "raw_sha256": "6db02295d87663978549d20154769ac8a14cabfb7ae13d9c08b5cec62b878bc3",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6174,
+      "path": "artifacts/m25/fixtures/m25-deterministic-negative-fixtures.json",
+      "raw_sha256": "534dbf9f38973d5572df1a47c7968ba5b1146be53ca2c0f759b0eac37ba80b2f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6800,
+      "path": "artifacts/m25/manifests/m25-fault-negative-recovery-manifest.json",
+      "raw_sha256": "21f01d5c44ccc48541585c4fd2582fa10e0b0217fd561e79b1e8d3edaada2e2c",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 15716,
+      "path": "artifacts/m25/manifests/m25-fault-negative-recovery-qualification.json",
+      "raw_sha256": "91e989f86a910f1f6c1ddc66cee872077a229dcdf14fbb7db6a41713764adc85",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2351,
+      "path": "artifacts/m26/contracts/m26-declared-target-implementation-contract.json",
+      "raw_sha256": "6d5f89a48cac179c5f5d62cd2ac91e1a6af72da4983fbe7f8792d1aec5df00b4",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7317,
+      "path": "artifacts/m26/manifests/m26-declared-target-implementation-manifest.json",
+      "raw_sha256": "2b59340bd2ab0a034862583c7c0d9c2b9bae12be95d56c42764601c1f46e10a3",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 15044,
+      "path": "artifacts/m26/manifests/m26-declared-target-implementation-qualification.json",
+      "raw_sha256": "732a645688cf1e880ad070049c0d64aee4ad57a2ae0bf1d6465a939e43b55134",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7071,
+      "path": "artifacts/m26/provenance/m26-tool-command-provenance.json",
+      "raw_sha256": "08c1c07835abe881c841dde74f968020f2021e72e223426dcd3d25e896155dea",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 12899,
+      "path": "artifacts/m26/reports/m26-declared-target-implementation-report.json",
+      "raw_sha256": "1e95efc0bceb31a5d42f4dbde8fafbf7f3492fd36535ef7cf95ebe761b8b4e10",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2490,
+      "path": "artifacts/m26/reproducibility/m26-reproducibility-record.json",
+      "raw_sha256": "dd15740a0f810db1b0c28e2b525cf115cd5595646dd8333cbb5459af6507bc01",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 192916,
+      "path": "artifacts/m27/checkpoints/m27-long-run-checkpoint-evidence.json",
+      "raw_sha256": "13221f5e089e7e85b33788b7d9429bc0518f67bac2c2f06af151b03410825f3f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2127,
+      "path": "artifacts/m27/contracts/m27-long-run-telemetry-contract.json",
+      "raw_sha256": "ea1e90ec83916dd9cf8a44c46ac4e0c9347738c6d20b84f504650479d3b18c82",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5413,
+      "path": "artifacts/m27/manifests/m27-long-run-stability-manifest.json",
+      "raw_sha256": "97d0cbd9fad314d2462db4f4df12fd7845b88d83bad9e55f37c1b6c227eb6851",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 15591,
+      "path": "artifacts/m27/manifests/m27-long-run-stability-qualification.json",
+      "raw_sha256": "23bee717555c2c1111912d33559e70dcc13cc29e9bb1f9433bf52cb5063c6969",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2713,
+      "path": "artifacts/m27/reports/m27-long-run-stability-report.json",
+      "raw_sha256": "465a42c2ee70833e5f14eb5251c811bda83c55b8ca3f87f3a8f9f28d7d178af6",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2789,
+      "path": "artifacts/m27/telemetry/m27-telemetry-semantics.json",
+      "raw_sha256": "813ae5c66ceaddabc77734d44f1ebf971ca3bd7e11c1984e2e0c8f0204dfd1bc",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2903,
+      "path": "artifacts/m27/workloads/m27-long-run-workload-catalog.json",
+      "raw_sha256": "b7f98418c0901d6b4e572aa4499c3d169a40444551fa4d43fcf04d2130c56617",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2735,
+      "path": "artifacts/m28/contracts/m28-trace-observatory-upstream-contract.json",
+      "raw_sha256": "556cd2921014d78184dad625438e053632c2650164f95787f39a6fc871b4a3f0",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 511783,
+      "path": "artifacts/m28/exports/m28-observatory-canonical-trace-bundle.json",
+      "raw_sha256": "9774e80d00c628193d5656608f2b1f830a05f960abadb83d9c4840f262ca07ed",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5720,
+      "path": "artifacts/m28/fixtures/m28-observatory-fixture-manifest.json",
+      "raw_sha256": "5d1be27e20a6a5978cb75e1185b9360621a92eb116b7a712fa5d6b813d0951fe",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 143946,
+      "path": "artifacts/m28/hierarchy/containment/m28-hotspot-containment-evidence.json",
+      "raw_sha256": "d06e68d9b4c2cfd774e461eba45308dbd5c57b28118756e117db2ab4228caa55",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3560,
+      "path": "artifacts/m28/hierarchy/contracts/m28-hierarchical-scaling-contract.json",
+      "raw_sha256": "13f85ac82b63d0191157bd2cfa04dd37358ef66d8e69bdb96bb1892abb77dbae",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 8380,
+      "path": "artifacts/m28/hierarchy/manifests/m28-hierarchy-qualification.json",
+      "raw_sha256": "1983d2fcd7fe1ea15ea4c93c0dec57faa279ed34adf6f310c9cee4f23b4e4dc6",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 207219,
+      "path": "artifacts/m28/hierarchy/scaling/m28-hierarchical-scaling-matrix.json",
+      "raw_sha256": "9d47c85d73de41868ef56aefc7a66831fa975f5ad81e854929dc43527173660d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 56376,
+      "path": "artifacts/m28/hierarchy/topology/m28-hierarchy-topology-manifest.json",
+      "raw_sha256": "40c70eacabbd44a7dc7404d939117001825b92c0ed2e99f835c6c39e3422a897",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7136,
+      "path": "artifacts/m28/manifests/m28-trace-observatory-interchange-qualification.json",
+      "raw_sha256": "5f23b387967d61afa4c1e1c1c5a4ec26e9f1ff02c146bf7bf8ffe1c4f30e0c0c",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5486,
+      "path": "artifacts/m28/registry/m28-observatory-compatibility-registry.json",
+      "raw_sha256": "91affd08a74401d10a4196f3c38ad2ad8c4576e51532f7ee0fc169e97e996fea",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4110,
+      "path": "artifacts/m29/compatibility/m29-compatibility-version-declarations.json",
+      "raw_sha256": "fa13a1a1bc7822e4c1f557b56aad0153554c24ab6a86eda3fe764b5957810c61",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3447,
+      "path": "artifacts/m29/compatibility/m29-release-independent-compatibility-records.json",
+      "raw_sha256": "643cbeddf03d8d9da456b79f43eec32cc96e2f914e43b7657724f5f563931d60",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1971,
+      "path": "artifacts/m29/compatibility/m29-unsupported-version-behavior.json",
+      "raw_sha256": "e4bdc90db777110443056f60b24bf6cccf6604f29953b0e4d375a0d61eddf455",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4071,
+      "path": "artifacts/m29/contracts/m29-system-integration-contract.json",
+      "raw_sha256": "6e14d93abe5646b4e094f27b07217d9e4dcd833d8af0d5afb30da21b904c4642",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 12920,
+      "path": "artifacts/m29/manifests/m29-system-integration-qualification.json",
+      "raw_sha256": "3cc8d1382f3953fdbf5aa2e22f7b0b315f57395a69bbe998a661919372ff7088",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 27373,
+      "path": "artifacts/m29/packages/m29-canonical-demo-artifact-package.json",
+      "raw_sha256": "d91b2b63bf0771a2abe634d64bb5596cc2925093df24147cbe5f2edca5136fd4",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2438,
+      "path": "artifacts/m29/packages/m29-deterministic-package-manifest.json",
+      "raw_sha256": "204cf8b32dc92da3e9316479ac548326dc5ca9ab2c2c838e2ccf0ad523a579fc",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1164,
+      "path": "artifacts/m29/policies/m29-immutable-source-artifact-policy.json",
+      "raw_sha256": "b934ad627ebe3f2a4e358b7223dbe38dffe605c497fe3f5f5b44e9ccb85e20fe",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2203,
+      "path": "artifacts/m29/provenance/m29-provenance-completeness-record.json",
+      "raw_sha256": "a8a5b414e3a7acca9d2a42f8ff71f89c1915640568c1cc4fbf65c4f0712da7e1",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 8496,
+      "path": "artifacts/m29/registries/m29-producer-command-registry.json",
+      "raw_sha256": "21ba5cf5c1dfea1b5f1b196cfca2500695c7ed6ae6d2c10f6513929e46815f04",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 83376,
+      "path": "artifacts/m29/registries/m29-supported-artifact-registry.json",
+      "raw_sha256": "cf955f1a1f8318e8d5e3414dd7b09c88a7efb944caf16bb7af22fd73099b4f31",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7222,
+      "path": "artifacts/m29/vectors/m29-downstream-consumption-test-vectors.json",
+      "raw_sha256": "21bf0d91f32a66c416d132c45b0aca3cd620d91c38fe1315b42010921f3a68cc",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3318,
+      "path": "artifacts/m30/alignment/m30-repository-alignment-record.json",
+      "raw_sha256": "7634619e5ebc479aeec136e168da24451568ecb186f22e9a09aade189e3eccfd",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 34156,
+      "path": "artifacts/m30/indexes/m30-canonical-artifact-index.json",
+      "raw_sha256": "32f1e5bd027705c4ec01ee72db834392e91d9431c8d92bac187efce102913e54",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 8857,
+      "path": "artifacts/m30/indexes/m30-milestone-evidence-index.json",
+      "raw_sha256": "dcd4db03b34ce71d7ca798cb249c7d59a09207a73d53c0fc271165e7fd84da2b",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 7283,
+      "path": "artifacts/m30/indexes/m30-producer-command-index.json",
+      "raw_sha256": "23fa2dbabd60c4f01733f9628892323a02170f9237e23e4f0156d965be6bca82",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 7696,
+      "path": "artifacts/m30/indexes/m30-qualification-manifest-index.json",
+      "raw_sha256": "a6a0828072faa0b2c29bc8c09921c0363a95a290c70bda8ddd41bad3c2e81192",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 46961,
+      "path": "artifacts/m30/indexes/m30-schema-index.json",
+      "raw_sha256": "be3c3c4c6cb0321d23de77e3dddfb5338302de5a25c85ffafee1a5056d93ecc1",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 19749,
+      "path": "artifacts/m30/indexes/m30-workflow-index.json",
+      "raw_sha256": "930c7341d33db5a9c4dff2f39a18f073de5ae6a8c0addc208c357aca570f4899",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 2638,
+      "path": "artifacts/m30/metadata/m30-archival-metadata.json",
+      "raw_sha256": "4c853b689a18b4097d17f17d8ec35485f01a98011af11ab1898754b697129696",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 10189989,
+      "path": "artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz",
+      "raw_sha256": "05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 103241,
+      "path": "artifacts/m30/packages/m30-release-package-manifest.json",
+      "raw_sha256": "bdd8e074c6524e304208c82d4af99c0be20a881085124f6fe9a17223203b16af",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 2212,
+      "path": "artifacts/m30/packages/m30-release-package-verification.json",
+      "raw_sha256": "66957ee2ce065398d420c79a94acd57247517c32ab464fe93c1d0888b8ed8468",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 2670,
+      "path": "artifacts/m30/reproducibility/m30-clean-environment-reproduction.json",
+      "raw_sha256": "baf39605c20c863306412038010ded1a668c48571f25e4a13a6f2f9323bf7788",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 9830,
+      "path": "artifacts/m30/workflows/m30-required-workflow-success-records.json",
+      "raw_sha256": "ca5114831d6b9e9aaef76c627e87ed03d587264c0e22fcf7d8bbad1eab0d8259",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 28553,
+      "path": "benchmarks/architecture_comparison/README.md",
+      "raw_sha256": "8dd14431a3e980940f59276630fe0e967bc079892fca742abf82757f5122bc3c",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 32226,
+      "path": "benchmarks/architecture_comparison/binary_clock_gated_reference.py",
+      "raw_sha256": "1bab7bc6746de3c23c555e42c70bcaee7761e9fb402c1fea1d2bb36b052e9248",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 29454,
+      "path": "benchmarks/architecture_comparison/binary_synchronous_reference.py",
+      "raw_sha256": "2348c27fdf5a8dc766017b26b8e154695ebab746cbd8a3d4cb84f3a6c16a4dcf",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 26060,
+      "path": "benchmarks/architecture_comparison/calibration/coefficient_provenance_map_v1.md",
+      "raw_sha256": "067810eceb484b55634d0a47e8ef0a49a600893a66ad3718bf21ac2c67ef702a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 15068,
+      "path": "benchmarks/architecture_comparison/calibration/hardware_cost_calibration_v1.md",
+      "raw_sha256": "a7190b0f00c1ceadf6027d01143464832d9b5e9ebfd6faa0b090e548f0321d6c",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 22308,
+      "path": "benchmarks/architecture_comparison/common_cost_model.py",
+      "raw_sha256": "f8420b91e84ec1a72c93b281e5c0db58d10bdf4d7cbb9a3eb526b72e5d109517",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 20295,
+      "path": "benchmarks/architecture_comparison/common_thermal_model.py",
+      "raw_sha256": "d562049ee4e22a65e7decc6b116c683b8c94434eaafb32da47b7b4e438a004ba",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 20156,
+      "path": "benchmarks/architecture_comparison/common_workload.py",
+      "raw_sha256": "82014bbb76bd1e39e0863592606559cb008a8950efa96b96fe6b4db197b350b3",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 33561,
+      "path": "benchmarks/architecture_comparison/direct_ternary_reference.py",
+      "raw_sha256": "beab6cec14290f7a3fc1f02e5ff94ac3c9dcd07276613ec5e4e04d9124797b25",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 48813,
+      "path": "benchmarks/architecture_comparison/frp_v1_7_0_adapter.py",
+      "raw_sha256": "452bac255e9c2d01f3b9fbdc85b2cac5a362d9ade31bb4b934555702f0297347",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 15360,
+      "path": "benchmarks/architecture_comparison/profiles/hardware_sensitivity_cost_profile_v1.json",
+      "raw_sha256": "79c1c17c924bde6947dce477c2b8b64600684c993e7f42c1f00f6ffca0228a1c",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 677,
+      "path": "benchmarks/architecture_comparison/profiles/normalized_cost_profile_v1.json",
+      "raw_sha256": "bd2f5bfc4f0430c2764c5f1ddb1258d176b42f1667d1f0f691e40730ddc4c979",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 517,
+      "path": "benchmarks/architecture_comparison/profiles/thermal_proxy_profile_v1.json",
+      "raw_sha256": "aeafebc3e71d1311a3445bd1528cbe7322546f79d6a5099dfed3a9590fc4a25b",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 174,
+      "path": "benchmarks/architecture_comparison/profiles/workload_profile_v1.json",
+      "raw_sha256": "5680c50220a751ea748e55644dd3a189321ca8e89398bb3751a471556dce94b9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 21988,
+      "path": "benchmarks/architecture_comparison/results/reference_comparison_seed_76.json",
+      "raw_sha256": "5ba86d26dc62db36ae14ac2c1167e71dd5c06c00bbd5aa3dc21c6d11b38db064",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 81632,
+      "path": "benchmarks/architecture_comparison/results/reference_comparison_seed_76_hardware_sensitivity_v1.json",
+      "raw_sha256": "e4785aa4c234cc7dd8e5377e5e0b41a8ec401f962400975e0cef7a88cc494680",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 43554,
+      "path": "benchmarks/architecture_comparison/run_architecture_comparison.py",
+      "raw_sha256": "dd5305a595f84403e83731d2aaf02ca505d34b83f348f9b68504108522ac6523",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 70498,
+      "path": "benchmarks/architecture_comparison/run_hardware_sensitivity_comparison.py",
+      "raw_sha256": "f6c19ccf795171be40f62ea42b9621c2fd41c2430e480a8f21924e08c2e9ab1e",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 35178,
+      "path": "benchmarks/architecture_comparison/validate_hardware_sensitivity_profile.py",
+      "raw_sha256": "3b39065ee9e2af7a2efe625f51eb8cc6b547e15bd0ff16fabd45b9343d3c3722",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 130,
+      "path": "constraints/m26/frp_m26_ice40_hx8k_ct256.sdc",
+      "raw_sha256": "fb14c501f2f568301d2697304cc69c721293e8ee888dc25fe4ecc6ea984e0957",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 48280,
+      "path": "docs/README.md",
+      "raw_sha256": "4fa7210b88c941994e746a9c4181e5bd3755fc81984f52c3cfad3eeafc18a1ad",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 55279,
+      "path": "docs/architecture.md",
+      "raw_sha256": "dfcb8770eae8dea0ea466918986530b2708a6512ee6aa09ead20e857ca9e40df",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 121012,
+      "path": "docs/asic_mapping_study.md",
+      "raw_sha256": "705c47afe533e84f36a16d0c073ef23317a897450de7a556bc371f1744d39bd9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 73046,
+      "path": "docs/benchmark_interpretation.md",
+      "raw_sha256": "f4b57cfe2539e3726f7f815896eed887f829210d4e68c02f32cc16217bb31c42",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4260,
+      "path": "docs/benchmark_matrix.md",
+      "raw_sha256": "1590ac7e283434e8d19cf8bcbbfed2fb3699b386c7d6ba01c7ef5aec4d68e06e",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 48854,
+      "path": "docs/core_principles.md",
+      "raw_sha256": "3b2b6ee2d77fbf3d90ff5d6b90c360780ade7252878b07f2a81b559af79f66e8",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 82517,
+      "path": "docs/fpga_mapping_study.md",
+      "raw_sha256": "0d62f46ca6b3f3b8d6e5e8470b5d9bd5e2c153b7374a91092951b8be2afff8ea",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7997,
+      "path": "docs/fpga_register_map_draft.md",
+      "raw_sha256": "b4ac11d784ec89fbbe0c10d4dfac9c49e2a65481b02457a422fda18c7dc66706",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7184886,
+      "path": "docs/frp_v1_8_0_m16_architecture-1-1.gif",
+      "raw_sha256": "02d8bdcba416fd811cbaad8ee290524a21643acf2130119adedb6efec0a2b1b3",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 848179,
+      "path": "docs/frp_v1_8_0_m16_architecture-1.gif",
+      "raw_sha256": "53d1d6f58a56ff6a4e7ea104f93c35c51441621a6ed795547e8b7171c62b0432",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 79480,
+      "path": "docs/hardware_pathway.md",
+      "raw_sha256": "86e90c511293c7d56134a5849659d9bea54011e8ad2dbb2392d24b956120b042",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 8644,
+      "path": "docs/hardware_signal_mapping.md",
+      "raw_sha256": "71256885d8dfa47a84c1b6acec91dd69f1481f2e7173dfa31e4a8257c5fa5d73",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 43811,
+      "path": "docs/implementation_layers.md",
+      "raw_sha256": "fa3542cc8a33f07e289f82b229d3c6834dc4ec05968366ecbc188eeda0de9240",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 54810,
+      "path": "docs/limitations.md",
+      "raw_sha256": "d50d6a95ce82123878cbffe38ab023bf7f0a3a9c283b98f59f5153059ef64e02",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 11823,
+      "path": "docs/m10_silicon_production_tapeout_readiness.md",
+      "raw_sha256": "c6d17b602c8d7bf15c1c8920180c67186c9d223d9a8478b4cf96964e7199a753",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 12654,
+      "path": "docs/m11_production_integration_external_handoff.md",
+      "raw_sha256": "bbd3e113dd6684eb4ad2586188dbb3b878badb977036ed58dfb47e31dcf46f33",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 15462,
+      "path": "docs/m12_external_implementation_feedback_iteration.md",
+      "raw_sha256": "576e48b04926d78400845db35bbc7149a8f14c6e7fb9faff629c00aef1ba2294",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 23554,
+      "path": "docs/m13_production_scaling_implementation_stabilization.md",
+      "raw_sha256": "18ccc087e6ce254d1ce58713f009e767d92de227e52439249ad8b3638511560e",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 33248,
+      "path": "docs/m14_physical_implementation_correlation_production_qualification.md",
+      "raw_sha256": "8f493c04fdc21ac180035171fd6f30dccbe3a486be73e50d511cf59d3d6dd32c",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 50082,
+      "path": "docs/m15_implementation_mapping_domain_interface_qualification_closure.md",
+      "raw_sha256": "57f00f77d37a8a2662c9834b46bec57ab227683f6c9830200563a8f8830dd89f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 39574,
+      "path": "docs/m16_active_neutral_transition_module.md",
+      "raw_sha256": "2ebb7e02c85384a84c6bc1450e566bcf8bcc5127c5c6b1c4349dc58af10d680b",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 14539,
+      "path": "docs/m16_artifact_boundary_test_stability_policy.md",
+      "raw_sha256": "4dce84845a264164841ef3ca9a4eb70c319a22ad7e8776999eece31a858a0f7e",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 24496,
+      "path": "docs/m16_balanced_ternary_state_register_map.md",
+      "raw_sha256": "14129feb231d4af5b7bd19dd39077c1cb46f2cdffdeebc0305d152b93cc59d79",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 15121,
+      "path": "docs/m16_external_simulator_execution_plan.md",
+      "raw_sha256": "7bd7bff6ad02fb04992de618b640dadea1c6ce86bfc09b9597128005f5a0bbf9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 33273,
+      "path": "docs/m16_invariant_assertion_set.md",
+      "raw_sha256": "64b31cef7726150b04ae77bdf80d2abeaaf4cc09c270853b3107636bcbc25b38",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 26944,
+      "path": "docs/m16_m15_vector_replay_compatibility_report.md",
+      "raw_sha256": "ecf445780673aabe0129c5798ba2e0e283d134e663ad723028651db3b84346eb",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 38158,
+      "path": "docs/m16_pending_route_register_module.md",
+      "raw_sha256": "a28c7210643aa72ab24effb2c0fe35d6764b7051f1905e3203d61f65d1526d5a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7500,
+      "path": "docs/m16_public_status_snapshot.md",
+      "raw_sha256": "f9eeba9982acccd504d2129ffcd09c7c101c8dca495f866f0d87d8de684b4aa0",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 29307,
+      "path": "docs/m16_qualification_index.md",
+      "raw_sha256": "d7da63da8ada2b2551df0cca0e35467673eb084f62f9481c7f517516f6a10b15",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 23417,
+      "path": "docs/m16_qualification_manifest.md",
+      "raw_sha256": "3d98a68f4d57c74f398f64ca2b774fe749864374ea3ca77be6db33617383130d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 42638,
+      "path": "docs/m16_request_lane_arbitration_module.md",
+      "raw_sha256": "8e0a48e5b065cefee233f602bdfc68de81458ba9e63fa0719259f9cc9e8436bf",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 20358,
+      "path": "docs/m16_retained_state_update_module.md",
+      "raw_sha256": "fd1df9cb0142f2d05a71e550c90f3caf4438264becebfe490082c38480470b76",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 29183,
+      "path": "docs/m16_rtl_artifact_boundary_qualification.md",
+      "raw_sha256": "f28db000019c7dca3b96c0c617c4e7615d4fed5cfd8142ae49a18754d188bc11",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 32037,
+      "path": "docs/m16_rtl_core_interface_contract.md",
+      "raw_sha256": "7eaa58acb6f270c7ac2a1ccdcc13103488db7d6d919640d67f2734e16f2e51b0",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 19904,
+      "path": "docs/m16_rtl_core_realization_execution_semantics.md",
+      "raw_sha256": "9d36f73f94b76bdb233a0aa0d5ff738770c740903b5b12d3994013b07ac9dd78",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 28372,
+      "path": "docs/m16_scheduler_state_rtl_realization.md",
+      "raw_sha256": "eebf8df0c445fc3c77092d09c4b454993f059b8eab20646e1415a2056f2d17c2",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 36660,
+      "path": "docs/m16_transition_capacity_guard_module.md",
+      "raw_sha256": "53bc3060b4fe5dd9cf2feab48b475e3b3ed47170c07a25e3fe2a3546f6e96ef5",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 9883,
+      "path": "docs/m17_published_artifact_integration_closure.md",
+      "raw_sha256": "7ceb21550264dea11dc7336c8144ef7556e05c58e6c202c61857a9d30cf78a31",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 41724,
+      "path": "docs/m17_published_artifact_integration_contract.md",
+      "raw_sha256": "5acb2e4f1b6f267690f7613266ead820063785a7b430ead97a117cc16724e501",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 9065,
+      "path": "docs/m17_published_artifact_integration_qualification.md",
+      "raw_sha256": "7b88303dc190c473cd13761ae3304b3e04fdd3b6b61c2f13f2f400dac3c45ec5",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 183886,
+      "path": "docs/m18_formal_schema_canonical_artifact_publication_contract.md",
+      "raw_sha256": "d52dac835b891aa38491f88d360009b52cefc309583f7b9f5aec93ecf75e928f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 11907,
+      "path": "docs/m18_formal_schema_canonical_artifact_publication_qualification.md",
+      "raw_sha256": "c4875a9e77e71a0e81af37a4feab670175dcd66fde69485981635774454e3d99",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7715,
+      "path": "docs/m3_validation_targets.md",
+      "raw_sha256": "bb5713f46f63e0542cab89d42bfaf63aee9a7c7231c2e079f4d99b484aceb14f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3597,
+      "path": "docs/m4_hdl_trace_testbench.md",
+      "raw_sha256": "5f2d05144c69855e73371a8645a19305eb59207e160d72505914d1095334ef70",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3983,
+      "path": "docs/m5_rtl_interface_assertion_harness.md",
+      "raw_sha256": "c0ace19690e7c203eb6d361048b058654f044c6be97c17128f4834b294abdafd",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4532,
+      "path": "docs/m6_formal_verification_equivalence.md",
+      "raw_sha256": "6a981e379ed5e1208f3f9e774c1b6c2ea9247a84ed783327ada748431bdc2f55",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4899,
+      "path": "docs/m7_fpga_synthesis_timing.md",
+      "raw_sha256": "9a6f71b47cf0f5782ebad524a4db01e90582cdb62b255d544aabefc4c82c128e",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5475,
+      "path": "docs/m8_production_release_package.md",
+      "raw_sha256": "af0b4fc1c938cb02662b1bb8b6cf2f483c7f856fa8ea4c4a9e50471918a0346c",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 8898,
+      "path": "docs/m9_silicon_heterogeneous_architecture.md",
+      "raw_sha256": "6e09cc440018fcb9fbffacac91df4709bd34f58d44e051986b89dcc862388fc4",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 31984,
+      "path": "docs/mathematical_foundation.md",
+      "raw_sha256": "52268c63156cd475a0c04a3d48f4c74a946010ba8f97a2591d379d6b924255d6",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 85328,
+      "path": "docs/output_schema.md",
+      "raw_sha256": "52c029ae2030a3219e94b16bb9c5b99247737412fe00ca5dc90f81d7d8935f42",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 22814,
+      "path": "docs/physical_foundation.md",
+      "raw_sha256": "e9bacd13ebe7a7058e698a80dc4f677476e3ed2eab4b9d41f58fd9cdbcf68a7e",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 112772,
+      "path": "docs/physical_validation_plan.md",
+      "raw_sha256": "b2251d7f47c497850f1d3a91f1fcd4af244b09c5da16fcd8d38a4975ce296b52",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 49745,
+      "path": "docs/resonance_computation.md",
+      "raw_sha256": "1149cbd0aeb90d0a6133db5ecc1e5b4d45268815b70a75cb7a347a5e44a9b615",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6538,
+      "path": "docs/testbench_comparison_plan.md",
+      "raw_sha256": "675a36f8b958d7b36a27257baad3f00d2d505de03689d87e470d907a2437e0bf",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 37542,
+      "path": "examples/README.md",
+      "raw_sha256": "c5d017499778c2f57f9759a2dffebb244588cc748f38e18985b2b5575c9be0a6",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 35137,
+      "path": "examples/resonance_convergence_example.md",
+      "raw_sha256": "a165fcfe323405b2d1685d8b68b8a650af1b082cbd4f0f57e38c24a8d6f56f8d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3859,
+      "path": "formal/m24/frp_m24_bounded_liveness_formal.sv",
+      "raw_sha256": "c1ec4ea463e66974d31e83a7971dc73f27d9df509f0e2082c4b967138003a52b",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6069,
+      "path": "formal/m24/frp_m24_core_properties_formal.sv",
+      "raw_sha256": "2f90da1cbb7c5441ab0fac38f9e2d9a97e5ecb2fa16d3e90d3b931cf79dacf35",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3979,
+      "path": "formal/m24/frp_m24_expected_counterexamples_formal.sv",
+      "raw_sha256": "e18cd18f7837db2cf65602d177c46d3a6cf3c0aebee0e823443a95a42c61d6fa",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2811,
+      "path": "formal/m24/frp_m24_package_properties_formal.sv",
+      "raw_sha256": "555f99285792d91dfb0548407cb3b5c64551b8e7831531d335274e80c03255e3",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2997,
+      "path": "formal/m24/frp_m24_reset_readiness_formal.sv",
+      "raw_sha256": "943deafa190a165b20a5a875fe1294340cd5eef6a788c3bb348eb586d506af72",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3098,
+      "path": "formal/m24/frp_m24_scheduler_properties_formal.sv",
+      "raw_sha256": "dcb6aee21c5f10305bf86d9c63fad85fd73f8acc7bf23c3846dbbe0b55e2f779",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2106,
+      "path": "formal/m25/frp_m25_invalid_configuration_formal.sv",
+      "raw_sha256": "593972751d8a0da61e55cf1b3886488a3ddd500fb9a30c1ac724296611da8141",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 13202,
+      "path": "formal/m25/frp_m25_negative_paths_formal.sv",
+      "raw_sha256": "3b127b4d091e751d22781fb58898979e1ea0c0aa8cd57d4286e41e1b49bd22b0",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3105,
+      "path": "formal/m25/frp_m25_pending_reset_recovery_formal.sv",
+      "raw_sha256": "74a598f3f17cf1027299ef3a12bdf8a6851f9ce03c0d21df9e619ed2e14c57a9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 19050,
+      "path": "fpga/m16/CLOSURE.md",
+      "raw_sha256": "de71bd4b7765de8e6f10dae700894f8759c0e4315dabf9f76cc0ebcf66d7ca68",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 13495,
+      "path": "fpga/m16/SIMULATION_TRANSCRIPT.md",
+      "raw_sha256": "3cad8cec626406b9cee73f4a31350d6c12694e224556c187caf96b7e8b87d4f9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 17597,
+      "path": "fpga/m16/frp_m16_fpga_tb.sv",
+      "raw_sha256": "95aac48eb4e23b663db187e0e2a7ba4396023221c653b7d4a75967d3ba230719",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 9599,
+      "path": "fpga/m16/frp_m16_fpga_top.sv",
+      "raw_sha256": "de2d23ed8921de2daad49bad17c290f38ecadf074641c702b759d511edee35dc",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 46521,
+      "path": "frp_m17_publication_inventory.py",
+      "raw_sha256": "7556ad75fdb67cfa236f9112015592ddf091250d4ee2b2ecbc1c0b0f4bb306ce",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 89905,
+      "path": "frp_m18_canonical_artifacts.py",
+      "raw_sha256": "4562e0d6b5a0611ce7623d66b563aea7e90afb98e9f534a581a64d59e47c11b1",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 58131,
+      "path": "frp_m19_m16_evidence.py",
+      "raw_sha256": "490451e2f117e6027b9608a1217fbd2c7b5c9cc882d647e3af8af084a504567d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 57017,
+      "path": "frp_m20_cross_layer_correlation.py",
+      "raw_sha256": "2aeb8c660b3562d83510ca2819f5697a9cd09b9586e401d32a4359d58c4988b1",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 58784,
+      "path": "frp_m21_parameterized_qualification_matrix.py",
+      "raw_sha256": "67418d6c5b2e0e5231df1fd1e2c326bc5b122c19710bc37f60101bfb8d74c284",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 51132,
+      "path": "frp_m22_control_status_register_interface.py",
+      "raw_sha256": "71c011f8f7a339778227dfa22e096259bcda5e6d7c72410d952b52864e666ff3",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 26716,
+      "path": "frp_m23_clock_reset_cdc_interface_hardening.py",
+      "raw_sha256": "a090abc0229536991e399372b686f35e48ce2c667f9e26d3abb5dc7da01f145d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 48380,
+      "path": "frp_m24_formal_bounded_verification.py",
+      "raw_sha256": "f75a3fcd19bd0cd95e6dbb48ccefeadf8cb7be5df7c8bb9edf3ba379ea71c7fe",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 45655,
+      "path": "frp_m25_fault_negative_recovery_qualification.py",
+      "raw_sha256": "60e087b54e4d8d0f3eb56154f540cb0597a0b2e490f95d6424513753008cb332",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6219,
+      "path": "frp_m25_safe_artifact_validator.py",
+      "raw_sha256": "9219d8c827966e9be23cd5b214c9ed5e4ffbd7fc6721e78e0cbc6213421f5d36",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 40794,
+      "path": "frp_m26_declared_target_implementation_evidence.py",
+      "raw_sha256": "03126e4ba71ced2f81d4d360cbfd3a4ceb0f9c97e986d969ef61531c5cb5cfd5",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 48903,
+      "path": "frp_m27_long_run_stability_telemetry_qualification.py",
+      "raw_sha256": "ffd251d97db3550e66e111737172deeaae267d958c7cb929602a34370456d1fd",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 51133,
+      "path": "frp_m28_hierarchical_scaling_hotspot_containment.py",
+      "raw_sha256": "beea882d99290b08a618c354201c8b65a578e1c6cbe53842c428c0bc02615da7",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 53856,
+      "path": "frp_m28_trace_observatory_upstream_interchange.py",
+      "raw_sha256": "1c0662120fb734e48fb5ff7f88f4ff223f9ae6ed5f8cb38eef0dd90224ef12ab",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 80805,
+      "path": "frp_m29_system_integration_downstream_compatibility.py",
+      "raw_sha256": "a335d75a15db1d04c26d2c6b5260599c6f7b027bcc7637efb5470640f9b88ed9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 89441,
+      "path": "frp_m30_reproducibility_qualification_archival_closure.py",
+      "raw_sha256": "764b82eace9d90b79d7955a80c571e9e4d22de395d2e5b6ee4d38e910af0c870",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 40760,
+      "path": "frp_prototype_v0_9_3_mobile.py",
+      "raw_sha256": "48361714bb815f362a30a5a884a0fb782cb97349e9a18f9b607af7bf54c02e52",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 45664,
+      "path": "frp_prototype_v0_9_4.py",
+      "raw_sha256": "627813ae7e54d313870e3c58c3c3675651ea746883de953292c0c418de0d22af",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 34796,
+      "path": "frp_prototype_v0_9_5.py",
+      "raw_sha256": "f2e346aef1fbdd658e68a6bd5c8b64193b098b1ed7f918b032cc909ee77bb7dd",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 20347,
+      "path": "frp_prototype_v0_9_6.py",
+      "raw_sha256": "0a019d9c3648271c73103de0a81e824ab53801b407bc3c316115d5eb3ec541de",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 22088,
+      "path": "frp_prototype_v0_9_7.py",
+      "raw_sha256": "3ab68bf3a737124bc8495fc588c4d63a8a2d8c386bab6f330ac699d3ba60e0ba",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 23609,
+      "path": "frp_prototype_v0_9_8.py",
+      "raw_sha256": "fe6e168aaa2a4c39f88bd544e28e10895b570ea08174d9fd0b894d87806c20a8",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 26293,
+      "path": "frp_prototype_v0_9_9.py",
+      "raw_sha256": "80335f290383674ef4cc20536dc3a3a04c16e372539adeb16c8c16362a2fce1a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 27466,
+      "path": "frp_prototype_v1_0_0.py",
+      "raw_sha256": "5c37035675da6207aea0e92afcc5422fabcd7a8315f412c13774f5812a406eee",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 31428,
+      "path": "frp_prototype_v1_1_0.py",
+      "raw_sha256": "819719392359f1205b78a700b2263b60bd2bcbcb2dbffaaa0181a78eed6a09b8",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 30492,
+      "path": "frp_prototype_v1_2_0.py",
+      "raw_sha256": "83bec1aaab8c025ad741102f9bcb74b4d44fc7e680c41c9efc253c8a4424f0f1",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 30188,
+      "path": "frp_prototype_v1_3_0.py",
+      "raw_sha256": "f41823999c3dc2d930185a72184a3db91242cddb2dd7620a6a35648b79fa0b5d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 39188,
+      "path": "frp_prototype_v1_4_0.py",
+      "raw_sha256": "d727e4953fb2d79cb9b0db9203fae316f7e791cfbbb8497f2f88ce1b4807c956",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 78318,
+      "path": "frp_prototype_v1_5_0.py",
+      "raw_sha256": "4bb31b133124c154b360cb38589e8b3c28aba0ce2825d735d8fece43710da7b8",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 136768,
+      "path": "frp_prototype_v1_6_0.py",
+      "raw_sha256": "d91cc637c5cfd8ed6d8e7ebcafffc4e3a8bc172cb291dc60b4a364af56dbeb08",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 155713,
+      "path": "frp_prototype_v1_7_0.py",
+      "raw_sha256": "9de085915aa0fb8a73705c0927cc875b106480ef8a75a76f599be04440c0f099",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 68524,
+      "path": "funding_brief.md",
+      "raw_sha256": "06629d69d67f989c685d399dd46140a5e1d9268a505b43cb34f8578435ddcc88",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4087,
+      "path": "m5_rtl_interface_assertion_harness.md",
+      "raw_sha256": "ad72c25820cbe1f8d75864c5620218b6f0f746b9df3965618a08c89c51766a49",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 52478,
+      "path": "models/README.md",
+      "raw_sha256": "3d44f57468beb7bcb1bc89625fe837cb3ba6b4fe6390fd5991939ec822379edd",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 37262,
+      "path": "models/kuramoto_frp_background_model.md",
+      "raw_sha256": "4fa85386783936695ecaddb1688aa1329b4bc91eb69fe505bab4f26bd8d53668",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 33,
+      "path": "requirements.txt",
+      "raw_sha256": "75b9bd6237473a063c852298fee983bdfcf550cb1cc828a237afaf726cccc3c7",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 16446,
+      "path": "rtl/m16/ARTIFACTS.md",
+      "raw_sha256": "f585d09933fcd6ab651a74432254df445bc9c80adfeb6b470ada2b16f7b0e4e0",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 18155,
+      "path": "rtl/m16/CLOSURE.md",
+      "raw_sha256": "afea2969ac6f1ddb7f4f29e83012479ac41d0192f7e28812c88a21b967ffdd1d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 14240,
+      "path": "rtl/m16/README.md",
+      "raw_sha256": "45519387d2e80e1746817804a2ffdc77855226587200049122cfac6eb42fa46f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 11218,
+      "path": "rtl/m16/SIMULATION.md",
+      "raw_sha256": "7202fcf7d1663b8e9e7cf3859752b9f834f6b48ba7320315d752c86b79166a81",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 15366,
+      "path": "rtl/m16/SIMULATION_TRANSCRIPT.md",
+      "raw_sha256": "0cc4e95dcb2ad03999e3f71a9b1011a464097647e514dd34f2c44a772064f290",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 25909,
+      "path": "rtl/m16/frp_m16_active_neutral.sv",
+      "raw_sha256": "9a86ea7bdc2683effcda4fdb3e85026e5277967755659940820152a2f55a11a7",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 24366,
+      "path": "rtl/m16/frp_m16_assertions.sv",
+      "raw_sha256": "45c61cbbb6340d5088a316fd397bc11ff96a97a9837ded19394746ebf660e691",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 20787,
+      "path": "rtl/m16/frp_m16_capacity_guard.sv",
+      "raw_sha256": "0547c30a698b8d8da0e7f5981d69bc464a93641bfc29c930e1cc6ea0782c302d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 33684,
+      "path": "rtl/m16/frp_m16_core.sv",
+      "raw_sha256": "3b94f5caa5ee28da0060a38dd9b4ba4605ef5f86ac93f5425967e515ff1ebd23",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 17005,
+      "path": "rtl/m16/frp_m16_pending_routes.sv",
+      "raw_sha256": "09e11d150b3b6938820209ac0f2c4f8373ba9f7c6bf7e86fa3934dd9802a8430",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 18532,
+      "path": "rtl/m16/frp_m16_pkg.sv",
+      "raw_sha256": "c20fe071e7c91b60ca0411b75d4cf762112d51abbd49dc2a5667d1d8c5d49152",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 18290,
+      "path": "rtl/m16/frp_m16_request_lanes.sv",
+      "raw_sha256": "afa88b95838c0968d9db5395c9272155c61c792248e0f8bc29cf70354a2a862a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 10560,
+      "path": "rtl/m16/frp_m16_scheduler.sv",
+      "raw_sha256": "af7713d739b769e8c16651b0e0d340906b6ec8ca6b401599ea4a79946e4033d7",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 18147,
+      "path": "rtl/m16/frp_m16_state_update.sv",
+      "raw_sha256": "4d2b8091dc3c852d86c8787abea38c181736c78b746cdfc3f83817a0f32999dd",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 16432,
+      "path": "rtl/m16/frp_m16_tb.sv",
+      "raw_sha256": "36a9b0a326a3ff9fb87f9df8f7fb0c8daeaaeef74fe374bd41307fa7409b8885",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 16855,
+      "path": "rtl/m22/frp_m22_control_status_register_interface.sv",
+      "raw_sha256": "76c3d19cb6ed6070631f2f8d685f9fbffc05acb335609b3e57cc7a743522745d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 13653,
+      "path": "rtl/m22/frp_m22_control_status_register_interface_tb.sv",
+      "raw_sha256": "37670705d7ab5c6e30c7e0244bdcb0eb2494622dd6a820713091ba7dbe793a37",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5586,
+      "path": "rtl/m22/frp_m22_csr_pkg.sv",
+      "raw_sha256": "0f3de8054e3704548088b035c43e993d194d5182a2ac1bc32cdad92663a11206",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5127,
+      "path": "rtl/m23/frp_m23_csr_cdc_bridge.sv",
+      "raw_sha256": "f56e3d5c3d4c07ffb54bc0a4d2968be0bdb9fff37106826d854139da2f2f6078",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4711,
+      "path": "rtl/m23/frp_m23_hardened_integration_boundary.sv",
+      "raw_sha256": "0381bc56a3f3dbd49d3a3d73ba4ff18e4031fb491effad8029d324fb9ac604b3",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7052,
+      "path": "rtl/m23/frp_m23_hardened_integration_boundary_tb.sv",
+      "raw_sha256": "0f7a89fd4c62844b1016444dd662cd4a00bbddf0ff9fbc949411099ef72a599a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3174,
+      "path": "rtl/m23/frp_m23_interface_protocol_assertions.sv",
+      "raw_sha256": "3f9fe2383bb49dbdcfd0acf46ae85467715998743c60c32f4e3c1da0691d302c",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 626,
+      "path": "rtl/m23/frp_m23_reset_release_sync.sv",
+      "raw_sha256": "bf55576554f8c42e55f0a835bc62ad56e43004b4b459a84ce6908372f882de85",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1855,
+      "path": "rtl/m26/frp_m26_declared_target_top.sv",
+      "raw_sha256": "4f12873a8b00ef9bdc9ce0eaeaf92549c5e1867527e80d21bf80a79e5e3b3912",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 882,
+      "path": "rtl/m26/frp_m26_protocol_monitor_synthesis_stub.sv",
+      "raw_sha256": "b5d7a79ad7f174b42f262a79e6f76af0199ad8ba8ae4dc491f89324dc0c28a05",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 29538,
+      "path": "schemas/m18/frp.benchmark.architecture_comparison.v1.schema.json",
+      "raw_sha256": "ef1ad271831820a09d019093a1ffd4d315fd70dca75cc34b68a78b1c8379154a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 59209,
+      "path": "schemas/m18/frp.benchmark.hardware_sensitivity_comparison.v1.schema.json",
+      "raw_sha256": "ec85391bd720008bfc3b0b0f4fb9d56ae00d49fea4396b56a37cefcfee87a0f1",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 25441,
+      "path": "schemas/m18/frp.benchmark.hardware_sensitivity_cost_profile.v1.schema.json",
+      "raw_sha256": "c3159f412aba93b76e71f68684015dbdfab6888952e8402750a26b393f10e908",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3729,
+      "path": "schemas/m18/frp.benchmark.normalized_cost_profile.v1.schema.json",
+      "raw_sha256": "022d6af9e0f76002049284cc48c6bfe326b4b9e7520dca4dfe13ae1528fc0ba5",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1758,
+      "path": "schemas/m18/frp.benchmark.thermal_proxy_profile.v1.schema.json",
+      "raw_sha256": "c206f0f7f55d4c5614e6a1c2495c2e865ef0bb232222668afc74f1a4919a3586",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1384,
+      "path": "schemas/m18/frp.benchmark.workload_profile.v1.schema.json",
+      "raw_sha256": "20e005a29d8bb7751b89b025a6d2ffa0e0f61ac19bb5f1b2a61755f89b78abbf",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 10365,
+      "path": "schemas/m18/frp.m15.balanced_ternary_hardware_encoding_map.v1.7.0.schema.json",
+      "raw_sha256": "a9694571f93249b762921cfc0bd4bb07eab0034e3839b1df246cc86c1e3b8781",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 28898,
+      "path": "schemas/m18/frp.m15.cycle_exact_reference_trace.v1.7.0.schema.json",
+      "raw_sha256": "45295d3210ba5900fb751f51b46f85b8cef086a375b5a6f19264dc73a080c779",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 15357,
+      "path": "schemas/m18/frp.m15.fixed_point_interface_profile.v1.7.0.schema.json",
+      "raw_sha256": "7224a301711d6a6af3d265170526f871ac2447c3e6e46aeccefa51871e74dbcf",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 11889,
+      "path": "schemas/m18/frp.m15.qualification_closure_manifest.v1.7.0.schema.json",
+      "raw_sha256": "89cf00afea179744950d178726d09eb4062f3f5c60fcb1411907cba2fe308598",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 16337,
+      "path": "schemas/m18/frp.m15.quantized_reference_shadow_model.v1.7.0.schema.json",
+      "raw_sha256": "e449fc7db9938064efb125a9a9dd842a9480b775bfcfd8de31fe32a77e173fa3",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4574,
+      "path": "schemas/m18/frp.m15.reference_preload.v1.7.0.schema.json",
+      "raw_sha256": "4b30b971ac9f123e897be1f87ad6cc7a1d00760fc0f23ef64a39eee4bd9d4826",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 10264,
+      "path": "schemas/m18/frp.m15.reference_rtl_equivalence_report.v1.7.0.schema.json",
+      "raw_sha256": "ebdc326037717385f13caf0c967ef56f0fa268da899aed7a68abb6e125d758cb",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2961,
+      "path": "schemas/m18/frp.m15.rtl_assertion_correlation_harness.v1.7.0.schema.json",
+      "raw_sha256": "1b20b1e77301699ab88c9694fa1889c78aa8c7253f1ad0afe9dc8a5ce53c3093",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 9158,
+      "path": "schemas/m18/frp.m15.rtl_comparison_vector_package.v1.7.0.schema.json",
+      "raw_sha256": "e252a8ae5cbdb4349de5becb8f734c51b0e515b68131a0a16ced6207ef63f957",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3436,
+      "path": "schemas/m18/frp.m15.sha256_manifest.v1.7.0.schema.json",
+      "raw_sha256": "a8cac26c0f36256e709a95a7b5988ee0905c3792e7cd06cc08e0d39e0790712d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4689,
+      "path": "schemas/m18/frp.m15.synthesizable_rtl_reference_core.v1.7.0.schema.json",
+      "raw_sha256": "448941f4c9538f7dd0004035d9a250462440a7b4bbc546b82e7e925f8810c267",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 6389,
+      "path": "schemas/m18/frp.m15.systemverilog_testbench_interface_map.v1.7.0.schema.json",
+      "raw_sha256": "a4a82d4bab468b22087f9262a7653b5c677eb619724d1bd87208e44f9a3e07f5",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 22306,
+      "path": "schemas/m18/frp.m18.canonical_artifact_manifest.v2.0.0.schema.json",
+      "raw_sha256": "23d9f7b9a736b8d44bd73c99771f04daf342952433170dfb4b50b9d3064ff54e",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 8454,
+      "path": "schemas/m18/frp.m18.canonical_artifact_qualification.v2.0.0.schema.json",
+      "raw_sha256": "93721155fb581d42454b2dff1684f06715d42d2603640645b146d2a6a7ea0c6e",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 13736,
+      "path": "schemas/m18/frp.m18.canonical_artifact_self_test.v2.0.0.schema.json",
+      "raw_sha256": "2ec611003e635504d7c4b7af0f774db5253cad6da50ba9c505668ab8916f646a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 22004,
+      "path": "schemas/m18/frp.m18.formal_schema_registry.v2.0.0.schema.json",
+      "raw_sha256": "db47fa73a82f1414cd6b98a9855d8a5f26ccdf495e0cd74f41a11e07e836d9fc",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5521,
+      "path": "schemas/m18/frp.m3.benchmark_matrix.v1.7.0.schema.json",
+      "raw_sha256": "8b39d5f8982f2b0683a1102f8083d9e41da04709f46fa49c5a1a36a6a208e33d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 52761,
+      "path": "schemas/m18/frp.structured_output.v1.7.0.schema.json",
+      "raw_sha256": "e5511e0d9358ee628efb2ad02b28d719003b71deb1725a3e703e053b71a2e084",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 24843,
+      "path": "schemas/m18/frp_m18_schema_registry.json",
+      "raw_sha256": "35dbce174597da749d95cc8cdbc41f1b67a3d042296ae84e61915ee09c5fdea6",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7626,
+      "path": "schemas/m19/frp_m16_execution_record.v2.1.0.schema.json",
+      "raw_sha256": "c9af6ac70285569f1914d21e88c442e363e4ac6496bc3784b0f2627981c50cc7",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 9140,
+      "path": "schemas/m19/frp_m16_execution_trace_base.v2.1.0.schema.json",
+      "raw_sha256": "761d2c3b5f57294f65313bcd8dbe78596a604c19296b805673c9cc776d37c43c",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2018,
+      "path": "schemas/m19/frp_m16_fpga_preparation_execution_trace.v2.1.0.schema.json",
+      "raw_sha256": "b6e6e248fee1bb6b5e20ff5fc1796cff7c7cbb0aa6f6ee03cb6c9dca7f5c0a95",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2881,
+      "path": "schemas/m19/frp_m16_qualification_manifest.v2.1.0.schema.json",
+      "raw_sha256": "75829943f92f2fdbbc1be2a3e578c9f03af641fa1d7a410da4cc8ba95ebd6192",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2043,
+      "path": "schemas/m19/frp_m16_rtl_execution_trace.v2.1.0.schema.json",
+      "raw_sha256": "f947c0f2f902d1ce1814beae9547ccfea5011adeac16f437ba6efe15b6f179ea",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2079,
+      "path": "schemas/m19/frp_m16_zero_event_qualification.v2.1.0.schema.json",
+      "raw_sha256": "f30359ca3c270a9e13fc1f31871a3c7138f42eb20b372dc8f0eeaf4785c350a5",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2144,
+      "path": "schemas/m19/frp_m19_machine_readable_evidence_manifest.v2.1.0.schema.json",
+      "raw_sha256": "60782ef389e02b354f8d9ce21131934ea76fa473ba1999ed148c0a0ef8befb2c",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2183,
+      "path": "schemas/m19/frp_m19_machine_readable_evidence_qualification.v2.1.0.schema.json",
+      "raw_sha256": "5b6828dfbb3f327b59f596a76b6edb5fbe1c8744cba0f5057f78e7c55345e955",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3127,
+      "path": "schemas/m19/frp_m19_schema_registry.json",
+      "raw_sha256": "cc8bc052ca8c3d3d6a6ef646db59a0aa116473bccd191ab3f8986795750f39ac",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 9536,
+      "path": "schemas/m20/frp_m20_correlation_record.v2.2.0.schema.json",
+      "raw_sha256": "92a14e1854b40f2c9e0a275e98bb787c3fca96ec3695e3fd05d91c08a1ef2a87",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2758,
+      "path": "schemas/m20/frp_m20_cross_layer_correlation_manifest.v2.2.0.schema.json",
+      "raw_sha256": "ba3de555e2c0562f7d80a2522a25e8b86c0ae993c21122928af038b00cc8759a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5501,
+      "path": "schemas/m20/frp_m20_cross_layer_correlation_package.v2.2.0.schema.json",
+      "raw_sha256": "4e26730e094b191086cf475f92e06e13b9725f76b138451040b38a2a5ecd2938",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1877,
+      "path": "schemas/m20/frp_m20_cross_layer_correlation_qualification.v2.2.0.schema.json",
+      "raw_sha256": "060b803745095bbd37670efa22ef1e75ca747c60c74dc77e6befb2c92c68f165",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1830,
+      "path": "schemas/m20/frp_m20_schema_registry.json",
+      "raw_sha256": "505138d4cf30fe00622cface674188a783742c79480b598ec919c1618763d0c5",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 7302,
+      "path": "schemas/m21/frp_m21_parameter_dimensions.v2.3.0.schema.json",
+      "raw_sha256": "739fb42d68af699cc3c59f19f50a47ed714fa04a4aa4b369b7be84f07ab89103",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 12450,
+      "path": "schemas/m21/frp_m21_parameterized_qualification_case.v2.3.0.schema.json",
+      "raw_sha256": "cd11a79d176072c2c856a52ad433e35edfc74356a5c5c2a7ca504f8a7dc017e9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3468,
+      "path": "schemas/m21/frp_m21_parameterized_qualification_manifest.v2.3.0.schema.json",
+      "raw_sha256": "f46c154d9a7c4b38f3005bb6657a76ce35a71603939813a2e8b9a3995c1e4c7a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3042,
+      "path": "schemas/m21/frp_m21_parameterized_qualification_matrix.v2.3.0.schema.json",
+      "raw_sha256": "bd536a1a60419db7a280532ea42d8ec76091e587ade5b2f2406a02d2c1177d80",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2276,
+      "path": "schemas/m21/frp_m21_parameterized_qualification_record.v2.3.0.schema.json",
+      "raw_sha256": "78d9f4ace887745fd78bed54b7824a607630a23c0f567a6404b41b72e7686fde",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2076,
+      "path": "schemas/m21/frp_m21_schema_registry.json",
+      "raw_sha256": "5263db2afdf94717c5e88512be9e1aa4c2cdde157b91bd956198696e96e23e5c",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 8934,
+      "path": "schemas/m22/frp_m22_control_status_register_interface.v2.4.0.schema.json",
+      "raw_sha256": "708c6aa9a72c13a804dfe15ecefe93e7e501638abf4f919ddadd655be8962908",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2588,
+      "path": "schemas/m22/frp_m22_control_status_register_manifest.v2.4.0.schema.json",
+      "raw_sha256": "c48724735be7291a538dfb9732be4f5e02369c52932fc6f2830aa7928d4ec403",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1724,
+      "path": "schemas/m22/frp_m22_control_status_register_qualification.v2.4.0.schema.json",
+      "raw_sha256": "2f674c700a44f520ce8c303e6eb58e2a3745a8cf1e5e7447c8152a246ff620f4",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5028,
+      "path": "schemas/m22/frp_m22_deterministic_transaction_trace.v2.4.0.schema.json",
+      "raw_sha256": "057c2df96de4f8bac5fd91e0daa53e03c3c9afcf2d61329ba2ce3f3e521840a2",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1587,
+      "path": "schemas/m22/frp_m22_schema_registry.json",
+      "raw_sha256": "003a79bed8cdf2ca7f0d4292c38b856600faef1092abddaa9179c071867e88ca",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5088,
+      "path": "schemas/m23/frp_m23_clock_reset_cdc_interface_contract.v2.5.0.schema.json",
+      "raw_sha256": "13b42d8584f8348ec6bebb9303b4665cd937f724c25682ebb9215201f1e5801b",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1768,
+      "path": "schemas/m23/frp_m23_clock_reset_cdc_interface_hardening_manifest.v2.5.0.schema.json",
+      "raw_sha256": "4b052aa36ea5e8903664ff5594f822ee01d34efaa4e74b5bd8bc2bd5216ae824",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1405,
+      "path": "schemas/m23/frp_m23_clock_reset_cdc_interface_hardening_qualification.v2.5.0.schema.json",
+      "raw_sha256": "8ed7a4f8a187d30b1c4dd4fec444311b5b1d0d2347d1b3ef672e04d79ee6a64e",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1525,
+      "path": "schemas/m23/frp_m23_hardening_sequence_records.v2.5.0.schema.json",
+      "raw_sha256": "6794d2ff57793e0862f325c40b0718785a86c4ba3e77dafeac59b645512dd4f1",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1479,
+      "path": "schemas/m23/frp_m23_interface_protocol_assertion_report.v2.5.0.schema.json",
+      "raw_sha256": "802f452cf0d4c7848124289a959df1ae93b7c8b8eaf39835b524bca74c649538",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1393,
+      "path": "schemas/m23/frp_m23_schema_registry.json",
+      "raw_sha256": "7aeb7bedde0cdc866d8663e846dee9d091290c6af1d471a8087f7b6bb23dd0d3",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 5679,
+      "path": "schemas/m24/frp_m24_formal_bounded_proof_evidence.v2.6.0.schema.json",
+      "raw_sha256": "2a8690e4afcde11cd223888e7bfe4cebd25891ba2082dd63790b95fe71c54876",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2869,
+      "path": "schemas/m24/frp_m24_formal_bounded_verification_contract.v2.6.0.schema.json",
+      "raw_sha256": "dfe24b8d141897586e40a2f933efe1c5e9b6375567520b9ee53bf7780dcd00aa",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1757,
+      "path": "schemas/m24/frp_m24_formal_bounded_verification_manifest.v2.6.0.schema.json",
+      "raw_sha256": "a3075251292769c3c7d14993c4893e350dd214b13cbabc0be6cf2c5691c082c4",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1478,
+      "path": "schemas/m24/frp_m24_formal_bounded_verification_qualification.v2.6.0.schema.json",
+      "raw_sha256": "0152923057d397fb81bae1a1b1438f5123042135272f97c3d2fef82b85f40dc1",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2147,
+      "path": "schemas/m24/frp_m24_property_inventory.v2.6.0.schema.json",
+      "raw_sha256": "2d1e0001d299d5a6adf316981d2c88340d1b5e8463c9b0485a12e6efbc4d01f6",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1054,
+      "path": "schemas/m24/frp_m24_schema_registry.json",
+      "raw_sha256": "54e5ba75ba8616ef0220bdc16ccdba8dc68722a38bae52a70fe3dc2ddbadaf7a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1910,
+      "path": "schemas/m25/frp_m25_deterministic_negative_fixtures.v2.7.0.schema.json",
+      "raw_sha256": "4703114a1a6028f54e02cc4b86e24cafb1bbdf489978385751fc0ecf8aeca3b0",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1771,
+      "path": "schemas/m25/frp_m25_failure_classification_registry.v2.7.0.schema.json",
+      "raw_sha256": "6f1a52d54b366ab7d6bb59ec2e6b1f71c507a32e74ade1645ed30d653540655e",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3282,
+      "path": "schemas/m25/frp_m25_fault_negative_recovery_contract.v2.7.0.schema.json",
+      "raw_sha256": "b985d09818491bc1a960f2bef94f04c9e58cb07eaa18832f7501f9fc93548442",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1821,
+      "path": "schemas/m25/frp_m25_fault_negative_recovery_manifest.v2.7.0.schema.json",
+      "raw_sha256": "711681568ae22b561c4e058db4bc2e0bddc73157b91dad19e280bec276e957fc",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1857,
+      "path": "schemas/m25/frp_m25_fault_negative_recovery_qualification.v2.7.0.schema.json",
+      "raw_sha256": "f5b872eec1728a6f4d46c35d38ab488f095969c77e8c447cae8ef44eedf41971",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4074,
+      "path": "schemas/m25/frp_m25_negative_path_recovery_evidence.v2.7.0.schema.json",
+      "raw_sha256": "0bc3760772596db5bf05eea1427780f434682f8a525ffc2ff1149c9c277c5501",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1015,
+      "path": "schemas/m25/frp_m25_schema_registry.json",
+      "raw_sha256": "7c98a06929db2a68448d5b8e9ce744a0e78bd1a8afa4150b813d9266564a9209",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4852,
+      "path": "schemas/m26/frp_m26_declared_target_implementation_contract.v2.8.0.schema.json",
+      "raw_sha256": "a64cbb7fc6f13d8aa774398c4f099f89e298b783e45652877ffaf479375fd451",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1839,
+      "path": "schemas/m26/frp_m26_declared_target_implementation_manifest.v2.8.0.schema.json",
+      "raw_sha256": "ba3b7ca1c9c7cb15340cfc6353ed549eea320e2322843031ec27582627acb4b9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2064,
+      "path": "schemas/m26/frp_m26_declared_target_implementation_qualification.v2.8.0.schema.json",
+      "raw_sha256": "454c44cdda3d83ab0568c6e74baaab36873241e0acdbed8ea24bc61212dd11f4",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 4262,
+      "path": "schemas/m26/frp_m26_declared_target_implementation_report.v2.8.0.schema.json",
+      "raw_sha256": "c5ad304519816924e741f3e2486450075f854647b1af641f5933c558b06af2d9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2012,
+      "path": "schemas/m26/frp_m26_reproducibility_record.v2.8.0.schema.json",
+      "raw_sha256": "4cd9459fc2bceeb469f5fd2493ad45709df74cb44558697a79e2e2260aab0562",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1011,
+      "path": "schemas/m26/frp_m26_schema_registry.json",
+      "raw_sha256": "236fbaf0ebda06b676eab58176269e3e35283f285689c7bee2dfd6669ffcf40f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3116,
+      "path": "schemas/m26/frp_m26_tool_command_provenance.v2.8.0.schema.json",
+      "raw_sha256": "67e6746733b1506d0691dd1607b3225d6c050fd62a89dafde139fe87e4a4ba9b",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 10764,
+      "path": "schemas/m27/frp_m27_long_run_checkpoint_evidence.v2.9.0.schema.json",
+      "raw_sha256": "e74b53a2e88b690c89dd92145d8e5de9050b403fb0d7f736f99080937e4ab056",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2669,
+      "path": "schemas/m27/frp_m27_long_run_stability_manifest.v2.9.0.schema.json",
+      "raw_sha256": "7c40b29d491588979ab83f1e32727870cc9974645026081d902b0e4b66ace124",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1980,
+      "path": "schemas/m27/frp_m27_long_run_stability_qualification.v2.9.0.schema.json",
+      "raw_sha256": "5d5546cc419e9e535942a11ac96af4d8dd005c7ba98dc51911326b4f3281c61a",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3472,
+      "path": "schemas/m27/frp_m27_long_run_stability_report.v2.9.0.schema.json",
+      "raw_sha256": "82263ad2f3b160e73961f5ae9ab56800b6e2aacf7e85c09ae23c44c64294bc60",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3906,
+      "path": "schemas/m27/frp_m27_long_run_telemetry_contract.v2.9.0.schema.json",
+      "raw_sha256": "2ee7fd6ef7a02d44bec7096631edc6a264bdd8f0708e75afcc49315eee0a7f53",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3101,
+      "path": "schemas/m27/frp_m27_long_run_workload_catalog.v2.9.0.schema.json",
+      "raw_sha256": "515f523d931179fd3c84723da832e3cdb41344e35a1b201a8a325ffe2fd80dd2",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1054,
+      "path": "schemas/m27/frp_m27_schema_registry.json",
+      "raw_sha256": "c4b84b197a3600e7b0a9976e991f578b0cc1053d6f9fa8a59063dfc9a4319141",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 2609,
+      "path": "schemas/m27/frp_m27_telemetry_semantics.v2.9.0.schema.json",
+      "raw_sha256": "200daba136349ade552e08f927adbcc3d00e6eb496e5b980f07c42d2887e16fd",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1237,
+      "path": "schemas/m28/frp_m28_hierarchical_scaling_contract.v3.0.0.schema.json",
+      "raw_sha256": "16ed6a7bcbba10733ed0af59618de71d3868ccc2d187c5c834523bcce91b22d9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1113,
+      "path": "schemas/m28/frp_m28_hierarchical_scaling_matrix.v3.0.0.schema.json",
+      "raw_sha256": "929bf7fba5ae1acd88b09f7db84543d739b663191380c27139be886b4464f484",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1055,
+      "path": "schemas/m28/frp_m28_hierarchy_qualification.v3.0.0.schema.json",
+      "raw_sha256": "66354f846c5d46d4f96a0fc7bcd4d6a3b6550eda8f931d0cfa965ea83e4afaea",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1530,
+      "path": "schemas/m28/frp_m28_hierarchy_schema_registry.json",
+      "raw_sha256": "7667284f873243019fc157d64b834f9583cf4df6f6ea23d9a71ec57da34684e0",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 963,
+      "path": "schemas/m28/frp_m28_hierarchy_topology_manifest.v3.0.0.schema.json",
+      "raw_sha256": "c1bde0c8161e8cd1245ef28c6cbdb52e2cd00bfecfaff8a14506282fb70a97b9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 949,
+      "path": "schemas/m28/frp_m28_hotspot_containment_evidence.v3.0.0.schema.json",
+      "raw_sha256": "0aaa1ad7e023d96b8d373ff5a7c08cd2672509f5e42752e962a3f7c527e87cc1",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1621,
+      "path": "schemas/m28/frp_m28_schema_registry.json",
+      "raw_sha256": "8cc4ba6f3829989c87a973148526c697938c1fb82ea5cc4989b2f180eba1024d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1617,
+      "path": "schemas/m28/frp_m28_trace_observatory_canonical_trace_bundle.v3.0.0.schema.json",
+      "raw_sha256": "468f1cadac34c2bba1ce74501563dd6ed54c129ac1c0d9e61fe96e6188dc4743",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1519,
+      "path": "schemas/m28/frp_m28_trace_observatory_compatibility_registry.v3.0.0.schema.json",
+      "raw_sha256": "5533cf5665aff3b236628c50cb0159c564fcf8cde138b164561484084d0934ee",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1453,
+      "path": "schemas/m28/frp_m28_trace_observatory_fixture_manifest.v3.0.0.schema.json",
+      "raw_sha256": "5eaeb17c2217593eadc013bd3d6b5b56b166a2e7d9c78eb25e7976da9c6bf689",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1739,
+      "path": "schemas/m28/frp_m28_trace_observatory_interchange_qualification.v3.0.0.schema.json",
+      "raw_sha256": "9815a2aea4ef78044b0bfaf662f1557059e37596268d44e408779d949719af2d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1396,
+      "path": "schemas/m28/frp_m28_trace_observatory_upstream_contract.v3.0.0.schema.json",
+      "raw_sha256": "c2c527ec3f8203b238774a40e60fccebde1aa1c1f4cd8c7ac44afd88186e895e",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1267,
+      "path": "schemas/m29/frp_m29_canonical_demo_artifact_package.v3.1.0.schema.json",
+      "raw_sha256": "1661d03cf573e27e964ecc8b8e201b82e35f8716f87a3c0f10043faed1a6994f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1328,
+      "path": "schemas/m29/frp_m29_compatibility_version_declarations.v3.1.0.schema.json",
+      "raw_sha256": "0c292ee509c4f05af5895af4f8882a58a2c01bf3326a764b371eb5f45e788431",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1538,
+      "path": "schemas/m29/frp_m29_deterministic_package_manifest.v3.1.0.schema.json",
+      "raw_sha256": "7e4fca21ec6e5b452f1289bb05520d3f5c91c786e035b6ff1657bfdaa5c709f7",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1401,
+      "path": "schemas/m29/frp_m29_downstream_consumption_test_vectors.v3.1.0.schema.json",
+      "raw_sha256": "fbc9f4c73797a4dd545ee7276595b2e578ddac92f363a49163d6e8e3d3f3ad1e",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1262,
+      "path": "schemas/m29/frp_m29_immutable_source_artifact_policy.v3.1.0.schema.json",
+      "raw_sha256": "aa8b3d0da6d5e4c6b6b91844b116051f939976dc3e64469e4668bf79c142a8fd",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1183,
+      "path": "schemas/m29/frp_m29_producer_command_registry.v3.1.0.schema.json",
+      "raw_sha256": "ab8a045becd4863fe4c1281fb853ee935bbee69b12ccb25029c023d6f4b7efa6",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1398,
+      "path": "schemas/m29/frp_m29_provenance_completeness_record.v3.1.0.schema.json",
+      "raw_sha256": "52d2e87bfc0a271c6ad385cc2741e1d6ee7acb4c5a9d1f96f02daf79250ae95b",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1325,
+      "path": "schemas/m29/frp_m29_release_independent_compatibility_records.v3.1.0.schema.json",
+      "raw_sha256": "ce60da0de0bb69aeed8de915645135ca5dc2499c413e0118368f752091476853",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1477,
+      "path": "schemas/m29/frp_m29_supported_artifact_registry.v3.1.0.schema.json",
+      "raw_sha256": "2f5a32a782810c4fb25b6258c7203d81742930504ae8d1b8fdbd4fc116424a94",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 61839,
+      "path": "schemas/m29/frp_m29_supported_schema_registry.json",
+      "raw_sha256": "1fbe4350a020bca2185d4111c99e2f94f1c81fb77e1e998df199e518a4a84557",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1581,
+      "path": "schemas/m29/frp_m29_supported_schema_registry.v3.1.0.schema.json",
+      "raw_sha256": "dc1e9d8e4480bb9c1da592ed01bb7462509df1536a9e9e25cdf18c96116a3d78",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1508,
+      "path": "schemas/m29/frp_m29_system_integration_contract.v3.1.0.schema.json",
+      "raw_sha256": "de396994128d610af5281e18cd721cf66e206705a801ad14c155078c134f0111",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1708,
+      "path": "schemas/m29/frp_m29_system_integration_qualification.v3.1.0.schema.json",
+      "raw_sha256": "07cf078a0da67cef969370b389a4e666e4919e4a58c642f71a809b51d6de3bb3",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 1234,
+      "path": "schemas/m29/frp_m29_unsupported_version_behavior.v3.1.0.schema.json",
+      "raw_sha256": "f4061bb83142f733e1e76ceb098e69a04c5e1dceea2e2ae2e4ee733ac8f8a8b0",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 3670,
+      "path": "schemas/m30/frp_m30_archival_metadata.v3.2.0.schema.json",
+      "raw_sha256": "84c313c8d1ba84f0b3c56f5387c4e681f05780851ddcf3b406ccfd0a286d8654",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 3810,
+      "path": "schemas/m30/frp_m30_canonical_artifact_index.v3.2.0.schema.json",
+      "raw_sha256": "86842fb85eb7e7e050c505937c97a5512236a8c8c95ec256b09a5ba8ce72ebcd",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 3778,
+      "path": "schemas/m30/frp_m30_clean_environment_reproduction.v3.2.0.schema.json",
+      "raw_sha256": "a9ee48396206fad22dbd076fb0adbbde27693142f21844fc8bd63ad5bd3c9610",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 3811,
+      "path": "schemas/m30/frp_m30_complete_digest_inventory.v3.2.0.schema.json",
+      "raw_sha256": "53914415e0d96e20d963f7428cc7b4187f3eb6bc1b81a72e969079fdfd801c20",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 3876,
+      "path": "schemas/m30/frp_m30_milestone_evidence_index.v3.2.0.schema.json",
+      "raw_sha256": "63b06ecedacccddd45ab6a8472e0ee12c48f1b7a760c385062c47bf076c05628",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 3796,
+      "path": "schemas/m30/frp_m30_producer_command_index.v3.2.0.schema.json",
+      "raw_sha256": "9a22f882b6c59d7d6889d5f6dbe76ecc40d8a27a6e3b368a7388a79811240323",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 3816,
+      "path": "schemas/m30/frp_m30_qualification_manifest_index.v3.2.0.schema.json",
+      "raw_sha256": "62d42a6de7b94f0683a6f5a40dd013878472698e8bc2c085a472562822f73027",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 3760,
+      "path": "schemas/m30/frp_m30_release_package_manifest.v3.2.0.schema.json",
+      "raw_sha256": "abe8d0d61d33dd292d611f0d6919bef96352d35a2101ed8b21e267ec08123b4f",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 3716,
+      "path": "schemas/m30/frp_m30_release_package_verification.v3.2.0.schema.json",
+      "raw_sha256": "ed6648e1eb77e6a7f6412fd588009de7ec1759b57a3493b7996da406dbe2b0f1",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 3824,
+      "path": "schemas/m30/frp_m30_repository_alignment_record.v3.2.0.schema.json",
+      "raw_sha256": "5a6db768f0b3bc6ae22349b24e8e5cea6ed6bcc1ba1cc3fd405317da3ec4b2f0",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 3720,
+      "path": "schemas/m30/frp_m30_reproducibility_qualification.v3.2.0.schema.json",
+      "raw_sha256": "4fe0517a2cf82de3dccd509c71c24bcf645abcb90610d335376def9eaa512ab5",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 3904,
+      "path": "schemas/m30/frp_m30_required_workflow_success_records.v3.2.0.schema.json",
+      "raw_sha256": "aee1468195f9f48da2bcdbefbb60b787c585c2027d3606a182426c6989784d16",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 3778,
+      "path": "schemas/m30/frp_m30_schema_index.v3.2.0.schema.json",
+      "raw_sha256": "5eb8abf8a7b34e50e3e35801300de66383b477a1bd4b7b1a4d023d14efed4fd1",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 3822,
+      "path": "schemas/m30/frp_m30_workflow_index.v3.2.0.schema.json",
+      "raw_sha256": "6a9d3b63c6debbaed7df32445be2d20181f28bc57196a7fec96520d4e86536a8",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 34034,
+      "path": "simulations/README.md",
+      "raw_sha256": "e7e66bd4a2b61655a213d5a89714b89b8cf391b8634648faf952975e0a9b144d",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 39328,
+      "path": "simulations/initial_kuramoto_result.md",
+      "raw_sha256": "24ab8bc1a003d38930bc58f55180e5419cc3aecce12ac10b9b6a991e5e9c3350",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 24058,
+      "path": "tests/test_frp_m17_publication_inventory.py",
+      "raw_sha256": "b51ccd35aea224c3a26560eeda57716964f35b3528e7d65a91384ff91d0c2c28",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 91579,
+      "path": "tests/test_frp_m18_canonical_artifacts.py",
+      "raw_sha256": "d640101d082191de9631543bf3a4cdde5171bf63ec14c81abb65ed2a3349b431",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 14982,
+      "path": "tests/test_frp_m19_m16_evidence.py",
+      "raw_sha256": "7b9415434f022356453f7f366c4d4e22dea99706d39d617732c9b3d494cc5fe9",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 8634,
+      "path": "tests/test_frp_m20_cross_layer_correlation.py",
+      "raw_sha256": "703c8bcd310783986a4cc2ec97ba22f2da939c3938de91c99a32e2ebf59aebff",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 15500,
+      "path": "tests/test_frp_m21_parameterized_qualification_matrix.py",
+      "raw_sha256": "3475015c4b4a867d685c5c3bdf54949efa84fc303a630feab5c4b543b9bfaa10",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 19083,
+      "path": "tests/test_frp_m22_control_status_register_interface.py",
+      "raw_sha256": "6d9b9d3bbc463c97b21f31133e4d1eb561acccda3414144856c49c4381d2c114",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 12450,
+      "path": "tests/test_frp_m23_clock_reset_cdc_interface_hardening.py",
+      "raw_sha256": "19fdc9f8e66f8514fad128530593819a8ca7943ee9daf248ea04f8f59354163f",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 11905,
+      "path": "tests/test_frp_m24_formal_bounded_verification.py",
+      "raw_sha256": "c858e7b999f79d62c8b03949c9c1f5a6d24c99e9f5dde4fe02f6d17ff4cf298c",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 13189,
+      "path": "tests/test_frp_m25_fault_negative_recovery_qualification.py",
+      "raw_sha256": "95f4209adb791c0d2cf68f0c20f75466cac6c46b63f229899882ed0edf6eb091",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 12463,
+      "path": "tests/test_frp_m26_declared_target_implementation_evidence.py",
+      "raw_sha256": "cbd6e2ac90b802a8d4a97d53865a0939f7694491f221eee0092d4ae306cfd8d8",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 16166,
+      "path": "tests/test_frp_m27_long_run_stability_telemetry_qualification.py",
+      "raw_sha256": "27e57d8b8e9ad537794ad0d3ef01e72a27be3d5f8e735771bda1b6efc573b3a3",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 14293,
+      "path": "tests/test_frp_m28_hierarchical_scaling_hotspot_containment.py",
+      "raw_sha256": "6850ab7003ee55253708159d0c9cf12bbc313cc86b8d8eac215936a09bff77be",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 15069,
+      "path": "tests/test_frp_m28_trace_observatory_upstream_interchange.py",
+      "raw_sha256": "400bb2d1231884f690e3ee363c0c2667a9ca55479c21ca0254bd66a27103f3af",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 25274,
+      "path": "tests/test_frp_m29_system_integration_downstream_compatibility.py",
+      "raw_sha256": "f0bfd4227ad1dca0c9fb0b11b6aa410e3874e890e992f89bf432aa5ed0f78c65",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 16022,
+      "path": "tests/test_frp_m30_reproducibility_qualification_archival_closure.py",
+      "raw_sha256": "170baba6ff3e498c13f75307f434b63e2e27ec8f3a7ef88ce029d20ef847a587",
+      "source_layer": "M30_closure"
+    },
+    {
+      "byte_length": 12154,
+      "path": "tests/test_m16_rtl_artifact_manifest.py",
+      "raw_sha256": "bdc79b882a89ffc5010f3e6b0cf70171f8455f55bd57d8871cc600b920b35cb2",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 54482,
+      "path": "verification/README.md",
+      "raw_sha256": "3e2ad423a082ce052dba7538788d8506cd3072afc79d28af679d0972a5545998",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 39109,
+      "path": "verification/coherence_metrics.md",
+      "raw_sha256": "a43f7cd89583465ed8c7fef33f3853c57e03b3a866966d3359fd772bba7cefad",
+      "source_layer": "M29_source_commit"
+    },
+    {
+      "byte_length": 10811,
+      "path": "verification/m19/frp_m19_m16_evidence_monitors.sv",
+      "raw_sha256": "a2b2bb90a77fcfc444d4482eb5dfaef89a07f8420f8c88fd5c7af0d66585d3d8",
+      "source_layer": "M29_source_commit"
+    }
+  ],
+  "schema": "frp.m30.complete_digest_inventory.v3.2.0",
+  "source_commit": "ff3dd434da5dcbd9e8fa62444f658ed4c495b540",
+  "status": "PASS",
+  "summary": {
+    "digest_algorithm": "sha256",
+    "digest_record_count": 523,
+    "explicit_exclusions": [
+      "artifacts/m30/inventories/m30-complete-digest-inventory.json",
+      "artifacts/m30/manifests/m30-reproducibility-qualification.json"
+    ],
+    "inventory_scope": "complete_final_tree_except_this_inventory_and_m30_reproducibility_qualification"
+  },
+  "version": "3.2.0"
+}
