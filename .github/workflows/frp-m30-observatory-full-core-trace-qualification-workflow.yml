@@ -1,0 +1,502 @@
+name: FRP M30 Observatory Full Core Trace Qualification Workflow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frp-m30-observatory-full-core-trace-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  qualify-observatory-full-core-trace:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      M19_RTL_TRACE: artifacts/m19/execution/m16-rtl-execution-trace.json
+      M19_FPGA_TRACE: artifacts/m19/execution/m16-fpga-preparation-execution-trace.json
+      M28_TRACE_BUNDLE: artifacts/m28/exports/m28-observatory-canonical-trace-bundle.json
+      M28_FIXTURE_MANIFEST: artifacts/m28/fixtures/m28-observatory-fixture-manifest.json
+      M29_CONTRACT: artifacts/m29/contracts/m29-system-integration-contract.json
+      M30_ARCHIVE: artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz
+      M19_RTL_TRACE_SHA256: d7945e0d2b5aaa05c5fff2e4e60d3b984017f7e4ae1984c55920368a110020bd
+      M19_FPGA_TRACE_SHA256: 7d58b6741bdcadbfb9acb9049ed0e956305f49b9ad36946e719a4121b5caf22f
+      M28_TRACE_BUNDLE_SHA256: 9774e80d00c628193d5656608f2b1f830a05f960abadb83d9c4840f262ca07ed
+      M28_FIXTURE_MANIFEST_SHA256: 5d1be27e20a6a5978cb75e1185b9360621a92eb116b7a712fa5d6b813d0951fe
+      M29_CONTRACT_SHA256: 6e14d93abe5646b4e094f27b07217d9e4dcd833d8af0d5afb30da21b904c4642
+      M30_ARCHIVE_SHA256: 05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out the selected main revision
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Set up exact Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install exact repository dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check -r requirements.txt
+          python --version
+          python -m pip show jsonschema
+
+      - name: Verify the published M28 Observatory interchange
+        shell: bash
+        run: |
+          set -euo pipefail
+          python frp_m28_trace_observatory_upstream_interchange.py \
+            --verify \
+            --repository-root . \
+            --output-root . \
+            --output /tmp/m28-observatory-verification.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          result = json.loads(
+              Path("/tmp/m28-observatory-verification.json").read_text(
+                  encoding="utf-8"
+              )
+          )
+          if result.get("status") != "PASS":
+              raise SystemExit("M28 Observatory interchange verification failed")
+          print("M28 Observatory interchange verification: PASS")
+          PY
+
+      - name: Qualify the complete immutable core trace exposure
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          import tarfile
+          from collections import Counter
+          from pathlib import Path, PurePosixPath
+
+
+          EXPECTED_ARCHIVE_ROOT = "Fractal-Resonance-Processor-FRP-v3.2.0"
+          EXPECTED_CORE = {
+              "balanced_ternary_notation": "-1/0/1",
+              "semantic_values": [-1, 0, 1],
+              "active_neutral_state": 0,
+              "opposite_transition_routes": [[-1, 0, 1], [1, 0, -1]],
+              "actual_direct_events": 0,
+              "temporal_scheduler_modes": ["1/7", "7/1"],
+              "service_scheduler_mode": "free",
+          }
+          EXPECTED_PATH_DIGESTS = {
+              os.environ["M19_RTL_TRACE"]: os.environ[
+                  "M19_RTL_TRACE_SHA256"
+              ],
+              os.environ["M19_FPGA_TRACE"]: os.environ[
+                  "M19_FPGA_TRACE_SHA256"
+              ],
+              os.environ["M28_TRACE_BUNDLE"]: os.environ[
+                  "M28_TRACE_BUNDLE_SHA256"
+              ],
+              os.environ["M28_FIXTURE_MANIFEST"]: os.environ[
+                  "M28_FIXTURE_MANIFEST_SHA256"
+              ],
+              os.environ["M29_CONTRACT"]: os.environ[
+                  "M29_CONTRACT_SHA256"
+              ],
+              os.environ["M30_ARCHIVE"]: os.environ["M30_ARCHIVE_SHA256"],
+          }
+          EXPECTED_TRACE_EPOCHS = {
+              os.environ["M19_RTL_TRACE"]: [
+                  {"epoch": 0, "mode": "free", "record_count": 16},
+                  {"epoch": 1, "mode": "7/1", "record_count": 64},
+                  {"epoch": 2, "mode": "1/7", "record_count": 16},
+              ],
+              os.environ["M19_FPGA_TRACE"]: [
+                  {"epoch": 0, "mode": "free", "record_count": 3},
+                  {"epoch": 1, "mode": "1/7", "record_count": 1},
+              ],
+          }
+          EXPECTED_RECORD_COUNTS = {
+              os.environ["M19_RTL_TRACE"]: 96,
+              os.environ["M19_FPGA_TRACE"]: 4,
+          }
+          EXPECTED_SCHEDULER_COUNTS = {
+              "free": 19,
+              "1/7": 17,
+              "7/1": 64,
+          }
+          EXPECTED_SCHEDULER_STATE_COUNTS = {
+              "free": 19,
+              "excite": 3,
+              "neutralize": 14,
+              "balance": 56,
+              "commit": 8,
+          }
+          EXPECTED_DATASET_IDS = [
+              "m16-rtl-execution",
+              "m16-fpga-preparation-execution",
+              "m27-long-run-checkpoints",
+          ]
+          EXPECTED_SOURCE_BY_DATASET = {
+              "m16-rtl-execution": os.environ["M19_RTL_TRACE"],
+              "m16-fpga-preparation-execution": os.environ[
+                  "M19_FPGA_TRACE"
+              ],
+          }
+          ALLOWED_STATES_BY_MODE = {
+              "free": {"free"},
+              "1/7": {"excite", "neutralize"},
+              "7/1": {"balance", "commit"},
+          }
+          TERNARY_FIELDS = (
+              "phase_derived_targets",
+              "retained_state_before",
+              "retained_state_after",
+              "pending_route_before",
+              "pending_route_after",
+          )
+
+
+          def raw(path: str) -> bytes:
+              target = Path(path)
+              if target.is_symlink() or not target.is_file():
+                  raise SystemExit(f"required regular file is missing: {path}")
+              return target.read_bytes()
+
+
+          def sha256(value: bytes) -> str:
+              return hashlib.sha256(value).hexdigest()
+
+
+          def document(path: str) -> dict:
+              value = json.loads(raw(path))
+              if not isinstance(value, dict):
+                  raise SystemExit(f"JSON object required: {path}")
+              return value
+
+
+          for path, expected_digest in EXPECTED_PATH_DIGESTS.items():
+              observed_digest = sha256(raw(path))
+              if observed_digest != expected_digest:
+                  raise SystemExit(
+                      f"published source digest mismatch: {path}: "
+                      f"{observed_digest} != {expected_digest}"
+                  )
+
+          contract = document(os.environ["M29_CONTRACT"])
+          if contract.get("immutable_core") != EXPECTED_CORE:
+              raise SystemExit("M29 immutable core contract mismatch")
+          boundary = contract.get("integration_boundary")
+          if not isinstance(boundary, dict):
+              raise SystemExit("M29 integration boundary is missing")
+          expected_boundary = {
+              "direction": "upstream_to_published_bytes_to_downstream",
+              "downstream_repository": "FRP-Trace-Observatory",
+              "downstream_writeback": "forbidden",
+              "downstream_source_mutation": "forbidden",
+              "downstream_semantic_reimplementation": "forbidden",
+              "upstream_dependency_on_downstream_code": False,
+              "downstream_files_modified_by_m29": False,
+          }
+          for name, expected in expected_boundary.items():
+              if boundary.get(name) != expected:
+                  raise SystemExit(f"M29 integration boundary mismatch: {name}")
+
+          bundle = document(os.environ["M28_TRACE_BUNDLE"])
+          if bundle.get("status") != "PASS":
+              raise SystemExit("M28 canonical trace bundle is not PASS")
+          if bundle.get("canonical_ternary_domain") != [-1, 0, 1]:
+              raise SystemExit("M28 canonical ternary domain mismatch")
+          if bundle.get("scheduler_modes") != ["free", "7/1", "1/7"]:
+              raise SystemExit("M28 published scheduler mode inventory mismatch")
+          if bundle.get("ordering_rule") != (
+              "source_dataset_order_then_source_record_order"
+          ):
+              raise SystemExit("M28 published record ordering mismatch")
+          datasets = bundle.get("datasets")
+          if not isinstance(datasets, list):
+              raise SystemExit("M28 canonical trace datasets are missing")
+          if [item.get("dataset_id") for item in datasets] != EXPECTED_DATASET_IDS:
+              raise SystemExit("M28 canonical trace dataset order mismatch")
+
+          trace_documents = {
+              path: document(path) for path in EXPECTED_TRACE_EPOCHS
+          }
+          scheduler_counts = Counter()
+          scheduler_state_counts = Counter()
+          observed_ternary_values = set()
+          observed_temporal_modes = set()
+          actual_direct_transition_count = 0
+          record_count = 0
+
+          for path, trace in trace_documents.items():
+              if trace.get("execution_epochs") != EXPECTED_TRACE_EPOCHS[path]:
+                  raise SystemExit(f"execution epoch mismatch: {path}")
+              records = trace.get("records")
+              if not isinstance(records, list):
+                  raise SystemExit(f"trace records are missing: {path}")
+              if len(records) != EXPECTED_RECORD_COUNTS[path]:
+                  raise SystemExit(f"trace record count mismatch: {path}")
+              if trace.get("summary", {}).get("record_count") != len(records):
+                  raise SystemExit(f"trace summary count mismatch: {path}")
+
+              expected_sequence = list(range(len(records)))
+              if [record.get("sequence") for record in records] != expected_sequence:
+                  raise SystemExit(f"trace sequence order mismatch: {path}")
+
+              for record in records:
+                  record_count += 1
+                  scheduler = record.get("scheduler")
+                  if not isinstance(scheduler, dict):
+                      raise SystemExit(f"scheduler record is missing: {path}")
+                  mode = scheduler.get("mode")
+                  state = scheduler.get("state")
+                  if mode not in ALLOWED_STATES_BY_MODE:
+                      raise SystemExit(f"unknown scheduler mode in {path}: {mode}")
+                  if state not in ALLOWED_STATES_BY_MODE[mode]:
+                      raise SystemExit(
+                          f"scheduler state {state} is invalid for mode {mode}"
+                      )
+                  if scheduler.get("ticks_after") != (
+                      scheduler.get("ticks_before", -2) + 1
+                  ):
+                      raise SystemExit(f"scheduler tick relation mismatch: {path}")
+                  scheduler_counts[mode] += 1
+                  scheduler_state_counts[state] += 1
+                  if mode != "free":
+                      observed_temporal_modes.add(mode)
+
+                  events = record.get("events")
+                  if not isinstance(events, dict):
+                      raise SystemExit(f"event record is missing: {path}")
+                  if events.get("actual_direct_events") != 0:
+                      raise SystemExit(f"actual direct event detected: {path}")
+                  invariants = record.get("invariants")
+                  if not isinstance(invariants, dict) or not invariants.get(
+                      "all_pass"
+                  ):
+                      raise SystemExit(f"record invariant failure: {path}")
+
+                  for field in TERNARY_FIELDS:
+                      values = record.get(field)
+                      if not isinstance(values, list) or len(values) != 8:
+                          raise SystemExit(
+                              f"ternary vector boundary mismatch: {path}: {field}"
+                          )
+                      if any(value not in (-1, 0, 1) for value in values):
+                          raise SystemExit(
+                              f"ternary domain violation: {path}: {field}"
+                          )
+                      observed_ternary_values.update(values)
+
+                  before = record["retained_state_before"]
+                  after = record["retained_state_after"]
+                  for previous, current in zip(before, after):
+                      if (previous, current) in ((-1, 1), (1, -1)):
+                          actual_direct_transition_count += 1
+
+                  requests = record.get("requests")
+                  if not isinstance(requests, list) or len(requests) != 2:
+                      raise SystemExit(f"request lane boundary mismatch: {path}")
+                  if [request.get("lane") for request in requests] != [0, 1]:
+                      raise SystemExit(f"request lane order mismatch: {path}")
+                  for request in requests:
+                      target = request.get("target_state")
+                      if target not in (-1, 0, 1):
+                          raise SystemExit(f"request ternary target mismatch: {path}")
+                      observed_ternary_values.add(target)
+
+          if scheduler_counts != Counter(EXPECTED_SCHEDULER_COUNTS):
+              raise SystemExit(
+                  "complete scheduler mode count mismatch: "
+                  f"{dict(scheduler_counts)}"
+              )
+          if scheduler_state_counts != Counter(EXPECTED_SCHEDULER_STATE_COUNTS):
+              raise SystemExit(
+                  "complete scheduler state count mismatch: "
+                  f"{dict(scheduler_state_counts)}"
+              )
+          if observed_temporal_modes != set(
+              EXPECTED_CORE["temporal_scheduler_modes"]
+          ):
+              raise SystemExit(
+                  "complete temporal scheduler exposure mismatch: "
+                  f"{sorted(observed_temporal_modes)}"
+              )
+          if observed_ternary_values != {-1, 0, 1}:
+              raise SystemExit(
+                  "complete observed ternary domain mismatch: "
+                  f"{sorted(observed_ternary_values)}"
+              )
+          if actual_direct_transition_count != 0:
+              raise SystemExit("forbidden direct opposite transition detected")
+          if record_count != 100:
+              raise SystemExit("combined M16 trace record count mismatch")
+
+          datasets_by_id = {
+              dataset["dataset_id"]: dataset for dataset in datasets
+          }
+          for dataset_id, source_path in EXPECTED_SOURCE_BY_DATASET.items():
+              dataset = datasets_by_id[dataset_id]
+              trace = trace_documents[source_path]
+              if dataset.get("records") != trace.get("records"):
+                  raise SystemExit(
+                      f"published dataset record projection mismatch: {dataset_id}"
+                  )
+              if dataset.get("record_count") != len(trace["records"]):
+                  raise SystemExit(
+                      f"published dataset record count mismatch: {dataset_id}"
+                  )
+              source = dataset.get("source_artifact")
+              if not isinstance(source, dict):
+                  raise SystemExit(
+                      f"published source artifact record missing: {dataset_id}"
+                  )
+              if source.get("path") != source_path:
+                  raise SystemExit(
+                      f"published source artifact path mismatch: {dataset_id}"
+                  )
+              if source.get("raw_sha256") != EXPECTED_PATH_DIGESTS[source_path]:
+                  raise SystemExit(
+                      f"published source artifact digest mismatch: {dataset_id}"
+                  )
+              modes = dataset.get("observatory_modes")
+              if modes != [
+                  "artifact_auditor",
+                  "ternary_transition_visualizer",
+                  "trace_explorer",
+              ]:
+                  raise SystemExit(
+                      f"published Observatory mode routing mismatch: {dataset_id}"
+                  )
+
+          fixtures = document(os.environ["M28_FIXTURE_MANIFEST"])
+          fixture_records = fixtures.get("fixtures")
+          if not isinstance(fixture_records, list):
+              raise SystemExit("M28 fixture manifest records are missing")
+          fixtures_by_id = {
+              fixture["fixture_id"]: fixture for fixture in fixture_records
+          }
+          for fixture_id, source_path in (
+              ("m16-rtl-execution-trace", os.environ["M19_RTL_TRACE"]),
+              (
+                  "m16-fpga-preparation-execution-trace",
+                  os.environ["M19_FPGA_TRACE"],
+              ),
+          ):
+              fixture = fixtures_by_id.get(fixture_id)
+              if not isinstance(fixture, dict):
+                  raise SystemExit(f"M28 fixture is missing: {fixture_id}")
+              if fixture.get("artifact_path") != source_path:
+                  raise SystemExit(f"M28 fixture path mismatch: {fixture_id}")
+              if fixture.get("artifact_raw_sha256") != (
+                  EXPECTED_PATH_DIGESTS[source_path]
+              ):
+                  raise SystemExit(f"M28 fixture digest mismatch: {fixture_id}")
+              if fixture.get("copy_requirement") != "unchanged_upstream_bytes":
+                  raise SystemExit(f"M28 fixture copy boundary mismatch: {fixture_id}")
+
+          archive_path = os.environ["M30_ARCHIVE"]
+          required_archive_paths = (
+              os.environ["M19_RTL_TRACE"],
+              os.environ["M19_FPGA_TRACE"],
+              os.environ["M28_TRACE_BUNDLE"],
+              os.environ["M28_FIXTURE_MANIFEST"],
+              os.environ["M29_CONTRACT"],
+          )
+          with tarfile.open(archive_path, mode="r:gz") as archive:
+              members = archive.getmembers()
+              member_names = [member.name for member in members]
+              if len(member_names) != len(set(member_names)):
+                  raise SystemExit("duplicate member in M30 archival release")
+              for member in members:
+                  pure = PurePosixPath(member.name)
+                  if pure.is_absolute() or ".." in pure.parts:
+                      raise SystemExit(
+                          f"unsafe member in M30 archival release: {member.name}"
+                      )
+              for source_path in required_archive_paths:
+                  member_name = f"{EXPECTED_ARCHIVE_ROOT}/{source_path}"
+                  try:
+                      member = archive.getmember(member_name)
+                  except KeyError as exc:
+                      raise SystemExit(
+                          f"published M30 archive member is missing: {member_name}"
+                      ) from exc
+                  if not member.isfile() or member.issym() or member.islnk():
+                      raise SystemExit(
+                          f"published M30 archive member is not regular: {member_name}"
+                      )
+                  stream = archive.extractfile(member)
+                  if stream is None:
+                      raise SystemExit(
+                          f"published M30 archive member is unreadable: {member_name}"
+                      )
+                  archived_raw = stream.read()
+                  source_raw = raw(source_path)
+                  if archived_raw != source_raw:
+                      raise SystemExit(
+                          f"published M30 archive bytes differ: {member_name}"
+                      )
+
+          print("FRP M30 Observatory full core trace qualification: PASS")
+          print("balanced_ternary_notation=-1/0/1")
+          print("active_neutral_state=0")
+          print("temporal_scheduler_modes=1/7,7/1")
+          print("service_scheduler_mode=free")
+          print("opposite_transition_routes=-1/0/1,1/0/-1")
+          print("observed_ternary_domain=-1/0/1")
+          print("observed_1_7_records=17")
+          print("observed_7_1_records=64")
+          print("combined_m16_trace_records=100")
+          print("actual_direct_opposite_transitions=0")
+          print("downstream_writeback=forbidden")
+          PY
+
+      - name: Run focused upstream trace qualification tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest -v \
+            tests.test_frp_m19_m16_evidence \
+            tests.test_frp_m28_trace_observatory_upstream_interchange \
+            tests.test_frp_m29_system_integration_downstream_compatibility
+
+      - name: Publish the full core qualification summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "## FRP M30 Observatory Full Core Trace"
+            echo
+            echo "| Boundary | Qualified value |"
+            echo "|---|---|"
+            echo "| Balanced ternary kernel | \`-1/0/1\` |"
+            echo "| Active neutral state | \`0\` |"
+            echo "| Temporal scheduler modes | \`1/7\`, \`7/1\` |"
+            echo "| Service scheduler mode | \`free\` |"
+            echo "| Published M16 RTL records | \`96\` |"
+            echo "| Published M16 FPGA-preparation records | \`4\` |"
+            echo "| Observed \`1/7\` records | \`17\` |"
+            echo "| Observed \`7/1\` records | \`64\` |"
+            echo "| Direct opposite transitions | \`0\` |"
+            echo "| Observatory direction | upstream published bytes to downstream |"
+            echo "| Downstream writeback | forbidden |"
+            echo
+            echo "The complete core view is sourced from both published M16 traces."
+            echo "No missing scheduler mode is synthesized downstream."
+          } >> "$GITHUB_STEP_SUMMARY"
