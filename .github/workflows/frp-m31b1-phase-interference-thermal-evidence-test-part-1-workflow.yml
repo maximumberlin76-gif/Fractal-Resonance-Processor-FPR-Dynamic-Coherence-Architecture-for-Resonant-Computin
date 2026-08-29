@@ -1,0 +1,232 @@
+name: FRP M31B1 Phase-Interference Thermal Evidence Test Part 1 Workflow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m31b1-evidence-test-part-1-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish-m31-test-part-1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      M31_SOURCE_PATH: frp_m31_phase_interference_thermal_evidence.py
+      M31_SOURCE_SHA256: 1e4ccfd7b157cd2bac609c34dfec9da791653a31af7b29b75502c755807b9c62
+      M31_SOURCE_BYTES: "42092"
+      M31_TEST_PATH: tests/test_frp_m31_phase_interference_thermal_evidence.py
+      M31_TEST_SHA256: 647ccf9a5974b889a33be56dfcf45f47b51918aedae8ba57e78e07b0456ca6dc
+      M31_TEST_BYTES: "23428"
+      M31_TEST_PART_1_PATH: .frp-bootstrap/m31/test.py.bz2.b64.part01
+      M31_TEST_PART_1_SHA256: 396b1f42b9172acce2c6969acb16d684342330739e431c3bad4be6f1c1ba26fb
+      M31_TEST_PART_1_BYTES: "3492"
+      M31_TEST_PART_2_PATH: .frp-bootstrap/m31/test.py.bz2.b64.part02
+      M30_ARCHIVE_PATH: artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz
+      M30_ARCHIVE_SHA256: 05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa
+      M30_CORE_WORKFLOW_PATH: .github/workflows/frp-m30-observatory-full-core-trace-qualification-workflow.yml
+      M30_CORE_WORKFLOW_SHA256: 01ca22bc98f63d9d4ea4a58299d53ff58b410f3f2db94b81097d7cef3ad4dee7
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out the selected main revision
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+          persist-credentials: true
+
+      - name: Set up exact Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Validate the committed M31 producer boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          required = {
+              os.environ["M30_ARCHIVE_PATH"]: os.environ["M30_ARCHIVE_SHA256"],
+              os.environ["M30_CORE_WORKFLOW_PATH"]: os.environ[
+                  "M30_CORE_WORKFLOW_SHA256"
+              ],
+              os.environ["M31_SOURCE_PATH"]: os.environ["M31_SOURCE_SHA256"],
+          }
+          for name, expected in required.items():
+              path = Path(name)
+              if path.is_symlink() or not path.is_file():
+                  raise SystemExit(f"required producer boundary is missing: {name}")
+              if hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+                  raise SystemExit(f"producer boundary digest mismatch: {name}")
+
+          source = Path(os.environ["M31_SOURCE_PATH"])
+          if source.stat().st_size != int(os.environ["M31_SOURCE_BYTES"]):
+              raise SystemExit("M31 producer byte count mismatch")
+          compile(source.read_bytes(), str(source), "exec")
+
+          test = Path(os.environ["M31_TEST_PATH"])
+          part_1 = Path(os.environ["M31_TEST_PART_1_PATH"])
+          part_2 = Path(os.environ["M31_TEST_PART_2_PATH"])
+          if test.exists():
+              if test.is_symlink() or not test.is_file():
+                  raise SystemExit("invalid existing M31 qualification test")
+              raw = test.read_bytes()
+              if len(raw) != int(os.environ["M31_TEST_BYTES"]):
+                  raise SystemExit("existing M31 test byte count mismatch")
+              if hashlib.sha256(raw).hexdigest() != os.environ[
+                  "M31_TEST_SHA256"
+              ]:
+                  raise SystemExit("existing M31 test digest mismatch")
+              if part_1.exists() or part_2.exists():
+                  raise SystemExit("complete M31 test and stale payload coexist")
+              Path("/tmp/m31-test-already-complete").write_text(
+                  "PASS\n", encoding="ascii"
+              )
+          elif part_2.exists() and not part_1.exists():
+              raise SystemExit("M31 test payload part 2 exists before part 1")
+          print("Committed M31 producer boundary: PASS")
+          PY
+
+      - name: Install integrity-bound M31 qualification test payload part 1
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f /tmp/m31-test-already-complete ]]; then
+            echo "M31 qualification test is already installed."
+            exit 0
+          fi
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          payload_segments = (
+              """QlpoOTFBWSZTWezUjOAAGk5/gERUQABQ7//zP/f//r////5gGd7wKd6+vk8HeDjre+7dgDcvfNA2+NywvmU91fb7q7n3denrHzud72116J25OunQoqkqNLYC+vu3tlUtMsga+EkggmU8mjIaEbSm1T2jVPag1PU8jKBp6gA9QD1BkI0AgQTKMjU9QZNPUHlGgGgAAAASmgmkTRR6Jk1NMmI9IaGmgaDRoaeoaAAASaSQpkCnpoU9J7SZTNNIyA0GjIDRpo0NAARSCaBDSJtRtU9I9T1HlPUfqgNNGQyaGRkHlA00ESSNCaaNTJoCCepqnk02UhoNPU9R6jQABpoaLkBR25CdnmkcIQT2fdlEI/pHb28nlheOAwG4PeViyIqREkUj7Pk+L9NNG/E/7cMh2IHNPUyFylYsUlt8A2yA7sg91mmaSaiRN0FgosrFUlK2ipWKKKCilQKMiwaQsmXvq+TWp0Q4T2hlpYrEXQ5IigwQtgFRiGpGKI1M3t0oaITp2aWISjN6Wc9o3NaFY5Np6ZZxOKSFtE6yfX6Oyl9+9QABsikk+1n3kFCKT37arFO0M5OHd2Vnl7Yww4BDdKoMeTVGCqJ5A/29ngM5Hi/59f1OYuMBQsx9LB4Aoj+KXZ1yGIKV668/ws+W8AbIQOg7Ev1xh3n/vIZrJmMA83DohmFTBH6fwua9tO0z1SM3D1BDkVshXBmwpzU8gckMaj9OvZqaCZCsoV2tt+ZCt77NSB13t8YdSqJJiOWmNeBwM9PXbOIvtUYGI3xAUwCZXgI/rwMJwkcNeJIBXH22mJce7VGntnp2xjcslUIeUvXDMjVreTjcOvHc1j3Jmj4AwcG88bhzN4+/l+HjLjpnjyekC3tzUzJ9rg0MDmc1cnU8nkO3L3p50U/AFCKvb45IOC4QcOpf6crhNexUTUIKvsr84+XMDyoQN+QmJ1MwiqWbhxvYyRUSKSyRc3FIOnmeAibc0XZ7RhmuNx1IzVrpY4hseIvTvdxZZWpwlTgbl0Hb8yeYJ8qieZbNfozNHys87wfNQ2Xe7sg3MFqMailNjOPv6xNbVJgigYoMsZbFzBGs4ScZNYUYOqbJjqkXa4QwS5YDql1W3B3PKZ2S3kfiXDnD1RDcg9Olp/51cMDJsYtqKsMOO04BBfZeGm8O9891g5zCPERC1ccEmZEtpE27UmaSxjWI6FMuggomnKc5i77977O1pPB3kJisxrRSaEDqsPCaRoTaY7qY7lDGBrcx6fMut43OZP92emW8iYit3lmU1V49Jp3d3ak3leJxq67yxjCv52RBDujLrohlvmGVpuowSoVIlBUhLSZhIwdhJUUdrTysTFuVkXXfBU7kHiQsPI8cLZbMISDbizBFtj5Zo/CSWhFOLx9m4UEdoAGaEgDxk3G6YYB9k7BQg4PHvHRCw4h1b8139UGdVZlRmSUQzN09Ganomg73dDzpswLl7fB7N8z9wx72trAfVAK+zBgitOCIIHA3tjFO+DEdaE3TuCDQziEtNd0FgjEM78HHWfVHG5EZ0etSzCaTsJiD4jhuKcX8oMsXcyqbesbk/i5PTQ4cFGCjpu03wb8rlEsm0TYALNOfy9XWJBSm5mdDK88Pihe32sNWG8BseM1oJATDKIKp7joWjVKI4Pi61ePUQPhLLbAbcOURM9pPtH6nuTAXw9PAf0zDYbFzb664BHevC4VM9KvC3PXPD3jTsxR5e486i1qeVHHkb7HIPY9BUDVAAS""",
+              """6AhgwUyHdou4omuTd00ae4ReerwDgjChEuwsnBK8wuI7meb45ZVjSAXmx6TtCkB4JjCc+UOYA7yJLnNGoPPx0NNyXld0prGeWeObDAfcoZPyCEggZKCFGvC2fVWj6beBl8NMknpK8RSsLVnvrz4NfPfkJ4vutxpKyrWvLPLGJbtNr1AylCuQhnqJ65bKMyDe+Mp2ySbPbEFz1mCcNScZL0TTEEfKqYvaU7VvujXDBE2qg6RlsNKbqXnba20c5X3UaM5vd9yXjjGsI7rIkMO+1fCBlrkdK512VuOuWYz1krZ7bYo2aDhrlvjKS1cUloMnkvT0Vztbjba0kfKV9YPKA6wRoNOpmQkE+YoSPWEUI9nyOBfH1e6JDex1Z8DxZAl4cU6wsqbct4WIj6/cPT2A+pKg06QuHxANRJDBVDf8ev59Nk4/ZA5gU5oPCLmnfAKELwvUi88csFBtxAbFMARrR31ePttErGuAKRUIC8SYXgJI/QjwT/J9B6I7FgdBOv9vYE+rPnVYxYLBT0pa1DWAYGG4jlP2QJIHqiJ8Pcp5aie78/vAY5DxvOfPnaZHgD8U5i/BIlk07k6g4pkEkZwWYFoNm24oEEBahDim26zzGxAucTIxxOwn1pPLyr3eZul0JB/T+v4cwwFSQdgeZZXfVOfoYnunWK2EPYfXBTQQoDPdOtHXxdA+350+K6IH7QD1HYD3kE1HaaTbbAtDzDHwy3Gh8ErqPIfWyU8IOutRkI5nxbjoPiphr4rPfAtHXfU48TeECJ+ziujZm6RA4ftOnr8und7UBVUhVR0+QBqPFQKMBg+BA7XGCmU4EcLEgjNQ+SJD3/h+G+84VqtsLzUAyR/QKkWbKINwIZSWi0CSPgtcR4B0g3QbfCweEfrdtWMkV1HjeVwMR4ITk2zoa6SJI5jkknLRFFoSFujFvjGCtJ1Gu8W9hU1BHOzl5waxkU0SqpIdn2PMt8vvQeH4iA5R+PzWPTh28ef6enPX8Hbh+NFRARBVA7vVZrej9cqWIneb1vMfnxxrBGz+qiooawW/hQSAm3SmZ0JON7B7g/p7c9f0vqfgNJ9E+qgPha2MoXLispPdMIfEOLqi5PV+B8fq9HB1npdb977XuMvRy3DuDnfIOmu3iZZ68lxFuY2XQaDfepQxuDBin9FTltTYyTa87vtudo0nJTJooj61jMmiGyTaHdOqxTYYoy8SYhVQpEIQkIqLcdMmlzECHfV3uaGepglbaVtObQW5qwTDTSaww56iMGKhxAzUJ6N+H2ba2prqxTIJzTRGfDE1R0XFBJHVWVYAeiKuUSlAakT+OLCfqRiMOwuKsWncYh7ERI32UavKykyrELJSIVNqXNmDUcNSaUSZaHiAQxkn1jMhmnRl8D2bXNXxNcy+OMRYjjwwwbVQaF0twh5xG6kaWjRfpniFIoLJZ1dCtpARFFnvkEGjs9YTnMMKOIvfiokpNHB6QbEmBHDqDBCZtAtgw+2cb5esS7TLFiFEvjV52xF53mbpmYj0uKdjz84HV1Sy9g3JXpz0BdDXJZjKG98k9qRAgtbz1swgZJm2d68vpWKKkEWCm3gGYfZOsZEWUuF6vVhqb7ux1QSliwtOa8IIL5fnSLEGjQlD1D/QSETz6XJBJkpSRmzJR2KXFMbIggPrsk7CedvAuv9cpHXxHLGhb8lxEMYE2CbDZCtrFrTsnJhsChCurPJhxmUfjcK0RRdTjWJY31F7V8he2/yhuEEPmEva+a""",
+          )
+          segment_expectations = (
+              (
+                  1746,
+                  "63410c26d47aab8b05f231fbf0f4d9881171dc70e85a0e08dee8798e5b211883",
+              ),
+              (
+                  1746,
+                  "4f0afa0aea8d5a782a02edbd4c384815ded39e630f1ae52c92d5a6ee213f7d0b",
+              ),
+          )
+          raw_segments = []
+          for index, (segment, expectation) in enumerate(
+              zip(payload_segments, segment_expectations, strict=True), start=1
+          ):
+              raw_segment = segment.encode("ascii")
+              expected_bytes, expected_digest = expectation
+              if len(raw_segment) != expected_bytes:
+                  raise SystemExit(
+                      f"M31 test payload part 1 segment {index} byte count mismatch"
+                  )
+              if hashlib.sha256(raw_segment).hexdigest() != expected_digest:
+                  raise SystemExit(
+                      f"M31 test payload part 1 segment {index} digest mismatch"
+                  )
+              raw_segments.append(raw_segment)
+          raw = b"".join(raw_segments)
+          if len(raw) != int(os.environ["M31_TEST_PART_1_BYTES"]):
+              raise SystemExit("M31 test payload part 1 byte count mismatch")
+          if hashlib.sha256(raw).hexdigest() != os.environ[
+              "M31_TEST_PART_1_SHA256"
+          ]:
+              raise SystemExit("M31 test payload part 1 digest mismatch")
+          destination = Path(os.environ["M31_TEST_PART_1_PATH"])
+          if destination.exists() and (
+              destination.is_symlink() or not destination.is_file()
+          ):
+              raise SystemExit("refusing non-regular M31 test part 1 destination")
+          destination.parent.mkdir(parents=True, exist_ok=True)
+          if destination.parent.is_symlink():
+              raise SystemExit("refusing symlink M31 bootstrap directory")
+          destination.write_bytes(raw)
+          print("M31 qualification test payload part 1 installed: PASS")
+          PY
+
+      - name: Validate the exact M31 test payload part 1 boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f /tmp/m31-test-already-complete ]]; then
+            exit 0
+          fi
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          part = Path(os.environ["M31_TEST_PART_1_PATH"])
+          if part.is_symlink() or not part.is_file():
+              raise SystemExit("M31 test payload part 1 is missing")
+          raw = part.read_bytes()
+          if len(raw) != int(os.environ["M31_TEST_PART_1_BYTES"]):
+              raise SystemExit("M31 test payload part 1 byte count mismatch")
+          if hashlib.sha256(raw).hexdigest() != os.environ[
+              "M31_TEST_PART_1_SHA256"
+          ]:
+              raise SystemExit("M31 test payload part 1 digest mismatch")
+          allowed = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
+          if any(byte not in allowed for byte in raw):
+              raise SystemExit("M31 test payload part 1 is not strict Base64 text")
+          print("M31 qualification test payload part 1 boundary: PASS")
+          PY
+
+      - name: Commit and publish only M31 test payload part 1
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f /tmp/m31-test-already-complete ]]; then
+            echo "M31 qualification test is already complete; no commit is required."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$M31_TEST_PART_1_PATH"
+          if git diff --cached --quiet; then
+            echo "M31 test payload part 1 is already committed."
+            exit 0
+          fi
+          test "$(git diff --cached --name-only)" = "$M31_TEST_PART_1_PATH"
+          git commit \
+            -m "Add M31 qualification test payload part 1" \
+            -m "Stage the first integrity-bound mobile-safe payload segment for the focused M31 phase-interference, active-zero, full-core trace, thermal-contour separation, deterministic publication, and read-only Observatory qualification test."
+          git push origin "HEAD:$GITHUB_REF_NAME"
+
+      - name: Publish M31B1 summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "## FRP M31B1 Qualification Test"
+            echo
+            echo "| Boundary | Value |"
+            echo "|---|---|"
+            echo "| Payload segment | 1 of 2 |"
+            echo "| Segment bytes | 3492 |"
+            echo "| Final test | tests/test_frp_m31_phase_interference_thermal_evidence.py |"
+            echo "| Focused tests | 51 |"
+            echo "| Balanced ternary kernel | -1/0/1 |"
+            echo "| Active neutral state | 0 |"
+            echo "| Temporal scheduler modes | 1/7, 7/1 |"
+            echo "| Thermal contours | separate |"
+            echo
+            echo "Run M31B2 manually after this workflow is green."
+          } >> "$GITHUB_STEP_SUMMARY"
