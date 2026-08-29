@@ -1,0 +1,297 @@
+name: FRP M31 Complete
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m31-complete-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  qualify-and-publish-m31:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      M31_SOURCE_PATH: frp_m31_phase_interference_thermal_evidence.py
+      M31_SOURCE_SHA256: 1e4ccfd7b157cd2bac609c34dfec9da791653a31af7b29b75502c755807b9c62
+      M31_SOURCE_BYTES: "42092"
+      M31_TEST_PATH: tests/test_frp_m31_phase_interference_thermal_evidence.py
+      M31_TEST_SHA256: f64214a9c785d8cf579e3a6a5afa6e364772d8972775cc010a3dba89d852c1ed
+      M31_TEST_BYTES: "22370"
+      M31_SCHEMA_PATH: schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json
+      M31_SCHEMA_SHA256: 53d79d45d70753ccd24c3dc4c97af6fee481f86a9d7cdca7ef78b486c76479f7
+      M31_SCHEMA_BYTES: "1468"
+      M31_EVIDENCE_PATH: artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json
+      M31_EVIDENCE_SHA256: bdaa676acbfb09d86d848070e8a2673c5ce6902657a0b13b2e4293383bec8b42
+      M31_EVIDENCE_BYTES: "39993"
+      M31_MANIFEST_PATH: artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json
+      M31_MANIFEST_SHA256: 80f0841d0041cd22c2f76175b6139e601aede7b69823356ae1fefbce5f793e7c
+      M31_MANIFEST_BYTES: "828"
+      M31_QUALIFICATION_PATH: artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json
+      M31_QUALIFICATION_SHA256: 4c2446f954e01ec0aa37cc6c0fc70cf4a87ec565c450628e31b0efcac9160224
+      M31_QUALIFICATION_BYTES: "1512"
+      REQUIREMENTS_PATH: requirements.txt
+      REQUIREMENTS_SHA256: 75b9bd6237473a063c852298fee983bdfcf550cb1cc828a237afaf726cccc3c7
+      REQUIREMENTS_BYTES: "33"
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+          persist-credentials: true
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Validate exact M31 sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import ast
+          import hashlib
+          import os
+          from pathlib import Path
+
+          specifications = (
+              (
+                  Path(os.environ["REQUIREMENTS_PATH"]),
+                  int(os.environ["REQUIREMENTS_BYTES"]),
+                  os.environ["REQUIREMENTS_SHA256"],
+              ),
+              (
+                  Path(os.environ["M31_SOURCE_PATH"]),
+                  int(os.environ["M31_SOURCE_BYTES"]),
+                  os.environ["M31_SOURCE_SHA256"],
+              ),
+              (
+                  Path(os.environ["M31_TEST_PATH"]),
+                  int(os.environ["M31_TEST_BYTES"]),
+                  os.environ["M31_TEST_SHA256"],
+              ),
+          )
+          for path, expected_bytes, expected_digest in specifications:
+              if path.is_symlink() or not path.is_file():
+                  raise SystemExit(f"required M31 source is missing: {path}")
+              raw = path.read_bytes()
+              if len(raw) != expected_bytes:
+                  raise SystemExit(f"M31 source byte mismatch: {path}")
+              if hashlib.sha256(raw).hexdigest() != expected_digest:
+                  raise SystemExit(f"M31 source digest mismatch: {path}")
+
+          source = Path(os.environ["M31_SOURCE_PATH"])
+          test = Path(os.environ["M31_TEST_PATH"])
+          compile(source.read_bytes(), str(source), "exec")
+          test_text = test.read_text(encoding="utf-8")
+          compile(test_text, str(test), "exec")
+          forbidden = "-1/0/" + chr(43) + "1"
+          if forbidden in source.read_text(encoding="utf-8") or forbidden in test_text:
+              raise SystemExit("forbidden ternary notation in M31 sources")
+          tree = ast.parse(test_text, filename=str(test))
+          tests = [
+              node.name
+              for item in tree.body
+              if isinstance(item, ast.ClassDef)
+              for node in item.body
+              if isinstance(node, ast.FunctionDef)
+              and node.name.startswith("test_")
+          ]
+          if len(tests) != 60 or len(set(tests)) != 60:
+              raise SystemExit("M31 test inventory mismatch")
+          print("Exact M31 source and 60-test boundary: PASS")
+          PY
+
+      - name: Install exact dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install \
+            --disable-pip-version-check \
+            -r "$REQUIREMENTS_PATH"
+          python - <<'PY'
+          from importlib.metadata import version
+
+          import numpy
+
+          print(f"jsonschema={version('jsonschema')}")
+          print(f"numpy={numpy.__version__}")
+          print("M31 dependencies: PASS")
+          PY
+
+      - name: Run all 60 M31 qualification tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest \
+            tests.test_frp_m31_phase_interference_thermal_evidence \
+            -v 2>&1 | tee /tmp/m31-tests.log
+          grep -F "Ran 60 tests" /tmp/m31-tests.log
+          grep -Fx "OK" /tmp/m31-tests.log
+
+      - name: Reproduce M31 evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir /tmp/m31-replay-a
+          mkdir /tmp/m31-replay-b
+          python "$M31_SOURCE_PATH" \
+            --generate \
+            --repository-root . \
+            --output-root /tmp/m31-replay-a \
+            --output /tmp/m31-replay-a.json
+          python "$M31_SOURCE_PATH" \
+            --generate \
+            --repository-root . \
+            --output-root /tmp/m31-replay-b \
+            --output /tmp/m31-replay-b.json
+          diff --recursive --brief /tmp/m31-replay-a /tmp/m31-replay-b
+          cmp --silent /tmp/m31-replay-a.json /tmp/m31-replay-b.json
+          test "$(find /tmp/m31-replay-a -type f | wc -l)" -eq 4
+          test "$(find /tmp/m31-replay-b -type f | wc -l)" -eq 4
+          echo "Two byte-identical M31 evidence sets: PASS"
+
+      - name: Generate and verify complete M31 publication
+        shell: bash
+        run: |
+          set -euo pipefail
+          python "$M31_SOURCE_PATH" \
+            --generate \
+            --repository-root . \
+            --output-root . \
+            --output /tmp/m31-generation.json
+          python "$M31_SOURCE_PATH" \
+            --verify \
+            --repository-root . \
+            --output-root . \
+            --output /tmp/m31-verification.json
+          python "$M31_SOURCE_PATH" \
+            --self-test \
+            --repository-root . \
+            --output /tmp/m31-self-test.json
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          specifications = (
+              (
+                  Path(os.environ["M31_SCHEMA_PATH"]),
+                  int(os.environ["M31_SCHEMA_BYTES"]),
+                  os.environ["M31_SCHEMA_SHA256"],
+              ),
+              (
+                  Path(os.environ["M31_EVIDENCE_PATH"]),
+                  int(os.environ["M31_EVIDENCE_BYTES"]),
+                  os.environ["M31_EVIDENCE_SHA256"],
+              ),
+              (
+                  Path(os.environ["M31_MANIFEST_PATH"]),
+                  int(os.environ["M31_MANIFEST_BYTES"]),
+                  os.environ["M31_MANIFEST_SHA256"],
+              ),
+              (
+                  Path(os.environ["M31_QUALIFICATION_PATH"]),
+                  int(os.environ["M31_QUALIFICATION_BYTES"]),
+                  os.environ["M31_QUALIFICATION_SHA256"],
+              ),
+          )
+          for path, expected_bytes, expected_digest in specifications:
+              if path.is_symlink() or not path.is_file():
+                  raise SystemExit(f"M31 output is missing: {path}")
+              raw = path.read_bytes()
+              if len(raw) != expected_bytes:
+                  raise SystemExit(f"M31 output byte mismatch: {path}")
+              if hashlib.sha256(raw).hexdigest() != expected_digest:
+                  raise SystemExit(f"M31 output digest mismatch: {path}")
+              replay = Path("/tmp/m31-replay-a") / path
+              if raw != replay.read_bytes():
+                  raise SystemExit(f"M31 output replay mismatch: {path}")
+
+          generation = json.loads(
+              Path("/tmp/m31-generation.json").read_text(encoding="utf-8")
+          )
+          verification = json.loads(
+              Path("/tmp/m31-verification.json").read_text(encoding="utf-8")
+          )
+          self_test = json.loads(
+              Path("/tmp/m31-self-test.json").read_text(encoding="utf-8")
+          )
+          if generation.get("status") != "PASS":
+              raise SystemExit("M31 generation failed")
+          if verification.get("status") != "PASS":
+              raise SystemExit("M31 verification failed")
+          if self_test.get("status") != "PASS":
+              raise SystemExit("M31 self-test failed")
+          if self_test.get("evidence_sha256") != os.environ[
+              "M31_EVIDENCE_SHA256"
+          ]:
+              raise SystemExit("M31 self-test evidence digest mismatch")
+          print("Complete M31 publication: PASS")
+          PY
+
+      - name: Commit only canonical M31 evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- \
+            "$M31_EVIDENCE_PATH" \
+            "$M31_MANIFEST_PATH" \
+            "$M31_QUALIFICATION_PATH" \
+            "$M31_SCHEMA_PATH"
+          if git diff --cached --quiet; then
+            test -z "$(git diff --name-only)"
+            test -z "$(git ls-files --others --exclude-standard)"
+            echo "Canonical M31 evidence is already committed."
+            exit 0
+          fi
+          expected="$(printf '%s\n' \
+            "$M31_EVIDENCE_PATH" \
+            "$M31_MANIFEST_PATH" \
+            "$M31_QUALIFICATION_PATH" \
+            "$M31_SCHEMA_PATH")"
+          test "$(git diff --cached --name-only)" = "$expected"
+          test -z "$(git diff --name-only)"
+          test -z "$(git ls-files --others --exclude-standard)"
+          git commit \
+            -m "Publish complete M31 evidence" \
+            -m "Publish the exact deterministic M31 schema, phase-interference active-zero thermal evidence, manifest, and qualification record after all 60 tests and byte-identical replay checks pass."
+          git push origin "HEAD:$GITHUB_REF_NAME"
+
+      - name: Publish M31 summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "## FRP M31 Complete"
+            echo
+            echo "| Boundary | Result |"
+            echo "|---|---|"
+            echo "| Qualification tests | 60/60 PASS |"
+            echo "| Published evidence files | 4 |"
+            echo "| Full-core records | 100 |"
+            echo "| Cell observations | 800 |"
+            echo "| Active-zero observations | 702 |"
+            echo "| Direct opposite transitions | 0 |"
+            echo "| Balanced ternary kernel | -1/0/1 |"
+            echo "| Historical and current thermal contours | separate |"
+            echo "| Physical-temperature claim | absent |"
+            echo "| Observatory writeback | forbidden |"
+            echo
+            echo "M31 complete qualification and publication: PASS"
+          } >> "$GITHUB_STEP_SUMMARY"
