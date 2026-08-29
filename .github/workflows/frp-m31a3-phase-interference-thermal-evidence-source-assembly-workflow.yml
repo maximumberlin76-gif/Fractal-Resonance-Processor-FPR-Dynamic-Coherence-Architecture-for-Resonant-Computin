@@ -1,0 +1,302 @@
+name: FRP M31A3 Phase-Interference Thermal Evidence Source Assembly Workflow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m31a3-evidence-source-assembly-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  assemble-m31-evidence-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      M31_SOURCE_PATH: frp_m31_phase_interference_thermal_evidence.py
+      M31_SOURCE_SHA256: 1e4ccfd7b157cd2bac609c34dfec9da791653a31af7b29b75502c755807b9c62
+      M31_SOURCE_BYTES: "42092"
+      M31_PART_1_PATH: .frp-bootstrap/m31/source.py.bz2.b64.part01
+      M31_PART_1_SHA256: de590de358d074549d6efbdcb271e8163a0529d603b389489cbe52388423865b
+      M31_PART_1_BYTES: "6000"
+      M31_PART_2_PATH: .frp-bootstrap/m31/source.py.bz2.b64.part02
+      M31_PART_2_SHA256: 5cdd8f05bfd21a8d7839c8d9426c32248569459ce3f4785249b24ddbf3f75f53
+      M31_PART_2_BYTES: "6028"
+      M31_BASE64_BYTES: "12028"
+      M31_COMPRESSED_SHA256: 774b992661c58bb1d2220a8b51eba6501057dd0522464a75160a46e298f0d970
+      M31_COMPRESSED_BYTES: "9020"
+      M31_EVIDENCE_SHA256: bdaa676acbfb09d86d848070e8a2673c5ce6902657a0b13b2e4293383bec8b42
+      M30_ARCHIVE_PATH: artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz
+      M30_ARCHIVE_SHA256: 05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa
+      M30_CORE_WORKFLOW_PATH: .github/workflows/frp-m30-observatory-full-core-trace-qualification-workflow.yml
+      M30_CORE_WORKFLOW_SHA256: 01ca22bc98f63d9d4ea4a58299d53ff58b410f3f2db94b81097d7cef3ad4dee7
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out the selected main revision
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+          persist-credentials: true
+
+      - name: Set up exact Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Validate the complete sequential M31 source payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          required = {
+              os.environ["M30_ARCHIVE_PATH"]: os.environ["M30_ARCHIVE_SHA256"],
+              os.environ["M30_CORE_WORKFLOW_PATH"]: os.environ[
+                  "M30_CORE_WORKFLOW_SHA256"
+              ],
+          }
+          for name, expected in required.items():
+              path = Path(name)
+              if path.is_symlink() or not path.is_file():
+                  raise SystemExit(f"required M30 boundary is missing: {name}")
+              if hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+                  raise SystemExit(f"M30 boundary digest mismatch: {name}")
+
+          source = Path(os.environ["M31_SOURCE_PATH"])
+          parts = (
+              (
+                  Path(os.environ["M31_PART_1_PATH"]),
+                  int(os.environ["M31_PART_1_BYTES"]),
+                  os.environ["M31_PART_1_SHA256"],
+              ),
+              (
+                  Path(os.environ["M31_PART_2_PATH"]),
+                  int(os.environ["M31_PART_2_BYTES"]),
+                  os.environ["M31_PART_2_SHA256"],
+              ),
+          )
+          if source.exists():
+              if source.is_symlink() or not source.is_file():
+                  raise SystemExit("invalid existing M31 producer source")
+              raw = source.read_bytes()
+              if len(raw) != int(os.environ["M31_SOURCE_BYTES"]):
+                  raise SystemExit("existing M31 producer byte count mismatch")
+              if hashlib.sha256(raw).hexdigest() != os.environ[
+                  "M31_SOURCE_SHA256"
+              ]:
+                  raise SystemExit("existing M31 producer digest mismatch")
+              if any(path.exists() for path, _, _ in parts):
+                  raise SystemExit("assembled M31 source and stale parts coexist")
+              Path("/tmp/m31-source-already-complete").write_text(
+                  "PASS\n", encoding="ascii"
+              )
+          else:
+              for path, expected_bytes, expected_digest in parts:
+                  if path.is_symlink() or not path.is_file():
+                      raise SystemExit(f"M31 payload segment is missing: {path}")
+                  raw = path.read_bytes()
+                  if len(raw) != expected_bytes:
+                      raise SystemExit(
+                          f"M31 payload segment byte count mismatch: {path}"
+                      )
+                  if hashlib.sha256(raw).hexdigest() != expected_digest:
+                      raise SystemExit(
+                          f"M31 payload segment digest mismatch: {path}"
+                      )
+          print("Complete sequential M31 source payload: PASS")
+          PY
+
+      - name: Assemble the complete M31 evidence producer source
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f /tmp/m31-source-already-complete ]]; then
+            echo "M31 producer source is already assembled."
+            exit 0
+          fi
+          python - <<'PY'
+          import base64
+          import binascii
+          import bz2
+          import hashlib
+          import os
+          from pathlib import Path
+
+          part_1 = Path(os.environ["M31_PART_1_PATH"]).read_bytes()
+          part_2 = Path(os.environ["M31_PART_2_PATH"]).read_bytes()
+          encoded = part_1 + part_2
+          if len(encoded) != int(os.environ["M31_BASE64_BYTES"]):
+              raise SystemExit("combined M31 Base64 byte count mismatch")
+          try:
+              compressed = base64.b64decode(encoded, validate=True)
+          except binascii.Error as exc:
+              raise SystemExit("combined M31 Base64 validation failed") from exc
+          if len(compressed) != int(os.environ["M31_COMPRESSED_BYTES"]):
+              raise SystemExit("M31 compressed byte count mismatch")
+          if hashlib.sha256(compressed).hexdigest() != os.environ[
+              "M31_COMPRESSED_SHA256"
+          ]:
+              raise SystemExit("M31 compressed digest mismatch")
+          try:
+              source = bz2.decompress(compressed)
+          except OSError as exc:
+              raise SystemExit("M31 bzip2 validation failed") from exc
+          if len(source) != int(os.environ["M31_SOURCE_BYTES"]):
+              raise SystemExit("M31 producer source byte count mismatch")
+          if hashlib.sha256(source).hexdigest() != os.environ[
+              "M31_SOURCE_SHA256"
+          ]:
+              raise SystemExit("M31 producer source digest mismatch")
+          destination = Path(os.environ["M31_SOURCE_PATH"])
+          if destination.exists() and (
+              destination.is_symlink() or not destination.is_file()
+          ):
+              raise SystemExit("refusing non-regular M31 source destination")
+          destination.write_bytes(source)
+          print("Complete M31 evidence producer source assembled: PASS")
+          PY
+
+      - name: Qualify the complete M31 producer semantics
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile "$M31_SOURCE_PATH"
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          path = Path(os.environ["M31_SOURCE_PATH"])
+          raw = path.read_bytes()
+          if len(raw) != int(os.environ["M31_SOURCE_BYTES"]):
+              raise SystemExit("installed M31 producer byte count mismatch")
+          if hashlib.sha256(raw).hexdigest() != os.environ[
+              "M31_SOURCE_SHA256"
+          ]:
+              raise SystemExit("installed M31 producer digest mismatch")
+          text = raw.decode("utf-8")
+          if "-1/0/+1" in text:
+              raise SystemExit("forbidden ternary notation in M31 producer")
+          required = (
+              '"balanced_ternary_notation": "-1/0/1"',
+              '"semantic_values": [-1, 0, 1]',
+              '"active_neutral_state": 0',
+              '"temporal_scheduler_modes": ["1/7", "7/1"]',
+              '"classical_bit_addition_primary_mechanism": False',
+              '"primary_computational_organization"',
+              '"retained_relative_phase_interference_and_resonant_selection"',
+              '"physical_temperature_measurement": False',
+              '"historical_and_current_contours_separate": True',
+              '"downstream_writeback": "forbidden"',
+          )
+          missing = [item for item in required if item not in text]
+          if missing:
+              raise SystemExit(f"M31 producer semantic boundary missing: {missing}")
+          print("Complete M31 producer semantic boundary: PASS")
+          PY
+          python "$M31_SOURCE_PATH"             --self-test             --repository-root .             --output /tmp/m31-source-self-test.json
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          result = json.loads(
+              Path("/tmp/m31-source-self-test.json").read_text(encoding="utf-8")
+          )
+          if result.get("status") != "PASS":
+              raise SystemExit("M31 producer self-test failed")
+          if result.get("evidence_sha256") != os.environ[
+              "M31_EVIDENCE_SHA256"
+          ]:
+              raise SystemExit("M31 producer evidence digest mismatch")
+          checks = result.get("checks", {})
+          if checks.get("classical_bit_addition_primary_mechanism") is not False:
+              raise SystemExit("M31 computation mechanism check failed")
+          if not checks.get("active_zero_is_computational"):
+              raise SystemExit("M31 active-zero computation check failed")
+          if not checks.get("thermal_contours_separate"):
+              raise SystemExit("M31 thermal contour separation failed")
+          print("Complete M31 producer self-test: PASS")
+          PY
+
+      - name: Remove the temporary mobile-safe payload segments
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f /tmp/m31-source-already-complete ]]; then
+            exit 0
+          fi
+          python - <<'PY'
+          import os
+          from pathlib import Path
+
+          part_1 = Path(os.environ["M31_PART_1_PATH"])
+          part_2 = Path(os.environ["M31_PART_2_PATH"])
+          for path in (part_1, part_2):
+              if path.is_symlink() or not path.is_file():
+                  raise SystemExit(f"refusing invalid M31 payload cleanup: {path}")
+              path.unlink()
+          parent = part_1.parent
+          if parent.exists() and not any(parent.iterdir()):
+              parent.rmdir()
+          bootstrap = parent.parent
+          if bootstrap.exists() and not any(bootstrap.iterdir()):
+              bootstrap.rmdir()
+          print("Temporary M31 payload segments removed: PASS")
+          PY
+
+      - name: Commit and publish only the assembled M31 producer
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A --             "$M31_PART_1_PATH"             "$M31_PART_2_PATH"             "$M31_SOURCE_PATH"
+          if git diff --cached --quiet; then
+            echo "M31 evidence producer source is already committed."
+            exit 0
+          fi
+          expected="$(printf '%s\n'             "$M31_PART_1_PATH"             "$M31_PART_2_PATH"             "$M31_SOURCE_PATH")"
+          test "$(git diff --cached --name-only)" = "$expected"
+          git commit -m "Add M31 phase-interference thermal evidence producer" -m "Assemble the integrity-verified M31 producer for phase-organized computation, active neutral state 0, complete -1/0/1 core trace evidence, and scoped ternary-binary thermal comparison. Preserve temporal schedulers 1/7 and 7/1, the separate free service mode, distinct historical and current thermal contours, absence of universal winner assertions, and the one-way read-only Observatory publication boundary."
+          git push origin "HEAD:$GITHUB_REF_NAME"
+
+      - name: Publish M31A3 summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "## FRP M31A3 Evidence Producer Source"
+            echo
+            echo "| Boundary | Qualified value |"
+            echo "|---|---|"
+            echo "| Producer source | frp_m31_phase_interference_thermal_evidence.py |"
+            echo "| Source bytes | 42092 |"
+            echo "| Evidence digest | bdaa676acbfb09d86d848070e8a2673c5ce6902657a0b13b2e4293383bec8b42 |"
+            echo "| Primary computation | retained relative-phase interference and resonant selection |"
+            echo "| Classical bit addition as primary mechanism | false |"
+            echo "| Balanced ternary kernel | -1/0/1 |"
+            echo "| Active neutral state | 0 |"
+            echo "| Temporal scheduler modes | 1/7, 7/1 |"
+            echo "| Published core records | 100 |"
+            echo "| Historical benchmark | reproduced twice, byte-identical |"
+            echo "| Binary / active-neutral ternary heat_peak ratio | 15.6923076923 |"
+            echo "| Historical relative reduction | 93.63% |"
+            echo "| Physical temperature claim | absent |"
+            echo "| Thermal contours | separate |"
+            echo "| Observatory writeback | forbidden |"
+            echo
+            echo "M31 producer source assembly and self-test: PASS"
+          } >> "$GITHUB_STEP_SUMMARY"
