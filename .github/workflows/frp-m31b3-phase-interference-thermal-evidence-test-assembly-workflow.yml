@@ -1,0 +1,319 @@
+name: FRP M31B3 Phase-Interference Thermal Evidence Test Assembly Workflow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m31b3-evidence-test-assembly-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  assemble-m31-evidence-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      M31_SOURCE_PATH: frp_m31_phase_interference_thermal_evidence.py
+      M31_SOURCE_SHA256: 1e4ccfd7b157cd2bac609c34dfec9da791653a31af7b29b75502c755807b9c62
+      M31_SOURCE_BYTES: "42092"
+      M31_TEST_PATH: tests/test_frp_m31_phase_interference_thermal_evidence.py
+      M31_TEST_SHA256: f64214a9c785d8cf579e3a6a5afa6e364772d8972775cc010a3dba89d852c1ed
+      M31_TEST_BYTES: "22370"
+      M31_PART_1_PATH: .frp-bootstrap/m31/test.py.bz2.b64.part01
+      M31_PART_1_SHA256: 02ef4a01ce6d53184c100e1a05279ded16c7225bc1b4f64c322c4a36f1a7f83e
+      M31_PART_1_BYTES: "3320"
+      M31_PART_2_PATH: .frp-bootstrap/m31/test.py.bz2.b64.part02
+      M31_PART_2_SHA256: 61cd1639c0dff1b574872ab2ff065d717108fdd44d2b50509ba27971302059de
+      M31_PART_2_BYTES: "3324"
+      M31_BASE64_SHA256: 979b98dd577a5ee2e3d280b2e77b9e814fb2e723e3f6865f5a373aa9c62cd3e5
+      M31_BASE64_BYTES: "6644"
+      M31_COMPRESSED_SHA256: 5e418f30a075e324fd389d4b743b5bfb44e3209cbde183fbb362eed5efa27be6
+      M31_COMPRESSED_BYTES: "4982"
+      REQUIREMENTS_PATH: requirements.txt
+      REQUIREMENTS_SHA256: 75b9bd6237473a063c852298fee983bdfcf550cb1cc828a237afaf726cccc3c7
+      REQUIREMENTS_BYTES: "33"
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out the selected main revision
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+          persist-credentials: true
+
+      - name: Set up exact Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install integrity-bound repository dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          path = Path(os.environ["REQUIREMENTS_PATH"])
+          if path.is_symlink() or not path.is_file():
+              raise SystemExit("required dependency declaration is missing")
+          raw = path.read_bytes()
+          if len(raw) != int(os.environ["REQUIREMENTS_BYTES"]):
+              raise SystemExit("dependency declaration byte count mismatch")
+          if hashlib.sha256(raw).hexdigest() != os.environ[
+              "REQUIREMENTS_SHA256"
+          ]:
+              raise SystemExit("dependency declaration digest mismatch")
+          print("Exact dependency declaration: PASS")
+          PY
+          python -m pip install \
+            --disable-pip-version-check \
+            -r "$REQUIREMENTS_PATH"
+          python - <<'PY'
+          from importlib.metadata import version
+
+          import numpy
+
+          print(f"jsonschema={version('jsonschema')}")
+          print(f"numpy={numpy.__version__}")
+          print("M31 test runtime dependencies: PASS")
+          PY
+
+      - name: Validate the complete two-part M31 test payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          def exact(path: Path, expected_bytes: int, expected_digest: str) -> bool:
+              if path.is_symlink() or not path.is_file():
+                  return False
+              raw = path.read_bytes()
+              return (
+                  len(raw) == expected_bytes
+                  and hashlib.sha256(raw).hexdigest() == expected_digest
+              )
+
+          source = Path(os.environ["M31_SOURCE_PATH"])
+          if not exact(
+              source,
+              int(os.environ["M31_SOURCE_BYTES"]),
+              os.environ["M31_SOURCE_SHA256"],
+          ):
+              raise SystemExit("committed M31 producer boundary mismatch")
+
+          test = Path(os.environ["M31_TEST_PATH"])
+          parts = (
+              (
+                  Path(os.environ["M31_PART_1_PATH"]),
+                  int(os.environ["M31_PART_1_BYTES"]),
+                  os.environ["M31_PART_1_SHA256"],
+              ),
+              (
+                  Path(os.environ["M31_PART_2_PATH"]),
+                  int(os.environ["M31_PART_2_BYTES"]),
+                  os.environ["M31_PART_2_SHA256"],
+              ),
+          )
+          if test.exists():
+              if not exact(
+                  test,
+                  int(os.environ["M31_TEST_BYTES"]),
+                  os.environ["M31_TEST_SHA256"],
+              ):
+                  raise SystemExit("existing M31 test source boundary mismatch")
+              if any(path.exists() for path, _, _ in parts):
+                  raise SystemExit("assembled M31 test and stale payload coexist")
+              Path("/tmp/m31-test-already-complete").write_text(
+                  "PASS\n", encoding="ascii"
+              )
+          else:
+              for path, expected_bytes, expected_digest in parts:
+                  if not exact(path, expected_bytes, expected_digest):
+                      raise SystemExit(f"M31 test payload mismatch: {path}")
+          print("Complete two-part M31 test payload: PASS")
+          PY
+
+      - name: Assemble the complete M31 qualification test source
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f /tmp/m31-test-already-complete ]]; then
+            echo "M31 qualification test source is already assembled."
+            exit 0
+          fi
+          python - <<'PY'
+          import ast
+          import base64
+          import binascii
+          import bz2
+          import hashlib
+          import os
+          from pathlib import Path
+
+          part_1 = Path(os.environ["M31_PART_1_PATH"]).read_bytes()
+          part_2 = Path(os.environ["M31_PART_2_PATH"]).read_bytes()
+          encoded = part_1 + part_2
+          if len(encoded) != int(os.environ["M31_BASE64_BYTES"]):
+              raise SystemExit("combined M31 test Base64 byte mismatch")
+          if hashlib.sha256(encoded).hexdigest() != os.environ[
+              "M31_BASE64_SHA256"
+          ]:
+              raise SystemExit("combined M31 test Base64 digest mismatch")
+          try:
+              compressed = base64.b64decode(encoded, validate=True)
+          except binascii.Error as exc:
+              raise SystemExit("combined M31 test Base64 validation failed") from exc
+          if len(compressed) != int(os.environ["M31_COMPRESSED_BYTES"]):
+              raise SystemExit("M31 test compressed byte mismatch")
+          if hashlib.sha256(compressed).hexdigest() != os.environ[
+              "M31_COMPRESSED_SHA256"
+          ]:
+              raise SystemExit("M31 test compressed digest mismatch")
+          try:
+              source = bz2.decompress(compressed)
+          except OSError as exc:
+              raise SystemExit("M31 test bzip2 validation failed") from exc
+          if len(source) != int(os.environ["M31_TEST_BYTES"]):
+              raise SystemExit("M31 test source byte mismatch")
+          if hashlib.sha256(source).hexdigest() != os.environ[
+              "M31_TEST_SHA256"
+          ]:
+              raise SystemExit("M31 test source digest mismatch")
+          text = source.decode("utf-8")
+          if "-1/0/" + chr(43) + "1" in text:
+              raise SystemExit("forbidden ternary notation in M31 tests")
+          tree = ast.parse(text, filename=os.environ["M31_TEST_PATH"])
+          test_methods = [
+              node.name
+              for item in tree.body
+              if isinstance(item, ast.ClassDef)
+              for node in item.body
+              if isinstance(node, ast.FunctionDef)
+              and node.name.startswith("test_")
+          ]
+          if len(test_methods) != 60 or len(set(test_methods)) != 60:
+              raise SystemExit("M31 qualification test inventory mismatch")
+
+          destination = Path(os.environ["M31_TEST_PATH"])
+          if destination.exists() and (
+              destination.is_symlink() or not destination.is_file()
+          ):
+              raise SystemExit("refusing invalid M31 test destination")
+          destination.parent.mkdir(parents=True, exist_ok=True)
+          destination.write_bytes(source)
+          print("Complete M31 qualification test source assembled: PASS")
+          PY
+
+      - name: Run the exact M31 qualification package
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest \
+            tests.test_frp_m31_phase_interference_thermal_evidence \
+            -v
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          for path_name, bytes_name, digest_name in (
+              ("M31_SOURCE_PATH", "M31_SOURCE_BYTES", "M31_SOURCE_SHA256"),
+              ("M31_TEST_PATH", "M31_TEST_BYTES", "M31_TEST_SHA256"),
+          ):
+              path = Path(os.environ[path_name])
+              raw = path.read_bytes()
+              if len(raw) != int(os.environ[bytes_name]):
+                  raise SystemExit(f"post-test byte mismatch: {path}")
+              if hashlib.sha256(raw).hexdigest() != os.environ[digest_name]:
+                  raise SystemExit(f"post-test digest mismatch: {path}")
+          print("Exact 60-test M31 qualification package: PASS")
+          PY
+
+      - name: Remove the temporary mobile-safe M31 test payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f /tmp/m31-test-already-complete ]]; then
+            exit 0
+          fi
+          python - <<'PY'
+          import os
+          from pathlib import Path
+
+          parts = (
+              Path(os.environ["M31_PART_1_PATH"]),
+              Path(os.environ["M31_PART_2_PATH"]),
+          )
+          for path in parts:
+              if path.is_symlink() or not path.is_file():
+                  raise SystemExit(f"refusing invalid M31 payload cleanup: {path}")
+              path.unlink()
+          parent = parts[0].parent
+          if parent.exists() and not any(parent.iterdir()):
+              parent.rmdir()
+          bootstrap = parent.parent
+          if bootstrap.exists() and not any(bootstrap.iterdir()):
+              bootstrap.rmdir()
+          print("Temporary M31 test payload removed: PASS")
+          PY
+
+      - name: Commit and publish only the assembled M31 tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- \
+            "$M31_PART_1_PATH" \
+            "$M31_PART_2_PATH" \
+            "$M31_TEST_PATH"
+          if git diff --cached --quiet; then
+            echo "M31 qualification tests are already committed."
+            exit 0
+          fi
+          expected="$(printf '%s\n' \
+            "$M31_PART_1_PATH" \
+            "$M31_PART_2_PATH" \
+            "$M31_TEST_PATH")"
+          test "$(git diff --cached --name-only)" = "$expected"
+          git commit \
+            -m "Add M31 phase-interference thermal evidence tests" \
+            -m "Publish 60 integrity-bound qualification tests for the exact M31 producer, immutable -1/0/1 kernel, active computational state 0, neutral-mediated opposite transitions, complete full-core trace counts, separate historical and current thermal contours, deterministic outputs, tamper rejection, and the one-way read-only Observatory boundary."
+          git push origin "HEAD:$GITHUB_REF_NAME"
+
+      - name: Publish M31B3 summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "## FRP M31B3 Qualification Tests"
+            echo
+            echo "| Boundary | Qualified value |"
+            echo "|---|---|"
+            echo "| Test source | tests/test_frp_m31_phase_interference_thermal_evidence.py |"
+            echo "| Test source bytes | 22370 |"
+            echo "| Qualification tests | 60/60 PASS |"
+            echo "| Producer source | exact 42092-byte M31 producer |"
+            echo "| Published core records | 100 |"
+            echo "| Cell observations | 800 |"
+            echo "| Active-zero observations | 702 |"
+            echo "| Balanced ternary kernel | -1/0/1 |"
+            echo "| Temporal scheduler modes | 1/7, 7/1 |"
+            echo "| Historical and current thermal contours | separate |"
+            echo "| Observatory writeback | forbidden |"
+            echo
+            echo "M31 qualification test assembly: PASS"
+          } >> "$GITHUB_STEP_SUMMARY"
