@@ -28,6 +28,9 @@ jobs:
       M31_COMPRESSED_SHA256: 774b992661c58bb1d2220a8b51eba6501057dd0522464a75160a46e298f0d970
       M31_COMPRESSED_BYTES: "9020"
       M31_EVIDENCE_SHA256: bdaa676acbfb09d86d848070e8a2673c5ce6902657a0b13b2e4293383bec8b42
+      REQUIREMENTS_PATH: requirements.txt
+      REQUIREMENTS_SHA256: 75b9bd6237473a063c852298fee983bdfcf550cb1cc828a237afaf726cccc3c7
+      REQUIREMENTS_BYTES: "33"
       M30_ARCHIVE_PATH: artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz
       M30_ARCHIVE_SHA256: 05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa
       M30_CORE_WORKFLOW_PATH: .github/workflows/frp-m30-observatory-full-core-trace-qualification-workflow.yml
@@ -51,6 +54,40 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
+
+      - name: Install integrity-bound repository dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          path = Path(os.environ["REQUIREMENTS_PATH"])
+          if path.is_symlink() or not path.is_file():
+              raise SystemExit("required dependency declaration is missing")
+          raw = path.read_bytes()
+          if len(raw) != int(os.environ["REQUIREMENTS_BYTES"]):
+              raise SystemExit("dependency declaration byte count mismatch")
+          if hashlib.sha256(raw).hexdigest() != os.environ[
+              "REQUIREMENTS_SHA256"
+          ]:
+              raise SystemExit("dependency declaration digest mismatch")
+          print("Exact dependency declaration: PASS")
+          PY
+          python -m pip install \
+            --disable-pip-version-check \
+            -r "$REQUIREMENTS_PATH"
+          python - <<'PY'
+          from importlib.metadata import version
+
+          import numpy
+
+          print(f"jsonschema={version('jsonschema')}")
+          print(f"numpy={numpy.__version__}")
+          print("M31 runtime dependencies: PASS")
+          PY
 
       - name: Validate the complete sequential M31 source payload
         shell: bash
