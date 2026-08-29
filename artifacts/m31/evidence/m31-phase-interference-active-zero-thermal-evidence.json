@@ -1,0 +1,1002 @@
+{
+  "active_zero_execution_evidence": {
+    "active_zero_after_observation_count": 702,
+    "active_zero_roles": [
+      "conflict_neutralization",
+      "temporal_separation",
+      "balancing",
+      "damping",
+      "transition_buffering",
+      "switching_load_distribution",
+      "retained_transition_continuity",
+      "pending_route_completion_preparation",
+      "stabilization"
+    ],
+    "cell_observation_count": 800,
+    "contours": [
+      {
+        "execution_epochs": [
+          {
+            "epoch": 0,
+            "mode": "free",
+            "record_count": 16
+          },
+          {
+            "epoch": 1,
+            "mode": "7/1",
+            "record_count": 64
+          },
+          {
+            "epoch": 2,
+            "mode": "1/7",
+            "record_count": 16
+          }
+        ],
+        "path": "artifacts/m19/execution/m16-rtl-execution-trace.json",
+        "raw_sha256": "d7945e0d2b5aaa05c5fff2e4e60d3b984017f7e4ae1984c55920368a110020bd",
+        "record_count": 96
+      },
+      {
+        "execution_epochs": [
+          {
+            "epoch": 0,
+            "mode": "free",
+            "record_count": 3
+          },
+          {
+            "epoch": 1,
+            "mode": "1/7",
+            "record_count": 1
+          }
+        ],
+        "path": "artifacts/m19/execution/m16-fpga-preparation-execution-trace.json",
+        "raw_sha256": "7d58b6741bdcadbfb9acb9049ed0e956305f49b9ad36946e719a4121b5caf22f",
+        "record_count": 4
+      }
+    ],
+    "event_totals": {
+      "actual_direct_events": 0,
+      "neutral_routed_events": 5,
+      "prevented_direct_events": 5,
+      "queue_overflow_events": 0,
+      "requested_direct_events": 5,
+      "reserved_state_events": 0
+    },
+    "evidence_class": "published_cycle_exact_execution_trace",
+    "invariant_pass_records": 100,
+    "observed_ternary_domain": [
+      -1,
+      0,
+      1
+    ],
+    "record_count": 100,
+    "retained_transition_counts": {
+      "active_zero_to_polarity": 12,
+      "direct_opposite": 0,
+      "polarity_to_active_zero": 5,
+      "retained_same": 783
+    },
+    "scheduler_mode_counts": {
+      "1/7": 17,
+      "7/1": 64,
+      "free": 19
+    },
+    "scheduler_state_counts": {
+      "balance": 56,
+      "commit": 8,
+      "excite": 3,
+      "free": 19,
+      "neutralize": 14
+    }
+  },
+  "core": {
+    "active_neutral_state": 0,
+    "balanced_ternary_notation": "-1/0/1",
+    "classical_bit_addition_primary_mechanism": false,
+    "computation_chain": [
+      "retained phase and frequency state",
+      "relative-phase interaction",
+      "phase organization and dispersion",
+      "resonance selection",
+      "multiscale coherence evaluation",
+      "dynamic stability evaluation",
+      "phase-derived ternary target",
+      "distributed active-neutral commit",
+      "retained coherent ternary state"
+    ],
+    "opposite_transition_routes": [
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        -1
+      ]
+    ],
+    "primary_computational_organization": "retained_relative_phase_interference_and_resonant_selection",
+    "processor": "Fractal Resonance Processor",
+    "semantic_values": [
+      -1,
+      0,
+      1
+    ],
+    "service_scheduler_mode": "free",
+    "temporal_scheduler_modes": [
+      "1/7",
+      "7/1"
+    ],
+    "ternary_layer_role": "discrete_state_target_transition_and_retained_result_boundary",
+    "zero_role": "active_computational_state"
+  },
+  "current_comparative_thermal_contours": {
+    "baseline": {
+      "benchmark_kind": "comparative_architecture_matrix",
+      "comparison_matrix": [
+        {
+          "active_clock_fraction": 1.0,
+          "active_clocked_cycles": 288,
+          "architecture_id": "binary_synchronous_reference",
+          "completion_ticks": 288,
+          "encoded_bit_toggles": 130,
+          "final_temperature_proxy": 3.479815488235824,
+          "logical_state_changes": 130,
+          "maximum_latency_ticks": 1,
+          "mean_latency_ticks": 1.0,
+          "normalized_energy_per_completed_command": 21.140625,
+          "p95_latency_ticks": 1.0,
+          "peak_cycle_normalized_energy": 20.0,
+          "peak_temperature_proxy": 3.8474206768140564,
+          "processor_cycles": 288,
+          "semantic_commands_completed": 256,
+          "semantic_commands_issued": 256,
+          "semantic_completion_ratio": 1.0,
+          "semantic_output_match": 1.0,
+          "throughput_commands_per_tick": 0.8888888888888888,
+          "total_normalized_energy": 5412.0
+        },
+        {
+          "active_clock_fraction": 0.4513888888888889,
+          "active_clocked_cycles": 130,
+          "architecture_id": "binary_clock_gated_reference",
+          "completion_ticks": 288,
+          "encoded_bit_toggles": 130,
+          "final_temperature_proxy": 0.3003540042045561,
+          "logical_state_changes": 130,
+          "maximum_latency_ticks": 1,
+          "mean_latency_ticks": 1.0,
+          "normalized_energy_per_completed_command": 3.6484375,
+          "p95_latency_ticks": 1.0,
+          "peak_cycle_normalized_energy": 5.0,
+          "peak_temperature_proxy": 0.771273768299779,
+          "processor_cycles": 288,
+          "semantic_commands_completed": 256,
+          "semantic_commands_issued": 256,
+          "semantic_completion_ratio": 1.0,
+          "semantic_output_match": 1.0,
+          "throughput_commands_per_tick": 0.8888888888888888,
+          "total_normalized_energy": 934.0
+        },
+        {
+          "active_clock_fraction": 0.4791666666666667,
+          "active_clocked_cycles": 138,
+          "architecture_id": "direct_ternary_reference",
+          "completion_ticks": 288,
+          "encoded_bit_toggles": 146,
+          "final_temperature_proxy": 0.3414291661285317,
+          "logical_state_changes": 138,
+          "maximum_latency_ticks": 1,
+          "mean_latency_ticks": 1.0,
+          "normalized_energy_per_completed_command": 4.8515625,
+          "p95_latency_ticks": 1.0,
+          "peak_cycle_normalized_energy": 8.0,
+          "peak_temperature_proxy": 1.119499710224827,
+          "processor_cycles": 288,
+          "semantic_commands_completed": 256,
+          "semantic_commands_issued": 256,
+          "semantic_completion_ratio": 1.0,
+          "semantic_output_match": 1.0,
+          "throughput_commands_per_tick": 0.8888888888888888,
+          "total_normalized_energy": 1242.0
+        },
+        {
+          "active_clock_fraction": 1.0,
+          "active_clocked_cycles": 413,
+          "architecture_id": "frp_v1_7_0_quantized_shadow",
+          "completion_ticks": 413,
+          "encoded_bit_toggles": 392,
+          "final_temperature_proxy": 673.7075352972579,
+          "logical_state_changes": 261,
+          "maximum_latency_ticks": 2,
+          "mean_latency_ticks": 1.48828125,
+          "normalized_energy_per_completed_command": 5443.39453125,
+          "p95_latency_ticks": 2.0,
+          "peak_cycle_normalized_energy": 3377.0,
+          "peak_temperature_proxy": 675.0796999541329,
+          "processor_cycles": 413,
+          "semantic_commands_completed": 256,
+          "semantic_commands_issued": 256,
+          "semantic_completion_ratio": 1.0,
+          "semantic_output_match": 1.0,
+          "throughput_commands_per_tick": 0.6198547215496368,
+          "total_normalized_energy": 1393509.0
+        }
+      ],
+      "comparison_package_sha256": "e6dd8d28c5606f7008146aca09c35efd8d6b6cf35758631be40d61597458dab2",
+      "frp_scheduler": "7/1",
+      "qualification_status": "PASS",
+      "raw_sha256": "5ba86d26dc62db36ae14ac2c1167e71dd5c06c00bbd5aa3dc21c6d11b38db064",
+      "schema": "frp.benchmark.architecture_comparison.v1",
+      "source_path": "benchmarks/architecture_comparison/results/reference_comparison_seed_76.json",
+      "winner_assertions": [],
+      "workload_sha256": "8386174d0a4751af26cc68bf46a5494cf0e58a3c14fc59ff46830a21645f0562"
+    },
+    "hardware_sensitivity": {
+      "hardware_sensitivity_package_sha256": "8c731035d0caaac5c08c45c268f3dba5f17d02ad54f035ef7b5fafa5fb8868ef",
+      "qualification_status": "PASS",
+      "ranking_stability": {
+        "pairwise_stability": [
+          {
+            "classification": "stable_higher_cost",
+            "interpretation_basis": "left_architecture_total_normalized_energy_relative_to_right",
+            "left_architecture_id": "binary_synchronous_reference",
+            "right_architecture_id": "binary_clock_gated_reference",
+            "scenario_relations": {
+              "lower_bound": "higher_cost",
+              "nominal": "higher_cost",
+              "upper_bound": "higher_cost"
+            }
+          },
+          {
+            "classification": "stable_higher_cost",
+            "interpretation_basis": "left_architecture_total_normalized_energy_relative_to_right",
+            "left_architecture_id": "binary_synchronous_reference",
+            "right_architecture_id": "direct_ternary_reference",
+            "scenario_relations": {
+              "lower_bound": "higher_cost",
+              "nominal": "higher_cost",
+              "upper_bound": "higher_cost"
+            }
+          },
+          {
+            "classification": "stable_lower_cost",
+            "interpretation_basis": "left_architecture_total_normalized_energy_relative_to_right",
+            "left_architecture_id": "binary_synchronous_reference",
+            "right_architecture_id": "frp_v1_7_0_quantized_shadow",
+            "scenario_relations": {
+              "lower_bound": "lower_cost",
+              "nominal": "lower_cost",
+              "upper_bound": "lower_cost"
+            }
+          },
+          {
+            "classification": "stable_lower_cost",
+            "interpretation_basis": "left_architecture_total_normalized_energy_relative_to_right",
+            "left_architecture_id": "binary_clock_gated_reference",
+            "right_architecture_id": "direct_ternary_reference",
+            "scenario_relations": {
+              "lower_bound": "lower_cost",
+              "nominal": "lower_cost",
+              "upper_bound": "lower_cost"
+            }
+          },
+          {
+            "classification": "stable_lower_cost",
+            "interpretation_basis": "left_architecture_total_normalized_energy_relative_to_right",
+            "left_architecture_id": "binary_clock_gated_reference",
+            "right_architecture_id": "frp_v1_7_0_quantized_shadow",
+            "scenario_relations": {
+              "lower_bound": "lower_cost",
+              "nominal": "lower_cost",
+              "upper_bound": "lower_cost"
+            }
+          },
+          {
+            "classification": "stable_lower_cost",
+            "interpretation_basis": "left_architecture_total_normalized_energy_relative_to_right",
+            "left_architecture_id": "direct_ternary_reference",
+            "right_architecture_id": "frp_v1_7_0_quantized_shadow",
+            "scenario_relations": {
+              "lower_bound": "lower_cost",
+              "nominal": "lower_cost",
+              "upper_bound": "lower_cost"
+            }
+          }
+        ],
+        "ranking_basis": "ascending_total_normalized_energy",
+        "ranking_sensitive": false,
+        "ranking_stable": true,
+        "scenario_rankings": {
+          "lower_bound": [
+            "binary_clock_gated_reference",
+            "direct_ternary_reference",
+            "binary_synchronous_reference",
+            "frp_v1_7_0_quantized_shadow"
+          ],
+          "nominal": [
+            "binary_clock_gated_reference",
+            "direct_ternary_reference",
+            "binary_synchronous_reference",
+            "frp_v1_7_0_quantized_shadow"
+          ],
+          "upper_bound": [
+            "binary_clock_gated_reference",
+            "direct_ternary_reference",
+            "binary_synchronous_reference",
+            "frp_v1_7_0_quantized_shadow"
+          ]
+        }
+      },
+      "raw_sha256": "e4785aa4c234cc7dd8e5377e5e0b41a8ec401f962400975e0cef7a88cc494680",
+      "scenario_order": [
+        "lower_bound",
+        "nominal",
+        "upper_bound"
+      ],
+      "scenario_summaries": [
+        {
+          "comparison_matrix": [
+            {
+              "active_clock_fraction": 1.0,
+              "active_clocked_cycles": 288,
+              "architecture_id": "binary_synchronous_reference",
+              "completion_ticks": 288,
+              "encoded_bit_toggles": 130,
+              "final_temperature_proxy": 0.10564497687665775,
+              "logical_state_changes": 130,
+              "maximum_latency_ticks": 1,
+              "mean_latency_ticks": 1.0,
+              "normalized_energy_per_completed_command": 0.70733642578125,
+              "p95_latency_ticks": 1.0,
+              "peak_cycle_normalized_energy": 0.6640625,
+              "peak_temperature_proxy": 0.12983087373222627,
+              "processor_cycles": 288,
+              "semantic_commands_completed": 256,
+              "semantic_commands_issued": 256,
+              "semantic_completion_ratio": 1.0,
+              "semantic_output_match": 1.0,
+              "throughput_commands_per_tick": 0.8888888888888888,
+              "total_normalized_energy": 181.078125
+            },
+            {
+              "active_clock_fraction": 0.4513888888888889,
+              "active_clocked_cycles": 130,
+              "architecture_id": "binary_clock_gated_reference",
+              "completion_ticks": 288,
+              "encoded_bit_toggles": 130,
+              "final_temperature_proxy": 0.05596589118866911,
+              "logical_state_changes": 130,
+              "maximum_latency_ticks": 1,
+              "mean_latency_ticks": 1.0,
+              "normalized_energy_per_completed_command": 0.43402099609375,
+              "p95_latency_ticks": 1.0,
+              "peak_cycle_normalized_energy": 0.4296875,
+              "peak_temperature_proxy": 0.08176607828669076,
+              "processor_cycles": 288,
+              "semantic_commands_completed": 256,
+              "semantic_commands_issued": 256,
+              "semantic_completion_ratio": 1.0,
+              "semantic_output_match": 1.0,
+              "throughput_commands_per_tick": 0.8888888888888888,
+              "total_normalized_energy": 111.109375
+            },
+            {
+              "active_clock_fraction": 0.4791666666666667,
+              "active_clocked_cycles": 138,
+              "architecture_id": "direct_ternary_reference",
+              "completion_ticks": 288,
+              "encoded_bit_toggles": 146,
+              "final_temperature_proxy": 0.05692858723393807,
+              "logical_state_changes": 138,
+              "maximum_latency_ticks": 1,
+              "mean_latency_ticks": 1.0,
+              "normalized_energy_per_completed_command": 0.46124267578125,
+              "p95_latency_ticks": 1.0,
+              "peak_cycle_normalized_energy": 0.484375,
+              "peak_temperature_proxy": 0.08756820613395222,
+              "processor_cycles": 288,
+              "semantic_commands_completed": 256,
+              "semantic_commands_issued": 256,
+              "semantic_completion_ratio": 1.0,
+              "semantic_output_match": 1.0,
+              "throughput_commands_per_tick": 0.8888888888888888,
+              "total_normalized_energy": 118.078125
+            },
+            {
+              "active_clock_fraction": 1.0,
+              "active_clocked_cycles": 413,
+              "architecture_id": "frp_v1_7_0_quantized_shadow",
+              "completion_ticks": 413,
+              "encoded_bit_toggles": 392,
+              "final_temperature_proxy": 7001.1593573133405,
+              "logical_state_changes": 261,
+              "maximum_latency_ticks": 2,
+              "mean_latency_ticks": 1.48828125,
+              "normalized_energy_per_completed_command": 56475.87939453125,
+              "p95_latency_ticks": 2.0,
+              "peak_cycle_normalized_energy": 35007.703125,
+              "peak_temperature_proxy": 7001.429940474927,
+              "processor_cycles": 413,
+              "semantic_commands_completed": 256,
+              "semantic_commands_issued": 256,
+              "semantic_completion_ratio": 1.0,
+              "semantic_output_match": 1.0,
+              "throughput_commands_per_tick": 0.6198547215496368,
+              "total_normalized_energy": 14457825.125
+            }
+          ],
+          "ranking": {
+            "architecture_order": [
+              "binary_clock_gated_reference",
+              "direct_ternary_reference",
+              "binary_synchronous_reference",
+              "frp_v1_7_0_quantized_shadow"
+            ],
+            "basis": "ascending_total_normalized_energy",
+            "rows": [
+              {
+                "architecture_id": "binary_clock_gated_reference",
+                "final_temperature_proxy": 0.05596589118866911,
+                "normalized_energy_per_completed_command": 0.43402099609375,
+                "peak_temperature_proxy": 0.08176607828669076,
+                "rank": 1,
+                "total_normalized_energy": 111.109375
+              },
+              {
+                "architecture_id": "direct_ternary_reference",
+                "final_temperature_proxy": 0.05692858723393807,
+                "normalized_energy_per_completed_command": 0.46124267578125,
+                "peak_temperature_proxy": 0.08756820613395222,
+                "rank": 2,
+                "total_normalized_energy": 118.078125
+              },
+              {
+                "architecture_id": "binary_synchronous_reference",
+                "final_temperature_proxy": 0.10564497687665775,
+                "normalized_energy_per_completed_command": 0.70733642578125,
+                "peak_temperature_proxy": 0.12983087373222627,
+                "rank": 3,
+                "total_normalized_energy": 181.078125
+              },
+              {
+                "architecture_id": "frp_v1_7_0_quantized_shadow",
+                "final_temperature_proxy": 7001.1593573133405,
+                "normalized_energy_per_completed_command": 56475.87939453125,
+                "peak_temperature_proxy": 7001.429940474927,
+                "rank": 4,
+                "total_normalized_energy": 14457825.125
+              }
+            ],
+            "ties_present": false
+          },
+          "scenario_cost_profile_sha256": "73e9ebd960cbd6c30c4c8b3df9fd7bbccf3be00ae32048341e8b6ba05bba0e2e",
+          "scenario_id": "lower_bound"
+        },
+        {
+          "comparison_matrix": [
+            {
+              "active_clock_fraction": 1.0,
+              "active_clocked_cycles": 288,
+              "architecture_id": "binary_synchronous_reference",
+              "completion_ticks": 288,
+              "encoded_bit_toggles": 130,
+              "final_temperature_proxy": 0.422579907506631,
+              "logical_state_changes": 130,
+              "maximum_latency_ticks": 1,
+              "mean_latency_ticks": 1.0,
+              "normalized_energy_per_completed_command": 2.829345703125,
+              "p95_latency_ticks": 1.0,
+              "peak_cycle_normalized_energy": 2.65625,
+              "peak_temperature_proxy": 0.5193234949289051,
+              "processor_cycles": 288,
+              "semantic_commands_completed": 256,
+              "semantic_commands_issued": 256,
+              "semantic_completion_ratio": 1.0,
+              "semantic_output_match": 1.0,
+              "throughput_commands_per_tick": 0.8888888888888888,
+              "total_normalized_energy": 724.3125
+            },
+            {
+              "active_clock_fraction": 0.4513888888888889,
+              "active_clocked_cycles": 130,
+              "architecture_id": "binary_clock_gated_reference",
+              "completion_ticks": 288,
+              "encoded_bit_toggles": 130,
+              "final_temperature_proxy": 0.22386356475467645,
+              "logical_state_changes": 130,
+              "maximum_latency_ticks": 1,
+              "mean_latency_ticks": 1.0,
+              "normalized_energy_per_completed_command": 1.736083984375,
+              "p95_latency_ticks": 1.0,
+              "peak_cycle_normalized_energy": 1.71875,
+              "peak_temperature_proxy": 0.32706431314676304,
+              "processor_cycles": 288,
+              "semantic_commands_completed": 256,
+              "semantic_commands_issued": 256,
+              "semantic_completion_ratio": 1.0,
+              "semantic_output_match": 1.0,
+              "throughput_commands_per_tick": 0.8888888888888888,
+              "total_normalized_energy": 444.4375
+            },
+            {
+              "active_clock_fraction": 0.4791666666666667,
+              "active_clocked_cycles": 138,
+              "architecture_id": "direct_ternary_reference",
+              "completion_ticks": 288,
+              "encoded_bit_toggles": 146,
+              "final_temperature_proxy": 0.2277143489357523,
+              "logical_state_changes": 138,
+              "maximum_latency_ticks": 1,
+              "mean_latency_ticks": 1.0,
+              "normalized_energy_per_completed_command": 1.844970703125,
+              "p95_latency_ticks": 1.0,
+              "peak_cycle_normalized_energy": 1.9375,
+              "peak_temperature_proxy": 0.3502728245358089,
+              "processor_cycles": 288,
+              "semantic_commands_completed": 256,
+              "semantic_commands_issued": 256,
+              "semantic_completion_ratio": 1.0,
+              "semantic_output_match": 1.0,
+              "throughput_commands_per_tick": 0.8888888888888888,
+              "total_normalized_energy": 472.3125
+            },
+            {
+              "active_clock_fraction": 1.0,
+              "active_clocked_cycles": 413,
+              "architecture_id": "frp_v1_7_0_quantized_shadow",
+              "completion_ticks": 413,
+              "encoded_bit_toggles": 392,
+              "final_temperature_proxy": 12181.67190718551,
+              "logical_state_changes": 261,
+              "maximum_latency_ticks": 2,
+              "mean_latency_ticks": 1.48828125,
+              "normalized_energy_per_completed_command": 98269.9921875,
+              "p95_latency_ticks": 2.0,
+              "peak_cycle_normalized_energy": 60917.3125,
+              "peak_temperature_proxy": 12182.921124789997,
+              "processor_cycles": 413,
+              "semantic_commands_completed": 256,
+              "semantic_commands_issued": 256,
+              "semantic_completion_ratio": 1.0,
+              "semantic_output_match": 1.0,
+              "throughput_commands_per_tick": 0.6198547215496368,
+              "total_normalized_energy": 25157118.0
+            }
+          ],
+          "ranking": {
+            "architecture_order": [
+              "binary_clock_gated_reference",
+              "direct_ternary_reference",
+              "binary_synchronous_reference",
+              "frp_v1_7_0_quantized_shadow"
+            ],
+            "basis": "ascending_total_normalized_energy",
+            "rows": [
+              {
+                "architecture_id": "binary_clock_gated_reference",
+                "final_temperature_proxy": 0.22386356475467645,
+                "normalized_energy_per_completed_command": 1.736083984375,
+                "peak_temperature_proxy": 0.32706431314676304,
+                "rank": 1,
+                "total_normalized_energy": 444.4375
+              },
+              {
+                "architecture_id": "direct_ternary_reference",
+                "final_temperature_proxy": 0.2277143489357523,
+                "normalized_energy_per_completed_command": 1.844970703125,
+                "peak_temperature_proxy": 0.3502728245358089,
+                "rank": 2,
+                "total_normalized_energy": 472.3125
+              },
+              {
+                "architecture_id": "binary_synchronous_reference",
+                "final_temperature_proxy": 0.422579907506631,
+                "normalized_energy_per_completed_command": 2.829345703125,
+                "peak_temperature_proxy": 0.5193234949289051,
+                "rank": 3,
+                "total_normalized_energy": 724.3125
+              },
+              {
+                "architecture_id": "frp_v1_7_0_quantized_shadow",
+                "final_temperature_proxy": 12181.67190718551,
+                "normalized_energy_per_completed_command": 98269.9921875,
+                "peak_temperature_proxy": 12182.921124789997,
+                "rank": 4,
+                "total_normalized_energy": 25157118.0
+              }
+            ],
+            "ties_present": false
+          },
+          "scenario_cost_profile_sha256": "08be744893f06e018a95525a0413a8495eb1a3e92947877be8c875dd8207de22",
+          "scenario_id": "nominal"
+        },
+        {
+          "comparison_matrix": [
+            {
+              "active_clock_fraction": 1.0,
+              "active_clocked_cycles": 288,
+              "architecture_id": "binary_synchronous_reference",
+              "completion_ticks": 288,
+              "encoded_bit_toggles": 130,
+              "final_temperature_proxy": 2.4903193227790577,
+              "logical_state_changes": 130,
+              "maximum_latency_ticks": 1,
+              "mean_latency_ticks": 1.0,
+              "normalized_energy_per_completed_command": 15.8173828125,
+              "p95_latency_ticks": 1.0,
+              "peak_cycle_normalized_energy": 14.625,
+              "peak_temperature_proxy": 2.877271139223028,
+              "processor_cycles": 288,
+              "semantic_commands_completed": 256,
+              "semantic_commands_issued": 256,
+              "semantic_completion_ratio": 1.0,
+              "semantic_output_match": 1.0,
+              "throughput_commands_per_tick": 0.8888888888888888,
+              "total_normalized_energy": 4049.25
+            },
+            {
+              "active_clock_fraction": 0.4513888888888889,
+              "active_clocked_cycles": 130,
+              "architecture_id": "binary_clock_gated_reference",
+              "completion_ticks": 288,
+              "encoded_bit_toggles": 130,
+              "final_temperature_proxy": 1.6954539517712395,
+              "logical_state_changes": 130,
+              "maximum_latency_ticks": 1,
+              "mean_latency_ticks": 1.0,
+              "normalized_energy_per_completed_command": 11.4443359375,
+              "p95_latency_ticks": 1.0,
+              "peak_cycle_normalized_energy": 10.875,
+              "peak_temperature_proxy": 2.1082344120944585,
+              "processor_cycles": 288,
+              "semantic_commands_completed": 256,
+              "semantic_commands_issued": 256,
+              "semantic_completion_ratio": 1.0,
+              "semantic_output_match": 1.0,
+              "throughput_commands_per_tick": 0.8888888888888888,
+              "total_normalized_energy": 2929.75
+            },
+            {
+              "active_clock_fraction": 0.4791666666666667,
+              "active_clocked_cycles": 138,
+              "architecture_id": "direct_ternary_reference",
+              "completion_ticks": 288,
+              "encoded_bit_toggles": 146,
+              "final_temperature_proxy": 1.7108570884955427,
+              "logical_state_changes": 138,
+              "maximum_latency_ticks": 1,
+              "mean_latency_ticks": 1.0,
+              "normalized_energy_per_completed_command": 11.8798828125,
+              "p95_latency_ticks": 1.0,
+              "peak_cycle_normalized_energy": 11.75,
+              "peak_temperature_proxy": 2.2010684576506434,
+              "processor_cycles": 288,
+              "semantic_commands_completed": 256,
+              "semantic_commands_issued": 256,
+              "semantic_completion_ratio": 1.0,
+              "semantic_output_match": 1.0,
+              "throughput_commands_per_tick": 0.8888888888888888,
+              "total_normalized_energy": 3041.25
+            },
+            {
+              "active_clock_fraction": 1.0,
+              "active_clocked_cycles": 413,
+              "architecture_id": "frp_v1_7_0_quantized_shadow",
+              "completion_ticks": 413,
+              "encoded_bit_toggles": 392,
+              "final_temperature_proxy": 19344.164812249768,
+              "logical_state_changes": 261,
+              "maximum_latency_ticks": 2,
+              "mean_latency_ticks": 1.48828125,
+              "normalized_energy_per_completed_command": 156076.1328125,
+              "p95_latency_ticks": 2.0,
+              "peak_cycle_normalized_energy": 96765.25,
+              "peak_temperature_proxy": 19350.489524345125,
+              "processor_cycles": 413,
+              "semantic_commands_completed": 256,
+              "semantic_commands_issued": 256,
+              "semantic_completion_ratio": 1.0,
+              "semantic_output_match": 1.0,
+              "throughput_commands_per_tick": 0.6198547215496368,
+              "total_normalized_energy": 39955490.0
+            }
+          ],
+          "ranking": {
+            "architecture_order": [
+              "binary_clock_gated_reference",
+              "direct_ternary_reference",
+              "binary_synchronous_reference",
+              "frp_v1_7_0_quantized_shadow"
+            ],
+            "basis": "ascending_total_normalized_energy",
+            "rows": [
+              {
+                "architecture_id": "binary_clock_gated_reference",
+                "final_temperature_proxy": 1.6954539517712395,
+                "normalized_energy_per_completed_command": 11.4443359375,
+                "peak_temperature_proxy": 2.1082344120944585,
+                "rank": 1,
+                "total_normalized_energy": 2929.75
+              },
+              {
+                "architecture_id": "direct_ternary_reference",
+                "final_temperature_proxy": 1.7108570884955427,
+                "normalized_energy_per_completed_command": 11.8798828125,
+                "peak_temperature_proxy": 2.2010684576506434,
+                "rank": 2,
+                "total_normalized_energy": 3041.25
+              },
+              {
+                "architecture_id": "binary_synchronous_reference",
+                "final_temperature_proxy": 2.4903193227790577,
+                "normalized_energy_per_completed_command": 15.8173828125,
+                "peak_temperature_proxy": 2.877271139223028,
+                "rank": 3,
+                "total_normalized_energy": 4049.25
+              },
+              {
+                "architecture_id": "frp_v1_7_0_quantized_shadow",
+                "final_temperature_proxy": 19344.164812249768,
+                "normalized_energy_per_completed_command": 156076.1328125,
+                "peak_temperature_proxy": 19350.489524345125,
+                "rank": 4,
+                "total_normalized_energy": 39955490.0
+              }
+            ],
+            "ties_present": false
+          },
+          "scenario_cost_profile_sha256": "8aee3dc85ea7809549f474812b55b85028e8ab9302d486fcc7dcb61776281689",
+          "scenario_id": "upper_bound"
+        }
+      ],
+      "schema": "frp.benchmark.hardware_sensitivity_comparison.v1",
+      "source_path": "benchmarks/architecture_comparison/results/reference_comparison_seed_76_hardware_sensitivity_v1.json",
+      "winner_assertions": []
+    },
+    "historical_heat_peak_interchangeable": false,
+    "measurement_class": "shared_model_comparative_benchmark",
+    "physical_temperature_measurement": false,
+    "thermal_profile": {
+      "ambient_temperature_proxy": 0.0,
+      "profile_name": "common_rc_thermal_proxy_v1",
+      "raw_sha256": "aeafebc3e71d1311a3445bd1528cbe7322546f79d6a5099dfed3a9590fc4a25b",
+      "source_path": "benchmarks/architecture_comparison/profiles/thermal_proxy_profile_v1.json",
+      "temperature_unit": "normalized_temperature_proxy",
+      "thermal_decay": 0.95,
+      "thermal_gain": 0.01,
+      "thermal_profile_sha256": "8cc2992f5699c47c88e81c17a4a5f0c8ff5bb7a5b32ebf73ab0e5a0f9c5494c8",
+      "update_equation": "ambient + (temperature - ambient) * thermal_decay + normalized_cycle_cost * thermal_gain"
+    }
+  },
+  "evidence_boundaries": {
+    "historical_and_current_contours_separate": true,
+    "historical_heat_peak_is_not_current_rc_temperature_proxy": true,
+    "normalized_activity_cost_is_not_physical_energy": true,
+    "operation_count_is_not_thermal_load": true,
+    "physical_measurement_required_for_silicon_temperature_claim": true,
+    "scope_limited_relations_are_not_universal_winner_claims": true,
+    "thermal_proxy_is_not_physical_temperature": true
+  },
+  "historical_thermal_experiment": {
+    "architecture_order": [
+      "binary_style_forced_switch",
+      "direct_ternary_commit",
+      "distributed_neutral_ternary",
+      "frp_distributed_resonant"
+    ],
+    "evidence_class": "reproduced_release_benchmark",
+    "execution": {
+      "command": [
+        "python3",
+        "frp_prototype_v0_9_3_mobile.py",
+        "--mode",
+        "bench",
+        "--steps",
+        "128",
+        "--seeds",
+        "5"
+      ],
+      "exit_code": 0,
+      "python_requirement": "3.12",
+      "stdout_byte_count": 640,
+      "stdout_sha256": "b18e1affec6dec8029086e923b907c9ae3cb0c50131e4291b31fbd2a4d97cbb6"
+    },
+    "focused_binary_ternary_comparison": {
+      "active_neutral_ternary_actual_direct_events": 0,
+      "active_neutral_ternary_architecture_id": "distributed_neutral_ternary",
+      "active_neutral_ternary_heat_peak": "0.003250",
+      "active_neutral_ternary_switch_load_peak": "0.250000",
+      "binary_actual_direct_events": 2052,
+      "binary_architecture_id": "binary_style_forced_switch",
+      "binary_heat_peak": "0.051000",
+      "binary_switch_load_peak": "1.000000",
+      "heat_peak_ratio_binary_over_active_neutral_ternary": "15.6923076923",
+      "heat_peak_relative_reduction_percent": "93.63",
+      "heat_peak_relative_reduction_percent_exact": "93.6274509804",
+      "switch_load_ratio_binary_over_active_neutral_ternary": "4.0"
+    },
+    "measurement_class": "release_specific_model_thermal_load",
+    "metric_unit": "historical_model_heat_peak",
+    "observed_relations": {
+      "advantage_attached_to_distributed_active_neutral_topology": true,
+      "advantage_attached_to_third_symbol_alone": false,
+      "direct_ternary_heat_peak_equals_binary": true,
+      "distributed_active_neutral_heat_peak_below_binary": true
+    },
+    "physical_temperature_measurement": false,
+    "release": "FRP v0.9.3",
+    "rows": [
+      {
+        "C_minus_P_min": "-0.551000",
+        "actual_direct_events": 2052,
+        "architecture_id": "binary_style_forced_switch",
+        "cases": 300,
+        "heat_peak": "0.051000",
+        "match": "1.000",
+        "neutralized_conflicts": 0,
+        "prevented_direct_events": 0,
+        "switch_load_peak": "1.000000"
+      },
+      {
+        "C_minus_P_min": "-0.551000",
+        "actual_direct_events": 2052,
+        "architecture_id": "direct_ternary_commit",
+        "cases": 300,
+        "heat_peak": "0.051000",
+        "match": "1.000",
+        "neutralized_conflicts": 0,
+        "prevented_direct_events": 0,
+        "switch_load_peak": "1.000000"
+      },
+      {
+        "C_minus_P_min": "0.174750",
+        "actual_direct_events": 0,
+        "architecture_id": "distributed_neutral_ternary",
+        "cases": 300,
+        "heat_peak": "0.003250",
+        "match": "1.000",
+        "neutralized_conflicts": 2052,
+        "prevented_direct_events": 0,
+        "switch_load_peak": "0.250000"
+      },
+      {
+        "C_minus_P_min": "0.144750",
+        "actual_direct_events": 0,
+        "architecture_id": "frp_distributed_resonant",
+        "cases": 300,
+        "heat_peak": "0.107000",
+        "match": "1.000",
+        "neutralized_conflicts": 2392,
+        "prevented_direct_events": 3820,
+        "switch_load_peak": "0.250000"
+      }
+    ],
+    "source_executable": "frp_prototype_v0_9_3_mobile.py",
+    "source_report": "TEST_REPORT_v0_9_3.md",
+    "winner_assertions": [],
+    "workload": {
+      "cases_per_architecture": 300,
+      "cell_counts": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "cycle_modes": [
+        "free",
+        "7/1",
+        "1/7"
+      ],
+      "operations": [
+        "neg",
+        "add",
+        "sub",
+        "compare",
+        "consensus"
+      ],
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "steps": 128
+    }
+  },
+  "kind": "phase_interference_active_zero_thermal_evidence",
+  "milestone": "M31",
+  "observatory_publication_contract": {
+    "direction": "upstream_published_bytes_to_downstream",
+    "downstream_metric_normalization": "forbidden",
+    "downstream_repository": "FRP-Trace-Observatory",
+    "downstream_role": "read_only_validation_and_visualization",
+    "downstream_semantic_reimplementation": "forbidden",
+    "downstream_source_mutation": "forbidden",
+    "downstream_writeback": "forbidden",
+    "m29_boundary_confirmed": true,
+    "published_contours_must_remain_separate": true,
+    "upstream_repository": "FRP"
+  },
+  "provenance": [
+    {
+      "byte_count": 9009,
+      "m30_archive_member_verified": true,
+      "path": "TEST_REPORT_v0_9_3.md",
+      "raw_sha256": "c6fe86f2c0c922243a8bd001742e9fcbfd3c31cdedf40a6a728b989dbd01679e"
+    },
+    {
+      "byte_count": 9013,
+      "m30_archive_member_verified": true,
+      "path": "artifacts/m19/execution/m16-fpga-preparation-execution-trace.json",
+      "raw_sha256": "7d58b6741bdcadbfb9acb9049ed0e956305f49b9ad36946e719a4121b5caf22f"
+    },
+    {
+      "byte_count": 152109,
+      "m30_archive_member_verified": true,
+      "path": "artifacts/m19/execution/m16-rtl-execution-trace.json",
+      "raw_sha256": "d7945e0d2b5aaa05c5fff2e4e60d3b984017f7e4ae1984c55920368a110020bd"
+    },
+    {
+      "byte_count": 4071,
+      "m30_archive_member_verified": true,
+      "path": "artifacts/m29/contracts/m29-system-integration-contract.json",
+      "raw_sha256": "6e14d93abe5646b4e094f27b07217d9e4dcd833d8af0d5afb30da21b904c4642"
+    },
+    {
+      "byte_count": 517,
+      "m30_archive_member_verified": true,
+      "path": "benchmarks/architecture_comparison/profiles/thermal_proxy_profile_v1.json",
+      "raw_sha256": "aeafebc3e71d1311a3445bd1528cbe7322546f79d6a5099dfed3a9590fc4a25b"
+    },
+    {
+      "byte_count": 21988,
+      "m30_archive_member_verified": true,
+      "path": "benchmarks/architecture_comparison/results/reference_comparison_seed_76.json",
+      "raw_sha256": "5ba86d26dc62db36ae14ac2c1167e71dd5c06c00bbd5aa3dc21c6d11b38db064"
+    },
+    {
+      "byte_count": 81632,
+      "m30_archive_member_verified": true,
+      "path": "benchmarks/architecture_comparison/results/reference_comparison_seed_76_hardware_sensitivity_v1.json",
+      "raw_sha256": "e4785aa4c234cc7dd8e5377e5e0b41a8ec401f962400975e0cef7a88cc494680"
+    },
+    {
+      "byte_count": 22814,
+      "m30_archive_member_verified": true,
+      "path": "docs/physical_foundation.md",
+      "raw_sha256": "e9bacd13ebe7a7058e698a80dc4f677476e3ed2eab4b9d41f58fd9cdbcf68a7e"
+    },
+    {
+      "byte_count": 49745,
+      "m30_archive_member_verified": true,
+      "path": "docs/resonance_computation.md",
+      "raw_sha256": "1149cbd0aeb90d0a6133db5ecc1e5b4d45268815b70a75cb7a347a5e44a9b615"
+    },
+    {
+      "byte_count": 40760,
+      "m30_archive_member_verified": true,
+      "path": "frp_prototype_v0_9_3_mobile.py",
+      "raw_sha256": "48361714bb815f362a30a5a884a0fb782cb97349e9a18f9b607af7bf54c02e52"
+    },
+    {
+      "byte_count": 10189989,
+      "m30_archive_member_verified": false,
+      "path": "artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz",
+      "raw_sha256": "05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa",
+      "role": "immutable_archive_container"
+    },
+    {
+      "byte_count": 22259,
+      "m30_archive_member_verified": false,
+      "path": ".github/workflows/frp-m30-observatory-full-core-trace-qualification-workflow.yml",
+      "raw_sha256": "01ca22bc98f63d9d4ea4a58299d53ff58b410f3f2db94b81097d7cef3ad4dee7",
+      "role": "post_archive_full_core_qualification"
+    }
+  ],
+  "schema": "frp.m31.phase_interference_active_zero_thermal_evidence.v1",
+  "status": "PASS",
+  "version": "1.0.0"
+}

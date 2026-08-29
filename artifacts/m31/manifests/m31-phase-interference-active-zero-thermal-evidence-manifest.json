@@ -1,0 +1,21 @@
+{
+  "generated_files": [
+    {
+      "byte_count": 1468,
+      "path": "schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json",
+      "raw_sha256": "53d79d45d70753ccd24c3dc4c97af6fee481f86a9d7cdca7ef78b486c76479f7"
+    },
+    {
+      "byte_count": 39993,
+      "path": "artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json",
+      "raw_sha256": "bdaa676acbfb09d86d848070e8a2673c5ce6902657a0b13b2e4293383bec8b42"
+    }
+  ],
+  "historical_experiment_stdout_sha256": "b18e1affec6dec8029086e923b907c9ae3cb0c50131e4291b31fbd2a4d97cbb6",
+  "kind": "phase_interference_active_zero_thermal_evidence_manifest",
+  "milestone": "M31",
+  "schema": "frp.m31.phase_interference_active_zero_thermal_evidence_manifest.v1",
+  "source_count": 12,
+  "status": "PASS",
+  "version": "1.0.0"
+}

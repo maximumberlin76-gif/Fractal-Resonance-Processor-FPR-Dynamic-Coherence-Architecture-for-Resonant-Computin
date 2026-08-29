@@ -1,0 +1,63 @@
+{
+  "$id": "https://frp.example/schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "active_zero_execution_evidence": {
+      "type": "object"
+    },
+    "core": {
+      "type": "object"
+    },
+    "current_comparative_thermal_contours": {
+      "type": "object"
+    },
+    "evidence_boundaries": {
+      "type": "object"
+    },
+    "historical_thermal_experiment": {
+      "type": "object"
+    },
+    "kind": {
+      "const": "phase_interference_active_zero_thermal_evidence"
+    },
+    "milestone": {
+      "const": "M31"
+    },
+    "observatory_publication_contract": {
+      "type": "object"
+    },
+    "provenance": {
+      "items": {
+        "type": "object"
+      },
+      "minItems": 12,
+      "type": "array"
+    },
+    "schema": {
+      "const": "frp.m31.phase_interference_active_zero_thermal_evidence.v1"
+    },
+    "status": {
+      "const": "PASS"
+    },
+    "version": {
+      "const": "1.0.0"
+    }
+  },
+  "required": [
+    "schema",
+    "version",
+    "milestone",
+    "kind",
+    "status",
+    "core",
+    "active_zero_execution_evidence",
+    "historical_thermal_experiment",
+    "current_comparative_thermal_contours",
+    "evidence_boundaries",
+    "observatory_publication_contract",
+    "provenance"
+  ],
+  "title": "FRP M31 Phase-Interference Active-Zero Thermal Evidence",
+  "type": "object"
+}

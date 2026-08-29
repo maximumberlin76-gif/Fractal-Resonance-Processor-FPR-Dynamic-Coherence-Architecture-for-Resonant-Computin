@@ -1,0 +1,39 @@
+{
+  "checks": {
+    "active_zero_trace_evidence_exact": true,
+    "current_comparative_contours_integrity_pass": true,
+    "direct_opposite_transitions_zero": true,
+    "historical_experiment_reproduced": true,
+    "historical_rows_exact": true,
+    "m30_archive_members_byte_identical": true,
+    "observatory_boundary_read_only": true,
+    "physical_temperature_claim_absent": true,
+    "scheduler_modes_exact": true,
+    "source_digests_exact": true,
+    "ternary_notation_exact": true,
+    "thermal_measurement_contours_separate": true,
+    "winner_assertions_absent": true
+  },
+  "kind": "phase_interference_active_zero_thermal_evidence_qualification",
+  "milestone": "M31",
+  "outputs": [
+    {
+      "byte_count": 1468,
+      "path": "schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json",
+      "raw_sha256": "53d79d45d70753ccd24c3dc4c97af6fee481f86a9d7cdca7ef78b486c76479f7"
+    },
+    {
+      "byte_count": 39993,
+      "path": "artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json",
+      "raw_sha256": "bdaa676acbfb09d86d848070e8a2673c5ce6902657a0b13b2e4293383bec8b42"
+    },
+    {
+      "byte_count": 828,
+      "path": "artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json",
+      "raw_sha256": "80f0841d0041cd22c2f76175b6139e601aede7b69823356ae1fefbce5f793e7c"
+    }
+  ],
+  "schema": "frp.m31.phase_interference_active_zero_thermal_evidence_qualification.v1",
+  "status": "PASS",
+  "version": "1.0.0"
+}
