@@ -1,0 +1,205 @@
+name: FRP M31A2 Phase-Interference Thermal Evidence Source Part 2 Workflow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m31a2-evidence-source-part-2-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish-m31-source-part-2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      M31_SOURCE_PATH: frp_m31_phase_interference_thermal_evidence.py
+      M31_SOURCE_SHA256: 1e4ccfd7b157cd2bac609c34dfec9da791653a31af7b29b75502c755807b9c62
+      M31_SOURCE_BYTES: "42092"
+      M31_PART_1_PATH: .frp-bootstrap/m31/source.py.bz2.b64.part01
+      M31_PART_1_SHA256: de590de358d074549d6efbdcb271e8163a0529d603b389489cbe52388423865b
+      M31_PART_1_BYTES: "6000"
+      M31_PART_2_PATH: .frp-bootstrap/m31/source.py.bz2.b64.part02
+      M31_PART_2_SHA256: 5cdd8f05bfd21a8d7839c8d9426c32248569459ce3f4785249b24ddbf3f75f53
+      M31_PART_2_BYTES: "6028"
+      M30_ARCHIVE_PATH: artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz
+      M30_ARCHIVE_SHA256: 05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa
+      M30_CORE_WORKFLOW_PATH: .github/workflows/frp-m30-observatory-full-core-trace-qualification-workflow.yml
+      M30_CORE_WORKFLOW_SHA256: 01ca22bc98f63d9d4ea4a58299d53ff58b410f3f2db94b81097d7cef3ad4dee7
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out the selected main revision
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+          persist-credentials: true
+
+      - name: Set up exact Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Validate M30 and the committed M31A1 segment
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          required = {
+              os.environ["M30_ARCHIVE_PATH"]: os.environ["M30_ARCHIVE_SHA256"],
+              os.environ["M30_CORE_WORKFLOW_PATH"]: os.environ[
+                  "M30_CORE_WORKFLOW_SHA256"
+              ],
+          }
+          for name, expected in required.items():
+              path = Path(name)
+              if path.is_symlink() or not path.is_file():
+                  raise SystemExit(f"required M30 boundary is missing: {name}")
+              if hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+                  raise SystemExit(f"M30 boundary digest mismatch: {name}")
+
+          source = Path(os.environ["M31_SOURCE_PATH"])
+          part_1 = Path(os.environ["M31_PART_1_PATH"])
+          part_2 = Path(os.environ["M31_PART_2_PATH"])
+          if source.exists():
+              if source.is_symlink() or not source.is_file():
+                  raise SystemExit("invalid existing M31 producer source")
+              raw = source.read_bytes()
+              if len(raw) != int(os.environ["M31_SOURCE_BYTES"]):
+                  raise SystemExit("existing M31 producer byte count mismatch")
+              if hashlib.sha256(raw).hexdigest() != os.environ[
+                  "M31_SOURCE_SHA256"
+              ]:
+                  raise SystemExit("existing M31 producer digest mismatch")
+              if part_1.exists() or part_2.exists():
+                  raise SystemExit("assembled M31 source and stale parts coexist")
+              Path("/tmp/m31-source-already-complete").write_text(
+                  "PASS\n", encoding="ascii"
+              )
+          else:
+              if part_1.is_symlink() or not part_1.is_file():
+                  raise SystemExit("M31A1 payload part 1 is missing")
+              raw = part_1.read_bytes()
+              if len(raw) != int(os.environ["M31_PART_1_BYTES"]):
+                  raise SystemExit("M31A1 payload part 1 byte count mismatch")
+              if hashlib.sha256(raw).hexdigest() != os.environ[
+                  "M31_PART_1_SHA256"
+              ]:
+                  raise SystemExit("M31A1 payload part 1 digest mismatch")
+          print("M31A1 sequential boundary: PASS")
+          PY
+
+      - name: Install integrity-bound M31 producer payload part 2
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f /tmp/m31-source-already-complete ]]; then
+            echo "M31 producer source is already assembled."
+            exit 0
+          fi
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          payload = """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"""
+          raw = payload.encode("ascii")
+          if len(raw) != int(os.environ["M31_PART_2_BYTES"]):
+              raise SystemExit("M31 payload part 2 byte count mismatch")
+          if hashlib.sha256(raw).hexdigest() != os.environ[
+              "M31_PART_2_SHA256"
+          ]:
+              raise SystemExit("M31 payload part 2 digest mismatch")
+          destination = Path(os.environ["M31_PART_2_PATH"])
+          if destination.exists() and (
+              destination.is_symlink() or not destination.is_file()
+          ):
+              raise SystemExit("refusing non-regular M31 part 2 destination")
+          destination.parent.mkdir(parents=True, exist_ok=True)
+          if destination.parent.is_symlink():
+              raise SystemExit("refusing symlink M31 bootstrap directory")
+          destination.write_bytes(raw)
+          print("M31 producer payload part 2 installed: PASS")
+          PY
+
+      - name: Validate the complete two-part payload boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f /tmp/m31-source-already-complete ]]; then
+            exit 0
+          fi
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          for path_name, size_name, digest_name in (
+              ("M31_PART_1_PATH", "M31_PART_1_BYTES", "M31_PART_1_SHA256"),
+              ("M31_PART_2_PATH", "M31_PART_2_BYTES", "M31_PART_2_SHA256"),
+          ):
+              part = Path(os.environ[path_name])
+              if part.is_symlink() or not part.is_file():
+                  raise SystemExit(f"M31 payload segment missing: {part}")
+              raw = part.read_bytes()
+              if len(raw) != int(os.environ[size_name]):
+                  raise SystemExit(f"M31 payload segment size mismatch: {part}")
+              if hashlib.sha256(raw).hexdigest() != os.environ[digest_name]:
+                  raise SystemExit(
+                      f"M31 payload segment digest mismatch: {part}"
+                  )
+          print("M31 complete two-part payload boundary: PASS")
+          PY
+
+      - name: Commit and publish only M31 source payload part 2
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f /tmp/m31-source-already-complete ]]; then
+            echo "M31 producer source is already complete; no commit is required."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$M31_PART_2_PATH"
+          if git diff --cached --quiet; then
+            echo "M31 producer payload part 2 is already committed."
+            exit 0
+          fi
+          test "$(git diff --cached --name-only)" = "$M31_PART_2_PATH"
+          git commit -m "Add M31 evidence producer payload part 2" -m "Stage the second integrity-bound mobile-safe payload segment for the M31 FRP phase-interference, active-zero, and ternary-binary thermal evidence producer. Preserve the immutable -1/0/1 core, active neutral state 0, temporal schedulers 1/7 and 7/1, separate free service mode, distinct thermal measurement contours, and the one-way read-only Observatory boundary."
+          git push origin "HEAD:$GITHUB_REF_NAME"
+
+      - name: Publish M31A2 summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "## FRP M31A2 Evidence Producer Source"
+            echo
+            echo "| Boundary | Value |"
+            echo "|---|---|"
+            echo "| Repository | FRP |"
+            echo "| Payload segment | 2 of 2 |"
+            echo "| Segment bytes | 6028 |"
+            echo "| Combined Base64 bytes | 12028 |"
+            echo "| Final source | frp_m31_phase_interference_thermal_evidence.py |"
+            echo "| Balanced ternary kernel | -1/0/1 |"
+            echo "| Active neutral state | 0 |"
+            echo "| Temporal scheduler modes | 1/7, 7/1 |"
+            echo "| Thermal contours | separate |"
+            echo
+            echo "Run M31A3 manually after this workflow is green."
+          } >> "$GITHUB_STEP_SUMMARY"
