@@ -224,7 +224,7 @@ jobs:
           ]:
               raise SystemExit("installed M31 producer digest mismatch")
           text = raw.decode("utf-8")
-          if "-1/0/+1" in text:
+          if "-1/0/" + chr(43) + "1" in text:
               raise SystemExit("forbidden ternary notation in M31 producer")
           required = (
               '"balanced_ternary_notation": "-1/0/1"',
@@ -298,6 +298,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          if [[ -f /tmp/m31-source-already-complete ]]; then
+            echo "M31 evidence producer source is already committed."
+            exit 0
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A --             "$M31_PART_1_PATH"             "$M31_PART_2_PATH"             "$M31_SOURCE_PATH"
