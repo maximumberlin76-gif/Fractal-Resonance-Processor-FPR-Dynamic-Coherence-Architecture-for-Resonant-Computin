@@ -1,0 +1,441 @@
+name: FRP M31D1 Validation Index v3.3.0
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m31d1-validation-index-v3-3-0-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish-validation-index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TARGET_PATH: FRP_VALIDATION_INDEX_v3_3_0.md
+      TARGET_BYTES: "12438"
+      TARGET_LINES: "268"
+      TARGET_SHA256: d9cc92a9a51797d536875710933109a42f24120739c8e2960d82205dbb785d3b
+      PAYLOAD_GZIP_BYTES: "4911"
+      PAYLOAD_GZIP_SHA256: 06c87ed0931c7b971e14593ae562440bbdfdbb1985cbb9f3d7c5b52493dacb31
+      PAYLOAD_BASE64_LENGTH: "6548"
+      PAYLOAD_BASE64_SHA256: bf800ab6f350cf9f53bf60c781608bb794a433a8c60da7902457660fb804139d
+      ARTIFACTS_FILES: "127"
+      ARTIFACTS_INVENTORY_SHA256: 0d86a8c50c86ba0196f635903cb8cc8d635dd1399787625f7619ad4dd8121f2b
+      BENCHMARKS_FILES: "19"
+      BENCHMARKS_INVENTORY_SHA256: 54dc4ae9aa858ccd60f577367be909abf1266b76fcefe10c8223e1f22cc78670
+      SCHEMAS_FILES: "125"
+      SCHEMAS_INVENTORY_SHA256: 384cede6b31eea78b9e85804405d7d8bb3bec42e0ce8489d3f9ed20d36f213d9
+      HISTORICAL_RECORDS: "48"
+      HISTORICAL_INVENTORY_SHA256: 7903e5b9e7b404770a434fa22c9bd6ae76fb062136f6e0b7fa2233dc0b3127f5
+      REQUIREMENTS_PATH: requirements.txt
+      REQUIREMENTS_BYTES: "33"
+      REQUIREMENTS_SHA256: 75b9bd6237473a063c852298fee983bdfcf550cb1cc828a237afaf726cccc3c7
+      M31_SOURCE_PATH: frp_m31_phase_interference_thermal_evidence.py
+      M31_SOURCE_BYTES: "42092"
+      M31_SOURCE_SHA256: 1e4ccfd7b157cd2bac609c34dfec9da791653a31af7b29b75502c755807b9c62
+      M31_TEST_PATH: tests/test_frp_m31_phase_interference_thermal_evidence.py
+      M31_TEST_BYTES: "22370"
+      M31_TEST_SHA256: f64214a9c785d8cf579e3a6a5afa6e364772d8972775cc010a3dba89d852c1ed
+      M31_SCHEMA_PATH: schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json
+      M31_SCHEMA_BYTES: "1468"
+      M31_SCHEMA_SHA256: 53d79d45d70753ccd24c3dc4c97af6fee481f86a9d7cdca7ef78b486c76479f7
+      M31_EVIDENCE_PATH: artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json
+      M31_EVIDENCE_BYTES: "39993"
+      M31_EVIDENCE_SHA256: bdaa676acbfb09d86d848070e8a2673c5ce6902657a0b13b2e4293383bec8b42
+      M31_MANIFEST_PATH: artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json
+      M31_MANIFEST_BYTES: "828"
+      M31_MANIFEST_SHA256: 80f0841d0041cd22c2f76175b6139e601aede7b69823356ae1fefbce5f793e7c
+      M31_QUALIFICATION_PATH: artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json
+      M31_QUALIFICATION_BYTES: "1512"
+      M31_QUALIFICATION_SHA256: 4c2446f954e01ec0aa37cc6c0fc70cf4a87ec565c450628e31b0efcac9160224
+      M30_ARCHIVE_PATH: artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz
+      M30_ARCHIVE_BYTES: "10189989"
+      M30_ARCHIVE_SHA256: 05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: main
+          persist-credentials: true
+
+      - name: Require manual main-branch execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ github.event_name }}" = "workflow_dispatch"
+          test "${{ github.ref }}" = "refs/heads/main"
+          test "${{ github.ref_name }}" = "main"
+          test "$(git branch --show-current)" = "main"
+          test -z "$(git status --porcelain)"
+          echo "Manual main-branch boundary: PASS"
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Snapshot all protected histories
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+
+          historical_inventory() {
+            find . -maxdepth 1 -type f '(' -name 'RELEASE_NOTES_v*.md' -o -name 'TEST_REPORT_v*.md' -o -name 'FRP_VALIDATION_INDEX_v*.md' -o -name 'RELEASE_CHECKLIST_v*.md' ')' ! -name "$TARGET_PATH" -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+
+          tree_inventory artifacts > /tmp/m31d1-artifacts.before
+          tree_inventory benchmarks > /tmp/m31d1-benchmarks.before
+          tree_inventory schemas > /tmp/m31d1-schemas.before
+          historical_inventory > /tmp/m31d1-history.before
+
+          if test ! -e "$TARGET_PATH"; then
+            test "$(wc -l < /tmp/m31d1-artifacts.before)" -eq "$ARTIFACTS_FILES"
+            test "$(sha256sum /tmp/m31d1-artifacts.before | cut -d' ' -f1)" = "$ARTIFACTS_INVENTORY_SHA256"
+            test "$(wc -l < /tmp/m31d1-benchmarks.before)" -eq "$BENCHMARKS_FILES"
+            test "$(sha256sum /tmp/m31d1-benchmarks.before | cut -d' ' -f1)" = "$BENCHMARKS_INVENTORY_SHA256"
+            test "$(wc -l < /tmp/m31d1-schemas.before)" -eq "$SCHEMAS_FILES"
+            test "$(sha256sum /tmp/m31d1-schemas.before | cut -d' ' -f1)" = "$SCHEMAS_INVENTORY_SHA256"
+            test "$(wc -l < /tmp/m31d1-history.before)" -eq "$HISTORICAL_RECORDS"
+            test "$(sha256sum /tmp/m31d1-history.before | cut -d' ' -f1)" = "$HISTORICAL_INVENTORY_SHA256"
+          else
+            test -f "$TARGET_PATH"
+            test ! -L "$TARGET_PATH"
+            test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+            test "$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)" = "$TARGET_SHA256"
+          fi
+
+          echo "Protected evidence and benchmark histories snapshotted: PASS"
+
+      - name: Verify exact M30 and M31 functional boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          exact = (
+              (os.environ["REQUIREMENTS_PATH"], int(os.environ["REQUIREMENTS_BYTES"]), os.environ["REQUIREMENTS_SHA256"]),
+              (os.environ["M31_SOURCE_PATH"], int(os.environ["M31_SOURCE_BYTES"]), os.environ["M31_SOURCE_SHA256"]),
+              (os.environ["M31_TEST_PATH"], int(os.environ["M31_TEST_BYTES"]), os.environ["M31_TEST_SHA256"]),
+              (os.environ["M31_SCHEMA_PATH"], int(os.environ["M31_SCHEMA_BYTES"]), os.environ["M31_SCHEMA_SHA256"]),
+              (os.environ["M31_EVIDENCE_PATH"], int(os.environ["M31_EVIDENCE_BYTES"]), os.environ["M31_EVIDENCE_SHA256"]),
+              (os.environ["M31_MANIFEST_PATH"], int(os.environ["M31_MANIFEST_BYTES"]), os.environ["M31_MANIFEST_SHA256"]),
+              (os.environ["M31_QUALIFICATION_PATH"], int(os.environ["M31_QUALIFICATION_BYTES"]), os.environ["M31_QUALIFICATION_SHA256"]),
+              (os.environ["M30_ARCHIVE_PATH"], int(os.environ["M30_ARCHIVE_BYTES"]), os.environ["M30_ARCHIVE_SHA256"]),
+          )
+
+          for path_text, expected_bytes, expected_sha256 in exact:
+              path = Path(path_text)
+              if path.is_symlink() or not path.is_file():
+                  raise SystemExit(f"required regular file is missing: {path}")
+              raw = path.read_bytes()
+              observed = len(raw), hashlib.sha256(raw).hexdigest()
+              expected = expected_bytes, expected_sha256
+              if observed != expected:
+                  raise SystemExit(f"functional-boundary mismatch: {path}")
+
+          workflows = {
+              ".github/workflows/frp-m31a1-phase-interference-thermal-evidence-source-part-1-workflow.yml": (14081, "e24f8de99c1a93c454f3180e133a20c6d495f11c221bd7c3c59930ada844ba27"),
+              ".github/workflows/frp-m31a2-phase-interference-thermal-evidence-source-part-2-workflow.yml": (16053, "7dd5e6702e02427354db80ab1cc11dc98e67d40e69c3745174ec7cba2a962e6d"),
+              ".github/workflows/frp-m31a3-phase-interference-thermal-evidence-source-assembly-workflow.yml": (15191, "4f9c95b6411a5c7ae47a46df2c980feca91039d71f46ee3e014355cfd58a7649"),
+              ".github/workflows/frp-m31b1-phase-interference-thermal-evidence-test-part-1-workflow.yml": (13304, "387270d58a29889bfcca1c41c6f460d958858092ae60748de0e9005dc65a1dfd"),
+              ".github/workflows/frp-m31b2-phase-interference-thermal-evidence-test-part-2-workflow.yml": (19735, "b8ad399a8aef858aa18028e7519a7d336f10f5984ca84808852c9e21ec4af85a"),
+              ".github/workflows/frp-m31b3-phase-interference-thermal-evidence-test-assembly-workflow.yml": (12763, "04c21e9d003ab27f1285e0cbe65cc7f10ff91509c945ad215273e5aff7afc597"),
+              ".github/workflows/frp-m31c-phase-interference-thermal-evidence-publication-workflow.yml": (25808, "16bd797c84a966852a1e9859ac2610b9082b998bae82f9dbe94975d9e6baf250"),
+              ".github/workflows/frp-m31-complete.yml": (11762, "eed979a2b7e795b73facd628d49bf76993ed1fc7e37a8e0dd613d92fae4e751b"),
+          }
+          for path_text, expected in workflows.items():
+              path = Path(path_text)
+              if path.is_symlink() or not path.is_file():
+                  raise SystemExit(f"M31 workflow is missing: {path}")
+              raw = path.read_bytes()
+              observed = len(raw), hashlib.sha256(raw).hexdigest()
+              if observed != expected:
+                  raise SystemExit(f"M31 workflow identity mismatch: {path}")
+
+          print("Exact M30 and M31 functional boundary: PASS")
+          PY
+
+      - name: Install exact dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check -r "$REQUIREMENTS_PATH"
+
+      - name: Run all 60 M31 qualification tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest tests.test_frp_m31_phase_interference_thermal_evidence -v 2>&1 | tee /tmp/m31d1-tests.log
+          grep -F "Ran 60 tests" /tmp/m31d1-tests.log
+          grep -Fx "OK" /tmp/m31d1-tests.log
+
+      - name: Install the additive v3.3.0 validation index
+        shell: bash
+        run: |
+          set -euo pipefail
+          compact=/tmp/frp-v3.3.0-validation-index.gz.b64
+          payload=/tmp/frp-v3.3.0-validation-index.gz
+          rendered=/tmp/FRP_VALIDATION_INDEX_v3_3_0.md
+
+          base64_payload() {
+            cat <<'PAYLOAD'
+          H4sIAAAAAAACA+1ay5IbR3bd4ysqQuEIO6KBzqysqqyUVjRFehgjkTTJkR3eoPNV3RgBKEwV0BQU
+          WnjlD3D4C+dLfG5mVqHQAEVKMwsvvCCaQL5u3se5j7xfZS/fvc0exUIsWPaDXq+c3q/abfZq6/xP
+          s9lXX2Xv/Nrr3memPWyd7o6z2S/Zy5Vfu+wXWnDw2S+zX+bzefiHsbdd+2dv9xh92Wm712vs0Ldb
+          vbWexqzv+7bL/hHH/hOtzH7wXU8n/pLdnUi5C0Pfr9a+37dbT4PfC5799T//J3v7AGrmr7Z73zW+
+          89j2Jntm96tHP/8P37U3md667MOD7zZ6PX/xuHI+nHww65UNd4t7/+sBl23ST1m/1/tDT8e8ffb+
+          fZzxsrWH3rvsL2czMaVi2W2Gj9PUt90Kd9KdfVg94sIGFK5Xkex0p3xBi74XLN5hXPniJ28Pe23W
+          Puv9Rm/3K5t1Pl2M1jfdbrnr2n27P+788pEv5ZItdse4+t2H78J1X779l2fZarNb+43f7iOhYPgD
+          iCLO8ers1BmxUjvXZzpzHnzcrLarHiff4Gjt5u12fcx2J4Zla330XdY+4kOvacoxs+1ms9rvvZvR
+          BX1i8yJ7tc9c6/ts2+6x2W6tcYv9gw83v+APnbfVmzSDl7NLFtAU5xtiJl3DB3YFiaWp/U1GrF/j
+          GtkDbtF2oHo9M1j8sNHdj4E/XdLhztu2c/0iKPbbzve+e4xXvD/oDvt5P5t9wDbZ48kUVmQKGX4D
+          y1akZ3TL/oxBFkzZ49b+J2g8mEcqu/UfZw0U+OvZjJRg+cOz7159++zDqzevl69ef/vi35ePYikg
+          y427m81et1hLMtjej8y8ycZL3GS9fcCFb7KPbfdjs24/3ox3AqcxFacHhrfd/mb2lPjTZOxif1zj
+          IOzYHjoIh0gMLAw70De6qsN8CPdmFgXkaId7v/Wdpl9peuc/dqQA28wcg/ym/BioXBA3MQT9BSTA
+          lnadn08nrraPUFjIDMzTHfEqAEiaHcUFUQc0ITDA3/e4Isbc6h4Ez4cNjtn7Pzyb52U1QaOvB0i6
+          091+1UA0/e0dGQTPZfjLXF3p2pbM1pXRjKuqqUSpmLCmtrZ2+OIcF0rJWlZ52ciKK+0K52qe8yY3
+          0QjvRjEN26vwpyycLbRXWtcltnMVa0opRSWNV0xp0/C8qoysGgtl56Ahz4XHtrm1sq5kwsC7KPmR
+          8jL8FXVhYReVEdx7LWujPA5hRcFKJ11tjDDeFrln1tdFrZxolHc5c6Jqci6cinuf7CXr2mCwZ2ZC
+          BxV1OE+CKb7EKdIUrJCS6UIUjQatyrhKe9zCsApbg4OeGUlDQjjLQGAumzLAzgttHzJ9fw9VghqR
+          mpHeDHJrG8DRGlZg2/tO7x6ILJhSH8VNOgvQAbgBq7b3s+nKaOG7tl+RIsxxC01mmu30/oG29QCu
+          40QJcf5hrbug7AtyFbNruksQtzuQVdNZU0U1vmk7H47VDeFOMH8y3T04Oot4EYn6y2HV0Yoj3RdW
+          vV/tjxlWjzT5+Wj3JwIDYQGjXm02yTvsRtc57EO28hwcIS+b/TLAGZY/XvHK/6zX5IEdzLzbwosT
+          bIwObc5v2S2POvF+gOCwSx+H725gLPSRJkV/C4g74PR18J7BWSWdfbMLwoCpt+AzXblrAyfDZtlf
+          /+u/MxY+w8bTH+bpgA9+AyijraH97rAGkzetizvwW0nL5IninSZcyuj6K0Da+ZroRL0fPfWGrt92
+          93q7+nlgQedJsYJuROWZ7yjMgNhPYUYSaYhl9jhsDWGF1SSHte77YEhmtU+Ognww3EQ6cOPtA07s
+          N4Eeve4DQQEezVPZRH/bQRKrbVQ/t+qhZHRHYjXgXnf3HiAO9m/7cFaIe2bDPWAE/WG9H4O2xXWR
+          kcCGY/Q2eVdSt1lU/sCeYXbUyOd6227DTSmKSE6EOAMJY0UfEJwMDzp3jDL/NWSm8GYj+DKwezll
+          93IfY7jlGFyEqAeQlDOVRzT0hbWNk4aX0rrcaFsxZUXhGm+V01LxqhRacN1Ikysjy5LlFp81k0bZ
+          Kk8IS56vv6XP5e8gB0AXsBp3qYqcF1oBvktXW6C98kJXutSNrryogJu5q5XMpSytZZxp4YwGOtdl
+          brl3TwAfdNyCngX+Lq7Qo4NAlz8j5r2k7ZEv4jaLP/ch4gWziipieSmcVK6Ao2CyFHBMeWEB1YVV
+          UjdV431R8waOUTkw1WrpG/iXoq6sxA1UIxOZJ59KhA4n05doO/MptfNI7ZyonSdq5yO1I41wtUqE
+          /xmndSUrbQ0cCzhUOfgxJpmvdV5JYUvrK8XyqpSaGS5M7otcCVGT3wO1+VUigWyrJgj7d1A5H1af
+          yK3zyNGaNawuuGOs4GBnbnMKFWRpKgQPvmJcw1dLU6kaTrGEu+SNb4z1iCiU8NJeJfYs7fhdBJ/t
+          MFGEkkfzKWxeFFWjysIz7i3TWkhrK8saK5ltCl1Lb8uqtEUJ3157wQ3zjdUWdsXyvIhOfciwor6N
+          3onC3t+vvXcRGQliBrYDWbeISfYf22yMRIdIJSZ9BJTnyVocnsWVCCcwBZ5gsn44cswMsg8tgBUE
+          ZR9XADHaEu56kzwRIvAQeRA6UoB8ngTE6KTHggNighEnEzBG+KQbjRFGjL+O8a7jns1haxPuPp05
+          gvWYfoWI+d+GaV+GuYt7XO1gbofde4KZOQSlr+rYhV5F0J/D6+7nfD7G+sfNOgENq3n4n8+LpnZe
+          Kcu1ElCjohG8Zp4LoXNmK1eosuHc5jk3ABtYNcyfaafrojA6H5Dm0/Tmv5ne/Aq9FSsj6EjnSo/I
+          G3FzXuRSIII3NdOGW8u5s6rGoCsYkMcKWZRcFt5KC0q1qnJfuc/SK34LvYgo/Masj1coLrmKHC4a
+          ZRVwpuBcl1ZqX0hdVK5BXA5Q8lYrzgSAnDdF5b2AnReiLOEzy1oDztXnKDZfphHkOz+tD0KwImUt
+          8H2Mzs5VXSvTWKu5BWZWII85VdaUxKhcAzNlAc1hyJSQ0diq1Nw1n+WvyX8jtde0QUHu0QXV2sEh
+          6Vr7BnRpDdUFCkowX0snkOpwZHQKmZgm31STF1c+B5IWGgv0Z6kVX07tr+hCLquovQx4zr2CFxLa
+          IOnieV0iATQeCG4lEdsoXiJAUkWpXc5LaLhHbNLA7cPyPmtt9ovInSDiJbE5xFsno4PFK2lrxEtV
+          BdZpkF6XStu84swoVudGqdpoX+eNckiZCyVLB29qdJOX7HPEzgc4PTGKyyr6Pe+dkkrnRnoJ45EC
+          TtfBwQGODBw3MMg7Dh/ohdS1Z85VlDLnDayLpG/GwL1ZEUiHEh/h+vN05N0Jt1MlZigNDfEy5YNw
+          Wt1hG9zSrGJwGrHaGIJRKrcg4XMHm9JP2n70VfuPq1gYu5Zd3syQWcID+ujwRkeRCibJVQYp9Q+Y
+          FIp90c2deS2cOLvwXOfeNRSTEPA/o3PC/5MbxWmrbZYcZTr+fKnDbalUSUUfBODdwd8FT/actoGM
+          3sX05TyHvTsLGpD2+jFkWAb23p0XcO/soYOW7pekC5Qi0mLy0rhpH8KRe0pOlztY19OlDpy1+2Wb
+          MtnlKdHqw/lP559KKSBlBwnQ7ZajFN2vzO+gttfp3wi2jEVTv9zA/j3IJmEvo7Cx+OmK1sSSJmKF
+          5ZD7LaliuyQ5P529eziGpHW5R7pNEdGhA4PWerVZamy0vSBozKyXIRu/TnXU8WXSt+tzUqa7HKoQ
+          n5iVAsON1z1I20RZJvn1Ke1/uujjaovobkmI2UV5XbnL7OXE3IKWwiooZN0d9w/Qz/kmO2xJcTEa
+          LHLxW9PDbP6IIPbdYA8xH6cT3iHRhr2HXUNZ/s0f72I9OtmkyyZR/aTiPexMdhL3vfIC8zXx4LRm
+          UsnjLIGm9bDXQVGIQTGFSaPTs59OQmQUJxH0gP6AKmQnVM7a7sOcMs7YdeGnX5mRKhHzUBpyl+Mg
+          BJBxuZwNJMRq1zxWMi7GQeDBz+nNIgDxxfhQmprv22kWNamoPCHmlGe1p7rWk9k88ScR3V7UwZ7M
+          H++SqjY9PYZccL0Wo8cZtWtMNigfske7pkIieZiT7AdLuckg+tPvszFngswvlSH6h237JXeIjiG9
+          tYV1p2eXM0pX20MoWJIP2SXJRcc2KUHT+oTYk32GW1AtbTD52QQQMkulNx+d1FfZHyYl7RF8h00i
+          D8OLHFuohZgcs+pHwnALyl7nF29vbKmWAshnqDy7O959Q3M+vHj/Yfnuxds37z6kGfSiQ0N0vSiT
+          hC8X3nHq1YcV45x+72AZQyI3yxCQ8tpzxGsemZO3CEYRJVVe5QLhkrRKe2ENsyXjglM1BAEmb4zL
+          dYFwxxpT3YFHf9o65Lb7B71PtE0EQJgec851q91NigoiTqanmEHtgrP+w9OlqfCcjaj3eA2dkI0D
+          +mG3x3VIri0pPrJt+wC36PV+ufP6xxjRLlgJ3WWDUfX7bmUCWiR7HKqZQ+H0cj0TY7BIAUAb06dF
+          Ba4xSZ+DBaY3gw7+zQ51cSUWlfiHhBfJV2YTX5lN9fBpWbf3IbhJbyrzfuctxT+JVUPcTJxOpfbw
+          FHEMi+j1dDhw9okD+2Awrg2TAcY6eI9Mk+MC6vVkURQ70JsClsyiX0xm8jzZ2SQyGi0tlSMuLDH6
+          9T7VIHAMFbTvUwkilXwvyw5PX8imNKXAbNW329voIPvb8eV3Mghf791SVqcaVml0Xbm8QmqYOyOo
+          pFYgdUCaXiGo58jjLassY8a4UmvhkBnBaDhMonaGVcXly93fQtfyQXfuIwSHHwI0PlJY+chP9CIv
+          R0aokaGJAsmYc7UvhZQeCZopOLIMWzDeqCovGEOeQ+92SMvq2tpCFVXNvpxe4BU9H/W3Q0CCH346
+          LtPPZ0RprxtvrCCGATO4FkVRGofEsEbWKEWel0XVSOUqjbRRucY7oVWpWIMMNy9PedCgK++en1lH
+          OJmQlTT0CdhPLPVmmKJn14wsOqTNAZEYTTJkHXSx1c/AgbaDSXRQwlO5btIEkDR6kb0+rQjIQW7M
+          ttgxnTyeS4XB++MiexNOj170sKV5s3SJ4OrIak9ZEe6J6EKH0OzMSce6I89Pb/vJhr7AZK77FRKb
+          rRpfV01umVV5nhdC1wZJP5dF7lVjTeOERbYO/G0Kpist89qoGjm0Y7AO5S+rzVzdjuEBvlXzZnev
+          5/CHERuQyY/D85B3nXRIurI2lSy4cVY70xhk8HBHhfKOeVVWgpUN0mqlnaigyVA1pQuec1Na5PF5
+          8wXEdPv1p893UhUwF5cbmJdmpS2bpsmRqFfMwS/WMCvZSF8AIKhSU5YqZ6KqNYdfyZlxl+fn6tam
+          V9Xwbd4fEelu5jFfjOwYJpzoqABATgltfFkVlSk8U0WTS8NkzqVTvnDW1UK4WjcMkNQYwZwGG8Aq
+          W1Tje8X/PQP/f/T+u6G3a21/O+bcTUjPQxidDNsroy0E5SEbLVlZ+0rVumbOFk0lZSErL7zLvTaF
+          Ua7gTVk3TllnbAONln56TDf03C0nL7nDQZwXygIOtIf+4U/FoZmm9NZyX5rCFWVe1TUvjWRaltZI
+          KI7UpS8KrUzFU070ufA4to+IikteGIPtGlHlWjBdgjWFZo2RdQ6wkAJooTSvG2zOJD3WNmVhWe7L
+          a8947Han7Y/63sdaX+ytm+P3+dBfNk8x12Kvu8X9zzEULL0Woqka0ZSsdILDBpVgNncll/SqyWul
+          WClYXUjRiFyXUkCS1OpSKas/V8xl80nlZd4c1mtgROcjWp0/xF1WRRm3Os+NVXVTCQfJel3oss5h
+          kaVoIGUoGQPhsBVVgJHQMSehYoJ6kbwPhdvoiyY9dtO0a3hKS/lQl40lwtC4NeY9pw1iJ9avtnlG
+          7/U3i2Z2erO644ykUKdXidEx/r2k9yxeLfY6UWtm7E+dj/2p87E/dY4kMdGfWlFD+S0xbmwFpWLc
+          fCzGDa2Vq9BMMXQLnr0Rhh5K6hLKVmNnT+J4CP+HLykwQa5uDqv1PjbchW7KFHdQEvuBlCt7c1K8
+          SY/upN81ZfL4X2pFHKu/LhaiQ+cNXThsOJ9smJ5hXftxi9zL6w14FxsET42ik2ZDCtQeVz1pe+ys
+          iXcavOUMyZ5ZuT4k15M9Nx55nR3DurDym/Mpk8bQ8zbXJ/PodqnGvjlcnUFdix44++MiMSnwYawy
+          hDgzZThDuWFxxuPUiEXRnNVbigqR0a2a4+x09tCu2d9MmjnH5oNJX2d/auiMfayT4PVqz+pZeSO1
+          dE4MnSrxZz1lF9nnUBBMVwy2v93Hcse7F9+9ePb+xfL1GwSf06Bz/9C1h/uHixl8WccG1m+uLBfL
+          fDL4iXB23Pls/Hzfs6HzXa/31dL2aro9FU+uTz0/6VNtupMj6U3lKXdPXbX9uM3bd2++/dPzsM3A
+          l++fvX71ku6CU9lpx7N+gtN7ybRn9ea8xzRmRKfGUFwv6U0og8X+5djRH3sR+8Mu2QwhfjtRqrN+
+          bUzzXe9d6MdedbPL0sWk+nCTnnwOm57Uvd3FLmJoo10fqKE/aWx8yUnAk6i6Dd7oxOkscPrUoz77
+          X5oXSLOWMAAA
+          PAYLOAD
+          }
+
+          base64_payload | tr -d '[:space:]' > "$compact"
+          test "$(wc -c < "$compact")" -eq "$PAYLOAD_BASE64_LENGTH"
+          test "$(sha256sum "$compact" | cut -d' ' -f1)" = "$PAYLOAD_BASE64_SHA256"
+          base64 --decode "$compact" > "$payload"
+          test "$(wc -c < "$payload")" -eq "$PAYLOAD_GZIP_BYTES"
+          test "$(sha256sum "$payload" | cut -d' ' -f1)" = "$PAYLOAD_GZIP_SHA256"
+          gzip --decompress --stdout "$payload" > "$rendered"
+          test "$(wc -c < "$rendered")" -eq "$TARGET_BYTES"
+          test "$(wc -l < "$rendered")" -eq "$TARGET_LINES"
+          test "$(sha256sum "$rendered" | cut -d' ' -f1)" = "$TARGET_SHA256"
+          install -m 0644 "$rendered" "$TARGET_PATH"
+          echo "Additive v3.3.0 validation index installed: PASS"
+
+      - name: Qualify validation-index content
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          target = Path(os.environ["TARGET_PATH"])
+          raw = target.read_bytes()
+          if len(raw) != int(os.environ["TARGET_BYTES"]):
+              raise SystemExit("validation-index byte mismatch")
+          if hashlib.sha256(raw).hexdigest() != os.environ["TARGET_SHA256"]:
+              raise SystemExit("validation-index digest mismatch")
+          if not raw.endswith(bytes([10])) or raw.endswith(bytes([10, 10])):
+              raise SystemExit("validation-index newline mismatch")
+          text = raw.decode("utf-8")
+
+          evidence = json.loads(Path(os.environ["M31_EVIDENCE_PATH"]).read_text(encoding="utf-8"))
+          qualification = json.loads(Path(os.environ["M31_QUALIFICATION_PATH"]).read_text(encoding="utf-8"))
+          if evidence["milestone"] != "M31" or evidence["status"] != "PASS":
+              raise SystemExit("M31 evidence identity mismatch")
+          if len(evidence["provenance"]) != 12:
+              raise SystemExit("M31 provenance count mismatch")
+          if qualification["status"] != "PASS":
+              raise SystemExit("M31 qualification status mismatch")
+          if len(qualification["checks"]) != 13 or not all(qualification["checks"].values()):
+              raise SystemExit("M31 qualification checks mismatch")
+
+          required = (
+              "FRP v3.3.0",
+              "M31 — Phase-Interference, Active-Zero, and Thermal-Evidence Publication",
+              "60 / 60 PASS",
+              "No existing evidence, benchmark, schema, workflow",
+              "0d86a8c50c86ba0196f635903cb8cc8d635dd1399787625f7619ad4dd8121f2b",
+              "54dc4ae9aa858ccd60f577367be909abf1266b76fcefe10c8223e1f22cc78670",
+              "384cede6b31eea78b9e85804405d7d8bb3bec42e0ce8489d3f9ed20d36f213d9",
+              "7903e5b9e7b404770a434fa22c9bd6ae76fb062136f6e0b7fa2233dc0b3127f5",
+              "actual direct events | `0`",
+              "direct opposite-polarity transitions | `0`",
+              "physical temperature measurement | `false`",
+              "downstream metric normalization",
+              "downstream semantic reimplementation",
+              "downstream FRP source mutation",
+              "downstream writeback",
+          )
+          missing = [item for item in required if item not in text]
+          if missing:
+              raise SystemExit(f"validation-index claims missing: {missing}")
+
+          forbidden = "-1/0/" + chr(43) + "1"
+          if forbidden in text:
+              raise SystemExit("forbidden ternary notation in validation index")
+
+          for item in evidence["provenance"]:
+              if f"`{item['path']}`" not in text:
+                  raise SystemExit(f"provenance path missing: {item['path']}")
+              if f"`{item['raw_sha256']}`" not in text:
+                  raise SystemExit(f"provenance digest missing: {item['path']}")
+
+          print("FRP v3.3.0 validation-index content: PASS")
+          PY
+
+      - name: Prove all prior histories are byte-identical
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+
+          historical_inventory() {
+            find . -maxdepth 1 -type f '(' -name 'RELEASE_NOTES_v*.md' -o -name 'TEST_REPORT_v*.md' -o -name 'FRP_VALIDATION_INDEX_v*.md' -o -name 'RELEASE_CHECKLIST_v*.md' ')' ! -name "$TARGET_PATH" -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+
+          tree_inventory artifacts > /tmp/m31d1-artifacts.after
+          tree_inventory benchmarks > /tmp/m31d1-benchmarks.after
+          tree_inventory schemas > /tmp/m31d1-schemas.after
+          historical_inventory > /tmp/m31d1-history.after
+
+          cmp --silent /tmp/m31d1-artifacts.before /tmp/m31d1-artifacts.after
+          cmp --silent /tmp/m31d1-benchmarks.before /tmp/m31d1-benchmarks.after
+          cmp --silent /tmp/m31d1-schemas.before /tmp/m31d1-schemas.after
+          cmp --silent /tmp/m31d1-history.before /tmp/m31d1-history.after
+          echo "All prior evidence, benchmark, schema, and release histories: BYTE-IDENTICAL"
+
+      - name: Verify only the new validation index changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          changed="$(git diff --name-only)"
+          untracked="$(git ls-files --others --exclude-standard)"
+          if test -n "$changed" && test "$changed" != "$TARGET_PATH"; then
+            echo "Unexpected changed paths: $changed" >&2
+            exit 1
+          fi
+          if test -n "$untracked" && test "$untracked" != "$TARGET_PATH"; then
+            echo "Unexpected untracked paths: $untracked" >&2
+            exit 1
+          fi
+          echo "Single additive file boundary: PASS"
+
+      - name: Commit and publish the validation index
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$TARGET_PATH"
+          staged="$(git diff --cached --name-only)"
+          if test -z "$staged"; then
+            test -z "$(git status --porcelain)"
+            echo "FRP v3.3.0 validation index is already published."
+            exit 0
+          fi
+          test "$staged" = "$TARGET_PATH"
+          git commit -m "Add FRP v3.3.0 M31 validation index"
+          git push origin HEAD:main
+
+      - name: Verify published state
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "$(git status --porcelain)"
+          test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+          test "$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)" = "$TARGET_SHA256"
+          echo "FRP M31D1 validation index v3.3.0: PASS"
+          {
+            echo "## FRP M31D1 Validation Index v3.3.0"
+            echo
+            echo "- New file: FRP_VALIDATION_INDEX_v3_3_0.md"
+            echo "- M31 tests: 60 / 60 PASS"
+            echo "- Existing histories: byte-identical"
+            echo "- Result: PASS"
+          } >> "$GITHUB_STEP_SUMMARY"
