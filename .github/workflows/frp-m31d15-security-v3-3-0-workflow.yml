@@ -1,0 +1,334 @@
+name: FRP M31D15 Security v3.3.0
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m31d15-security-v3-3-0-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish-security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TARGET_PATH: SECURITY.md
+      SOURCE_BYTES: "6549"
+      SOURCE_LINES: "203"
+      SOURCE_SHA256: d6fed8be4b2af376a6eb8625f0eb7bd8f01ae19caf067693514ef5dcb34bbd15
+      TARGET_BYTES: "11961"
+      TARGET_LINES: "327"
+      TARGET_SHA256: 65bd8aaf9da131cf79ecb617727bce16f7c5241a949491a0851b83a6fccd235b
+      BLOCK_BYTES: "5412"
+      BLOCK_SHA256: d9e4c8bd3b48ab7c20d18d5436b78b9cb81c25a2f62f5eda407eae6196f19d96
+      INSTALL_BYTES: "51529"
+      INSTALL_SHA256: df1dcd53d5f195cbc02bb3abbed61c08450ff9673816afcaec785a3f58642e96
+      PROJECT_STRUCTURE_BYTES: "75854"
+      PROJECT_STRUCTURE_SHA256: 17adf275c6af9996e7af9e2e36982893b9d0d60c297d6458d90854b01424c02d
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: main
+          persist-credentials: true
+
+      - name: Require manual main-branch execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ github.event_name }}" = "workflow_dispatch"
+          test "${{ github.ref }}" = "refs/heads/main"
+          test "${{ github.ref_name }}" = "main"
+          test "$(git branch --show-current)" = "main"
+          test -z "$(git status --porcelain)"
+          echo "Manual main-branch boundary: PASS"
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Verify source boundary and capture protected histories
+        shell: bash
+        run: |
+          set -euo pipefail
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          historical_inventory() {
+            find . -maxdepth 1 -type f '(' -name 'RELEASE_NOTES_v*.md' -o -name 'TEST_REPORT_v*.md' -o -name 'FRP_VALIDATION_INDEX_v*.md' -o -name 'RELEASE_CHECKLIST_v*.md' ')' -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+
+          tree_inventory artifacts > /tmp/m31d15-artifacts.before
+          tree_inventory benchmarks > /tmp/m31d15-benchmarks.before
+          tree_inventory schemas > /tmp/m31d15-schemas.before
+          historical_inventory > /tmp/m31d15-history.before
+
+          while IFS= read -r path
+          do
+            test -f "$path"
+            test ! -L "$path"
+          done <<'REQUIRED_FILES'
+          LICENSE
+          README.md
+          INSTALL.md
+          USAGE.md
+          REPRODUCIBILITY.md
+          ROADMAP.md
+          PROJECT_STRUCTURE.md
+          MILESTONES.md
+          NOTICE.md
+          CHANGELOG.md
+          CI.md
+          CONTRIBUTING.md
+          CODE_OF_CONDUCT.md
+          FRP_VALIDATION_INDEX_v3_3_0.md
+          RELEASE_NOTES_v3_3_0.md
+          TEST_REPORT_v3_3_0.md
+          requirements.txt
+          frp_m31_phase_interference_thermal_evidence.py
+          tests/test_frp_m31_phase_interference_thermal_evidence.py
+          schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json
+          artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json
+          artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json
+          artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json
+          REQUIRED_FILES
+
+          test "$(wc -c < INSTALL.md)" -eq "$INSTALL_BYTES"
+          test "$(sha256sum INSTALL.md | cut -d' ' -f1)" = "$INSTALL_SHA256"
+          test "$(wc -c < PROJECT_STRUCTURE.md)" -eq "$PROJECT_STRUCTURE_BYTES"
+          test "$(sha256sum PROJECT_STRUCTURE.md | cut -d' ' -f1)" = "$PROJECT_STRUCTURE_SHA256"
+
+          test -f "$TARGET_PATH"
+          test ! -L "$TARGET_PATH"
+          current_sha="$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)"
+          if test "$current_sha" = "$SOURCE_SHA256"; then
+            test "$(wc -c < "$TARGET_PATH")" -eq "$SOURCE_BYTES"
+            test "$(wc -l < "$TARGET_PATH")" -eq "$SOURCE_LINES"
+          elif test "$current_sha" = "$TARGET_SHA256"; then
+            test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+            test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
+          else
+            echo "SECURITY.md boundary mismatch: $current_sha" >&2
+            exit 1
+          fi
+          echo "Source boundary and protected histories: PASS"
+
+      - name: Install exact dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check -r requirements.txt
+
+      - name: Run all 60 focused M31 qualification tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest tests.test_frp_m31_phase_interference_thermal_evidence -v 2>&1 | tee /tmp/m31d15-tests.log
+          grep -F "Ran 60 tests" /tmp/m31d15-tests.log
+          grep -Fx "OK" /tmp/m31d15-tests.log
+
+      - name: Install complete SECURITY.md
+        shell: bash
+        run: |
+          set -euo pipefail
+          current_sha="$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)"
+          if test "$current_sha" = "$TARGET_SHA256"; then
+            echo "Complete M31 SECURITY.md is already installed."
+            exit 0
+          fi
+          test "$current_sha" = "$SOURCE_SHA256"
+
+          block_base64() {
+            cat <<'BLOCK_PAYLOAD'
+          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
+          eWLr0HCx8fZ6/wU/Hs1KJBUAAA==
+          BLOCK_PAYLOAD
+          }
+
+          block_base64 | tr -d '[:space:]' | base64 --decode | gzip --decompress --stdout > /tmp/m31d15-security-current.md
+          test "$(wc -c < /tmp/m31d15-security-current.md)" -eq "$BLOCK_BYTES"
+          test "$(sha256sum /tmp/m31d15-security-current.md | cut -d' ' -f1)" = "$BLOCK_SHA256"
+
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          source = Path(os.environ["TARGET_PATH"]).read_bytes()
+          block = Path("/tmp/m31d15-security-current.md").read_bytes()
+          marker = b"# Security Policy\n\n"
+          if not source.startswith(marker) or source.count(marker) != 1:
+              raise SystemExit("SECURITY.md insertion boundary mismatch")
+          rendered = marker + block + source[len(marker):]
+          expected = (int(os.environ["TARGET_BYTES"]), os.environ["TARGET_SHA256"])
+          if (len(rendered), hashlib.sha256(rendered).hexdigest()) != expected:
+              raise SystemExit("rendered SECURITY.md identity mismatch")
+          if rendered.count(b"\n") != int(os.environ["TARGET_LINES"]):
+              raise SystemExit("rendered SECURITY.md line-count mismatch")
+          Path("/tmp/SECURITY.md").write_bytes(rendered)
+          PY
+
+          install -m 0644 /tmp/SECURITY.md "$TARGET_PATH"
+          echo "Complete M31 SECURITY.md installed: PASS"
+
+      - name: Qualify security, links, and preservation boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import os
+          import re
+          import subprocess
+          from pathlib import Path
+
+          raw = Path(os.environ["TARGET_PATH"]).read_bytes()
+          expected = (int(os.environ["TARGET_BYTES"]), os.environ["TARGET_SHA256"])
+          if (len(raw), hashlib.sha256(raw).hexdigest()) != expected:
+              raise SystemExit("SECURITY.md target identity mismatch")
+
+          marker = b"# Security Policy\n\n"
+          block_end = len(marker) + int(os.environ["BLOCK_BYTES"])
+          current = raw[len(marker):block_end]
+          reconstructed = raw[:len(marker)] + raw[block_end:]
+          source_expected = (int(os.environ["SOURCE_BYTES"]), os.environ["SOURCE_SHA256"])
+          if (len(reconstructed), hashlib.sha256(reconstructed).hexdigest()) != source_expected:
+              raise SystemExit("historical SECURITY.md bytes were not preserved")
+
+          text = raw.decode("utf-8")
+          required = (
+              "## Current Security Boundary — FRP v3.3.0 / M31",
+              "-1/0/1",
+              "60 / 60 PASS",
+              "## Current M31 Publication Boundary",
+              "## Versioned SystemVerilog Security Boundary",
+              "M26 declared-target implementation boundary",
+              "## Integrity and Provenance Controls",
+              "one-way, read-only interchange",
+              "## Responsible Disclosure Procedure",
+              "## Preserved Security Policy History Through M16",
+          )
+          missing = [value for value in required if value not in text]
+          if missing:
+              raise SystemExit(f"SECURITY.md records missing: {missing}")
+          if "-1/0/" + chr(43) + "1" in text:
+              raise SystemExit("forbidden ternary notation present")
+
+          links = re.findall(r"\]\(([^)]+)\)", current.decode("utf-8"))
+          if len(links) != 26 or len(set(links)) != 26:
+              raise SystemExit("security link registry count mismatch")
+          missing_links = []
+          for value in sorted(set(links)):
+              target = Path(value.rstrip("/"))
+              valid = target.is_dir() if value.endswith("/") else target.is_file()
+              if not valid:
+                  missing_links.append(value)
+          if missing_links:
+              raise SystemExit(f"SECURITY.md link targets missing: {missing_links}")
+
+          changed = subprocess.check_output(["git", "diff", "--name-only"]).decode().splitlines()
+          if changed not in ([os.environ["TARGET_PATH"]], []):
+              raise SystemExit(f"unexpected worktree changes: {changed}")
+          print("SECURITY.md M31 boundary and historical preservation: PASS")
+          PY
+
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          historical_inventory() {
+            find . -maxdepth 1 -type f '(' -name 'RELEASE_NOTES_v*.md' -o -name 'TEST_REPORT_v*.md' -o -name 'FRP_VALIDATION_INDEX_v*.md' -o -name 'RELEASE_CHECKLIST_v*.md' ')' -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          tree_inventory artifacts > /tmp/m31d15-artifacts.after
+          tree_inventory benchmarks > /tmp/m31d15-benchmarks.after
+          tree_inventory schemas > /tmp/m31d15-schemas.after
+          historical_inventory > /tmp/m31d15-history.after
+          cmp --silent /tmp/m31d15-artifacts.before /tmp/m31d15-artifacts.after
+          cmp --silent /tmp/m31d15-benchmarks.before /tmp/m31d15-benchmarks.after
+          cmp --silent /tmp/m31d15-schemas.before /tmp/m31d15-schemas.after
+          cmp --silent /tmp/m31d15-history.before /tmp/m31d15-history.after
+          echo "Evidence, benchmark, schema, and release histories: BYTE-IDENTICAL"
+
+      - name: Commit and publish SECURITY.md
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$TARGET_PATH"
+          if git diff --cached --quiet; then
+            test -z "$(git status --porcelain)"
+            echo "Complete M31 SECURITY.md is already published."
+            exit 0
+          fi
+          test "$(git diff --cached --name-only)" = "$TARGET_PATH"
+          git commit -m "Align SECURITY.md with FRP v3.3.0 M31"
+          git push origin HEAD:main
+
+      - name: Verify published state
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "$(git status --porcelain)"
+          test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+          test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
+          test "$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)" = "$TARGET_SHA256"
+          {
+            echo "## FRP M31D15 Security v3.3.0"
+            echo
+            echo "- Updated file: SECURITY.md"
+            echo "- Current security boundary: FRP v3.3.0 / M31"
+            echo "- Versioned SystemVerilog boundaries: recorded"
+            echo "- Existing security history: byte-identical"
+            echo "- M31 focused tests: 60 / 60 PASS"
+            echo "- Protected histories: byte-identical"
+            echo "- Result: PASS"
+          } >> "$GITHUB_STEP_SUMMARY"
