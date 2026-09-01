@@ -1,5 +1,207 @@
 # CI — Fractal Resonance Processor (FRP)
 
+## Current FRP v3.3.0 / M31 CI Register
+
+[![FRP M31 Complete](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m31-complete.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m31-complete.yml)
+[![FRP M31D3 Test Report v3.3.0](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m31d3-test-report-v3-3-0-workflow.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m31d3-test-report-v3-3-0-workflow.yml)
+[![FRP M31D11 CI v3.3.0](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m31d11-ci-v3-3-0-workflow.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m31d11-ci-v3-3-0-workflow.yml)
+
+| Field | Current record |
+|---|---|
+| Repository release | `FRP v3.3.0` |
+| Current milestone | `M31 — Phase-Interference, Active-Zero, and Thermal-Evidence Publication` |
+| Release qualification | `PASS` |
+| Focused M31 tests | `60 / 60 PASS` |
+| M31 qualification checks | `13 / 13 PASS` |
+| Canonical M31 outputs | `4 / 4 exact` |
+| Preserved archival baseline | `FRP v3.2.0 / M30 — PASS` |
+| M30 reproducibility checks | `55 / 55 PASS` |
+| Python executable semantic reference | `frp_prototype_v1_7_0.py` |
+| RTL and FPGA implementation anchor | `M16 — PASS` |
+
+This register is the current CI entry point. The complete pre-M31 CI record is
+retained below as historical release evidence.
+
+### Current Processor Contract
+
+| Contract | Qualified value |
+|---|---|
+| Balanced ternary notation | `-1/0/1` |
+| Semantic domain | `-1`, `0`, `1` |
+| Active neutral state | `0` |
+| Negative-to-positive route | `-1 → 0 → 1` |
+| Positive-to-negative route | `1 → 0 → -1` |
+| Temporal scheduler modes | `1/7`, `7/1` |
+| Separate service scheduler mode | `free` |
+| Primary computational organization | retained relative-phase interference and resonant selection |
+| Classical bit addition as primary mechanism | `false` |
+
+The phase layer supplies target organization. The balanced ternary layer
+supplies the discrete target, transition, active-zero, pending-route, and
+retained-result boundary. Target state and executed retained state remain
+distinct.
+
+### Current Qualification Commands
+
+Focused M31 qualification:
+
+`python -m unittest tests.test_frp_m31_phase_interference_thermal_evidence -v`
+
+Recorded result:
+
+`Ran 60 tests — OK`
+
+The M31 publication workflow verifies exact source bytes, runs the focused
+suite, generates the canonical publication twice, requires byte-identical
+outputs, validates every recorded digest, and publishes only the declared M31
+output surface.
+
+### M17-M31 Qualification Chain
+
+| Milestone | Version | Qualification result | Primary workflow |
+|---|---:|---:|---|
+| M17 — Published Artifact Integration Contract | `v1.9.0` | `25 / 25 PASS` | `.github/workflows/frp-m17-published-artifact-integration.yml` |
+| M18 — Formal Schema and Canonical Artifact Publication | `v2.0.0` | `187 / 187 PASS` | `.github/workflows/frp-m18-formal-schema-canonical-artifacts.yml` |
+| M19 — Machine-Readable M16 Execution and Qualification Evidence | `v2.1.0` | `37 / 37 PASS` | `.github/workflows/frp-m19-create-machine-readable-m16-evidence.yml` |
+| M20 — Cross-Layer Deterministic Correlation | `v2.2.0` | `39 / 39 PASS` | `.github/workflows/frp-m20-cross-layer-correlation.yml` |
+| M21 — Parameterized Qualification Matrix | `v2.3.0` | `48 / 48 PASS` | `.github/workflows/frp-m21-parameterized-qualification-matrix.yml` |
+| M22 — Control, Status, and Register Interface Realization | `v2.4.0` | `60 / 60 PASS` | `.github/workflows/frp-m22-control-status-register-interface.yml` |
+| M23 — Clock, Reset, CDC, and Interface Hardening | `v2.5.0` | `72 / 72 PASS` | `.github/workflows/frp-m23-clock-reset-cdc-interface-hardening-workflow.yml` |
+| M24 — Formal and Bounded Verification Closure | `v2.6.0` | `76 / 76 PASS` | `.github/workflows/frp-m24-formal-bounded-verification-closure-workflow.yml` |
+| M25 — Fault, Negative-Path, and Recovery Qualification | `v2.7.0` | `105 / 105 PASS` | `.github/workflows/frp-m25-fault-negative-path-recovery-qualification-workflow.yml` |
+| M26 — Declared-Target Implementation Evidence | `v2.8.0` | `70 / 70 PASS` | `.github/workflows/frp-m26-declared-target-implementation-evidence-workflow.yml` |
+| M27 — Long-Run Stability and Telemetry Qualification | `v2.9.0` | `69 / 69 PASS` | `.github/workflows/frp-m27-long-run-stability-telemetry-qualification-workflow.yml` |
+| M28 — Hierarchical Scaling, Hotspot Containment, and Observatory Interchange | `v3.0.0` | `59 / 59 PASS` | two qualified workflows listed below |
+| M29 — System Integration and Downstream Compatibility Closure | `v3.1.0` | `48 / 48 PASS` | `.github/workflows/frp-m29-system-integration-downstream-compatibility-closure-workflow.yml` |
+| M30 — Reproducibility, Qualification, and Archival Release Closure | `v3.2.0` | `55 / 55 PASS` | `.github/workflows/frp-m30-reproducibility-qualification-archival-release-closure-workflow.yml` |
+| M31 — Phase-Interference, Active-Zero, and Thermal-Evidence Publication | `v3.3.0` | `60 / 60 tests`, `13 / 13 checks` | `.github/workflows/frp-m31-complete.yml` |
+
+The M28 qualification is bound to both committed workflow surfaces:
+
+- `.github/workflows/frp-m28-hierarchical-scaling-hotspot-containment-closure-workflow.yml`;
+- `.github/workflows/frp-m28-trace-observatory-upstream-interchange-workflow.yml`.
+
+### M31 Functional Workflow History
+
+The complete M31 source, test, assembly, publication, and final qualification
+workflow history remains committed:
+
+| Layer | Workflow |
+|---|---|
+| source part 1 | `.github/workflows/frp-m31a1-phase-interference-thermal-evidence-source-part-1-workflow.yml` |
+| source part 2 | `.github/workflows/frp-m31a2-phase-interference-thermal-evidence-source-part-2-workflow.yml` |
+| source assembly | `.github/workflows/frp-m31a3-phase-interference-thermal-evidence-source-assembly-workflow.yml` |
+| test part 1 | `.github/workflows/frp-m31b1-phase-interference-thermal-evidence-test-part-1-workflow.yml` |
+| test part 2 | `.github/workflows/frp-m31b2-phase-interference-thermal-evidence-test-part-2-workflow.yml` |
+| test assembly | `.github/workflows/frp-m31b3-phase-interference-thermal-evidence-test-assembly-workflow.yml` |
+| evidence publication | `.github/workflows/frp-m31c-phase-interference-thermal-evidence-publication-workflow.yml` |
+| complete qualification | `.github/workflows/frp-m31-complete.yml` |
+
+### Canonical M31 Publication Boundary
+
+| Path | Bytes | SHA-256 |
+|---|---:|---|
+| `frp_m31_phase_interference_thermal_evidence.py` | `42092` | `1e4ccfd7b157cd2bac609c34dfec9da791653a31af7b29b75502c755807b9c62` |
+| `tests/test_frp_m31_phase_interference_thermal_evidence.py` | `22370` | `f64214a9c785d8cf579e3a6a5afa6e364772d8972775cc010a3dba89d852c1ed` |
+| `schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json` | `1468` | `53d79d45d70753ccd24c3dc4c97af6fee481f86a9d7cdca7ef78b486c76479f7` |
+| `artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json` | `39993` | `bdaa676acbfb09d86d848070e8a2673c5ce6902657a0b13b2e4293383bec8b42` |
+| `artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json` | `828` | `80f0841d0041cd22c2f76175b6139e601aede7b69823356ae1fefbce5f793e7c` |
+| `artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json` | `1512` | `4c2446f954e01ec0aa37cc6c0fc70cf4a87ec565c450628e31b0efcac9160224` |
+
+Schema identity:
+
+`frp.m31.phase_interference_active_zero_thermal_evidence.v1`
+
+### Current M31 Evidence Record
+
+| Record | Value |
+|---|---:|
+| execution records | `100` |
+| cell observations | `800` |
+| active-zero observations | `702` |
+| requested direct events | `5` |
+| prevented direct events | `5` |
+| neutral-routed events | `5` |
+| actual direct events | `0` |
+| reserved-state events | `0` |
+| queue-overflow events | `0` |
+| polarity-to-active-zero transitions | `5` |
+| active-zero-to-polarity transitions | `12` |
+| direct opposite-polarity transitions | `0` |
+| retained-same observations | `783` |
+
+### M31 Documentation Publication Register
+
+| Current record | Path | State |
+|---|---|---:|
+| validation index | `FRP_VALIDATION_INDEX_v3_3_0.md` | `QUALIFIED` |
+| release notes | `RELEASE_NOTES_v3_3_0.md` | `QUALIFIED` |
+| test report | `TEST_REPORT_v3_3_0.md` | `PASS` |
+| repository cover | `README.md` | `ALIGNED` |
+| usage contract | `USAGE.md` | `ALIGNED` |
+| reproducibility contract | `REPRODUCIBILITY.md` | `ALIGNED` |
+| milestone history | `MILESTONES.md` | `M0-M31 COMPLETE` |
+| notice | `NOTICE.md` | `ALIGNED` |
+| release history | `CHANGELOG.md` | `M0-M31 COMPLETE` |
+| continuous integration record | `CI.md` | `M0-M31 COMPLETE` |
+
+Every documentation publication workflow is additive or preserves the prior
+document body byte-for-byte. Each workflow runs from a clean manual
+`workflow_dispatch` checkout of `main`, verifies exact prerequisite identities,
+runs all 60 focused M31 tests, and commits only its declared documentation
+target.
+
+### Protected Evidence and Release History
+
+| Protected record set | Files | Sorted digest-inventory SHA-256 |
+|---|---:|---|
+| `artifacts/` | `127` | `0d86a8c50c86ba0196f635903cb8cc8d635dd1399787625f7619ad4dd8121f2b` |
+| `benchmarks/` | `19` | `54dc4ae9aa858ccd60f577367be909abf1266b76fcefe10c8223e1f22cc78670` |
+| `schemas/` | `125` | `384cede6b31eea78b9e85804405d7d8bb3bec42e0ce8489d3f9ed20d36f213d9` |
+| historical root release records | `51` | `4e9e38fc72b1704712eb4a8da34ee1cdd658c5a1bb69d070954e0cb431dccaa2` |
+
+The preserved M30 archival package remains:
+
+| Field | Value |
+|---|---|
+| Path | `artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz` |
+| Bytes | `10189989` |
+| SHA-256 | `05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa` |
+| Verification | byte-identical |
+
+### FRP Trace Observatory Boundary
+
+Publication direction:
+
+`FRP published bytes → FRP-Trace-Observatory`
+
+FRP remains the semantic and publication authority. The Observatory receives
+immutable published records for read-only validation and visualization.
+Source-byte identity, schema identity, provenance, and separate evidence
+contours remain intact across the boundary. Downstream metric normalization,
+semantic reimplementation, FRP source mutation, and writeback are forbidden.
+
+### M31D11 Update Boundary
+
+The M31D11 workflow:
+
+- accepts only the exact pre-M31 `CI.md` source or the exact completed M31
+  target;
+- installs this current register immediately below the document title;
+- preserves every byte of the prior `CI.md` body;
+- verifies the current documentation chain and exact M30/M31 publication
+  identities;
+- runs the complete 60-test focused M31 suite;
+- verifies evidence, benchmark, schema, and historical release inventories
+  before and after the update;
+- commits only `CI.md`.
+
+## Preserved CI History Through M30
+
+The complete prior CI record follows unchanged. Its release-local current-state
+labels remain historical text bound to the releases and workflow records that
+created them.
+
 [![FRP M30 Reproducibility Qualification and Archival Release Closure](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m30-reproducibility-qualification-archival-release-closure-workflow.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m30-reproducibility-qualification-archival-release-closure-workflow.yml)
 
 [![FRP M17 Published Artifact Integration](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m17-published-artifact-integration.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m17-published-artifact-integration.yml)
