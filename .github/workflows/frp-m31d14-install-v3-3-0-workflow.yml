@@ -1,0 +1,332 @@
+name: FRP M31D14 Install v3.3.0
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m31d14-install-v3-3-0-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish-install:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TARGET_PATH: INSTALL.md
+      SOURCE_BYTES: "46649"
+      SOURCE_LINES: "2163"
+      SOURCE_SHA256: da18c32bcac851aaa06d914b22c2a00266c10c45e6d914c5979fd0a695676f73
+      TARGET_BYTES: "51529"
+      TARGET_LINES: "2305"
+      TARGET_SHA256: df1dcd53d5f195cbc02bb3abbed61c08450ff9673816afcaec785a3f58642e96
+      BLOCK_BYTES: "4880"
+      BLOCK_SHA256: 216ac7935569c541b75885cfbd1624cded873df67d0881f1d2528c38eb74d69f
+      ROADMAP_BYTES: "53373"
+      ROADMAP_SHA256: 611570be05d0e3a0d514c08c3f2e163a0b37e40edc2898ad524e795112fb5e7a
+      PROJECT_STRUCTURE_BYTES: "75854"
+      PROJECT_STRUCTURE_SHA256: 17adf275c6af9996e7af9e2e36982893b9d0d60c297d6458d90854b01424c02d
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: main
+          persist-credentials: true
+
+      - name: Require manual main-branch execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ github.event_name }}" = "workflow_dispatch"
+          test "${{ github.ref }}" = "refs/heads/main"
+          test "${{ github.ref_name }}" = "main"
+          test "$(git branch --show-current)" = "main"
+          test -z "$(git status --porcelain)"
+          echo "Manual main-branch boundary: PASS"
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Verify source boundary and capture protected histories
+        shell: bash
+        run: |
+          set -euo pipefail
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          historical_inventory() {
+            find . -maxdepth 1 -type f '(' -name 'RELEASE_NOTES_v*.md' -o -name 'TEST_REPORT_v*.md' -o -name 'FRP_VALIDATION_INDEX_v*.md' -o -name 'RELEASE_CHECKLIST_v*.md' ')' -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+
+          tree_inventory artifacts > /tmp/m31d14-artifacts.before
+          tree_inventory benchmarks > /tmp/m31d14-benchmarks.before
+          tree_inventory schemas > /tmp/m31d14-schemas.before
+          historical_inventory > /tmp/m31d14-history.before
+
+          while IFS= read -r path
+          do
+            test -f "$path"
+            test ! -L "$path"
+          done <<'REQUIRED_FILES'
+          LICENSE
+          README.md
+          USAGE.md
+          REPRODUCIBILITY.md
+          ROADMAP.md
+          PROJECT_STRUCTURE.md
+          MILESTONES.md
+          NOTICE.md
+          CHANGELOG.md
+          CI.md
+          FRP_VALIDATION_INDEX_v3_3_0.md
+          RELEASE_NOTES_v3_3_0.md
+          TEST_REPORT_v3_3_0.md
+          requirements.txt
+          frp_prototype_v1_7_0.py
+          frp_m31_phase_interference_thermal_evidence.py
+          tests/test_frp_m31_phase_interference_thermal_evidence.py
+          schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json
+          artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json
+          artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json
+          artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json
+          artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz
+          REQUIRED_FILES
+
+          test "$(wc -c < ROADMAP.md)" -eq "$ROADMAP_BYTES"
+          test "$(sha256sum ROADMAP.md | cut -d' ' -f1)" = "$ROADMAP_SHA256"
+          test "$(wc -c < PROJECT_STRUCTURE.md)" -eq "$PROJECT_STRUCTURE_BYTES"
+          test "$(sha256sum PROJECT_STRUCTURE.md | cut -d' ' -f1)" = "$PROJECT_STRUCTURE_SHA256"
+
+          test -f "$TARGET_PATH"
+          test ! -L "$TARGET_PATH"
+          current_sha="$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)"
+          if test "$current_sha" = "$SOURCE_SHA256"; then
+            test "$(wc -c < "$TARGET_PATH")" -eq "$SOURCE_BYTES"
+            test "$(wc -l < "$TARGET_PATH")" -eq "$SOURCE_LINES"
+          elif test "$current_sha" = "$TARGET_SHA256"; then
+            test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+            test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
+          else
+            echo "INSTALL.md boundary mismatch: $current_sha" >&2
+            exit 1
+          fi
+          echo "Source boundary and protected histories: PASS"
+
+      - name: Install exact dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check -r requirements.txt
+
+      - name: Run and reproduce documented M31 checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest tests.test_frp_m31_phase_interference_thermal_evidence -v 2>&1 | tee /tmp/m31d14-tests.log
+          grep -F "Ran 60 tests" /tmp/m31d14-tests.log
+          grep -Fx "OK" /tmp/m31d14-tests.log
+          python frp_m31_phase_interference_thermal_evidence.py \
+            --verify \
+            --repository-root . \
+            --output-root . \
+            --output /tmp/m31d14-verification.json > /tmp/m31d14-verification.stdout
+          python frp_m31_phase_interference_thermal_evidence.py \
+            --self-test \
+            --repository-root . \
+            --output /tmp/m31d14-self-test.json > /tmp/m31d14-self-test.stdout
+          echo "Documented M31 installation checks: PASS"
+
+      - name: Install complete INSTALL.md
+        shell: bash
+        run: |
+          set -euo pipefail
+          current_sha="$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)"
+          if test "$current_sha" = "$TARGET_SHA256"; then
+            echo "Complete M31 INSTALL.md is already installed."
+            exit 0
+          fi
+          test "$current_sha" = "$SOURCE_SHA256"
+
+          block_base64() {
+            cat <<'BLOCK_PAYLOAD'
+          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
+          BLOCK_PAYLOAD
+          }
+
+          block_base64 | tr -d '[:space:]' | base64 --decode | gzip --decompress --stdout > /tmp/m31d14-install-current.md
+          test "$(wc -c < /tmp/m31d14-install-current.md)" -eq "$BLOCK_BYTES"
+          test "$(sha256sum /tmp/m31d14-install-current.md | cut -d' ' -f1)" = "$BLOCK_SHA256"
+
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          source = Path(os.environ["TARGET_PATH"]).read_bytes()
+          block = Path("/tmp/m31d14-install-current.md").read_bytes()
+          marker = b"# Fractal Resonance Processor (FRP)\n\n"
+          if not source.startswith(marker) or source.count(marker) != 1:
+              raise SystemExit("INSTALL.md insertion boundary mismatch")
+          rendered = marker + block + source[len(marker):]
+          expected = (int(os.environ["TARGET_BYTES"]), os.environ["TARGET_SHA256"])
+          if (len(rendered), hashlib.sha256(rendered).hexdigest()) != expected:
+              raise SystemExit("rendered INSTALL.md identity mismatch")
+          if rendered.count(b"\n") != int(os.environ["TARGET_LINES"]):
+              raise SystemExit("rendered INSTALL.md line-count mismatch")
+          Path("/tmp/INSTALL.md").write_bytes(rendered)
+          PY
+
+          install -m 0644 /tmp/INSTALL.md "$TARGET_PATH"
+          echo "Complete M31 INSTALL.md installed: PASS"
+
+      - name: Qualify installation, links, and preservation boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import os
+          import re
+          import subprocess
+          from pathlib import Path
+
+          raw = Path(os.environ["TARGET_PATH"]).read_bytes()
+          expected = (int(os.environ["TARGET_BYTES"]), os.environ["TARGET_SHA256"])
+          if (len(raw), hashlib.sha256(raw).hexdigest()) != expected:
+              raise SystemExit("INSTALL.md target identity mismatch")
+
+          marker = b"# Fractal Resonance Processor (FRP)\n\n"
+          block_end = len(marker) + int(os.environ["BLOCK_BYTES"])
+          current = raw[len(marker):block_end]
+          reconstructed = raw[:len(marker)] + raw[block_end:]
+          source_expected = (int(os.environ["SOURCE_BYTES"]), os.environ["SOURCE_SHA256"])
+          if (len(reconstructed), hashlib.sha256(reconstructed).hexdigest()) != source_expected:
+              raise SystemExit("historical INSTALL.md bytes were not preserved")
+
+          text = raw.decode("utf-8")
+          required = (
+              "## Current Installation — FRP v3.3.0 / M31",
+              "Python 3.12+",
+              "-1/0/1",
+              "python -m pip install --disable-pip-version-check -r requirements.txt",
+              "Ran 60 tests",
+              "--verify",
+              "--self-test",
+              "--generate",
+              "## 5. Current Canonical M31 Files",
+              "one-way, read-only interchange",
+              "## Preserved Installation History Through M30",
+          )
+          missing = [value for value in required if value not in text]
+          if missing:
+              raise SystemExit(f"INSTALL.md records missing: {missing}")
+          if "-1/0/" + chr(43) + "1" in text:
+              raise SystemExit("forbidden ternary notation present")
+
+          links = re.findall(r"\]\(([^)]+)\)", current.decode("utf-8"))
+          if len(links) != 15 or len(set(links)) != 13:
+              raise SystemExit("installation link registry count mismatch")
+          missing_links = [value for value in sorted(set(links)) if not Path(value).is_file()]
+          if missing_links:
+              raise SystemExit(f"INSTALL.md link targets missing: {missing_links}")
+
+          changed = subprocess.check_output(["git", "diff", "--name-only"]).decode().splitlines()
+          if changed not in ([os.environ["TARGET_PATH"]], []):
+              raise SystemExit(f"unexpected worktree changes: {changed}")
+          print("INSTALL.md M31 commands and historical preservation: PASS")
+          PY
+
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          historical_inventory() {
+            find . -maxdepth 1 -type f '(' -name 'RELEASE_NOTES_v*.md' -o -name 'TEST_REPORT_v*.md' -o -name 'FRP_VALIDATION_INDEX_v*.md' -o -name 'RELEASE_CHECKLIST_v*.md' ')' -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          tree_inventory artifacts > /tmp/m31d14-artifacts.after
+          tree_inventory benchmarks > /tmp/m31d14-benchmarks.after
+          tree_inventory schemas > /tmp/m31d14-schemas.after
+          historical_inventory > /tmp/m31d14-history.after
+          cmp --silent /tmp/m31d14-artifacts.before /tmp/m31d14-artifacts.after
+          cmp --silent /tmp/m31d14-benchmarks.before /tmp/m31d14-benchmarks.after
+          cmp --silent /tmp/m31d14-schemas.before /tmp/m31d14-schemas.after
+          cmp --silent /tmp/m31d14-history.before /tmp/m31d14-history.after
+          echo "Evidence, benchmark, schema, and release histories: BYTE-IDENTICAL"
+
+      - name: Commit and publish INSTALL.md
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$TARGET_PATH"
+          if git diff --cached --quiet; then
+            test -z "$(git status --porcelain)"
+            echo "Complete M31 INSTALL.md is already published."
+            exit 0
+          fi
+          test "$(git diff --cached --name-only)" = "$TARGET_PATH"
+          git commit -m "Align INSTALL.md with FRP v3.3.0 M31"
+          git push origin HEAD:main
+
+      - name: Verify published state
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "$(git status --porcelain)"
+          test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+          test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
+          test "$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)" = "$TARGET_SHA256"
+          {
+            echo "## FRP M31D14 Install v3.3.0"
+            echo
+            echo "- Updated file: INSTALL.md"
+            echo "- Current installation boundary: FRP v3.3.0 / M31"
+            echo "- Existing installation history: byte-identical"
+            echo "- M31 focused tests: 60 / 60 PASS"
+            echo "- Verify and self-test commands: PASS"
+            echo "- Protected histories: byte-identical"
+            echo "- Result: PASS"
+          } >> "$GITHUB_STEP_SUMMARY"
