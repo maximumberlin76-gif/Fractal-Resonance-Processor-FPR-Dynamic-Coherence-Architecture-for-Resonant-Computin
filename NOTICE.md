@@ -1,151 +1,120 @@
 # Notice
 
-**Fractal Resonance Processor (FRP)**
+## Project identity
 
+**Fractal Resonance Processor (FRP)**  
 **Ternary Fractal Resonant Coherence Processor**
 
 Copyright 2026 Maksym Marnov
 
-This project is licensed under the Apache License, Version 2.0.
+Licensed under the Apache License, Version 2.0. The complete license text is
+provided in `LICENSE`.
 
-## Current Release
+## Current publication record
 
-**Version:** `FRP v1.8.0`
+| Field | Value |
+|---|---|
+| Current version | `FRP v3.3.0` |
+| Current milestone | `M31 — Phase-Interference, Active-Zero, and Thermal-Evidence Publication` |
+| Qualification status | `PASS` |
+| Focused M31 qualification | `60 / 60 PASS` |
+| M31 qualification checks | `13 / 13 PASS` |
+| Canonical M31 outputs | `4 / 4 exact` |
+| Prior archival baseline | `FRP v3.2.0 / M30 — PASS` |
+| Current validation index | `FRP_VALIDATION_INDEX_v3_3_0.md` |
+| Current test report | `TEST_REPORT_v3_3_0.md` |
+| Current release notes | `RELEASE_NOTES_v3_3_0.md` |
 
-**Milestone:** `M16 — RTL Core Realization and Execution Semantics Package`
+The executable semantic reference remains
+`frp_prototype_v1_7_0.py`. The qualified RTL and target-independent FPGA
+implementation anchor remains M16.
 
-**Current Python executable semantic reference:** `frp_prototype_v1_7_0.py`
+## Processor identity
 
-**Python executable semantic-reference form:** `Ternary Resonant Coherence Processor — Structured Output Prototype`
+FRP organizes computation through retained relative-phase interference,
+resonant selection, phase-derived ternary targets, scheduler-controlled
+request handling, active-zero mediation, and retained-state writeback.
 
-**Structured-output schema:** `frp.structured_output.v1.7.0`
+| Contract | Preserved value |
+|---|---|
+| Balanced ternary notation | `-1/0/1` |
+| Semantic states | `-1`, `0`, `1` |
+| Active neutral state | `0` |
+| Negative-to-positive route | `-1 → 0 → 1` |
+| Positive-to-negative route | `1 → 0 → -1` |
+| Temporal scheduler modes | `1/7`, `7/1` |
+| Separate service scheduler mode | `free` |
 
-**Benchmark-matrix schema:** `frp.m3.benchmark_matrix.v1.7.0`
+State `0` is an active computational state used for mediation, routing,
+retention, balancing, transition staging, and controlled neutralization.
 
-**Qualified semantic and implementation-mapping foundation:** `FRP v1.7.0 — M15 Implementation Mapping, Domain Interface, and Qualification Closure Package`
+## Qualified milestone continuity
 
-**Current RTL qualification workflow:** `.github/workflows/frp-m16-rtl-artifact-boundary.yml`
+| Milestone boundary | Qualification record |
+|---|---|
+| M15 semantic and implementation mapping | `41 / 41 PASS`; deterministic vector and replay records preserved |
+| M16 RTL execution and FPGA preparation | qualified implementation anchor; invariant records preserved |
+| M17–M29 progression | all 13 milestone gates recorded as `PASS` by the M30 closure |
+| M30 reproducibility and archival release | `55 / 55 PASS`; archival package verified |
+| M31 evidence publication | `60 / 60 PASS`; 13 qualification checks; four exact canonical outputs |
 
-**Current FPGA preparation qualification workflow:** `.github/workflows/frp-m16-fpga-preparation.yml`
+The M30 archival package remains:
 
-## Repository Scope
+`artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz`
 
-The Fractal Resonance Processor (FRP) repository contains the public executable processor reference, structured output, reproducibility, verification, benchmark, comparative architecture, hardware-sensitivity, implementation-mapping, qualification, SystemVerilog RTL execution, target-independent FPGA preparation, documentation, governance, and release-evidence layers of the project.
+SHA-256:
 
-FRP v1.8.0 establishes the current M16 RTL Core Realization and Execution Semantics Package layer.
+`05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa`
 
-M16 retains the qualified M15 Python executable semantic reference, structured-output schema, benchmark-matrix schema, and semantic and implementation-mapping foundation.
+## M31 canonical publication
 
-The current release package includes:
+The current M31 publication consists of:
 
-- Kuramoto-Sakaguchi resonant phase dynamics;
-- asymmetric phase lag gamma;
-- hierarchical fractal coupling;
-- phase evolution and resonance selection;
-- Kuramoto order parameter `R(t)`;
-- multiscale phase coherence;
-- endogenous structural coherence `C(t)`;
-- operational pressure `P(t)`;
-- stateful delay dynamics;
-- distributed local thermal dynamics;
-- thermal coupling-factor evolution;
-- correlated local gamma drift;
-- nonlinear coherence compression;
-- dynamic stability evaluation;
-- phase-derived balanced ternary target formation;
-- balanced ternary state and retained-result domain `{-1, 0, 1}`;
-- active neutral state `0`;
-- mandatory opposite-polarity routing through state `0`;
-- distributed commit behavior;
-- deterministic scheduler modes `free`, `7/1`, and `1/7`;
-- deterministic request-lane arbitration;
-- retained pending-route execution;
-- distributed transition-capacity enforcement;
-- retained-state writeback;
-- hardware-facing fixed-point representation;
-- canonical balanced ternary hardware encoding;
-- stateful quantized hardware-shadow execution;
-- cycle-exact integer golden traces;
-- deterministic RTL comparison vectors;
-- SystemVerilog interface mapping;
-- synthesizable RTL reference-core mapping;
-- RTL assertion correlation;
-- floating-to-quantized semantic correlation;
-- exact deterministic replay;
-- M15 qualification closure;
-- ten M16 SystemVerilog RTL source files;
-- five M16 RTL documentation artifacts;
-- executable Verilator RTL architectural simulation;
-- SystemVerilog assertion execution;
-- ten integrated invariant flags;
-- target-independent FPGA integration top;
-- executable FPGA integration testbench;
-- asynchronous external reset assertion;
-- two-stage synchronous reset release;
-- `core_ready` generation;
-- tick, counter-clear, and request-valid gating before readiness;
-- scheduler and request-interface propagation;
-- retained pending-route completion;
-- M16 RTL qualification closure;
-- M16 FPGA preparation qualification closure.
+- `frp_m31_phase_interference_thermal_evidence.py`;
+- `tests/test_frp_m31_phase_interference_thermal_evidence.py`;
+- `schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json`;
+- `artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json`;
+- `artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json`;
+- `artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json`.
 
-## Current Qualification State
+The schema, evidence, manifest, and qualification record are deterministic
+canonical outputs. M31 retains the M30 archive, historical benchmark records,
+current comparison contours, schemas, workflows, release records, and prior
+qualification evidence.
 
-**Published validation result:** `PASS`
+## Repository scope
 
-**Inherited validated M15 self-test:** `41/41 PASS`
+The repository contains the public executable processor reference,
+machine-readable schemas, canonical artifacts, deterministic traces,
+benchmarks, comparison profiles, hardware-facing mappings, RTL and FPGA
+integration layers, verification records, qualification manifests,
+documentation, governance records, and release evidence.
 
-**M15 artifact layers:** `10`
+Historical release notes, test reports, validation indexes, release
+checklists, benchmark results, schemas, and milestone evidence remain bound to
+their original versions, measurements, digests, and qualification results.
 
-**Deterministic vector package:** `10/10 files byte-identical`
+## FRP Trace Observatory boundary
 
-**Required semantic correlation matches:** `5/5 = 1.0`
+Publication direction:
 
-**Exact deterministic replay matches:** `6/6 = 1.0`
+`FRP published bytes → FRP-Trace-Observatory`
 
-### M16 RTL Qualification Records
+FRP is the source and semantic authority. The Observatory consumes immutable
+published artifacts through a one-way read-only boundary for validation and
+visualization. Published schemas, evidence, manifests, qualification records,
+and measurement contours retain their FRP identities.
 
-| Qualification record | Workflow run | Qualified source commit | Branch | Result | Artifact count | Status |
-|---|---:|---|---|---|---:|---|
-| Initial closure | `#82` | `a68a2af` | `main` | `SUCCESS` | `1` | `M16 RTL EXECUTION LAYER CLOSED` |
-| Qualification rerun | `#84` | `ede53cf` | `main` | `SUCCESS` | `1` | `M16 RTL EXECUTION LAYER CLOSED` |
+## Redistribution and attribution
 
-### M16 FPGA Preparation Qualification Records
+Redistribution and derivative works are governed by the Apache License,
+Version 2.0. Distributed copies must retain the applicable copyright,
+license, and attribution notices required by that license. Modified files
+must carry prominent notices identifying the changes.
 
-| Qualification record | Workflow run | Qualified repository commit | Branch | Result | Artifact count | Status |
-|---|---:|---|---|---|---:|---|
-| Initial closure | `#1` | `326b69e` | `main` | `SUCCESS` | `1` | `M16 FPGA PREPARATION LAYER CLOSED` |
-| Qualification rerun | `#2` | `ede53cf` | `main` | `SUCCESS` | `1` | `M16 FPGA PREPARATION LAYER CLOSED` |
-
-### M16 RTL Terminal Execution Records
-
-| Record | Result |
-|---|---:|
-| cells | `8` |
-| request lanes | `2` |
-| `ticks_recorded` | `16` |
-| `actual_direct_events` | `0` |
-| `reserved_state_events` | `0` |
-| `queue_overflow_events` | `0` |
-| invariant flags | `1111111111` |
-
-### M16 FPGA Preparation Terminal Execution Records
-
-| Record | Result |
-|---|---:|
-| cells | `8` |
-| request lanes | `2` |
-| `core_ready` | `1` |
-| `ticks_recorded` | `1` |
-| `actual_direct_events` | `0` |
-| `reserved_state_events` | `0` |
-| `queue_overflow_events` | `0` |
-| invariant flags | `1111111111` |
-
-## Foundation Documents
-
-- `docs/mathematical_foundation.md`;
-- `docs/physical_foundation.md`.
+Third-party software, tools, and dependencies retain their respective
+copyright and license terms. The Apache License for FRP does not replace those
+independent terms.
 
 ## License
 
