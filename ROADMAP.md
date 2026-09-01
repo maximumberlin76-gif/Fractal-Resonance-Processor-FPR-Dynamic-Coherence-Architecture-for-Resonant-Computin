@@ -1,5 +1,129 @@
 # Roadmap — Fractal Resonance Processor (FRP)
 
+## Current Roadmap State — FRP v3.3.0 / M31
+
+Current repository release:
+
+`FRP v3.3.0 / M31 — PASS`
+
+Current milestone:
+
+`M31 — Phase-Interference, Active-Zero, and Thermal-Evidence Publication`
+
+Current execution environment:
+
+`Python 3.12+`
+
+Current balanced ternary domain:
+
+`-1/0/1`
+
+Current release records:
+
+- [`FRP_VALIDATION_INDEX_v3_3_0.md`](FRP_VALIDATION_INDEX_v3_3_0.md);
+- [`RELEASE_NOTES_v3_3_0.md`](RELEASE_NOTES_v3_3_0.md);
+- [`TEST_REPORT_v3_3_0.md`](TEST_REPORT_v3_3_0.md).
+
+Current M31 publication boundary:
+
+- source: [`frp_m31_phase_interference_thermal_evidence.py`](frp_m31_phase_interference_thermal_evidence.py);
+- tests: [`tests/test_frp_m31_phase_interference_thermal_evidence.py`](tests/test_frp_m31_phase_interference_thermal_evidence.py);
+- schema: [`schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json`](schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json);
+- evidence: [`artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json`](artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json);
+- manifest: [`artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json`](artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json);
+- qualification: [`artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json`](artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json);
+- complete qualification workflow: [`.github/workflows/frp-m31-complete.yml`](.github/workflows/frp-m31-complete.yml).
+
+Current M31 focused qualification result:
+
+`60 / 60 PASS`
+
+The M31 publication extends the completed M30 archival-release boundary while retaining every historical evidence record, benchmark contour, schema, manifest, qualification record, and release document in its original release context.
+
+## Completed Architecture Progression
+
+| Milestone | Release | Architecture layer | Primary traceability | State |
+|---|---:|---|---|---|
+| M0 | v0.9.3-mobile | Repository Stabilization | [`frp_prototype_v0_9_3_mobile.py`](frp_prototype_v0_9_3_mobile.py) | Complete |
+| M1 | v0.9.3 | Archival Release and DOI | [`RELEASE_NOTES_v0_9_3.md`](RELEASE_NOTES_v0_9_3.md) | Complete |
+| M2 | v0.9.4 | Structured Output and Machine-Readable Validation | [`frp_prototype_v0_9_4.py`](frp_prototype_v0_9_4.py) | Complete |
+| M3 | v0.9.5 | Benchmark Export and Hardware Signal Mapping | [`docs/m3_validation_targets.md`](docs/m3_validation_targets.md) | Complete |
+| M4 | v0.9.6 | HDL Trace Export and Testbench Scaffold | [`docs/m4_hdl_trace_testbench.md`](docs/m4_hdl_trace_testbench.md) | Complete |
+| M5 | v0.9.7 | RTL Interface Contract and Assertion Harness | [`docs/m5_rtl_interface_assertion_harness.md`](docs/m5_rtl_interface_assertion_harness.md) | Complete |
+| M6 | v0.9.8 | Formal Verification Hooks and Equivalence Scaffold | [`docs/m6_formal_verification_equivalence.md`](docs/m6_formal_verification_equivalence.md) | Complete |
+| M7 | v0.9.9 | FPGA Synthesis Package and Timing Constraint Scaffold | [`docs/m7_fpga_synthesis_timing.md`](docs/m7_fpga_synthesis_timing.md) | Complete |
+| M8 | v1.0.0 | Production Release Package and Stable Interface Freeze | [`docs/m8_production_release_package.md`](docs/m8_production_release_package.md) | Complete |
+| M9 | v1.1.0 | Silicon and Heterogeneous Implementation Architecture | [`docs/m9_silicon_heterogeneous_architecture.md`](docs/m9_silicon_heterogeneous_architecture.md) | Complete |
+| M10 | v1.2.0 | Silicon Production and Tapeout Readiness | [`docs/m10_silicon_production_tapeout_readiness.md`](docs/m10_silicon_production_tapeout_readiness.md) | Complete |
+| M11 | v1.3.0 | Production Integration and External Implementation Handoff | [`docs/m11_production_integration_external_handoff.md`](docs/m11_production_integration_external_handoff.md) | Complete |
+| M12 | v1.4.0 | External Implementation Feedback and Production Iteration | [`docs/m12_external_implementation_feedback_iteration.md`](docs/m12_external_implementation_feedback_iteration.md) | Complete |
+| M13 | v1.5.0 | Production Scaling and Implementation Stabilization | [`docs/m13_production_scaling_implementation_stabilization.md`](docs/m13_production_scaling_implementation_stabilization.md) | Complete |
+| M14 | v1.6.0 | Physical Implementation Correlation and Production Qualification | [`docs/m14_physical_implementation_correlation_production_qualification.md`](docs/m14_physical_implementation_correlation_production_qualification.md) | Complete |
+| M15 | v1.7.0 | Implementation Mapping, Domain Interface, and Qualification Closure | [`docs/m15_implementation_mapping_domain_interface_qualification_closure.md`](docs/m15_implementation_mapping_domain_interface_qualification_closure.md) | Complete |
+| M16 | v1.8.0 | RTL Core Realization and Execution Semantics | [`docs/m16_qualification_index.md`](docs/m16_qualification_index.md) | Complete |
+| M17 | v1.9.0 | Published Artifact Integration Contract | [`docs/m17_published_artifact_integration_closure.md`](docs/m17_published_artifact_integration_closure.md) | Complete |
+| M18 | v2.0.0 | Formal Schema and Canonical Artifact Publication | [`docs/m18_formal_schema_canonical_artifact_publication_qualification.md`](docs/m18_formal_schema_canonical_artifact_publication_qualification.md) | Complete |
+| M19 | v2.1.0 | Machine-Readable M16 Execution and Qualification Evidence | [`frp_m19_m16_evidence.py`](frp_m19_m16_evidence.py) | Complete |
+| M20 | v2.2.0 | Cross-Layer Deterministic Correlation | [`frp_m20_cross_layer_correlation.py`](frp_m20_cross_layer_correlation.py) | Complete |
+| M21 | v2.3.0 | Parameterized Qualification Matrix | [`frp_m21_parameterized_qualification_matrix.py`](frp_m21_parameterized_qualification_matrix.py) | Complete |
+| M22 | v2.4.0 | Control, Status, and Register Interface Realization | [`frp_m22_control_status_register_interface.py`](frp_m22_control_status_register_interface.py) | Complete |
+| M23 | v2.5.0 | Clock, Reset, CDC, and Interface Hardening | [`frp_m23_clock_reset_cdc_interface_hardening.py`](frp_m23_clock_reset_cdc_interface_hardening.py) | Complete |
+| M24 | v2.6.0 | Formal and Bounded Verification Closure | [`frp_m24_formal_bounded_verification.py`](frp_m24_formal_bounded_verification.py) | Complete |
+| M25 | v2.7.0 | Fault, Negative-Path, and Recovery Qualification | [`frp_m25_fault_negative_recovery_qualification.py`](frp_m25_fault_negative_recovery_qualification.py) | Complete |
+| M26 | v2.8.0 | Declared-Target Implementation Evidence | [`frp_m26_declared_target_implementation_evidence.py`](frp_m26_declared_target_implementation_evidence.py) | Complete |
+| M27 | v2.9.0 | Long-Run Stability and Telemetry Qualification | [`frp_m27_long_run_stability_telemetry_qualification.py`](frp_m27_long_run_stability_telemetry_qualification.py) | Complete |
+| M28 | v3.0.0 | Hierarchical Scaling and Hotspot-Containment Realization | [`frp_m28_hierarchical_scaling_hotspot_containment.py`](frp_m28_hierarchical_scaling_hotspot_containment.py) | Complete |
+| M29 | v3.1.0 | System Integration and Downstream Compatibility Closure | [`frp_m29_system_integration_downstream_compatibility.py`](frp_m29_system_integration_downstream_compatibility.py) | Complete |
+| M30 | v3.2.0 | Reproducibility, Qualification, and Archival Release Closure | [`frp_m30_reproducibility_qualification_archival_closure.py`](frp_m30_reproducibility_qualification_archival_closure.py) | Complete |
+| M31 | v3.3.0 | Phase-Interference, Active-Zero, and Thermal-Evidence Publication | [`frp_m31_phase_interference_thermal_evidence.py`](frp_m31_phase_interference_thermal_evidence.py) | Current complete release |
+
+## M17–M31 Qualification Chain
+
+The completed upper milestone chain is implemented and qualified by these source/test/workflow boundaries:
+
+| Milestone | Source | Test | Qualification workflow |
+|---|---|---|---|
+| M17 | [`frp_m17_publication_inventory.py`](frp_m17_publication_inventory.py) | [`tests/test_frp_m17_publication_inventory.py`](tests/test_frp_m17_publication_inventory.py) | [`.github/workflows/frp-m17-published-artifact-integration.yml`](.github/workflows/frp-m17-published-artifact-integration.yml) |
+| M18 | [`frp_m18_canonical_artifacts.py`](frp_m18_canonical_artifacts.py) | [`tests/test_frp_m18_canonical_artifacts.py`](tests/test_frp_m18_canonical_artifacts.py) | [`.github/workflows/frp-m18-formal-schema-canonical-artifacts.yml`](.github/workflows/frp-m18-formal-schema-canonical-artifacts.yml) |
+| M19 | [`frp_m19_m16_evidence.py`](frp_m19_m16_evidence.py) | [`tests/test_frp_m19_m16_evidence.py`](tests/test_frp_m19_m16_evidence.py) | [`.github/workflows/frp-m19-create-machine-readable-m16-evidence.yml`](.github/workflows/frp-m19-create-machine-readable-m16-evidence.yml) |
+| M20 | [`frp_m20_cross_layer_correlation.py`](frp_m20_cross_layer_correlation.py) | [`tests/test_frp_m20_cross_layer_correlation.py`](tests/test_frp_m20_cross_layer_correlation.py) | [`.github/workflows/frp-m20-cross-layer-correlation.yml`](.github/workflows/frp-m20-cross-layer-correlation.yml) |
+| M21 | [`frp_m21_parameterized_qualification_matrix.py`](frp_m21_parameterized_qualification_matrix.py) | [`tests/test_frp_m21_parameterized_qualification_matrix.py`](tests/test_frp_m21_parameterized_qualification_matrix.py) | [`.github/workflows/frp-m21-parameterized-qualification-matrix.yml`](.github/workflows/frp-m21-parameterized-qualification-matrix.yml) |
+| M22 | [`frp_m22_control_status_register_interface.py`](frp_m22_control_status_register_interface.py) | [`tests/test_frp_m22_control_status_register_interface.py`](tests/test_frp_m22_control_status_register_interface.py) | [`.github/workflows/frp-m22-control-status-register-interface.yml`](.github/workflows/frp-m22-control-status-register-interface.yml) |
+| M23 | [`frp_m23_clock_reset_cdc_interface_hardening.py`](frp_m23_clock_reset_cdc_interface_hardening.py) | [`tests/test_frp_m23_clock_reset_cdc_interface_hardening.py`](tests/test_frp_m23_clock_reset_cdc_interface_hardening.py) | [`.github/workflows/frp-m23-clock-reset-cdc-interface-hardening-workflow.yml`](.github/workflows/frp-m23-clock-reset-cdc-interface-hardening-workflow.yml) |
+| M24 | [`frp_m24_formal_bounded_verification.py`](frp_m24_formal_bounded_verification.py) | [`tests/test_frp_m24_formal_bounded_verification.py`](tests/test_frp_m24_formal_bounded_verification.py) | [`.github/workflows/frp-m24-formal-bounded-verification-closure-workflow.yml`](.github/workflows/frp-m24-formal-bounded-verification-closure-workflow.yml) |
+| M25 | [`frp_m25_fault_negative_recovery_qualification.py`](frp_m25_fault_negative_recovery_qualification.py) | [`tests/test_frp_m25_fault_negative_recovery_qualification.py`](tests/test_frp_m25_fault_negative_recovery_qualification.py) | [`.github/workflows/frp-m25-fault-negative-path-recovery-qualification-workflow.yml`](.github/workflows/frp-m25-fault-negative-path-recovery-qualification-workflow.yml) |
+| M26 | [`frp_m26_declared_target_implementation_evidence.py`](frp_m26_declared_target_implementation_evidence.py) | [`tests/test_frp_m26_declared_target_implementation_evidence.py`](tests/test_frp_m26_declared_target_implementation_evidence.py) | [`.github/workflows/frp-m26-declared-target-implementation-evidence-workflow.yml`](.github/workflows/frp-m26-declared-target-implementation-evidence-workflow.yml) |
+| M27 | [`frp_m27_long_run_stability_telemetry_qualification.py`](frp_m27_long_run_stability_telemetry_qualification.py) | [`tests/test_frp_m27_long_run_stability_telemetry_qualification.py`](tests/test_frp_m27_long_run_stability_telemetry_qualification.py) | [`.github/workflows/frp-m27-long-run-stability-telemetry-qualification-workflow.yml`](.github/workflows/frp-m27-long-run-stability-telemetry-qualification-workflow.yml) |
+| M28 | [`frp_m28_hierarchical_scaling_hotspot_containment.py`](frp_m28_hierarchical_scaling_hotspot_containment.py) | [`tests/test_frp_m28_hierarchical_scaling_hotspot_containment.py`](tests/test_frp_m28_hierarchical_scaling_hotspot_containment.py) | [`.github/workflows/frp-m28-hierarchical-scaling-hotspot-containment-closure-workflow.yml`](.github/workflows/frp-m28-hierarchical-scaling-hotspot-containment-closure-workflow.yml) |
+| M29 | [`frp_m29_system_integration_downstream_compatibility.py`](frp_m29_system_integration_downstream_compatibility.py) | [`tests/test_frp_m29_system_integration_downstream_compatibility.py`](tests/test_frp_m29_system_integration_downstream_compatibility.py) | [`.github/workflows/frp-m29-system-integration-downstream-compatibility-closure-workflow.yml`](.github/workflows/frp-m29-system-integration-downstream-compatibility-closure-workflow.yml) |
+| M30 | [`frp_m30_reproducibility_qualification_archival_closure.py`](frp_m30_reproducibility_qualification_archival_closure.py) | [`tests/test_frp_m30_reproducibility_qualification_archival_closure.py`](tests/test_frp_m30_reproducibility_qualification_archival_closure.py) | [`.github/workflows/frp-m30-reproducibility-qualification-archival-release-closure-workflow.yml`](.github/workflows/frp-m30-reproducibility-qualification-archival-release-closure-workflow.yml) |
+| M31 | [`frp_m31_phase_interference_thermal_evidence.py`](frp_m31_phase_interference_thermal_evidence.py) | [`tests/test_frp_m31_phase_interference_thermal_evidence.py`](tests/test_frp_m31_phase_interference_thermal_evidence.py) | [`.github/workflows/frp-m31-complete.yml`](.github/workflows/frp-m31-complete.yml) |
+
+M28 also publishes the one-way Observatory interchange through [`frp_m28_trace_observatory_upstream_interchange.py`](frp_m28_trace_observatory_upstream_interchange.py) and [`.github/workflows/frp-m28-trace-observatory-upstream-interchange-workflow.yml`](.github/workflows/frp-m28-trace-observatory-upstream-interchange-workflow.yml).
+
+## Publication and Observatory Boundary
+
+FRP is the source of canonical published bytes. FRP-Trace-Observatory consumes those bytes through a one-way, read-only boundary.
+
+The boundary preserves:
+
+- exact source bytes and digests;
+- schema and artifact identifiers;
+- release and milestone provenance;
+- measurement-contour labels;
+- deterministic ordering;
+- upstream semantic authority in FRP.
+
+The Observatory presents and qualifies the published boundary while FRP remains the owner of processor semantics, canonical artifacts, qualification evidence, and release records.
+
+## Roadmap Maintenance Rule
+
+Each future roadmap change carries its own versioned source, schema, canonical artifact, test, workflow, qualification record, validation index, release notes, and test report. Repository-facing documents are aligned only after the technical boundary is green.
+
+Historical release records remain attached to the milestone that produced them. Evidence, benchmarks, schemas, manifests, qualification records, and archived packages retain their original bytes and provenance.
+
+## Preserved Roadmap History Through M30
+
 This roadmap defines the staged architecture progression of the Fractal Resonance Processor (FRP) project.
 
 Current version:
