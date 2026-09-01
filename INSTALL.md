@@ -1,5 +1,147 @@
 # Fractal Resonance Processor (FRP)
 
+## Current Installation — FRP v3.3.0 / M31
+
+Current repository release:
+
+`FRP v3.3.0 / M31 — PASS`
+
+Current milestone:
+
+`M31 — Phase-Interference, Active-Zero, and Thermal-Evidence Publication`
+
+Current Python environment:
+
+`Python 3.12+`
+
+Current balanced ternary domain:
+
+`-1/0/1`
+
+Current M31 focused qualification:
+
+`60 / 60 PASS`
+
+## 1. Installation Boundary
+
+Run the following commands from the root of a clean repository checkout on branch `main`.
+
+Confirm Python:
+
+```
+python --version
+```
+
+Install the declared dependencies:
+
+```
+python -m pip install --disable-pip-version-check -r requirements.txt
+```
+
+The dependency boundary is defined by [`requirements.txt`](requirements.txt):
+
+- `jsonschema==4.25.1`;
+- `numpy>=1.26.0`.
+
+## 2. Verify the M31 Source and Test Boundary
+
+Required source:
+
+[`frp_m31_phase_interference_thermal_evidence.py`](frp_m31_phase_interference_thermal_evidence.py)
+
+Required test module:
+
+[`tests/test_frp_m31_phase_interference_thermal_evidence.py`](tests/test_frp_m31_phase_interference_thermal_evidence.py)
+
+Run the complete focused M31 suite:
+
+```
+python -m unittest tests.test_frp_m31_phase_interference_thermal_evidence -v
+```
+
+Expected result:
+
+```
+Ran 60 tests
+
+OK
+```
+
+## 3. Verify the Published M31 Evidence
+
+Verify the canonical files already published in the repository:
+
+```
+python frp_m31_phase_interference_thermal_evidence.py \
+  --verify \
+  --repository-root . \
+  --output-root . \
+  --output /tmp/m31-verification.json
+```
+
+Run the internal M31 self-test:
+
+```
+python frp_m31_phase_interference_thermal_evidence.py \
+  --self-test \
+  --repository-root . \
+  --output /tmp/m31-self-test.json
+```
+
+Both commands emit canonical JSON and return exit code `0` on a passing boundary.
+
+## 4. Reproduce the M31 Publication in a Temporary Directory
+
+Create a temporary output directory and reproduce the complete publication:
+
+```
+M31_REPLAY_ROOT="$(mktemp -d)"
+
+python frp_m31_phase_interference_thermal_evidence.py \
+  --generate \
+  --repository-root . \
+  --output-root "$M31_REPLAY_ROOT" \
+  --output "$M31_REPLAY_ROOT/generation.json"
+```
+
+The generated publication contains the schema, evidence, manifest, and qualification records under the temporary output root.
+
+## 5. Current Canonical M31 Files
+
+| Role | Path |
+|---|---|
+| Source | [`frp_m31_phase_interference_thermal_evidence.py`](frp_m31_phase_interference_thermal_evidence.py) |
+| Test | [`tests/test_frp_m31_phase_interference_thermal_evidence.py`](tests/test_frp_m31_phase_interference_thermal_evidence.py) |
+| Schema | [`schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json`](schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json) |
+| Evidence | [`artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json`](artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json) |
+| Manifest | [`artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json`](artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json) |
+| Qualification | [`artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json`](artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json) |
+
+## 6. Current Release Records
+
+- validation index: [`FRP_VALIDATION_INDEX_v3_3_0.md`](FRP_VALIDATION_INDEX_v3_3_0.md);
+- release notes: [`RELEASE_NOTES_v3_3_0.md`](RELEASE_NOTES_v3_3_0.md);
+- test report: [`TEST_REPORT_v3_3_0.md`](TEST_REPORT_v3_3_0.md);
+- complete qualification workflow: [`.github/workflows/frp-m31-complete.yml`](.github/workflows/frp-m31-complete.yml).
+
+The complete workflow is launched manually from GitHub Actions on branch `main`.
+
+## 7. Semantic Foundation and M30 Archive
+
+The executable semantic foundation remains [`frp_prototype_v1_7_0.py`](frp_prototype_v1_7_0.py). The versioned M17–M31 producers extend the qualified repository through publication, evidence, correlation, interface, verification, compatibility, archival, and M31 thermal-evidence layers.
+
+The M30 archival package remains available at [`artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz`](artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz).
+
+## 8. Observatory Installation Boundary
+
+FRP-Trace-Observatory is an independent downstream consumer. It reads FRP-published bytes, schemas, identifiers, digests, and provenance through the one-way, read-only interchange. FRP installation and qualification remain rooted in this repository.
+
+## 9. Historical Installation Records
+
+Historical executable references, requirements, commands, workflow records, test reports, validation indices, release notes, schemas, evidence, and benchmark contours retain their original release identity below.
+
+## Preserved Installation History Through M30
+
 **Ternary Resonant Coherence Processor — Structured Output Prototype**
 
 ## Installation
