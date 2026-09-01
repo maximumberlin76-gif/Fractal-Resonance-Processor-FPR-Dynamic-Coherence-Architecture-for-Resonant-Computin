@@ -1,5 +1,195 @@
 # Fractal Resonance Processor (FRP)
 
+**Ternary Fractal Resonant Coherence Processor**
+
+## Usage
+
+This document provides the current execution, verification, inspection, and replay paths for **FRP v3.3.0 / M31**.
+
+## Release boundary
+
+| Field | Current record |
+|---|---|
+| Version | `FRP v3.3.0` |
+| Milestone | `M31 — Phase-Interference, Active-Zero, and Thermal-Evidence Publication` |
+| Qualification | `PASS` |
+| Focused M31 tests | `60 / 60 PASS` |
+| Qualification checks | `13 / 13 PASS` |
+| Canonical M31 outputs | `4 / 4 exact` |
+| Preserved archival baseline | `FRP v3.2.0 / M30 — PASS` |
+| Executable semantic reference | `frp_prototype_v1_7_0.py` |
+| RTL and FPGA implementation anchor | `M16 — PASS` |
+
+M31 publishes deterministic evidence for relative-phase interference, active-zero routing, and separated thermal-measurement contours. The discrete state domain remains `-1/0/1`, and state `0` remains an active mediation, routing, retention, balancing, and transition-staging state.
+
+## Requirements
+
+- Python `3.12+`;
+- the exact dependency declared in `requirements.txt`;
+- a clean checkout when reproducing release evidence.
+
+Install the repository dependency:
+
+```
+python -m pip install -r requirements.txt
+```
+
+## Run the executable semantic reference
+
+Run the structured demo with the full trace:
+
+```
+python frp_prototype_v1_7_0.py --mode demo --output json --include-trace
+```
+
+Run the qualified semantic-reference self-test:
+
+```
+python frp_prototype_v1_7_0.py --mode self-test --output json
+```
+
+The semantic reference preserves the processor execution order:
+
+`phase dynamics → relative-phase organization → ternary target → scheduler → request handling → active-zero routing → retained state`
+
+The phase-derived target and executed retained state are separate processor states. Opposite-polarity requests use the tick-separated routes `-1 → 0 → 1` and `1 → 0 → -1`.
+
+## Verify the committed M31 publication
+
+Verify all four committed canonical outputs:
+
+```
+python frp_m31_phase_interference_thermal_evidence.py --verify
+```
+
+Expected result:
+
+```
+{"milestone":"M31","schema":"frp.m31.verification_result.v1","status":"PASS",...}
+```
+
+The verification command independently regenerates the expected records, compares their bytes with the committed publication, and removes its temporary verification tree.
+
+## Run the deterministic M31 self-test
+
+```
+python frp_m31_phase_interference_thermal_evidence.py --self-test
+```
+
+The result records deterministic replay, active-zero computation, and separation of historical and current thermal contours.
+
+## Run the focused M31 qualification
+
+```
+python -m unittest tests.test_frp_m31_phase_interference_thermal_evidence -v
+```
+
+Recorded release result:
+
+```
+Ran 60 tests
+
+OK
+```
+
+This command qualifies the focused M31 publication boundary. The repository-wide regression is reserved for the final documentation and release closure.
+
+## Reproduce M31 into an isolated output tree
+
+Create a fresh output directory and generate the four canonical records without changing the committed publication:
+
+```
+replay_root="$(mktemp -d)"
+python frp_m31_phase_interference_thermal_evidence.py \
+  --generate \
+  --repository-root . \
+  --output-root "$replay_root"
+```
+
+Generated paths:
+
+- `schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json`;
+- `artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json`;
+- `artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json`;
+- `artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json`.
+
+Detailed clean-environment replay and byte-comparison commands are maintained in [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
+
+## Inspect the canonical M31 records
+
+Format the evidence:
+
+```
+python -m json.tool \
+  artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json
+```
+
+Format the manifest:
+
+```
+python -m json.tool \
+  artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json
+```
+
+Format the qualification record:
+
+```
+python -m json.tool \
+  artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json
+```
+
+## Published execution record
+
+| Record | Value |
+|---|---:|
+| Execution records | `100` |
+| Cell observations | `800` |
+| Active-zero observations | `702` |
+| Requested direct events | `5` |
+| Prevented direct events | `5` |
+| Neutral-routed events | `5` |
+| Actual direct events | `0` |
+| Reserved-state events | `0` |
+| Queue-overflow events | `0` |
+| Polarity-to-active-zero transitions | `5` |
+| Active-zero-to-polarity transitions | `12` |
+| Direct opposite-polarity transitions | `0` |
+| Retained-same observations | `783` |
+
+## Thermal evidence scope
+
+The preserved FRP v0.9.3 model workload records a binary-style forced-switch `heat_peak` of `0.051000` and a distributed active-neutral ternary `heat_peak` of `0.003250`, with a ratio of `15.6923076923` and a relative reduction of `93.63%`.
+
+These values are model thermal-load records for the exact historical workload. Historical `heat_peak`, current architecture-comparison data, normalized activity cost, and the RC temperature proxy remain separate measurement contours.
+
+## FRP Trace Observatory boundary
+
+Publication direction:
+
+`FRP published bytes → FRP-Trace-Observatory`
+
+The Observatory consumes committed FRP schemas, traces, evidence, manifests, registries, and qualification records through a one-way, read-only boundary. FRP remains the semantic and publication authority; downstream processing preserves the published bytes and declared measurement contours.
+
+## Release records
+
+- [FRP v3.3.0 validation index](FRP_VALIDATION_INDEX_v3_3_0.md)
+- [FRP v3.3.0 release notes](RELEASE_NOTES_v3_3_0.md)
+- [FRP v3.3.0 test report](TEST_REPORT_v3_3_0.md)
+- [M31 schema](schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json)
+- [M31 evidence](artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json)
+- [M31 manifest](artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json)
+- [M31 qualification](artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json)
+
+## Historical usage record
+
+The complete prior usage document is preserved below as an exact byte sequence. Its release-local “current” labels describe the historical FRP v1.8.0 / M16 boundary.
+
+<details>
+<summary>Open the complete historical USAGE.md through M16</summary>
+
+<!-- Exact historical USAGE.md begins on the next line. -->
+# Fractal Resonance Processor (FRP)
+
 **Ternary Resonant Coherence Processor — Structured Output Prototype**
 
 ## Usage
@@ -2934,3 +3124,5 @@ Current release qualification state:
 
 
 
+
+</details>
