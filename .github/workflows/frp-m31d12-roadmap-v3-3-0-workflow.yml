@@ -1,0 +1,513 @@
+name: FRP M31D12 Roadmap v3.3.0
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m31d12-roadmap-v3-3-0-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish-roadmap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TARGET_PATH: ROADMAP.md
+      SOURCE_BYTES: "38318"
+      SOURCE_LINES: "1443"
+      SOURCE_SHA256: 716930425e848a23f1d52db562c16ef2e574258e32905e3007f1f0d20e1007a8
+      TARGET_BYTES: "53373"
+      TARGET_LINES: "1567"
+      TARGET_SHA256: 611570be05d0e3a0d514c08c3f2e163a0b37e40edc2898ad524e795112fb5e7a
+      BLOCK_BYTES: "15055"
+      BLOCK_LINES: "124"
+      BLOCK_SHA256: 650cec04fcabec76f7a899d504b22958ea1c6d03ed4c0950fd71138a16c4aec4
+      BLOCK_GZIP_BYTES: "3294"
+      BLOCK_GZIP_SHA256: 4091dbbde9a2716226d88b68e73c1f0ded1cb728352ca4ec42b008e61ac73d35
+      BLOCK_BASE64_LENGTH: "4392"
+      BLOCK_BASE64_SHA256: 2c255c423eda17a9e41a1a15873191f8fc2d36e580d9836da197529248740544
+      LICENSE_PATH: LICENSE
+      LICENSE_BYTES: "10204"
+      LICENSE_SHA256: ea6233ec9cd025f4b4b08ead7f4c3aafdee865d1703a76ed7bbd8a5ddb444227
+      README_PATH: README.md
+      README_BYTES: "10430"
+      README_SHA256: 9fb5ccd3db24705f0f2c80723dd9b1f2c344e5b53c447927532ab29c2b34ca41
+      USAGE_PATH: USAGE.md
+      USAGE_BYTES: "66358"
+      USAGE_SHA256: d1f5868a07c6322feb1ba8d36d6aff9972976848f26d63be6494d4ae722473c1
+      REPRODUCIBILITY_PATH: REPRODUCIBILITY.md
+      REPRODUCIBILITY_BYTES: "84646"
+      REPRODUCIBILITY_SHA256: e6b9fba117314e593cdb47e984ada655402d8d25b7510df2471eb505c19512db
+      MILESTONES_PATH: MILESTONES.md
+      MILESTONES_BYTES: "65183"
+      MILESTONES_SHA256: d897a00d07be90efe13135a62be07dc367b10a0653f95348e2f3ef9f62a6d451
+      NOTICE_PATH: NOTICE.md
+      NOTICE_BYTES: "4814"
+      NOTICE_SHA256: d5e3bbdfebb1a77fc2ba54d7e2ac12802eeac5bd4f2537b22eef6d10c8e4aac1
+      CHANGELOG_PATH: CHANGELOG.md
+      CHANGELOG_BYTES: "137894"
+      CHANGELOG_SHA256: b243bf728871f498c413ef43c4eb243c2fd6512bed80f452381b9846c9356fab
+      CI_PATH: CI.md
+      CI_BYTES: "137571"
+      CI_SHA256: 87d891c84c1c1118c0204ef7fbd31b5d63ff8da3dc916b30af0ad05fcda7dafc
+      D1_INDEX_PATH: FRP_VALIDATION_INDEX_v3_3_0.md
+      D1_INDEX_BYTES: "12438"
+      D1_INDEX_SHA256: d9cc92a9a51797d536875710933109a42f24120739c8e2960d82205dbb785d3b
+      D2_NOTES_PATH: RELEASE_NOTES_v3_3_0.md
+      D2_NOTES_BYTES: "8189"
+      D2_NOTES_SHA256: 16bb207b2b254ba980272b23e448ad737cd7e2de5da3bdfc005ea9ca2010b648
+      D3_REPORT_PATH: TEST_REPORT_v3_3_0.md
+      D3_REPORT_BYTES: "9570"
+      D3_REPORT_SHA256: 0caabfb9387bf337adbc1724f2b2e8657430145e812b2ff70379212580ba1dd0
+      ARTIFACTS_FILES: "127"
+      ARTIFACTS_INVENTORY_SHA256: 0d86a8c50c86ba0196f635903cb8cc8d635dd1399787625f7619ad4dd8121f2b
+      BENCHMARKS_FILES: "19"
+      BENCHMARKS_INVENTORY_SHA256: 54dc4ae9aa858ccd60f577367be909abf1266b76fcefe10c8223e1f22cc78670
+      SCHEMAS_FILES: "125"
+      SCHEMAS_INVENTORY_SHA256: 384cede6b31eea78b9e85804405d7d8bb3bec42e0ce8489d3f9ed20d36f213d9
+      HISTORICAL_RECORDS: "51"
+      HISTORICAL_INVENTORY_SHA256: 4e9e38fc72b1704712eb4a8da34ee1cdd658c5a1bb69d070954e0cb431dccaa2
+      REQUIREMENTS_PATH: requirements.txt
+      REQUIREMENTS_BYTES: "33"
+      REQUIREMENTS_SHA256: 75b9bd6237473a063c852298fee983bdfcf550cb1cc828a237afaf726cccc3c7
+      M31_SOURCE_PATH: frp_m31_phase_interference_thermal_evidence.py
+      M31_SOURCE_BYTES: "42092"
+      M31_SOURCE_SHA256: 1e4ccfd7b157cd2bac609c34dfec9da791653a31af7b29b75502c755807b9c62
+      M31_TEST_PATH: tests/test_frp_m31_phase_interference_thermal_evidence.py
+      M31_TEST_BYTES: "22370"
+      M31_TEST_SHA256: f64214a9c785d8cf579e3a6a5afa6e364772d8972775cc010a3dba89d852c1ed
+      M31_SCHEMA_PATH: schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json
+      M31_SCHEMA_BYTES: "1468"
+      M31_SCHEMA_SHA256: 53d79d45d70753ccd24c3dc4c97af6fee481f86a9d7cdca7ef78b486c76479f7
+      M31_EVIDENCE_PATH: artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json
+      M31_EVIDENCE_BYTES: "39993"
+      M31_EVIDENCE_SHA256: bdaa676acbfb09d86d848070e8a2673c5ce6902657a0b13b2e4293383bec8b42
+      M31_MANIFEST_PATH: artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json
+      M31_MANIFEST_BYTES: "828"
+      M31_MANIFEST_SHA256: 80f0841d0041cd22c2f76175b6139e601aede7b69823356ae1fefbce5f793e7c
+      M31_QUALIFICATION_PATH: artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json
+      M31_QUALIFICATION_BYTES: "1512"
+      M31_QUALIFICATION_SHA256: 4c2446f954e01ec0aa37cc6c0fc70cf4a87ec565c450628e31b0efcac9160224
+      M30_QUALIFICATION_PATH: artifacts/m30/manifests/m30-reproducibility-qualification.json
+      M30_QUALIFICATION_BYTES: "6317"
+      M30_QUALIFICATION_SHA256: 4d3902fe999995f4f67aaa9fb3cfc1ac1e8de177ea0d66819fbb80aeefafa0c4
+      M30_ARCHIVE_PATH: artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz
+      M30_ARCHIVE_BYTES: "10189989"
+      M30_ARCHIVE_SHA256: 05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: main
+          persist-credentials: true
+
+      - name: Require manual main-branch execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ github.event_name }}" = "workflow_dispatch"
+          test "${{ github.ref }}" = "refs/heads/main"
+          test "${{ github.ref_name }}" = "main"
+          test "$(git branch --show-current)" = "main"
+          test -z "$(git status --porcelain)"
+          echo "Manual main-branch boundary: PASS"
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Verify current documentation and protected histories
+        shell: bash
+        run: |
+          set -euo pipefail
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          historical_inventory() {
+            find . -maxdepth 1 -type f '(' -name 'RELEASE_NOTES_v*.md' -o -name 'TEST_REPORT_v*.md' -o -name 'FRP_VALIDATION_INDEX_v*.md' -o -name 'RELEASE_CHECKLIST_v*.md' ')' -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          verify_inventory() {
+            inventory_path="$1"
+            expected_files="$2"
+            expected_sha="$3"
+            output_path="$4"
+            tree_inventory "$inventory_path" > "$output_path"
+            test "$(wc -l < "$output_path")" -eq "$expected_files"
+            test "$(sha256sum "$output_path" | cut -d' ' -f1)" = "$expected_sha"
+          }
+          verify_file() {
+            path="$1"
+            expected_bytes="$2"
+            expected_sha="$3"
+            test ! -L "$path"
+            test -f "$path"
+            test "$(wc -c < "$path")" -eq "$expected_bytes"
+            test "$(sha256sum "$path" | cut -d' ' -f1)" = "$expected_sha"
+          }
+
+          verify_inventory artifacts "$ARTIFACTS_FILES" "$ARTIFACTS_INVENTORY_SHA256" /tmp/m31d12-artifacts.before
+          verify_inventory benchmarks "$BENCHMARKS_FILES" "$BENCHMARKS_INVENTORY_SHA256" /tmp/m31d12-benchmarks.before
+          verify_inventory schemas "$SCHEMAS_FILES" "$SCHEMAS_INVENTORY_SHA256" /tmp/m31d12-schemas.before
+          historical_inventory > /tmp/m31d12-history.before
+          test "$(wc -l < /tmp/m31d12-history.before)" -eq "$HISTORICAL_RECORDS"
+          test "$(sha256sum /tmp/m31d12-history.before | cut -d' ' -f1)" = "$HISTORICAL_INVENTORY_SHA256"
+
+          verify_file "$LICENSE_PATH" "$LICENSE_BYTES" "$LICENSE_SHA256"
+          verify_file "$README_PATH" "$README_BYTES" "$README_SHA256"
+          verify_file "$USAGE_PATH" "$USAGE_BYTES" "$USAGE_SHA256"
+          verify_file "$REPRODUCIBILITY_PATH" "$REPRODUCIBILITY_BYTES" "$REPRODUCIBILITY_SHA256"
+          verify_file "$MILESTONES_PATH" "$MILESTONES_BYTES" "$MILESTONES_SHA256"
+          verify_file "$NOTICE_PATH" "$NOTICE_BYTES" "$NOTICE_SHA256"
+          verify_file "$CHANGELOG_PATH" "$CHANGELOG_BYTES" "$CHANGELOG_SHA256"
+          verify_file "$CI_PATH" "$CI_BYTES" "$CI_SHA256"
+          verify_file "$D1_INDEX_PATH" "$D1_INDEX_BYTES" "$D1_INDEX_SHA256"
+          verify_file "$D2_NOTES_PATH" "$D2_NOTES_BYTES" "$D2_NOTES_SHA256"
+          verify_file "$D3_REPORT_PATH" "$D3_REPORT_BYTES" "$D3_REPORT_SHA256"
+
+          test ! -L "$TARGET_PATH"
+          test -f "$TARGET_PATH"
+          target_sha="$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)"
+          if test "$target_sha" = "$SOURCE_SHA256"; then
+            test "$(wc -c < "$TARGET_PATH")" -eq "$SOURCE_BYTES"
+            test "$(wc -l < "$TARGET_PATH")" -eq "$SOURCE_LINES"
+          elif test "$target_sha" = "$TARGET_SHA256"; then
+            test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+            test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
+          else
+            echo "ROADMAP.md boundary mismatch: $target_sha" >&2
+            exit 1
+          fi
+          echo "Current documentation and protected histories: PASS"
+
+      - name: Verify exact M30 and M31 publication boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          prefixes = (
+              "REQUIREMENTS",
+              "M31_SOURCE",
+              "M31_TEST",
+              "M31_SCHEMA",
+              "M31_EVIDENCE",
+              "M31_MANIFEST",
+              "M31_QUALIFICATION",
+              "M30_QUALIFICATION",
+              "M30_ARCHIVE",
+          )
+          for prefix in prefixes:
+              path = Path(os.environ[prefix + "_PATH"])
+              expected = (
+                  int(os.environ[prefix + "_BYTES"]),
+                  os.environ[prefix + "_SHA256"],
+              )
+              if path.is_symlink() or not path.is_file():
+                  raise SystemExit(f"required regular file is missing: {path}")
+              raw = path.read_bytes()
+              observed = (len(raw), hashlib.sha256(raw).hexdigest())
+              if observed != expected:
+                  raise SystemExit(f"publication-boundary mismatch: {path}")
+          print("Exact M30 and M31 publication boundary: PASS")
+          PY
+
+      - name: Install exact dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check -r "$REQUIREMENTS_PATH"
+
+      - name: Run all 60 focused M31 qualification tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest tests.test_frp_m31_phase_interference_thermal_evidence -v 2>&1 | tee /tmp/m31d12-tests.log
+          grep -F "Ran 60 tests" /tmp/m31d12-tests.log
+          grep -Fx "OK" /tmp/m31d12-tests.log
+
+      - name: Install complete ROADMAP.md
+        shell: bash
+        run: |
+          set -euo pipefail
+          current_sha="$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)"
+          if test "$current_sha" = "$TARGET_SHA256"; then
+            echo "Complete M31 ROADMAP.md is already installed."
+            exit 0
+          fi
+          test "$current_sha" = "$SOURCE_SHA256"
+
+          compact=/tmp/m31d12-roadmap.gz.b64
+          compressed=/tmp/m31d12-roadmap.gz
+          block=/tmp/m31d12-roadmap-current.md
+          rendered=/tmp/ROADMAP.md
+          block_base64() {
+            cat <<'BLOCK_PAYLOAD'
+          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
+          BLOCK_PAYLOAD
+          }
+
+          block_base64 | tr -d '[:space:]' > "$compact"
+          test "$(wc -c < "$compact")" -eq "$BLOCK_BASE64_LENGTH"
+          test "$(sha256sum "$compact" | cut -d' ' -f1)" = "$BLOCK_BASE64_SHA256"
+          base64 --decode "$compact" > "$compressed"
+          test "$(wc -c < "$compressed")" -eq "$BLOCK_GZIP_BYTES"
+          test "$(sha256sum "$compressed" | cut -d' ' -f1)" = "$BLOCK_GZIP_SHA256"
+          gzip --decompress --stdout "$compressed" > "$block"
+          test "$(wc -c < "$block")" -eq "$BLOCK_BYTES"
+          test "$(wc -l < "$block")" -eq "$BLOCK_LINES"
+          test "$(sha256sum "$block" | cut -d' ' -f1)" = "$BLOCK_SHA256"
+
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          source = Path(os.environ["TARGET_PATH"]).read_bytes()
+          block = Path("/tmp/m31d12-roadmap-current.md").read_bytes()
+          marker = "# Roadmap — Fractal Resonance Processor (FRP)\n\n".encode()
+          if not source.startswith(marker) or source.count(marker) != 1:
+              raise SystemExit("ROADMAP.md insertion boundary mismatch")
+          rendered = marker + block + source[len(marker):]
+          expected = (int(os.environ["TARGET_BYTES"]), os.environ["TARGET_SHA256"])
+          observed = (len(rendered), hashlib.sha256(rendered).hexdigest())
+          if observed != expected:
+              raise SystemExit("rendered ROADMAP.md identity mismatch")
+          if rendered.count(b"\n") != int(os.environ["TARGET_LINES"]):
+              raise SystemExit("rendered ROADMAP.md line-count mismatch")
+          Path("/tmp/ROADMAP.md").write_bytes(rendered)
+          print("Deterministic ROADMAP.md composition: PASS")
+          PY
+
+          install -m 0644 "$rendered" "$TARGET_PATH"
+          test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+          test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
+          test "$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)" = "$TARGET_SHA256"
+          echo "Complete M31 ROADMAP.md installed: PASS"
+
+      - name: Qualify ROADMAP.md content, links, and preserved history
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import os
+          import re
+          from pathlib import Path
+
+          path = Path(os.environ["TARGET_PATH"])
+          raw = path.read_bytes()
+          expected = (int(os.environ["TARGET_BYTES"]), os.environ["TARGET_SHA256"])
+          observed = (len(raw), hashlib.sha256(raw).hexdigest())
+          if observed != expected:
+              raise SystemExit("ROADMAP.md target identity mismatch")
+          if raw.count(b"\n") != int(os.environ["TARGET_LINES"]):
+              raise SystemExit("ROADMAP.md line-count mismatch")
+
+          marker = "# Roadmap — Fractal Resonance Processor (FRP)\n\n".encode()
+          block_end = len(marker) + int(os.environ["BLOCK_BYTES"])
+          block = raw[len(marker):block_end]
+          expected_block = (int(os.environ["BLOCK_BYTES"]), os.environ["BLOCK_SHA256"])
+          observed_block = (len(block), hashlib.sha256(block).hexdigest())
+          if observed_block != expected_block:
+              raise SystemExit("current roadmap register identity mismatch")
+          reconstructed_source = raw[:len(marker)] + raw[block_end:]
+          expected_source = (int(os.environ["SOURCE_BYTES"]), os.environ["SOURCE_SHA256"])
+          observed_source = (
+              len(reconstructed_source),
+              hashlib.sha256(reconstructed_source).hexdigest(),
+          )
+          if observed_source != expected_source:
+              raise SystemExit("historical ROADMAP.md bytes were not preserved")
+
+          text = raw.decode("utf-8")
+          current = block.decode("utf-8")
+          required = (
+              "## Current Roadmap State — FRP v3.3.0 / M31",
+              "FRP v3.3.0 / M31 — PASS",
+              "M31 — Phase-Interference, Active-Zero, and Thermal-Evidence Publication",
+              "-1/0/1",
+              "60 / 60 PASS",
+              "## Completed Architecture Progression",
+              "| M0 | v0.9.3-mobile |",
+              "| M16 | v1.8.0 |",
+              "| M17 | v1.9.0 |",
+              "| M30 | v3.2.0 |",
+              "| M31 | v3.3.0 |",
+              "## M17–M31 Qualification Chain",
+              "## Publication and Observatory Boundary",
+              "FRP is the source of canonical published bytes.",
+              "one-way, read-only boundary",
+              "## Preserved Roadmap History Through M30",
+              "Until these closure conditions are met, M30 remains a planned milestone",
+          )
+          missing = [value for value in required if value not in text]
+          if missing:
+              raise SystemExit(f"ROADMAP.md required records missing: {missing}")
+          if "-1/0/" + chr(43) + "1" in text:
+              raise SystemExit("ROADMAP.md forbidden ternary notation present")
+
+          links = re.findall(r"\]\(([^)]+)\)", current)
+          if len(links) != 89 or len(set(links)) != 73:
+              raise SystemExit("current roadmap link registry count mismatch")
+          missing_paths = [value for value in sorted(set(links)) if not Path(value).is_file()]
+          if missing_paths:
+              raise SystemExit(f"ROADMAP.md link targets missing: {missing_paths}")
+          print("ROADMAP.md M0-M31 continuity, links, and historical bytes: PASS")
+          PY
+
+      - name: Prove protected histories are byte-identical
+        shell: bash
+        run: |
+          set -euo pipefail
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          historical_inventory() {
+            find . -maxdepth 1 -type f '(' -name 'RELEASE_NOTES_v*.md' -o -name 'TEST_REPORT_v*.md' -o -name 'FRP_VALIDATION_INDEX_v*.md' -o -name 'RELEASE_CHECKLIST_v*.md' ')' -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          tree_inventory artifacts > /tmp/m31d12-artifacts.after
+          tree_inventory benchmarks > /tmp/m31d12-benchmarks.after
+          tree_inventory schemas > /tmp/m31d12-schemas.after
+          historical_inventory > /tmp/m31d12-history.after
+          cmp --silent /tmp/m31d12-artifacts.before /tmp/m31d12-artifacts.after
+          cmp --silent /tmp/m31d12-benchmarks.before /tmp/m31d12-benchmarks.after
+          cmp --silent /tmp/m31d12-schemas.before /tmp/m31d12-schemas.after
+          cmp --silent /tmp/m31d12-history.before /tmp/m31d12-history.after
+          echo "Evidence, benchmark, schema, and release histories: BYTE-IDENTICAL"
+
+      - name: Verify only ROADMAP.md changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import os
+          import subprocess
+
+          target = os.environ["TARGET_PATH"]
+          tracked = {
+              item for item in subprocess.check_output(
+                  ["git", "diff", "--name-only", "-z"]
+              ).decode().split("\0") if item
+          }
+          untracked = {
+              item for item in subprocess.check_output(
+                  ["git", "ls-files", "--others", "--exclude-standard", "-z"]
+              ).decode().split("\0") if item
+          }
+          unexpected = (tracked | untracked) - {target}
+          if unexpected:
+              raise SystemExit(f"unexpected worktree changes: {sorted(unexpected)}")
+          print("ROADMAP.md-only update boundary: PASS")
+          PY
+
+      - name: Commit and publish complete ROADMAP.md
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$TARGET_PATH"
+          staged="$(git diff --cached --name-only)"
+          if test -z "$staged"; then
+            test -z "$(git status --porcelain)"
+            echo "Complete M31 ROADMAP.md is already published."
+            exit 0
+          fi
+          test "$staged" = "$TARGET_PATH"
+          git commit -m "Align ROADMAP.md with FRP v3.3.0 M31"
+          git push origin HEAD:main
+
+      - name: Verify published state
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "$(git status --porcelain)"
+          test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+          test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
+          test "$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)" = "$TARGET_SHA256"
+          {
+            echo "## FRP M31D12 Roadmap v3.3.0"
+            echo
+            echo "- Updated file: ROADMAP.md"
+            echo "- Architecture progression: M0 through M31"
+            echo "- Current release: FRP v3.3.0 / M31"
+            echo "- Existing roadmap history: byte-identical"
+            echo "- M31 focused tests: 60 / 60 PASS"
+            echo "- Evidence and benchmark histories: byte-identical"
+            echo "- Result: PASS"
+          } >> "$GITHUB_STEP_SUMMARY"
