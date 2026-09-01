@@ -1,5 +1,257 @@
 # Fractal Resonance Processor (FRP)
 
+**Ternary Fractal Resonant Coherence Processor**
+
+## Reproducibility
+
+This document defines the clean-environment reproduction and byte-verification procedure for **FRP v3.3.0 / M31**.
+
+## Release boundary
+
+| Field | Reproducible record |
+|---|---|
+| Version | `FRP v3.3.0` |
+| Milestone | `M31 — Phase-Interference, Active-Zero, and Thermal-Evidence Publication` |
+| Qualification | `PASS` |
+| Focused M31 tests | `60 / 60 PASS` |
+| Qualification checks | `13 / 13 PASS` |
+| Canonical M31 outputs | `4 / 4 exact` |
+| Preserved archival baseline | `FRP v3.2.0 / M30 — PASS` |
+| Python | `3.12+` |
+
+The M31 reproduction boundary preserves balanced ternary notation `-1/0/1`, active state `0`, temporal scheduler modes `1/7` and `7/1`, and the separate service scheduler mode `free`.
+
+## Reproducibility guarantees
+
+The procedure verifies:
+
+1. exact identities of the M31 producer, tests, schema, evidence, manifest, and qualification record;
+2. exact identity and member continuity of the preserved M30 archival package;
+3. all 60 focused M31 qualification tests;
+4. two independent M31 generations with byte-identical outputs;
+5. byte identity between independently generated and committed M31 outputs;
+6. exact reproduction of the historical FRP v0.9.3 model workload;
+7. preservation of evidence, benchmark, schema, and release histories.
+
+The focused M31 suite qualifies the M31 publication boundary. The repository-wide regression is reserved for final documentation and release closure.
+
+## 1. Create a clean Python 3.12 environment
+
+Clone the repository and enter it:
+
+```
+git clone https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor.git
+cd Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor
+git switch main
+git status --porcelain
+```
+
+The final command must produce no output.
+
+Create an isolated environment outside the repository:
+
+```
+python3.12 -m venv /tmp/frp-v3.3.0-venv
+. /tmp/frp-v3.3.0-venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python --version
+```
+
+Expected Python line:
+
+`Python 3.12.x`
+
+## 2. Verify immutable source identities
+
+| Path | Bytes | SHA-256 |
+|---|---:|---|
+| `requirements.txt` | `33` | `75b9bd6237473a063c852298fee983bdfcf550cb1cc828a237afaf726cccc3c7` |
+| `frp_m31_phase_interference_thermal_evidence.py` | `42092` | `1e4ccfd7b157cd2bac609c34dfec9da791653a31af7b29b75502c755807b9c62` |
+| `tests/test_frp_m31_phase_interference_thermal_evidence.py` | `22370` | `f64214a9c785d8cf579e3a6a5afa6e364772d8972775cc010a3dba89d852c1ed` |
+| `schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json` | `1468` | `53d79d45d70753ccd24c3dc4c97af6fee481f86a9d7cdca7ef78b486c76479f7` |
+| `artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json` | `39993` | `bdaa676acbfb09d86d848070e8a2673c5ce6902657a0b13b2e4293383bec8b42` |
+| `artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json` | `828` | `80f0841d0041cd22c2f76175b6139e601aede7b69823356ae1fefbce5f793e7c` |
+| `artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json` | `1512` | `4c2446f954e01ec0aa37cc6c0fc70cf4a87ec565c450628e31b0efcac9160224` |
+| `artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz` | `10189989` | `05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa` |
+
+Run the identity check:
+
+```
+python - <<'PY'
+import hashlib
+from pathlib import Path
+
+expected = {
+    "requirements.txt": (33, "75b9bd6237473a063c852298fee983bdfcf550cb1cc828a237afaf726cccc3c7"),
+    "frp_m31_phase_interference_thermal_evidence.py": (42092, "1e4ccfd7b157cd2bac609c34dfec9da791653a31af7b29b75502c755807b9c62"),
+    "tests/test_frp_m31_phase_interference_thermal_evidence.py": (22370, "f64214a9c785d8cf579e3a6a5afa6e364772d8972775cc010a3dba89d852c1ed"),
+    "schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json": (1468, "53d79d45d70753ccd24c3dc4c97af6fee481f86a9d7cdca7ef78b486c76479f7"),
+    "artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json": (39993, "bdaa676acbfb09d86d848070e8a2673c5ce6902657a0b13b2e4293383bec8b42"),
+    "artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json": (828, "80f0841d0041cd22c2f76175b6139e601aede7b69823356ae1fefbce5f793e7c"),
+    "artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json": (1512, "4c2446f954e01ec0aa37cc6c0fc70cf4a87ec565c450628e31b0efcac9160224"),
+    "artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz": (10189989, "05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa"),
+}
+for name, identity in expected.items():
+    raw = Path(name).read_bytes()
+    observed = (len(raw), hashlib.sha256(raw).hexdigest())
+    if observed != identity:
+        raise SystemExit(f"identity mismatch: {name}")
+print("M31 immutable source identities: PASS")
+PY
+```
+
+## 3. Run the focused M31 qualification
+
+```
+python -m unittest tests.test_frp_m31_phase_interference_thermal_evidence -v
+```
+
+Expected terminal result:
+
+```
+Ran 60 tests
+
+OK
+```
+
+## 4. Verify the committed canonical publication
+
+```
+python frp_m31_phase_interference_thermal_evidence.py --verify
+```
+
+The command generates an independent expected publication, compares all four outputs byte-for-byte with the committed records, and reports `status: PASS`.
+
+Run the deterministic self-test:
+
+```
+python frp_m31_phase_interference_thermal_evidence.py --self-test
+```
+
+## 5. Reproduce two independent output trees
+
+```
+replay_a="$(mktemp -d)"
+replay_b="$(mktemp -d)"
+
+python frp_m31_phase_interference_thermal_evidence.py \
+  --generate \
+  --repository-root . \
+  --output-root "$replay_a"
+
+python frp_m31_phase_interference_thermal_evidence.py \
+  --generate \
+  --repository-root . \
+  --output-root "$replay_b"
+```
+
+Compare both independent trees and the committed outputs:
+
+```
+while IFS= read -r record; do
+  cmp "$replay_a/$record" "$replay_b/$record"
+  cmp "$replay_a/$record" "$record"
+done <<'RECORDS'
+schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json
+artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json
+artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json
+artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json
+RECORDS
+
+echo "Two-run replay and committed publication: BYTE-IDENTICAL"
+```
+
+## 6. Reproduce the historical thermal-load contour
+
+Run the exact FRP v0.9.3 model workload captured by M31:
+
+```
+python3 frp_prototype_v0_9_3_mobile.py \
+  --mode bench \
+  --steps 128 \
+  --seeds 5 \
+  > /tmp/frp-v0.9.3-bench.txt
+
+wc -c /tmp/frp-v0.9.3-bench.txt
+sha256sum /tmp/frp-v0.9.3-bench.txt
+```
+
+Expected identity:
+
+| Field | Value |
+|---|---|
+| Exit code | `0` |
+| Bytes | `640` |
+| SHA-256 | `b18e1affec6dec8029086e923b907c9ae3cb0c50131e4291b31fbd2a4d97cbb6` |
+
+The captured historical model reports `heat_peak` values of `0.051000` and `0.003250`, a ratio of `15.6923076923`, and a relative reduction of `93.63%`. These values remain bound to that exact model and workload as a historical thermal-load contour.
+
+## 7. Verify M30 archival continuity
+
+```
+test "$(wc -c < artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz)" -eq 10189989
+test "$(sha256sum artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz | cut -d' ' -f1)" = 05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa
+tar -tzf artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz > /tmp/frp-m30-members.txt
+test -s /tmp/frp-m30-members.txt
+echo "M30 archival package identity: PASS"
+```
+
+The M31 producer additionally verifies the declared M30 archive members byte-for-byte against the repository records.
+
+## 8. Verify protected repository histories
+
+The M31 documentation workflows preserve these inventories:
+
+| Protected record set | Files | Sorted digest-inventory SHA-256 |
+|---|---:|---|
+| `artifacts/` | `127` | `0d86a8c50c86ba0196f635903cb8cc8d635dd1399787625f7619ad4dd8121f2b` |
+| `benchmarks/` | `19` | `54dc4ae9aa858ccd60f577367be909abf1266b76fcefe10c8223e1f22cc78670` |
+| `schemas/` | `125` | `384cede6b31eea78b9e85804405d7d8bb3bec42e0ce8489d3f9ed20d36f213d9` |
+| Historical root release records | `51` | `4e9e38fc72b1704712eb4a8da34ee1cdd658c5a1bb69d070954e0cb431dccaa2` |
+
+Each inventory digest is calculated from the lexicographically sorted SHA-256 and repository-relative path of every protected regular file.
+
+## 9. Interpret the result
+
+A complete M31 reproduction records:
+
+| Gate | Result |
+|---|---|
+| Immutable inputs | `PASS` |
+| Focused M31 qualification | `60 / 60 PASS` |
+| Qualification checks | `13 / 13 PASS` |
+| Canonical outputs | `4 / 4 exact` |
+| Independent replay | `BYTE-IDENTICAL` |
+| Historical model replay | `PASS` |
+| M30 archive continuity | `PASS` |
+| Protected histories | `BYTE-IDENTICAL` |
+
+## FRP Trace Observatory boundary
+
+Publication direction:
+
+`FRP published bytes → FRP-Trace-Observatory`
+
+Reproduction occurs inside the FRP authority boundary. The Observatory consumes the committed publication through a one-way, read-only interface and preserves FRP semantics, metrics, contours, and bytes.
+
+## Release records
+
+- [FRP v3.3.0 validation index](FRP_VALIDATION_INDEX_v3_3_0.md)
+- [FRP v3.3.0 release notes](RELEASE_NOTES_v3_3_0.md)
+- [FRP v3.3.0 test report](TEST_REPORT_v3_3_0.md)
+- [Current usage](USAGE.md)
+
+## Historical reproducibility record
+
+The complete prior reproducibility document is preserved below as an exact byte sequence. Its release-local “current” labels describe the historical boundary through FRP v3.2.0 / M30.
+
+<details>
+<summary>Open the complete historical REPRODUCIBILITY.md through M30</summary>
+
+<!-- Exact historical REPRODUCIBILITY.md begins on the next line. -->
+# Fractal Resonance Processor (FRP)
+
 **Ternary Resonant Coherence Processor — Structured Output Prototype**
 
 ## Reproducibility
@@ -3349,3 +3601,5 @@ their declared schemas.
 Canonical processor notation remains `-1/0/1`; active neutral state remains
 `0`; temporal scheduler modes remain `1/7` and `7/1`; `free` remains a separate
 service scheduler mode.
+
+</details>
