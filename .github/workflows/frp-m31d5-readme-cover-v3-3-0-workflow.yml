@@ -1,0 +1,404 @@
+name: FRP M31D5 README Cover v3.3.0
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m31d5-readme-cover-v3-3-0-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish-readme-cover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TARGET_PATH: README.md
+      SOURCE_README_BYTES: "124523"
+      SOURCE_README_LINES: "4960"
+      SOURCE_README_SHA256: 9bdeaa319df33aa59d087919b197063d463a36e71ba58f4b02205640def516d8
+      TARGET_BYTES: "10430"
+      TARGET_LINES: "254"
+      TARGET_SHA256: 9fb5ccd3db24705f0f2c80723dd9b1f2c344e5b53c447927532ab29c2b34ca41
+      PAYLOAD_GZIP_BYTES: "3471"
+      PAYLOAD_GZIP_SHA256: 8ae8250e66dd8d0a1ba283902d86f3d50f8ac6e9ab021fef2e6dec1bad52d4a0
+      PAYLOAD_BASE64_LENGTH: "4628"
+      PAYLOAD_BASE64_SHA256: acb375a96cda862aa9e5e62fd3a7e261a48c2172597b01206a6ca607343a405d
+      ARTIFACTS_FILES: "127"
+      ARTIFACTS_INVENTORY_SHA256: 0d86a8c50c86ba0196f635903cb8cc8d635dd1399787625f7619ad4dd8121f2b
+      BENCHMARKS_FILES: "19"
+      BENCHMARKS_INVENTORY_SHA256: 54dc4ae9aa858ccd60f577367be909abf1266b76fcefe10c8223e1f22cc78670
+      SCHEMAS_FILES: "125"
+      SCHEMAS_INVENTORY_SHA256: 384cede6b31eea78b9e85804405d7d8bb3bec42e0ce8489d3f9ed20d36f213d9
+      HISTORICAL_RECORDS: "51"
+      HISTORICAL_INVENTORY_SHA256: 4e9e38fc72b1704712eb4a8da34ee1cdd658c5a1bb69d070954e0cb431dccaa2
+      REQUIREMENTS_PATH: requirements.txt
+      REQUIREMENTS_BYTES: "33"
+      REQUIREMENTS_SHA256: 75b9bd6237473a063c852298fee983bdfcf550cb1cc828a237afaf726cccc3c7
+      D1_INDEX_PATH: FRP_VALIDATION_INDEX_v3_3_0.md
+      D1_INDEX_BYTES: "12438"
+      D1_INDEX_SHA256: d9cc92a9a51797d536875710933109a42f24120739c8e2960d82205dbb785d3b
+      D2_NOTES_PATH: RELEASE_NOTES_v3_3_0.md
+      D2_NOTES_BYTES: "8189"
+      D2_NOTES_SHA256: 16bb207b2b254ba980272b23e448ad737cd7e2de5da3bdfc005ea9ca2010b648
+      D3_REPORT_PATH: TEST_REPORT_v3_3_0.md
+      D3_REPORT_BYTES: "9570"
+      D3_REPORT_SHA256: 0caabfb9387bf337adbc1724f2b2e8657430145e812b2ff70379212580ba1dd0
+      M31_SOURCE_PATH: frp_m31_phase_interference_thermal_evidence.py
+      M31_SOURCE_BYTES: "42092"
+      M31_SOURCE_SHA256: 1e4ccfd7b157cd2bac609c34dfec9da791653a31af7b29b75502c755807b9c62
+      M31_TEST_PATH: tests/test_frp_m31_phase_interference_thermal_evidence.py
+      M31_TEST_BYTES: "22370"
+      M31_TEST_SHA256: f64214a9c785d8cf579e3a6a5afa6e364772d8972775cc010a3dba89d852c1ed
+      M31_SCHEMA_PATH: schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json
+      M31_SCHEMA_BYTES: "1468"
+      M31_SCHEMA_SHA256: 53d79d45d70753ccd24c3dc4c97af6fee481f86a9d7cdca7ef78b486c76479f7
+      M31_EVIDENCE_PATH: artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json
+      M31_EVIDENCE_BYTES: "39993"
+      M31_EVIDENCE_SHA256: bdaa676acbfb09d86d848070e8a2673c5ce6902657a0b13b2e4293383bec8b42
+      M31_MANIFEST_PATH: artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json
+      M31_MANIFEST_BYTES: "828"
+      M31_MANIFEST_SHA256: 80f0841d0041cd22c2f76175b6139e601aede7b69823356ae1fefbce5f793e7c
+      M31_QUALIFICATION_PATH: artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json
+      M31_QUALIFICATION_BYTES: "1512"
+      M31_QUALIFICATION_SHA256: 4c2446f954e01ec0aa37cc6c0fc70cf4a87ec565c450628e31b0efcac9160224
+      M30_ARCHIVE_PATH: artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz
+      M30_ARCHIVE_BYTES: "10189989"
+      M30_ARCHIVE_SHA256: 05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: main
+          persist-credentials: true
+
+      - name: Require manual main-branch execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ github.event_name }}" = "workflow_dispatch"
+          test "${{ github.ref }}" = "refs/heads/main"
+          test "${{ github.ref_name }}" = "main"
+          test "$(git branch --show-current)" = "main"
+          test -z "$(git status --porcelain)"
+          echo "Manual main-branch boundary: PASS"
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Snapshot protected repository histories
+        shell: bash
+        run: |
+          set -euo pipefail
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          historical_inventory() {
+            find . -maxdepth 1 -type f '(' -name 'RELEASE_NOTES_v*.md' -o -name 'TEST_REPORT_v*.md' -o -name 'FRP_VALIDATION_INDEX_v*.md' -o -name 'RELEASE_CHECKLIST_v*.md' ')' -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          tree_inventory artifacts > /tmp/m31d5-artifacts.before
+          tree_inventory benchmarks > /tmp/m31d5-benchmarks.before
+          tree_inventory schemas > /tmp/m31d5-schemas.before
+          historical_inventory > /tmp/m31d5-history.before
+
+          test "$(wc -l < /tmp/m31d5-artifacts.before)" -eq "$ARTIFACTS_FILES"
+          test "$(sha256sum /tmp/m31d5-artifacts.before | cut -d' ' -f1)" = "$ARTIFACTS_INVENTORY_SHA256"
+          test "$(wc -l < /tmp/m31d5-benchmarks.before)" -eq "$BENCHMARKS_FILES"
+          test "$(sha256sum /tmp/m31d5-benchmarks.before | cut -d' ' -f1)" = "$BENCHMARKS_INVENTORY_SHA256"
+          test "$(wc -l < /tmp/m31d5-schemas.before)" -eq "$SCHEMAS_FILES"
+          test "$(sha256sum /tmp/m31d5-schemas.before | cut -d' ' -f1)" = "$SCHEMAS_INVENTORY_SHA256"
+          test "$(wc -l < /tmp/m31d5-history.before)" -eq "$HISTORICAL_RECORDS"
+          test "$(sha256sum /tmp/m31d5-history.before | cut -d' ' -f1)" = "$HISTORICAL_INVENTORY_SHA256"
+
+          readme_sha="$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)"
+          if test "$readme_sha" = "$SOURCE_README_SHA256"; then
+            test "$(wc -c < "$TARGET_PATH")" -eq "$SOURCE_README_BYTES"
+            test "$(wc -l < "$TARGET_PATH")" -eq "$SOURCE_README_LINES"
+          elif test "$readme_sha" = "$TARGET_SHA256"; then
+            test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+            test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
+          else
+            echo "README source boundary mismatch: $readme_sha" >&2
+            exit 1
+          fi
+          echo "Protected repository histories snapshotted: PASS"
+
+      - name: Verify exact M31 publication boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          exact = (
+              (os.environ["REQUIREMENTS_PATH"], int(os.environ["REQUIREMENTS_BYTES"]), os.environ["REQUIREMENTS_SHA256"]),
+              (os.environ["D1_INDEX_PATH"], int(os.environ["D1_INDEX_BYTES"]), os.environ["D1_INDEX_SHA256"]),
+              (os.environ["D2_NOTES_PATH"], int(os.environ["D2_NOTES_BYTES"]), os.environ["D2_NOTES_SHA256"]),
+              (os.environ["D3_REPORT_PATH"], int(os.environ["D3_REPORT_BYTES"]), os.environ["D3_REPORT_SHA256"]),
+              (os.environ["M31_SOURCE_PATH"], int(os.environ["M31_SOURCE_BYTES"]), os.environ["M31_SOURCE_SHA256"]),
+              (os.environ["M31_TEST_PATH"], int(os.environ["M31_TEST_BYTES"]), os.environ["M31_TEST_SHA256"]),
+              (os.environ["M31_SCHEMA_PATH"], int(os.environ["M31_SCHEMA_BYTES"]), os.environ["M31_SCHEMA_SHA256"]),
+              (os.environ["M31_EVIDENCE_PATH"], int(os.environ["M31_EVIDENCE_BYTES"]), os.environ["M31_EVIDENCE_SHA256"]),
+              (os.environ["M31_MANIFEST_PATH"], int(os.environ["M31_MANIFEST_BYTES"]), os.environ["M31_MANIFEST_SHA256"]),
+              (os.environ["M31_QUALIFICATION_PATH"], int(os.environ["M31_QUALIFICATION_BYTES"]), os.environ["M31_QUALIFICATION_SHA256"]),
+              (os.environ["M30_ARCHIVE_PATH"], int(os.environ["M30_ARCHIVE_BYTES"]), os.environ["M30_ARCHIVE_SHA256"]),
+          )
+          for path_text, expected_bytes, expected_sha256 in exact:
+              path = Path(path_text)
+              if path.is_symlink() or not path.is_file():
+                  raise SystemExit(f"required regular file is missing: {path}")
+              raw = path.read_bytes()
+              if (len(raw), hashlib.sha256(raw).hexdigest()) != (expected_bytes, expected_sha256):
+                  raise SystemExit(f"M31 publication-boundary mismatch: {path}")
+          print("Exact M31 publication boundary: PASS")
+          PY
+
+      - name: Install exact dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check -r "$REQUIREMENTS_PATH"
+
+      - name: Run all 60 focused M31 qualification tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest tests.test_frp_m31_phase_interference_thermal_evidence -v 2>&1 | tee /tmp/m31d5-tests.log
+          grep -F "Ran 60 tests" /tmp/m31d5-tests.log
+          grep -Fx "OK" /tmp/m31d5-tests.log
+
+      - name: Install the clean v3.3.0 README cover
+        shell: bash
+        run: |
+          set -euo pipefail
+          compact=/tmp/frp-v3.3.0-readme-cover.gz.b64
+          payload=/tmp/frp-v3.3.0-readme-cover.gz
+          rendered=/tmp/README.md
+          base64_payload() {
+            cat <<'PAYLOAD'
+          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
+          PAYLOAD
+          }
+          base64_payload | tr -d '[:space:]' > "$compact"
+          test "$(wc -c < "$compact")" -eq "$PAYLOAD_BASE64_LENGTH"
+          test "$(sha256sum "$compact" | cut -d' ' -f1)" = "$PAYLOAD_BASE64_SHA256"
+          base64 --decode "$compact" > "$payload"
+          test "$(wc -c < "$payload")" -eq "$PAYLOAD_GZIP_BYTES"
+          test "$(sha256sum "$payload" | cut -d' ' -f1)" = "$PAYLOAD_GZIP_SHA256"
+          gzip --decompress --stdout "$payload" > "$rendered"
+          test "$(wc -c < "$rendered")" -eq "$TARGET_BYTES"
+          test "$(wc -l < "$rendered")" -eq "$TARGET_LINES"
+          test "$(sha256sum "$rendered" | cut -d' ' -f1)" = "$TARGET_SHA256"
+          install -m 0644 "$rendered" "$TARGET_PATH"
+          echo "Clean FRP v3.3.0 README cover installed: PASS"
+
+      - name: Qualify the README cover
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import os
+          import re
+          from pathlib import Path
+
+          root = Path(".")
+          target = Path(os.environ["TARGET_PATH"])
+          raw = target.read_bytes()
+          if (len(raw), hashlib.sha256(raw).hexdigest()) != (
+              int(os.environ["TARGET_BYTES"]), os.environ["TARGET_SHA256"]
+          ):
+              raise SystemExit("README cover identity mismatch")
+          if not raw.endswith(bytes([10])) or raw.endswith(bytes([10, 10])):
+              raise SystemExit("README cover newline mismatch")
+
+          text = raw.decode("utf-8")
+          if text.count("# Fractal Resonance Processor (FRP)") != 1:
+              raise SystemExit("README title count mismatch")
+          required = (
+              "Ternary Fractal Resonant Coherence Processor",
+              "version-v3.3.0",
+              "FRP v3.3.0",
+              "M31 — Phase-Interference, Active-Zero, and Thermal-Evidence Publication",
+              "60 / 60 PASS",
+              "13 / 13 PASS",
+              "4 / 4 exact",
+              "Classical bit addition is not the",
+              "The discrete processor domain is `-1/0/1`.",
+              "State `0` is active",
+              "Actual direct events | `0`",
+              "15.6923076923",
+              "93.63%",
+              "FRP published bytes → FRP-Trace-Observatory",
+              "Maksym Marnov (Alchimist)",
+          )
+          missing = [item for item in required if item not in text]
+          if missing:
+              raise SystemExit(f"README cover claims missing: {missing}")
+
+          forbidden = (
+              "<!-- FRP-V3.3.0-M31-CURRENT-RELEASE:START -->",
+              "Current repository release:",
+              "byte-identical between this header",
+              "version-v3.2.0",
+              "-1/0/" + chr(43) + "1",
+          )
+          present = [item for item in forbidden if item in text]
+          if present:
+              raise SystemExit(f"stale README cover content present: {present}")
+
+          fences = [line for line in text.splitlines() if line.startswith("```")]
+          if len(fences) != 12 or any(line != "```" for line in fences):
+              raise SystemExit("README code-fence boundary mismatch")
+
+          missing_links = []
+          for link in re.findall(r"\[[^\]]*\]\(([^)]+)\)", text):
+              if link.startswith(("http://", "https://", "#")):
+                  continue
+              if not (root / link).exists():
+                  missing_links.append(link)
+          if missing_links:
+              raise SystemExit(f"README relative links missing: {missing_links}")
+          print("Clean FRP v3.3.0 README cover: PASS")
+          PY
+
+      - name: Prove protected histories are byte-identical
+        shell: bash
+        run: |
+          set -euo pipefail
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          historical_inventory() {
+            find . -maxdepth 1 -type f '(' -name 'RELEASE_NOTES_v*.md' -o -name 'TEST_REPORT_v*.md' -o -name 'FRP_VALIDATION_INDEX_v*.md' -o -name 'RELEASE_CHECKLIST_v*.md' ')' -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          tree_inventory artifacts > /tmp/m31d5-artifacts.after
+          tree_inventory benchmarks > /tmp/m31d5-benchmarks.after
+          tree_inventory schemas > /tmp/m31d5-schemas.after
+          historical_inventory > /tmp/m31d5-history.after
+          cmp --silent /tmp/m31d5-artifacts.before /tmp/m31d5-artifacts.after
+          cmp --silent /tmp/m31d5-benchmarks.before /tmp/m31d5-benchmarks.after
+          cmp --silent /tmp/m31d5-schemas.before /tmp/m31d5-schemas.after
+          cmp --silent /tmp/m31d5-history.before /tmp/m31d5-history.after
+          echo "Evidence, benchmark, schema, and release histories: BYTE-IDENTICAL"
+
+      - name: Verify only README changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          changed="$(git diff --name-only)"
+          untracked="$(git ls-files --others --exclude-standard)"
+          if test -n "$changed"; then
+            test "$changed" = "$TARGET_PATH"
+          fi
+          test -z "$untracked"
+          echo "README-only replacement boundary: PASS"
+
+      - name: Commit and publish the README cover
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$TARGET_PATH"
+          staged="$(git diff --cached --name-only)"
+          if test -z "$staged"; then
+            test -z "$(git status --porcelain)"
+            echo "FRP v3.3.0 README cover is already published."
+            exit 0
+          fi
+          test "$staged" = "$TARGET_PATH"
+          git commit -m "Replace README with FRP v3.3.0 M31 cover"
+          git push origin HEAD:main
+
+      - name: Verify published state
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "$(git status --porcelain)"
+          test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+          test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
+          test "$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)" = "$TARGET_SHA256"
+          {
+            echo "## FRP M31D5 README Cover v3.3.0"
+            echo
+            echo "- Updated file: README.md"
+            echo "- Cover: single current version and current milestone"
+            echo "- M31 focused tests: 60 / 60 PASS"
+            echo "- Evidence and benchmark histories: byte-identical"
+            echo "- Result: PASS"
+          } >> "$GITHUB_STEP_SUMMARY"
