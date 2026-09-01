@@ -1,3 +1,15 @@
+<!-- FRP-V3.3.0-M31-CURRENT-RELEASE:START -->
+[![Current version](https://img.shields.io/badge/current-v3.3.0-blue.svg)](#frp-v330--m31-phase-interference-active-zero-and-thermal-evidence-publication)
+[![FRP M31 Complete](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m31-complete.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m31-complete.yml)
+[![FRP M31D3 Test Report v3.3.0](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m31d3-test-report-v3-3-0-workflow.yml/badge.svg)](https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor/actions/workflows/frp-m31d3-test-report-v3-3-0-workflow.yml)
+
+**Current repository release: `FRP v3.3.0 / M31 — PASS`.**
+
+The M31 current-release record is appended to this README. The complete
+README through FRP v3.2.0 remains byte-identical between this header and that
+record; its release-local `Current` labels are retained as historical text.
+<!-- FRP-V3.3.0-M31-CURRENT-RELEASE:END -->
+
 [![Version](https://img.shields.io/badge/version-v3.2.0-blue.svg)](#release-status)
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](#quick-start)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](LICENSE)
@@ -4830,3 +4842,119 @@ Historical archived DOI:
 Maksym Marnov (Alchimist)
 
 **Berlin, 8 July 2026**
+
+<!-- FRP-V3.3.0-M31-RELEASE-RECORD:START -->
+## FRP v3.3.0 — M31 Phase-Interference, Active-Zero, and Thermal-Evidence Publication
+
+### Release identity
+
+| Field | Value |
+|---|---|
+| Version | `FRP v3.3.0` |
+| Milestone | `M31 — Phase-Interference, Active-Zero, and Thermal-Evidence Publication` |
+| Qualification status | `PASS` |
+| Focused M31 qualification | `60 / 60 PASS` |
+| Qualification checks | `13 / 13 PASS` |
+| Canonical M31 outputs | `4 / 4 exact` |
+| Preserved archival baseline | `FRP v3.2.0 / M30 — PASS` |
+
+M31 publishes the phase-interference execution, active-zero, thermal-evidence,
+and downstream Observatory boundary over the preserved M30 archival release.
+
+### Processor-semantic boundary
+
+| Contract | Value |
+|---|---|
+| Balanced ternary notation | `-1/0/1` |
+| Active neutral state | `0` |
+| Negative-to-positive route | `-1 → 0 → 1` |
+| Positive-to-negative route | `1 → 0 → -1` |
+| Temporal scheduler modes | `1/7`, `7/1` |
+| Separate service scheduler mode | `free` |
+| Primary organization | retained relative-phase interference and resonant selection |
+| Classical bit addition as primary mechanism | `false` |
+
+The phase layer supplies target organization. The balanced ternary layer
+supplies discrete state, target, transition, and retained-result semantics.
+Neutral state `0` is active in mediation, routing, retention, balancing, and
+controlled neutralization. Target state and executed retained state remain
+separate.
+
+### Canonical publication
+
+| Record | Path |
+|---|---|
+| M31 producer | `frp_m31_phase_interference_thermal_evidence.py` |
+| M31 focused tests | `tests/test_frp_m31_phase_interference_thermal_evidence.py` |
+| M31 schema | `schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json` |
+| M31 evidence | `artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json` |
+| M31 manifest | `artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json` |
+| M31 qualification | `artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json` |
+| Validation index | `FRP_VALIDATION_INDEX_v3_3_0.md` |
+| Release notes | `RELEASE_NOTES_v3_3_0.md` |
+| Test report | `TEST_REPORT_v3_3_0.md` |
+
+Schema identity:
+
+`frp.m31.phase_interference_active_zero_thermal_evidence.v1`
+
+Focused qualification command:
+
+`python -m unittest tests.test_frp_m31_phase_interference_thermal_evidence -v`
+
+Recorded result:
+
+`Ran 60 tests — OK`
+
+### Published evidence summary
+
+| Record | Value |
+|---|---:|
+| execution records | `100` |
+| cell observations | `800` |
+| active-zero observations | `702` |
+| requested direct events | `5` |
+| prevented direct events | `5` |
+| neutral-routed events | `5` |
+| actual direct events | `0` |
+| reserved-state events | `0` |
+| queue-overflow events | `0` |
+| polarity-to-active-zero transitions | `5` |
+| active-zero-to-polarity transitions | `12` |
+| direct opposite-polarity transitions | `0` |
+
+The historical FRP v0.9.3 model workload records `heat_peak` values of
+`0.051000` for the binary-style forced-switch contour and `0.003250` for the
+distributed active-neutral ternary contour. The recorded ratio is
+`15.6923076923`, with a `93.63%` relative reduction inside that exact model
+and workload. These values are not physical temperature measurements.
+
+Historical `heat_peak`, current architecture-comparison records, normalized
+activity cost, and the RC temperature-proxy profile remain separate evidence
+contours. M31 does not merge or normalize these measurement classes.
+
+### FRP Trace Observatory boundary
+
+Publication direction:
+
+`FRP published bytes → FRP-Trace-Observatory`
+
+The downstream boundary is one-way and read-only. It forbids downstream
+metric normalization, semantic reimplementation, FRP source mutation, and
+writeback. The Observatory consumes the committed records for validation and
+visualization without executing the FRP producer source.
+
+### Historical continuity
+
+All earlier evidence, benchmark results, schemas, qualification records,
+release documents, workflows, and archival packages remain in place. M31 is
+an additive publication over the byte-identified M30 archival baseline.
+
+Detailed M31 records:
+
+- `FRP_VALIDATION_INDEX_v3_3_0.md`;
+- `RELEASE_NOTES_v3_3_0.md`;
+- `TEST_REPORT_v3_3_0.md`.
+
+`FRP v3.3.0 / M31 README RECORD — QUALIFIED`
+<!-- FRP-V3.3.0-M31-RELEASE-RECORD:END -->
