@@ -1,5 +1,167 @@
 # Milestones — Fractal Resonance Processor (FRP)
 
+![Current version](https://img.shields.io/badge/current-v3.3.0-0ea5e9)
+![Milestone](https://img.shields.io/badge/milestone-M31-2563eb)
+![Qualification](https://img.shields.io/badge/qualification-PASS-22c55e)
+
+## Current release boundary
+
+| Field | Value |
+|---|---|
+| Project | Fractal Resonance Processor (FRP) |
+| Current version | `FRP v3.3.0` |
+| Current milestone | `M31 — Phase-Interference, Active-Zero, and Thermal-Evidence Publication` |
+| Current qualification | `PASS` |
+| Focused M31 tests | `60 / 60 PASS` |
+| M31 qualification checks | `13 / 13 PASS` |
+| Canonical M31 outputs | `4 / 4 exact` |
+| Prior archival baseline | `FRP v3.2.0 / M30 — PASS` |
+| Executable semantic reference | `frp_prototype_v1_7_0.py` |
+| RTL and FPGA implementation anchor | `M16 — PASS` |
+
+## Processor milestone invariant
+
+The milestone sequence preserves one processor architecture across every
+release boundary:
+
+`relative-phase organization → resonant selection → ternary target → scheduler → request handling → active-zero mediation → retained-state writeback`
+
+| Contract | Preserved value |
+|---|---|
+| Balanced ternary notation | `-1/0/1` |
+| Semantic states | `-1`, `0`, `1` |
+| Active neutral state | `0` |
+| Negative-to-positive route | `-1 → 0 → 1` |
+| Positive-to-negative route | `1 → 0 → -1` |
+| Temporal scheduler modes | `1/7`, `7/1` |
+| Separate service scheduler mode | `free` |
+| Primary computation | retained relative-phase interference, resonant selection, and active-zero-mediated execution |
+
+## Complete milestone register
+
+| Milestone | Version | Architecture layer | Qualified state |
+|---|---|---|---|
+| M0 | v0.9.3-mobile | Repository Stabilization | Completed |
+| M1 | v0.9.3 | Archival Release and DOI | Completed |
+| M2 | v0.9.4 | Structured Output and Machine-Readable Validation | Completed |
+| M3 | v0.9.5 | Benchmark Export and Hardware Signal Mapping | Completed |
+| M4 | v0.9.6 | HDL Trace Export and Testbench Scaffold | Completed |
+| M5 | v0.9.7 | RTL Interface Contract and Assertion Harness | Completed |
+| M6 | v0.9.8 | Formal Verification Hooks and Equivalence Scaffold | Completed |
+| M7 | v0.9.9 | FPGA Synthesis Package and Timing Constraint Scaffold | Completed |
+| M8 | v1.0.0 | Production Release Package and Stable Interface Freeze | Completed |
+| M9 | v1.1.0 | Silicon and Heterogeneous Implementation Architecture | Completed |
+| M10 | v1.2.0 | Silicon Production and Tapeout Readiness Package | Completed |
+| M11 | v1.3.0 | Production Integration and External Implementation Handoff | Completed |
+| M12 | v1.4.0 | External Implementation Feedback and Production Iteration Loop | Completed |
+| M13 | v1.5.0 | Production Scaling and Implementation Stabilization Package | Completed |
+| M14 | v1.6.0 | Physical Implementation Correlation and Production Qualification Package | Completed |
+| M15 | v1.7.0 | Implementation Mapping, Domain Interface, and Qualification Closure Package | Qualified foundation |
+| M16 | v1.8.0 | RTL Core Realization and Execution Semantics Package | RTL and FPGA preparation qualified |
+| M17 | v1.9.0 | Published Artifact Integration Contract | Qualification boundary closed |
+| M18 | v2.0.0 | Formal Schema and Canonical Artifact Publication | PASS |
+| M19 | v2.1.0 | Machine-Readable M16 Execution and Qualification Evidence | PASS |
+| M20 | v2.2.0 | Cross-Layer Deterministic Correlation | PASS |
+| M21 | v2.3.0 | Parameterized Qualification Matrix | PASS |
+| M22 | v2.4.0 | Control, Status, and Register Interface Realization | PASS |
+| M23 | v2.5.0 | Clock, Reset, CDC, and Interface Hardening | PASS |
+| M24 | v2.6.0 | Formal and Bounded Verification Closure | PASS |
+| M25 | v2.7.0 | Fault, Negative-Path, and Recovery Qualification | PASS |
+| M26 | v2.8.0 | Declared-Target Implementation Evidence | PASS |
+| M27 | v2.9.0 | Long-Run Stability and Telemetry Qualification | PASS |
+| M28 | v3.0.0 | Hierarchical Scaling, Hotspot Containment, and Observatory Interchange | PASS |
+| M29 | v3.1.0 | System Integration and Downstream Compatibility Closure | PASS |
+| M30 | v3.2.0 | Reproducibility, Qualification, and Archival Release Closure | PASS |
+| M31 | v3.3.0 | Phase-Interference, Active-Zero, and Thermal-Evidence Publication | Current — PASS |
+
+## M17–M31 qualified progression
+
+| Milestone | Producer or source | Qualification evidence |
+|---|---|---|
+| M17 | `frp_m17_publication_inventory.py` | `docs/m17_published_artifact_integration_closure.md` |
+| M18 | `frp_m18_canonical_artifacts.py` | `artifacts/m18/manifests/canonical-artifact-qualification.json` |
+| M19 | `frp_m19_m16_evidence.py` | `artifacts/m19/manifests/m19-machine-readable-evidence-qualification.json` |
+| M20 | `frp_m20_cross_layer_correlation.py` | `artifacts/m20/manifests/m20-cross-layer-correlation-qualification.json` |
+| M21 | `frp_m21_parameterized_qualification_matrix.py` | `artifacts/m21/manifests/m21-parameterized-qualification-record.json` |
+| M22 | `frp_m22_control_status_register_interface.py` | `artifacts/m22/manifests/m22-control-status-register-qualification.json` |
+| M23 | `frp_m23_clock_reset_cdc_interface_hardening.py` | `artifacts/m23/manifests/m23-clock-reset-cdc-interface-hardening-qualification.json` |
+| M24 | `frp_m24_formal_bounded_verification.py` | `artifacts/m24/manifests/m24-formal-bounded-verification-qualification.json` |
+| M25 | `frp_m25_fault_negative_recovery_qualification.py` | `artifacts/m25/manifests/m25-fault-negative-recovery-qualification.json` |
+| M26 | `frp_m26_declared_target_implementation_evidence.py` | `artifacts/m26/manifests/m26-declared-target-implementation-qualification.json` |
+| M27 | `frp_m27_long_run_stability_telemetry_qualification.py` | `artifacts/m27/manifests/m27-long-run-stability-qualification.json` |
+| M28 | `frp_m28_hierarchical_scaling_hotspot_containment.py` | `artifacts/m28/hierarchy/manifests/m28-hierarchy-qualification.json` |
+| M28 Observatory boundary | `frp_m28_trace_observatory_upstream_interchange.py` | `artifacts/m28/manifests/m28-trace-observatory-interchange-qualification.json` |
+| M29 | `frp_m29_system_integration_downstream_compatibility.py` | `artifacts/m29/manifests/m29-system-integration-qualification.json` |
+| M30 | `frp_m30_reproducibility_qualification_archival_closure.py` | `artifacts/m30/manifests/m30-reproducibility-qualification.json` |
+| M31 | `frp_m31_phase_interference_thermal_evidence.py` | `artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json` |
+
+Every M17–M31 producer has a committed test module under `tests/`. The M30
+qualification records all M17–M29 gates as `PASS`; M31 adds its independent
+focused qualification over the preserved M30 archival baseline.
+
+## M31 publication record
+
+M31 publishes deterministic evidence for relative-phase organization,
+active-zero execution, neutral-mediated routing, and separate thermal
+measurement contours.
+
+| Canonical record | Bytes | SHA-256 |
+|---|---:|---|
+| `schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json` | `1468` | `53d79d45d70753ccd24c3dc4c97af6fee481f86a9d7cdca7ef78b486c76479f7` |
+| `artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json` | `39993` | `bdaa676acbfb09d86d848070e8a2673c5ce6902657a0b13b2e4293383bec8b42` |
+| `artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json` | `828` | `80f0841d0041cd22c2f76175b6139e601aede7b69823356ae1fefbce5f793e7c` |
+| `artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json` | `1512` | `4c2446f954e01ec0aa37cc6c0fc70cf4a87ec565c450628e31b0efcac9160224` |
+
+Focused qualification command:
+
+`python -m unittest tests.test_frp_m31_phase_interference_thermal_evidence -v`
+
+Recorded result:
+
+`Ran 60 tests — OK`
+
+The qualification record contains 13 checks, all `true`. Two independent M31
+generations reproduce all four canonical outputs byte-for-byte.
+
+## M30 archival continuity
+
+| Field | Value |
+|---|---|
+| Archive | `artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz` |
+| Bytes | `10189989` |
+| SHA-256 | `05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa` |
+| Qualification | `PASS` |
+
+M31 extends the milestone chain from the immutable M30 archival baseline. The
+M30 archive and its member bytes retain their recorded identities.
+
+## FRP Trace Observatory boundary
+
+Publication direction:
+
+`FRP published bytes → FRP-Trace-Observatory`
+
+The Observatory consumes immutable FRP artifacts through a one-way read-only
+boundary. FRP remains the semantic and publication authority. Published
+schemas, evidence, manifests, qualification records, and measurement contours
+retain their upstream identities.
+
+## Record-preservation boundary
+
+This current milestone register is added before the exact prior
+`MILESTONES.md` body. The prior 55,806-byte document remains byte-identical in
+the historical section below, including the original M0–M16 release records,
+M17 qualification record, and M18–M30 planning baseline.
+
+The update preserves the complete committed `artifacts/`, `benchmarks/`,
+`schemas/`, release-note, test-report, validation-index, and release-checklist
+histories.
+
+<details>
+<summary>Exact historical MILESTONES.md body through the M17 planning baseline</summary>
+
+# Milestones — Fractal Resonance Processor (FRP)
+
 This document defines the completed and current architecture milestones of the Fractal Resonance Processor (FRP) project.
 
 Current version:
@@ -2096,3 +2258,5 @@ Validation criteria:
 Status:
 
 `Planned`
+
+</details>
