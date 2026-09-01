@@ -1,0 +1,561 @@
+name: FRP M31D11 CI v3.3.0
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m31d11-ci-v3-3-0-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish-ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TARGET_PATH: CI.md
+      SOURCE_BYTES: "126063"
+      SOURCE_LINES: "4616"
+      SOURCE_SHA256: 5f34c4402f5aad9ca0d64cdc12d508e2a67a8b4d3424ab67a4a4831162d90dab
+      TARGET_BYTES: "137571"
+      TARGET_LINES: "4818"
+      TARGET_SHA256: 87d891c84c1c1118c0204ef7fbd31b5d63ff8da3dc916b30af0ad05fcda7dafc
+      BLOCK_BYTES: "11508"
+      BLOCK_LINES: "202"
+      BLOCK_SHA256: d24327d111117298ef752cae3013b5f01c3b77afd1ce374b44784c4c987f6a70
+      BLOCK_GZIP_BYTES: "4068"
+      BLOCK_GZIP_SHA256: 9603b5235a711b411c96b7ab9a048e4cf1b1dce24bbe42c8f589e93811f9055e
+      BLOCK_BASE64_LENGTH: "5424"
+      BLOCK_BASE64_SHA256: 9ce01f1ef217c9149044fe38199c512c3c20ed275597f20233c50ea344a2805c
+      LICENSE_PATH: LICENSE
+      LICENSE_BYTES: "10204"
+      LICENSE_SHA256: ea6233ec9cd025f4b4b08ead7f4c3aafdee865d1703a76ed7bbd8a5ddb444227
+      README_PATH: README.md
+      README_BYTES: "10430"
+      README_SHA256: 9fb5ccd3db24705f0f2c80723dd9b1f2c344e5b53c447927532ab29c2b34ca41
+      USAGE_PATH: USAGE.md
+      USAGE_BYTES: "66358"
+      USAGE_SHA256: d1f5868a07c6322feb1ba8d36d6aff9972976848f26d63be6494d4ae722473c1
+      REPRODUCIBILITY_PATH: REPRODUCIBILITY.md
+      REPRODUCIBILITY_BYTES: "84646"
+      REPRODUCIBILITY_SHA256: e6b9fba117314e593cdb47e984ada655402d8d25b7510df2471eb505c19512db
+      MILESTONES_PATH: MILESTONES.md
+      MILESTONES_BYTES: "65183"
+      MILESTONES_SHA256: d897a00d07be90efe13135a62be07dc367b10a0653f95348e2f3ef9f62a6d451
+      NOTICE_PATH: NOTICE.md
+      NOTICE_BYTES: "4814"
+      NOTICE_SHA256: d5e3bbdfebb1a77fc2ba54d7e2ac12802eeac5bd4f2537b22eef6d10c8e4aac1
+      CHANGELOG_PATH: CHANGELOG.md
+      CHANGELOG_BYTES: "137894"
+      CHANGELOG_SHA256: b243bf728871f498c413ef43c4eb243c2fd6512bed80f452381b9846c9356fab
+      D1_INDEX_PATH: FRP_VALIDATION_INDEX_v3_3_0.md
+      D1_INDEX_BYTES: "12438"
+      D1_INDEX_SHA256: d9cc92a9a51797d536875710933109a42f24120739c8e2960d82205dbb785d3b
+      D2_NOTES_PATH: RELEASE_NOTES_v3_3_0.md
+      D2_NOTES_BYTES: "8189"
+      D2_NOTES_SHA256: 16bb207b2b254ba980272b23e448ad737cd7e2de5da3bdfc005ea9ca2010b648
+      D3_REPORT_PATH: TEST_REPORT_v3_3_0.md
+      D3_REPORT_BYTES: "9570"
+      D3_REPORT_SHA256: 0caabfb9387bf337adbc1724f2b2e8657430145e812b2ff70379212580ba1dd0
+      ARTIFACTS_FILES: "127"
+      ARTIFACTS_INVENTORY_SHA256: 0d86a8c50c86ba0196f635903cb8cc8d635dd1399787625f7619ad4dd8121f2b
+      BENCHMARKS_FILES: "19"
+      BENCHMARKS_INVENTORY_SHA256: 54dc4ae9aa858ccd60f577367be909abf1266b76fcefe10c8223e1f22cc78670
+      SCHEMAS_FILES: "125"
+      SCHEMAS_INVENTORY_SHA256: 384cede6b31eea78b9e85804405d7d8bb3bec42e0ce8489d3f9ed20d36f213d9
+      HISTORICAL_RECORDS: "51"
+      HISTORICAL_INVENTORY_SHA256: 4e9e38fc72b1704712eb4a8da34ee1cdd658c5a1bb69d070954e0cb431dccaa2
+      REQUIREMENTS_PATH: requirements.txt
+      REQUIREMENTS_BYTES: "33"
+      REQUIREMENTS_SHA256: 75b9bd6237473a063c852298fee983bdfcf550cb1cc828a237afaf726cccc3c7
+      M31_SOURCE_PATH: frp_m31_phase_interference_thermal_evidence.py
+      M31_SOURCE_BYTES: "42092"
+      M31_SOURCE_SHA256: 1e4ccfd7b157cd2bac609c34dfec9da791653a31af7b29b75502c755807b9c62
+      M31_TEST_PATH: tests/test_frp_m31_phase_interference_thermal_evidence.py
+      M31_TEST_BYTES: "22370"
+      M31_TEST_SHA256: f64214a9c785d8cf579e3a6a5afa6e364772d8972775cc010a3dba89d852c1ed
+      M31_SCHEMA_PATH: schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json
+      M31_SCHEMA_BYTES: "1468"
+      M31_SCHEMA_SHA256: 53d79d45d70753ccd24c3dc4c97af6fee481f86a9d7cdca7ef78b486c76479f7
+      M31_EVIDENCE_PATH: artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json
+      M31_EVIDENCE_BYTES: "39993"
+      M31_EVIDENCE_SHA256: bdaa676acbfb09d86d848070e8a2673c5ce6902657a0b13b2e4293383bec8b42
+      M31_MANIFEST_PATH: artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json
+      M31_MANIFEST_BYTES: "828"
+      M31_MANIFEST_SHA256: 80f0841d0041cd22c2f76175b6139e601aede7b69823356ae1fefbce5f793e7c
+      M31_QUALIFICATION_PATH: artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json
+      M31_QUALIFICATION_BYTES: "1512"
+      M31_QUALIFICATION_SHA256: 4c2446f954e01ec0aa37cc6c0fc70cf4a87ec565c450628e31b0efcac9160224
+      M30_QUALIFICATION_PATH: artifacts/m30/manifests/m30-reproducibility-qualification.json
+      M30_QUALIFICATION_BYTES: "6317"
+      M30_QUALIFICATION_SHA256: 4d3902fe999995f4f67aaa9fb3cfc1ac1e8de177ea0d66819fbb80aeefafa0c4
+      M30_ARCHIVE_PATH: artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz
+      M30_ARCHIVE_BYTES: "10189989"
+      M30_ARCHIVE_SHA256: 05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: main
+          persist-credentials: true
+
+      - name: Require manual main-branch execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ github.event_name }}" = "workflow_dispatch"
+          test "${{ github.ref }}" = "refs/heads/main"
+          test "${{ github.ref_name }}" = "main"
+          test "$(git branch --show-current)" = "main"
+          test -z "$(git status --porcelain)"
+          echo "Manual main-branch boundary: PASS"
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Verify current documentation and protected histories
+        shell: bash
+        run: |
+          set -euo pipefail
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          historical_inventory() {
+            find . -maxdepth 1 -type f '(' -name 'RELEASE_NOTES_v*.md' -o -name 'TEST_REPORT_v*.md' -o -name 'FRP_VALIDATION_INDEX_v*.md' -o -name 'RELEASE_CHECKLIST_v*.md' ')' -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          verify_inventory() {
+            inventory_path="$1"
+            expected_files="$2"
+            expected_sha="$3"
+            output_path="$4"
+            tree_inventory "$inventory_path" > "$output_path"
+            test "$(wc -l < "$output_path")" -eq "$expected_files"
+            test "$(sha256sum "$output_path" | cut -d' ' -f1)" = "$expected_sha"
+          }
+          verify_file() {
+            path="$1"
+            expected_bytes="$2"
+            expected_sha="$3"
+            test ! -L "$path"
+            test -f "$path"
+            test "$(wc -c < "$path")" -eq "$expected_bytes"
+            test "$(sha256sum "$path" | cut -d' ' -f1)" = "$expected_sha"
+          }
+
+          verify_inventory artifacts "$ARTIFACTS_FILES" "$ARTIFACTS_INVENTORY_SHA256" /tmp/m31d11-artifacts.before
+          verify_inventory benchmarks "$BENCHMARKS_FILES" "$BENCHMARKS_INVENTORY_SHA256" /tmp/m31d11-benchmarks.before
+          verify_inventory schemas "$SCHEMAS_FILES" "$SCHEMAS_INVENTORY_SHA256" /tmp/m31d11-schemas.before
+          historical_inventory > /tmp/m31d11-history.before
+          test "$(wc -l < /tmp/m31d11-history.before)" -eq "$HISTORICAL_RECORDS"
+          test "$(sha256sum /tmp/m31d11-history.before | cut -d' ' -f1)" = "$HISTORICAL_INVENTORY_SHA256"
+
+          verify_file "$LICENSE_PATH" "$LICENSE_BYTES" "$LICENSE_SHA256"
+          verify_file "$README_PATH" "$README_BYTES" "$README_SHA256"
+          verify_file "$USAGE_PATH" "$USAGE_BYTES" "$USAGE_SHA256"
+          verify_file "$REPRODUCIBILITY_PATH" "$REPRODUCIBILITY_BYTES" "$REPRODUCIBILITY_SHA256"
+          verify_file "$MILESTONES_PATH" "$MILESTONES_BYTES" "$MILESTONES_SHA256"
+          verify_file "$NOTICE_PATH" "$NOTICE_BYTES" "$NOTICE_SHA256"
+          verify_file "$CHANGELOG_PATH" "$CHANGELOG_BYTES" "$CHANGELOG_SHA256"
+          verify_file "$D1_INDEX_PATH" "$D1_INDEX_BYTES" "$D1_INDEX_SHA256"
+          verify_file "$D2_NOTES_PATH" "$D2_NOTES_BYTES" "$D2_NOTES_SHA256"
+          verify_file "$D3_REPORT_PATH" "$D3_REPORT_BYTES" "$D3_REPORT_SHA256"
+
+          test ! -L "$TARGET_PATH"
+          test -f "$TARGET_PATH"
+          target_sha="$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)"
+          if test "$target_sha" = "$SOURCE_SHA256"; then
+            test "$(wc -c < "$TARGET_PATH")" -eq "$SOURCE_BYTES"
+            test "$(wc -l < "$TARGET_PATH")" -eq "$SOURCE_LINES"
+          elif test "$target_sha" = "$TARGET_SHA256"; then
+            test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+            test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
+          else
+            echo "CI.md boundary mismatch: $target_sha" >&2
+            exit 1
+          fi
+          echo "Current documentation and protected histories: PASS"
+
+      - name: Verify exact M30 and M31 publication boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          prefixes = (
+              "REQUIREMENTS",
+              "M31_SOURCE",
+              "M31_TEST",
+              "M31_SCHEMA",
+              "M31_EVIDENCE",
+              "M31_MANIFEST",
+              "M31_QUALIFICATION",
+              "M30_QUALIFICATION",
+              "M30_ARCHIVE",
+          )
+          for prefix in prefixes:
+              path = Path(os.environ[prefix + "_PATH"])
+              expected = (
+                  int(os.environ[prefix + "_BYTES"]),
+                  os.environ[prefix + "_SHA256"],
+              )
+              if path.is_symlink() or not path.is_file():
+                  raise SystemExit(f"required regular file is missing: {path}")
+              raw = path.read_bytes()
+              observed = (len(raw), hashlib.sha256(raw).hexdigest())
+              if observed != expected:
+                  raise SystemExit(f"publication-boundary mismatch: {path}")
+          print("Exact M30 and M31 publication boundary: PASS")
+          PY
+
+      - name: Verify M17-M31 workflow registry
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r workflow
+          do
+            test -f "$workflow"
+            test ! -L "$workflow"
+          done <<'WORKFLOWS'
+          .github/workflows/frp-m17-published-artifact-integration.yml
+          .github/workflows/frp-m18-formal-schema-canonical-artifacts.yml
+          .github/workflows/frp-m19-create-machine-readable-m16-evidence.yml
+          .github/workflows/frp-m20-cross-layer-correlation.yml
+          .github/workflows/frp-m21-parameterized-qualification-matrix.yml
+          .github/workflows/frp-m22-control-status-register-interface.yml
+          .github/workflows/frp-m23-clock-reset-cdc-interface-hardening-workflow.yml
+          .github/workflows/frp-m24-formal-bounded-verification-closure-workflow.yml
+          .github/workflows/frp-m25-fault-negative-path-recovery-qualification-workflow.yml
+          .github/workflows/frp-m26-declared-target-implementation-evidence-workflow.yml
+          .github/workflows/frp-m27-long-run-stability-telemetry-qualification-workflow.yml
+          .github/workflows/frp-m28-hierarchical-scaling-hotspot-containment-closure-workflow.yml
+          .github/workflows/frp-m28-trace-observatory-upstream-interchange-workflow.yml
+          .github/workflows/frp-m29-system-integration-downstream-compatibility-closure-workflow.yml
+          .github/workflows/frp-m30-reproducibility-qualification-archival-release-closure-workflow.yml
+          .github/workflows/frp-m31a1-phase-interference-thermal-evidence-source-part-1-workflow.yml
+          .github/workflows/frp-m31a2-phase-interference-thermal-evidence-source-part-2-workflow.yml
+          .github/workflows/frp-m31a3-phase-interference-thermal-evidence-source-assembly-workflow.yml
+          .github/workflows/frp-m31b1-phase-interference-thermal-evidence-test-part-1-workflow.yml
+          .github/workflows/frp-m31b2-phase-interference-thermal-evidence-test-part-2-workflow.yml
+          .github/workflows/frp-m31b3-phase-interference-thermal-evidence-test-assembly-workflow.yml
+          .github/workflows/frp-m31c-phase-interference-thermal-evidence-publication-workflow.yml
+          .github/workflows/frp-m31-complete.yml
+          .github/workflows/frp-m31d11-ci-v3-3-0-workflow.yml
+          WORKFLOWS
+          echo "M17-M31 workflow registry: PASS"
+
+      - name: Install exact dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check -r "$REQUIREMENTS_PATH"
+
+      - name: Run all 60 focused M31 qualification tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest tests.test_frp_m31_phase_interference_thermal_evidence -v 2>&1 | tee /tmp/m31d11-tests.log
+          grep -F "Ran 60 tests" /tmp/m31d11-tests.log
+          grep -Fx "OK" /tmp/m31d11-tests.log
+
+      - name: Install complete CI.md
+        shell: bash
+        run: |
+          set -euo pipefail
+          current_sha="$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)"
+          if test "$current_sha" = "$TARGET_SHA256"; then
+            echo "Complete M31 CI.md is already installed."
+            exit 0
+          fi
+          test "$current_sha" = "$SOURCE_SHA256"
+
+          compact=/tmp/m31d11-ci.gz.b64
+          compressed=/tmp/m31d11-ci.gz
+          block=/tmp/m31d11-ci-current.md
+          rendered=/tmp/CI.md
+          block_base64() {
+            cat <<'BLOCK_PAYLOAD'
+          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
+          7Wi3UGNwjstLONH/AglNEun0LAAA
+          BLOCK_PAYLOAD
+          }
+
+          block_base64 | tr -d '[:space:]' > "$compact"
+          test "$(wc -c < "$compact")" -eq "$BLOCK_BASE64_LENGTH"
+          test "$(sha256sum "$compact" | cut -d' ' -f1)" = "$BLOCK_BASE64_SHA256"
+          base64 --decode "$compact" > "$compressed"
+          test "$(wc -c < "$compressed")" -eq "$BLOCK_GZIP_BYTES"
+          test "$(sha256sum "$compressed" | cut -d' ' -f1)" = "$BLOCK_GZIP_SHA256"
+          gzip --decompress --stdout "$compressed" > "$block"
+          test "$(wc -c < "$block")" -eq "$BLOCK_BYTES"
+          test "$(wc -l < "$block")" -eq "$BLOCK_LINES"
+          test "$(sha256sum "$block" | cut -d' ' -f1)" = "$BLOCK_SHA256"
+
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          source = Path(os.environ["TARGET_PATH"]).read_bytes()
+          block = Path("/tmp/m31d11-ci-current.md").read_bytes()
+          marker = "# CI — Fractal Resonance Processor (FRP)\n\n".encode()
+          if not source.startswith(marker) or source.count(marker) != 1:
+              raise SystemExit("CI.md insertion boundary mismatch")
+          rendered = marker + block + source[len(marker):]
+          expected = (int(os.environ["TARGET_BYTES"]), os.environ["TARGET_SHA256"])
+          observed = (len(rendered), hashlib.sha256(rendered).hexdigest())
+          if observed != expected:
+              raise SystemExit("rendered CI.md identity mismatch")
+          if rendered.count(b"\n") != int(os.environ["TARGET_LINES"]):
+              raise SystemExit("rendered CI.md line-count mismatch")
+          Path("/tmp/CI.md").write_bytes(rendered)
+          print("Deterministic CI.md composition: PASS")
+          PY
+
+          test "$(wc -c < "$rendered")" -eq "$TARGET_BYTES"
+          test "$(wc -l < "$rendered")" -eq "$TARGET_LINES"
+          test "$(sha256sum "$rendered" | cut -d' ' -f1)" = "$TARGET_SHA256"
+          install -m 0644 "$rendered" "$TARGET_PATH"
+          echo "Complete M31 CI.md installed: PASS"
+
+      - name: Qualify CI.md content and preserved history
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          raw = Path(os.environ["TARGET_PATH"]).read_bytes()
+          expected = (int(os.environ["TARGET_BYTES"]), os.environ["TARGET_SHA256"])
+          observed = (len(raw), hashlib.sha256(raw).hexdigest())
+          if observed != expected:
+              raise SystemExit("CI.md target identity mismatch")
+          if raw.count(b"\n") != int(os.environ["TARGET_LINES"]):
+              raise SystemExit("CI.md line-count mismatch")
+
+          marker = "# CI — Fractal Resonance Processor (FRP)\n\n".encode()
+          block_end = len(marker) + int(os.environ["BLOCK_BYTES"])
+          block = raw[len(marker):block_end]
+          block_identity = (len(block), hashlib.sha256(block).hexdigest())
+          expected_block = (int(os.environ["BLOCK_BYTES"]), os.environ["BLOCK_SHA256"])
+          if block_identity != expected_block:
+              raise SystemExit("current CI register identity mismatch")
+          reconstructed_source = raw[:len(marker)] + raw[block_end:]
+          source_identity = (
+              len(reconstructed_source),
+              hashlib.sha256(reconstructed_source).hexdigest(),
+          )
+          expected_source = (
+              int(os.environ["SOURCE_BYTES"]),
+              os.environ["SOURCE_SHA256"],
+          )
+          if source_identity != expected_source:
+              raise SystemExit("historical CI.md bytes were not preserved")
+
+          text = raw.decode("utf-8")
+          required = (
+              "## Current FRP v3.3.0 / M31 CI Register",
+              "FRP v3.3.0",
+              "M31 — Phase-Interference, Active-Zero, and Thermal-Evidence Publication",
+              "60 / 60 PASS",
+              "13 / 13 PASS",
+              "4 / 4 exact",
+              "55 / 55 PASS",
+              "-1/0/1",
+              "-1 → 0 → 1",
+              "1 → 0 → -1",
+              "M17-M31 Qualification Chain",
+              "187 / 187 PASS",
+              "37 / 37 PASS",
+              "39 / 39 PASS",
+              "48 / 48 PASS",
+              "72 / 72 PASS",
+              "76 / 76 PASS",
+              "105 / 105 PASS",
+              "70 / 70 PASS",
+              "69 / 69 PASS",
+              "59 / 59 PASS",
+              ".github/workflows/frp-m31-complete.yml",
+              "FRP_VALIDATION_INDEX_v3_3_0.md",
+              "RELEASE_NOTES_v3_3_0.md",
+              "TEST_REPORT_v3_3_0.md",
+              "FRP published bytes → FRP-Trace-Observatory",
+              "## Preserved CI History Through M30",
+              "## 46. M30 Reproducibility Qualification and Archival Closure",
+          )
+          missing = [value for value in required if value not in text]
+          if missing:
+              raise SystemExit(f"CI.md required records missing: {missing}")
+          forbidden = ("-1/0/" + chr(43) + "1",)
+          present = [value for value in forbidden if value in text]
+          if present:
+              raise SystemExit(f"CI.md forbidden notation present: {present}")
+          print("CI.md M0-M31 continuity and historical-byte preservation: PASS")
+          PY
+
+      - name: Prove protected histories are byte-identical
+        shell: bash
+        run: |
+          set -euo pipefail
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          historical_inventory() {
+            find . -maxdepth 1 -type f '(' -name 'RELEASE_NOTES_v*.md' -o -name 'TEST_REPORT_v*.md' -o -name 'FRP_VALIDATION_INDEX_v*.md' -o -name 'RELEASE_CHECKLIST_v*.md' ')' -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          tree_inventory artifacts > /tmp/m31d11-artifacts.after
+          tree_inventory benchmarks > /tmp/m31d11-benchmarks.after
+          tree_inventory schemas > /tmp/m31d11-schemas.after
+          historical_inventory > /tmp/m31d11-history.after
+          cmp --silent /tmp/m31d11-artifacts.before /tmp/m31d11-artifacts.after
+          cmp --silent /tmp/m31d11-benchmarks.before /tmp/m31d11-benchmarks.after
+          cmp --silent /tmp/m31d11-schemas.before /tmp/m31d11-schemas.after
+          cmp --silent /tmp/m31d11-history.before /tmp/m31d11-history.after
+          echo "Evidence, benchmark, schema, and release histories: BYTE-IDENTICAL"
+
+      - name: Verify only CI.md changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import os
+          import subprocess
+
+          target = os.environ["TARGET_PATH"]
+          tracked = {
+              item for item in subprocess.check_output(
+                  ["git", "diff", "--name-only", "-z"]
+              ).decode().split("\0") if item
+          }
+          untracked = {
+              item for item in subprocess.check_output(
+                  ["git", "ls-files", "--others", "--exclude-standard", "-z"]
+              ).decode().split("\0") if item
+          }
+          unexpected = (tracked | untracked) - {target}
+          if unexpected:
+              raise SystemExit(f"unexpected worktree changes: {sorted(unexpected)}")
+          print("CI.md-only update boundary: PASS")
+          PY
+
+      - name: Commit and publish complete CI.md
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$TARGET_PATH"
+          staged="$(git diff --cached --name-only)"
+          if test -z "$staged"; then
+            test -z "$(git status --porcelain)"
+            echo "Complete M31 CI.md is already published."
+            exit 0
+          fi
+          test "$staged" = "$TARGET_PATH"
+          git commit -m "Align CI.md with FRP v3.3.0 M31"
+          git push origin HEAD:main
+
+      - name: Verify published state
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "$(git status --porcelain)"
+          test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+          test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
+          test "$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)" = "$TARGET_SHA256"
+          {
+            echo "## FRP M31D11 CI v3.3.0"
+            echo
+            echo "- Updated file: CI.md"
+            echo "- Current CI register: M17 through M31"
+            echo "- Existing CI history: byte-identical"
+            echo "- M31 focused tests: 60 / 60 PASS"
+            echo "- Evidence and benchmark histories: byte-identical"
+            echo "- Result: PASS"
+          } >> "$GITHUB_STEP_SUMMARY"
