@@ -2,6 +2,75 @@
 
 All notable changes to the Fractal Resonance Processor (FRP) project are documented in this file.
 
+## [v3.3.0] — M31 Phase-Interference, Active-Zero, and Thermal-Evidence Publication
+
+### Release Layer
+
+- Added the deterministic M31 phase-interference, active-zero, and
+  thermal-evidence producer:
+  `frp_m31_phase_interference_thermal_evidence.py`.
+- Added the 60-test focused M31 qualification suite:
+  `tests/test_frp_m31_phase_interference_thermal_evidence.py`.
+- Added the formal M31 evidence schema:
+  `schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json`.
+- Published the canonical M31 evidence record, manifest, and qualification
+  record under `artifacts/m31/`.
+- Added the manual M31 publication workflow:
+  `.github/workflows/frp-m31-complete.yml`.
+- Added the FRP v3.3.0 validation index, release notes, and test report.
+- Aligned `README.md`, `USAGE.md`, `REPRODUCIBILITY.md`, `MILESTONES.md`,
+  `NOTICE.md`, and `CHANGELOG.md` with the current M31 release layer.
+- Preserved all historical release records, evidence, benchmarks, schemas,
+  and the FRP v3.2.0 M30 archival release package.
+
+### Processor Record
+
+- Recorded retained relative-phase interference and resonant selection as the
+  primary FRP computational organization.
+- Recorded the balanced ternary boundary exactly as `-1/0/1`.
+- Recorded active state `0` as an executable computational state.
+- Preserved the tick-separated opposite-polarity routes `-1 → 0 → 1` and
+  `1 → 0 → -1`.
+- Preserved temporal scheduler modes `1/7` and `7/1` and the separate `free`
+  service mode.
+- Published 100 cycle-exact execution records and 800 cell observations.
+- Published 702 active-zero observations.
+- Published five requested direct events, five prevented direct events, five
+  neutral-routed events, and zero actual direct events.
+- Published zero reserved-state events and zero queue-overflow events.
+
+### Thermal-Evidence Record
+
+- Reproduced the FRP v0.9.3 historical benchmark using its exact executable,
+  command, workload, and metric identity.
+- Recorded historical model `heat_peak` values `0.051000` and `0.003250` for
+  the focused binary and distributed active-neutral ternary rows.
+- Recorded the historical model ratio `15.6923076923` and relative reduction
+  `93.63%` under that exact workload.
+- Preserved the historical model thermal-load contour and the current shared
+  normalized RC thermal-proxy contour as separate evidence classes.
+- Preserved the canonical comparative benchmark and hardware-sensitivity
+  packages with their existing source bytes and digests.
+
+### FRP Trace Observatory Boundary
+
+- Published the one-way boundary:
+  `FRP published bytes → FRP-Trace-Observatory`.
+- Assigned downstream read-only validation and visualization to the
+  Observatory.
+- Preserved FRP as the semantic and publication authority.
+- Preserved source-byte identity, schema identity, provenance, and separate
+  evidence contours across the boundary.
+
+### Qualification Result
+
+- Focused M31 tests: `60 / 60 PASS`.
+- M31 qualification checks: `13 / 13 PASS`.
+- Canonical M31 outputs: `4 / 4 exact`.
+- M30 reproducibility records: `55 / 55 PASS`.
+
+`M31 PHASE-INTERFERENCE, ACTIVE-ZERO, AND THERMAL-EVIDENCE PUBLICATION — PASS`
+
 ## [v3.2.0] — M30 Reproducibility, Qualification, and Archival Release Closure
 
 ### Current Release Layer
@@ -20,6 +89,303 @@ All notable changes to the Fractal Resonance Processor (FRP) project are documen
 ### Qualification Result
 
 `M30 REPRODUCIBILITY AND ARCHIVAL RELEASE CLOSED — PASS`
+
+## [v3.1.0] — M29 System Integration and Downstream Compatibility Closure
+
+### Added
+
+- Added the system-integration contract, supported schema registry, supported
+  artifact registry, and compatibility-version declarations.
+- Added the canonical demo artifact package and deterministic package
+  manifest.
+- Added the producer-command registry, immutable source-artifact policy,
+  provenance-completeness record, unsupported-version behavior, downstream
+  consumption vectors, and release-independent compatibility records.
+- Added the M29 system-integration qualification record.
+- Qualified the upstream publication inventory and one-way downstream
+  compatibility boundary.
+
+### Qualification Result
+
+- Qualification checks: `48 / 48 PASS`.
+- Qualification record:
+  `artifacts/m29/manifests/m29-system-integration-qualification.json`.
+- Workflow:
+  `.github/workflows/frp-m29-system-integration-downstream-compatibility-closure-workflow.yml`.
+
+`M29 SYSTEM INTEGRATION AND DOWNSTREAM COMPATIBILITY CLOSED — PASS`
+
+## [v3.0.0] — M28 Hierarchical Scaling, Hotspot Containment, and Observatory Interchange
+
+### Added
+
+- Added the declared hierarchy topology, hierarchical scaling contract,
+  deterministic scaling matrix, hotspot-containment evidence, and hierarchy
+  qualification record.
+- Added the FRP Trace Observatory upstream contract, canonical trace bundle,
+  fixture manifest, compatibility registry, and interchange qualification
+  record.
+- Preserved hierarchy-level provenance and explicit aggregation relations.
+- Established the published upstream trace-interchange boundary for read-only
+  downstream validation and visualization.
+
+### Qualification Result
+
+- Combined qualification checks: `59 / 59 PASS`.
+- Hierarchy qualification:
+  `artifacts/m28/hierarchy/manifests/m28-hierarchy-qualification.json`.
+- Observatory interchange qualification:
+  `artifacts/m28/manifests/m28-trace-observatory-interchange-qualification.json`.
+- Workflows:
+  `.github/workflows/frp-m28-hierarchical-scaling-hotspot-containment-closure-workflow.yml`
+  and
+  `.github/workflows/frp-m28-trace-observatory-upstream-interchange-workflow.yml`.
+
+`M28 HIERARCHICAL SCALING AND OBSERVATORY INTERCHANGE CLOSED — PASS`
+
+## [v2.9.0] — M27 Long-Run Stability and Telemetry Qualification
+
+### Added
+
+- Added the deterministic long-run workload catalog and checkpoint evidence.
+- Added the long-run telemetry contract, telemetry-semantics record, stability
+  report, manifest, and qualification record.
+- Qualified scheduler, pending-route, transition-capacity, switching-load,
+  thermal-state proxy, transition-pressure, coherence, and checkpoint
+  relations across the declared long-run workloads.
+
+### Qualification Result
+
+- Qualification checks: `69 / 69 PASS`.
+- Qualification record:
+  `artifacts/m27/manifests/m27-long-run-stability-qualification.json`.
+- Workflow:
+  `.github/workflows/frp-m27-long-run-stability-telemetry-qualification-workflow.yml`.
+
+`M27 LONG-RUN STABILITY AND TELEMETRY QUALIFICATION — PASS`
+
+## [v2.8.0] — M26 Declared-Target Implementation Evidence
+
+### Added
+
+- Added the declared-target implementation contract and target-specific RTL
+  integration layer.
+- Added declared constraints, tool-command provenance, implementation report,
+  reproducibility record, manifest, and qualification record.
+- Bound implementation evidence to the declared target, tool, commands,
+  constraints, reports, and exact digests.
+
+### Qualification Result
+
+- Qualification checks: `70 / 70 PASS`.
+- Qualification record:
+  `artifacts/m26/manifests/m26-declared-target-implementation-qualification.json`.
+- Workflow:
+  `.github/workflows/frp-m26-declared-target-implementation-evidence-workflow.yml`.
+
+`M26 DECLARED-TARGET IMPLEMENTATION EVIDENCE — PASS`
+
+## [v2.7.0] — M25 Fault, Negative-Path, and Recovery Qualification
+
+### Added
+
+- Added the fault, negative-path, and recovery contract.
+- Added deterministic negative fixtures, failure-classification registry,
+  recovery evidence, formal negative-path properties, manifest, and
+  qualification record.
+- Qualified invalid ternary inputs, rejected requests, scheduler and capacity
+  deferrals, retained pending routes, reset recovery, malformed artifacts,
+  digest mismatches, and incomplete packages.
+
+### Qualification Result
+
+- Qualification checks: `105 / 105 PASS`.
+- Qualification record:
+  `artifacts/m25/manifests/m25-fault-negative-recovery-qualification.json`.
+- Workflow:
+  `.github/workflows/frp-m25-fault-negative-path-recovery-qualification-workflow.yml`.
+
+`M25 FAULT, NEGATIVE-PATH, AND RECOVERY QUALIFICATION — PASS`
+
+## [v2.6.0] — M24 Formal and Bounded Verification Closure
+
+### Added
+
+- Added the formal and bounded verification contract and complete property
+  inventory.
+- Added formal packages for the ternary domain, active-zero routing, pending
+  routes, scheduler relations, request arbitration, transition capacity,
+  retained-state updates, reset, readiness, and bounded liveness.
+- Added retained expected-counterexample evidence, proof evidence, manifest,
+  and qualification record.
+
+### Qualification Result
+
+- Qualification checks: `76 / 76 PASS`.
+- Qualification record:
+  `artifacts/m24/manifests/m24-formal-bounded-verification-qualification.json`.
+- Workflow:
+  `.github/workflows/frp-m24-formal-bounded-verification-closure-workflow.yml`.
+
+`M24 FORMAL AND BOUNDED VERIFICATION CLOSED — PASS`
+
+## [v2.5.0] — M23 Clock, Reset, CDC, and Interface Hardening
+
+### Added
+
+- Added the clock, reset, CDC, and interface-hardening contract.
+- Added reset-release synchronization, the hardened integration boundary,
+  CSR CDC bridge, interface protocol assertions, and executable testbench.
+- Added hardening sequence records, protocol assertion report, manifest, and
+  qualification record.
+- Qualified asynchronous reset assertion, synchronous release, `core_ready`
+  sequencing, pre-readiness gating, CDC boundaries, handshake behavior,
+  reset interruption, and deterministic restart.
+
+### Qualification Result
+
+- Qualification checks: `72 / 72 PASS`.
+- Qualification record:
+  `artifacts/m23/manifests/m23-clock-reset-cdc-interface-hardening-qualification.json`.
+- Workflow:
+  `.github/workflows/frp-m23-clock-reset-cdc-interface-hardening-workflow.yml`.
+
+`M23 CLOCK, RESET, CDC, AND INTERFACE HARDENING — PASS`
+
+## [v2.4.0] — M22 Control, Status, and Register Interface Realization
+
+### Added
+
+- Added the control, status, and register interface package, synthesizable RTL
+  boundary, and executable testbench.
+- Added 26 declared registers across three qualification profiles.
+- Added deterministic transaction traces, interface manifest, and
+  qualification record.
+- Qualified reset values, access policies, scheduler configuration, request
+  submission, retained-state observation, pending-route observation,
+  transition-capacity observation, invariant status, and invalid access.
+
+### Qualification Result
+
+- Qualification checks: `60 / 60 PASS`.
+- Qualification record:
+  `artifacts/m22/manifests/m22-control-status-register-qualification.json`.
+- Workflow:
+  `.github/workflows/frp-m22-control-status-register-interface.yml`.
+
+`M22 CONTROL, STATUS, AND REGISTER INTERFACE REALIZATION — PASS`
+
+## [v2.3.0] — M21 Parameterized Qualification Matrix
+
+### Added
+
+- Added the parameter-dimension declaration and deterministic qualification
+  matrix.
+- Added per-case provenance, supported and unsupported combination records,
+  qualification manifest, and qualification record.
+- Qualified declared cell-count, request-lane, scheduler-mode,
+  scheduler-parameter, transition-capacity, retained-route, and workload
+  dimensions.
+
+### Qualification Result
+
+- Qualification checks: `48 / 48 PASS`.
+- Qualification record:
+  `artifacts/m21/manifests/m21-parameterized-qualification-record.json`.
+- Workflow:
+  `.github/workflows/frp-m21-parameterized-qualification-matrix.yml`.
+
+`M21 PARAMETERIZED QUALIFICATION MATRIX — PASS`
+
+## [v2.2.0] — M20 Cross-Layer Deterministic Correlation
+
+### Added
+
+- Added deterministic M15-to-M16 RTL and FPGA-preparation correlation
+  packages.
+- Added tick, request-lane, retained-state, pending-route, scheduler-state,
+  transition-capacity, invariant, and digest correlation records.
+- Added explicit mismatch records, a correlation manifest, and qualification
+  record.
+
+### Qualification Result
+
+- Qualification checks: `39 / 39 PASS`.
+- Qualification record:
+  `artifacts/m20/manifests/m20-cross-layer-correlation-qualification.json`.
+- Workflow:
+  `.github/workflows/frp-m20-cross-layer-correlation.yml`.
+
+`M20 CROSS-LAYER DETERMINISTIC CORRELATION — PASS`
+
+## [v2.1.0] — M19 Machine-Readable M16 Execution and Qualification Evidence
+
+### Added
+
+- Added machine-readable M16 RTL and FPGA-preparation execution traces.
+- Added scheduler, request-lane, retained-state, phase-target, pending-route,
+  transition-capacity, switching-load, thermal-state proxy, coherence,
+  pressure, event-counter, invariant, and zero-event records.
+- Added RTL and FPGA-preparation qualification manifests, an evidence
+  manifest, and qualification record.
+
+### Qualification Result
+
+- Qualification checks: `37 / 37 PASS`.
+- Qualification record:
+  `artifacts/m19/manifests/m19-machine-readable-evidence-qualification.json`.
+- Workflow:
+  `.github/workflows/frp-m19-create-machine-readable-m16-evidence.yml`.
+
+`M19 MACHINE-READABLE M16 EVIDENCE — PASS`
+
+## [v2.0.0] — M18 Formal Schema and Canonical Artifact Publication
+
+### Added
+
+- Added formal schemas for structured output, benchmark matrices, M15
+  artifacts, canonical manifests, self-tests, and qualification records.
+- Published canonical structured-output, benchmark, tabular, M15 export,
+  vector, trace, preload, and lookup-table artifacts.
+- Added the formal schema registry, canonical artifact manifest, deterministic
+  self-test record, and qualification record.
+- Qualified formal schema validation, exact ternary-domain preservation,
+  deterministic regeneration, digest verification, required fields, and
+  invalid input rejection.
+
+### Qualification Result
+
+- Qualification checks: `187 / 187 PASS`.
+- Qualification record:
+  `artifacts/m18/manifests/canonical-artifact-qualification.json`.
+- Workflow:
+  `.github/workflows/frp-m18-formal-schema-canonical-artifacts.yml`.
+
+`M18 FORMAL SCHEMA AND CANONICAL ARTIFACT PUBLICATION — PASS`
+
+## [v1.9.0] — M17 Published Artifact Integration Contract
+
+### Added
+
+- Added the normative one-way publication contract from FRP to downstream
+  artifact consumers.
+- Added the deterministic publication inventory generator, formal inventory
+  schemas, provenance requirements, digest rules, producer-command records,
+  stable artifact ordering, and compatibility requirements.
+- Preserved exact identifiers, raw source bytes, the separate `free`, `1/7`,
+  and `7/1` scheduler identities, and FRP semantic authority.
+- Added M17 contract, qualification, and closure records under `docs/`.
+
+### Qualification Result
+
+- Built-in inventory self-tests: `25 / 25 PASS`.
+- Dependency-free unit tests: `30 / 30 PASS`.
+- Qualification record:
+  `docs/m17_published_artifact_integration_qualification.md`.
+- Workflow:
+  `.github/workflows/frp-m17-published-artifact-integration.yml`.
+
+`M17 PUBLISHED ARTIFACT INTEGRATION CONTRACT — PASS`
 
 ## [v1.8.0] — M16 RTL Core Realization and Execution Semantics Package
 
