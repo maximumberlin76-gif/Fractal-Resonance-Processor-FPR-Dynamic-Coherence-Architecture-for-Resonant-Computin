@@ -16,11 +16,9 @@ jobs:
     timeout-minutes: 20
     env:
       TARGET_PATH: rtl/m31/README.md
-      TARGET_BYTES: "15585"
+      TARGET_BYTES: "15565"
       TARGET_LINES: "474"
-      TARGET_SHA256: 45812ce0b7f21e25d9e523cb8f32cdfb8b9da6291561f66df77315671844c2ca
-      PAYLOAD_GZIP_BYTES: "5307"
-      PAYLOAD_GZIP_SHA256: b850de2fcc3ff235bf9b5ecc9b3d9b3f2dc003d1de35c06cd822f1afcb4516de
+      TARGET_SHA256: 75f0d94b2ceacbf356f336701f7a885fc036b0859806ac5f953b1b10c1f826f0
       PYTHONHASHSEED: "0"
       PYTHONDONTWRITEBYTECODE: "1"
       PYTHONUNBUFFERED: "1"
@@ -152,120 +150,483 @@ jobs:
           set -euo pipefail
           umask 022
 
-          cat > /tmp/frp-m31-readme.md.gz.b64 <<'FRP_M31_README_PAYLOAD'
-          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
-          8+jhPAAA
-          FRP_M31_README_PAYLOAD
+          cat > /tmp/frp-m31-readme.md <<'FRP_M31_README_DOCUMENT'
+          # FRP M31 Phase-Interference RTL Contour
+          
+          ## Version
+          
+          `FRP v3.3.0`
+          
+          ## Milestone
+          
+          `M31 — Phase-Interference, Active-Zero, Thermal, and Stability RTL`
+          
+          ## Processor
+          
+          `FRP — Ternary Fractal Resonant Coherence Processor`
+          
+          ## RTL Boundary
+          
+          The M31 RTL contour implements the retained relative-phase, resonance-selection,
+          balanced ternary execution, thermal-proxy, and stability path in SystemVerilog.
+          
+          The integrated contour begins with retained phase and frequency words, computes
+          relative-phase interactions and coherence observables, derives balanced ternary
+          targets, executes those targets through active computational zero, and exposes
+          the resulting activity, thermal, and stability observables.
+          
+          Integrated chain:
+          
+          `retained phase and frequency`
+          
+          → `relative-phase interaction`
+          
+          → `pair, cluster, and global coherence`
+          
+          → `resonance projection and ternary target`
+          
+          → `deterministic request-lane selection`
+          
+          → `active-zero balanced ternary execution`
+          
+          → `retained state and pending route`
+          
+          → `normalized thermal proxy`
+          
+          → `coherence capacity, pressure, and stability margin`
+          
+          ## Qualification Profile
+          
+          | Property | Qualified value |
+          |---|---:|
+          | Retained cells | `8` |
+          | Request lanes | `2` |
+          | Transition fraction | `0.25` |
+          | Temporal period | `8` ticks |
+          | Trigonometric address width | `12` bits |
+          | Trigonometric entries | `4096` |
+          | Retained ternary states | `-1/0/1` |
+          | Fixed-point domains | `S32Q16`, `S32Q30` |
+          | Phase domain | `PHASE_U32` |
+          | Coupling-control domain | `GAMMA_S32` |
+          
+          The eight-cell profile is the exact phase-interference qualification boundary
+          implemented by `frp_m31_phase_interference`.
+          
+          ## Balanced Ternary State Domain
+          
+          The retained processor-state domain is:
+          
+          `{-1, 0, 1}`
+          
+          | State | Computational role |
+          |---|---|
+          | `-1` | negative, inhibitory, counter-phase, or suppressive potential |
+          | `0` | active balancing, mediation, routing, damping, and stabilization state |
+          | `1` | positive, excitatory, phase-supporting, or constructive potential |
+          
+          State `0` is an active computational state. It mediates polarity changes,
+          retains the temporal separation between opposite states, and participates in
+          the coherence-capacity calculation.
+          
+          ## Canonical Hardware Encoding
+          
+          | Ternary state | Two-bit encoding |
+          |---|---|
+          | `-1` | `2'b11` |
+          | `0` | `2'b00` |
+          | `1` | `2'b01` |
+          | reserved | `2'b10` |
+          
+          The retained state, phase target, transition candidate, and pending-route
+          domains share this encoding.
+          
+          ## Fixed-Point and Phase Domains
+          
+          | Type | Representation | Role |
+          |---|---|---|
+          | `frp_m31_s32q16_t` | signed 32-bit Q16 | frequency, coupling, thermal, pressure, and margin values |
+          | `frp_m31_s32q30_t` | signed 32-bit Q30 | trigonometric, coherence, topology, and normalized factors |
+          | `frp_m31_phase_u32_t` | unsigned 32-bit phase word | full-turn retained phase accumulator |
+          | `frp_m31_gamma_s32_t` | signed 32-bit control word | effective coupling control |
+          
+          Canonical constants include:
+          
+          | Constant | Exact integer value |
+          |---|---:|
+          | Q16 one | `65536` |
+          | Q30 one | `1073741824` |
+          | Resonance target threshold Q30 | `354334802` |
+          | Nominal gamma | `644245094` |
+          | Nominal coupling Q16 | `18350` |
+          | Delay alpha Q16 | `19661` |
+          | Base frequency Q16 | `65536` |
+          | Thermal decay Q30 | `1020054733` |
+          | Thermal gain Q30 | `10737418` |
+          
+          Arithmetic helpers implement signed saturation and deterministic round-to-nearest
+          conversion with half cases directed away from zero.
+          
+          ## Phase and Interference Path
+          
+          Each cell retains a 32-bit phase word and a signed Q16 frequency word. On an
+          enabled tick, the phase engine combines:
+          
+          - retained phase and filtered frequency;
+          - cell-state and switching contributions;
+          - scheduler-state frequency push;
+          - effective gamma control;
+          - per-node thermal factor;
+          - relative-phase sine interaction across the eight-cell topology.
+          
+          The topology uses three exact Q30 shell weights:
+          
+          | Topological distance | Q30 weight |
+          |---:|---:|
+          | `1` | `516461574` |
+          | `2` | `158959695` |
+          | `3` | `59840215` |
+          
+          The phase path publishes per-cell coupling fields and phase projections together
+          with pair, cluster, and global coherence plus organization dispersion.
+          
+          ## Trigonometric Memory
+          
+          `frp_m31_sin_q30.mem` contains `4096` uppercase eight-hex-digit Q30 sine words.
+          Address bits `phase_word[31:20]` select the sine value; a quarter-turn address
+          offset selects cosine.
+          
+          The memory is derived exactly from the published M15 vector:
+          
+          [`artifacts/m18/m15_vectors/frp_m15_trig_lut_q30.vec`](../../artifacts/m18/m15_vectors/frp_m15_trig_lut_q30.vec)
+          
+          The installed memory SHA-256 is:
+          
+          `adbb4b94fcf8fa0bfc981d654679fd7518a5c4c9c97b611a35cd8accaf28233d`
+          
+          Qualified cardinal points are:
+          
+          | Address | Phase | Q30 value |
+          |---:|---:|---:|
+          | `0` | zero turn | `0` |
+          | `1024` | quarter turn | `1073741824` |
+          | `2048` | half turn | `0` |
+          | `3072` | three-quarter turn | `-1073741824` |
+          
+          ## Resonance Selection
+          
+          The sine projection determines the balanced ternary phase target:
+          
+          | Projection relation | Target |
+          |---|---|
+          | `projection > 354334802` | `1` |
+          | `projection < -354334802` | `-1` |
+          | projection inside the inclusive threshold band | `0` |
+          
+          The phase-request adapter scans cells in ascending index order, respects
+          retained pending routes and scheduler eligibility, and selects up to two phase
+          targets for the qualified eight-cell profile.
+          
+          `auto_target_enable` selects the phase-derived request path. The external
+          request and target ports remain available for deterministic execution control.
+          
+          ## Active-Zero Polarity Routing
+          
+          Opposite-polarity transitions are separated across eligible processor ticks:
+          
+          `-1 → 0 → 1`
+          
+          `1 → 0 → -1`
+          
+          The first leg enters active computational zero and retains the requested
+          polarity in the pending-route bank. A later commit-capable tick completes the
+          route from `0` and clears that pending slot.
+          
+          The integrated execution boundary records:
+          
+          `actual_direct_events = 0`
+          
+          `reserved_state_events = 0`
+          
+          `queue_overflow_events = 0`
+          
+          ## Temporal Scheduler
+          
+          The execution core supports three modes:
+          
+          | Mode | Eight-tick sequence | Commit-capable state | Neutralize-capable state |
+          |---|---|---|---|
+          | `free` | eight free ticks | `free` | `free` |
+          | `7/1` | seven balance, one commit | `commit` | `balance` |
+          | `1/7` | one excite, seven neutralize | `excite` | `neutralize` |
+          
+          Pending-route completion has priority over explicit requests. Requests are
+          arbitrated in ascending lane order, and retained state from tick `N` becomes the
+          input state for tick `N + 1`.
+          
+          ## Distributed Transition Capacity
+          
+          The execution boundary uses:
+          
+          `REQUEST_LANES = max(1, round(CELLS × 0.25))`
+          
+          | Cells | Request lanes |
+          |---:|---:|
+          | `8` | `2` |
+          | `16` | `4` |
+          | `32` | `8` |
+          
+          Capacity is consumed by retained-state changes. Pending-route completions are
+          ordered first by ascending cell index, followed by accepted explicit requests
+          in ascending lane order.
+          
+          ## Thermal and Stability Observables
+          
+          The thermal block integrates normalized switching cost through the common-RC
+          comparative model and retains current and peak Q16 proxy values.
+          
+          The stability block combines:
+          
+          - global coherence;
+          - cluster coherence;
+          - the active-zero cell fraction;
+          - current thermal proxy;
+          - normalized switch load.
+          
+          It publishes `coherence_capacity_q16`, `pressure_q16`,
+          `stability_margin_q16`, and `stable`. The qualified profile requires a positive
+          stability margin after the deterministic transition sequence.
+          
+          ## Integrated Core Parameters
+          
+          | Parameter | Meaning | Default |
+          |---|---|---:|
+          | `CELLS` | retained phase and ternary cells | `8` |
+          | `REQUEST_LANES` | admitted request lanes | derived as `2` |
+          | `CELL_INDEX_BITS` | packed cell-index width | derived from `CELLS` |
+          | `COUNTER_BITS` | telemetry counter width | `32` |
+          | `SIN_LUT_FILE` | Q30 sine-memory path | `rtl/m31/frp_m31_sin_q30.mem` |
+          
+          ## Integrated Core Interface
+          
+          Control inputs:
+          
+          - `clk`, `rst_n`, `tick_enable`, and `clear_counters`;
+          - `scheduler_mode`;
+          - `phase_load_valid`.
+          
+          Phase-domain inputs:
+          
+          - `phase_load`;
+          - `frequency_load_q16`;
+          - `gamma_effective_word`;
+          - `thermal_node_factor_q30`.
+          
+          Target-selection inputs:
+          
+          - `auto_target_enable`;
+          - `external_request_valid`;
+          - `external_request_cell_index`;
+          - `external_request_target`;
+          - `external_target_bank`.
+          
+          Phase and coherence outputs:
+          
+          - retained phase and current frequency;
+          - coupling field and phase projection;
+          - balanced ternary phase target;
+          - pair, cluster, and global coherence;
+          - organization dispersion.
+          
+          Execution outputs:
+          
+          - retained ternary state and pending-route bank;
+          - scheduler state and recorded tick count;
+          - accepted-change mask and count;
+          - normalized switch-load numerator;
+          - direct-transition, reserved-state, and queue-overflow counters;
+          - integrated execution invariant flags.
+          
+          Thermal and stability outputs:
+          
+          - current and peak thermal proxy;
+          - coherence capacity and pressure;
+          - stability margin and stable flag.
+          
+          ## Source Inventory
+          
+          | File | Function |
+          |---|---|
+          | `frp_m31.f` | integrated source-list entry point for `frp_m31_core.sv` |
+          | `frp_m31_pkg.sv` | canonical ternary, scheduler, transition, rejection, invariant, and capacity semantics |
+          | `frp_m31_fixed_point_pkg.sv` | fixed-point types, exact constants, saturation, rounding, multiplication, topology, and phase conversion |
+          | `frp_m31_scheduler.sv` | free, `7/1`, and `1/7` temporal scheduler and counters |
+          | `frp_m31_request_lanes.sv` | deterministic request arbitration and pending-cell ownership |
+          | `frp_m31_pending_routes.sv` | retained opposite-polarity target storage and completion clearing |
+          | `frp_m31_active_neutral.sv` | active-zero transition classification and candidate generation |
+          | `frp_m31_capacity_guard.sv` | distributed transition-capacity admission |
+          | `frp_m31_state_update.sv` | capacity-approved retained-state writeback |
+          | `frp_m31_execution_core.sv` | integrated scheduler, routing, capacity, and retained-state engine |
+          | `frp_m31_assertions.sv` | execution-domain, scheduler, routing, capacity, and writeback assertions |
+          | `frp_m31_execution_tb.sv` | deterministic execution-core qualification testbench |
+          | `frp_m31_phase_interference.sv` | retained phase, relative-phase coupling, coherence, dispersion, and resonance targets |
+          | `frp_m31_phase_request_adapter.sv` | phase-target to active-zero request-lane adapter |
+          | `frp_m31_thermal_proxy.sv` | normalized common-RC switching-cost integration |
+          | `frp_m31_stability.sv` | coherence-capacity, pressure, margin, and stable observables |
+          | `frp_m31_core.sv` | complete retained-phase, active-zero, thermal, and stability integration |
+          | `frp_m31_phase_thermal_assertions.sv` | integrated phase, coherence, target, ternary, and thermal assertions |
+          | `frp_m31_tb.sv` | complete deterministic M31 RTL qualification testbench |
+          | `frp_m31_sin_q30.mem` | exact 4096-entry Q30 trigonometric memory |
+          
+          `frp_m31.f` names `frp_m31_core.sv`; the guarded include graph rooted at that
+          file supplies the complete integrated implementation.
+          
+          ## Assertion Layers
+          
+          The execution assertion layer checks:
+          
+          - canonical ternary encodings;
+          - reset to active zero;
+          - retained state and pending-route stability;
+          - scheduler states and counter relations;
+          - ascending request-lane arbitration;
+          - transition classification and capacity;
+          - tick-separated opposite-polarity routing;
+          - pending-target retention and completion;
+          - state writeback and integrated invariant flags.
+          
+          The phase and thermal assertion layer checks:
+          
+          - pair, cluster, and global coherence ranges;
+          - organization-dispersion range;
+          - resonance target selection at both thresholds;
+          - active-zero target selection inside the threshold band;
+          - current and peak thermal-proxy relation;
+          - ternary retained-state validity;
+          - tick-separated polarity writeback;
+          - zero direct, reserved-state, and queue-overflow event counters.
+          
+          ## Deterministic Qualification
+          
+          The execution testbench covers all three scheduler modes, both opposite-polarity
+          routes, pending-route retention and completion, two-lane capacity, counter
+          clearing, retained-state continuity, and all integrated execution invariants.
+          
+          The complete testbench covers:
+          
+          - reset to active computational zero;
+          - exact quarter-turn positive and three-quarter-turn negative projections;
+          - positive and negative resonance targets;
+          - populated relative-phase coupling;
+          - automatic phase-target commit from zero;
+          - opposite-polarity routing through zero;
+          - pending-target completion and clearing;
+          - thermal-proxy integration;
+          - positive stability margin;
+          - complete inherited execution invariant flags.
+          
+          ## Verilator Commands
+          
+          Run from the repository root.
+          
+          Integrated-core lint:
+          
+          ```
+          verilator \
+            --lint-only \
+            --sv \
+            -Wall \
+            -Wno-fatal \
+            --top-module frp_m31_core \
+            -f rtl/m31/frp_m31.f
+          ```
+          
+          Execution-core qualification:
+          
+          ```
+          verilator \
+            --binary \
+            --sv \
+            --timing \
+            --assert \
+            -Wall \
+            -Wno-fatal \
+            -CFLAGS "-std=c++20" \
+            --top-module frp_m31_execution_tb \
+            --Mdir build/frp-m31-execution \
+            -Irtl/m31 \
+            rtl/m31/frp_m31_execution_tb.sv
+          
+          build/frp-m31-execution/Vfrp_m31_execution_tb
+          ```
+          
+          Complete M31 qualification:
+          
+          ```
+          verilator \
+            --binary \
+            --sv \
+            --timing \
+            --assert \
+            -Wall \
+            -Wno-fatal \
+            -CFLAGS "-std=c++20" \
+            --top-module frp_m31_tb \
+            --Mdir build/frp-m31-complete \
+            -Irtl/m31 \
+            rtl/m31/frp_m31_tb.sv
+          
+          build/frp-m31-complete/Vfrp_m31_tb
+          ```
+          
+          ## Qualified Terminal Records
+          
+          Execution-core record:
+          
+          ```
+          FRP M31 deterministic RTL testbench completed.
+          CELLS=8 REQUEST_LANES=2
+          ticks_recorded=16
+          actual_direct_events=0
+          reserved_state_events=0
+          queue_overflow_events=0
+          ```
+          
+          Complete-contour record:
+          
+          ```
+          FRP_M31_COMPLETE_RTL: PASS
+          phase/coherence/resonance/active-zero/thermal/stability: PASS
+          ```
+          
+          ## Published Evidence and Provenance
+          
+          | Record | Repository path |
+          |---|---|
+          | M31 validation index | [`FRP_VALIDATION_INDEX_v3_3_0.md`](../../FRP_VALIDATION_INDEX_v3_3_0.md) |
+          | M31 release notes | [`RELEASE_NOTES_v3_3_0.md`](../../RELEASE_NOTES_v3_3_0.md) |
+          | M31 test report | [`TEST_REPORT_v3_3_0.md`](../../TEST_REPORT_v3_3_0.md) |
+          | M31 evidence producer | [`frp_m31_phase_interference_thermal_evidence.py`](../../frp_m31_phase_interference_thermal_evidence.py) |
+          | M31 focused tests | [`tests/test_frp_m31_phase_interference_thermal_evidence.py`](../../tests/test_frp_m31_phase_interference_thermal_evidence.py) |
+          | M31 evidence schema | [`schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json`](../../schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json) |
+          | M31 evidence | [`artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json`](../../artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json) |
+          | M31 manifest | [`artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json`](../../artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json) |
+          | M31 qualification | [`artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json`](../../artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json) |
+          | M31 RTL publication workflow | [`.github/workflows/frp-m31e1-phase-interference-thermal-package-workflow.yml`](../../.github/workflows/frp-m31e1-phase-interference-thermal-package-workflow.yml) |
+          
+          The RTL contour extends the published M31 evidence boundary while retaining the
+          repository's complete evidence, benchmark, schema, release, FPGA, and earlier
+          RTL histories as independent records.
+          
+          ## License
+          
+          Apache License 2.0. See [`LICENSE`](../../LICENSE).
+          
+          ## Author
+          
+          Maksym Marnov
+          FRP_M31_README_DOCUMENT
 
-          python - <<'PY'
-          from base64 import b64decode
-          from gzip import decompress
-          from pathlib import Path
-
-          encoded_path = Path("/tmp/frp-m31-readme.md.gz.b64")
-          archive_path = Path("/tmp/frp-m31-readme.md.gz")
-          target_path = Path("/tmp/frp-m31-readme.md")
-          compact = "".join(encoded_path.read_text(encoding="ascii").split())
-          archive = b64decode(compact, validate=True)
-          archive_path.write_bytes(archive)
-          target_path.write_bytes(decompress(archive))
-          PY
-
-          test "$(wc -c < /tmp/frp-m31-readme.md.gz)" -eq "$PAYLOAD_GZIP_BYTES"
-          test "$(sha256sum /tmp/frp-m31-readme.md.gz | cut -d' ' -f1)" = \
-            "$PAYLOAD_GZIP_SHA256"
           test "$(wc -c < /tmp/frp-m31-readme.md)" -eq "$TARGET_BYTES"
           test "$(wc -l < /tmp/frp-m31-readme.md)" -eq "$TARGET_LINES"
           test "$(sha256sum /tmp/frp-m31-readme.md | cut -d' ' -f1)" = \
