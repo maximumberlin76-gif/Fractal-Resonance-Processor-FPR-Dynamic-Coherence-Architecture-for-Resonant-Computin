@@ -1,5 +1,177 @@
 # Contributing — Fractal Resonance Processor (FRP)
 
+## Current Contribution Boundary — FRP v3.3.0 / M31
+
+This section defines the current contribution boundary for the Fractal Resonance Processor repository. The complete contribution history through M16 remains preserved below this section.
+
+| Control field | Current value |
+|---|---|
+| Repository release | FRP v3.3.0 |
+| Current milestone | M31 |
+| Qualification state | PASS |
+| Balanced ternary domain | `-1/0/1` |
+| Neutral-state role | active mediation, routing, retention, and controlled transition staging |
+| Focused M31 qualification | 60 / 60 PASS |
+| Current validation index | [FRP_VALIDATION_INDEX_v3_3_0.md](FRP_VALIDATION_INDEX_v3_3_0.md) |
+| Current release notes | [RELEASE_NOTES_v3_3_0.md](RELEASE_NOTES_v3_3_0.md) |
+| Current test report | [TEST_REPORT_v3_3_0.md](TEST_REPORT_v3_3_0.md) |
+
+## Contribution Scope
+
+Contributions may address the following repository layers when the affected boundary, tests, generated records, and documentation remain aligned:
+
+- executable processor sources and focused tests;
+- balanced ternary transition handling and active-zero behavior;
+- phase-interference, resonance, coherence, retained-state, and thermal-evidence paths;
+- schemas, deterministic records, manifests, and qualification evidence;
+- benchmark definitions and reproducible benchmark records;
+- versioned SystemVerilog RTL, testbenches, assertions, and qualification procedures;
+- target-facing FPGA preparation layers;
+- GitHub Actions qualification and publication workflows;
+- installation, usage, reproducibility, architecture, milestone, and release documentation.
+
+The current repository structure is recorded in [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md). Installation and execution boundaries are recorded in [INSTALL.md](INSTALL.md), [USAGE.md](USAGE.md), and [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
+
+## Required Architectural Invariants
+
+Every contribution that touches processor semantics shall preserve or explicitly version the following invariants:
+
+1. The balanced ternary domain is written exactly as `-1/0/1`.
+2. State `0` is an active computational state.
+3. Opposite-polarity retained-state transitions use the two-leg routes `-1 → 0 → 1` and `1 → 0 → -1`.
+4. Each leg is a distinct retained-state transition separated by the execution boundary.
+5. Pending-route state, capacity accounting, retained writeback, and transition-event counters remain explicit and testable.
+6. Phase-derived ternary targets remain distinct from executed retained states.
+7. Phase order, coherence, stability, switching load, and thermal evidence remain separately named observables.
+8. Deterministic artifacts remain reproducible from their declared source, parameters, schema, and qualification procedure.
+9. Versioned SystemVerilog layers remain connected to their corresponding RTL source, package, assertions, testbench, simulation record, and closure evidence.
+
+The current M31 executable boundary is [frp_m31_phase_interference_thermal_evidence.py](frp_m31_phase_interference_thermal_evidence.py). Its focused qualification boundary is [tests/test_frp_m31_phase_interference_thermal_evidence.py](tests/test_frp_m31_phase_interference_thermal_evidence.py).
+
+## One-Change Contribution Procedure
+
+Each contribution shall follow a traceable sequence:
+
+1. Identify the affected architecture, implementation, evidence, documentation, or release boundary.
+2. Read the current control documents connected to that boundary.
+3. Record the exact source files, schemas, generated artifacts, and tests affected by the change.
+4. Apply one coherent technical change without rewriting unrelated history.
+5. Run the narrowest focused test boundary and the repository-level checks that cover the change.
+6. Regenerate only the artifacts whose declared inputs changed.
+7. Verify schema conformance, deterministic identity, link integrity, and documentation alignment.
+8. Commit the change with a technical message that identifies the affected boundary.
+9. Run the applicable manual qualification workflow on `main` and retain its published result.
+
+Documentation-only alignment changes shall preserve executable sources, tests, evidence, benchmarks, schemas, manifests, qualification records, and historical release records byte-for-byte.
+
+## M31 Qualification Commands
+
+Install the declared Python environment from [requirements.txt](requirements.txt):
+
+```
+python -m pip install --disable-pip-version-check -r requirements.txt
+```
+
+Run the complete focused M31 qualification set:
+
+```
+python -m unittest tests.test_frp_m31_phase_interference_thermal_evidence -v
+```
+
+The accepted current result is `Ran 60 tests` followed by `OK`.
+
+The M31 publication chain is qualified by [.github/workflows/frp-m31-complete.yml](.github/workflows/frp-m31-complete.yml) and the source, test, and publication workflows under [.github/workflows/](.github/workflows/).
+
+## Evidence, Benchmark, Schema, and Release Preservation
+
+The following paths are append-only historical boundaries for contribution review:
+
+- [artifacts/](artifacts/): published evidence, manifests, qualification records, deterministic traces, and release artifacts;
+- [benchmarks/](benchmarks/): benchmark definitions and published benchmark records;
+- [schemas/](schemas/): versioned validation contracts;
+- root validation indices, release notes, test reports, and release checklists.
+
+Existing records remain byte-identical. A new result is published as a separately named and versioned record with its own provenance, schema identity, parameters, test result, and digest.
+
+The current M31 publication boundary consists of:
+
+- [M31 schema](schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json);
+- [M31 evidence](artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json);
+- [M31 manifest](artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json);
+- [M31 qualification record](artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json).
+
+## SystemVerilog Contribution Boundary
+
+SystemVerilog contributions remain version-local. The repository currently records qualified or declared implementation boundaries under [rtl/m16/](rtl/m16/), [fpga/m16/](fpga/m16/), [rtl/m22/](rtl/m22/), [rtl/m23/](rtl/m23/), and [rtl/m26/](rtl/m26/).
+
+An RTL contribution shall keep the following elements aligned within its versioned boundary:
+
+- package constants, types, and interfaces;
+- synthesizable execution modules;
+- retained-state and pending-route semantics;
+- active-neutral transition handling;
+- assertions for forbidden or reserved conditions;
+- testbench stimulus and expected results;
+- simulator invocation and deterministic transcript;
+- qualification manifest, closure record, and linked documentation.
+
+Cross-version replacement requires a new versioned boundary. Existing RTL, FPGA, transcript, and closure histories remain preserved.
+
+## Manual GitHub Actions Protocol
+
+Current documentation-alignment workflows use `workflow_dispatch` and are run manually on `main`:
+
+1. Create the complete workflow file under `.github/workflows/`.
+2. Commit that workflow file to `main`.
+3. Open GitHub Actions and select the workflow by its declared `name`.
+4. Select `Run workflow`, choose branch `main`, and confirm the run.
+5. Verify every required job and step is green.
+6. Verify the workflow changed only its declared target file.
+
+The workflow shall validate the source identity before mutation, run the applicable qualification tests, publish one declared target, verify the resulting identity, and preserve protected histories.
+
+## FRP and Trace Observatory Boundary
+
+FRP is the authoritative producer of processor sources, schemas, traces, structured evidence, manifests, qualification records, and benchmark records. FRP Trace Observatory is a downstream consumer of published FRP boundaries.
+
+The interchange direction is one-way and read-only:
+
+`FRP published artifacts → Observatory intake, exploration, visualization, and audit`
+
+An Observatory-side contribution does not modify FRP source bytes, processor semantics, canonical schemas, evidence, manifests, qualification records, or benchmark history. A new FRP interchange contract is first versioned and qualified in FRP, then consumed downstream.
+
+## Documentation and Review Controls
+
+Before publication, verify alignment with:
+
+- [README.md](README.md);
+- [CI.md](CI.md);
+- [ROADMAP.md](ROADMAP.md);
+- [MILESTONES.md](MILESTONES.md);
+- [CHANGELOG.md](CHANGELOG.md);
+- [NOTICE.md](NOTICE.md);
+- [SECURITY.md](SECURITY.md);
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+
+The contribution record shall state the affected files, executed tests, generated outputs, preserved histories, and resulting workflow status. Security-sensitive reports follow the responsible-disclosure procedure in `SECURITY.md` before public issue or pull-request discussion.
+
+## Current Contribution Checklist
+
+- [ ] The affected technical boundary is identified.
+- [ ] The notation `-1/0/1` is exact wherever the balanced ternary domain is named.
+- [ ] Active state `0` and two-leg opposite-polarity routing remain explicit.
+- [ ] Source, tests, schemas, artifacts, and documentation are mutually aligned.
+- [ ] Focused tests pass with the declared count and result.
+- [ ] Generated records validate against their declared schemas.
+- [ ] Deterministic outputs reproduce with the declared parameters and environment.
+- [ ] Existing evidence, benchmark, schema, and release histories remain byte-identical.
+- [ ] SystemVerilog changes remain within a complete versioned RTL boundary.
+- [ ] The FRP-to-Observatory direction remains one-way and read-only.
+- [ ] Links resolve to repository paths.
+- [ ] The applicable manual GitHub Actions run on `main` is green.
+
+## Preserved Contribution History Through M16
+
 **Ternary Resonant Coherence Processor — Structured Output Prototype**
 
 Thank you for contributing to the Fractal Resonance Processor (FRP).
