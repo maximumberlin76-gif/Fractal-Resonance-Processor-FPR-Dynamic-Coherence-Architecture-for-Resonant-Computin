@@ -1,0 +1,365 @@
+name: FRP M31D16 Contributing v3.3.0
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m31d16-contributing-v3-3-0-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish-contributing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TARGET_PATH: CONTRIBUTING.md
+      SOURCE_BYTES: "72128"
+      SOURCE_LINES: "3056"
+      SOURCE_SHA256: e08d2bcb2b54dc0a87d90fc8fd035296afb8eecdb817e5f092cb61ca75415a67
+      TARGET_BYTES: "81983"
+      TARGET_LINES: "3228"
+      TARGET_SHA256: e18fa5d7a89f8c01253649126d005d09c3a15cce5298336573f8f46514d4e001
+      BLOCK_BYTES: "9855"
+      BLOCK_SHA256: 387d0969be90dceeaacc6d825512ef9c1c60b102c30dc09cfe05dcbe9f4ce00e
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: main
+          persist-credentials: true
+
+      - name: Require manual main-branch execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ github.event_name }}" = "workflow_dispatch"
+          test "${{ github.ref }}" = "refs/heads/main"
+          test "${{ github.ref_name }}" = "main"
+          test "$(git branch --show-current)" = "main"
+          test -z "$(git status --porcelain)"
+          echo "Manual main-branch boundary: PASS"
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Verify control boundaries and capture protected histories
+        shell: bash
+        run: |
+          set -euo pipefail
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          historical_inventory() {
+            find . -maxdepth 1 -type f '(' -name 'RELEASE_NOTES_v*.md' -o -name 'TEST_REPORT_v*.md' -o -name 'FRP_VALIDATION_INDEX_v*.md' -o -name 'RELEASE_CHECKLIST_v*.md' ')' -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          check_identity() {
+            path="$1"
+            bytes="$2"
+            digest="$3"
+            test -f "$path"
+            test ! -L "$path"
+            test "$(wc -c < "$path")" -eq "$bytes"
+            test "$(sha256sum "$path" | cut -d' ' -f1)" = "$digest"
+          }
+
+          tree_inventory artifacts > /tmp/m31d16-artifacts.before
+          tree_inventory benchmarks > /tmp/m31d16-benchmarks.before
+          tree_inventory schemas > /tmp/m31d16-schemas.before
+          historical_inventory > /tmp/m31d16-history.before
+
+          while IFS='|' read -r path bytes digest
+          do
+            check_identity "$path" "$bytes" "$digest"
+          done <<'CONTROL_IDENTITIES'
+          README.md|10430|9fb5ccd3db24705f0f2c80723dd9b1f2c344e5b53c447927532ab29c2b34ca41
+          USAGE.md|66358|d1f5868a07c6322feb1ba8d36d6aff9972976848f26d63be6494d4ae722473c1
+          REPRODUCIBILITY.md|84646|e6b9fba117314e593cdb47e984ada655402d8d25b7510df2471eb505c19512db
+          MILESTONES.md|65183|d897a00d07be90efe13135a62be07dc367b10a0653f95348e2f3ef9f62a6d451
+          NOTICE.md|4814|d5e3bbdfebb1a77fc2ba54d7e2ac12802eeac5bd4f2537b22eef6d10c8e4aac1
+          CHANGELOG.md|137894|b243bf728871f498c413ef43c4eb243c2fd6512bed80f452381b9846c9356fab
+          CI.md|137571|87d891c84c1c1118c0204ef7fbd31b5d63ff8da3dc916b30af0ad05fcda7dafc
+          ROADMAP.md|53373|611570be05d0e3a0d514c08c3f2e163a0b37e40edc2898ad524e795112fb5e7a
+          PROJECT_STRUCTURE.md|75854|17adf275c6af9996e7af9e2e36982893b9d0d60c297d6458d90854b01424c02d
+          INSTALL.md|51529|df1dcd53d5f195cbc02bb3abbed61c08450ff9673816afcaec785a3f58642e96
+          SECURITY.md|11961|65bd8aaf9da131cf79ecb617727bce16f7c5241a949491a0851b83a6fccd235b
+          CONTROL_IDENTITIES
+
+          while IFS= read -r path
+          do
+            test -f "$path"
+            test ! -L "$path"
+          done <<'REQUIRED_FILES'
+          LICENSE
+          CODE_OF_CONDUCT.md
+          FRP_VALIDATION_INDEX_v3_3_0.md
+          RELEASE_NOTES_v3_3_0.md
+          TEST_REPORT_v3_3_0.md
+          requirements.txt
+          frp_m31_phase_interference_thermal_evidence.py
+          tests/test_frp_m31_phase_interference_thermal_evidence.py
+          schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json
+          artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json
+          artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json
+          artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json
+          .github/workflows/frp-m31-complete.yml
+          REQUIRED_FILES
+
+          test -f "$TARGET_PATH"
+          test ! -L "$TARGET_PATH"
+          current_sha="$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)"
+          if test "$current_sha" = "$SOURCE_SHA256"; then
+            test "$(wc -c < "$TARGET_PATH")" -eq "$SOURCE_BYTES"
+            test "$(wc -l < "$TARGET_PATH")" -eq "$SOURCE_LINES"
+          elif test "$current_sha" = "$TARGET_SHA256"; then
+            test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+            test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
+          else
+            echo "CONTRIBUTING.md boundary mismatch: $current_sha" >&2
+            exit 1
+          fi
+          echo "Control boundaries and protected histories: PASS"
+
+      - name: Install exact dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check -r requirements.txt
+
+      - name: Run all 60 focused M31 qualification tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest tests.test_frp_m31_phase_interference_thermal_evidence -v 2>&1 | tee /tmp/m31d16-tests.log
+          grep -F "Ran 60 tests" /tmp/m31d16-tests.log
+          grep -Fx "OK" /tmp/m31d16-tests.log
+
+      - name: Install complete CONTRIBUTING.md
+        shell: bash
+        run: |
+          set -euo pipefail
+          current_sha="$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)"
+          if test "$current_sha" = "$TARGET_SHA256"; then
+            echo "Complete M31 CONTRIBUTING.md is already installed."
+            exit 0
+          fi
+          test "$current_sha" = "$SOURCE_SHA256"
+
+          block_base64() {
+            cat <<'BLOCK_PAYLOAD'
+          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
+          BLOCK_PAYLOAD
+          }
+
+          block_base64 | tr -d '[:space:]' | base64 --decode | gzip --decompress --stdout > /tmp/m31d16-contributing-current.md
+          test "$(wc -c < /tmp/m31d16-contributing-current.md)" -eq "$BLOCK_BYTES"
+          test "$(sha256sum /tmp/m31d16-contributing-current.md | cut -d' ' -f1)" = "$BLOCK_SHA256"
+
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          source = Path(os.environ["TARGET_PATH"]).read_bytes()
+          block = Path("/tmp/m31d16-contributing-current.md").read_bytes()
+          marker = "# Contributing — Fractal Resonance Processor (FRP)\n\n".encode("utf-8")
+          if not source.startswith(marker) or source.count(marker) != 1:
+              raise SystemExit("CONTRIBUTING.md insertion boundary mismatch")
+          rendered = marker + block + source[len(marker):]
+          expected = (int(os.environ["TARGET_BYTES"]), os.environ["TARGET_SHA256"])
+          if (len(rendered), hashlib.sha256(rendered).hexdigest()) != expected:
+              raise SystemExit("rendered CONTRIBUTING.md identity mismatch")
+          if rendered.count(b"\n") != int(os.environ["TARGET_LINES"]):
+              raise SystemExit("rendered CONTRIBUTING.md line-count mismatch")
+          Path("/tmp/CONTRIBUTING.md").write_bytes(rendered)
+          PY
+
+          install -m 0644 /tmp/CONTRIBUTING.md "$TARGET_PATH"
+          echo "Complete M31 CONTRIBUTING.md installed: PASS"
+
+      - name: Qualify contribution controls and preservation boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import os
+          import re
+          import subprocess
+          from pathlib import Path
+
+          raw = Path(os.environ["TARGET_PATH"]).read_bytes()
+          expected = (int(os.environ["TARGET_BYTES"]), os.environ["TARGET_SHA256"])
+          if (len(raw), hashlib.sha256(raw).hexdigest()) != expected:
+              raise SystemExit("CONTRIBUTING.md target identity mismatch")
+
+          marker = "# Contributing — Fractal Resonance Processor (FRP)\n\n".encode("utf-8")
+          block_end = len(marker) + int(os.environ["BLOCK_BYTES"])
+          current = raw[len(marker):block_end]
+          reconstructed = raw[:len(marker)] + raw[block_end:]
+          source_expected = (int(os.environ["SOURCE_BYTES"]), os.environ["SOURCE_SHA256"])
+          if (len(reconstructed), hashlib.sha256(reconstructed).hexdigest()) != source_expected:
+              raise SystemExit("historical CONTRIBUTING.md bytes were not preserved")
+
+          text = raw.decode("utf-8")
+          required = (
+              "## Current Contribution Boundary — FRP v3.3.0 / M31",
+              "-1/0/1",
+              "60 / 60 PASS",
+              "## Required Architectural Invariants",
+              "## One-Change Contribution Procedure",
+              "## Evidence, Benchmark, Schema, and Release Preservation",
+              "## SystemVerilog Contribution Boundary",
+              "## Manual GitHub Actions Protocol",
+              "one-way and read-only",
+              "## Current Contribution Checklist",
+              "## Preserved Contribution History Through M16",
+          )
+          missing = [value for value in required if value not in text]
+          if missing:
+              raise SystemExit(f"CONTRIBUTING.md records missing: {missing}")
+          if "-1/0/" + chr(43) + "1" in text:
+              raise SystemExit("forbidden ternary notation present")
+
+          links = re.findall(r"\]\(([^)]+)\)", current.decode("utf-8"))
+          if len(links) != 32 or len(set(links)) != 32:
+              raise SystemExit("contribution link registry count mismatch")
+          missing_links = []
+          for value in sorted(set(links)):
+              target = Path(value.rstrip("/"))
+              valid = target.is_dir() if value.endswith("/") else target.is_file()
+              if not valid:
+                  missing_links.append(value)
+          if missing_links:
+              raise SystemExit(f"CONTRIBUTING.md link targets missing: {missing_links}")
+
+          changed = subprocess.check_output(["git", "diff", "--name-only"]).decode().splitlines()
+          if changed not in ([os.environ["TARGET_PATH"]], []):
+              raise SystemExit(f"unexpected worktree changes: {changed}")
+          print("CONTRIBUTING.md M31 controls and historical preservation: PASS")
+          PY
+
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          historical_inventory() {
+            find . -maxdepth 1 -type f '(' -name 'RELEASE_NOTES_v*.md' -o -name 'TEST_REPORT_v*.md' -o -name 'FRP_VALIDATION_INDEX_v*.md' -o -name 'RELEASE_CHECKLIST_v*.md' ')' -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          tree_inventory artifacts > /tmp/m31d16-artifacts.after
+          tree_inventory benchmarks > /tmp/m31d16-benchmarks.after
+          tree_inventory schemas > /tmp/m31d16-schemas.after
+          historical_inventory > /tmp/m31d16-history.after
+          cmp --silent /tmp/m31d16-artifacts.before /tmp/m31d16-artifacts.after
+          cmp --silent /tmp/m31d16-benchmarks.before /tmp/m31d16-benchmarks.after
+          cmp --silent /tmp/m31d16-schemas.before /tmp/m31d16-schemas.after
+          cmp --silent /tmp/m31d16-history.before /tmp/m31d16-history.after
+          echo "Evidence, benchmark, schema, and release histories: BYTE-IDENTICAL"
+
+      - name: Commit and publish CONTRIBUTING.md
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$TARGET_PATH"
+          if git diff --cached --quiet; then
+            test -z "$(git status --porcelain)"
+            echo "Complete M31 CONTRIBUTING.md is already published."
+            exit 0
+          fi
+          test "$(git diff --cached --name-only)" = "$TARGET_PATH"
+          git commit -m "Align CONTRIBUTING.md with FRP v3.3.0 M31"
+          git push origin HEAD:main
+
+      - name: Verify published state
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "$(git status --porcelain)"
+          test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+          test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
+          test "$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)" = "$TARGET_SHA256"
+          {
+            echo "## FRP M31D16 Contributing v3.3.0"
+            echo
+            echo "- Updated file: CONTRIBUTING.md"
+            echo "- Current contribution boundary: FRP v3.3.0 / M31"
+            echo "- M31 focused tests: 60 / 60 PASS"
+            echo "- Existing contribution history: byte-identical"
+            echo "- Protected histories: byte-identical"
+            echo "- Result: PASS"
+          } >> "$GITHUB_STEP_SUMMARY"
