@@ -1,4 +1,4 @@
-name: FRP M31E1 Phase-Interference Thermal Package
+name: FRP M31E1 Complete RTL Contour
 
 on:
   workflow_dispatch:
@@ -7,18 +7,19 @@ permissions:
   contents: write
 
 concurrency:
-  group: frp-m31e1-phase-interference-thermal-package-${{ github.ref }}
+  group: frp-m31e1-complete-rtl-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  publish-m31-package:
+  publish-m31-rtl:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     env:
-      TARGET_PATH: rtl/m31/frp_m31_phase_interference_thermal_pkg.sv
-      TARGET_BYTES: "19239"
-      TARGET_LINES: "561"
-      TARGET_SHA256: 33c4e73 robots 
+      TARGET_DIR: rtl/m31
+      AUTHORED_ARCHIVE_SHA256: ba6274abd082661c13eb3acb65df227b395ad082702de02d35bfef66ab6e3590
+      AUTHORED_BASE64_SHA256: 8c2adee77fe7968352c32d3323964bea4f3e8d1276b4028c262a5ff552b5bb66
+      TARGET_MANIFEST_SHA256: 3eda747b8bf2e5796988f197b7d69b2f19bd1b803a72fbfa7700d21619158d6f
+      SIN_MEMORY_SHA256: adbb4b94fcf8fa0bfc981d654679fd7518a5c4c9c97b611a35cd8accaf28233d
       PYTHONHASHSEED: "0"
       PYTHONDONTWRITEBYTECODE: "1"
       PYTHONUNBUFFERED: "1"
@@ -50,7 +51,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Verify M31 control boundaries and capture protected histories
+      - name: Capture protected repository histories
         shell: bash
         run: |
           set -euo pipefail
@@ -61,10 +62,10 @@ jobs:
 
           historical_inventory() {
             find . -maxdepth 1 -type f \
-              '(' -name 'RELEASE_NOTES_v*.md' \
-                  -o -name 'TEST_REPORT_v*.md' \
-                  -o -name 'FRP_VALIDATION_INDEX_v*.md' \
-                  -o -name 'RELEASE_CHECKLIST_v*.md' ')' \
+              \( -name 'RELEASE_NOTES_v*.md' \
+                 -o -name 'TEST_REPORT_v*.md' \
+                 -o -name 'FRP_VALIDATION_INDEX_v*.md' \
+                 -o -name 'RELEASE_CHECKLIST_v*.md' \) \
               -print0 | LC_ALL=C sort -z | xargs -0 -r sha256sum
           }
 
@@ -119,33 +120,26 @@ jobs:
           artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json|828|80f0841d0041cd22c2f76175b6139e601aede7b69823356ae1fefbce5f793e7c
           artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json|1512|4c2446f954e01ec0aa37cc6c0fc70cf4a87ec565c450628e31b0efcac9160224
           artifacts/m30/packages/frp-v3.2.0-m30-archival-release.tar.gz|10189989|05ea33f6f3f505d315af930c2d51779f7189905308473f32a57375e477069caa
+          artifacts/m18/m15_vectors/frp_m15_trig_lut_q30.vec|72471|caadbbf97fe0bacf2d82eaa5da4cd1fb6cf1e1514809d3e743311e19893d11bb
           CONTROL_IDENTITIES
 
-          test -d rtl
+          test -d rtl/m16
           test ! -L rtl
-          if test -e rtl/m31; then
-            test -d rtl/m31
-            test ! -L rtl/m31
+          test ! -L rtl/m16
+          if test -e "$TARGET_DIR"; then
+            test -d "$TARGET_DIR"
+            test ! -L "$TARGET_DIR"
           fi
+          echo "Protected repository histories: PASS"
 
-          if test -e "$TARGET_PATH"; then
-            check_identity "$TARGET_PATH" "$TARGET_BYTES" "$TARGET_SHA256"
-          else
-            test ! -L "$TARGET_PATH"
-          fi
-
-          test -f .github/workflows/frp-m31-complete.yml
-          test ! -L .github/workflows/frp-m31-complete.yml
-          echo "M31 controls and protected histories: PASS"
-
-      - name: Install exact Python dependencies and Verilator
+      - name: Install exact dependencies and Verilator
         shell: bash
         run: |
           set -euo pipefail
           python -m pip install --disable-pip-version-check -r requirements.txt
           if ! command -v verilator >/dev/null 2>&1; then
             sudo apt-get update
-            sudo apt-get install -y verilator
+            sudo apt-get install -y verilator g++
           fi
           verilator --version
 
@@ -158,371 +152,381 @@ jobs:
           grep -F "Ran 60 tests" /tmp/m31e1-python-tests.log
           grep -Fx "OK" /tmp/m31e1-python-tests.log
 
-      - name: Install exact M31 phase-interference thermal package
+      - name: Assemble exact complete M31 RTL contour
         shell: bash
         run: |
           set -euo pipefail
           umask 022
 
-          package_base64() {
-            cat <<'PACKAGE_PAYLOAD'
-          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
-          sNwedUwsC7ph3J1e+6H0jF Magnificently shortened for this example.
-          PACKAGE_PAYLOAD
-          }
+          STAGE="$(mktemp -d)"
+          printf '%s\n' "$STAGE" > /tmp/m31e1-stage-path
 
-          package_base64 \
-            | tr -d '[:space:]' \
-            | base64 --decode \
-            | gzip --decompress --stdout \
-            > /tmp/frp_m31_phase_interference_thermal_pkg.sv
+          for component in \
+            active_neutral \
+            assertions \
+            capacity_guard \
+            core \
+            pending_routes \
+            pkg \
+            request_lanes \
+            scheduler \
+            state_update \
+            tb
+          do
+            source_path="rtl/m16/frp_m16_${component}.sv"
+            target_path="$STAGE/frp_m31_${component}.sv"
+            test -f "$source_path"
+            test ! -L "$source_path"
+            sed \
+              -e 's/M16/M31/g' \
+              -e 's/m16/m31/g' \
+              -e 's/v1\.8\.0/v3.3.0/g' \
+              "$source_path" > "$target_path"
+          done
 
-          test "$(wc -c < /tmp/frp_m31_phase_interference_thermal_pkg.sv)" \
-            -eq "$TARGET_BYTES"
-          test "$(wc -l < /tmp/frp_m31_phase_interference_thermal_pkg.sv)" \
-            -eq "$TARGET_LINES"
-          test "$(sha256sum /tmp/frp_m31_phase_interference_thermal_pkg.sv | cut -d' ' -f1)" \
-            = "$TARGET_SHA256"
+          mv "$STAGE/frp_m31_core.sv" "$STAGE/frp_m31_execution_core.sv"
+          mv "$STAGE/frp_m31_tb.sv" "$STAGE/frp_m31_execution_tb.sv"
 
-          mkdir -p rtl/m31
-          test -d rtl/m31
-          test ! -L rtl/m31
-          install -m 0644 /tmp/frp_m31_phase_interference_thermal_pkg.sv "$TARGET_PATH"
-          echo "Exact M31 package installed: PASS"
+          sed -i \
+            -e 's/FRP_M31_CORE_SV/FRP_M31_EXECUTION_CORE_SV/g' \
+            -e 's/module frp_m31_core/module frp_m31_execution_core/g' \
+            -e 's/endmodule : frp_m31_core/endmodule : frp_m31_execution_core/g' \
+            "$STAGE/frp_m31_execution_core.sv"
 
-      - name: Qualify package constants and semantic boundaries
-        shell: bash
-        run: |
-          set -euo pipefail
-          python - <<'PY'
-          import hashlib
-          import json
-          import os
-          import re
-          from decimal import Decimal, ROUND_HALF_UP
+          sed -i \
+            -e 's/FRP_M31_TB_SV/FRP_M31_EXECUTION_TB_SV/g' \
+            -e 's/frp_m31_core\.sv/frp_m31_execution_core.sv/g' \
+            -e 's/module frp_m31_tb/module frp_m31_execution_tb/g' \
+            -e 's/frp_m31_core #(/frp_m31_execution_core #(/g' \
+            -e 's/endmodule : frp_m31_tb/endmodule : frp_m31_execution_tb/g' \
+            "$STAGE/frp_m31_execution_tb.sv"
+
+          sed -i \
+            's/FRP_M31_DEFAULT_CELLS          = 16/FRP_M31_DEFAULT_CELLS          = 8/' \
+            "$STAGE/frp_m31_pkg.sv"
+
+          cat > /tmp/frp-m31-authored.b64 <<'FRP_M31_AUTHORED_PAYLOAD'
+          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
+          FRP_M31_AUTHORED_PAYLOAD
+
+          test "$(sha256sum /tmp/frp-m31-authored.b64 | cut -d' ' -f1)" = \
+            "$AUTHORED_BASE64_SHA256"
+          base64 --decode /tmp/frp-m31-authored.b64 > /tmp/frp-m31-authored.tar.gz
+          test "$(sha256sum /tmp/frp-m31-authored.tar.gz | cut -d' ' -f1)" = \
+            "$AUTHORED_ARCHIVE_SHA256"
+          tar -tzf /tmp/frp-m31-authored.tar.gz > /tmp/m31e1-authored-members
+          test "$(wc -l < /tmp/m31e1-authored-members)" -eq 9
+          test -z "$(awk '/^\// || /(^|\/)\.\.($|\/)/ {print}' /tmp/m31e1-authored-members)"
+          tar -xzf /tmp/frp-m31-authored.tar.gz -C "$STAGE"
+
+          python - \
+            artifacts/m18/m15_vectors/frp_m15_trig_lut_q30.vec \
+            "$STAGE/frp_m31_sin_q30.mem" <<'PY'
           from pathlib import Path
+          import sys
 
-          path = Path(os.environ["TARGET_PATH"])
-          raw = path.read_bytes()
-          expected = (int(os.environ["TARGET_BYTES"]), os.environ["TARGET_SHA256"])
-          observed = (len(raw), hashlib.sha256(raw).hexdigest())
-          if observed != expected:
-              raise SystemExit(f"M31 package identity mismatch: {observed}")
-          if raw.count(b"\n") != int(os.environ["TARGET_LINES"]):
-              raise SystemExit("M31 package line-count mismatch")
-
-          text = raw.decode("utf-8")
-          required = (
-              "package frp_m31_phase_interference_thermal_pkg;",
-              "balanced ternary -1/0/1",
-              "FRP_M31_ACTIVE_ZERO",
-              "FRP_M31_PHASE_TARGET_POS_THRESHOLD_Q30",
-              "FRP_M31_THERMAL_DECAY_Q30",
-              "FRP_M31_THERMAL_GAIN_Q30",
-              "frp_m31_phase_projection_to_target",
-              "frp_m31_pending_route_is_coherent",
-              "frp_m31_classify_transition",
-              "frp_m31_transition_selected_target",
-              "frp_m31_transition_next_pending",
-              "frp_m31_decode_scheduler_state",
-              "frp_m31_scheduler_allows_transition",
-              "frp_m31_calc_request_lanes",
-              "FRP_M31_REQUEST_LANE_PROFILES_VALID",
-              "normalized RC proxy, not physical temperature",
-          )
-          missing = [value for value in required if value not in text]
-          if missing:
-              raise SystemExit(f"M31 package boundaries missing: {missing}")
-          if "-1/0/" + chr(43) + "1" in text:
-              raise SystemExit("forbidden ternary notation present")
-          if "frp_m16_pkg" in text or "frp_m22_csr_pkg" in text:
-              raise SystemExit("M31 package is not standalone")
-
-          def q30(value: str) -> int:
-              return int(
-                  (Decimal(value) * (1 << 30)).quantize(
-                      Decimal("1"), rounding=ROUND_HALF_UP
-                  )
+          source = Path(sys.argv[1])
+          target = Path(sys.argv[2])
+          rows = []
+          for line in source.read_text(encoding="utf-8").splitlines():
+              if not line or line.startswith("#"):
+                  continue
+              index_text, value_text = (
+                  field.strip() for field in line.split("|")
               )
-
-          expected_constants = {
-              "FRP_M31_PHASE_TARGET_POS_THRESHOLD_Q30": q30("0.33"),
-              "FRP_M31_PHASE_TARGET_NEG_THRESHOLD_Q30": -q30("0.33"),
-              "FRP_M31_THERMAL_DECAY_Q30": q30("0.95"),
-              "FRP_M31_THERMAL_GAIN_Q30": q30("0.01"),
-          }
-          for name, value in expected_constants.items():
-              match = re.search(
-                  rf"{name}\s*=\s*(-?32'sd\d+)\s*;",
-                  text,
-                  flags=re.MULTILINE,
-              )
-              if match is None:
-                  raise SystemExit(f"constant declaration missing: {name}")
-              observed_value = int(match.group(1).replace("32'sd", ""))
-              if observed_value != value:
-                  raise SystemExit(
-                      f"constant mismatch for {name}: {observed_value} != {value}"
-                  )
-
-          profile = json.loads(
-              Path(
-                  "benchmarks/architecture_comparison/profiles/"
-                  "thermal_proxy_profile_v1.json"
-              ).read_text(encoding="utf-8")
+              if int(index_text, 16) != len(rows):
+                  raise SystemExit("non-canonical sine LUT index")
+              rows.append(int(value_text))
+          if len(rows) != 4096:
+              raise SystemExit("sine LUT entry count mismatch")
+          target.write_text(
+              "".join(f"{value & 0xffffffff:08X}\n" for value in rows),
+              encoding="ascii",
           )
-          if profile != {
-              "schema": "frp.benchmark.thermal_proxy_profile.v1",
-              "suite_name": "FRP Comparative Architecture Benchmark Suite",
-              "profile_name": "common_rc_thermal_proxy_v1",
-              "temperature_unit": "normalized_temperature_proxy",
-              "ambient_temperature_proxy": 0.0,
-              "thermal_decay": 0.95,
-              "thermal_gain": 0.01,
-              "update_equation": (
-                  "ambient + (temperature - ambient) * thermal_decay + "
-                  "normalized_cycle_cost * thermal_gain"
-              ),
-              "thermal_profile_sha256": (
-                  "8cc2992f5699c47c88e81c17a4a5f0c8ff5bb7a5b32ebf73ab0e5a0f9c5494c8"
-              ),
-          }:
-              raise SystemExit("published thermal proxy profile mismatch")
-
-          evidence = json.loads(
-              Path(
-                  "artifacts/m31/evidence/"
-                  "m31-phase-interference-active-zero-thermal-evidence.json"
-              ).read_text(encoding="utf-8")
-          )
-          core = evidence.get("core", {})
-          if core.get("balanced_ternary_notation") != "-1/0/1":
-              raise SystemExit("M31 ternary notation mismatch")
-          if core.get("active_neutral_state") != 0:
-              raise SystemExit("M31 active-zero state mismatch")
-          if core.get("opposite_transition_routes") != [[-1, 0, 1], [1, 0, -1]]:
-              raise SystemExit("M31 opposite-transition routes mismatch")
-          if core.get("temporal_scheduler_modes") != ["1/7", "7/1"]:
-              raise SystemExit("M31 scheduler mode boundary mismatch")
-          if core.get("service_scheduler_mode") != "free":
-              raise SystemExit("M31 service scheduler mode mismatch")
-
-          print("M31 package constants and semantic boundaries: PASS")
           PY
 
-          git diff --check
+          test "$(sha256sum "$STAGE/frp_m31_sin_q30.mem" | cut -d' ' -f1)" = \
+            "$SIN_MEMORY_SHA256"
 
-      - name: Compile and execute deterministic package smoke test
+          (
+            cd "$STAGE"
+            find . -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          ) > /tmp/m31e1-target.manifest
+
+          test "$(wc -l < /tmp/m31e1-target.manifest)" -eq 20
+          test "$(sha256sum /tmp/m31e1-target.manifest | cut -d' ' -f1)" = \
+            "$TARGET_MANIFEST_SHA256"
+          test "$(find "$STAGE" -maxdepth 1 -type f -name '*.sv' | wc -l)" -eq 18
+          test "$(wc -l < "$STAGE/frp_m31_sin_q30.mem")" -eq 4096
+          test ! -L "$STAGE"
+          find "$STAGE" -type l -print -quit | grep -q . && exit 1 || true
+          echo "Complete M31 RTL assembly: PASS"
+
+      - name: Install integrity-bound complete M31 RTL contour
         shell: bash
         run: |
           set -euo pipefail
-          cat > /tmp/frp_m31e1_pkg_smoke.sv <<'SV'
-          module frp_m31e1_pkg_smoke;
-            import frp_m31_phase_interference_thermal_pkg::*;
+          STAGE="$(cat /tmp/m31e1-stage-path)"
 
-            task automatic check(input bit condition, input string message);
-              if (!condition) begin
-                $fatal(1, "%s", message);
-              end
-            endtask
+          if test -e "$TARGET_DIR"; then
+            test -d "$TARGET_DIR"
+            test ! -L "$TARGET_DIR"
+            diff -r "$STAGE" "$TARGET_DIR"
+          else
+            cp -a "$STAGE" "$TARGET_DIR"
+          fi
 
-            initial begin
-              check(FRP_M31_STATE_BITS == 2, "state width");
-              check(FRP_M31_PERIOD_TICKS == 8, "scheduler period");
-              check(FRP_M31_DEFAULT_CELLS == 8, "default cell profile");
-              check(FRP_M31_DEFAULT_REQUEST_LANES == 2, "default lane profile");
-              check(FRP_M31_DEFAULT_PACKED_STATE_BITS == 16, "packed state width");
-              check(FRP_M31_REQUEST_LANE_PROFILES_VALID, "lane profiles");
-              check(!FRP_M31_THERMAL_PROXY_IS_PHYSICAL_TEMPERATURE,
-                    "thermal proxy classification");
+          (
+            cd "$TARGET_DIR"
+            find . -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          ) > /tmp/m31e1-installed.manifest
+          cmp /tmp/m31e1-target.manifest /tmp/m31e1-installed.manifest
+          echo "Complete M31 RTL installation: PASS"
 
-              check(frp_m31_is_valid_ternary(FRP_M31_TERN_NEG), "negative trit");
-              check(frp_m31_is_valid_ternary(FRP_M31_ACTIVE_ZERO), "active zero");
-              check(frp_m31_is_valid_ternary(FRP_M31_TERN_POS), "positive trit");
-              check(!frp_m31_is_valid_ternary(FRP_M31_TERN_RESERVED),
-                    "reserved trit rejection");
-
-              check(
-                frp_m31_phase_projection_to_target(32'sd354334803)
-                  == FRP_M31_TERN_POS,
-                "positive phase target"
-              );
-              check(
-                frp_m31_phase_projection_to_target(32'sd354334802)
-                  == FRP_M31_ACTIVE_ZERO,
-                "positive threshold stays zero"
-              );
-              check(
-                frp_m31_phase_projection_to_target(-32'sd354334802)
-                  == FRP_M31_ACTIVE_ZERO,
-                "negative threshold stays zero"
-              );
-              check(
-                frp_m31_phase_projection_to_target(-32'sd354334803)
-                  == FRP_M31_TERN_NEG,
-                "negative phase target"
-              );
-
-              check(
-                frp_m31_classify_transition(
-                  FRP_M31_TERN_NEG,
-                  FRP_M31_TERN_POS,
-                  FRP_M31_TERN_ZERO
-                ) == FRP_M31_TRANS_OPPOSITE_REQUEST,
-                "opposite transition classification"
-              );
-              check(
-                frp_m31_transition_selected_target(
-                  FRP_M31_TERN_NEG,
-                  FRP_M31_TERN_POS,
-                  FRP_M31_TERN_ZERO
-                ) == FRP_M31_ACTIVE_ZERO,
-                "opposite transition first leg"
-              );
-              check(
-                frp_m31_transition_next_pending(
-                  FRP_M31_TERN_NEG,
-                  FRP_M31_TERN_POS,
-                  FRP_M31_TERN_ZERO
-                ) == FRP_M31_TERN_POS,
-                "opposite transition retained target"
-              );
-              check(
-                frp_m31_classify_transition(
-                  FRP_M31_ACTIVE_ZERO,
-                  FRP_M31_TERN_NEG,
-                  FRP_M31_TERN_POS
-                ) == FRP_M31_TRANS_PENDING_COMPLETION,
-                "pending completion priority"
-              );
-              check(
-                frp_m31_transition_selected_target(
-                  FRP_M31_ACTIVE_ZERO,
-                  FRP_M31_TERN_NEG,
-                  FRP_M31_TERN_POS
-                ) == FRP_M31_TERN_POS,
-                "pending target selection"
-              );
-              check(
-                frp_m31_transition_next_pending(
-                  FRP_M31_ACTIVE_ZERO,
-                  FRP_M31_TERN_NEG,
-                  FRP_M31_TERN_POS
-                ) == FRP_M31_TERN_ZERO,
-                "pending target clear"
-              );
-
-              check(
-                frp_m31_decode_scheduler_state(FRP_M31_MODE_7_1, 3'd7)
-                  == FRP_M31_SCHED_COMMIT,
-                "7/1 commit tick"
-              );
-              check(
-                frp_m31_decode_scheduler_state(FRP_M31_MODE_1_7, 3'd0)
-                  == FRP_M31_SCHED_EXCITE,
-                "1/7 excite tick"
-              );
-              check(
-                frp_m31_scheduler_allows_transition(
-                  FRP_M31_SCHED_BALANCE,
-                  FRP_M31_TRANS_OPPOSITE_REQUEST
-                ),
-                "balance allows active-zero first leg"
-              );
-              check(
-                frp_m31_scheduler_allows_transition(
-                  FRP_M31_SCHED_COMMIT,
-                  FRP_M31_TRANS_PENDING_COMPLETION
-                ),
-                "commit allows pending completion"
-              );
-
-              $display("FRP_M31E1_PACKAGE_SMOKE: PASS");
-              $finish;
-            end
-          endmodule
-          SV
-
-          rm -rf /tmp/frp-m31e1-obj
+      - name: Lint and execute inherited active-zero RTL qualification
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/frp-m31-execution-obj
           verilator \
             --lint-only \
             --sv \
-            -Wall \
-            -Wno-fatal \
-            --top-module frp_m31e1_pkg_smoke \
-            "$TARGET_PATH" \
-            /tmp/frp_m31e1_pkg_smoke.sv
-          verilator \
-            --binary \
-            --sv \
+            --timing \
             --assert \
             -Wall \
             -Wno-fatal \
-            --top-module frp_m31e1_pkg_smoke \
-            --Mdir /tmp/frp-m31e1-obj \
-            "$TARGET_PATH" \
-            /tmp/frp_m31e1_pkg_smoke.sv
-          /tmp/frp-m31e1-obj/Vfrp_m31e1_pkg_smoke \
-            | tee /tmp/m31e1-package-smoke.log
-          grep -Fx "FRP_M31E1_PACKAGE_SMOKE: PASS" \
-            /tmp/m31e1-package-smoke.log
+            --top-module frp_m31_execution_tb \
+            -Irtl/m31 \
+            rtl/m31/frp_m31_execution_tb.sv
+          verilator \
+            --binary \
+            --sv \
+            --timing \
+            --assert \
+            -Wall \
+            -Wno-fatal \
+            -CFLAGS "-std=c++20" \
+            --top-module frp_m31_execution_tb \
+            --Mdir /tmp/frp-m31-execution-obj \
+            -Irtl/m31 \
+            rtl/m31/frp_m31_execution_tb.sv
+          /tmp/frp-m31-execution-obj/Vfrp_m31_execution_tb \
+            2>&1 | tee /tmp/m31e1-execution.log
+          grep -F "FRP M31 deterministic RTL testbench completed." \
+            /tmp/m31e1-execution.log
 
-      - name: Verify preservation boundary and exact change scope
+      - name: Lint and execute complete M31 RTL qualification
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/frp-m31-complete-obj
+          verilator \
+            --lint-only \
+            --sv \
+            --timing \
+            --assert \
+            -Wall \
+            -Wno-fatal \
+            --top-module frp_m31_tb \
+            -Irtl/m31 \
+            rtl/m31/frp_m31_tb.sv
+          verilator \
+            --binary \
+            --sv \
+            --timing \
+            --assert \
+            -Wall \
+            -Wno-fatal \
+            -CFLAGS "-std=c++20" \
+            --top-module frp_m31_tb \
+            --Mdir /tmp/frp-m31-complete-obj \
+            -Irtl/m31 \
+            rtl/m31/frp_m31_tb.sv
+          /tmp/frp-m31-complete-obj/Vfrp_m31_tb \
+            2>&1 | tee /tmp/m31e1-complete.log
+          grep -Fx "FRP_M31_COMPLETE_RTL: PASS" /tmp/m31e1-complete.log
+          grep -Fx "phase/coherence/resonance/active-zero/thermal/stability: PASS" \
+            /tmp/m31e1-complete.log
+
+      - name: Verify preservation and exact change boundary
         shell: bash
         run: |
           set -euo pipefail
@@ -533,10 +537,10 @@ jobs:
 
           historical_inventory() {
             find . -maxdepth 1 -type f \
-              '(' -name 'RELEASE_NOTES_v*.md' \
-                  -o -name 'TEST_REPORT_v*.md' \
-                  -o -name 'FRP_VALIDATION_INDEX_v*.md' \
-                  -o -name 'RELEASE_CHECKLIST_v*.md' ')' \
+              \( -name 'RELEASE_NOTES_v*.md' \
+                 -o -name 'TEST_REPORT_v*.md' \
+                 -o -name 'FRP_VALIDATION_INDEX_v*.md' \
+                 -o -name 'RELEASE_CHECKLIST_v*.md' \) \
               -print0 | LC_ALL=C sort -z | xargs -0 -r sha256sum
           }
 
@@ -559,61 +563,53 @@ jobs:
           cmp /tmp/m31e1-protected-rtl.before /tmp/m31e1-protected-rtl.after
           cmp /tmp/m31e1-history.before /tmp/m31e1-history.after
 
-          python - <<'PY'
-          import os
-          import subprocess
+          unexpected="$(
+            git status --porcelain \
+              | awk '{print $2}' \
+              | grep -Ev '^rtl/m31(/|$)' \
+              || true
+          )"
+          test -z "$unexpected"
+          echo "Preservation and exact change boundary: PASS"
 
-          target = os.environ["TARGET_PATH"]
-          lines = subprocess.check_output(
-              ["git", "status", "--porcelain", "--untracked-files=all"],
-              text=True,
-          ).splitlines()
-          unexpected = [line for line in lines if not line.endswith(" " + target)]
-          if unexpected:
-              raise SystemExit(f"unexpected worktree changes: {unexpected}")
-          if len(lines) > 1:
-              raise SystemExit(f"multiple target changes detected: {lines}")
-          print("Exact M31 package change scope: PASS")
-          PY
-
-          git diff --check
-          test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
-          test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
-          test "$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)" = "$TARGET_SHA256"
-          echo "Evidence, benchmark, schema, release, FPGA, and earlier RTL histories: PRESERVED"
-
-      - name: Commit and publish only the M31 package
+      - name: Commit and publish only rtl/m31
         shell: bash
         run: |
           set -euo pipefail
-          if test -z "$(git status --porcelain --untracked-files=all -- "$TARGET_PATH")"; then
-            echo "Exact M31 package is already published."
+          git add -- rtl/m31
+
+          unexpected="$(
+            git diff --cached --name-only \
+              | grep -Ev '^rtl/m31/' \
+              || true
+          )"
+          test -z "$unexpected"
+
+          if git diff --cached --quiet; then
+            echo "Exact complete M31 RTL contour is already published."
             exit 0
           fi
 
+          test "$(git diff --cached --name-only | wc -l)" -eq 20
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- "$TARGET_PATH"
-
-          mapfile -t staged < <(git diff --cached --name-only)
-          test "${#staged[@]}" -eq 1
-          test "${staged[0]}" = "$TARGET_PATH"
-
-          git commit -m "Add FRP M31 phase-interference thermal RTL package"
+          git commit -m "Add complete FRP M31 RTL contour"
           git push origin HEAD:main
 
       - name: Publish M31E1 summary
         if: always()
         shell: bash
         run: |
-          cat >> "$GITHUB_STEP_SUMMARY" <<'SUMMARY'
-          # FRP M31E1 Phase-Interference Thermal Package
-
-          - Manual `main` execution required.
-          - Adds only `rtl/m31/frp_m31_phase_interference_thermal_pkg.sv`.
-          - Encodes balanced ternary `-1/0/1` with active state `0`.
-          - Encodes strict phase-target thresholds and the current normalized RC proxy coefficients.
-          - Encodes tick-separated active-zero transition and scheduler semantics.
-          - Runs all 60 focused M31 Python tests plus a compiled SystemVerilog smoke test.
-          - Preserves every evidence, benchmark, schema, release, FPGA, and earlier RTL file.
-          SUMMARY
+          {
+            echo "## FRP M31E1 Complete RTL Contour"
+            echo
+            echo "- Trigger: manual workflow_dispatch on main"
+            echo "- Target: rtl/m31"
+            echo "- Files: 20 total, including 18 SystemVerilog sources"
+            echo "- Numeric boundary: S32Q16 / S32Q30 / PHASE_U32 / GAMMA_S32"
+            echo "- Trigonometric boundary: exact 4096-entry published M15 LUT"
+            echo "- Ternary notation: -1/0/1 with active computational zero"
+            echo "- Opposite polarity: tick-separated routing through zero"
+            echo "- Qualified chain: phase, coherence, resonance, active-zero, thermal, stability"
+            echo "- Historical evidence, benchmarks, schemas, releases, FPGA and prior RTL: preserved"
+          } >> "$GITHUB_STEP_SUMMARY"
