@@ -1,0 +1,442 @@
+name: FRP M31E2 RTL README
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m31e2-rtl-readme-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish-m31-rtl-readme:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TARGET_PATH: rtl/m31/README.md
+      TARGET_BYTES: "15585"
+      TARGET_LINES: "474"
+      TARGET_SHA256: 45812ce0b7f21e25d9e523cb8f32cdfb8b9da6291561f66df77315671844c2ca
+      PAYLOAD_GZIP_BYTES: "5307"
+      PAYLOAD_GZIP_SHA256: b850de2fcc3ff235bf9b5ecc9b3d9b3f2dc003d1de35c06cd822f1afcb4516de
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: main
+          persist-credentials: true
+
+      - name: Require manual main-branch execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ github.event_name }}" = "workflow_dispatch"
+          test "${{ github.ref }}" = "refs/heads/main"
+          test "${{ github.ref_name }}" = "main"
+          test "$(git branch --show-current)" = "main"
+          test -z "$(git status --porcelain)"
+          echo "Manual main-branch boundary: PASS"
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Verify exact RTL source and capture protected histories
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 -r sha256sum
+          }
+
+          historical_inventory() {
+            find . -maxdepth 1 -type f \
+              \( -name 'RELEASE_NOTES_v*.md' \
+                 -o -name 'TEST_REPORT_v*.md' \
+                 -o -name 'FRP_VALIDATION_INDEX_v*.md' \
+                 -o -name 'RELEASE_CHECKLIST_v*.md' \) \
+              -print0 | LC_ALL=C sort -z | xargs -0 -r sha256sum
+          }
+
+          protected_rtl_inventory() {
+            find rtl -type f ! -path "$TARGET_PATH" -print0 \
+              | LC_ALL=C sort -z | xargs -0 -r sha256sum
+          }
+
+          check_identity() {
+            path="$1"
+            bytes="$2"
+            digest="$3"
+            test -f "$path"
+            test ! -L "$path"
+            test "$(wc -c < "$path")" -eq "$bytes"
+            test "$(sha256sum "$path" | cut -d' ' -f1)" = "$digest"
+          }
+
+          test -d rtl/m31
+          test ! -L rtl
+          test ! -L rtl/m31
+          test "$(find rtl/m31 -maxdepth 1 -type f ! -name README.md | wc -l)" -eq 20
+          test "$(find rtl/m31 -maxdepth 1 -type f -name '*.sv' | wc -l)" -eq 18
+          test "$(wc -l < rtl/m31/frp_m31_sin_q30.mem)" -eq 4096
+
+          while IFS='|' read -r path bytes digest
+          do
+            check_identity "$path" "$bytes" "$digest"
+          done <<'M31_RTL_IDENTITIES'
+          rtl/m31/frp_m31.f|40|9f8d99d47f1545f2763b9ac63f46b571b5f8cc6f6eaaabaa978fd5810e9fe6f0
+          rtl/m31/frp_m31_active_neutral.sv|25909|765429b33df3f843626bdc411ad8371fd963738a58ab10201abef75dcdafcaf0
+          rtl/m31/frp_m31_assertions.sv|24366|16a6abea57d2161a58ad5660c62f86cf057e65dbb1d9ae76e355e912a378077b
+          rtl/m31/frp_m31_capacity_guard.sv|20787|d0587897f955ce49923aca807b5d3e0c637383c88e5d5e0dfa8405f47917c123
+          rtl/m31/frp_m31_core.sv|9019|92d394a0838515a6e00c0c5c5330edf42077b5d75d290d05ac73dd4f06e1510c
+          rtl/m31/frp_m31_execution_core.sv|33724|e516a5cd378bd2ddecdadc5abb13ddef26c63fafe5bda65b47a6bd859ca66f92
+          rtl/m31/frp_m31_execution_tb.sv|16492|53d0f4f0d723aec2d39e52ba28e0cbb952e7afc0804de0e252d1b990221fbb6c
+          rtl/m31/frp_m31_fixed_point_pkg.sv|7278|6b2afb8d1583c93d95d2386ba25dd1eaef6bb5bd9a4e1c9e9abff1dd004cbf24
+          rtl/m31/frp_m31_pending_routes.sv|17005|18889d85e78b23b844f1db4c46a35a6b7d01e609e3f1f0e6263a39a6c5729411
+          rtl/m31/frp_m31_phase_interference.sv|11245|e8ceb80feb0b30db5e28d70bc4d68d51506da4d596b46a73c0137465d1455fe0
+          rtl/m31/frp_m31_phase_request_adapter.sv|2251|fa78bcfe965270cc74855908aa392989d857575a2097a126539aabb1aab8990d
+          rtl/m31/frp_m31_phase_thermal_assertions.sv|3783|fe7b06073e65fc64acf7232038911230db27fe3a5ce000d0e1d421e2f49b1b3b
+          rtl/m31/frp_m31_pkg.sv|18531|762302f1c7a7f7f40cb029f5ada6a111fc8c3e3f6be9920e9b2401b95e179c94
+          rtl/m31/frp_m31_request_lanes.sv|18290|32f75cc70df5dba3f4fbb511397be9a5921236c2afd16cfeb1350eca3f6e8109
+          rtl/m31/frp_m31_scheduler.sv|10560|fc9de24b41736e5c5a9f9e464318c80adbfda9dc8cc4362c0c55bfed403bf97f
+          rtl/m31/frp_m31_sin_q30.mem|36864|adbb4b94fcf8fa0bfc981d654679fd7518a5c4c9c97b611a35cd8accaf28233d
+          rtl/m31/frp_m31_stability.sv|2203|69c06833e6dfbb28e25b74a5787dcd03756dddf0f66726de3ea47c1ad2931931
+          rtl/m31/frp_m31_state_update.sv|18147|ebad1f7ee952a577239445d33d99cae799afaaff5c181c7162514bbcea6eab90
+          rtl/m31/frp_m31_tb.sv|9679|3e6bc290634159b77d27e4970827b856f95c0988c269542abfd36e0bfb49fb93
+          rtl/m31/frp_m31_thermal_proxy.sv|1883|34df4ebfc5dfad8e3e5e454e560404585de5c881e6f75abaae367d3bd9fb11bd
+          M31_RTL_IDENTITIES
+
+          tree_inventory artifacts > /tmp/m31e2-artifacts.before
+          tree_inventory benchmarks > /tmp/m31e2-benchmarks.before
+          tree_inventory schemas > /tmp/m31e2-schemas.before
+          tree_inventory fpga > /tmp/m31e2-fpga.before
+          protected_rtl_inventory > /tmp/m31e2-protected-rtl.before
+          historical_inventory > /tmp/m31e2-history.before
+
+          if test -e "$TARGET_PATH"; then
+            check_identity "$TARGET_PATH" "$TARGET_BYTES" "$TARGET_SHA256"
+          fi
+
+          echo "Exact M31 RTL source and protected histories: PASS"
+
+      - name: Install exact dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check -r requirements.txt
+
+      - name: Run all 60 focused M31 qualification tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest tests.test_frp_m31_phase_interference_thermal_evidence -v \
+            2>&1 | tee /tmp/m31e2-python-tests.log
+          grep -F "Ran 60 tests" /tmp/m31e2-python-tests.log
+          grep -Fx "OK" /tmp/m31e2-python-tests.log
+
+      - name: Assemble exact M31 RTL README
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 022
+
+          cat > /tmp/frp-m31-readme.md.gz.b64 <<'FRP_M31_README_PAYLOAD'
+          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
+          8+jhPAAA
+          FRP_M31_README_PAYLOAD
+
+          python - <<'PY'
+          from base64 import b64decode
+          from gzip import decompress
+          from pathlib import Path
+
+          encoded_path = Path("/tmp/frp-m31-readme.md.gz.b64")
+          archive_path = Path("/tmp/frp-m31-readme.md.gz")
+          target_path = Path("/tmp/frp-m31-readme.md")
+          compact = "".join(encoded_path.read_text(encoding="ascii").split())
+          archive = b64decode(compact, validate=True)
+          archive_path.write_bytes(archive)
+          target_path.write_bytes(decompress(archive))
+          PY
+
+          test "$(wc -c < /tmp/frp-m31-readme.md.gz)" -eq "$PAYLOAD_GZIP_BYTES"
+          test "$(sha256sum /tmp/frp-m31-readme.md.gz | cut -d' ' -f1)" = \
+            "$PAYLOAD_GZIP_SHA256"
+          test "$(wc -c < /tmp/frp-m31-readme.md)" -eq "$TARGET_BYTES"
+          test "$(wc -l < /tmp/frp-m31-readme.md)" -eq "$TARGET_LINES"
+          test "$(sha256sum /tmp/frp-m31-readme.md | cut -d' ' -f1)" = \
+            "$TARGET_SHA256"
+          echo "Exact M31 RTL README assembly: PASS"
+
+      - name: Qualify M31 RTL README
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          document = Path("/tmp/frp-m31-readme.md")
+          text = document.read_text(encoding="utf-8")
+
+          required_headings = (
+              "# FRP M31 Phase-Interference RTL Contour",
+              "## RTL Boundary",
+              "## Balanced Ternary State Domain",
+              "## Fixed-Point and Phase Domains",
+              "## Phase and Interference Path",
+              "## Trigonometric Memory",
+              "## Resonance Selection",
+              "## Active-Zero Polarity Routing",
+              "## Temporal Scheduler",
+              "## Distributed Transition Capacity",
+              "## Thermal and Stability Observables",
+              "## Integrated Core Interface",
+              "## Source Inventory",
+              "## Assertion Layers",
+              "## Deterministic Qualification",
+              "## Verilator Commands",
+              "## Qualified Terminal Records",
+              "## Published Evidence and Provenance",
+          )
+          for heading in required_headings:
+              if heading not in text:
+                  raise SystemExit(f"missing required heading: {heading}")
+
+          source_names = sorted(
+              path.name
+              for path in Path("rtl/m31").iterdir()
+              if path.is_file() and path.name != "README.md"
+          )
+          if len(source_names) != 20:
+              raise SystemExit("M31 RTL source cardinality mismatch")
+          for name in source_names:
+              if f"`{name}`" not in text:
+                  raise SystemExit(f"README source inventory omission: {name}")
+
+          forbidden = ("-1/0/+1", "TODO", "TBD", "PLACEHOLDER")
+          for value in forbidden:
+              if value in text:
+                  raise SystemExit(f"forbidden README text: {value}")
+
+          fence_lines = [line for line in text.splitlines() if line.startswith("```")]
+          if len(fence_lines) % 2:
+              raise SystemExit("unbalanced Markdown fence")
+
+          target_parent = Path("rtl/m31").resolve()
+          links = re.findall(r"[^]]+([^)]+)", text)
+          if len(links) != 12:
+              raise SystemExit("README repository-link cardinality mismatch")
+          for link in links:
+              if "://" in link or link.startswith("#"):
+                  continue
+              resolved = (target_parent / link).resolve()
+              if not resolved.is_file():
+                  raise SystemExit(f"unresolved README link: {link}")
+
+          print("M31 RTL README qualification: PASS")
+          PY
+
+      - name: Install integrity-bound M31 RTL README
+        shell: bash
+        run: |
+          set -euo pipefail
+          install -m 0644 /tmp/frp-m31-readme.md "$TARGET_PATH"
+          test ! -L "$TARGET_PATH"
+          test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+          test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
+          test "$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)" = \
+            "$TARGET_SHA256"
+          echo "Integrity-bound M31 RTL README installation: PASS"
+
+      - name: Verify preservation and exact change boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 -r sha256sum
+          }
+
+          historical_inventory() {
+            find . -maxdepth 1 -type f \
+              -name 'RELEASE_NOTES_v*.md' \
+                 -o -name 'TEST_REPORT_v*.md' \
+                 -o -name 'FRP_VALIDATION_INDEX_v*.md' \
+                 -o -name 'RELEASE_CHECKLIST_v*.md' \
+              -print0 | LC_ALL=C sort -z | xargs -0 -r sha256sum
+          }
+
+          protected_rtl_inventory() {
+            find rtl -type f ! -path "$TARGET_PATH" -print0 \
+              | LC_ALL=C sort -z | xargs -0 -r sha256sum
+          }
+
+          tree_inventory artifacts > /tmp/m31e2-artifacts.after
+          tree_inventory benchmarks > /tmp/m31e2-benchmarks.after
+          tree_inventory schemas > /tmp/m31e2-schemas.after
+          tree_inventory fpga > /tmp/m31e2-fpga.after
+          protected_rtl_inventory > /tmp/m31e2-protected-rtl.after
+          historical_inventory > /tmp/m31e2-history.after
+
+          cmp /tmp/m31e2-artifacts.before /tmp/m31e2-artifacts.after
+          cmp /tmp/m31e2-benchmarks.before /tmp/m31e2-benchmarks.after
+          cmp /tmp/m31e2-schemas.before /tmp/m31e2-schemas.after
+          cmp /tmp/m31e2-fpga.before /tmp/m31e2-fpga.after
+          cmp /tmp/m31e2-protected-rtl.before /tmp/m31e2-protected-rtl.after
+          cmp /tmp/m31e2-history.before /tmp/m31e2-history.after
+
+          changed="$(git status --porcelain | awk '{print $2}')"
+          if test -n "$changed"; then
+            test "$changed" = "$TARGET_PATH"
+          fi
+          echo "Preservation and exact README change boundary: PASS"
+
+      - name: Commit and publish only rtl/m31/README.md
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- "$TARGET_PATH"
+
+          if git diff --cached --quiet; then
+            echo "Exact M31 RTL README is already published."
+            exit 0
+          fi
+
+          test "$(git diff --cached --name-only)" = "$TARGET_PATH"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Add FRP M31 RTL README"
+          git push origin HEAD:main
+
+      - name: Verify published state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git show "origin/main:$TARGET_PATH" > /tmp/frp-m31-readme.published.md
+          test "$(wc -c < /tmp/frp-m31-readme.published.md)" -eq "$TARGET_BYTES"
+          test "$(wc -l < /tmp/frp-m31-readme.published.md)" -eq "$TARGET_LINES"
+          test "$(sha256sum /tmp/frp-m31-readme.published.md | cut -d' ' -f1)" = \
+            "$TARGET_SHA256"
+          echo "Published M31 RTL README identity: PASS"
+
+      - name: Publish M31E2 summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## FRP M31E2 RTL README"
+            echo
+            echo "- Trigger: manual workflow_dispatch on main"
+            echo "- Target: rtl/m31/README.md"
+            echo "- Version: FRP v3.3.0"
+            echo "- Ternary notation: -1/0/1 with active computational zero"
+            echo "- RTL inventory: 20 existing implementation files documented"
+            echo "- Qualification: all 60 focused M31 tests"
+            echo "- Evidence, benchmarks, schemas, releases, FPGA, and all RTL sources: preserved"
+          } >> "$GITHUB_STEP_SUMMARY"
