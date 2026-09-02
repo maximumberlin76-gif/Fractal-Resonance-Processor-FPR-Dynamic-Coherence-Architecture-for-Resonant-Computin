@@ -1,0 +1,362 @@
+name: FRP M31D17 Code of Conduct v3.3.0
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m31d17-code-of-conduct-v3-3-0-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish-code-of-conduct:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TARGET_PATH: CODE_OF_CONDUCT.md
+      SOURCE_BYTES: "5351"
+      SOURCE_LINES: "171"
+      SOURCE_SHA256: 108b04e642f7545bfeda2f9f567b3e341fad0f4aa5ecc1f42479578904422ae4
+      TARGET_BYTES: "14161"
+      TARGET_LINES: "305"
+      TARGET_SHA256: 266980d8336f2bc537f098e05786aa10a071c0821a7066a8f5bca695e436132f
+      BLOCK_BYTES: "8810"
+      BLOCK_SHA256: cbc23d8a911f567c572b0da6a14599035afc122f15a2418128247badd228e1fc
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: main
+          persist-credentials: true
+
+      - name: Require manual main-branch execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ github.event_name }}" = "workflow_dispatch"
+          test "${{ github.ref }}" = "refs/heads/main"
+          test "${{ github.ref_name }}" = "main"
+          test "$(git branch --show-current)" = "main"
+          test -z "$(git status --porcelain)"
+          echo "Manual main-branch boundary: PASS"
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Verify control boundaries and capture protected histories
+        shell: bash
+        run: |
+          set -euo pipefail
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          historical_inventory() {
+            find . -maxdepth 1 -type f '(' -name 'RELEASE_NOTES_v*.md' -o -name 'TEST_REPORT_v*.md' -o -name 'FRP_VALIDATION_INDEX_v*.md' -o -name 'RELEASE_CHECKLIST_v*.md' ')' -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          check_identity() {
+            path="$1"
+            bytes="$2"
+            digest="$3"
+            test -f "$path"
+            test ! -L "$path"
+            test "$(wc -c < "$path")" -eq "$bytes"
+            test "$(sha256sum "$path" | cut -d' ' -f1)" = "$digest"
+          }
+
+          tree_inventory artifacts > /tmp/m31d17-artifacts.before
+          tree_inventory benchmarks > /tmp/m31d17-benchmarks.before
+          tree_inventory schemas > /tmp/m31d17-schemas.before
+          historical_inventory > /tmp/m31d17-history.before
+
+          while IFS='|' read -r path bytes digest
+          do
+            check_identity "$path" "$bytes" "$digest"
+          done <<'CONTROL_IDENTITIES'
+          README.md|10430|9fb5ccd3db24705f0f2c80723dd9b1f2c344e5b53c447927532ab29c2b34ca41
+          USAGE.md|66358|d1f5868a07c6322feb1ba8d36d6aff9972976848f26d63be6494d4ae722473c1
+          REPRODUCIBILITY.md|84646|e6b9fba117314e593cdb47e984ada655402d8d25b7510df2471eb505c19512db
+          MILESTONES.md|65183|d897a00d07be90efe13135a62be07dc367b10a0653f95348e2f3ef9f62a6d451
+          NOTICE.md|4814|d5e3bbdfebb1a77fc2ba54d7e2ac12802eeac5bd4f2537b22eef6d10c8e4aac1
+          CHANGELOG.md|137894|b243bf728871f498c413ef43c4eb243c2fd6512bed80f452381b9846c9356fab
+          CI.md|137571|87d891c84c1c1118c0204ef7fbd31b5d63ff8da3dc916b30af0ad05fcda7dafc
+          ROADMAP.md|53373|611570be05d0e3a0d514c08c3f2e163a0b37e40edc2898ad524e795112fb5e7a
+          PROJECT_STRUCTURE.md|75854|17adf275c6af9996e7af9e2e36982893b9d0d60c297d6458d90854b01424c02d
+          INSTALL.md|51529|df1dcd53d5f195cbc02bb3abbed61c08450ff9673816afcaec785a3f58642e96
+          SECURITY.md|11961|65bd8aaf9da131cf79ecb617727bce16f7c5241a949491a0851b83a6fccd235b
+          CONTRIBUTING.md|81983|e18fa5d7a89f8c01253649126d005d09c3a15cce5298336573f8f46514d4e001
+          CONTROL_IDENTITIES
+
+          while IFS= read -r path
+          do
+            test -f "$path"
+            test ! -L "$path"
+          done <<'REQUIRED_FILES'
+          LICENSE
+          FRP_VALIDATION_INDEX_v3_3_0.md
+          RELEASE_NOTES_v3_3_0.md
+          TEST_REPORT_v3_3_0.md
+          requirements.txt
+          frp_m31_phase_interference_thermal_evidence.py
+          tests/test_frp_m31_phase_interference_thermal_evidence.py
+          schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json
+          artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json
+          artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json
+          artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json
+          .github/workflows/frp-m31-complete.yml
+          REQUIRED_FILES
+
+          test -f "$TARGET_PATH"
+          test ! -L "$TARGET_PATH"
+          current_sha="$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)"
+          if test "$current_sha" = "$SOURCE_SHA256"; then
+            test "$(wc -c < "$TARGET_PATH")" -eq "$SOURCE_BYTES"
+            test "$(wc -l < "$TARGET_PATH")" -eq "$SOURCE_LINES"
+          elif test "$current_sha" = "$TARGET_SHA256"; then
+            test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+            test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
+          else
+            echo "CODE_OF_CONDUCT.md boundary mismatch: $current_sha" >&2
+            exit 1
+          fi
+          echo "Control boundaries and protected histories: PASS"
+
+      - name: Install exact dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check -r requirements.txt
+
+      - name: Run all 60 focused M31 qualification tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest tests.test_frp_m31_phase_interference_thermal_evidence -v 2>&1 | tee /tmp/m31d17-tests.log
+          grep -F "Ran 60 tests" /tmp/m31d17-tests.log
+          grep -Fx "OK" /tmp/m31d17-tests.log
+
+      - name: Install complete CODE_OF_CONDUCT.md
+        shell: bash
+        run: |
+          set -euo pipefail
+          current_sha="$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)"
+          if test "$current_sha" = "$TARGET_SHA256"; then
+            echo "Complete M31 CODE_OF_CONDUCT.md is already installed."
+            exit 0
+          fi
+          test "$current_sha" = "$SOURCE_SHA256"
+
+          block_base64() {
+            cat <<'BLOCK_PAYLOAD'
+          H4sIAAAAAAACA51a23LbyBF951egah9iV5GUtUqcyz7JsuwokSWForaScrmoITAkxwIB7AxAmS4/
+          5CkfkMoX7pfkdPfMYEArF++Dd0Fg0NPTl9OnG/ruu+yss1ZXbXZWV0WXt9mruqsKZffZz3//V/Zm
+          dpPtTqYn0xfZUfbu5Hg0mm+My5zOW1NXWaFXptIuazc6y72cRtnW5KZRvGIZpK1qy8veWJW3qsxm
+          2tWVqnKd3dg6187hudVN7Uxb2/00m5PIetuUuqWLQk/q1ST3Olqd17aAPFt360327vglbm2VqVzW
+          WO203ekiW+qyfsSaXt/paPSFztnausxWRpdF9iWef6fKTmdfRl8mkwn/w9pZVAjyS60cFqQ2oTXh
+          /a0ptWvripbAUvzsL50qzcrkYgvXqpae3pze3vLjV6okC+Ag2lZkpKKmQ2DJ/eT46MXR8T0vu9Jd
+          a1U5kfehOwmBFc1OZ1tdGJY+xoOuNdUaFzBZJfdUVcB4fOCS9rGqwnm8Mmus5g3e1Hnn8JjU/mmg
+          8pfsJXke/4lKJ/YyhawyVaE/Ye17mGbx4+nlxevT+cX11eLi6vX5Xxe7k8XJ4sV0W3x49t+fPx/I
+          Dwav6hYRBuGz88vz09vzxdX1/Pw2lfofHgzFQUjLAWZbEoaV88Xs/OZ6Nk9FPXmbBI2++y67zetG
+          Z/Uqu0lD3KcEhWimmqY0lA/1QRrABxVikFxQSxogiBpbf8TNMeyXl10Bb/xhNJpkxrlOu3HWdGUJ
+          jX/Cj9aRV3dGPzrxaZ8pWWEcvOewi/sBbyNntobWF3DqFif30dGKFJdvkCi4gLRCI/jGyJMq32yV
+          fYiyxfCSZCz0rWn/2C2zU84idxAj9E7TLcvw23aiye3etXr7o7amrNfZbH4pSvB22MkhTUU1Z7Zd
+          6dV8c/P21IdtWbvO6uyxtg8kTraQJKJzEeqoNlNta82yQ2K0Ot9UUKLEiTZqZ2o7RnooEsLrxxkg
+          JolaktSxr+AM2oF8YirkYr5R1Vp2Js852BFwsucFc+CXzq6XBDKKHMC6iSfZ+F0VDOHRSvdA5c8A
+          PRprdpTNtFWlS5cBJrXNKP1b/MOlT9spxVePronjPbRSvCkb3IXNACDIldPX7859dvjL5+Ps/c3s
+          +k/nZ/PF7Xx2dza/m8mSp+4+Fy+8f3dxiZy4vjq/5aWDn8+nnBfzaPjXMRaz21aRdsVoNMiWzG0U
+          wvpB6yZxWOLUQabsEDwro5alTg/uA3MqUE7Or63zoUs5ovGLt0E6HU9JKcLFzrhNZqig0EZcHw6i
+          hN53XYmE9AGe3IGHsT9uSGyIcQAHVcb5ycXle2hkKBDhL1d3lpKLIj5kHV6CJVaKUj4m3ZjDbIVS
+          xfE5TL7MdQ0hFgG1SuyVl8psp6OTKZnZ78jYk3tbsZBxX5Nkl7JWxZiQSW1RIqyjk8OAua87cij9
+          SefdoHZPR7+eZndQKlYl/QmHKPfZ4wYGqNSW9CMdlk8XtOnoNyjoViNdpYbdv7gHAGC7UMao0ncC
+          VSEcKI4L7XJrGkEdAC8loIMlUd1yNx29nII8SLnn7Qv2tFCTpW4fNbRrNrDEBLlliBO0yq5165KD
+          so855QrZF3J/+//KzSjjEEB5vdFW0BQylqY07R6Xj6bNN2QbMTxtCnF2iyMG+J2OfkdxjOQGfFBo
+          IPIEH+qdFn6kraX4hrCNEC1a7RqAC4kOgkJZKAFPW0EKiqDp6PfT7M+UbZIb4GFS63EUjtNuiXLB
+          6dbDZ+BsJNIQ0Go6VakZDKkgYT93AExiTV5FNCLKQGl8v7LNYntyvGCbLRhiV2KvhbfHItqj2X94
+          9m3rgVRsm3AyrnSMgnx1RP9dfKsKv/hVj4nnqVtuemd6lj0aJdQyuhC2ItpAkU6+8dWid4x3ac8/
+          CDAFUAPtZX+RuBYhKKU5bg7NTvNcN9GXzKWFfGjH3EMVhWCN0wQTrUaSI79hVRIFOCZsj7Ao+V9o
+          wJHlwoMcdh4hqSyKvhylBBgeFHHGduOGONTTkmpnbF35gu1JC+1dmDX9ELEBE1fKlF431+XURay6
+          8oCeiKp9/hib+TQTAiCkiROQj15JwsWarYg159rbjMgV76eyCtnUl2U6KYmiykZywAnhXHbbE1Qr
+          KQlfM65M7XAu3pC6JgVq2MJ3d5X6X94rYU3anCPHbWCaGFuPG5hKwqTig9I5pHODmmgFYnzRKQpo
+          1B4cIypP+HRoY1EcJRuKwVgl7COGHzoM1g0kEjSRFFhbQlMOJMVs11AofayXtAsIZOOdLFq1SgBV
+          pcwuW9l6y4H/dJGL5RASQ8GjxpUbIaFv0SqhzhMpR5ZbusJrRf1YuRYVbBtpAxewhClQbeqPvFJL
+          y9aBTB+6Es4wUMex7VkvBKFvQ+Ik0SG9qOupAXPqAT+Q2EVUAFtaz5ciTningRhCIfjfk8v3gX64
+          ow/P+mvihX0PgEfJj8ACfX7iYbjCk7ZGLQUCSmr14DDsDE2uex9INzdOu7GDrgPi8wcELxXplsMz
+          ZX513Qq+Uo25SZqOiKtpTaJFaWcSixLVMd6iXnHivKeVcrL+hMD8I2D/FP+fPoH9wlwWn7Wtv64D
+          u+OpiJl+dHX1/IewR1iQ2p/2Cffpx0QoS7rZRDab0GYTv9kkbjbcAuzIrGDewy3CffdL9piEtw82
+          ewoGDjcerPlFmw8kHGjgZ0S0fciWD8+ma0RktzwKdxw5ckJbh5HSdL8tqVTPhBVxxUX5jREiVRV8
+          oq/EjKfLPcdvrHkBxgP5ePliwrE9NIzTbYhy36T1mc2QwV2KIixkQFPQo5VetCF26q0rE65QmgX2
+          SL1Y71PiwOoGEsjji2E/LgePeTN8yq2vcaGhKjjFQakIZPtEj93UML2myQwnpi61syj/B72qBybb
+          lkfb45eAl3BFoLRq1srfjpd0n9d8/31Yjav+7km8exLBS35H6bgiz8+H3ZTzRkeFms0vg7o+DsTA
+          q316fpZdmuoBx2hU/qCoK3T7Cg5w5jMX6W1ddCWFi4S6YiSMgw83mIf05cBUuzoPUxsa2HELNI6J
+          PRyPRBQIHiWOontiWCTdr+dfCKJGBqLp7CW2uuEMLt6RronKJEdenCz2cfbTV4NOLk7nn2T3JGbI
+          uPQuDXoGhYonnyn9Zd4TOe9pBjX9WIQcU9R4C9WEujdbC3yU+9ABsYCeVyf5QfxO2dL0oiQ7DkZc
+          MS9CKA/GaROcds0kNSayBLYQRKrGyvXj6xW14cOeE86EyaBwoJn3QdACHgNDzjf31KPdk1nun6L8
+          XLh8U0enjYjivbzUII+6b+eF51YrYwU0HAou84YlYizfCMkOsCYej9yIGgsROznsLYR8TMSTeynf
+          LhDhLIcwWq9KOX9bP2hq5Tv28oHKY/TJa9dPSSLzD0Olnkv6Rtjbl9ii70gQnsRI2g3NFoBXrqaw
+          GbQHRCpJUkxqGZJLC85xw80K0U4K3VgSvEGtBhmr8IRk8IBqL5PIlGlID0RdNru4986v3KGRD/ro
+          aBPS6qnySrDsui34mfnsp31nFzyb4/89T8Zi9FJDX1cKIMUTU8Kz66v57OLV3fzi6q1IGN7wvSwx
+          W9Lmq9HnV9+MRiOeoTqfv+0GyU0Zs6POA2CYwzXwexO/+Ijj0waQmy260VpI5qlc3z9FDjN+ugGR
+          gOl5dJwUPjm5DbNdlwAZLUwGqyvG41Y9YHP9qSnrAH8740iBzwkahj6NvJmOkWEOIN/kUe09BVDF
+          hOICCXzPnwHi5jHws5//8c+Bpt+kw30yc+0LAedj0scM3s7knCndCEMvoRm5qmqplmwhYkFphOoi
+          dWqc0A3OwJwiwvajpVHpEoWTNq5ltPdVNHyL67Fz73mPR1Q3Qi6mPuHhOmW5SfnM8EDIED6rpH1i
+          OQmbxn9RJGYFiLU88ruhsX6+F2fMoC6aQIKfd1S7gIKoJz0iYhWDkkfFcfwo8KD3ya+IuOipwDT1
+          dgncqLmGiNBALeNuBar3uu/KKe/J5H2gEZN7+itTLGcBjKnRDWE5jSedoF+mD4k7Km48iKRcKeWD
+          K6EMzSedAQmaEHx7rhKxiNHn9vzsbnYx/xsjT/KDUEdauwT64YY1kV+1arV8SE4+laCdwL+CBwiK
+          PisT+ap5ct5VZDnElyc91Il6KBpzFMS5dyjwsee0XBx7Thu/PXPXKkMnb45409OYkDsUwGG6wTVX
+          bQf9LIekyn2rvKvLnaYepN1IXAXu4ZndTPtuyfW0ZPiZsf8G4pPe68N0xbN4aXgvrm7np5eXbPv+
+          Wtqqu9vTt/JhKFzJ/dn5zez69d3ZxauLy+C3r+/5tdenr9+d3siaeC3Pzv54evX2/PLa15zklzy/
+          up5fnIkC8ZKC4l3vcW+zrdqHCViI4XQmjhg2oGMyg4lRiALUR2+fQ7qQlQh4WsmXq9WkrRsEYgQZ
+          qz/6QWFX+Y8z9FGIOwj+RqttmCP5qetkiaB8oHuCPWGOI9nKa4c+5AhHkGgmLjtTCz9H9gVyKr5d
+          6uHHsiSuHH2pHicEGHG2FoRyEatCIpjwvcL/hUb/RxY8jJNmIvIG+tAh0XkT/9LizP95RkiRmRCV
+          ef/nGaPRvwGxK4rqaiIAAA==
+          BLOCK_PAYLOAD
+          }
+
+          block_base64 | tr -d '[:space:]' | base64 --decode | gzip --decompress --stdout > /tmp/m31d17-code-of-conduct-current.md
+          test "$(wc -c < /tmp/m31d17-code-of-conduct-current.md)" -eq "$BLOCK_BYTES"
+          test "$(sha256sum /tmp/m31d17-code-of-conduct-current.md | cut -d' ' -f1)" = "$BLOCK_SHA256"
+
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          source = Path(os.environ["TARGET_PATH"]).read_bytes()
+          block = Path("/tmp/m31d17-code-of-conduct-current.md").read_bytes()
+          marker = b"# Code of Conduct\n\n"
+          if not source.startswith(marker) or source.count(marker) != 1:
+              raise SystemExit("CODE_OF_CONDUCT.md insertion boundary mismatch")
+          rendered = marker + block + source[len(marker):]
+          expected = (int(os.environ["TARGET_BYTES"]), os.environ["TARGET_SHA256"])
+          if (len(rendered), hashlib.sha256(rendered).hexdigest()) != expected:
+              raise SystemExit("rendered CODE_OF_CONDUCT.md identity mismatch")
+          if rendered.count(b"\n") != int(os.environ["TARGET_LINES"]):
+              raise SystemExit("rendered CODE_OF_CONDUCT.md line-count mismatch")
+          Path("/tmp/CODE_OF_CONDUCT.md").write_bytes(rendered)
+          PY
+
+          install -m 0644 /tmp/CODE_OF_CONDUCT.md "$TARGET_PATH"
+          echo "Complete M31 CODE_OF_CONDUCT.md installed: PASS"
+
+      - name: Qualify conduct controls and preservation boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import os
+          import re
+          import subprocess
+          from pathlib import Path
+
+          raw = Path(os.environ["TARGET_PATH"]).read_bytes()
+          expected = (int(os.environ["TARGET_BYTES"]), os.environ["TARGET_SHA256"])
+          if (len(raw), hashlib.sha256(raw).hexdigest()) != expected:
+              raise SystemExit("CODE_OF_CONDUCT.md target identity mismatch")
+
+          marker = b"# Code of Conduct\n\n"
+          block_end = len(marker) + int(os.environ["BLOCK_BYTES"])
+          current = raw[len(marker):block_end]
+          reconstructed = raw[:len(marker)] + raw[block_end:]
+          source_expected = (int(os.environ["SOURCE_BYTES"]), os.environ["SOURCE_SHA256"])
+          if (len(reconstructed), hashlib.sha256(reconstructed).hexdigest()) != source_expected:
+              raise SystemExit("historical CODE_OF_CONDUCT.md bytes were not preserved")
+
+          text = raw.decode("utf-8")
+          required = (
+              "## Current Conduct Boundary — FRP v3.3.0 / M31",
+              "-1/0/1",
+              "60 / 60 PASS",
+              "## Technical Discussion Standard",
+              "## Evidence and Provenance Conduct",
+              "## SystemVerilog Review Conduct",
+              "## GitHub Actions Conduct",
+              "The interchange is one-way and read-only",
+              "## Security, Privacy, and Restricted Material",
+              "## Preserved Code-of-Conduct Record Through M16",
+          )
+          missing = [value for value in required if value not in text]
+          if missing:
+              raise SystemExit(f"CODE_OF_CONDUCT.md records missing: {missing}")
+          if "-1/0/" + chr(43) + "1" in text:
+              raise SystemExit("forbidden ternary notation present")
+
+          links = re.findall(r"\]\(([^)]+)\)", current.decode("utf-8"))
+          if len(links) != 30 or len(set(links)) != 30:
+              raise SystemExit("conduct link registry count mismatch")
+          missing_links = []
+          for value in sorted(set(links)):
+              target = Path(value.rstrip("/"))
+              valid = target.is_dir() if value.endswith("/") else target.is_file()
+              if not valid:
+                  missing_links.append(value)
+          if missing_links:
+              raise SystemExit(f"CODE_OF_CONDUCT.md link targets missing: {missing_links}")
+
+          changed = subprocess.check_output(["git", "diff", "--name-only"]).decode().splitlines()
+          if changed not in ([os.environ["TARGET_PATH"]], []):
+              raise SystemExit(f"unexpected worktree changes: {changed}")
+          print("CODE_OF_CONDUCT.md M31 controls and historical preservation: PASS")
+          PY
+
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          historical_inventory() {
+            find . -maxdepth 1 -type f '(' -name 'RELEASE_NOTES_v*.md' -o -name 'TEST_REPORT_v*.md' -o -name 'FRP_VALIDATION_INDEX_v*.md' -o -name 'RELEASE_CHECKLIST_v*.md' ')' -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          tree_inventory artifacts > /tmp/m31d17-artifacts.after
+          tree_inventory benchmarks > /tmp/m31d17-benchmarks.after
+          tree_inventory schemas > /tmp/m31d17-schemas.after
+          historical_inventory > /tmp/m31d17-history.after
+          cmp --silent /tmp/m31d17-artifacts.before /tmp/m31d17-artifacts.after
+          cmp --silent /tmp/m31d17-benchmarks.before /tmp/m31d17-benchmarks.after
+          cmp --silent /tmp/m31d17-schemas.before /tmp/m31d17-schemas.after
+          cmp --silent /tmp/m31d17-history.before /tmp/m31d17-history.after
+          echo "Evidence, benchmark, schema, and release histories: BYTE-IDENTICAL"
+
+      - name: Commit and publish CODE_OF_CONDUCT.md
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$TARGET_PATH"
+          if git diff --cached --quiet; then
+            test -z "$(git status --porcelain)"
+            echo "Complete M31 CODE_OF_CONDUCT.md is already published."
+            exit 0
+          fi
+          test "$(git diff --cached --name-only)" = "$TARGET_PATH"
+          git commit -m "Align CODE_OF_CONDUCT.md with FRP v3.3.0 M31"
+          git push origin HEAD:main
+
+      - name: Verify published state
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "$(git status --porcelain)"
+          test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+          test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
+          test "$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)" = "$TARGET_SHA256"
+          {
+            echo "## FRP M31D17 Code of Conduct v3.3.0"
+            echo
+            echo "- Updated file: CODE_OF_CONDUCT.md"
+            echo "- Current conduct boundary: FRP v3.3.0 / M31"
+            echo "- M31 focused tests: 60 / 60 PASS"
+            echo "- Existing code-of-conduct record: byte-identical"
+            echo "- Protected histories: byte-identical"
+            echo "- Result: PASS"
+          } >> "$GITHUB_STEP_SUMMARY"
