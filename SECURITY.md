@@ -1,5 +1,129 @@
 # Security Policy
 
+## Current Security Boundary — FRP v3.3.0 / M31
+
+Current repository release:
+
+`FRP v3.3.0 / M31 — PASS`
+
+Current milestone:
+
+`M31 — Phase-Interference, Active-Zero, and Thermal-Evidence Publication`
+
+Current balanced ternary domain:
+
+`-1/0/1`
+
+Current focused qualification:
+
+`60 / 60 PASS`
+
+## Current Public Security Scope
+
+The public FRP security boundary includes:
+
+- executable semantic-reference and milestone producer source;
+- versioned Python tests and SystemVerilog testbenches;
+- schemas and canonical artifacts;
+- evidence, manifests, qualification records, and archival packages;
+- benchmark inputs, outputs, comparison contours, and provenance;
+- GitHub Actions workflow definitions and published workflow results;
+- architecture, installation, reproducibility, governance, and release documentation.
+
+Current release records:
+
+- [`FRP_VALIDATION_INDEX_v3_3_0.md`](FRP_VALIDATION_INDEX_v3_3_0.md);
+- [`RELEASE_NOTES_v3_3_0.md`](RELEASE_NOTES_v3_3_0.md);
+- [`TEST_REPORT_v3_3_0.md`](TEST_REPORT_v3_3_0.md).
+
+## Current M31 Publication Boundary
+
+| Role | Path |
+|---|---|
+| Source | [`frp_m31_phase_interference_thermal_evidence.py`](frp_m31_phase_interference_thermal_evidence.py) |
+| Test | [`tests/test_frp_m31_phase_interference_thermal_evidence.py`](tests/test_frp_m31_phase_interference_thermal_evidence.py) |
+| Schema | [`schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json`](schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json) |
+| Evidence | [`artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json`](artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json) |
+| Manifest | [`artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json`](artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json) |
+| Qualification | [`artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json`](artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json) |
+| Workflow | [`.github/workflows/frp-m31-complete.yml`](.github/workflows/frp-m31-complete.yml) |
+
+The M31 evidence, manifest, and qualification documents are canonical JSON records tied to their schema identifiers, source provenance, release identity, and recorded digests.
+
+## Versioned SystemVerilog Security Boundary
+
+The current public SystemVerilog files remain attached to their qualified milestone identities:
+
+- M16 RTL core and assertion boundary: [`rtl/m16/`](rtl/m16/);
+- M16 FPGA preparation boundary: [`fpga/m16/`](fpga/m16/);
+- M22 control/status register interface: [`rtl/m22/`](rtl/m22/);
+- M23 reset, CDC, protocol, and hardened integration boundary: [`rtl/m23/`](rtl/m23/);
+- M26 declared-target implementation boundary: [`rtl/m26/`](rtl/m26/).
+
+Each hardware-facing statement is evaluated against its versioned source, testbench, assertion, workflow, artifact, and qualification record.
+
+## Integrity and Provenance Controls
+
+Security review covers:
+
+- source and generated-file digest consistency;
+- schema identifier and validation consistency;
+- canonical JSON ordering and reproducibility;
+- artifact and manifest path integrity;
+- release and milestone provenance;
+- workflow permission scope;
+- branch and manual-dispatch boundaries;
+- dependency declarations in [`requirements.txt`](requirements.txt);
+- preservation of historical evidence and benchmark contours;
+- exact separation of measured, modeled, proxy, and historical metric domains.
+
+Credentials, access tokens, private keys, authentication material, and private reports remain outside public artifacts, logs, generated evidence, test fixtures, and workflow summaries.
+
+## FRP-to-Observatory Security Boundary
+
+FRP is the upstream authority for processor semantics and canonical published bytes. FRP-Trace-Observatory consumes the published schemas, artifacts, identifiers, digests, and provenance through a one-way, read-only interchange.
+
+The cross-repository boundary preserves:
+
+- immutable FRP source artifacts;
+- exact upstream digests;
+- schema and compatibility identifiers;
+- release and milestone provenance;
+- measurement-contour separation;
+- independent downstream presentation and audit logic.
+
+## Responsible Disclosure Procedure
+
+Security-sensitive findings are reported privately to the repository maintainer before public discussion.
+
+A security report records:
+
+- affected path, component, workflow, schema, artifact, or release;
+- exact version, milestone, branch, and commit when available;
+- reproducible steps or a minimal safe fixture;
+- observed behavior and integrity impact;
+- logs, traces, hashes, screenshots, or canonical outputs supporting the report;
+- any condition required to reproduce the finding.
+
+Public disclosure follows maintainer review and coordinated resolution of the affected boundary.
+
+## Current Security Alignment
+
+This current layer is aligned with:
+
+- [`README.md`](README.md);
+- [`INSTALL.md`](INSTALL.md);
+- [`USAGE.md`](USAGE.md);
+- [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md);
+- [`ROADMAP.md`](ROADMAP.md);
+- [`MILESTONES.md`](MILESTONES.md);
+- [`PROJECT_STRUCTURE.md`](PROJECT_STRUCTURE.md);
+- [`CI.md`](CI.md);
+- [`CONTRIBUTING.md`](CONTRIBUTING.md);
+- [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
+
+## Preserved Security Policy History Through M16
+
 The Fractal Resonance Processor (FRP) repository contains the public research, executable semantic reference, documentation, verification, benchmark, implementation-mapping, SystemVerilog RTL execution, target-independent FPGA preparation, and qualification layers of the project.
 
 Current version:
