@@ -1,0 +1,381 @@
+name: FRP M31D18 Funding Brief v3.3.0
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m31d18-funding-brief-v3-3-0-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish-funding-brief:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TARGET_PATH: funding_brief.md
+      SOURCE_BYTES: "68524"
+      SOURCE_LINES: "2495"
+      SOURCE_SHA256: 06629d69d67f989c685d399dd46140a5e1d9268a505b43cb34f8578435ddcc88
+      TARGET_BYTES: "81846"
+      TARGET_LINES: "2720"
+      TARGET_SHA256: 06b32eb46c62ae49798a09e568e5fa3f43cd143a03f6680d6421697b4d72f1fe
+      BLOCK_BYTES: "13322"
+      BLOCK_SHA256: a966b6cda55e39d5ad1a51a268aa7c7438ba13a56a1253ef91aedf4e058f2715
+      PYTHONHASHSEED: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PYTHONUTF8: "1"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: main
+          persist-credentials: true
+
+      - name: Require manual main-branch execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ github.event_name }}" = "workflow_dispatch"
+          test "${{ github.ref }}" = "refs/heads/main"
+          test "${{ github.ref_name }}" = "main"
+          test "$(git branch --show-current)" = "main"
+          test -z "$(git status --porcelain)"
+          echo "Manual main-branch boundary: PASS"
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Verify control boundaries and capture protected histories
+        shell: bash
+        run: |
+          set -euo pipefail
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          historical_inventory() {
+            find . -maxdepth 1 -type f '(' -name 'RELEASE_NOTES_v*.md' -o -name 'TEST_REPORT_v*.md' -o -name 'FRP_VALIDATION_INDEX_v*.md' -o -name 'RELEASE_CHECKLIST_v*.md' ')' -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          check_identity() {
+            path="$1"
+            bytes="$2"
+            digest="$3"
+            test -f "$path"
+            test ! -L "$path"
+            test "$(wc -c < "$path")" -eq "$bytes"
+            test "$(sha256sum "$path" | cut -d' ' -f1)" = "$digest"
+          }
+
+          tree_inventory artifacts > /tmp/m31d18-artifacts.before
+          tree_inventory benchmarks > /tmp/m31d18-benchmarks.before
+          tree_inventory schemas > /tmp/m31d18-schemas.before
+          historical_inventory > /tmp/m31d18-history.before
+
+          while IFS='|' read -r path bytes digest
+          do
+            check_identity "$path" "$bytes" "$digest"
+          done <<'CONTROL_IDENTITIES'
+          README.md|10430|9fb5ccd3db24705f0f2c80723dd9b1f2c344e5b53c447927532ab29c2b34ca41
+          USAGE.md|66358|d1f5868a07c6322feb1ba8d36d6aff9972976848f26d63be6494d4ae722473c1
+          REPRODUCIBILITY.md|84646|e6b9fba117314e593cdb47e984ada655402d8d25b7510df2471eb505c19512db
+          MILESTONES.md|65183|d897a00d07be90efe13135a62be07dc367b10a0653f95348e2f3ef9f62a6d451
+          NOTICE.md|4814|d5e3bbdfebb1a77fc2ba54d7e2ac12802eeac5bd4f2537b22eef6d10c8e4aac1
+          CHANGELOG.md|137894|b243bf728871f498c413ef43c4eb243c2fd6512bed80f452381b9846c9356fab
+          CI.md|137571|87d891c84c1c1118c0204ef7fbd31b5d63ff8da3dc916b30af0ad05fcda7dafc
+          ROADMAP.md|53373|611570be05d0e3a0d514c08c3f2e163a0b37e40edc2898ad524e795112fb5e7a
+          PROJECT_STRUCTURE.md|75854|17adf275c6af9996e7af9e2e36982893b9d0d60c297d6458d90854b01424c02d
+          INSTALL.md|51529|df1dcd53d5f195cbc02bb3abbed61c08450ff9673816afcaec785a3f58642e96
+          SECURITY.md|11961|65bd8aaf9da131cf79ecb617727bce16f7c5241a949491a0851b83a6fccd235b
+          CONTRIBUTING.md|81983|e18fa5d7a89f8c01253649126d005d09c3a15cce5298336573f8f46514d4e001
+          CODE_OF_CONDUCT.md|14161|266980d8336f2bc537f098e05786aa10a071c0821a7066a8f5bca695e436132f
+          CONTROL_IDENTITIES
+
+          while IFS= read -r path
+          do
+            test -f "$path"
+            test ! -L "$path"
+          done <<'REQUIRED_FILES'
+          LICENSE
+          FRP_VALIDATION_INDEX_v3_3_0.md
+          RELEASE_NOTES_v3_3_0.md
+          TEST_REPORT_v3_3_0.md
+          requirements.txt
+          frp_m31_phase_interference_thermal_evidence.py
+          tests/test_frp_m31_phase_interference_thermal_evidence.py
+          schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json
+          artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json
+          artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json
+          artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json
+          .github/workflows/frp-m31-complete.yml
+          REQUIRED_FILES
+
+          test -f "$TARGET_PATH"
+          test ! -L "$TARGET_PATH"
+          current_sha="$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)"
+          if test "$current_sha" = "$SOURCE_SHA256"; then
+            test "$(wc -c < "$TARGET_PATH")" -eq "$SOURCE_BYTES"
+            test "$(wc -l < "$TARGET_PATH")" -eq "$SOURCE_LINES"
+          elif test "$current_sha" = "$TARGET_SHA256"; then
+            test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+            test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
+          else
+            echo "funding_brief.md boundary mismatch: $current_sha" >&2
+            exit 1
+          fi
+          echo "Control boundaries and protected histories: PASS"
+
+      - name: Install exact dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check -r requirements.txt
+
+      - name: Run all 60 focused M31 qualification tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest tests.test_frp_m31_phase_interference_thermal_evidence -v 2>&1 | tee /tmp/m31d18-tests.log
+          grep -F "Ran 60 tests" /tmp/m31d18-tests.log
+          grep -Fx "OK" /tmp/m31d18-tests.log
+
+      - name: Install complete funding_brief.md
+        shell: bash
+        run: |
+          set -euo pipefail
+          current_sha="$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)"
+          if test "$current_sha" = "$TARGET_SHA256"; then
+            echo "Complete M31 funding_brief.md is already installed."
+            exit 0
+          fi
+          test "$current_sha" = "$SOURCE_SHA256"
+
+          block_base64() {
+            cat <<'BLOCK_PAYLOAD'
+          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
+          BLOCK_PAYLOAD
+          }
+
+          block_base64 | tr -d '[:space:]' | base64 --decode | gzip --decompress --stdout > /tmp/m31d18-funding-brief-current.md
+          test "$(wc -c < /tmp/m31d18-funding-brief-current.md)" -eq "$BLOCK_BYTES"
+          test "$(sha256sum /tmp/m31d18-funding-brief-current.md | cut -d' ' -f1)" = "$BLOCK_SHA256"
+
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          source = Path(os.environ["TARGET_PATH"]).read_bytes()
+          block = Path("/tmp/m31d18-funding-brief-current.md").read_bytes()
+          marker = "# Funding Brief — Fractal Resonance Processor (FRP)\n\n".encode("utf-8")
+          if not source.startswith(marker) or source.count(marker) != 1:
+              raise SystemExit("funding_brief.md insertion boundary mismatch")
+          rendered = marker + block + source[len(marker):]
+          expected = (int(os.environ["TARGET_BYTES"]), os.environ["TARGET_SHA256"])
+          if (len(rendered), hashlib.sha256(rendered).hexdigest()) != expected:
+              raise SystemExit("rendered funding_brief.md identity mismatch")
+          if rendered.count(b"\n") != int(os.environ["TARGET_LINES"]):
+              raise SystemExit("rendered funding_brief.md line-count mismatch")
+          Path("/tmp/funding_brief.md").write_bytes(rendered)
+          PY
+
+          install -m 0644 /tmp/funding_brief.md "$TARGET_PATH"
+          echo "Complete M31 funding_brief.md installed: PASS"
+
+      - name: Qualify funding controls and preservation boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import os
+          import re
+          import subprocess
+          from pathlib import Path
+
+          raw = Path(os.environ["TARGET_PATH"]).read_bytes()
+          expected = (int(os.environ["TARGET_BYTES"]), os.environ["TARGET_SHA256"])
+          if (len(raw), hashlib.sha256(raw).hexdigest()) != expected:
+              raise SystemExit("funding_brief.md target identity mismatch")
+
+          marker = "# Funding Brief — Fractal Resonance Processor (FRP)\n\n".encode("utf-8")
+          block_end = len(marker) + int(os.environ["BLOCK_BYTES"])
+          current = raw[len(marker):block_end]
+          reconstructed = raw[:len(marker)] + raw[block_end:]
+          source_expected = (int(os.environ["SOURCE_BYTES"]), os.environ["SOURCE_SHA256"])
+          if (len(reconstructed), hashlib.sha256(reconstructed).hexdigest()) != source_expected:
+              raise SystemExit("historical funding_brief.md bytes were not preserved")
+
+          text = raw.decode("utf-8")
+          required = (
+              "## Current Funding and Engineering Brief — FRP v3.3.0 / M31",
+              "-1/0/1",
+              "60 / 60 PASS",
+              "## Current Technical Baseline",
+              "## Current Validated Asset Classes",
+              "## Funding Objective",
+              "### Work Package 1 — M31 SystemVerilog Realization and Qualification",
+              "### Work Package 4 — Trace Observatory Integration",
+              "FRP remains the authoritative producer",
+              "## Evidence and History Protection",
+              "## Preserved Funding Brief Through M16",
+          )
+          missing = [value for value in required if value not in text]
+          if missing:
+              raise SystemExit(f"funding_brief.md records missing: {missing}")
+          if "-1/0/" + chr(43) + "1" in text:
+              raise SystemExit("forbidden ternary notation present")
+
+          links = re.findall(r"\]\(([^)]+)\)", current.decode("utf-8"))
+          if len(links) != 34 or len(set(links)) != 34:
+              raise SystemExit("funding link registry count mismatch")
+          missing_links = []
+          for value in sorted(set(links)):
+              target = Path(value.rstrip("/"))
+              valid = target.is_dir() if value.endswith("/") else target.is_file()
+              if not valid:
+                  missing_links.append(value)
+          if missing_links:
+              raise SystemExit(f"funding_brief.md link targets missing: {missing_links}")
+
+          changed = subprocess.check_output(["git", "diff", "--name-only"]).decode().splitlines()
+          if changed not in ([os.environ["TARGET_PATH"]], []):
+              raise SystemExit(f"unexpected worktree changes: {changed}")
+          print("funding_brief.md M31 controls and historical preservation: PASS")
+          PY
+
+          tree_inventory() {
+            find "$1" -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          historical_inventory() {
+            find . -maxdepth 1 -type f '(' -name 'RELEASE_NOTES_v*.md' -o -name 'TEST_REPORT_v*.md' -o -name 'FRP_VALIDATION_INDEX_v*.md' -o -name 'RELEASE_CHECKLIST_v*.md' ')' -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+          }
+          tree_inventory artifacts > /tmp/m31d18-artifacts.after
+          tree_inventory benchmarks > /tmp/m31d18-benchmarks.after
+          tree_inventory schemas > /tmp/m31d18-schemas.after
+          historical_inventory > /tmp/m31d18-history.after
+          cmp --silent /tmp/m31d18-artifacts.before /tmp/m31d18-artifacts.after
+          cmp --silent /tmp/m31d18-benchmarks.before /tmp/m31d18-benchmarks.after
+          cmp --silent /tmp/m31d18-schemas.before /tmp/m31d18-schemas.after
+          cmp --silent /tmp/m31d18-history.before /tmp/m31d18-history.after
+          echo "Evidence, benchmark, schema, and release histories: BYTE-IDENTICAL"
+
+      - name: Commit and publish funding_brief.md
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$TARGET_PATH"
+          if git diff --cached --quiet; then
+            test -z "$(git status --porcelain)"
+            echo "Complete M31 funding_brief.md is already published."
+            exit 0
+          fi
+          test "$(git diff --cached --name-only)" = "$TARGET_PATH"
+          git commit -m "Align funding_brief.md with FRP v3.3.0 M31"
+          git push origin HEAD:main
+
+      - name: Verify published state
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "$(git status --porcelain)"
+          test "$(wc -c < "$TARGET_PATH")" -eq "$TARGET_BYTES"
+          test "$(wc -l < "$TARGET_PATH")" -eq "$TARGET_LINES"
+          test "$(sha256sum "$TARGET_PATH" | cut -d' ' -f1)" = "$TARGET_SHA256"
+          {
+            echo "## FRP M31D18 Funding Brief v3.3.0"
+            echo
+            echo "- Updated file: funding_brief.md"
+            echo "- Current funding boundary: FRP v3.3.0 / M31"
+            echo "- M31 focused tests: 60 / 60 PASS"
+            echo "- Existing funding brief: byte-identical"
+            echo "- Protected histories: byte-identical"
+            echo "- Result: PASS"
+          } >> "$GITHUB_STEP_SUMMARY"
