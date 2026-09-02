@@ -1,5 +1,230 @@
 # Funding Brief — Fractal Resonance Processor (FRP)
 
+## Current Funding and Engineering Brief — FRP v3.3.0 / M31
+
+This section defines the current funding-facing technical boundary for the Fractal Resonance Processor. The complete funding brief through M16, including its version-specific engineering scopes and archival DOI record, remains preserved below this section.
+
+| Control field | Current value |
+|---|---|
+| Repository release | FRP v3.3.0 |
+| Current milestone | M31 |
+| Qualification state | PASS |
+| Balanced ternary domain | `-1/0/1` |
+| Neutral-state role | active mediation, routing, retention, and controlled transition staging |
+| Focused M31 qualification | 60 / 60 PASS |
+| Current validation index | [FRP_VALIDATION_INDEX_v3_3_0.md](FRP_VALIDATION_INDEX_v3_3_0.md) |
+| Current release notes | [RELEASE_NOTES_v3_3_0.md](RELEASE_NOTES_v3_3_0.md) |
+| Current test report | [TEST_REPORT_v3_3_0.md](TEST_REPORT_v3_3_0.md) |
+
+## Current Technical Baseline
+
+The current public repository records a connected processor, implementation, evidence, benchmark, and release history through M31. The active M31 boundary adds executable phase-interference and active-zero thermal evidence to the preserved earlier semantic, fixed-point, SystemVerilog, FPGA-preparation, interface, archival, and qualification layers.
+
+The current M31 publication set consists of:
+
+- executable source: [frp_m31_phase_interference_thermal_evidence.py](frp_m31_phase_interference_thermal_evidence.py);
+- focused qualification: [tests/test_frp_m31_phase_interference_thermal_evidence.py](tests/test_frp_m31_phase_interference_thermal_evidence.py);
+- validation schema: [schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json](schemas/m31/frp.m31.phase_interference_active_zero_thermal_evidence.v1.schema.json);
+- evidence record: [artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json](artifacts/m31/evidence/m31-phase-interference-active-zero-thermal-evidence.json);
+- manifest: [artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json](artifacts/m31/manifests/m31-phase-interference-active-zero-thermal-evidence-manifest.json);
+- qualification record: [artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json](artifacts/m31/qualification/m31-phase-interference-active-zero-thermal-evidence-qualification.json);
+- completion workflow: [.github/workflows/frp-m31-complete.yml](.github/workflows/frp-m31-complete.yml).
+
+The current documentation and review surface is recorded in [README.md](README.md), [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md), [MILESTONES.md](MILESTONES.md), [CI.md](CI.md), and [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
+
+## Current Validated Asset Classes
+
+| Asset class | Current repository record |
+|---|---|
+| Processor semantics | executable Python references, focused tests, structured records, and preserved qualification history |
+| Balanced ternary execution | `-1/0/1`, active state `0`, pending-route state, and tick-separated opposite-polarity transition paths |
+| Phase and coherence execution | phase evolution, resonance selection, phase order, multiscale coherence, retained state, and scheduler-controlled execution |
+| Thermal evidence | M31 phase-interference and active-zero thermal-evidence source, schema, evidence, manifest, and qualification record |
+| Reproducibility | declared dependencies, deterministic commands, schema validation, digests, manifests, and GitHub Actions records |
+| SystemVerilog | versioned RTL, testbench, assertion, interface, reset, CDC, integration, and declared-target contours |
+| FPGA preparation | versioned target-independent integration and execution-gating records |
+| Benchmarks | preserved definitions, structured results, metric domains, workload identities, and qualification records |
+| Release engineering | validation indices, release notes, test reports, archival packages, workflow records, and historical digests |
+| Downstream observability | published FRP contracts consumed through a one-way read-only Observatory boundary |
+
+Versioned SystemVerilog assets are currently recorded under [rtl/m16/](rtl/m16/), [fpga/m16/](fpga/m16/), [rtl/m22/](rtl/m22/), [rtl/m23/](rtl/m23/), and [rtl/m26/](rtl/m26/). Their version-local source, test, interface, simulation, and closure records define the implementation evidence available for engineering review.
+
+## Funding Objective
+
+Funding supports the conversion of the current qualified repository baseline into additional complete engineering, verification, target-integration, measurement, observability, and release contours while preserving correlation with published processor semantics and evidence.
+
+The current funding objective covers:
+
+- complete M31 SystemVerilog realization, testbench, assertion, simulation, and qualification packaging;
+- target-specific FPGA integration, synthesis, placement, routing, timing, and telemetry capture;
+- cycle-exact comparison between executable references, RTL, and selected target execution;
+- physical timing, energy, thermal, and transition-event measurement;
+- independent reproduction and engineering audit of published evidence;
+- ASIC-oriented datapath, storage, clocking, control, interface, and implementation studies;
+- read-only FRP Trace Observatory contract integration and downstream visualization qualification;
+- archival packaging, release metadata, citation metadata, and partner-review documentation.
+
+Each funded contour is represented by explicit source, tests, configuration, generated records, schemas, manifests, qualification evidence, and acceptance criteria.
+
+## Engineering Work Packages
+
+### Work Package 1 — M31 SystemVerilog Realization and Qualification
+
+Deliverables:
+
+- versioned M31 RTL package and interfaces;
+- synthesizable execution modules connected to the M31 semantic boundary;
+- explicit retained-state, pending-route, active-zero, and transition-capacity handling;
+- assertions covering direct opposite-polarity transitions, reserved states, queue conditions, and interface invariants;
+- deterministic testbench stimuli and expected results;
+- simulator command record and complete transcript;
+- source-to-reference comparison record;
+- qualification manifest, test report, closure record, and manual GitHub Actions workflow.
+
+Acceptance is tied to exact source identities, deterministic simulator output, passing assertions, declared test counts, and a green qualification workflow on `main`.
+
+### Work Package 2 — Target-Specific FPGA Integration
+
+Deliverables:
+
+- selected device and development-board record;
+- versioned clock, reset, pin, constraint, and memory-interface mapping;
+- synthesis, placement-and-routing, utilization, and timing reports;
+- target image and reproducible build procedure;
+- telemetry transport and capture configuration;
+- retained-state and transition-event correlation against the qualified reference boundary;
+- target-specific qualification manifest and closure report.
+
+### Work Package 3 — Physical Correlation and Measurement
+
+Deliverables:
+
+- controlled workload and parameter registry;
+- calibrated timing, power, energy, and thermal measurement setup;
+- raw measurement records and processing procedure;
+- binary and ternary comparison records with explicit metric-domain separation;
+- repeatability and uncertainty records;
+- phase, coherence, retained-state, switching-load, and thermal correlation report;
+- independently reviewable evidence package.
+
+### Work Package 4 — Trace Observatory Integration
+
+Deliverables:
+
+- versioned FRP publication contract and schema registry;
+- deterministic downstream intake fixtures;
+- Trace Explorer integration;
+- Ternary Transition Visualizer integration;
+- Artifact Auditor integration;
+- schema, digest, manifest, and qualification checks;
+- downstream test and release package.
+
+FRP remains the authoritative producer. Observatory consumes published artifacts through a one-way read-only boundary and does not alter canonical FRP source, schema, evidence, manifest, qualification, or benchmark records.
+
+### Work Package 5 — Independent Reproduction and Technical Audit
+
+Deliverables:
+
+- clean-environment reproduction record;
+- dependency and toolchain inventory;
+- source and artifact digest verification;
+- focused and repository-level test execution;
+- schema-validation report;
+- benchmark and evidence provenance audit;
+- SystemVerilog and FPGA contour review;
+- discrepancy register and traceable resolution records.
+
+### Work Package 6 — ASIC-Oriented Engineering Study
+
+Deliverables:
+
+- datapath and state-storage partitioning;
+- fixed-point and lookup implementation analysis;
+- phase-coupling, coherence, thermal, and retained-state mapping;
+- scheduler, request-lane, pending-route, and capacity-control mapping;
+- clock, reset, CDC, observability, and test architecture;
+- power, performance, area, and implementation-risk study;
+- reference-equivalence and verification plan.
+
+### Work Package 7 — Release and Archival Closure
+
+Deliverables:
+
+- final repository audit;
+- validation index, release notes, test report, and release checklist;
+- deterministic archival package and manifest;
+- GitHub release and tag;
+- archival repository submission and metadata synchronization;
+- citation record and public review package.
+
+Release and citation metadata are finalized after the technical, documentation, and qualification identities are stable.
+
+## Resource Categories
+
+| Resource category | Technical function |
+|---|---|
+| RTL engineering | M31 module realization, interface definition, synthesis discipline, and semantic correlation |
+| Verification engineering | assertions, deterministic tests, simulator execution, coverage, and closure |
+| FPGA engineering | device integration, synthesis, timing, constraints, telemetry, and target qualification |
+| ASIC architecture | datapath, storage, control, clocking, reset, interfaces, test, and implementation study |
+| Numerical implementation | fixed-point mapping, lookup methods, coupling, coherence, thermal, and retained-state execution |
+| Measurement engineering | calibrated timing, power, energy, thermal, and signal capture |
+| Software engineering | executable references, schemas, export tooling, reproducibility, and automated validation |
+| Observatory engineering | read-only intake, trace exploration, transition visualization, and artifact audit |
+| Independent review | clean reproduction, provenance audit, discrepancy analysis, and technical verification |
+| Release engineering | archival packages, manifests, metadata, workflow records, and publication closure |
+| Legal and IP support | licensing, collaboration scope, background-IP records, and partner agreements |
+
+## Partner and Review Interface
+
+Relevant review and collaboration domains include:
+
+- balanced ternary processor architecture and active-zero execution;
+- phase-interference, resonance, coherence, retention, and thermal-evidence analysis;
+- SystemVerilog RTL and assertion-based verification;
+- FPGA and ASIC engineering;
+- physical measurement and laboratory correlation;
+- reproducible scientific software and schema validation;
+- benchmark design and metric-domain audit;
+- downstream trace exploration, visualization, and artifact auditing;
+- archival publication, research infrastructure, and technical due diligence.
+
+Partner review uses repository paths, exact versions, declared workloads, measured quantities, workflow results, manifests, and digests. Proposed deliverables and qualified results remain separately identified throughout review.
+
+The public repository license is defined in [LICENSE](LICENSE). Project-specific funding, engineering, confidentiality, background-IP, jointly developed IP, manufacturing, and publication terms are recorded in the corresponding external agreement.
+
+## Evidence and History Protection
+
+Funding-supported changes preserve all existing evidence, benchmark, schema, RTL, FPGA, workflow, and release histories. New results are added as separately named and versioned records with explicit provenance.
+
+Protected repository classes include:
+
+- [artifacts/](artifacts/);
+- [benchmarks/](benchmarks/);
+- [schemas/](schemas/);
+- versioned [RTL](rtl/) and [FPGA](fpga/) contours;
+- validation indices, release notes, test reports, and release checklists;
+- current governance records in [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), and [SECURITY.md](SECURITY.md).
+
+Acceptance records identify the exact files changed and confirm the byte identity of protected histories outside the funded contour.
+
+## Current Funding Review Package
+
+The current technical review package consists of:
+
+- [USAGE.md](USAGE.md);
+- [INSTALL.md](INSTALL.md);
+- [ROADMAP.md](ROADMAP.md);
+- [CHANGELOG.md](CHANGELOG.md);
+- [NOTICE.md](NOTICE.md);
+- the M31 validation index, release notes, and test report;
+- the M31 executable source, focused tests, schema, evidence, manifest, and qualification record;
+- preserved benchmark, SystemVerilog, FPGA, archival, and release histories.
+
+This package provides the current repository evidence for engineering scope definition, partner review, independent reproduction, funding evaluation, and subsequent statement-of-work preparation.
+
+## Preserved Funding Brief Through M16
+
 **Ternary Fractal Resonant Coherence Processor**
 
 **Ternary Resonant Coherence Processor — Structured Output Prototype**
