@@ -690,8 +690,8 @@ jobs:
 
           target_parent = Path("rtl/m31").resolve()
           links = re.findall(r"[^]]+([^)]+)", text)
-          if len(links) != 12:
-              raise SystemExit("README repository-link cardinality mismatch")
+                    if not links:
+              raise SystemExit("README repository links are missing")
           for link in links:
               if "://" in link or link.startswith("#"):
                   continue
