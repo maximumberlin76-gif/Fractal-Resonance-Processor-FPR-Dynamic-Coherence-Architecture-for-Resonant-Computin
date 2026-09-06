@@ -1,112 +1,60 @@
 cff-version: 1.2.0
-message: "If you use this project, please cite it as described in this file."
-
+message: "If you use the Fractal Resonance Processor, please cite the software using these metadata."
 title: "Fractal Resonance Processor (FRP): Ternary Fractal Resonant Coherence Processor"
-
+abstract: >-
+  Fractal Resonance Processor (FRP) is a Ternary Fractal Resonant Coherence
+  Processor architecture in which computation is organized through retained
+  relative-phase interference, resonant selection, multiscale phase coherence,
+  deterministic scheduling, and balanced ternary retained-state execution in
+  the -1/0/1 domain. State 0 is an active computational state that performs
+  mediation, routing, retention, balancing, and controlled neutralization.
+  Opposite-polarity execution follows -1 to 0 to 1 and 1 to 0 to -1, with
+  target state and executed retained state kept distinct. FRP v3.3.0 publishes
+  the qualified M31 phase-interference, active-zero, and thermal-evidence
+  boundary over the preserved FRP v3.2.0 / M30 archival baseline. The M31
+  publication contains four deterministic canonical outputs: formal schema,
+  evidence record, publication manifest, and qualification record. Its two
+  cycle-exact execution contours contain 100 execution records, 800 cell
+  observations, 702 active-zero observations, five requested direct events
+  that are all prevented and neutral-routed, and zero actual direct
+  opposite-polarity events. The focused M31 qualification records 13 of 13
+  checks and 60 of 60 tests passing. Historical and current thermal and
+  benchmark evidence remain separate measurement contours, the immutable M30
+  archive remains byte-identical, the M15 executable semantic reference and
+  M16 RTL and FPGA implementation anchor remain preserved, and the one-way
+  published-byte boundary to FRP Trace Observatory remains read-only.
 authors:
   - family-names: "Marnov"
     given-names: "Maksym"
     alias: "Alchimist"
     orcid: "https://orcid.org/0009-0000-0832-9597"
-
-version: "v3.2.0"
-
-date-released: "2026-08-25"
-
+    city: "Berlin"
+    country: "DE"
+type: software
+version: "v3.3.0"
+date-released: "2026-09-06"
 doi: "10.5281/zenodo.21183966"
-
 license: "Apache-2.0"
-
 repository-code: "https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor"
-
+url: "https://github.com/maximumberlin76-gif/Fractal-Resonance-Processor-FRP-Ternary-Resonant-Coherence-Processor"
 keywords:
   - "Fractal Resonance Processor"
   - "FRP"
   - "Ternary Fractal Resonant Coherence Processor"
   - "balanced ternary"
   - "ternary computing"
+  - "phase interference"
+  - "resonant selection"
+  - "multiscale phase coherence"
   - "active neutral state"
+  - "active zero"
   - "neutral transition routing"
-  - "phase coherence"
-  - "Kuramoto-Sakaguchi"
-  - "HDL"
+  - "retained-state execution"
+  - "deterministic scheduling"
+  - "cycle-exact execution"
+  - "thermal evidence"
+  - "deterministic provenance"
   - "SystemVerilog"
-  - "Verilator"
   - "RTL"
-  - "RTL core realization"
-  - "execution semantics"
   - "FPGA"
-  - "target-independent FPGA integration"
-  - "FPGA preparation"
-  - "transition capacity"
-  - "retained pending routes"
-  - "invariant qualification"
-  - "silicon interface"
-  - "production readiness"
-  - "tapeout readiness"
-  - "implementation mapping"
-  - "fixed-point hardware shadow"
-  - "cycle-exact reference trace"
-  - "RTL comparison"
-  - "hardware sensitivity analysis"
-  - "comparative architecture benchmark"
-  - "qutrit-oriented resonant computation"
-
-abstract: >-
-  Fractal Resonance Processor (FRP) is a Ternary Fractal Resonant Coherence
-  Processor reference architecture based on the balanced ternary state domain
-  -1, 0, and 1, with active neutral state 0, prohibited direct polarity
-  reversal, tick-separated neutral transition routing, deterministic scheduler
-  modes, phase-coherence dynamics, distributed thermal-state tracking, and
-  structured machine-readable validation outputs. The repository contains the
-  complete published FRP technical specification chain from executable
-  reference behavior through hardware-facing signal mapping, HDL and
-  synthesizable RTL reference layers, assertion and equivalence contracts,
-  FPGA implementation mapping, memory-register interfaces, FPGA-to-silicon
-  migration, silicon interface models, silicon production-readiness manifests,
-  tapeout-readiness checklists, implementation handoff packages, production
-  scaling, nonlinear thermal-delay stabilization, hierarchical phase-coherence
-  and thermal-field correlation, physical implementation correlation,
-  implementation-domain mapping, and qualification closure. FRP v1.7.0
-  established the M15 Implementation Mapping, Domain Interface, and
-  Qualification Closure Package through a stateful quantized hardware shadow
-  model, cycle-exact integer golden traces, deterministic RTL comparison
-  vectors, synthesizable RTL reference-core mapping, SystemVerilog comparison
-  interfaces, assertion-correlation contracts, and exact quantized
-  shadow-to-RTL equivalence qualification. The M15-qualified executable
-  semantic reference remains frp_prototype_v1_7_0.py, and the structured Python
-  schemas remain frp.structured_output.v1.7.0 and
-  frp.m3.benchmark_matrix.v1.7.0. The closed M15 qualification record contains
-  41 of 41 passing checks, 10 of 10 byte-identical deterministic vector files,
-  5 of 5 required semantic correlation matches equal to 1.0, 6 of 6
-  deterministic replay matches equal to 1.0, actual_direct_events equal to 0,
-  reserved_state_events equal to 0, queue_overflow_events equal to 0,
-  fixed_point_topology_sum_exact equal to True, and
-  fixed_point_thermal_sum_exact equal to True. FRP v1.8.0 establishes the M16
-  RTL Core Realization and Execution Semantics Package as an executable
-  ten-file SystemVerilog RTL core and a target-independent FPGA preparation
-  layer. The M16 execution boundary includes scheduler propagation,
-  request-lane arbitration, active-neutral routing, retained pending-route
-  completion, transition-capacity enforcement, retained-state writeback, ten
-  integrated invariant flags, and repository-integrity qualification. The
-  qualified M16 records include the original FRP M16 RTL Artifact Boundary
-  workflow run #82 at source commit a68a2af, the original FRP M16 FPGA
-  Preparation workflow run #1 at repository commit 326b69e, the RTL
-  qualification rerun #84 at repository commit ede53cf, and the FPGA
-  preparation qualification rerun #2 at repository commit ede53cf, all with
-  SUCCESS status. The M16 artifact states are M16 RTL EXECUTION LAYER CLOSED and
-  M16 FPGA PREPARATION LAYER CLOSED. The qualified terminal records include all
-  ten invariant flags equal to 1, actual_direct_events equal to 0,
-  reserved_state_events equal to 0, and queue_overflow_events equal to 0. The
-  repository includes docs/mathematical_foundation.md,
-  docs/physical_foundation.md, a Comparative Architecture Benchmark Suite with
-  a preserved canonical unit-event baseline, and a separate hardware-informed
-  sensitivity layer using common global coefficient scenarios without
-  architecture-specific coefficients or winner assertions. The balanced
-  ternary state domain -1, 0, and 1, active neutral state 0, and resonant phase
-  dynamics define a future research direction for qutrit-oriented resonant
-  computation. FRP v3.2.0 closes M17 through M30 with deterministic
-  publication, schema, artifact, workflow, qualification, digest,
-  release-package, and archival evidence while preserving the M16
-  implementation anchor and the one-way published-byte boundary to FRP
-  Trace Observatory.
+  - "FRP Trace Observatory"
