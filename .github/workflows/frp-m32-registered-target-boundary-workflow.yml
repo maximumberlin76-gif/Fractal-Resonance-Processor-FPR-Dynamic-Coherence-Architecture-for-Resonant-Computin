@@ -1,0 +1,198 @@
+name: FRP M32 Registered Target Boundary
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frp-m32-registered-target-boundary-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  qualify-registered-target-boundary:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PACKAGE_PATH: rtl/m31/frp_m31_pkg.sv
+      MODULE_PATH: rtl/m32/frp_m32_registered_target_boundary.sv
+      TESTBENCH_PATH: rtl/m32/frp_m32_registered_target_boundary_tb.sv
+      PACKAGE_SHA256: 762302f1c7a7f7f40cb029f5ada6a111fc8c3e3f6be9920e9b2401b95e179c94
+      MODULE_SHA256: 9626474b49d32b411e107d7ccc8ee5aa7f42728e9a6f70d634d16d3f2a414c5e
+      TESTBENCH_SHA256: 0824e781f276f325aa86bb9a6a136f1d4da910920b64d15fafe5d7d017e5288a
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out dispatched commit
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Require manual main-branch execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ github.event_name }}" = "workflow_dispatch"
+          test "${{ github.ref }}" = "refs/heads/main"
+          test "${{ github.ref_name }}" = "main"
+          test "$(git rev-parse HEAD)" = "${{ github.sha }}"
+          test -z "$(git status --porcelain)"
+          printf '%s\n' "Manual main-branch boundary: PASS"
+
+      - name: Verify exact source identities
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          check_identity() {
+            local path="$1"
+            local expected_bytes="$2"
+            local expected_digest="$3"
+            local actual_bytes
+            local actual_digest
+
+            test -f "$path"
+            test ! -L "$path"
+            git ls-files --error-unmatch "$path" >/dev/null
+
+            actual_bytes="$(wc -c < "$path")"
+            actual_digest="$(sha256sum "$path" | cut -d' ' -f1)"
+
+            test "$actual_bytes" -eq "$expected_bytes"
+            test "$actual_digest" = "$expected_digest"
+          }
+
+          check_identity "$PACKAGE_PATH" 18531 "$PACKAGE_SHA256"
+          check_identity "$MODULE_PATH" 3947 "$MODULE_SHA256"
+          check_identity "$TESTBENCH_PATH" 6748 "$TESTBENCH_SHA256"
+
+          sha256sum \
+            "$PACKAGE_PATH" \
+            "$MODULE_PATH" \
+            "$TESTBENCH_PATH" \
+            > "${RUNNER_TEMP}/m32-source-identities.sha256"
+
+          grep -Fx '`include "frp_m31_pkg.sv"' "$MODULE_PATH"
+          grep -Fx '`include "frp_m32_registered_target_boundary.sv"' \
+            "$TESTBENCH_PATH"
+          printf '%s\n' "Exact M32 source identities: PASS"
+
+      - name: Install Verilator toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends verilator g++
+          verilator --version \
+            | tee "${RUNNER_TEMP}/m32-toolchain.txt"
+          g++ --version | head -n 1 \
+            | tee -a "${RUNNER_TEMP}/m32-toolchain.txt"
+
+      - name: Lint registered-target boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          verilator \
+            --lint-only \
+            --sv \
+            --timing \
+            --assert \
+            -Wall \
+            -Wno-fatal \
+            --top-module frp_m32_registered_target_boundary \
+            -Irtl/m31 \
+            -Irtl/m32 \
+            "$MODULE_PATH"
+
+          verilator \
+            --lint-only \
+            --sv \
+            --timing \
+            --assert \
+            -Wall \
+            -Wno-fatal \
+            --top-module frp_m32_registered_target_boundary_tb \
+            -Irtl/m31 \
+            -Irtl/m32 \
+            "$TESTBENCH_PATH"
+
+          printf '%s\n' "FRP M32 Verilator lint: PASS"
+
+      - name: Build and execute deterministic testbench
+        shell: bash
+        run: |
+          set -euo pipefail
+          build_dir="$(mktemp -d \
+            "${RUNNER_TEMP}/frp-m32-registered-target.XXXXXX")"
+
+          verilator \
+            --binary \
+            --sv \
+            --timing \
+            --assert \
+            -Wall \
+            -Wno-fatal \
+            -CFLAGS "-std=c++20" \
+            --top-module frp_m32_registered_target_boundary_tb \
+            --Mdir "$build_dir" \
+            -Irtl/m31 \
+            -Irtl/m32 \
+            "$TESTBENCH_PATH"
+
+          executable="${build_dir}/Vfrp_m32_registered_target_boundary_tb"
+          test -x "$executable"
+
+          "$executable" 2>&1 | tee "${RUNNER_TEMP}/m32-run-1.log"
+          "$executable" 2>&1 | tee "${RUNNER_TEMP}/m32-run-2.log"
+
+          cmp "${RUNNER_TEMP}/m32-run-1.log" \
+            "${RUNNER_TEMP}/m32-run-2.log"
+          test "$(grep -Fxc \
+            'FRP_M32_REGISTERED_TARGET_BOUNDARY_TB: PASS' \
+            "${RUNNER_TEMP}/m32-run-1.log")" -eq 1
+
+          sha256sum "${RUNNER_TEMP}/m32-run-1.log" \
+            | tee "${RUNNER_TEMP}/m32-transcript.sha256"
+          printf '%s\n' "FRP M32 deterministic replay: PASS"
+
+      - name: Upload qualification records
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: frp-m32-registered-target-boundary-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/m32-source-identities.sha256
+            ${{ runner.temp }}/m32-toolchain.txt
+            ${{ runner.temp }}/m32-run-1.log
+            ${{ runner.temp }}/m32-run-2.log
+            ${{ runner.temp }}/m32-transcript.sha256
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Verify repository preservation and report
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
+
+          transcript_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-transcript.sha256")"
+          verilator_record="$(verilator --version)"
+
+          {
+            printf '%s\n' "## FRP M32 Registered Target Boundary"
+            printf '%s\n' ""
+            printf '%s\n' "- Commit: \`${{ github.sha }}\`"
+            printf '%s\n' "- Module SHA-256: \`${MODULE_SHA256}\`"
+            printf '%s\n' "- Testbench SHA-256: \`${TESTBENCH_SHA256}\`"
+            printf '%s\n' "- Transcript SHA-256: \`${transcript_digest}\`"
+            printf '%s\n' "- Toolchain: \`${verilator_record}\`"
+            printf '%s\n' "- Deterministic executions: \`2/2\`"
+            printf '%s\n' "- Result: \`PASS\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          printf '%s\n' "Repository preservation: PASS"
