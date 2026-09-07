@@ -1,4 +1,4 @@
-name: FRP M32 Registered Target Boundary
+name: FRP M32 Registered Target Path
 
 on:
   workflow_dispatch:
@@ -7,20 +7,26 @@ permissions:
   contents: read
 
 concurrency:
-  group: frp-m32-registered-target-boundary-${{ github.ref }}
+  group: frp-m32-registered-target-path-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  qualify-registered-target-boundary:
+  qualify-registered-target-path:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     env:
       PACKAGE_PATH: rtl/m31/frp_m31_pkg.sv
-      MODULE_PATH: rtl/m32/frp_m32_registered_target_boundary.sv
-      TESTBENCH_PATH: rtl/m32/frp_m32_registered_target_boundary_tb.sv
+      REQUEST_ADAPTER_PATH: rtl/m31/frp_m31_phase_request_adapter.sv
+      BOUNDARY_MODULE_PATH: rtl/m32/frp_m32_registered_target_boundary.sv
+      BOUNDARY_TESTBENCH_PATH: rtl/m32/frp_m32_registered_target_boundary_tb.sv
+      REQUEST_PATH_MODULE_PATH: rtl/m32/frp_m32_registered_target_request_path.sv
+      REQUEST_PATH_TESTBENCH_PATH: rtl/m32/frp_m32_registered_target_request_path_tb.sv
       PACKAGE_SHA256: 762302f1c7a7f7f40cb029f5ada6a111fc8c3e3f6be9920e9b2401b95e179c94
-      MODULE_SHA256: 9626474b49d32b411e107d7ccc8ee5aa7f42728e9a6f70d634d16d3f2a414c5e
-      TESTBENCH_SHA256: 0824e781f276f325aa86bb9a6a136f1d4da910920b64d15fafe5d7d017e5288a
+      REQUEST_ADAPTER_SHA256: fa78bcfe965270cc74855908aa392989d857575a2097a126539aabb1aab8990d
+      BOUNDARY_MODULE_SHA256: 9626474b49d32b411e107d7ccc8ee5aa7f42728e9a6f70d634d16d3f2a414c5e
+      BOUNDARY_TESTBENCH_SHA256: 0824e781f276f325aa86bb9a6a136f1d4da910920b64d15fafe5d7d017e5288a
+      REQUEST_PATH_MODULE_SHA256: 02250069a68737f055a419cd67bf2d439b3f63b3f6a7a245f40e9bf29d1958eb
+      REQUEST_PATH_TESTBENCH_SHA256: a615d9b3bd456f60b37715433862830a4f3f8170859a2b12415d4b4b071faea5
       LC_ALL: C.UTF-8
       TZ: UTC
 
@@ -67,18 +73,35 @@ jobs:
           }
 
           check_identity "$PACKAGE_PATH" 18531 "$PACKAGE_SHA256"
-          check_identity "$MODULE_PATH" 3947 "$MODULE_SHA256"
-          check_identity "$TESTBENCH_PATH" 6748 "$TESTBENCH_SHA256"
+          check_identity "$REQUEST_ADAPTER_PATH" 2251 \
+            "$REQUEST_ADAPTER_SHA256"
+          check_identity "$BOUNDARY_MODULE_PATH" 3947 \
+            "$BOUNDARY_MODULE_SHA256"
+          check_identity "$BOUNDARY_TESTBENCH_PATH" 6748 \
+            "$BOUNDARY_TESTBENCH_SHA256"
+          check_identity "$REQUEST_PATH_MODULE_PATH" 3244 \
+            "$REQUEST_PATH_MODULE_SHA256"
+          check_identity "$REQUEST_PATH_TESTBENCH_PATH" 12135 \
+            "$REQUEST_PATH_TESTBENCH_SHA256"
 
           sha256sum \
             "$PACKAGE_PATH" \
-            "$MODULE_PATH" \
-            "$TESTBENCH_PATH" \
+            "$REQUEST_ADAPTER_PATH" \
+            "$BOUNDARY_MODULE_PATH" \
+            "$BOUNDARY_TESTBENCH_PATH" \
+            "$REQUEST_PATH_MODULE_PATH" \
+            "$REQUEST_PATH_TESTBENCH_PATH" \
             > "${RUNNER_TEMP}/m32-source-identities.sha256"
 
-          grep -Fx '`include "frp_m31_pkg.sv"' "$MODULE_PATH"
+          grep -Fx '`include "frp_m31_pkg.sv"' "$BOUNDARY_MODULE_PATH"
           grep -Fx '`include "frp_m32_registered_target_boundary.sv"' \
-            "$TESTBENCH_PATH"
+            "$BOUNDARY_TESTBENCH_PATH"
+          grep -Fx '`include "frp_m32_registered_target_boundary.sv"' \
+            "$REQUEST_PATH_MODULE_PATH"
+          grep -Fx '`include "frp_m31_phase_request_adapter.sv"' \
+            "$REQUEST_PATH_MODULE_PATH"
+          grep -Fx '`include "frp_m32_registered_target_request_path.sv"' \
+            "$REQUEST_PATH_TESTBENCH_PATH"
           printf '%s\n' "Exact M32 source identities: PASS"
 
       - name: Install Verilator toolchain
@@ -92,10 +115,11 @@ jobs:
           g++ --version | head -n 1 \
             | tee -a "${RUNNER_TEMP}/m32-toolchain.txt"
 
-      - name: Lint registered-target boundary
+      - name: Lint registered-target boundary and request path
         shell: bash
         run: |
           set -euo pipefail
+
           verilator \
             --lint-only \
             --sv \
@@ -106,7 +130,7 @@ jobs:
             --top-module frp_m32_registered_target_boundary \
             -Irtl/m31 \
             -Irtl/m32 \
-            "$MODULE_PATH"
+            "$BOUNDARY_MODULE_PATH"
 
           verilator \
             --lint-only \
@@ -118,57 +142,110 @@ jobs:
             --top-module frp_m32_registered_target_boundary_tb \
             -Irtl/m31 \
             -Irtl/m32 \
-            "$TESTBENCH_PATH"
-
-          printf '%s\n' "FRP M32 Verilator lint: PASS"
-
-      - name: Build and execute deterministic testbench
-        shell: bash
-        run: |
-          set -euo pipefail
-          build_dir="$(mktemp -d \
-            "${RUNNER_TEMP}/frp-m32-registered-target.XXXXXX")"
+            "$BOUNDARY_TESTBENCH_PATH"
 
           verilator \
-            --binary \
+            --lint-only \
             --sv \
             --timing \
             --assert \
             -Wall \
             -Wno-fatal \
-            -CFLAGS "-std=c++20" \
-            --top-module frp_m32_registered_target_boundary_tb \
-            --Mdir "$build_dir" \
+            --top-module frp_m32_registered_target_request_path \
             -Irtl/m31 \
             -Irtl/m32 \
-            "$TESTBENCH_PATH"
+            "$REQUEST_PATH_MODULE_PATH"
 
-          executable="${build_dir}/Vfrp_m32_registered_target_boundary_tb"
-          test -x "$executable"
+          verilator \
+            --lint-only \
+            --sv \
+            --timing \
+            --assert \
+            -Wall \
+            -Wno-fatal \
+            --top-module frp_m32_registered_target_request_path_tb \
+            -Irtl/m31 \
+            -Irtl/m32 \
+            "$REQUEST_PATH_TESTBENCH_PATH"
 
-          "$executable" 2>&1 | tee "${RUNNER_TEMP}/m32-run-1.log"
-          "$executable" 2>&1 | tee "${RUNNER_TEMP}/m32-run-2.log"
+          printf '%s\n' "FRP M32 Verilator lint: PASS"
 
-          cmp "${RUNNER_TEMP}/m32-run-1.log" \
-            "${RUNNER_TEMP}/m32-run-2.log"
-          test "$(grep -Fxc \
-            'FRP_M32_REGISTERED_TARGET_BOUNDARY_TB: PASS' \
-            "${RUNNER_TEMP}/m32-run-1.log")" -eq 1
+      - name: Build and execute deterministic testbenches
+        shell: bash
+        run: |
+          set -euo pipefail
 
-          sha256sum "${RUNNER_TEMP}/m32-run-1.log" \
-            | tee "${RUNNER_TEMP}/m32-transcript.sha256"
-          printf '%s\n' "FRP M32 deterministic replay: PASS"
+          build_and_replay() {
+            local top_module="$1"
+            local source_path="$2"
+            local pass_record="$3"
+            local record_prefix="$4"
+            local build_dir
+            local executable
+
+            build_dir="$(mktemp -d \
+              "${RUNNER_TEMP}/${record_prefix}.XXXXXX")"
+
+            verilator \
+              --binary \
+              --sv \
+              --timing \
+              --assert \
+              -Wall \
+              -Wno-fatal \
+              -CFLAGS "-std=c++20" \
+              --top-module "$top_module" \
+              --Mdir "$build_dir" \
+              -Irtl/m31 \
+              -Irtl/m32 \
+              "$source_path"
+
+            executable="${build_dir}/V${top_module}"
+            test -x "$executable"
+
+            "$executable" 2>&1 \
+              | tee "${RUNNER_TEMP}/${record_prefix}-run-1.log"
+            "$executable" 2>&1 \
+              | tee "${RUNNER_TEMP}/${record_prefix}-run-2.log"
+
+            cmp \
+              "${RUNNER_TEMP}/${record_prefix}-run-1.log" \
+              "${RUNNER_TEMP}/${record_prefix}-run-2.log"
+            test "$(grep -Fxc \
+              "$pass_record" \
+              "${RUNNER_TEMP}/${record_prefix}-run-1.log")" -eq 1
+
+            sha256sum "${RUNNER_TEMP}/${record_prefix}-run-1.log" \
+              > "${RUNNER_TEMP}/${record_prefix}-transcript.sha256"
+          }
+
+          build_and_replay \
+            frp_m32_registered_target_boundary_tb \
+            "$BOUNDARY_TESTBENCH_PATH" \
+            "FRP_M32_REGISTERED_TARGET_BOUNDARY_TB: PASS" \
+            m32-boundary
+
+          build_and_replay \
+            frp_m32_registered_target_request_path_tb \
+            "$REQUEST_PATH_TESTBENCH_PATH" \
+            "FRP_M32_REGISTERED_TARGET_REQUEST_PATH_TB: PASS" \
+            m32-request-path
+
+          printf '%s\n' "FRP M32 deterministic replays: PASS"
 
       - name: Upload qualification records
         uses: actions/upload-artifact@v4.6.2
         with:
-          name: frp-m32-registered-target-boundary-${{ github.sha }}
+          name: frp-m32-registered-target-path-${{ github.sha }}
           path: |
             ${{ runner.temp }}/m32-source-identities.sha256
             ${{ runner.temp }}/m32-toolchain.txt
-            ${{ runner.temp }}/m32-run-1.log
-            ${{ runner.temp }}/m32-run-2.log
-            ${{ runner.temp }}/m32-transcript.sha256
+            ${{ runner.temp }}/m32-boundary-run-1.log
+            ${{ runner.temp }}/m32-boundary-run-2.log
+            ${{ runner.temp }}/m32-boundary-transcript.sha256
+            ${{ runner.temp }}/m32-request-path-run-1.log
+            ${{ runner.temp }}/m32-request-path-run-2.log
+            ${{ runner.temp }}/m32-request-path-transcript.sha256
           if-no-files-found: error
           retention-days: 90
 
@@ -179,19 +256,33 @@ jobs:
           git diff --exit-code
           test -z "$(git status --porcelain)"
 
-          transcript_digest="$(cut -d' ' -f1 \
-            "${RUNNER_TEMP}/m32-transcript.sha256")"
+          boundary_transcript_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-boundary-transcript.sha256")"
+          request_path_transcript_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-request-path-transcript.sha256")"
           verilator_record="$(verilator --version)"
 
           {
-            printf '%s\n' "## FRP M32 Registered Target Boundary"
+            printf '%s\n' "## FRP M32 Registered Target Path"
             printf '%s\n' ""
             printf '%s\n' "- Commit: \`${{ github.sha }}\`"
-            printf '%s\n' "- Module SHA-256: \`${MODULE_SHA256}\`"
-            printf '%s\n' "- Testbench SHA-256: \`${TESTBENCH_SHA256}\`"
-            printf '%s\n' "- Transcript SHA-256: \`${transcript_digest}\`"
+            printf '%s\n' \
+              "- M31 request adapter SHA-256: \`${REQUEST_ADAPTER_SHA256}\`"
+            printf '%s\n' \
+              "- Boundary module SHA-256: \`${BOUNDARY_MODULE_SHA256}\`"
+            printf '%s\n' \
+              "- Boundary testbench SHA-256: \`${BOUNDARY_TESTBENCH_SHA256}\`"
+            printf '%s\n' \
+              "- Request-path module SHA-256: \`${REQUEST_PATH_MODULE_SHA256}\`"
+            printf '%s\n' \
+              "- Request-path testbench SHA-256: \`${REQUEST_PATH_TESTBENCH_SHA256}\`"
+            printf '%s\n' \
+              "- Boundary transcript SHA-256: \`${boundary_transcript_digest}\`"
+            printf '%s\n' \
+              "- Request-path transcript SHA-256: \`${request_path_transcript_digest}\`"
             printf '%s\n' "- Toolchain: \`${verilator_record}\`"
-            printf '%s\n' "- Deterministic executions: \`2/2\`"
+            printf '%s\n' "- Boundary deterministic executions: \`2/2\`"
+            printf '%s\n' "- Request-path deterministic executions: \`2/2\`"
             printf '%s\n' "- Result: \`PASS\`"
           } >> "$GITHUB_STEP_SUMMARY"
 
