@@ -1,4 +1,4 @@
-name: FRP M32 Registered Target Path
+name: FRP M32 Registered Target Core
 
 on:
   workflow_dispatch:
@@ -7,26 +7,20 @@ permissions:
   contents: read
 
 concurrency:
-  group: frp-m32-registered-target-path-${{ github.ref }}
+  group: frp-m32-registered-target-core-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  qualify-registered-target-path:
+  qualify-registered-target-core:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 25
     env:
-      PACKAGE_PATH: rtl/m31/frp_m31_pkg.sv
-      REQUEST_ADAPTER_PATH: rtl/m31/frp_m31_phase_request_adapter.sv
       BOUNDARY_MODULE_PATH: rtl/m32/frp_m32_registered_target_boundary.sv
       BOUNDARY_TESTBENCH_PATH: rtl/m32/frp_m32_registered_target_boundary_tb.sv
       REQUEST_PATH_MODULE_PATH: rtl/m32/frp_m32_registered_target_request_path.sv
       REQUEST_PATH_TESTBENCH_PATH: rtl/m32/frp_m32_registered_target_request_path_tb.sv
-      PACKAGE_SHA256: 762302f1c7a7f7f40cb029f5ada6a111fc8c3e3f6be9920e9b2401b95e179c94
-      REQUEST_ADAPTER_SHA256: fa78bcfe965270cc74855908aa392989d857575a2097a126539aabb1aab8990d
-      BOUNDARY_MODULE_SHA256: 9626474b49d32b411e107d7ccc8ee5aa7f42728e9a6f70d634d16d3f2a414c5e
-      BOUNDARY_TESTBENCH_SHA256: 0824e781f276f325aa86bb9a6a136f1d4da910920b64d15fafe5d7d017e5288a
-      REQUEST_PATH_MODULE_SHA256: 02250069a68737f055a419cd67bf2d439b3f63b3f6a7a245f40e9bf29d1958eb
-      REQUEST_PATH_TESTBENCH_SHA256: a615d9b3bd456f60b37715433862830a4f3f8170859a2b12415d4b4b071faea5
+      CORE_MODULE_PATH: rtl/m32/frp_m32_core.sv
+      CORE_TESTBENCH_PATH: rtl/m32/frp_m32_core_tb.sv
       LC_ALL: C.UTF-8
       TZ: UTC
 
@@ -54,6 +48,9 @@ jobs:
         run: |
           set -euo pipefail
 
+          identity_record="${RUNNER_TEMP}/m32-source-identities.sha256"
+          : > "$identity_record"
+
           check_identity() {
             local path="$1"
             local expected_bytes="$2"
@@ -70,30 +67,42 @@ jobs:
 
             test "$actual_bytes" -eq "$expected_bytes"
             test "$actual_digest" = "$expected_digest"
+            printf '%s  %s\n' "$actual_digest" "$path" \
+              >> "$identity_record"
           }
 
-          check_identity "$PACKAGE_PATH" 18531 "$PACKAGE_SHA256"
-          check_identity "$REQUEST_ADAPTER_PATH" 2251 \
-            "$REQUEST_ADAPTER_SHA256"
-          check_identity "$BOUNDARY_MODULE_PATH" 3947 \
-            "$BOUNDARY_MODULE_SHA256"
-          check_identity "$BOUNDARY_TESTBENCH_PATH" 6748 \
-            "$BOUNDARY_TESTBENCH_SHA256"
-          check_identity "$REQUEST_PATH_MODULE_PATH" 3244 \
-            "$REQUEST_PATH_MODULE_SHA256"
-          check_identity "$REQUEST_PATH_TESTBENCH_PATH" 12135 \
-            "$REQUEST_PATH_TESTBENCH_SHA256"
+          while IFS='|' read -r path expected_bytes expected_digest; do
+            check_identity "$path" "$expected_bytes" "$expected_digest"
+          done <<'IDENTITIES'
+          rtl/m31/frp_m31_pkg.sv|18531|762302f1c7a7f7f40cb029f5ada6a111fc8c3e3f6be9920e9b2401b95e179c94
+          rtl/m31/frp_m31_fixed_point_pkg.sv|7278|6b2afb8d1583c93d95d2386ba25dd1eaef6bb5bd9a4e1c9e9abff1dd004cbf24
+          rtl/m31/frp_m31_scheduler.sv|10560|fc9de24b41736e5c5a9f9e464318c80adbfda9dc8cc4362c0c55bfed403bf97f
+          rtl/m31/frp_m31_request_lanes.sv|18290|32f75cc70df5dba3f4fbb511397be9a5921236c2afd16cfeb1350eca3f6e8109
+          rtl/m31/frp_m31_pending_routes.sv|17005|18889d85e78b23b844f1db4c46a35a6b7d01e609e3f1f0e6263a39a6c5729411
+          rtl/m31/frp_m31_active_neutral.sv|25909|765429b33df3f843626bdc411ad8371fd963738a58ab10201abef75dcdafcaf0
+          rtl/m31/frp_m31_capacity_guard.sv|20787|d0587897f955ce49923aca807b5d3e0c637383c88e5d5e0dfa8405f47917c123
+          rtl/m31/frp_m31_state_update.sv|18147|ebad1f7ee952a577239445d33d99cae799afaaff5c181c7162514bbcea6eab90
+          rtl/m31/frp_m31_execution_core.sv|33724|e516a5cd378bd2ddecdadc5abb13ddef26c63fafe5bda65b47a6bd859ca66f92
+          rtl/m31/frp_m31_phase_interference.sv|11245|e8ceb80feb0b30db5e28d70bc4d68d51506da4d596b46a73c0137465d1455fe0
+          rtl/m31/frp_m31_phase_request_adapter.sv|2251|fa78bcfe965270cc74855908aa392989d857575a2097a126539aabb1aab8990d
+          rtl/m31/frp_m31_thermal_proxy.sv|1883|34df4ebfc5dfad8e3e5e454e560404585de5c881e6f75abaae367d3bd9fb11bd
+          rtl/m31/frp_m31_stability.sv|2203|69c06833e6dfbb28e25b74a5787dcd03756dddf0f66726de3ea47c1ad2931931
+          rtl/m31/frp_m31_phase_thermal_assertions.sv|3783|fe7b06073e65fc64acf7232038911230db27fe3a5ce000d0e1d421e2f49b1b3b
+          rtl/m31/frp_m31_sin_q30.mem|36864|adbb4b94fcf8fa0bfc981d654679fd7518a5c4c9c97b611a35cd8accaf28233d
+          rtl/m32/frp_m32_registered_target_boundary.sv|3947|9626474b49d32b411e107d7ccc8ee5aa7f42728e9a6f70d634d16d3f2a414c5e
+          rtl/m32/frp_m32_registered_target_boundary_tb.sv|6748|0824e781f276f325aa86bb9a6a136f1d4da910920b64d15fafe5d7d017e5288a
+          rtl/m32/frp_m32_registered_target_request_path.sv|3244|02250069a68737f055a419cd67bf2d439b3f63b3f6a7a245f40e9bf29d1958eb
+          rtl/m32/frp_m32_registered_target_request_path_tb.sv|12135|a615d9b3bd456f60b37715433862830a4f3f8170859a2b12415d4b4b071faea5
+          rtl/m32/frp_m32_core.sv|10564|925342326b7ad555a1382e8ee3bc5754ed3012ba60e0eabf512113731e0ee6c9
+          rtl/m32/frp_m32_core_tb.sv|19348|4a2ac2778192199d02700c324da7d0cfba4a2f83730ea148497099e1a640d800
+          IDENTITIES
 
-          sha256sum \
-            "$PACKAGE_PATH" \
-            "$REQUEST_ADAPTER_PATH" \
-            "$BOUNDARY_MODULE_PATH" \
-            "$BOUNDARY_TESTBENCH_PATH" \
-            "$REQUEST_PATH_MODULE_PATH" \
-            "$REQUEST_PATH_TESTBENCH_PATH" \
-            > "${RUNNER_TEMP}/m32-source-identities.sha256"
+          test "$(wc -l < "$identity_record")" -eq 21
+          sha256sum "$identity_record" \
+            > "${RUNNER_TEMP}/m32-source-identities-manifest.sha256"
 
-          grep -Fx '`include "frp_m31_pkg.sv"' "$BOUNDARY_MODULE_PATH"
+          grep -Fx '`include "frp_m31_pkg.sv"' \
+            "$BOUNDARY_MODULE_PATH"
           grep -Fx '`include "frp_m32_registered_target_boundary.sv"' \
             "$BOUNDARY_TESTBENCH_PATH"
           grep -Fx '`include "frp_m32_registered_target_boundary.sv"' \
@@ -102,7 +111,30 @@ jobs:
             "$REQUEST_PATH_MODULE_PATH"
           grep -Fx '`include "frp_m32_registered_target_request_path.sv"' \
             "$REQUEST_PATH_TESTBENCH_PATH"
-          printf '%s\n' "Exact M32 source identities: PASS"
+          grep -Fx '`include "frp_m31_execution_core.sv"' \
+            "$CORE_MODULE_PATH"
+          grep -Fx '`include "frp_m31_phase_interference.sv"' \
+            "$CORE_MODULE_PATH"
+          grep -Fx '`include "frp_m32_registered_target_request_path.sv"' \
+            "$CORE_MODULE_PATH"
+          grep -Fx '`include "frp_m31_thermal_proxy.sv"' \
+            "$CORE_MODULE_PATH"
+          grep -Fx '`include "frp_m31_stability.sv"' \
+            "$CORE_MODULE_PATH"
+          grep -Fx '`include "frp_m32_core.sv"' \
+            "$CORE_TESTBENCH_PATH"
+          grep -Fx '`include "frp_m31_phase_thermal_assertions.sv"' \
+            "$CORE_TESTBENCH_PATH"
+
+          grep -Fq 'execution_target_bank = registered_target_q;' \
+            "$CORE_MODULE_PATH"
+          grep -Fq '.target_q(execution_target_bank),' \
+            "$CORE_MODULE_PATH"
+          grep -Fq \
+            'FRP_M32_INTEGRATED_REGISTERED_TARGET_CORE_TB: PASS' \
+            "$CORE_TESTBENCH_PATH"
+
+          printf '%s\n' "Exact M31/M32 source identities: PASS"
 
       - name: Install Verilator toolchain
         shell: bash
@@ -115,58 +147,46 @@ jobs:
           g++ --version | head -n 1 \
             | tee -a "${RUNNER_TEMP}/m32-toolchain.txt"
 
-      - name: Lint registered-target boundary and request path
+      - name: Lint registered-target boundary, request path, and core
         shell: bash
         run: |
           set -euo pipefail
 
-          verilator \
-            --lint-only \
-            --sv \
-            --timing \
-            --assert \
-            -Wall \
-            -Wno-fatal \
-            --top-module frp_m32_registered_target_boundary \
-            -Irtl/m31 \
-            -Irtl/m32 \
+          lint_top() {
+            local top_module="$1"
+            local source_path="$2"
+
+            verilator \
+              --lint-only \
+              --sv \
+              --timing \
+              --assert \
+              -Wall \
+              -Wno-fatal \
+              --top-module "$top_module" \
+              -Irtl/m31 \
+              -Irtl/m32 \
+              "$source_path"
+          }
+
+          lint_top \
+            frp_m32_registered_target_boundary \
             "$BOUNDARY_MODULE_PATH"
-
-          verilator \
-            --lint-only \
-            --sv \
-            --timing \
-            --assert \
-            -Wall \
-            -Wno-fatal \
-            --top-module frp_m32_registered_target_boundary_tb \
-            -Irtl/m31 \
-            -Irtl/m32 \
+          lint_top \
+            frp_m32_registered_target_boundary_tb \
             "$BOUNDARY_TESTBENCH_PATH"
-
-          verilator \
-            --lint-only \
-            --sv \
-            --timing \
-            --assert \
-            -Wall \
-            -Wno-fatal \
-            --top-module frp_m32_registered_target_request_path \
-            -Irtl/m31 \
-            -Irtl/m32 \
+          lint_top \
+            frp_m32_registered_target_request_path \
             "$REQUEST_PATH_MODULE_PATH"
-
-          verilator \
-            --lint-only \
-            --sv \
-            --timing \
-            --assert \
-            -Wall \
-            -Wno-fatal \
-            --top-module frp_m32_registered_target_request_path_tb \
-            -Irtl/m31 \
-            -Irtl/m32 \
+          lint_top \
+            frp_m32_registered_target_request_path_tb \
             "$REQUEST_PATH_TESTBENCH_PATH"
+          lint_top \
+            frp_m32_core \
+            "$CORE_MODULE_PATH"
+          lint_top \
+            frp_m32_core_tb \
+            "$CORE_TESTBENCH_PATH"
 
           printf '%s\n' "FRP M32 Verilator lint: PASS"
 
@@ -231,14 +251,21 @@ jobs:
             "FRP_M32_REGISTERED_TARGET_REQUEST_PATH_TB: PASS" \
             m32-request-path
 
+          build_and_replay \
+            frp_m32_core_tb \
+            "$CORE_TESTBENCH_PATH" \
+            "FRP_M32_INTEGRATED_REGISTERED_TARGET_CORE_TB: PASS" \
+            m32-core
+
           printf '%s\n' "FRP M32 deterministic replays: PASS"
 
       - name: Upload qualification records
         uses: actions/upload-artifact@v4.6.2
         with:
-          name: frp-m32-registered-target-path-${{ github.sha }}
+          name: frp-m32-registered-target-core-${{ github.sha }}
           path: |
             ${{ runner.temp }}/m32-source-identities.sha256
+            ${{ runner.temp }}/m32-source-identities-manifest.sha256
             ${{ runner.temp }}/m32-toolchain.txt
             ${{ runner.temp }}/m32-boundary-run-1.log
             ${{ runner.temp }}/m32-boundary-run-2.log
@@ -246,6 +273,9 @@ jobs:
             ${{ runner.temp }}/m32-request-path-run-1.log
             ${{ runner.temp }}/m32-request-path-run-2.log
             ${{ runner.temp }}/m32-request-path-transcript.sha256
+            ${{ runner.temp }}/m32-core-run-1.log
+            ${{ runner.temp }}/m32-core-run-2.log
+            ${{ runner.temp }}/m32-core-transcript.sha256
           if-no-files-found: error
           retention-days: 90
 
@@ -256,33 +286,62 @@ jobs:
           git diff --exit-code
           test -z "$(git status --porcelain)"
 
+          source_manifest_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-source-identities-manifest.sha256")"
+          boundary_module_digest="$(sha256sum "$BOUNDARY_MODULE_PATH" \
+            | cut -d' ' -f1)"
+          boundary_testbench_digest="$(sha256sum "$BOUNDARY_TESTBENCH_PATH" \
+            | cut -d' ' -f1)"
+          request_path_module_digest="$(sha256sum "$REQUEST_PATH_MODULE_PATH" \
+            | cut -d' ' -f1)"
+          request_path_testbench_digest="$( \
+            sha256sum "$REQUEST_PATH_TESTBENCH_PATH" | cut -d' ' -f1
+          )"
+          core_module_digest="$(sha256sum "$CORE_MODULE_PATH" \
+            | cut -d' ' -f1)"
+          core_testbench_digest="$(sha256sum "$CORE_TESTBENCH_PATH" \
+            | cut -d' ' -f1)"
           boundary_transcript_digest="$(cut -d' ' -f1 \
             "${RUNNER_TEMP}/m32-boundary-transcript.sha256")"
           request_path_transcript_digest="$(cut -d' ' -f1 \
             "${RUNNER_TEMP}/m32-request-path-transcript.sha256")"
+          core_transcript_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-core-transcript.sha256")"
           verilator_record="$(verilator --version)"
 
           {
-            printf '%s\n' "## FRP M32 Registered Target Path"
+            printf '%s\n' "## FRP M32 Registered Target Core"
             printf '%s\n' ""
             printf '%s\n' "- Commit: \`${{ github.sha }}\`"
             printf '%s\n' \
-              "- M31 request adapter SHA-256: \`${REQUEST_ADAPTER_SHA256}\`"
+              "- Source identity count: \`21\`"
             printf '%s\n' \
-              "- Boundary module SHA-256: \`${BOUNDARY_MODULE_SHA256}\`"
+              "- Source manifest SHA-256: \`${source_manifest_digest}\`"
             printf '%s\n' \
-              "- Boundary testbench SHA-256: \`${BOUNDARY_TESTBENCH_SHA256}\`"
+              "- Boundary module SHA-256: \`${boundary_module_digest}\`"
             printf '%s\n' \
-              "- Request-path module SHA-256: \`${REQUEST_PATH_MODULE_SHA256}\`"
+              "- Boundary testbench SHA-256: \`${boundary_testbench_digest}\`"
             printf '%s\n' \
-              "- Request-path testbench SHA-256: \`${REQUEST_PATH_TESTBENCH_SHA256}\`"
+              "- Request-path module SHA-256: \`${request_path_module_digest}\`"
+            printf '%s\n' \
+              "- Request-path testbench SHA-256: \`${request_path_testbench_digest}\`"
+            printf '%s\n' \
+              "- Core module SHA-256: \`${core_module_digest}\`"
+            printf '%s\n' \
+              "- Core testbench SHA-256: \`${core_testbench_digest}\`"
             printf '%s\n' \
               "- Boundary transcript SHA-256: \`${boundary_transcript_digest}\`"
             printf '%s\n' \
               "- Request-path transcript SHA-256: \`${request_path_transcript_digest}\`"
+            printf '%s\n' \
+              "- Core transcript SHA-256: \`${core_transcript_digest}\`"
             printf '%s\n' "- Toolchain: \`${verilator_record}\`"
-            printf '%s\n' "- Boundary deterministic executions: \`2/2\`"
-            printf '%s\n' "- Request-path deterministic executions: \`2/2\`"
+            printf '%s\n' \
+              "- Boundary deterministic executions: \`2/2\`"
+            printf '%s\n' \
+              "- Request-path deterministic executions: \`2/2\`"
+            printf '%s\n' \
+              "- Core deterministic executions: \`2/2\`"
             printf '%s\n' "- Result: \`PASS\`"
           } >> "$GITHUB_STEP_SUMMARY"
 
