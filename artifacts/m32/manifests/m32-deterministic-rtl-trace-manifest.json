@@ -1,0 +1,202 @@
+{
+  "generated_file_count": 2,
+  "generated_files": [
+    {
+      "byte_count": 34066,
+      "path": "schemas/m32/frp.m32.deterministic_rtl_trace_bundle.v1.schema.json",
+      "raw_sha256": "534db8227218184cac5d1cabb461dd63b1b61a99e0269c98535539ad3f7d7da2"
+    },
+    {
+      "byte_count": 412195,
+      "path": "artifacts/m32/exports/m32-deterministic-rtl-trace-bundle.json",
+      "raw_sha256": "62d8c1e6d205b9262a5c950883d3259275d5049f7a896ae12956a210cb75b7e0"
+    }
+  ],
+  "kind": "deterministic_rtl_trace_manifest",
+  "manifest_digest_scope": "canonical_json_without_manifest_sha256",
+  "manifest_sha256": "a9dd7d470fd094cb1dbb6fa360f6c28bf50d4aae4bf2f1ba34ad223655968c2e",
+  "milestone": "M32",
+  "schema": "frp.m32.deterministic_rtl_trace_manifest.v1",
+  "source_commit": "c0bc0fbc2c1c2e500b19d0ba84b3431a813e3941",
+  "source_identities": [
+    {
+      "byte_count": 18531,
+      "path": "rtl/m31/frp_m31_pkg.sv",
+      "raw_sha256": "762302f1c7a7f7f40cb029f5ada6a111fc8c3e3f6be9920e9b2401b95e179c94"
+    },
+    {
+      "byte_count": 7278,
+      "path": "rtl/m31/frp_m31_fixed_point_pkg.sv",
+      "raw_sha256": "6b2afb8d1583c93d95d2386ba25dd1eaef6bb5bd9a4e1c9e9abff1dd004cbf24"
+    },
+    {
+      "byte_count": 10560,
+      "path": "rtl/m31/frp_m31_scheduler.sv",
+      "raw_sha256": "fc9de24b41736e5c5a9f9e464318c80adbfda9dc8cc4362c0c55bfed403bf97f"
+    },
+    {
+      "byte_count": 18290,
+      "path": "rtl/m31/frp_m31_request_lanes.sv",
+      "raw_sha256": "32f75cc70df5dba3f4fbb511397be9a5921236c2afd16cfeb1350eca3f6e8109"
+    },
+    {
+      "byte_count": 17005,
+      "path": "rtl/m31/frp_m31_pending_routes.sv",
+      "raw_sha256": "18889d85e78b23b844f1db4c46a35a6b7d01e609e3f1f0e6263a39a6c5729411"
+    },
+    {
+      "byte_count": 25909,
+      "path": "rtl/m31/frp_m31_active_neutral.sv",
+      "raw_sha256": "765429b33df3f843626bdc411ad8371fd963738a58ab10201abef75dcdafcaf0"
+    },
+    {
+      "byte_count": 20787,
+      "path": "rtl/m31/frp_m31_capacity_guard.sv",
+      "raw_sha256": "d0587897f955ce49923aca807b5d3e0c637383c88e5d5e0dfa8405f47917c123"
+    },
+    {
+      "byte_count": 18147,
+      "path": "rtl/m31/frp_m31_state_update.sv",
+      "raw_sha256": "ebad1f7ee952a577239445d33d99cae799afaaff5c181c7162514bbcea6eab90"
+    },
+    {
+      "byte_count": 33724,
+      "path": "rtl/m31/frp_m31_execution_core.sv",
+      "raw_sha256": "e516a5cd378bd2ddecdadc5abb13ddef26c63fafe5bda65b47a6bd859ca66f92"
+    },
+    {
+      "byte_count": 11245,
+      "path": "rtl/m31/frp_m31_phase_interference.sv",
+      "raw_sha256": "e8ceb80feb0b30db5e28d70bc4d68d51506da4d596b46a73c0137465d1455fe0"
+    },
+    {
+      "byte_count": 2251,
+      "path": "rtl/m31/frp_m31_phase_request_adapter.sv",
+      "raw_sha256": "fa78bcfe965270cc74855908aa392989d857575a2097a126539aabb1aab8990d"
+    },
+    {
+      "byte_count": 1883,
+      "path": "rtl/m31/frp_m31_thermal_proxy.sv",
+      "raw_sha256": "34df4ebfc5dfad8e3e5e454e560404585de5c881e6f75abaae367d3bd9fb11bd"
+    },
+    {
+      "byte_count": 2203,
+      "path": "rtl/m31/frp_m31_stability.sv",
+      "raw_sha256": "69c06833e6dfbb28e25b74a5787dcd03756dddf0f66726de3ea47c1ad2931931"
+    },
+    {
+      "byte_count": 24366,
+      "path": "rtl/m31/frp_m31_assertions.sv",
+      "raw_sha256": "16a6abea57d2161a58ad5660c62f86cf057e65dbb1d9ae76e355e912a378077b"
+    },
+    {
+      "byte_count": 3783,
+      "path": "rtl/m31/frp_m31_phase_thermal_assertions.sv",
+      "raw_sha256": "fe7b06073e65fc64acf7232038911230db27fe3a5ce000d0e1d421e2f49b1b3b"
+    },
+    {
+      "byte_count": 36864,
+      "path": "rtl/m31/frp_m31_sin_q30.mem",
+      "raw_sha256": "adbb4b94fcf8fa0bfc981d654679fd7518a5c4c9c97b611a35cd8accaf28233d"
+    },
+    {
+      "byte_count": 3947,
+      "path": "rtl/m32/frp_m32_registered_target_boundary.sv",
+      "raw_sha256": "9626474b49d32b411e107d7ccc8ee5aa7f42728e9a6f70d634d16d3f2a414c5e"
+    },
+    {
+      "byte_count": 6748,
+      "path": "rtl/m32/frp_m32_registered_target_boundary_tb.sv",
+      "raw_sha256": "0824e781f276f325aa86bb9a6a136f1d4da910920b64d15fafe5d7d017e5288a"
+    },
+    {
+      "byte_count": 3244,
+      "path": "rtl/m32/frp_m32_registered_target_request_path.sv",
+      "raw_sha256": "02250069a68737f055a419cd67bf2d439b3f63b3f6a7a245f40e9bf29d1958eb"
+    },
+    {
+      "byte_count": 12135,
+      "path": "rtl/m32/frp_m32_registered_target_request_path_tb.sv",
+      "raw_sha256": "a615d9b3bd456f60b37715433862830a4f3f8170859a2b12415d4b4b071faea5"
+    },
+    {
+      "byte_count": 10564,
+      "path": "rtl/m32/frp_m32_core.sv",
+      "raw_sha256": "925342326b7ad555a1382e8ee3bc5754ed3012ba60e0eabf512113731e0ee6c9"
+    },
+    {
+      "byte_count": 19348,
+      "path": "rtl/m32/frp_m32_core_tb.sv",
+      "raw_sha256": "4a2ac2778192199d02700c324da7d0cfba4a2f83730ea148497099e1a640d800"
+    },
+    {
+      "byte_count": 22207,
+      "path": "rtl/m32/frp_m32_mode_7_1_tb.sv",
+      "raw_sha256": "7a6d610435bbd3f11441cb518bb64ab05b3748f5bb866092b1a734eab99c08f8"
+    },
+    {
+      "byte_count": 22388,
+      "path": "rtl/m32/frp_m32_mode_1_7_tb.sv",
+      "raw_sha256": "3dcd66dbd8edc6989294298adb14d4e3b314e0af62512b5a1398b789cb510b97"
+    },
+    {
+      "byte_count": 13827,
+      "path": "rtl/m32/frp_m32_trace_monitor.sv",
+      "raw_sha256": "556dd0759d91188b1947ae3abf61a0606cec238b67ff268f243eab370b01fc7c"
+    },
+    {
+      "byte_count": 13136,
+      "path": "rtl/m32/frp_m32_mode_7_1_trace_tb.sv",
+      "raw_sha256": "4d02db27a3ae080c7c2a029e27d1b2c66bdbd2ad35c64ad3e020792c0bb841ca"
+    },
+    {
+      "byte_count": 13136,
+      "path": "rtl/m32/frp_m32_mode_1_7_trace_tb.sv",
+      "raw_sha256": "bfb4b58f95f09e2fcbb81df3fae1c452a2e83111da7a9076dfaaefd2d76ab6cb"
+    },
+    {
+      "byte_count": 7698,
+      "path": "formal/m32/frp_m32_registered_target_boundary_formal.sv",
+      "raw_sha256": "b4880df9c8ca6a3f220a26d4937c14b63e3b97277cdff16ce50de725c7f840d2"
+    },
+    {
+      "byte_count": 41712,
+      "path": ".github/workflows/frp-m32-registered-target-boundary-workflow.yml",
+      "raw_sha256": "c0e3a9d134201d1d4d855f43d5740138155291d2074663207456841a08470afe"
+    }
+  ],
+  "source_identity_count": 29,
+  "status": "PASS",
+  "transcript_identities": [
+    {
+      "artifact_member_path": "m32-mode-7-1-full-trace-run-1.log",
+      "byte_count": 105702,
+      "raw_sha256": "9517a02cd1ce2c687365f3712a453a9370e505ee4267e151fd05b266977ce915",
+      "replay": 1,
+      "scheduler_mode": "7/1"
+    },
+    {
+      "artifact_member_path": "m32-mode-7-1-full-trace-run-2.log",
+      "byte_count": 105702,
+      "raw_sha256": "9517a02cd1ce2c687365f3712a453a9370e505ee4267e151fd05b266977ce915",
+      "replay": 2,
+      "scheduler_mode": "7/1"
+    },
+    {
+      "artifact_member_path": "m32-mode-1-7-full-trace-run-1.log",
+      "byte_count": 112364,
+      "raw_sha256": "41de8e92c28f150f8d163fc1438b4d4381fa42d76a970f9246bbda4679491d89",
+      "replay": 1,
+      "scheduler_mode": "1/7"
+    },
+    {
+      "artifact_member_path": "m32-mode-1-7-full-trace-run-2.log",
+      "byte_count": 112364,
+      "raw_sha256": "41de8e92c28f150f8d163fc1438b4d4381fa42d76a970f9246bbda4679491d89",
+      "replay": 2,
+      "scheduler_mode": "1/7"
+    }
+  ],
+  "transcript_identity_count": 4,
+  "version": "1.0.0"
+}
