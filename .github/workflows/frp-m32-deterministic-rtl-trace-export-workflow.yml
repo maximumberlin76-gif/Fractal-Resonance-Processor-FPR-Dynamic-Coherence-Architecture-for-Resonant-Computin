@@ -1,0 +1,493 @@
+name: FRP M32 Deterministic RTL Trace Export
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frp-m32-deterministic-rtl-trace-export-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  qualify-deterministic-rtl-trace-export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      TRACE_EXPORTER_PATH: frp_m32_deterministic_rtl_trace_export.py
+      TRACE_EXPORT_TEST_PATH: tests/test_frp_m32_deterministic_rtl_trace_export.py
+      MODE_7_1_TRACE_TESTBENCH_PATH: rtl/m32/frp_m32_mode_7_1_trace_tb.sv
+      MODE_1_7_TRACE_TESTBENCH_PATH: rtl/m32/frp_m32_mode_1_7_trace_tb.sv
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONHASHSEED: "0"
+      LC_ALL: C.UTF-8
+      TZ: UTC
+
+    steps:
+      - name: Check out dispatched commit
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Require manual main-branch execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ github.event_name }}" = "workflow_dispatch"
+          test "${{ github.ref }}" = "refs/heads/main"
+          test "${{ github.ref_name }}" = "main"
+          test "$(git rev-parse HEAD)" = "${{ github.sha }}"
+          test -z "$(git status --porcelain)"
+          printf '%s\n' "Manual main-branch boundary: PASS"
+
+      - name: Verify exporter and source identities
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          identity_record="${RUNNER_TEMP}/m32-trace-export-source-identities.sha256"
+          : > "$identity_record"
+
+          check_identity() {
+            local path="$1"
+            local expected_bytes="$2"
+            local expected_digest="$3"
+            local actual_bytes
+            local actual_digest
+
+            test -f "$path"
+            test ! -L "$path"
+            git ls-files --error-unmatch "$path" >/dev/null
+            actual_bytes="$(wc -c < "$path")"
+            actual_digest="$(sha256sum "$path" | cut -d' ' -f1)"
+            test "$actual_bytes" -eq "$expected_bytes"
+            test "$actual_digest" = "$expected_digest"
+            printf '%s  %s\n' "$actual_digest" "$path" \
+              >> "$identity_record"
+          }
+
+          check_identity \
+            "$TRACE_EXPORTER_PATH" \
+            64267 \
+            1a575482d0c62f977afc72f25c8d8eacb0daa35981f39cb64b7f85069e5c43cd
+          check_identity \
+            "$TRACE_EXPORT_TEST_PATH" \
+            30889 \
+            e2b53c9973219b02c0fce2eda835bef87de0d8681ab61af89ef621fbafdfe774
+
+          test "$(wc -l < "$identity_record")" -eq 2
+          sha256sum "$identity_record" \
+            > "${RUNNER_TEMP}/m32-trace-export-source-identities-manifest.sha256"
+
+          python - <<'PY' \
+            | tee "${RUNNER_TEMP}/m32-rtl-source-identity-validation.json"
+          import json
+          from pathlib import Path
+
+          import frp_m32_deterministic_rtl_trace_export as m32
+
+          records = m32.validate_source_identities(Path(".").resolve())
+          if len(records) != 29:
+              raise SystemExit("unexpected M32 RTL source identity count")
+          print(json.dumps({
+              "source_commit": m32.SOURCE_COMMIT,
+              "source_identity_count": len(records),
+              "source_identities": records,
+              "status": "PASS",
+          }, indent=2, sort_keys=True))
+          PY
+
+          printf '%s\n' "Exporter and RTL source identities: PASS"
+
+      - name: Install exact execution dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends g++ verilator
+          python -m pip install \
+            --disable-pip-version-check \
+            jsonschema==4.25.1
+
+          {
+            verilator --version
+            g++ --version | head -n 1
+            python --version
+            python - <<'PY'
+          from importlib.metadata import version
+
+          print(f"jsonschema {version('jsonschema')}")
+          PY
+          } 2>&1 | tee "${RUNNER_TEMP}/m32-trace-export-toolchain.txt"
+
+      - name: Run focused exporter tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest \
+            tests.test_frp_m32_deterministic_rtl_trace_export \
+            -v 2>&1 | tee "${RUNNER_TEMP}/m32-trace-export-focused-tests.log"
+
+          grep -Eq '^Ran 49 tests in [0-9.]+s$' \
+            "${RUNNER_TEMP}/m32-trace-export-focused-tests.log"
+          test "$(grep -Fxc 'OK' \
+            "${RUNNER_TEMP}/m32-trace-export-focused-tests.log")" -eq 1
+          sha256sum "${RUNNER_TEMP}/m32-trace-export-focused-tests.log" \
+            > "${RUNNER_TEMP}/m32-trace-export-focused-tests.sha256"
+
+          printf '%s\n' "FRP M32 focused exporter tests: PASS"
+
+      - name: Build exact deterministic trace replay pairs
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          build_trace_pair() {
+            local top_module="$1"
+            local source_path="$2"
+            local pass_record="$3"
+            local record_prefix="$4"
+            local expected_bytes="$5"
+            local expected_digest="$6"
+            local build_dir
+            local executable
+            local replay
+            local log_path
+            local actual_bytes
+            local actual_digest
+
+            build_dir="$(mktemp -d \
+              "${RUNNER_TEMP}/${record_prefix}.XXXXXX")"
+
+            verilator \
+              --binary \
+              --sv \
+              --timing \
+              --assert \
+              -Wall \
+              -Wno-fatal \
+              -CFLAGS "-std=c++20" \
+              --top-module "$top_module" \
+              --Mdir "$build_dir" \
+              -Irtl/m31 \
+              -Irtl/m32 \
+              "$source_path"
+
+            executable="${build_dir}/V${top_module}"
+            test -x "$executable"
+
+            for replay in 1 2; do
+              log_path="${RUNNER_TEMP}/${record_prefix}-run-${replay}.log"
+              "$executable" 2>&1 | tee "$log_path"
+              test "$(grep -Fxc "$pass_record" "$log_path")" -eq 1
+              actual_bytes="$(wc -c < "$log_path")"
+              actual_digest="$(sha256sum "$log_path" | cut -d' ' -f1)"
+              test "$actual_bytes" -eq "$expected_bytes"
+              test "$actual_digest" = "$expected_digest"
+            done
+
+            cmp \
+              "${RUNNER_TEMP}/${record_prefix}-run-1.log" \
+              "${RUNNER_TEMP}/${record_prefix}-run-2.log"
+            sha256sum \
+              "${RUNNER_TEMP}/${record_prefix}-run-1.log" \
+              "${RUNNER_TEMP}/${record_prefix}-run-2.log" \
+              >> "${RUNNER_TEMP}/m32-trace-transcript-identities.sha256"
+          }
+
+          : > "${RUNNER_TEMP}/m32-trace-transcript-identities.sha256"
+
+          build_trace_pair \
+            frp_m32_mode_7_1_trace_tb \
+            "$MODE_7_1_TRACE_TESTBENCH_PATH" \
+            "FRP_M32_MODE_7_1_TRACE_TB: PASS samples=16" \
+            m32-mode-7-1-full-trace \
+            105702 \
+            9517a02cd1ce2c687365f3712a453a9370e505ee4267e151fd05b266977ce915
+
+          build_trace_pair \
+            frp_m32_mode_1_7_trace_tb \
+            "$MODE_1_7_TRACE_TESTBENCH_PATH" \
+            "FRP_M32_MODE_1_7_TRACE_TB: PASS samples=17" \
+            m32-mode-1-7-full-trace \
+            112364 \
+            41de8e92c28f150f8d163fc1438b4d4381fa42d76a970f9246bbda4679491d89
+
+          test "$(wc -l \
+            < "${RUNNER_TEMP}/m32-trace-transcript-identities.sha256")" -eq 4
+          printf '%s\n' "FRP M32 exact deterministic trace replay pairs: PASS"
+
+      - name: Self-test generate and verify canonical outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          output_root="${RUNNER_TEMP}/m32-deterministic-rtl-trace-output"
+          self_test_result="${RUNNER_TEMP}/m32-trace-export-self-test.json"
+          generation_result="${RUNNER_TEMP}/m32-trace-export-generation.json"
+          verification_result="${RUNNER_TEMP}/m32-trace-export-verification.json"
+          mode_7_1_primary="${RUNNER_TEMP}/m32-mode-7-1-full-trace-run-1.log"
+          mode_7_1_replay="${RUNNER_TEMP}/m32-mode-7-1-full-trace-run-2.log"
+          mode_1_7_primary="${RUNNER_TEMP}/m32-mode-1-7-full-trace-run-1.log"
+          mode_1_7_replay="${RUNNER_TEMP}/m32-mode-1-7-full-trace-run-2.log"
+
+          common_arguments=(
+            --repository-root .
+            --mode-7-1-primary "$mode_7_1_primary"
+            --mode-7-1-replay "$mode_7_1_replay"
+            --mode-1-7-primary "$mode_1_7_primary"
+            --mode-1-7-replay "$mode_1_7_replay"
+          )
+
+          python "$TRACE_EXPORTER_PATH" \
+            "${common_arguments[@]}" \
+            --self-test | tee "$self_test_result"
+
+          python "$TRACE_EXPORTER_PATH" \
+            "${common_arguments[@]}" \
+            --output-root "$output_root" \
+            --generate | tee "$generation_result"
+
+          python "$TRACE_EXPORTER_PATH" \
+            "${common_arguments[@]}" \
+            --output-root "$output_root" \
+            --verify | tee "$verification_result"
+
+          python - \
+            "$self_test_result" \
+            "$generation_result" \
+            "$verification_result" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          self_test = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+          generation = json.loads(Path(sys.argv[2]).read_text(encoding="utf-8"))
+          verification = json.loads(Path(sys.argv[3]).read_text(encoding="utf-8"))
+
+          expected = {
+              "bundle_sha256": (
+                  "63b36c1fb29d28a33bb5387d7658c97fc0a51f6823f79dc71382132236685f9b"
+              ),
+              "manifest_sha256": (
+                  "a9dd7d470fd094cb1dbb6fa360f6c28bf50d4aae4bf2f1ba34ad223655968c2e"
+              ),
+              "milestone": "M32",
+              "qualification_sha256": (
+                  "a695ccb3c7f083e219ff6908dfc38e6f4e7ef37fca6da22f40c6303117027c5d"
+              ),
+              "record_count": 396,
+              "schema": "frp.m32.deterministic_rtl_trace_bundle.v1",
+              "source_commit": "c0bc0fbc2c1c2e500b19d0ba84b3431a813e3941",
+              "source_identity_count": 29,
+              "source_tick_count": 33,
+              "status": "PASS",
+              "transcript_identity_count": 4,
+          }
+          expected_files = [
+              {
+                  "byte_count": 34066,
+                  "path": (
+                      "schemas/m32/"
+                      "frp.m32.deterministic_rtl_trace_bundle.v1.schema.json"
+                  ),
+                  "raw_sha256": (
+                      "534db8227218184cac5d1cabb461dd63b1b61a99e0269c98535539ad3f7d7da2"
+                  ),
+              },
+              {
+                  "byte_count": 412195,
+                  "path": (
+                      "artifacts/m32/exports/"
+                      "m32-deterministic-rtl-trace-bundle.json"
+                  ),
+                  "raw_sha256": (
+                      "62d8c1e6d205b9262a5c950883d3259275d5049f7a896ae12956a210cb75b7e0"
+                  ),
+              },
+              {
+                  "byte_count": 7211,
+                  "path": (
+                      "artifacts/m32/manifests/"
+                      "m32-deterministic-rtl-trace-manifest.json"
+                  ),
+                  "raw_sha256": (
+                      "da011dbc726d6d1fc0b7dbae12afe1e13d8240df64b9474fd0130c94ba005859"
+                  ),
+              },
+              {
+                  "byte_count": 4624,
+                  "path": (
+                      "artifacts/m32/qualification/"
+                      "m32-deterministic-rtl-trace-qualification.json"
+                  ),
+                  "raw_sha256": (
+                      "26ec2d3eadd73b490eb023572101bb78cf5d11561ead91b78b1a30e690458273"
+                  ),
+              },
+          ]
+
+          for name, record in (
+              ("self-test", self_test),
+              ("generation", generation),
+              ("verification", verification),
+          ):
+              for key, value in expected.items():
+                  if record.get(key) != value:
+                      raise SystemExit(f"{name} field mismatch: {key}")
+              if record.get("generated_files") != expected_files:
+                  raise SystemExit(f"{name} generated file identity mismatch")
+
+          if self_test.get("deterministic_generation_replays") != 2:
+              raise SystemExit("deterministic generation replay count mismatch")
+          if self_test.get("mutation_rejections") != 4:
+              raise SystemExit("mutation rejection count mismatch")
+          if verification.get("verification") != "EXACT":
+              raise SystemExit("output verification state mismatch")
+          PY
+
+          check_output() {
+            local relative_path="$1"
+            local expected_bytes="$2"
+            local expected_digest="$3"
+            local path="${output_root}/${relative_path}"
+
+            test -f "$path"
+            test ! -L "$path"
+            test "$(wc -c < "$path")" -eq "$expected_bytes"
+            test "$(sha256sum "$path" | cut -d' ' -f1)" = "$expected_digest"
+          }
+
+          check_output \
+            schemas/m32/frp.m32.deterministic_rtl_trace_bundle.v1.schema.json \
+            34066 \
+            534db8227218184cac5d1cabb461dd63b1b61a99e0269c98535539ad3f7d7da2
+          check_output \
+            artifacts/m32/exports/m32-deterministic-rtl-trace-bundle.json \
+            412195 \
+            62d8c1e6d205b9262a5c950883d3259275d5049f7a896ae12956a210cb75b7e0
+          check_output \
+            artifacts/m32/manifests/m32-deterministic-rtl-trace-manifest.json \
+            7211 \
+            da011dbc726d6d1fc0b7dbae12afe1e13d8240df64b9474fd0130c94ba005859
+          check_output \
+            artifacts/m32/qualification/m32-deterministic-rtl-trace-qualification.json \
+            4624 \
+            26ec2d3eadd73b490eb023572101bb78cf5d11561ead91b78b1a30e690458273
+
+          sha256sum \
+            "$self_test_result" \
+            "$generation_result" \
+            "$verification_result" \
+            > "${RUNNER_TEMP}/m32-trace-export-command-results.sha256"
+
+          printf '%s\n' "FRP M32 canonical trace outputs: PASS"
+
+      - name: Upload qualification records
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: frp-m32-deterministic-rtl-trace-export-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/m32-trace-export-source-identities.sha256
+            ${{ runner.temp }}/m32-trace-export-source-identities-manifest.sha256
+            ${{ runner.temp }}/m32-rtl-source-identity-validation.json
+            ${{ runner.temp }}/m32-trace-export-toolchain.txt
+            ${{ runner.temp }}/m32-trace-export-focused-tests.log
+            ${{ runner.temp }}/m32-trace-export-focused-tests.sha256
+            ${{ runner.temp }}/m32-mode-7-1-full-trace-run-1.log
+            ${{ runner.temp }}/m32-mode-7-1-full-trace-run-2.log
+            ${{ runner.temp }}/m32-mode-1-7-full-trace-run-1.log
+            ${{ runner.temp }}/m32-mode-1-7-full-trace-run-2.log
+            ${{ runner.temp }}/m32-trace-transcript-identities.sha256
+            ${{ runner.temp }}/m32-trace-export-self-test.json
+            ${{ runner.temp }}/m32-trace-export-generation.json
+            ${{ runner.temp }}/m32-trace-export-verification.json
+            ${{ runner.temp }}/m32-trace-export-command-results.sha256
+            ${{ runner.temp }}/m32-deterministic-rtl-trace-output/**
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Verify repository preservation and report
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code
+          test -z "$(git status --porcelain)"
+
+          exporter_digest="$(sha256sum "$TRACE_EXPORTER_PATH" | cut -d' ' -f1)"
+          test_digest="$(sha256sum "$TRACE_EXPORT_TEST_PATH" | cut -d' ' -f1)"
+          source_manifest_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-trace-export-source-identities-manifest.sha256")"
+          focused_test_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-trace-export-focused-tests.sha256")"
+          transcript_identity_digest="$(sha256sum \
+            "${RUNNER_TEMP}/m32-trace-transcript-identities.sha256" \
+            | cut -d' ' -f1)"
+          command_result_digest="$(sha256sum \
+            "${RUNNER_TEMP}/m32-trace-export-command-results.sha256" \
+            | cut -d' ' -f1)"
+          verilator_record="$(verilator --version)"
+
+          {
+            printf '%s\n' "## FRP M32 Deterministic RTL Trace Export"
+            printf '%s\n' ""
+            printf '%s\n' "- Qualification commit: \`${{ github.sha }}\`"
+            printf '%s\n' \
+              "- RTL source boundary commit: \`c0bc0fbc2c1c2e500b19d0ba84b3431a813e3941\`"
+            printf '%s\n' \
+              "- RTL source identity count: \`29\`"
+            printf '%s\n' \
+              "- Exporter SHA-256: \`${exporter_digest}\`"
+            printf '%s\n' \
+              "- Focused test SHA-256: \`${test_digest}\`"
+            printf '%s\n' \
+              "- Export source manifest SHA-256: \`${source_manifest_digest}\`"
+            printf '%s\n' \
+              "- Focused test log SHA-256: \`${focused_test_digest}\`"
+            printf '%s\n' \
+              "- Focused exporter tests: \`49\`"
+            printf '%s\n' \
+              "- Mode 7/1 transcript replays: \`2/2 byte-identical\`"
+            printf '%s\n' \
+              "- Mode 7/1 transcript: \`105702 bytes\`"
+            printf '%s\n' \
+              "- Mode 7/1 transcript SHA-256: \`9517a02cd1ce2c687365f3712a453a9370e505ee4267e151fd05b266977ce915\`"
+            printf '%s\n' \
+              "- Mode 1/7 transcript replays: \`2/2 byte-identical\`"
+            printf '%s\n' \
+              "- Mode 1/7 transcript: \`112364 bytes\`"
+            printf '%s\n' \
+              "- Mode 1/7 transcript SHA-256: \`41de8e92c28f150f8d163fc1438b4d4381fa42d76a970f9246bbda4679491d89\`"
+            printf '%s\n' \
+              "- Transcript identity record SHA-256: \`${transcript_identity_digest}\`"
+            printf '%s\n' \
+              "- Deterministic generation replays: \`2\`"
+            printf '%s\n' \
+              "- Mutation rejections: \`4\`"
+            printf '%s\n' \
+              "- Source ticks: \`33\`"
+            printf '%s\n' \
+              "- Structured trace records: \`396\`"
+            printf '%s\n' \
+              "- Generated files: \`4\`"
+            printf '%s\n' \
+              "- Bundle payload SHA-256: \`63b36c1fb29d28a33bb5387d7658c97fc0a51f6823f79dc71382132236685f9b\`"
+            printf '%s\n' \
+              "- Bundle file SHA-256: \`62d8c1e6d205b9262a5c950883d3259275d5049f7a896ae12956a210cb75b7e0\`"
+            printf '%s\n' \
+              "- Command result identity SHA-256: \`${command_result_digest}\`"
+            printf '%s\n' \
+              "- Verification state: \`EXACT\`"
+            printf '%s\n' "- Verilator: \`${verilator_record}\`"
+            printf '%s\n' "- Result: \`PASS\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          printf '%s\n' "Repository preservation: PASS"
