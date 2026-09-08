@@ -1,0 +1,124 @@
+name: FRP M32 Canonical Trace Bundle Repair
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frp-m32-canonical-trace-bundle-repair
+  cancel-in-progress: false
+
+jobs:
+  repair-canonical-trace-bundle:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      BUNDLE_PATH: artifacts/m32/exports/m32-deterministic-rtl-trace-bundle.json
+      CURRENT_BYTES: "412524"
+      CURRENT_SHA256: b7001b129962eba7333ae4a9255f843926bcf8f501b5999e2db2ba1249ffd9bc
+      CANONICAL_BYTES: "412195"
+      CANONICAL_LINES: "10786"
+      CANONICAL_SHA256: 62d8c1e6d205b9262a5c950883d3259275d5049f7a896ae12956a210cb75b7e0
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+          ref: main
+
+      - name: Require manual main-branch execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ github.event_name }}" = "workflow_dispatch"
+          test "${{ github.ref }}" = "refs/heads/main"
+          test "${{ github.ref_name }}" = "main"
+          test "$(git rev-parse HEAD)" = "${{ github.sha }}"
+          test -z "$(git status --porcelain)"
+
+      - name: Restore exact canonical serialization
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          path = Path(os.environ["BUNDLE_PATH"])
+          source = path.read_bytes()
+
+          if len(source) != int(os.environ["CURRENT_BYTES"]):
+              raise SystemExit("unexpected source byte count")
+          if hashlib.sha256(source).hexdigest() != os.environ["CURRENT_SHA256"]:
+              raise SystemExit("unexpected source SHA-256")
+
+          lines = source.decode("utf-8").splitlines(keepends=True)
+          if len(lines) != int(os.environ["CANONICAL_LINES"]):
+              raise SystemExit("unexpected source line count")
+
+          replacements = {
+              901: '            "switch_load_numerator": 0,\n',
+              1801: '              "request_lane": 1,\n',
+              2651: '              "frequency_current_q16": 65536,\n',
+              2701: '              "coupling_field_q16": -12495,\n',
+              3601: '              "first_route_leg": false,\n',
+              4501: '              "neutral_routed": false,\n',
+              5401: '              "neutral_routed": false,\n',
+              6301: '            "queue_overflow_events": 0,\n',
+              7201: '              "phase_cell": 0,\n',
+              8101: '              "pending_target_code": 0,\n',
+              9001: '              "phase_word_hex": "c33f3844",\n',
+              9901: '              "retained_state_code": 3,\n',
+          }
+
+          for line_number, replacement in replacements.items():
+              lines[line_number - 1] = replacement
+
+          canonical = "".join(lines).encode("utf-8")
+          if len(canonical) != int(os.environ["CANONICAL_BYTES"]):
+              raise SystemExit("canonical byte count mismatch")
+          if hashlib.sha256(canonical).hexdigest() != os.environ["CANONICAL_SHA256"]:
+              raise SystemExit("canonical SHA-256 mismatch")
+
+          json.loads(canonical.decode("utf-8"))
+          path.write_bytes(canonical)
+          PY
+
+          test "$(wc -l < "$BUNDLE_PATH")" -eq "$CANONICAL_LINES"
+          test "$(wc -c < "$BUNDLE_PATH")" -eq "$CANONICAL_BYTES"
+          test "$(sha256sum "$BUNDLE_PATH" | cut -d' ' -f1)" = "$CANONICAL_SHA256"
+          python -m json.tool "$BUNDLE_PATH" >/dev/null
+          git diff --check
+          test "$(git diff --numstat -- "$BUNDLE_PATH")" = \
+            $'12\t12\tartifacts/m32/exports/m32-deterministic-rtl-trace-bundle.json'
+          test "$(git status --porcelain)" = " M $BUNDLE_PATH"
+
+      - name: Commit repaired bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$BUNDLE_PATH"
+          git diff --cached --check
+          git commit -m "Restore exact FRP M32 trace bundle serialization"
+          git push origin HEAD:main
+          test -z "$(git status --porcelain)"
+
+          {
+            printf '%s\n' "## FRP M32 Canonical Trace Bundle Repair"
+            printf '%s\n' ""
+            printf '%s\n' "- Source commit: \`${{ github.sha }}\`"
+            printf '%s\n' "- Bundle path: \`${BUNDLE_PATH}\`"
+            printf '%s\n' "- Canonical bytes: \`${CANONICAL_BYTES}\`"
+            printf '%s\n' "- Canonical lines: \`${CANONICAL_LINES}\`"
+            printf '%s\n' "- Canonical SHA-256: \`${CANONICAL_SHA256}\`"
+            printf '%s\n' "- Result: \`PASS\`"
+          } >> "$GITHUB_STEP_SUMMARY"
