@@ -382,7 +382,26 @@ jobs:
             artifacts/m32/qualification/m32-deterministic-rtl-trace-qualification.json \
             4624 \
             26ec2d3eadd73b490eb023572101bb78cf5d11561ead91b78b1a30e690458273
+          compare_published_output() {
+            local relative_path="$1"
+            local generated_path="${output_root}/${relative_path}"
 
+            test -f "$relative_path"
+            test ! -L "$relative_path"
+            git ls-files --error-unmatch "$relative_path" >/dev/null
+            cmp "$generated_path" "$relative_path"
+          }
+
+          compare_published_output \
+            schemas/m32/frp.m32.deterministic_rtl_trace_bundle.v1.schema.json
+          compare_published_output \
+            artifacts/m32/exports/m32-deterministic-rtl-trace-bundle.json
+          compare_published_output \
+            artifacts/m32/manifests/m32-deterministic-rtl-trace-manifest.json
+          compare_published_output \
+            artifacts/m32/qualification/m32-deterministic-rtl-trace-qualification.json
+
+          printf '%s\n' "FRP M32 published canonical trace outputs: PASS"
           sha256sum \
             "$self_test_result" \
             "$generation_result" \
