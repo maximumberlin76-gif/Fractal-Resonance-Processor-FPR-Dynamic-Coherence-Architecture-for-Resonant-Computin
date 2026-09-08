@@ -1,0 +1,185 @@
+{
+  "check_count": 38,
+  "checks": [
+    {
+      "check_id": "source_identities_exact",
+      "status": "PASS"
+    },
+    {
+      "check_id": "workflow_identity_exact",
+      "status": "PASS"
+    },
+    {
+      "check_id": "mode_7_1_primary_transcript_identity_exact",
+      "status": "PASS"
+    },
+    {
+      "check_id": "mode_7_1_replay_transcript_identity_exact",
+      "status": "PASS"
+    },
+    {
+      "check_id": "mode_7_1_replays_byte_identical",
+      "status": "PASS"
+    },
+    {
+      "check_id": "mode_1_7_primary_transcript_identity_exact",
+      "status": "PASS"
+    },
+    {
+      "check_id": "mode_1_7_replay_transcript_identity_exact",
+      "status": "PASS"
+    },
+    {
+      "check_id": "mode_1_7_replays_byte_identical",
+      "status": "PASS"
+    },
+    {
+      "check_id": "mode_7_1_scheduler_cadence_exact",
+      "status": "PASS"
+    },
+    {
+      "check_id": "mode_1_7_scheduler_cadence_exact",
+      "status": "PASS"
+    },
+    {
+      "check_id": "source_tick_coordinates_complete",
+      "status": "PASS"
+    },
+    {
+      "check_id": "cell_coordinates_complete",
+      "status": "PASS"
+    },
+    {
+      "check_id": "request_lane_coordinates_complete",
+      "status": "PASS"
+    },
+    {
+      "check_id": "packed_bank_matches_cell_records",
+      "status": "PASS"
+    },
+    {
+      "check_id": "packed_masks_match_cell_records",
+      "status": "PASS"
+    },
+    {
+      "check_id": "ternary_code_value_pairs_valid",
+      "status": "PASS"
+    },
+    {
+      "check_id": "active_zero_markers_exact",
+      "status": "PASS"
+    },
+    {
+      "check_id": "pending_route_markers_exact",
+      "status": "PASS"
+    },
+    {
+      "check_id": "phase_derived_target_separate_from_execution",
+      "status": "PASS"
+    },
+    {
+      "check_id": "registered_target_separate_from_execution",
+      "status": "PASS"
+    },
+    {
+      "check_id": "source_boundary_and_execution_fields_separate",
+      "status": "PASS"
+    },
+    {
+      "check_id": "first_route_legs_observed",
+      "status": "PASS"
+    },
+    {
+      "check_id": "second_route_legs_observed",
+      "status": "PASS"
+    },
+    {
+      "check_id": "route_legs_separately_observable",
+      "status": "PASS"
+    },
+    {
+      "check_id": "direct_opposite_transitions_absent",
+      "status": "PASS"
+    },
+    {
+      "check_id": "reserved_state_events_zero",
+      "status": "PASS"
+    },
+    {
+      "check_id": "queue_overflow_events_zero",
+      "status": "PASS"
+    },
+    {
+      "check_id": "invariant_flags_all_valid",
+      "status": "PASS"
+    },
+    {
+      "check_id": "phase_evolution_records_present",
+      "status": "PASS"
+    },
+    {
+      "check_id": "local_effective_gamma_records_present",
+      "status": "PASS"
+    },
+    {
+      "check_id": "relative_phase_interference_records_present",
+      "status": "PASS"
+    },
+    {
+      "check_id": "retained_frequency_dynamics_observed",
+      "status": "PASS"
+    },
+    {
+      "check_id": "phase_order_scales_separate",
+      "status": "PASS"
+    },
+    {
+      "check_id": "coherence_capacity_separate_from_phase_order",
+      "status": "PASS"
+    },
+    {
+      "check_id": "thermal_telemetry_present",
+      "status": "PASS"
+    },
+    {
+      "check_id": "stability_telemetry_present",
+      "status": "PASS"
+    },
+    {
+      "check_id": "canonical_bundle_schema_valid",
+      "status": "PASS"
+    },
+    {
+      "check_id": "canonical_bundle_digest_reproduced",
+      "status": "PASS"
+    }
+  ],
+  "failed_count": 0,
+  "kind": "deterministic_rtl_trace_qualification",
+  "milestone": "M32",
+  "passed_count": 38,
+  "qualification_digest_scope": "canonical_json_without_qualification_sha256",
+  "qualification_sha256": "a695ccb3c7f083e219ff6908dfc38e6f4e7ef37fca6da22f40c6303117027c5d",
+  "qualified_artifact_count": 3,
+  "qualified_artifacts": [
+    {
+      "byte_count": 34066,
+      "path": "schemas/m32/frp.m32.deterministic_rtl_trace_bundle.v1.schema.json",
+      "raw_sha256": "534db8227218184cac5d1cabb461dd63b1b61a99e0269c98535539ad3f7d7da2"
+    },
+    {
+      "byte_count": 412195,
+      "path": "artifacts/m32/exports/m32-deterministic-rtl-trace-bundle.json",
+      "raw_sha256": "62d8c1e6d205b9262a5c950883d3259275d5049f7a896ae12956a210cb75b7e0"
+    },
+    {
+      "byte_count": 7211,
+      "path": "artifacts/m32/manifests/m32-deterministic-rtl-trace-manifest.json",
+      "raw_sha256": "da011dbc726d6d1fc0b7dbae12afe1e13d8240df64b9474fd0130c94ba005859"
+    }
+  ],
+  "schema": "frp.m32.deterministic_rtl_trace_qualification.v1",
+  "source_commit": "c0bc0fbc2c1c2e500b19d0ba84b3431a813e3941",
+  "status": "PASS",
+  "version": "1.0.0"
+}
