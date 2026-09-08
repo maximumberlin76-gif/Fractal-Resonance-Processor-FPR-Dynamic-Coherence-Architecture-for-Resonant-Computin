@@ -23,6 +23,9 @@ jobs:
       CORE_TESTBENCH_PATH: rtl/m32/frp_m32_core_tb.sv
       MODE_7_1_TESTBENCH_PATH: rtl/m32/frp_m32_mode_7_1_tb.sv
       MODE_1_7_TESTBENCH_PATH: rtl/m32/frp_m32_mode_1_7_tb.sv
+      TRACE_MONITOR_PATH: rtl/m32/frp_m32_trace_monitor.sv
+      MODE_7_1_TRACE_TESTBENCH_PATH: rtl/m32/frp_m32_mode_7_1_trace_tb.sv
+      MODE_1_7_TRACE_TESTBENCH_PATH: rtl/m32/frp_m32_mode_1_7_trace_tb.sv
       FORMAL_HARNESS_PATH: formal/m32/frp_m32_registered_target_boundary_formal.sv
       LC_ALL: C.UTF-8
       TZ: UTC
@@ -95,6 +98,7 @@ jobs:
           rtl/m31/frp_m31_phase_request_adapter.sv|2251|fa78bcfe965270cc74855908aa392989d857575a2097a126539aabb1aab8990d
           rtl/m31/frp_m31_thermal_proxy.sv|1883|34df4ebfc5dfad8e3e5e454e560404585de5c881e6f75abaae367d3bd9fb11bd
           rtl/m31/frp_m31_stability.sv|2203|69c06833e6dfbb28e25b74a5787dcd03756dddf0f66726de3ea47c1ad2931931
+          rtl/m31/frp_m31_assertions.sv|24366|16a6abea57d2161a58ad5660c62f86cf057e65dbb1d9ae76e355e912a378077b
           rtl/m31/frp_m31_phase_thermal_assertions.sv|3783|fe7b06073e65fc64acf7232038911230db27fe3a5ce000d0e1d421e2f49b1b3b
           rtl/m31/frp_m31_sin_q30.mem|36864|adbb4b94fcf8fa0bfc981d654679fd7518a5c4c9c97b611a35cd8accaf28233d
           rtl/m32/frp_m32_registered_target_boundary.sv|3947|9626474b49d32b411e107d7ccc8ee5aa7f42728e9a6f70d634d16d3f2a414c5e
@@ -105,10 +109,13 @@ jobs:
           rtl/m32/frp_m32_core_tb.sv|19348|4a2ac2778192199d02700c324da7d0cfba4a2f83730ea148497099e1a640d800
           rtl/m32/frp_m32_mode_7_1_tb.sv|22207|7a6d610435bbd3f11441cb518bb64ab05b3748f5bb866092b1a734eab99c08f8
           rtl/m32/frp_m32_mode_1_7_tb.sv|22388|3dcd66dbd8edc6989294298adb14d4e3b314e0af62512b5a1398b789cb510b97
+          rtl/m32/frp_m32_trace_monitor.sv|13827|556dd0759d91188b1947ae3abf61a0606cec238b67ff268f243eab370b01fc7c
+          rtl/m32/frp_m32_mode_7_1_trace_tb.sv|13136|4d02db27a3ae080c7c2a029e27d1b2c66bdbd2ad35c64ad3e020792c0bb841ca
+          rtl/m32/frp_m32_mode_1_7_trace_tb.sv|13136|bfb4b58f95f09e2fcbb81df3fae1c452a2e83111da7a9076dfaaefd2d76ab6cb
           formal/m32/frp_m32_registered_target_boundary_formal.sv|7698|b4880df9c8ca6a3f220a26d4937c14b63e3b97277cdff16ce50de725c7f840d2
           IDENTITIES
 
-          test "$(wc -l < "$identity_record")" -eq 24
+          test "$(wc -l < "$identity_record")" -eq 28
           sha256sum "$identity_record" \
             > "${RUNNER_TEMP}/m32-source-identities-manifest.sha256"
 
@@ -138,8 +145,22 @@ jobs:
             "$CORE_TESTBENCH_PATH"
           grep -Fx '`include "frp_m32_core.sv"' \
             "$MODE_7_1_TESTBENCH_PATH"
+          grep -Fx '`include "frp_m31_assertions.sv"' \
+            "$MODE_7_1_TESTBENCH_PATH"
           grep -Fx '`include "frp_m32_core.sv"' \
             "$MODE_1_7_TESTBENCH_PATH"
+          grep -Fx '`include "frp_m31_assertions.sv"' \
+            "$MODE_1_7_TESTBENCH_PATH"
+          grep -Fx '`include "frp_m31_pkg.sv"' \
+            "$TRACE_MONITOR_PATH"
+          grep -Fx '`include "frp_m32_mode_7_1_tb.sv"' \
+            "$MODE_7_1_TRACE_TESTBENCH_PATH"
+          grep -Fx '`include "frp_m32_trace_monitor.sv"' \
+            "$MODE_7_1_TRACE_TESTBENCH_PATH"
+          grep -Fx '`include "frp_m32_mode_1_7_tb.sv"' \
+            "$MODE_1_7_TRACE_TESTBENCH_PATH"
+          grep -Fx '`include "frp_m32_trace_monitor.sv"' \
+            "$MODE_1_7_TRACE_TESTBENCH_PATH"
 
           grep -Fq 'execution_target_bank = registered_target_q;' \
             "$CORE_MODULE_PATH"
@@ -154,6 +175,24 @@ jobs:
           grep -Fq \
             'FRP_M32_REGISTERED_TARGET_MODE_1_7_TB: PASS' \
             "$MODE_1_7_TESTBENCH_PATH"
+          grep -Fq 'module frp_m32_trace_monitor #(' \
+            "$TRACE_MONITOR_PATH"
+          grep -Fq 'M32_TRACE_SAMPLE source_tick=' \
+            "$TRACE_MONITOR_PATH"
+          grep -Fq 'M32_TRACE_BANK source_tick=' \
+            "$TRACE_MONITOR_PATH"
+          grep -Fq 'M32_TRACE_CELL source_tick=' \
+            "$TRACE_MONITOR_PATH"
+          grep -Fq 'M32_TRACE_REQUEST source_tick=' \
+            "$TRACE_MONITOR_PATH"
+          grep -Fq 'module frp_m32_mode_7_1_trace_tb;' \
+            "$MODE_7_1_TRACE_TESTBENCH_PATH"
+          grep -Fq 'FRP_M32_MODE_7_1_TRACE_TB: PASS samples=%0d' \
+            "$MODE_7_1_TRACE_TESTBENCH_PATH"
+          grep -Fq 'module frp_m32_mode_1_7_trace_tb;' \
+            "$MODE_1_7_TRACE_TESTBENCH_PATH"
+          grep -Fq 'FRP_M32_MODE_1_7_TRACE_TB: PASS samples=%0d' \
+            "$MODE_1_7_TRACE_TESTBENCH_PATH"
           grep -Fq \
             'module frp_m32_registered_target_boundary_safety_formal;' \
             "$FORMAL_HARNESS_PATH"
@@ -186,7 +225,7 @@ jobs:
             yowasp-yosys -V
           } 2>&1 | tee "${RUNNER_TEMP}/m32-toolchain.txt"
 
-      - name: Lint registered-target core and scheduler modes
+      - name: Lint registered-target core and trace contours
         shell: bash
         run: |
           set -euo pipefail
@@ -232,6 +271,15 @@ jobs:
           lint_top \
             frp_m32_mode_1_7_tb \
             "$MODE_1_7_TESTBENCH_PATH"
+          lint_top \
+            frp_m32_trace_monitor \
+            "$TRACE_MONITOR_PATH"
+          lint_top \
+            frp_m32_mode_7_1_trace_tb \
+            "$MODE_7_1_TRACE_TESTBENCH_PATH"
+          lint_top \
+            frp_m32_mode_1_7_trace_tb \
+            "$MODE_1_7_TRACE_TESTBENCH_PATH"
 
           printf '%s\n' "FRP M32 Verilator lint: PASS"
 
@@ -420,9 +468,21 @@ jobs:
             "FRP_M32_REGISTERED_TARGET_MODE_1_7_TB: PASS" \
             m32-mode-1-7
 
+          build_and_replay \
+            frp_m32_mode_7_1_trace_tb \
+            "$MODE_7_1_TRACE_TESTBENCH_PATH" \
+            "FRP_M32_MODE_7_1_TRACE_TB: PASS samples=16" \
+            m32-mode-7-1-full-trace
+
+          build_and_replay \
+            frp_m32_mode_1_7_trace_tb \
+            "$MODE_1_7_TRACE_TESTBENCH_PATH" \
+            "FRP_M32_MODE_1_7_TRACE_TB: PASS samples=17" \
+            m32-mode-1-7-full-trace
+
           printf '%s\n' "FRP M32 deterministic replays: PASS"
 
-      - name: Verify separate scheduler trace records
+      - name: Verify scheduler and full-trace records
         shell: bash
         run: |
           set -euo pipefail
@@ -431,6 +491,62 @@ jobs:
           mode_1_7_log="${RUNNER_TEMP}/m32-mode-1-7-run-1.log"
           mode_7_1_trace="${RUNNER_TEMP}/m32-mode-7-1-trace.log"
           mode_1_7_trace="${RUNNER_TEMP}/m32-mode-1-7-trace.log"
+          full_7_1_log="${RUNNER_TEMP}/m32-mode-7-1-full-trace-run-1.log"
+          full_1_7_log="${RUNNER_TEMP}/m32-mode-1-7-full-trace-run-1.log"
+
+          extract_full_trace() {
+            local source_log="$1"
+            local record_prefix="$2"
+            local expected_samples="$3"
+            local expected_banks="$4"
+            local expected_cells="$5"
+            local expected_requests="$6"
+            local expected_total
+
+            expected_total="$(($expected_samples + $expected_banks \
+              + $expected_cells + $expected_requests))"
+
+            grep '^M32_TRACE_' "$source_log" \
+              > "${RUNNER_TEMP}/${record_prefix}-records.log"
+            grep '^M32_TRACE_SAMPLE ' "$source_log" \
+              > "${RUNNER_TEMP}/${record_prefix}-sample.log"
+            grep '^M32_TRACE_BANK ' "$source_log" \
+              > "${RUNNER_TEMP}/${record_prefix}-bank.log"
+            grep '^M32_TRACE_CELL ' "$source_log" \
+              > "${RUNNER_TEMP}/${record_prefix}-cell.log"
+            grep '^M32_TRACE_REQUEST ' "$source_log" \
+              > "${RUNNER_TEMP}/${record_prefix}-request.log"
+
+            test "$(wc -l \
+              < "${RUNNER_TEMP}/${record_prefix}-records.log")" \
+              -eq "$expected_total"
+            test "$(wc -l \
+              < "${RUNNER_TEMP}/${record_prefix}-sample.log")" \
+              -eq "$expected_samples"
+            test "$(wc -l \
+              < "${RUNNER_TEMP}/${record_prefix}-bank.log")" \
+              -eq "$expected_banks"
+            test "$(wc -l \
+              < "${RUNNER_TEMP}/${record_prefix}-cell.log")" \
+              -eq "$expected_cells"
+            test "$(wc -l \
+              < "${RUNNER_TEMP}/${record_prefix}-request.log")" \
+              -eq "$expected_requests"
+          }
+
+          write_trace_identity() {
+            local path="$1"
+            local bytes
+            local digest
+
+            bytes="$(wc -c < "$path")"
+            digest="$(sha256sum "$path" | cut -d' ' -f1)"
+            printf '%s|%s|%s\n' \
+              "$(basename "$path")" \
+              "$bytes" \
+              "$digest" \
+              >> "${RUNNER_TEMP}/m32-full-trace-identities.txt"
+          }
 
           grep '^M32_MODE_7_1_TRACE ' "$mode_7_1_log" \
             > "$mode_7_1_trace"
@@ -466,7 +582,109 @@ jobs:
           sha256sum "$mode_1_7_trace" \
             > "${RUNNER_TEMP}/m32-mode-1-7-trace.sha256"
 
-          printf '%s\n' "FRP M32 separate scheduler traces: PASS"
+          extract_full_trace \
+            "$full_7_1_log" \
+            m32-mode-7-1-full-trace \
+            16 \
+            16 \
+            128 \
+            32
+          extract_full_trace \
+            "$full_1_7_log" \
+            m32-mode-1-7-full-trace \
+            17 \
+            17 \
+            136 \
+            34
+
+          full_7_1_sample="${RUNNER_TEMP}/m32-mode-7-1-full-trace-sample.log"
+          full_7_1_cell="${RUNNER_TEMP}/m32-mode-7-1-full-trace-cell.log"
+          full_1_7_sample="${RUNNER_TEMP}/m32-mode-1-7-full-trace-sample.log"
+          full_1_7_cell="${RUNNER_TEMP}/m32-mode-1-7-full-trace-cell.log"
+
+          test "$(grep -Fc ' balance_tick=1 commit_tick=0 ' \
+            "$full_7_1_sample")" -eq 14
+          test "$(grep -Fc ' balance_tick=0 commit_tick=1 ' \
+            "$full_7_1_sample")" -eq 2
+          test "$(grep -Fc ' excite_tick=1 neutralize_tick=0 ' \
+            "$full_1_7_sample")" -eq 3
+          test "$(grep -Fc ' excite_tick=0 neutralize_tick=1 ' \
+            "$full_1_7_sample")" -eq 14
+
+          test "$(grep -Fc ' invariant_all_valid=1 ' \
+            "$full_7_1_sample")" -eq 16
+          test "$(grep -Fc ' invariant_all_valid=1 ' \
+            "$full_1_7_sample")" -eq 17
+          test "$(grep -Fc \
+            'actual_direct_events=0 reserved_state_events=0 queue_overflow_events=0' \
+            "$full_7_1_sample")" -eq 16
+          test "$(grep -Fc \
+            'actual_direct_events=0 reserved_state_events=0 queue_overflow_events=0' \
+            "$full_1_7_sample")" -eq 17
+
+          test "$(grep -Fc ' pair_phase_order_q30=' \
+            "$full_7_1_sample")" -eq 16
+          test "$(grep -Fc ' coherence_capacity_q16=' \
+            "$full_7_1_sample")" -eq 16
+          test "$(grep -Fc ' pair_phase_order_q30=' \
+            "$full_1_7_sample")" -eq 17
+          test "$(grep -Fc ' coherence_capacity_q16=' \
+            "$full_1_7_sample")" -eq 17
+
+          test "$(grep -Fc ' phase_word=' "$full_7_1_cell")" -eq 128
+          test "$(grep -Fc ' frequency_current_q16=' \
+            "$full_7_1_cell")" -eq 128
+          test "$(grep -Fc ' coupling_field_q16=' \
+            "$full_7_1_cell")" -eq 128
+          test "$(grep -Fc ' phase_projection_q30=' \
+            "$full_7_1_cell")" -eq 128
+          test "$(grep -Fc ' phase_word=' "$full_1_7_cell")" -eq 136
+          test "$(grep -Fc ' frequency_current_q16=' \
+            "$full_1_7_cell")" -eq 136
+          test "$(grep -Fc ' coupling_field_q16=' \
+            "$full_1_7_cell")" -eq 136
+          test "$(grep -Fc ' phase_projection_q30=' \
+            "$full_1_7_cell")" -eq 136
+
+          grep -Eq \
+            '^M32_TRACE_CELL .*source_tick=9 source_cell=0 .*retained_state_value=0 active_zero=1 pending_target_code=3 pending_target_value=-1 pending_active=1 .*first_route_leg=1 second_route_leg=0$' \
+            "$full_7_1_cell"
+          grep -Eq \
+            '^M32_TRACE_CELL .*source_tick=15 source_cell=0 .*retained_state_value=-1 active_zero=0 pending_target_code=0 pending_target_value=0 pending_active=0 .*first_route_leg=0 second_route_leg=1$' \
+            "$full_7_1_cell"
+          grep -Eq \
+            '^M32_TRACE_CELL .*source_tick=10 source_cell=0 .*retained_state_value=0 active_zero=1 pending_target_code=3 pending_target_value=-1 pending_active=1 .*first_route_leg=1 second_route_leg=0$' \
+            "$full_1_7_cell"
+          grep -Eq \
+            '^M32_TRACE_CELL .*source_tick=16 source_cell=0 .*retained_state_value=-1 active_zero=0 pending_target_code=0 pending_target_value=0 pending_active=0 .*first_route_leg=0 second_route_leg=1$' \
+            "$full_1_7_cell"
+
+          sha256sum \
+            "${RUNNER_TEMP}/m32-mode-7-1-full-trace-records.log" \
+            > "${RUNNER_TEMP}/m32-mode-7-1-full-trace-records.sha256"
+          sha256sum \
+            "${RUNNER_TEMP}/m32-mode-1-7-full-trace-records.log" \
+            > "${RUNNER_TEMP}/m32-mode-1-7-full-trace-records.sha256"
+
+          : > "${RUNNER_TEMP}/m32-full-trace-identities.txt"
+          for mode in 7-1 1-7; do
+            for record_type in records sample bank cell request; do
+              write_trace_identity \
+                "${RUNNER_TEMP}/m32-mode-${mode}-full-trace-${record_type}.log"
+            done
+          done
+
+          test "$(wc -l \
+            < "${RUNNER_TEMP}/m32-full-trace-identities.txt")" -eq 10
+          trace_identity_digest="$(sha256sum \
+            "${RUNNER_TEMP}/m32-full-trace-identities.txt" \
+            | cut -d' ' -f1)"
+          printf '%s  %s\n' \
+            "$trace_identity_digest" \
+            "m32-full-trace-identities.txt" \
+            > "${RUNNER_TEMP}/m32-full-trace-identities.sha256"
+
+          printf '%s\n' "FRP M32 scheduler and full traces: PASS"
 
       - name: Upload qualification records
         uses: actions/upload-artifact@v4.6.2
@@ -520,6 +738,26 @@ jobs:
             ${{ runner.temp }}/m32-mode-1-7-transcript.sha256
             ${{ runner.temp }}/m32-mode-1-7-trace.log
             ${{ runner.temp }}/m32-mode-1-7-trace.sha256
+            ${{ runner.temp }}/m32-mode-7-1-full-trace-run-1.log
+            ${{ runner.temp }}/m32-mode-7-1-full-trace-run-2.log
+            ${{ runner.temp }}/m32-mode-7-1-full-trace-transcript.sha256
+            ${{ runner.temp }}/m32-mode-7-1-full-trace-records.log
+            ${{ runner.temp }}/m32-mode-7-1-full-trace-records.sha256
+            ${{ runner.temp }}/m32-mode-7-1-full-trace-sample.log
+            ${{ runner.temp }}/m32-mode-7-1-full-trace-bank.log
+            ${{ runner.temp }}/m32-mode-7-1-full-trace-cell.log
+            ${{ runner.temp }}/m32-mode-7-1-full-trace-request.log
+            ${{ runner.temp }}/m32-mode-1-7-full-trace-run-1.log
+            ${{ runner.temp }}/m32-mode-1-7-full-trace-run-2.log
+            ${{ runner.temp }}/m32-mode-1-7-full-trace-transcript.sha256
+            ${{ runner.temp }}/m32-mode-1-7-full-trace-records.log
+            ${{ runner.temp }}/m32-mode-1-7-full-trace-records.sha256
+            ${{ runner.temp }}/m32-mode-1-7-full-trace-sample.log
+            ${{ runner.temp }}/m32-mode-1-7-full-trace-bank.log
+            ${{ runner.temp }}/m32-mode-1-7-full-trace-cell.log
+            ${{ runner.temp }}/m32-mode-1-7-full-trace-request.log
+            ${{ runner.temp }}/m32-full-trace-identities.txt
+            ${{ runner.temp }}/m32-full-trace-identities.sha256
           if-no-files-found: error
           retention-days: 90
 
@@ -549,6 +787,14 @@ jobs:
             | cut -d' ' -f1)"
           mode_1_7_testbench_digest="$(sha256sum "$MODE_1_7_TESTBENCH_PATH" \
             | cut -d' ' -f1)"
+          trace_monitor_digest="$(sha256sum "$TRACE_MONITOR_PATH" \
+            | cut -d' ' -f1)"
+          mode_7_1_trace_testbench_digest="$( \
+            sha256sum "$MODE_7_1_TRACE_TESTBENCH_PATH" | cut -d' ' -f1
+          )"
+          mode_1_7_trace_testbench_digest="$( \
+            sha256sum "$MODE_1_7_TRACE_TESTBENCH_PATH" | cut -d' ' -f1
+          )"
           formal_harness_digest="$(sha256sum "$FORMAL_HARNESS_PATH" \
             | cut -d' ' -f1)"
           synthesis_8_digest="$(cut -d' ' -f1 \
@@ -575,6 +821,16 @@ jobs:
             "${RUNNER_TEMP}/m32-mode-7-1-trace.sha256")"
           mode_1_7_trace_digest="$(cut -d' ' -f1 \
             "${RUNNER_TEMP}/m32-mode-1-7-trace.sha256")"
+          mode_7_1_full_trace_transcript_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-mode-7-1-full-trace-transcript.sha256")"
+          mode_1_7_full_trace_transcript_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-mode-1-7-full-trace-transcript.sha256")"
+          mode_7_1_full_trace_records_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-mode-7-1-full-trace-records.sha256")"
+          mode_1_7_full_trace_records_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-mode-1-7-full-trace-records.sha256")"
+          full_trace_identity_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-full-trace-identities.sha256")"
           verilator_record="$(verilator --version)"
           yosys_record="$(yowasp-yosys -V 2>&1 | tail -n 1)"
 
@@ -583,7 +839,7 @@ jobs:
             printf '%s\n' ""
             printf '%s\n' "- Commit: \`${{ github.sha }}\`"
             printf '%s\n' \
-              "- Source identity count: \`24\`"
+              "- Source identity count: \`28\`"
             printf '%s\n' \
               "- Source manifest SHA-256: \`${source_manifest_digest}\`"
             printf '%s\n' \
@@ -602,6 +858,12 @@ jobs:
               "- Mode 7/1 testbench SHA-256: \`${mode_7_1_testbench_digest}\`"
             printf '%s\n' \
               "- Mode 1/7 testbench SHA-256: \`${mode_1_7_testbench_digest}\`"
+            printf '%s\n' \
+              "- Trace monitor SHA-256: \`${trace_monitor_digest}\`"
+            printf '%s\n' \
+              "- Mode 7/1 trace testbench SHA-256: \`${mode_7_1_trace_testbench_digest}\`"
+            printf '%s\n' \
+              "- Mode 1/7 trace testbench SHA-256: \`${mode_1_7_trace_testbench_digest}\`"
             printf '%s\n' \
               "- Formal harness SHA-256: \`${formal_harness_digest}\`"
             printf '%s\n' \
@@ -628,6 +890,16 @@ jobs:
               "- Mode 7/1 trace SHA-256: \`${mode_7_1_trace_digest}\`"
             printf '%s\n' \
               "- Mode 1/7 trace SHA-256: \`${mode_1_7_trace_digest}\`"
+            printf '%s\n' \
+              "- Mode 7/1 full-trace transcript SHA-256: \`${mode_7_1_full_trace_transcript_digest}\`"
+            printf '%s\n' \
+              "- Mode 1/7 full-trace transcript SHA-256: \`${mode_1_7_full_trace_transcript_digest}\`"
+            printf '%s\n' \
+              "- Mode 7/1 full-trace records SHA-256: \`${mode_7_1_full_trace_records_digest}\`"
+            printf '%s\n' \
+              "- Mode 1/7 full-trace records SHA-256: \`${mode_1_7_full_trace_records_digest}\`"
+            printf '%s\n' \
+              "- Full-trace identity manifest SHA-256: \`${full_trace_identity_digest}\`"
             printf '%s\n' "- Verilator: \`${verilator_record}\`"
             printf '%s\n' "- Yosys: \`${yosys_record}\`"
             printf '%s\n' \
@@ -647,9 +919,17 @@ jobs:
             printf '%s\n' \
               "- Mode 7/1 cadence: \`14 balance / 2 commit\`"
             printf '%s\n' \
+              "- Mode 7/1 full-trace executions: \`2/2\`"
+            printf '%s\n' \
+              "- Mode 7/1 full-trace records: \`16 sample / 16 bank / 128 cell / 32 request\`"
+            printf '%s\n' \
               "- Mode 1/7 deterministic executions: \`2/2\`"
             printf '%s\n' \
               "- Mode 1/7 cadence: \`3 excite / 14 neutralize\`"
+            printf '%s\n' \
+              "- Mode 1/7 full-trace executions: \`2/2\`"
+            printf '%s\n' \
+              "- Mode 1/7 full-trace records: \`17 sample / 17 bank / 136 cell / 34 request\`"
             printf '%s\n' "- Result: \`PASS\`"
           } >> "$GITHUB_STEP_SUMMARY"
 
