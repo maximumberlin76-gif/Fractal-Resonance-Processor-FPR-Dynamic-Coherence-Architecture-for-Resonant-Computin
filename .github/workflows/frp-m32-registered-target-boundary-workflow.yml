@@ -21,6 +21,8 @@ jobs:
       REQUEST_PATH_TESTBENCH_PATH: rtl/m32/frp_m32_registered_target_request_path_tb.sv
       CORE_MODULE_PATH: rtl/m32/frp_m32_core.sv
       CORE_TESTBENCH_PATH: rtl/m32/frp_m32_core_tb.sv
+      MODE_7_1_TESTBENCH_PATH: rtl/m32/frp_m32_mode_7_1_tb.sv
+      MODE_1_7_TESTBENCH_PATH: rtl/m32/frp_m32_mode_1_7_tb.sv
       LC_ALL: C.UTF-8
       TZ: UTC
 
@@ -95,9 +97,11 @@ jobs:
           rtl/m32/frp_m32_registered_target_request_path_tb.sv|12135|a615d9b3bd456f60b37715433862830a4f3f8170859a2b12415d4b4b071faea5
           rtl/m32/frp_m32_core.sv|10564|925342326b7ad555a1382e8ee3bc5754ed3012ba60e0eabf512113731e0ee6c9
           rtl/m32/frp_m32_core_tb.sv|19348|4a2ac2778192199d02700c324da7d0cfba4a2f83730ea148497099e1a640d800
+          rtl/m32/frp_m32_mode_7_1_tb.sv|22207|7a6d610435bbd3f11441cb518bb64ab05b3748f5bb866092b1a734eab99c08f8
+          rtl/m32/frp_m32_mode_1_7_tb.sv|22388|3dcd66dbd8edc6989294298adb14d4e3b314e0af62512b5a1398b789cb510b97
           IDENTITIES
 
-          test "$(wc -l < "$identity_record")" -eq 21
+          test "$(wc -l < "$identity_record")" -eq 23
           sha256sum "$identity_record" \
             > "${RUNNER_TEMP}/m32-source-identities-manifest.sha256"
 
@@ -125,6 +129,10 @@ jobs:
             "$CORE_TESTBENCH_PATH"
           grep -Fx '`include "frp_m31_phase_thermal_assertions.sv"' \
             "$CORE_TESTBENCH_PATH"
+          grep -Fx '`include "frp_m32_core.sv"' \
+            "$MODE_7_1_TESTBENCH_PATH"
+          grep -Fx '`include "frp_m32_core.sv"' \
+            "$MODE_1_7_TESTBENCH_PATH"
 
           grep -Fq 'execution_target_bank = registered_target_q;' \
             "$CORE_MODULE_PATH"
@@ -133,6 +141,12 @@ jobs:
           grep -Fq \
             'FRP_M32_INTEGRATED_REGISTERED_TARGET_CORE_TB: PASS' \
             "$CORE_TESTBENCH_PATH"
+          grep -Fq \
+            'FRP_M32_REGISTERED_TARGET_MODE_7_1_TB: PASS' \
+            "$MODE_7_1_TESTBENCH_PATH"
+          grep -Fq \
+            'FRP_M32_REGISTERED_TARGET_MODE_1_7_TB: PASS' \
+            "$MODE_1_7_TESTBENCH_PATH"
 
           printf '%s\n' "Exact M31/M32 source identities: PASS"
 
@@ -147,7 +161,7 @@ jobs:
           g++ --version | head -n 1 \
             | tee -a "${RUNNER_TEMP}/m32-toolchain.txt"
 
-      - name: Lint registered-target boundary, request path, and core
+      - name: Lint registered-target core and scheduler modes
         shell: bash
         run: |
           set -euo pipefail
@@ -187,6 +201,12 @@ jobs:
           lint_top \
             frp_m32_core_tb \
             "$CORE_TESTBENCH_PATH"
+          lint_top \
+            frp_m32_mode_7_1_tb \
+            "$MODE_7_1_TESTBENCH_PATH"
+          lint_top \
+            frp_m32_mode_1_7_tb \
+            "$MODE_1_7_TESTBENCH_PATH"
 
           printf '%s\n' "FRP M32 Verilator lint: PASS"
 
@@ -257,7 +277,65 @@ jobs:
             "FRP_M32_INTEGRATED_REGISTERED_TARGET_CORE_TB: PASS" \
             m32-core
 
+          build_and_replay \
+            frp_m32_mode_7_1_tb \
+            "$MODE_7_1_TESTBENCH_PATH" \
+            "FRP_M32_REGISTERED_TARGET_MODE_7_1_TB: PASS" \
+            m32-mode-7-1
+
+          build_and_replay \
+            frp_m32_mode_1_7_tb \
+            "$MODE_1_7_TESTBENCH_PATH" \
+            "FRP_M32_REGISTERED_TARGET_MODE_1_7_TB: PASS" \
+            m32-mode-1-7
+
           printf '%s\n' "FRP M32 deterministic replays: PASS"
+
+      - name: Verify separate scheduler trace records
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mode_7_1_log="${RUNNER_TEMP}/m32-mode-7-1-run-1.log"
+          mode_1_7_log="${RUNNER_TEMP}/m32-mode-1-7-run-1.log"
+          mode_7_1_trace="${RUNNER_TEMP}/m32-mode-7-1-trace.log"
+          mode_1_7_trace="${RUNNER_TEMP}/m32-mode-1-7-trace.log"
+
+          grep '^M32_MODE_7_1_TRACE ' "$mode_7_1_log" \
+            > "$mode_7_1_trace"
+          grep '^M32_MODE_1_7_TRACE ' "$mode_1_7_log" \
+            > "$mode_1_7_trace"
+
+          test "$(wc -l < "$mode_7_1_trace")" -eq 16
+          test "$(grep -Fc ' balance_tick=1 commit_tick=0 ' \
+            "$mode_7_1_trace")" -eq 14
+          test "$(grep -Fc ' balance_tick=0 commit_tick=1 ' \
+            "$mode_7_1_trace")" -eq 2
+          grep -Fq \
+            'first_leg=1 second_leg=0 executed_state=0 active_zero=1' \
+            "$mode_7_1_trace"
+          grep -Fq \
+            'first_leg=0 second_leg=1 executed_state=-1 active_zero=0' \
+            "$mode_7_1_trace"
+
+          test "$(wc -l < "$mode_1_7_trace")" -eq 17
+          test "$(grep -Fc ' excite_tick=1 neutralize_tick=0 ' \
+            "$mode_1_7_trace")" -eq 3
+          test "$(grep -Fc ' excite_tick=0 neutralize_tick=1 ' \
+            "$mode_1_7_trace")" -eq 14
+          grep -Fq \
+            'first_leg=1 second_leg=0 executed_state=0 active_zero=1' \
+            "$mode_1_7_trace"
+          grep -Fq \
+            'first_leg=0 second_leg=1 executed_state=-1 active_zero=0' \
+            "$mode_1_7_trace"
+
+          sha256sum "$mode_7_1_trace" \
+            > "${RUNNER_TEMP}/m32-mode-7-1-trace.sha256"
+          sha256sum "$mode_1_7_trace" \
+            > "${RUNNER_TEMP}/m32-mode-1-7-trace.sha256"
+
+          printf '%s\n' "FRP M32 separate scheduler traces: PASS"
 
       - name: Upload qualification records
         uses: actions/upload-artifact@v4.6.2
@@ -276,6 +354,16 @@ jobs:
             ${{ runner.temp }}/m32-core-run-1.log
             ${{ runner.temp }}/m32-core-run-2.log
             ${{ runner.temp }}/m32-core-transcript.sha256
+            ${{ runner.temp }}/m32-mode-7-1-run-1.log
+            ${{ runner.temp }}/m32-mode-7-1-run-2.log
+            ${{ runner.temp }}/m32-mode-7-1-transcript.sha256
+            ${{ runner.temp }}/m32-mode-7-1-trace.log
+            ${{ runner.temp }}/m32-mode-7-1-trace.sha256
+            ${{ runner.temp }}/m32-mode-1-7-run-1.log
+            ${{ runner.temp }}/m32-mode-1-7-run-2.log
+            ${{ runner.temp }}/m32-mode-1-7-transcript.sha256
+            ${{ runner.temp }}/m32-mode-1-7-trace.log
+            ${{ runner.temp }}/m32-mode-1-7-trace.sha256
           if-no-files-found: error
           retention-days: 90
 
@@ -301,12 +389,24 @@ jobs:
             | cut -d' ' -f1)"
           core_testbench_digest="$(sha256sum "$CORE_TESTBENCH_PATH" \
             | cut -d' ' -f1)"
+          mode_7_1_testbench_digest="$(sha256sum "$MODE_7_1_TESTBENCH_PATH" \
+            | cut -d' ' -f1)"
+          mode_1_7_testbench_digest="$(sha256sum "$MODE_1_7_TESTBENCH_PATH" \
+            | cut -d' ' -f1)"
           boundary_transcript_digest="$(cut -d' ' -f1 \
             "${RUNNER_TEMP}/m32-boundary-transcript.sha256")"
           request_path_transcript_digest="$(cut -d' ' -f1 \
             "${RUNNER_TEMP}/m32-request-path-transcript.sha256")"
           core_transcript_digest="$(cut -d' ' -f1 \
             "${RUNNER_TEMP}/m32-core-transcript.sha256")"
+          mode_7_1_transcript_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-mode-7-1-transcript.sha256")"
+          mode_1_7_transcript_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-mode-1-7-transcript.sha256")"
+          mode_7_1_trace_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-mode-7-1-trace.sha256")"
+          mode_1_7_trace_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-mode-1-7-trace.sha256")"
           verilator_record="$(verilator --version)"
 
           {
@@ -314,7 +414,7 @@ jobs:
             printf '%s\n' ""
             printf '%s\n' "- Commit: \`${{ github.sha }}\`"
             printf '%s\n' \
-              "- Source identity count: \`21\`"
+              "- Source identity count: \`23\`"
             printf '%s\n' \
               "- Source manifest SHA-256: \`${source_manifest_digest}\`"
             printf '%s\n' \
@@ -330,11 +430,23 @@ jobs:
             printf '%s\n' \
               "- Core testbench SHA-256: \`${core_testbench_digest}\`"
             printf '%s\n' \
+              "- Mode 7/1 testbench SHA-256: \`${mode_7_1_testbench_digest}\`"
+            printf '%s\n' \
+              "- Mode 1/7 testbench SHA-256: \`${mode_1_7_testbench_digest}\`"
+            printf '%s\n' \
               "- Boundary transcript SHA-256: \`${boundary_transcript_digest}\`"
             printf '%s\n' \
               "- Request-path transcript SHA-256: \`${request_path_transcript_digest}\`"
             printf '%s\n' \
               "- Core transcript SHA-256: \`${core_transcript_digest}\`"
+            printf '%s\n' \
+              "- Mode 7/1 transcript SHA-256: \`${mode_7_1_transcript_digest}\`"
+            printf '%s\n' \
+              "- Mode 1/7 transcript SHA-256: \`${mode_1_7_transcript_digest}\`"
+            printf '%s\n' \
+              "- Mode 7/1 trace SHA-256: \`${mode_7_1_trace_digest}\`"
+            printf '%s\n' \
+              "- Mode 1/7 trace SHA-256: \`${mode_1_7_trace_digest}\`"
             printf '%s\n' "- Toolchain: \`${verilator_record}\`"
             printf '%s\n' \
               "- Boundary deterministic executions: \`2/2\`"
@@ -342,6 +454,14 @@ jobs:
               "- Request-path deterministic executions: \`2/2\`"
             printf '%s\n' \
               "- Core deterministic executions: \`2/2\`"
+            printf '%s\n' \
+              "- Mode 7/1 deterministic executions: \`2/2\`"
+            printf '%s\n' \
+              "- Mode 7/1 cadence: \`14 balance / 2 commit\`"
+            printf '%s\n' \
+              "- Mode 1/7 deterministic executions: \`2/2\`"
+            printf '%s\n' \
+              "- Mode 1/7 cadence: \`3 excite / 14 neutralize\`"
             printf '%s\n' "- Result: \`PASS\`"
           } >> "$GITHUB_STEP_SUMMARY"
 
