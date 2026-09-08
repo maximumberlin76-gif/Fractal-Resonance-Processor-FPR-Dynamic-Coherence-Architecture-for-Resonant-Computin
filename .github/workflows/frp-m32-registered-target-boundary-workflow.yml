@@ -23,6 +23,7 @@ jobs:
       CORE_TESTBENCH_PATH: rtl/m32/frp_m32_core_tb.sv
       MODE_7_1_TESTBENCH_PATH: rtl/m32/frp_m32_mode_7_1_tb.sv
       MODE_1_7_TESTBENCH_PATH: rtl/m32/frp_m32_mode_1_7_tb.sv
+      FORMAL_HARNESS_PATH: formal/m32/frp_m32_registered_target_boundary_formal.sv
       LC_ALL: C.UTF-8
       TZ: UTC
 
@@ -33,6 +34,11 @@ jobs:
           fetch-depth: 1
           ref: ${{ github.sha }}
           persist-credentials: false
+
+      - name: Set up Python for the formal toolchain
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
 
       - name: Require manual main-branch execution
         shell: bash
@@ -99,9 +105,10 @@ jobs:
           rtl/m32/frp_m32_core_tb.sv|19348|4a2ac2778192199d02700c324da7d0cfba4a2f83730ea148497099e1a640d800
           rtl/m32/frp_m32_mode_7_1_tb.sv|22207|7a6d610435bbd3f11441cb518bb64ab05b3748f5bb866092b1a734eab99c08f8
           rtl/m32/frp_m32_mode_1_7_tb.sv|22388|3dcd66dbd8edc6989294298adb14d4e3b314e0af62512b5a1398b789cb510b97
+          formal/m32/frp_m32_registered_target_boundary_formal.sv|7698|b4880df9c8ca6a3f220a26d4937c14b63e3b97277cdff16ce50de725c7f840d2
           IDENTITIES
 
-          test "$(wc -l < "$identity_record")" -eq 23
+          test "$(wc -l < "$identity_record")" -eq 24
           sha256sum "$identity_record" \
             > "${RUNNER_TEMP}/m32-source-identities-manifest.sha256"
 
@@ -147,19 +154,37 @@ jobs:
           grep -Fq \
             'FRP_M32_REGISTERED_TARGET_MODE_1_7_TB: PASS' \
             "$MODE_1_7_TESTBENCH_PATH"
+          grep -Fq \
+            'module frp_m32_registered_target_boundary_safety_formal;' \
+            "$FORMAL_HARNESS_PATH"
+          grep -Fq \
+            'module frp_m32_registered_target_boundary_sequence_formal;' \
+            "$FORMAL_HARNESS_PATH"
+
+          for property_index in $(seq -w 1 14); do
+            test "$(grep -Fc \
+              "M32_P${property_index}" \
+              "$FORMAL_HARNESS_PATH")" -ge 2
+          done
 
           printf '%s\n' "Exact M31/M32 source identities: PASS"
 
-      - name: Install Verilator toolchain
+      - name: Install Verilator and exact formal toolchains
         shell: bash
         run: |
           set -euo pipefail
           sudo apt-get update
           sudo apt-get install --yes --no-install-recommends verilator g++
-          verilator --version \
-            | tee "${RUNNER_TEMP}/m32-toolchain.txt"
-          g++ --version | head -n 1 \
-            | tee -a "${RUNNER_TEMP}/m32-toolchain.txt"
+          python -m pip install \
+            --disable-pip-version-check \
+            yowasp-yosys==0.68.0.0.post1208
+
+          {
+            verilator --version
+            g++ --version | head -n 1
+            python --version
+            yowasp-yosys -V
+          } 2>&1 | tee "${RUNNER_TEMP}/m32-toolchain.txt"
 
       - name: Lint registered-target core and scheduler modes
         shell: bash
@@ -209,6 +234,112 @@ jobs:
             "$MODE_1_7_TESTBENCH_PATH"
 
           printf '%s\n' "FRP M32 Verilator lint: PASS"
+
+      - name: Synthesize registered-target boundary profiles
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          synthesize_profile() {
+            local cells="$1"
+            local replay
+            local netlist_path
+            local log_path
+            local yosys_script
+
+            for replay in 1 2; do
+              netlist_path="${RUNNER_TEMP}/m32-boundary-synth-${cells}-run-${replay}.json"
+              log_path="${RUNNER_TEMP}/m32-boundary-synth-${cells}-run-${replay}.log"
+              yosys_script="read_verilog -sv -I rtl/m31 ${BOUNDARY_MODULE_PATH}; chparam -set CELLS ${cells} frp_m32_registered_target_boundary; synth -noabc -top frp_m32_registered_target_boundary; check; stat; write_json ${netlist_path}"
+
+              yowasp-yosys -p "$yosys_script" 2>&1 \
+                | tee "$log_path"
+
+              test -s "$netlist_path"
+              test "$(grep -Fc \
+                'Found and reported 0 problems.' \
+                "$log_path")" -ge 3
+              test "$(grep -Fc \
+                'End of script.' \
+                "$log_path")" -eq 1
+            done
+
+            cmp \
+              "${RUNNER_TEMP}/m32-boundary-synth-${cells}-run-1.json" \
+              "${RUNNER_TEMP}/m32-boundary-synth-${cells}-run-2.json"
+            sha256sum \
+              "${RUNNER_TEMP}/m32-boundary-synth-${cells}-run-1.json" \
+              > "${RUNNER_TEMP}/m32-boundary-synth-${cells}.sha256"
+          }
+
+          synthesize_profile 8
+          synthesize_profile 16
+          synthesize_profile 32
+
+          printf '%s\n' "FRP M32 deterministic synthesis profiles: PASS"
+
+      - name: Prove registered-target boundary properties
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          prove_top() {
+            local top_module="$1"
+            local assertion_count="$2"
+            local record_prefix="$3"
+            local expected_imports
+            local replay
+            local log_path
+            local record_path
+            local yosys_script
+
+            expected_imports="$((assertion_count * 4))"
+            yosys_script="read_verilog -sv -formal -I rtl/m31 ${BOUNDARY_MODULE_PATH} ${FORMAL_HARNESS_PATH}; prep -top ${top_module}; flatten; chformal -lower; async2sync; opt_clean; check; sat -prove-asserts -set-def-formal -set-init-zero -seq 4 -timeout 300 -verify"
+
+            for replay in 1 2; do
+              log_path="${RUNNER_TEMP}/${record_prefix}-run-${replay}.log"
+              record_path="${RUNNER_TEMP}/${record_prefix}-record-run-${replay}.txt"
+
+              yowasp-yosys -p "$yosys_script" 2>&1 \
+                | tee "$log_path"
+
+              test "$(grep -Fc \
+                'SAT proof finished - no model found: SUCCESS!' \
+                "$log_path")" -eq 1
+              test "$(grep -Fc \
+                'Import proof for assert:' \
+                "$log_path")" -eq "$expected_imports"
+
+              {
+                printf 'top=%s\n' "$top_module"
+                printf 'depth=%s\n' "4"
+                printf 'assertions=%s\n' "$assertion_count"
+                grep -F 'Import proof for assert:' "$log_path"
+                grep -F 'Solving problem with' "$log_path"
+                grep -F \
+                  'SAT proof finished - no model found: SUCCESS!' \
+                  "$log_path"
+              } > "$record_path"
+            done
+
+            cmp \
+              "${RUNNER_TEMP}/${record_prefix}-record-run-1.txt" \
+              "${RUNNER_TEMP}/${record_prefix}-record-run-2.txt"
+            sha256sum \
+              "${RUNNER_TEMP}/${record_prefix}-record-run-1.txt" \
+              > "${RUNNER_TEMP}/${record_prefix}-record.sha256"
+          }
+
+          prove_top \
+            frp_m32_registered_target_boundary_safety_formal \
+            10 \
+            m32-formal-safety
+          prove_top \
+            frp_m32_registered_target_boundary_sequence_formal \
+            4 \
+            m32-formal-sequence
+
+          printf '%s\n' "FRP M32 registered-target bounded proofs: PASS"
 
       - name: Build and execute deterministic testbenches
         shell: bash
@@ -345,6 +476,31 @@ jobs:
             ${{ runner.temp }}/m32-source-identities.sha256
             ${{ runner.temp }}/m32-source-identities-manifest.sha256
             ${{ runner.temp }}/m32-toolchain.txt
+            ${{ runner.temp }}/m32-boundary-synth-8-run-1.json
+            ${{ runner.temp }}/m32-boundary-synth-8-run-2.json
+            ${{ runner.temp }}/m32-boundary-synth-8-run-1.log
+            ${{ runner.temp }}/m32-boundary-synth-8-run-2.log
+            ${{ runner.temp }}/m32-boundary-synth-8.sha256
+            ${{ runner.temp }}/m32-boundary-synth-16-run-1.json
+            ${{ runner.temp }}/m32-boundary-synth-16-run-2.json
+            ${{ runner.temp }}/m32-boundary-synth-16-run-1.log
+            ${{ runner.temp }}/m32-boundary-synth-16-run-2.log
+            ${{ runner.temp }}/m32-boundary-synth-16.sha256
+            ${{ runner.temp }}/m32-boundary-synth-32-run-1.json
+            ${{ runner.temp }}/m32-boundary-synth-32-run-2.json
+            ${{ runner.temp }}/m32-boundary-synth-32-run-1.log
+            ${{ runner.temp }}/m32-boundary-synth-32-run-2.log
+            ${{ runner.temp }}/m32-boundary-synth-32.sha256
+            ${{ runner.temp }}/m32-formal-safety-run-1.log
+            ${{ runner.temp }}/m32-formal-safety-run-2.log
+            ${{ runner.temp }}/m32-formal-safety-record-run-1.txt
+            ${{ runner.temp }}/m32-formal-safety-record-run-2.txt
+            ${{ runner.temp }}/m32-formal-safety-record.sha256
+            ${{ runner.temp }}/m32-formal-sequence-run-1.log
+            ${{ runner.temp }}/m32-formal-sequence-run-2.log
+            ${{ runner.temp }}/m32-formal-sequence-record-run-1.txt
+            ${{ runner.temp }}/m32-formal-sequence-record-run-2.txt
+            ${{ runner.temp }}/m32-formal-sequence-record.sha256
             ${{ runner.temp }}/m32-boundary-run-1.log
             ${{ runner.temp }}/m32-boundary-run-2.log
             ${{ runner.temp }}/m32-boundary-transcript.sha256
@@ -393,6 +549,18 @@ jobs:
             | cut -d' ' -f1)"
           mode_1_7_testbench_digest="$(sha256sum "$MODE_1_7_TESTBENCH_PATH" \
             | cut -d' ' -f1)"
+          formal_harness_digest="$(sha256sum "$FORMAL_HARNESS_PATH" \
+            | cut -d' ' -f1)"
+          synthesis_8_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-boundary-synth-8.sha256")"
+          synthesis_16_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-boundary-synth-16.sha256")"
+          synthesis_32_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-boundary-synth-32.sha256")"
+          formal_safety_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-formal-safety-record.sha256")"
+          formal_sequence_digest="$(cut -d' ' -f1 \
+            "${RUNNER_TEMP}/m32-formal-sequence-record.sha256")"
           boundary_transcript_digest="$(cut -d' ' -f1 \
             "${RUNNER_TEMP}/m32-boundary-transcript.sha256")"
           request_path_transcript_digest="$(cut -d' ' -f1 \
@@ -408,13 +576,14 @@ jobs:
           mode_1_7_trace_digest="$(cut -d' ' -f1 \
             "${RUNNER_TEMP}/m32-mode-1-7-trace.sha256")"
           verilator_record="$(verilator --version)"
+          yosys_record="$(yowasp-yosys -V 2>&1 | tail -n 1)"
 
           {
             printf '%s\n' "## FRP M32 Registered Target Core"
             printf '%s\n' ""
             printf '%s\n' "- Commit: \`${{ github.sha }}\`"
             printf '%s\n' \
-              "- Source identity count: \`23\`"
+              "- Source identity count: \`24\`"
             printf '%s\n' \
               "- Source manifest SHA-256: \`${source_manifest_digest}\`"
             printf '%s\n' \
@@ -434,6 +603,18 @@ jobs:
             printf '%s\n' \
               "- Mode 1/7 testbench SHA-256: \`${mode_1_7_testbench_digest}\`"
             printf '%s\n' \
+              "- Formal harness SHA-256: \`${formal_harness_digest}\`"
+            printf '%s\n' \
+              "- 8-cell synthesis SHA-256: \`${synthesis_8_digest}\`"
+            printf '%s\n' \
+              "- 16-cell synthesis SHA-256: \`${synthesis_16_digest}\`"
+            printf '%s\n' \
+              "- 32-cell synthesis SHA-256: \`${synthesis_32_digest}\`"
+            printf '%s\n' \
+              "- Formal safety record SHA-256: \`${formal_safety_digest}\`"
+            printf '%s\n' \
+              "- Formal sequence record SHA-256: \`${formal_sequence_digest}\`"
+            printf '%s\n' \
               "- Boundary transcript SHA-256: \`${boundary_transcript_digest}\`"
             printf '%s\n' \
               "- Request-path transcript SHA-256: \`${request_path_transcript_digest}\`"
@@ -447,7 +628,14 @@ jobs:
               "- Mode 7/1 trace SHA-256: \`${mode_7_1_trace_digest}\`"
             printf '%s\n' \
               "- Mode 1/7 trace SHA-256: \`${mode_1_7_trace_digest}\`"
-            printf '%s\n' "- Toolchain: \`${verilator_record}\`"
+            printf '%s\n' "- Verilator: \`${verilator_record}\`"
+            printf '%s\n' "- Yosys: \`${yosys_record}\`"
+            printf '%s\n' \
+              "- Deterministic synthesis profiles: \`8/16/32 cells\`"
+            printf '%s\n' \
+              "- Formal safety assertions: \`10 at depth 4, 2/2 replays\`"
+            printf '%s\n' \
+              "- Formal sequence assertions: \`4 at depth 4, 2/2 replays\`"
             printf '%s\n' \
               "- Boundary deterministic executions: \`2/2\`"
             printf '%s\n' \
